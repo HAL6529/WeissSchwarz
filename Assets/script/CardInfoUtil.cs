@@ -21,10 +21,13 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
 
+    string name;
+
     // Start is called before the first frame update
     void Start()
     {
         info = GetComponent<cardInfo>();
+        name = info.cardName;
         ChangeLayoutColor();
         ChangeText();
     }
@@ -63,7 +66,6 @@ public class CardInfoUtil : MonoBehaviour
     void ChangeText()
     {
         cardNoText.text = "";
-        string name = info.cardName;
 
         if (name != null)
         {
@@ -135,5 +137,17 @@ public class CardInfoUtil : MonoBehaviour
     public void onAddListButton()
     {
         deckList.GetComponent<DeckListManager>().addCard(info);
+    }
+
+    public void isHitForKeyword(string searchWord)
+    {
+        if (name.Contains(searchWord))
+        {
+            this.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
