@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardInfoManager : MonoBehaviour
 {
     public List<GameObject> searchCardList = new List<GameObject>();
+    [SerializeField] InputField m_inputField;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +29,12 @@ public class CardInfoManager : MonoBehaviour
         }
     }
 
-    public void Search(string searchWord)
+    public void Search()
     {
-        for(int i = 0; i < searchCardList.Count; i++)
+        string searchWord = m_inputField.text;
+        for (int i = 0; i < searchCardList.Count; i++)
         {
-            searchCardList[i].GetComponent<CardInfoUtil>().isHitForKeyword(searchWord);
+            searchCardList[i].GetComponent<CardInfoUtil>().isHitForKeyword(searchWord.Split(' '));
         }
     }
 }

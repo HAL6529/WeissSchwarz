@@ -139,15 +139,18 @@ public class CardInfoUtil : MonoBehaviour
         deckList.GetComponent<DeckListManager>().addCard(info);
     }
 
-    public void isHitForKeyword(string searchWord)
+    public void isHitForKeyword(string[] searchWordArray)
     {
-        if (name.Contains(searchWord))
+        for (int i = 0; i < searchWordArray.Length; i++)
         {
-            this.gameObject.SetActive(true);
+            Debug.Log(searchWordArray[i]);
+            if (!name.Contains(searchWordArray[i]))
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
         }
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
+        this.gameObject.SetActive(true);
+        return;
     }
 }
