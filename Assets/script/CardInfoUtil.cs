@@ -6,7 +6,7 @@ using EnumController;
 
 public class CardInfoUtil : MonoBehaviour
 {
-
+    ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     private cardInfo info;
 
     // デッキリストのGameObject
@@ -65,7 +65,7 @@ public class CardInfoUtil : MonoBehaviour
 
     void ChangeText()
     {
-        cardNoText.text = "";
+        cardNoText.text = extendUtil.CardNoConvertToString(info.cardNo);
 
         if (name != null)
         {
