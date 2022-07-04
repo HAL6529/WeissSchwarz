@@ -22,13 +22,13 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
 
-    string name;
+    string cardName;
 
     // Start is called before the first frame update
     void Start()
     {
         info = GetComponent<cardInfo>();
-        name = info.cardName;
+        cardName = info.cardName;
         ChangeLayoutColor();
         ChangeText();
     }
@@ -68,9 +68,9 @@ public class CardInfoUtil : MonoBehaviour
     {
         cardNoText.text = extendUtil.CardNoConvertToString(info.cardNo);
 
-        if (name != null)
+        if (cardName != null)
         {
-            cardNameText.text = name;
+            cardNameText.text = cardName;
         }
         else
         {
