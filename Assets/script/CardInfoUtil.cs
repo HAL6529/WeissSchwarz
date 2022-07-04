@@ -8,6 +8,7 @@ public class CardInfoUtil : MonoBehaviour
 {
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     private cardInfo info;
+    [SerializeField] CardGuideUtil m_CardGuideUtil;
 
     // デッキリストのGameObject
     [SerializeField] GameObject deckList;
@@ -82,42 +83,6 @@ public class CardInfoUtil : MonoBehaviour
         costText.text = info.cost.ToString();
     }
 
-    /// <summary>
-    /// 検索する関数
-    /// </summary>
-    /// <param name="level">int型 レベル</param>
-    /// <param name="cost">int型 コスト</param>
-    /// <param name="power">int型　パワー</param>
-    /// <param name="color">EnumController.CardColor型　色</param>
-    /// <param name="trigger">EnumController.Trriger型　トリガー</param>
-    public void Search(int level, int cost, int power, EnumController.CardColor color, EnumController.Trriger trigger)
-    {
-        /*if (this.level != level && level != -1)
-        {
-            return;
-        }
-
-        if (this.cost != cost && cost != -1)
-        {
-            return;
-        }
-
-        if (this.power != cost && power != -1)
-        {
-            return;
-        }
-
-        if (this.color != color)
-        {
-            return;
-        }
-
-        if (this.trigger != trigger)
-        {
-            return;
-        }*/
-    }
-
     string AttributeConvertToString(EnumController.Attribute attribute)
     {
         switch (attribute)
@@ -152,5 +117,10 @@ public class CardInfoUtil : MonoBehaviour
         }
         this.gameObject.SetActive(true);
         return;
+    }
+
+    public void onSearchCardListImageButton()
+    {
+        m_CardGuideUtil.onShowInfo(info);
     }
 }

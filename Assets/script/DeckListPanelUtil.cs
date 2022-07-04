@@ -25,7 +25,6 @@ public class DeckListPanelUtil : MonoBehaviour
     public void setInfo(Sprite sprite)
     {
         this.sprite = sprite;
-
         changeSprite();
     }
 
@@ -37,13 +36,21 @@ public class DeckListPanelUtil : MonoBehaviour
             this.gameObject.GetComponent<Image>().sprite = null;
             return;
         }
-
         this.gameObject.SetActive(true);
         this.gameObject.GetComponent<Image>().sprite = sprite;
     }
 
     public void onButton()
     {
-        deckList.onShowInfo(index);
+        if (Input.GetMouseButtonUp(1))
+        {
+            // 右クリック時
+            deckList.removeCard(index);
+        } else if (Input.GetMouseButtonUp(0))
+        {
+            // 左クリック時
+            deckList.onShowInfo(index);
+        }
+
     }
 }

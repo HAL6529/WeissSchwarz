@@ -140,4 +140,11 @@ public class DeckListManager : MonoBehaviour
         levelIndex.text = deckList[index].level.ToString();
         costIndex.text = deckList[index].cost.ToString();
     }
+
+    public void removeCard(int index)
+    {
+        deckList.RemoveAt(index);
+        sortDeckList();
+        updateDeckList();
+    }
 }
