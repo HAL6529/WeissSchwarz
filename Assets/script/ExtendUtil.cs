@@ -24,6 +24,24 @@ namespace ExtendUtil
             }
             return "";
         }
+
+        public string CardNoConvertToString(EnumController.CardNo cardNo)
+        {
+            switch (cardNo)
+            {
+                case EnumController.CardNo.AT_WX02_A01:
+                    return "AT_WX02_A01";
+                case EnumController.CardNo.AT_WX02_A02:
+                    return "AT_WX02_A02";
+                case EnumController.CardNo.AT_WX02_A03:
+                    return "AT_WX02_A03";
+                case EnumController.CardNo.AT_WX02_A04:
+                    return "AT_WX02_A04";
+                default:
+                    break;
+            }
+            return "";
+        }
     }
 }
 
