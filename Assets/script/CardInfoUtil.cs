@@ -104,15 +104,53 @@ public class CardInfoUtil : MonoBehaviour
         deckList.GetComponent<DeckListManager>().addCard(info);
     }
 
-    public void isHitForKeyword(string[] searchWordArray)
+    public void isHitForKeyword(string[] searchWordArray, SearchFilter filter)
     {
         for (int i = 0; i < searchWordArray.Length; i++)
         {
-            Debug.Log(searchWordArray[i]);
-            if (!name.Contains(searchWordArray[i]))
+            if (!cardName.Contains(searchWordArray[i]))
             {
                 this.gameObject.SetActive(false);
                 return;
+            }
+
+            switch (info.level)
+            {
+                case 0:
+                    if (!filter.isLevelZero)
+                    {
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
+                    break;
+                case 1:
+                    if (!filter.isLevelOne)
+                    {
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
+                    break;
+                case 2:
+                    if (!filter.isLevelTwo)
+                    {
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
+                    break;
+                case 3:
+                    if (!filter.isLevelThree)
+                    {
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
+                    break;
+                default:
+                    if (!filter.isLevelZero || !filter.isLevelOne || !filter.isLevelTwo || !filter.isLevelThree)
+                    {
+                        this.gameObject.SetActive(false);
+                        return;
+                    }
+                    break;
             }
         }
         this.gameObject.SetActive(true);

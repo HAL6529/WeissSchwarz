@@ -51,6 +51,5 @@ public class DeckListPanelUtil : MonoBehaviour
             // ¶ƒNƒŠƒbƒN
             deckList.onShowInfo(index);
         }
-
     }
 }

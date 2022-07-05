@@ -7,6 +7,8 @@ public class CardInfoManager : MonoBehaviour
 {
     public List<GameObject> searchCardList = new List<GameObject>();
     [SerializeField] InputField m_inputField;
+    [SerializeField] SearchFilter m_searchFilter;
+    [SerializeField] filterDialog m_filterDialog;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +32,11 @@ public class CardInfoManager : MonoBehaviour
 
     public void Search()
     {
+        m_filterDialog.closeFilter();
         string searchWord = m_inputField.text;
         for (int i = 0; i < searchCardList.Count; i++)
         {
-            searchCardList[i].GetComponent<CardInfoUtil>().isHitForKeyword(searchWord.Split(' '));
+            searchCardList[i].GetComponent<CardInfoUtil>().isHitForKeyword(searchWord.Split(' '), m_searchFilter);
         }
     }
 }
