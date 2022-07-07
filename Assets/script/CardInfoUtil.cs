@@ -9,6 +9,7 @@ public class CardInfoUtil : MonoBehaviour
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     private cardInfo info;
     [SerializeField] CardGuideUtil m_CardGuideUtil;
+    [SerializeField] filterDialog m_filterDialog;
 
     // デッキリストのGameObject
     [SerializeField] GameObject deckList;
@@ -21,6 +22,8 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text attributeThreeText;
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
+
+    [SerializeField] GameObject TagAccelerate;
 
     string cardName;
 
@@ -101,6 +104,7 @@ public class CardInfoUtil : MonoBehaviour
 
     public void onAddListButton()
     {
+        m_filterDialog.closeFilter();
         deckList.GetComponent<DeckListManager>().addCard(info);
     }
 
@@ -113,44 +117,20 @@ public class CardInfoUtil : MonoBehaviour
                 this.gameObject.SetActive(false);
                 return;
             }
-
-            switch (info.level)
+            if (!isSearchLevel(filter))
             {
-                case 0:
-                    if (!filter.isLevelZero)
-                    {
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                    break;
-                case 1:
-                    if (!filter.isLevelOne)
-                    {
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                    break;
-                case 2:
-                    if (!filter.isLevelTwo)
-                    {
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                    break;
-                case 3:
-                    if (!filter.isLevelThree)
-                    {
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                    break;
-                default:
-                    if (!filter.isLevelZero || !filter.isLevelOne || !filter.isLevelTwo || !filter.isLevelThree)
-                    {
-                        this.gameObject.SetActive(false);
-                        return;
-                    }
-                    break;
+                this.gameObject.SetActive(false);
+                return;
+            }
+            if (!isSearchColor(filter))
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+            if (!isSearchType(filter))
+            {
+                this.gameObject.SetActive(false);
+                return;
             }
         }
         this.gameObject.SetActive(true);
@@ -160,5 +140,121 @@ public class CardInfoUtil : MonoBehaviour
     public void onSearchCardListImageButton()
     {
         m_CardGuideUtil.onShowInfo(info);
+    }
+
+    private bool isSearchLevel(SearchFilter filter)
+    {
+        switch (info.level)
+        {
+            case 0:
+                if (!filter.isLevelZero)
+                {
+                    return false;
+                }
+                break;
+            case 1:
+                if (!filter.isLevelOne)
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!filter.isLevelTwo)
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!filter.isLevelThree)
+                {
+                    return false;
+                }
+                break;
+            default:
+                if (!filter.isLevelZero || !filter.isLevelOne || !filter.isLevelTwo || !filter.isLevelThree)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+
+    private bool isSearchColor(SearchFilter filter)
+    {
+        switch (info.color)
+        {
+            case EnumController.CardColor.RED:
+                if (!filter.isColorRed)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.BLUE:
+                if (!filter.isColorBlue)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.YELLOW:
+                if (!filter.isColorYellow)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.GREEN:
+                if (!filter.isColorGreen)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.PURPLE:
+                if (!filter.isColorPurple)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.VOID:
+            default:
+                if (!filter.isColorRed || !filter.isColorBlue || !filter.isColorGreen || !filter.isColorYellow || !filter.isColorPurple)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+
+    private bool isSearchType(SearchFilter filter)
+    {
+        switch (info.type)
+        {
+            case EnumController.Type.CHARACTER:
+                if (!filter.isTypeCharacter)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.EVENT:
+                if (!filter.isTypeEvent)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.CLIMAX:
+                if (!filter.isTypeClimax)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.VOID:
+            default:
+                if (!filter.isTypeCharacter || !filter.isTypeEvent || !filter.isTypeClimax)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 }
