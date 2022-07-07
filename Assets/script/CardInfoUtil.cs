@@ -23,8 +23,6 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
 
-    [SerializeField] GameObject TagAccelerate;
-
     string cardName;
 
     // Start is called before the first frame update
