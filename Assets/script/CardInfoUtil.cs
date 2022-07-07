@@ -8,6 +8,8 @@ public class CardInfoUtil : MonoBehaviour
 {
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     private cardInfo info;
+    [SerializeField] CardGuideUtil m_CardGuideUtil;
+    [SerializeField] filterDialog m_filterDialog;
 
     // デッキリストのGameObject
     [SerializeField] GameObject deckList;
@@ -21,13 +23,13 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
 
-    string name;
+    string cardName;
 
     // Start is called before the first frame update
     void Start()
     {
         info = GetComponent<cardInfo>();
-        name = info.cardName;
+        cardName = info.cardName;
         ChangeLayoutColor();
         ChangeText();
     }
@@ -67,9 +69,9 @@ public class CardInfoUtil : MonoBehaviour
     {
         cardNoText.text = extendUtil.CardNoConvertToString(info.cardNo);
 
-        if (name != null)
+        if (cardName != null)
         {
-            cardNameText.text = name;
+            cardNameText.text = cardName;
         }
         else
         {
@@ -80,42 +82,6 @@ public class CardInfoUtil : MonoBehaviour
         attributeThreeText.text = AttributeConvertToString(info.attributeThree);
         levelText.text = info.level.ToString();
         costText.text = info.cost.ToString();
-    }
-
-    /// <summary>
-    /// 検索する関数
-    /// </summary>
-    /// <param name="level">int型 レベル</param>
-    /// <param name="cost">int型 コスト</param>
-    /// <param name="power">int型　パワー</param>
-    /// <param name="color">EnumController.CardColor型　色</param>
-    /// <param name="trigger">EnumController.Trriger型　トリガー</param>
-    public void Search(int level, int cost, int power, EnumController.CardColor color, EnumController.Trriger trigger)
-    {
-        /*if (this.level != level && level != -1)
-        {
-            return;
-        }
-
-        if (this.cost != cost && cost != -1)
-        {
-            return;
-        }
-
-        if (this.power != cost && power != -1)
-        {
-            return;
-        }
-
-        if (this.color != color)
-        {
-            return;
-        }
-
-        if (this.trigger != trigger)
-        {
-            return;
-        }*/
     }
 
     string AttributeConvertToString(EnumController.Attribute attribute)
@@ -136,15 +102,30 @@ public class CardInfoUtil : MonoBehaviour
 
     public void onAddListButton()
     {
+        m_filterDialog.closeFilter();
         deckList.GetComponent<DeckListManager>().addCard(info);
     }
 
-    public void isHitForKeyword(string[] searchWordArray)
+    public void isHitForKeyword(string[] searchWordArray, SearchFilter filter)
     {
         for (int i = 0; i < searchWordArray.Length; i++)
         {
-            Debug.Log(searchWordArray[i]);
-            if (!name.Contains(searchWordArray[i]))
+            if (!cardName.Contains(searchWordArray[i]))
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+            if (!isSearchLevel(filter))
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+            if (!isSearchColor(filter))
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+            if (!isSearchType(filter))
             {
                 this.gameObject.SetActive(false);
                 return;
@@ -152,5 +133,126 @@ public class CardInfoUtil : MonoBehaviour
         }
         this.gameObject.SetActive(true);
         return;
+    }
+
+    public void onSearchCardListImageButton()
+    {
+        m_CardGuideUtil.onShowInfo(info);
+    }
+
+    private bool isSearchLevel(SearchFilter filter)
+    {
+        switch (info.level)
+        {
+            case 0:
+                if (!filter.isLevelZero)
+                {
+                    return false;
+                }
+                break;
+            case 1:
+                if (!filter.isLevelOne)
+                {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!filter.isLevelTwo)
+                {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!filter.isLevelThree)
+                {
+                    return false;
+                }
+                break;
+            default:
+                if (!filter.isLevelZero || !filter.isLevelOne || !filter.isLevelTwo || !filter.isLevelThree)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+
+    private bool isSearchColor(SearchFilter filter)
+    {
+        switch (info.color)
+        {
+            case EnumController.CardColor.RED:
+                if (!filter.isColorRed)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.BLUE:
+                if (!filter.isColorBlue)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.YELLOW:
+                if (!filter.isColorYellow)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.GREEN:
+                if (!filter.isColorGreen)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.PURPLE:
+                if (!filter.isColorPurple)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.CardColor.VOID:
+            default:
+                if (!filter.isColorRed || !filter.isColorBlue || !filter.isColorGreen || !filter.isColorYellow || !filter.isColorPurple)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+
+    private bool isSearchType(SearchFilter filter)
+    {
+        switch (info.type)
+        {
+            case EnumController.Type.CHARACTER:
+                if (!filter.isTypeCharacter)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.EVENT:
+                if (!filter.isTypeEvent)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.CLIMAX:
+                if (!filter.isTypeClimax)
+                {
+                    return false;
+                }
+                break;
+            case EnumController.Type.VOID:
+            default:
+                if (!filter.isTypeCharacter || !filter.isTypeEvent || !filter.isTypeClimax)
+                {
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 }

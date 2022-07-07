@@ -20,6 +20,17 @@ public class cardInfo : MonoBehaviour
     public int power;
     public EnumController.Limit limit;
 
+    public bool hasAccelerate;
+    public bool hasBackUp;
+    public bool hasBrainStorm;
+    public bool hasBond;
+    public bool hasChange;
+    public bool hasClock;
+    public bool hasEncore;
+    public bool hasExperience;
+    public bool hasGreatPerformance;
+    public bool hasResonate;
+
     // Start is called before the first frame update
     void Start()
     {
