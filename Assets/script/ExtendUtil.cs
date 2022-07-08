@@ -42,6 +42,22 @@ namespace ExtendUtil
             }
             return "";
         }
+
+        public string AttributeConvertToString(EnumController.Attribute attribute)
+        {
+            switch (attribute)
+            {
+                case EnumController.Attribute.Ooo:
+                    return "Ooo";
+                case EnumController.Attribute.Hero:
+                    return "Hero";
+                case EnumController.Attribute.NONE:
+                    return null;
+                default:
+                    break;
+            }
+            return null;
+        }
     }
 }
 
