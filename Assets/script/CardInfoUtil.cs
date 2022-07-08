@@ -77,27 +77,11 @@ public class CardInfoUtil : MonoBehaviour
         {
             cardNameText.text = "";
         }
-        attributeOneText.text = AttributeConvertToString(info.attributeOne);
-        attributeTwoText.text = AttributeConvertToString(info.attributeTwo);
-        attributeThreeText.text = AttributeConvertToString(info.attributeThree);
+        attributeOneText.text = extendUtil.AttributeConvertToString(info.attributeOne);
+        attributeTwoText.text = extendUtil.AttributeConvertToString(info.attributeTwo);
+        attributeThreeText.text = extendUtil.AttributeConvertToString(info.attributeThree);
         levelText.text = info.level.ToString();
         costText.text = info.cost.ToString();
-    }
-
-    string AttributeConvertToString(EnumController.Attribute attribute)
-    {
-        switch (attribute)
-        {
-            case EnumController.Attribute.Ooo:
-                return "Ooo";
-            case EnumController.Attribute.Hero:
-                return "Hero";
-            case EnumController.Attribute.NONE:
-                return null;
-            default:
-                break;
-        }
-        return null;
     }
 
     public void onAddListButton()
