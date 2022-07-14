@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
 
     // –³–‚Éƒ‹[ƒ€‚Ö“üº
     void OnJoinedRoom() {
-
+        Debug.Log("ƒ‹[ƒ€‚Ö“üº‚µ‚Ü‚µ‚½");
+        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
     }
 
     // PhotonRealTime‚ÆÚ‘±‚ªØ‚ê‚½ê‡
