@@ -17,6 +17,11 @@ public class Menu : MonoBehaviour
         
     }
 
+    public void TransitionToBattleMode()
+    {
+        SceneManager.LoadScene("Battle");
+    }
+
     public void TransitionToEditMode()
     {
         SceneManager.LoadScene("DeckEdit");

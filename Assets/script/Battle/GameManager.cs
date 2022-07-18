@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] List<BattleCardInfo> handCards = new List<BattleCardInfo>();
+
+    [SerializeField] List<HandCardUtil> handCardUtilList = new List<HandCardUtil>();
+    Player myPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +46,9 @@ public class GameManager : MonoBehaviour
     // –³–‚Éƒ‹[ƒ€‚Ö“üº
     void OnJoinedRoom() {
         Debug.Log("ƒ‹[ƒ€‚Ö“üº‚µ‚Ü‚µ‚½");
-        PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+        GameObject tempPlayer = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
+        myPlayer = tempPlayer.GetComponent<Player>();
+        updateHandList();
     }
 
     // PhotonRealTime‚ÆÚ‘±‚ªØ‚ê‚½ê‡
@@ -59,6 +66,23 @@ public class GameManager : MonoBehaviour
         else
         {
 
+        }
+    }
+
+    public void updateHandList()
+    {
+        int num = myPlayer.myHandList.Count;
+        if (num < 11)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                handCards[i] = myPlayer.myHandList[i];
+            }           
+        }
+
+        for(int i = 0; i < handCardUtilList.Count; i++)
+        {
+            handCardUtilList[i].updateSprite();
         }
     }
 }

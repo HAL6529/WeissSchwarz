@@ -674,8 +674,8 @@ RectTransform:
   m_Father: {fileID: 1651444960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -928,6 +928,8 @@ GameObject:
   - component: {fileID: 125988987}
   - component: {fileID: 125988986}
   - component: {fileID: 125988985}
+  - component: {fileID: 125988988}
+  - component: {fileID: 125988989}
   m_Layer: 0
   m_Name: HandCard (7)
   m_TagString: Untagged
@@ -1037,6 +1039,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125988983}
   m_CullTransparentMesh: 1
+--- !u!114 &125988988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125988983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &125988989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125988983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 125988988}
+  image: {fileID: 125988986}
 --- !u!1 &131359428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,9 +1124,9 @@ RectTransform:
   m_Father: {fileID: 968386364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 406.70102, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131359430
@@ -1282,9 +1325,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138653608
@@ -1395,6 +1438,8 @@ GameObject:
   - component: {fileID: 140555813}
   - component: {fileID: 140555812}
   - component: {fileID: 140555811}
+  - component: {fileID: 140555814}
+  - component: {fileID: 140555815}
   m_Layer: 0
   m_Name: HandCard (1)
   m_TagString: Untagged
@@ -1504,6 +1549,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140555809}
   m_CullTransparentMesh: 1
+--- !u!114 &140555814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140555809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &140555815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140555809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 140555814}
+  image: {fileID: 140555812}
 --- !u!1 &149675088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,9 +1746,9 @@ RectTransform:
   m_Father: {fileID: 1342861068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.494, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209348276
@@ -2126,9 +2212,9 @@ RectTransform:
   m_Father: {fileID: 1686863207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.494, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251278365
@@ -2383,9 +2469,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -45.06001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275185875
@@ -2568,7 +2654,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 818243457}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.44489214
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2646,9 +2732,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -35.048008, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320227299
@@ -2943,9 +3029,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339310618
@@ -3537,9 +3623,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -5.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463024751
@@ -3800,9 +3886,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -15.024002, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502854376
@@ -3947,9 +4033,9 @@ RectTransform:
   m_Father: {fileID: 968386364}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 406.70102, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -45}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540950737
@@ -4004,6 +4090,8 @@ GameObject:
   - component: {fileID: 541247155}
   - component: {fileID: 541247154}
   - component: {fileID: 541247153}
+  - component: {fileID: 541247156}
+  - component: {fileID: 541247157}
   m_Layer: 0
   m_Name: HandCard (4)
   m_TagString: Untagged
@@ -4113,6 +4201,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541247151}
   m_CullTransparentMesh: 1
+--- !u!114 &541247156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541247151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &541247157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541247151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 541247156}
+  image: {fileID: 541247154}
 --- !u!1 &554655484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,6 +4254,8 @@ GameObject:
   - component: {fileID: 554655488}
   - component: {fileID: 554655487}
   - component: {fileID: 554655486}
+  - component: {fileID: 554655489}
+  - component: {fileID: 554655490}
   m_Layer: 0
   m_Name: HandCard (2)
   m_TagString: Untagged
@@ -4234,6 +4365,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554655484}
   m_CullTransparentMesh: 1
+--- !u!114 &554655489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554655484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &554655490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554655484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 554655489}
+  image: {fileID: 554655487}
 --- !u!1 &560296998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,8 +4418,10 @@ GameObject:
   - component: {fileID: 560297002}
   - component: {fileID: 560297001}
   - component: {fileID: 560297000}
+  - component: {fileID: 560297003}
+  - component: {fileID: 560297004}
   m_Layer: 0
-  m_Name: HandCard (10)
+  m_Name: rightCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4355,6 +4529,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560296998}
   m_CullTransparentMesh: 1
+--- !u!114 &560297003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560296998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &560297004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560296998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 560297003}
+  image: {fileID: 560297001}
 --- !u!1 &591494968
 GameObject:
   m_ObjectHideFlags: 0
@@ -4389,9 +4604,9 @@ RectTransform:
   m_Father: {fileID: 686283001}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.494, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591494970
@@ -4479,9 +4694,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55.060005, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624364467
@@ -4748,6 +4963,8 @@ GameObject:
   - component: {fileID: 691163898}
   - component: {fileID: 691163897}
   - component: {fileID: 691163896}
+  - component: {fileID: 691163899}
+  - component: {fileID: 691163900}
   m_Layer: 0
   m_Name: Only11
   m_TagString: Untagged
@@ -4857,6 +5074,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691163894}
   m_CullTransparentMesh: 1
+--- !u!114 &691163899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691163894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &691163900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691163894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 691163899}
+  image: {fileID: 691163897}
 --- !u!1 &710752012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5111,6 +5369,8 @@ GameObject:
   - component: {fileID: 756062938}
   - component: {fileID: 756062937}
   - component: {fileID: 756062936}
+  - component: {fileID: 756062939}
+  - component: {fileID: 756062940}
   m_Layer: 0
   m_Name: HandCard (5)
   m_TagString: Untagged
@@ -5220,6 +5480,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756062934}
   m_CullTransparentMesh: 1
+--- !u!114 &756062939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756062934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &756062940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756062934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 756062939}
+  image: {fileID: 756062937}
 --- !u!1 &760299464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,8 +5654,10 @@ GameObject:
   - component: {fileID: 760882396}
   - component: {fileID: 760882395}
   - component: {fileID: 760882394}
+  - component: {fileID: 760882397}
+  - component: {fileID: 760882398}
   m_Layer: 0
-  m_Name: HandCard (11)
+  m_Name: leftCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5462,6 +5765,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760882392}
   m_CullTransparentMesh: 1
+--- !u!114 &760882397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760882392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &760882398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760882392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 760882397}
+  image: {fileID: 760882395}
 --- !u!1 &770768030
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,9 +5841,9 @@ RectTransform:
   m_Father: {fileID: 1651444960}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &770768032
@@ -5644,9 +5988,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45.048004, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815574173
@@ -5917,6 +6261,8 @@ GameObject:
   - component: {fileID: 878119708}
   - component: {fileID: 878119707}
   - component: {fileID: 878119706}
+  - component: {fileID: 878119709}
+  - component: {fileID: 878119710}
   m_Layer: 0
   m_Name: HandCard (3)
   m_TagString: Untagged
@@ -6026,6 +6372,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878119704}
   m_CullTransparentMesh: 1
+--- !u!114 &878119709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878119704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &878119710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878119704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 878119709}
+  image: {fileID: 878119707}
 --- !u!1 &887019219
 GameObject:
   m_ObjectHideFlags: 0
@@ -6218,9 +6605,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -5.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900794370
@@ -6475,9 +6862,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25.024002, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934523270
@@ -6732,9 +7119,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951426602
@@ -7304,9 +7691,9 @@ RectTransform:
   m_Father: {fileID: 1342861068}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 65.47, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1014462456
@@ -7690,6 +8077,8 @@ GameObject:
   - component: {fileID: 1110044385}
   - component: {fileID: 1110044384}
   - component: {fileID: 1110044383}
+  - component: {fileID: 1110044386}
+  - component: {fileID: 1110044387}
   m_Layer: 0
   m_Name: HandCard (8)
   m_TagString: Untagged
@@ -7799,6 +8188,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110044381}
   m_CullTransparentMesh: 1
+--- !u!114 &1110044386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110044381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &1110044387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110044381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 1110044386}
+  image: {fileID: 1110044384}
 --- !u!1 &1114500484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8070,7 +8500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 406.70102, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1161361314
@@ -8246,6 +8676,8 @@ GameObject:
   - component: {fileID: 1176426189}
   - component: {fileID: 1176426188}
   - component: {fileID: 1176426187}
+  - component: {fileID: 1176426190}
+  - component: {fileID: 1176426191}
   m_Layer: 0
   m_Name: HandCard
   m_TagString: Untagged
@@ -8355,6 +8787,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176426185}
   m_CullTransparentMesh: 1
+--- !u!114 &1176426190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176426185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &1176426191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176426185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 1176426190}
+  image: {fileID: 1176426188}
 --- !u!1 &1177486599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8390,9 +8863,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177486601
@@ -8668,9 +9141,9 @@ RectTransform:
   m_Father: {fileID: 1686863207}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 65.47, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221358209
@@ -8906,9 +9379,9 @@ RectTransform:
   m_Father: {fileID: 1686863207}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 49.482, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246221094
@@ -9043,8 +9516,8 @@ RectTransform:
   m_Father: {fileID: 1886957768}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9453,9 +9926,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55.060005, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333941525
@@ -10740,9 +11213,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -35.048008, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536098312
@@ -11095,6 +11568,8 @@ GameObject:
   - component: {fileID: 1639882356}
   - component: {fileID: 1639882355}
   - component: {fileID: 1639882354}
+  - component: {fileID: 1639882357}
+  - component: {fileID: 1639882358}
   m_Layer: 0
   m_Name: HandCard (6)
   m_TagString: Untagged
@@ -11204,6 +11679,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639882352}
   m_CullTransparentMesh: 1
+--- !u!114 &1639882357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639882352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &1639882358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639882352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 1639882357}
+  image: {fileID: 1639882355}
 --- !u!1 &1643317109
 GameObject:
   m_ObjectHideFlags: 0
@@ -11239,9 +11755,9 @@ RectTransform:
   m_Father: {fileID: 1886957768}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643317111
@@ -11565,9 +12081,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -45.06001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691365817
@@ -11752,6 +12268,8 @@ GameObject:
   - component: {fileID: 1702175471}
   - component: {fileID: 1702175470}
   - component: {fileID: 1702175469}
+  - component: {fileID: 1702175472}
+  - component: {fileID: 1702175473}
   m_Layer: 0
   m_Name: HandCard (9)
   m_TagString: Untagged
@@ -11861,6 +12379,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702175467}
   m_CullTransparentMesh: 1
+--- !u!114 &1702175472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702175467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  level: -1
+  cost: -1
+  color: 5
+  trigger: 12
+  type: 3
+  attributeOne: 3
+  attributeTwo: 3
+  attributeThree: 3
+  cardNo: 13
+  cardName: 
+  power: 0
+  zone: 16
+  isCounter: 0
+  canAttack: 0
+--- !u!114 &1702175473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702175467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 1702175472}
+  image: {fileID: 1702175470}
 --- !u!1 &1709958981
 GameObject:
   m_ObjectHideFlags: 0
@@ -13569,6 +14128,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9f94212f1f676489a69997e5b8519d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handCards:
+  - {fileID: 1176426190}
+  - {fileID: 140555814}
+  - {fileID: 554655489}
+  - {fileID: 878119709}
+  - {fileID: 541247156}
+  - {fileID: 756062939}
+  - {fileID: 1639882357}
+  - {fileID: 125988988}
+  - {fileID: 1110044386}
+  - {fileID: 1702175472}
+  - {fileID: 691163899}
+  - {fileID: 760882397}
+  - {fileID: 560297003}
+  handCardUtilList:
+  - {fileID: 1176426191}
+  - {fileID: 140555815}
+  - {fileID: 554655490}
+  - {fileID: 878119710}
+  - {fileID: 541247157}
+  - {fileID: 756062940}
+  - {fileID: 1639882358}
+  - {fileID: 125988989}
+  - {fileID: 1110044387}
+  - {fileID: 1702175473}
+  - {fileID: 691163900}
+  - {fileID: 760882398}
+  - {fileID: 560297004}
 --- !u!224 &2118035220
 RectTransform:
   m_ObjectHideFlags: 0
