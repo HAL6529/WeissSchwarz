@@ -39,6 +39,27 @@ namespace EnumController
         VOID,
     }
 
+    public enum Zone
+    {
+        DECK,
+        HAND,
+        GRAVEYARD,
+        MEMORY,
+        CLOCK,
+        LEVEL_ONE,
+        LEVEL_TWO,
+        LEVEL_THREE,
+        STOCK,
+        CLIMAX,
+        FORWARD_LEFT,
+        FORWARD_CENTER,
+        FORWARD_RIGHT,
+        BACKWARD_LEFT,
+        BACKWARD_RIGHT,
+        EVENT,
+        VOID,
+    }
+
     public enum Attribute
     {
         Ooo,
