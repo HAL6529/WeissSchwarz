@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<BattleCardInfo> handCards = new List<BattleCardInfo>();
 
     [SerializeField] List<HandCardUtil> handCardUtilList = new List<HandCardUtil>();
+    [SerializeField] MyDeckListUtil m_myDeckListUtil;
     Player myPlayer;
 
     // Start is called before the first frame update
@@ -48,7 +49,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("ƒ‹[ƒ€‚Ö“üº‚µ‚Ü‚µ‚½");
         GameObject tempPlayer = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
         myPlayer = tempPlayer.GetComponent<Player>();
+        myPlayer.setDeckList();
         updateHandList();
+        updateDeckList();
     }
 
     // PhotonRealTime‚ÆÚ‘±‚ªØ‚ê‚½ê‡
@@ -83,6 +86,16 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < handCardUtilList.Count; i++)
         {
             handCardUtilList[i].updateSprite();
+        }
+    }
+
+    public void updateDeckList()
+    {
+        Debug.Log(myPlayer.myDeckList.Count);
+        Debug.Log(myPlayer.myDeckList[0].cardName);
+        if (myPlayer.myDeckList.Count > 0)
+        {
+            m_myDeckListUtil.updateSprite(myPlayer.myDeckList[0]);
         }
     }
 }

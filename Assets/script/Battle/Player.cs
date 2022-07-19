@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour, IPunObservable
 {
     CardNoToCardInfo.CardNoToCardInfo info = new CardNoToCardInfo.CardNoToCardInfo();
-
+    [SerializeField] SpriteList m_spriteList;
     [SerializeField] TestBattleCardInfoList testList;
     public List<BattleCardInfo> myDeckList = new List<BattleCardInfo>();
     public List<BattleCardInfo> myHandList = new List<BattleCardInfo>();
@@ -13,7 +13,7 @@ public class Player : MonoBehaviour, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        setDeckList();
+
     }
 
     // Update is called once per frame
@@ -36,12 +36,13 @@ public class Player : MonoBehaviour, IPunObservable
         }*/
     }
 
-    private void setDeckList()
+    public void setDeckList()
     {
-        for(int i = 0; i < testList.cardNoList.Count; i++)
+
+        for (int i = 0; i < testList.cardNoList.Count; i++)
         {
             EnumController.CardNo temp = testList.cardNoList[i];
-            myDeckList.Add(info.cardNoToCardInfo(temp));
+            myDeckList.Add(info.cardNoToCardInfo(temp, m_spriteList));
         }
     }
 }

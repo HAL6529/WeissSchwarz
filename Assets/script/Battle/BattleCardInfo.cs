@@ -19,10 +19,9 @@ public class BattleCardInfo : MonoBehaviour
     public string cardName;
     public int power;
     public EnumController.Zone zone;
+    public bool isBack;
     public bool isCounter;
-
     public bool canAttack;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -50,15 +49,16 @@ public class BattleCardInfo : MonoBehaviour
         this.cardName = "";
         this.power = 0;
         this.zone = EnumController.Zone.VOID;
+        this.isBack = true;
         this.isCounter = false;
         this.canAttack = false;
     }
 
-    public BattleCardInfo(int level, int cost, EnumController.CardColor color, EnumController.Trriger trigger, EnumController.Type type,
+    public BattleCardInfo(Sprite sprite, int level, int cost, EnumController.CardColor color, EnumController.Trriger trigger, EnumController.Type type,
                             EnumController.Attribute attributeOne, EnumController.Attribute attributeTwo, EnumController.Attribute attributeThree,
                             EnumController.CardNo cardNo, string cardName, int power, EnumController.Zone zone, bool isCounter)
     {
-        this.sprite = null;
+        this.sprite = sprite;
         this.level = level;
         this.cost = cost;
         this.color = color;
@@ -71,6 +71,7 @@ public class BattleCardInfo : MonoBehaviour
         this.cardName = cardName;
         this.power = power;
         this.zone = zone;
+        this.isBack = true;
         this.isCounter = isCounter;
         this.canAttack = false;
     }
