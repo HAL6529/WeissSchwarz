@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 34557041}
   - component: {fileID: 34557040}
   - component: {fileID: 34557039}
+  - component: {fileID: 34557042}
   m_Layer: 0
   m_Name: Button (5)
   m_TagString: Untagged
@@ -445,6 +446,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34557037}
   m_CullTransparentMesh: 1
+--- !u!114 &34557042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34557037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 34557040}
 --- !u!1 &41050408
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +664,7 @@ GameObject:
   - component: {fileID: 66380436}
   - component: {fileID: 66380438}
   - component: {fileID: 66380437}
+  - component: {fileID: 66380439}
   m_Layer: 0
   m_Name: FrontLine
   m_TagString: Untagged
@@ -719,6 +735,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &66380439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66380435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dca5ba7ec8cb2b488842022b1fe4a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontCardUtilList:
+  - {fileID: 760299469}
+  - {fileID: 1523209607}
+  - {fileID: 1526440278}
 --- !u!1 &68672500
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +975,6 @@ GameObject:
   - component: {fileID: 125988987}
   - component: {fileID: 125988986}
   - component: {fileID: 125988985}
-  - component: {fileID: 125988988}
   - component: {fileID: 125988989}
   m_Layer: 0
   m_Name: HandCard (7)
@@ -1054,34 +1085,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125988983}
   m_CullTransparentMesh: 1
---- !u!114 &125988988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125988983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &125988989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 125988988}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 125988986}
 --- !u!1 &131359428
 GameObject:
@@ -1107,6 +1110,7 @@ GameObject:
   - component: {fileID: 131359429}
   - component: {fileID: 131359431}
   - component: {fileID: 131359430}
+  - component: {fileID: 131359432}
   m_Layer: 0
   m_Name: OpponentHands
   m_TagString: Untagged
@@ -1185,6 +1189,30 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &131359432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131359428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c65cd895333083645a13d054e663628b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handList:
+  - {fileID: 1287714424}
+  - {fileID: 1075074714}
+  - {fileID: 320974795}
+  - {fileID: 973803695}
+  - {fileID: 1007240911}
+  - {fileID: 227270056}
+  - {fileID: 1398754206}
+  - {fileID: 1773004068}
+  - {fileID: 1941459327}
+  - {fileID: 1023172315}
+  - {fileID: 68672500}
 --- !u!1 &133610452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1225,7 @@ GameObject:
   - component: {fileID: 133610456}
   - component: {fileID: 133610455}
   - component: {fileID: 133610454}
+  - component: {fileID: 133610457}
   m_Layer: 0
   m_Name: Button (6)
   m_TagString: Untagged
@@ -1306,6 +1335,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133610452}
   m_CullTransparentMesh: 1
+--- !u!114 &133610457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133610452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 133610455}
 --- !u!1 &138653606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,9 +1384,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 15.012001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138653608
@@ -1454,7 +1497,6 @@ GameObject:
   - component: {fileID: 140555813}
   - component: {fileID: 140555812}
   - component: {fileID: 140555811}
-  - component: {fileID: 140555814}
   - component: {fileID: 140555815}
   m_Layer: 0
   m_Name: HandCard (1)
@@ -1565,34 +1607,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140555809}
   m_CullTransparentMesh: 1
---- !u!114 &140555814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140555809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &140555815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 140555814}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 140555812}
 --- !u!1 &149675088
 GameObject:
@@ -2207,6 +2221,7 @@ GameObject:
   - component: {fileID: 251278367}
   - component: {fileID: 251278366}
   - component: {fileID: 251278365}
+  - component: {fileID: 251278369}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -2330,6 +2345,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251278363}
   m_CullTransparentMesh: 1
+--- !u!114 &251278369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251278363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a73333ee41105649b90e9c64e6aed5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 251278367}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &274179660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2372,7 @@ GameObject:
   - component: {fileID: 274179664}
   - component: {fileID: 274179663}
   - component: {fileID: 274179662}
+  - component: {fileID: 274179665}
   m_Layer: 0
   m_Name: Button (4)
   m_TagString: Untagged
@@ -2451,6 +2482,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274179660}
   m_CullTransparentMesh: 1
+--- !u!114 &274179665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274179660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 274179663}
 --- !u!1 &275185873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2486,9 +2531,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -45.06001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -45.06001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275185875
@@ -2671,7 +2716,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 818243457}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.44489214
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2749,9 +2794,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -35.048008, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -35.048008, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320227299
@@ -3046,9 +3091,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339310618
@@ -3280,6 +3325,7 @@ GameObject:
   - component: {fileID: 362502038}
   - component: {fileID: 362502037}
   - component: {fileID: 362502036}
+  - component: {fileID: 362502039}
   m_Layer: 0
   m_Name: Button (7)
   m_TagString: Untagged
@@ -3389,6 +3435,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362502034}
   m_CullTransparentMesh: 1
+--- !u!114 &362502039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362502034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 362502037}
 --- !u!1 &393693575
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,6 +3678,7 @@ GameObject:
   - component: {fileID: 463024753}
   - component: {fileID: 463024752}
   - component: {fileID: 463024751}
+  - component: {fileID: 463024755}
   m_Layer: 0
   m_Name: Button (9)
   m_TagString: Untagged
@@ -3640,9 +3701,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.012001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -5.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463024751
@@ -3741,6 +3802,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463024749}
   m_CullTransparentMesh: 1
+--- !u!114 &463024755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463024749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 463024753}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &500840005
 GameObject:
   m_ObjectHideFlags: 0
@@ -3903,9 +3979,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -15.024002, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -15.024002, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &502854376
@@ -4015,6 +4091,7 @@ GameObject:
   - component: {fileID: 540950736}
   - component: {fileID: 540950738}
   - component: {fileID: 540950737}
+  - component: {fileID: 540950739}
   m_Layer: 0
   m_Name: HandCards
   m_TagString: Untagged
@@ -4095,6 +4172,32 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &540950739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540950735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e103facc79eaa9a49a12baa47714007d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCardUtilList:
+  - {fileID: 1176426191}
+  - {fileID: 140555815}
+  - {fileID: 554655490}
+  - {fileID: 878119710}
+  - {fileID: 541247157}
+  - {fileID: 756062940}
+  - {fileID: 1639882358}
+  - {fileID: 125988989}
+  - {fileID: 1110044387}
+  - {fileID: 1702175473}
+  - {fileID: 691163900}
+  - {fileID: 760882398}
+  - {fileID: 560297004}
 --- !u!1 &541247151
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,7 +4210,6 @@ GameObject:
   - component: {fileID: 541247155}
   - component: {fileID: 541247154}
   - component: {fileID: 541247153}
-  - component: {fileID: 541247156}
   - component: {fileID: 541247157}
   m_Layer: 0
   m_Name: HandCard (4)
@@ -4218,34 +4320,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541247151}
   m_CullTransparentMesh: 1
---- !u!114 &541247156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541247151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &541247157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4258,7 +4332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 541247156}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 541247154}
 --- !u!1 &554655484
 GameObject:
@@ -4272,7 +4346,6 @@ GameObject:
   - component: {fileID: 554655488}
   - component: {fileID: 554655487}
   - component: {fileID: 554655486}
-  - component: {fileID: 554655489}
   - component: {fileID: 554655490}
   m_Layer: 0
   m_Name: HandCard (2)
@@ -4383,34 +4456,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554655484}
   m_CullTransparentMesh: 1
---- !u!114 &554655489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554655484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &554655490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4423,7 +4468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 554655489}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 554655487}
 --- !u!1 &560296998
 GameObject:
@@ -4437,7 +4482,6 @@ GameObject:
   - component: {fileID: 560297002}
   - component: {fileID: 560297001}
   - component: {fileID: 560297000}
-  - component: {fileID: 560297003}
   - component: {fileID: 560297004}
   m_Layer: 0
   m_Name: rightCard
@@ -4548,34 +4592,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560296998}
   m_CullTransparentMesh: 1
---- !u!114 &560297003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560296998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &560297004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,7 +4604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 560297003}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 560297001}
 --- !u!1 &591494968
 GameObject:
@@ -4714,9 +4730,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 55.060005, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55.060005, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624364467
@@ -4983,7 +4999,6 @@ GameObject:
   - component: {fileID: 691163898}
   - component: {fileID: 691163897}
   - component: {fileID: 691163896}
-  - component: {fileID: 691163899}
   - component: {fileID: 691163900}
   m_Layer: 0
   m_Name: Only11
@@ -5094,34 +5109,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 691163894}
   m_CullTransparentMesh: 1
---- !u!114 &691163899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691163894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &691163900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,7 +5121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 691163899}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 691163897}
 --- !u!1 &710752012
 GameObject:
@@ -5390,7 +5377,6 @@ GameObject:
   - component: {fileID: 756062938}
   - component: {fileID: 756062937}
   - component: {fileID: 756062936}
-  - component: {fileID: 756062939}
   - component: {fileID: 756062940}
   m_Layer: 0
   m_Name: HandCard (5)
@@ -5501,34 +5487,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756062934}
   m_CullTransparentMesh: 1
---- !u!114 &756062939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756062934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &756062940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5541,7 +5499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 756062939}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 756062937}
 --- !u!1 &760299464
 GameObject:
@@ -5555,6 +5513,7 @@ GameObject:
   - component: {fileID: 760299468}
   - component: {fileID: 760299467}
   - component: {fileID: 760299466}
+  - component: {fileID: 760299469}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -5664,6 +5623,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760299464}
   m_CullTransparentMesh: 1
+--- !u!114 &760299469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760299464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba4159d9bf5dae49a97ad9cc687b1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 760299467}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &760882392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,7 +5649,6 @@ GameObject:
   - component: {fileID: 760882396}
   - component: {fileID: 760882395}
   - component: {fileID: 760882394}
-  - component: {fileID: 760882397}
   - component: {fileID: 760882398}
   m_Layer: 0
   m_Name: leftCard
@@ -5787,34 +5759,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760882392}
   m_CullTransparentMesh: 1
---- !u!114 &760882397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760882392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &760882398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5827,7 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 760882397}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 760882395}
 --- !u!1 &770768030
 GameObject:
@@ -5840,6 +5784,7 @@ GameObject:
   - component: {fileID: 770768031}
   - component: {fileID: 770768033}
   - component: {fileID: 770768032}
+  - component: {fileID: 770768034}
   m_Layer: 0
   m_Name: BackLine
   m_TagString: Untagged
@@ -5909,6 +5854,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &770768034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770768030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f378f995112e2441b94f1a93197a8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backCardUtilList:
+  - {fileID: 1887497619}
+  - {fileID: 977755847}
 --- !u!1 &791388375
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,9 +5971,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 45.048004, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45.048004, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815574173
@@ -6284,7 +6244,6 @@ GameObject:
   - component: {fileID: 878119708}
   - component: {fileID: 878119707}
   - component: {fileID: 878119706}
-  - component: {fileID: 878119709}
   - component: {fileID: 878119710}
   m_Layer: 0
   m_Name: HandCard (3)
@@ -6395,34 +6354,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878119704}
   m_CullTransparentMesh: 1
---- !u!114 &878119709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878119704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &878119710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6435,7 +6366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 878119709}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 878119707}
 --- !u!1 &887019219
 GameObject:
@@ -6629,9 +6560,9 @@ RectTransform:
   m_Father: {fileID: 1203746527}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -5.012001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -5.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &900794370
@@ -6742,6 +6673,7 @@ GameObject:
   - component: {fileID: 916876112}
   - component: {fileID: 916876111}
   - component: {fileID: 916876110}
+  - component: {fileID: 916876113}
   m_Layer: 0
   m_Name: Button (9)
   m_TagString: Untagged
@@ -6851,6 +6783,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916876108}
   m_CullTransparentMesh: 1
+--- !u!114 &916876113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916876108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 916876111}
 --- !u!1 &934523268
 GameObject:
   m_ObjectHideFlags: 0
@@ -6864,6 +6810,7 @@ GameObject:
   - component: {fileID: 934523272}
   - component: {fileID: 934523271}
   - component: {fileID: 934523270}
+  - component: {fileID: 934523274}
   m_Layer: 0
   m_Name: Button (6)
   m_TagString: Untagged
@@ -6886,9 +6833,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25.024002, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 25.024002, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934523270
@@ -6987,6 +6934,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934523268}
   m_CullTransparentMesh: 1
+--- !u!114 &934523274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934523268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 934523272}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &937524493
 GameObject:
   m_ObjectHideFlags: 0
@@ -7121,6 +7083,7 @@ GameObject:
   - component: {fileID: 951426604}
   - component: {fileID: 951426603}
   - component: {fileID: 951426602}
+  - component: {fileID: 951426606}
   m_Layer: 0
   m_Name: Button (8)
   m_TagString: Untagged
@@ -7143,9 +7106,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951426602
@@ -7244,6 +7207,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951426600}
   m_CullTransparentMesh: 1
+--- !u!114 &951426606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951426600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 951426604}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &968386363
 GameObject:
   m_ObjectHideFlags: 0
@@ -7415,6 +7393,7 @@ GameObject:
   - component: {fileID: 977755846}
   - component: {fileID: 977755845}
   - component: {fileID: 977755844}
+  - component: {fileID: 977755847}
   m_Layer: 0
   m_Name: Button (7)
   m_TagString: Untagged
@@ -7524,6 +7503,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977755842}
   m_CullTransparentMesh: 1
+--- !u!114 &977755847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977755842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48deb570c456f6b47b7dcbd26c003fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 977755845}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1003851834
 GameObject:
   m_ObjectHideFlags: 0
@@ -7828,6 +7821,7 @@ GameObject:
   - component: {fileID: 1016222518}
   - component: {fileID: 1016222517}
   - component: {fileID: 1016222516}
+  - component: {fileID: 1016222519}
   m_Layer: 0
   m_Name: MemoryCard
   m_TagString: Untagged
@@ -7937,6 +7931,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016222514}
   m_CullTransparentMesh: 1
+--- !u!114 &1016222519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016222514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91d6b05d4b1194f952ce52bac50470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  backImage: {fileID: 0}
 --- !u!1 &1023172315
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,7 +8109,6 @@ GameObject:
   - component: {fileID: 1110044385}
   - component: {fileID: 1110044384}
   - component: {fileID: 1110044383}
-  - component: {fileID: 1110044386}
   - component: {fileID: 1110044387}
   m_Layer: 0
   m_Name: HandCard (8)
@@ -8212,34 +8219,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110044381}
   m_CullTransparentMesh: 1
---- !u!114 &1110044386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110044381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &1110044387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8252,7 +8231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 1110044386}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 1110044384}
 --- !u!1 &1114500484
 GameObject:
@@ -8580,6 +8559,7 @@ GameObject:
   - component: {fileID: 1171459632}
   - component: {fileID: 1171459631}
   - component: {fileID: 1171459630}
+  - component: {fileID: 1171459633}
   m_Layer: 0
   m_Name: GraveYard
   m_TagString: Untagged
@@ -8689,6 +8669,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171459628}
   m_CullTransparentMesh: 1
+--- !u!114 &1171459633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171459628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f0cfc6e409f324e9d2fe36af08f618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &1176426185
 GameObject:
   m_ObjectHideFlags: 0
@@ -8701,7 +8694,6 @@ GameObject:
   - component: {fileID: 1176426189}
   - component: {fileID: 1176426188}
   - component: {fileID: 1176426187}
-  - component: {fileID: 1176426190}
   - component: {fileID: 1176426191}
   m_Layer: 0
   m_Name: HandCard
@@ -8812,34 +8804,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176426185}
   m_CullTransparentMesh: 1
---- !u!114 &1176426190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176426185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &1176426191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8852,7 +8816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 1176426190}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 1176426188}
 --- !u!1 &1177486599
 GameObject:
@@ -8867,6 +8831,7 @@ GameObject:
   - component: {fileID: 1177486603}
   - component: {fileID: 1177486602}
   - component: {fileID: 1177486601}
+  - component: {fileID: 1177486605}
   m_Layer: 0
   m_Name: Button (7)
   m_TagString: Untagged
@@ -8889,9 +8854,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 15.012001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 15.012001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177486601
@@ -8990,6 +8955,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177486599}
   m_CullTransparentMesh: 1
+--- !u!114 &1177486605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177486599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1177486603}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1203746526
 GameObject:
   m_ObjectHideFlags: 0
@@ -9145,6 +9125,7 @@ GameObject:
   - component: {fileID: 1221358211}
   - component: {fileID: 1221358210}
   - component: {fileID: 1221358209}
+  - component: {fileID: 1221358213}
   m_Layer: 0
   m_Name: Button (5)
   m_TagString: Untagged
@@ -9268,6 +9249,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221358207}
   m_CullTransparentMesh: 1
+--- !u!114 &1221358213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221358207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a73333ee41105649b90e9c64e6aed5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1221358211}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1226249047
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,6 +9379,7 @@ GameObject:
   - component: {fileID: 1246221096}
   - component: {fileID: 1246221095}
   - component: {fileID: 1246221094}
+  - component: {fileID: 1246221098}
   m_Layer: 0
   m_Name: Button (4)
   m_TagString: Untagged
@@ -9506,6 +9503,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246221092}
   m_CullTransparentMesh: 1
+--- !u!114 &1246221098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246221092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a73333ee41105649b90e9c64e6aed5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1246221096}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1265177420
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,6 +9820,7 @@ GameObject:
   - component: {fileID: 1333765126}
   - component: {fileID: 1333765125}
   - component: {fileID: 1333765124}
+  - component: {fileID: 1333765127}
   m_Layer: 0
   m_Name: ClimaxCard
   m_TagString: Untagged
@@ -9917,6 +9930,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333765122}
   m_CullTransparentMesh: 1
+--- !u!114 &1333765127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333765122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01165435eee4ec43b9e0fb032293c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1333765125}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1333941523
 GameObject:
   m_ObjectHideFlags: 0
@@ -9930,6 +9957,7 @@ GameObject:
   - component: {fileID: 1333941527}
   - component: {fileID: 1333941526}
   - component: {fileID: 1333941525}
+  - component: {fileID: 1333941529}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -9952,9 +9980,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 55.060005, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 55.060005, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333941525
@@ -10053,6 +10081,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333941523}
   m_CullTransparentMesh: 1
+--- !u!114 &1333941529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333941523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1333941527}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1341554236
 GameObject:
   m_ObjectHideFlags: 0
@@ -10323,7 +10366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 25.024002, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383469964
@@ -10974,6 +11017,7 @@ GameObject:
   - component: {fileID: 1523209606}
   - component: {fileID: 1523209605}
   - component: {fileID: 1523209604}
+  - component: {fileID: 1523209607}
   m_Layer: 0
   m_Name: Button (4)
   m_TagString: Untagged
@@ -11083,6 +11127,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523209602}
   m_CullTransparentMesh: 1
+--- !u!114 &1523209607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523209602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba4159d9bf5dae49a97ad9cc687b1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1523209605}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1526440273
 GameObject:
   m_ObjectHideFlags: 0
@@ -11095,6 +11153,7 @@ GameObject:
   - component: {fileID: 1526440277}
   - component: {fileID: 1526440276}
   - component: {fileID: 1526440275}
+  - component: {fileID: 1526440278}
   m_Layer: 0
   m_Name: Button (5)
   m_TagString: Untagged
@@ -11204,6 +11263,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1526440273}
   m_CullTransparentMesh: 1
+--- !u!114 &1526440278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526440273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba4159d9bf5dae49a97ad9cc687b1b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1526440276}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1536098310
 GameObject:
   m_ObjectHideFlags: 0
@@ -11217,6 +11290,7 @@ GameObject:
   - component: {fileID: 1536098314}
   - component: {fileID: 1536098313}
   - component: {fileID: 1536098312}
+  - component: {fileID: 1536098316}
   m_Layer: 0
   m_Name: Button (12)
   m_TagString: Untagged
@@ -11239,9 +11313,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -35.048008, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -35.048008, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536098312
@@ -11340,6 +11414,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536098310}
   m_CullTransparentMesh: 1
+--- !u!114 &1536098316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536098310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1536098314}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1597981715
 GameObject:
   m_ObjectHideFlags: 0
@@ -11352,6 +11441,7 @@ GameObject:
   - component: {fileID: 1597981719}
   - component: {fileID: 1597981718}
   - component: {fileID: 1597981717}
+  - component: {fileID: 1597981720}
   m_Layer: 0
   m_Name: Button (3)
   m_TagString: Untagged
@@ -11461,6 +11551,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597981715}
   m_CullTransparentMesh: 1
+--- !u!114 &1597981720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597981715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1597981718}
 --- !u!1 &1618765348
 GameObject:
   m_ObjectHideFlags: 0
@@ -11594,7 +11698,6 @@ GameObject:
   - component: {fileID: 1639882356}
   - component: {fileID: 1639882355}
   - component: {fileID: 1639882354}
-  - component: {fileID: 1639882357}
   - component: {fileID: 1639882358}
   m_Layer: 0
   m_Name: HandCard (6)
@@ -11705,34 +11808,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639882352}
   m_CullTransparentMesh: 1
---- !u!114 &1639882357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639882352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &1639882358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11745,7 +11820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 1639882357}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 1639882355}
 --- !u!1 &1643317109
 GameObject:
@@ -12003,6 +12078,7 @@ GameObject:
   - component: {fileID: 1686863207}
   - component: {fileID: 1686863209}
   - component: {fileID: 1686863208}
+  - component: {fileID: 1686863210}
   m_Layer: 0
   m_Name: LevelCard
   m_TagString: Untagged
@@ -12073,6 +12149,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1686863210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686863206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a10115afdd520a4aa6522c18b979c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelCardUtilList:
+  - {fileID: 251278369}
+  - {fileID: 1246221098}
+  - {fileID: 1221358213}
 --- !u!1 &1691365815
 GameObject:
   m_ObjectHideFlags: 0
@@ -12086,6 +12178,7 @@ GameObject:
   - component: {fileID: 1691365819}
   - component: {fileID: 1691365818}
   - component: {fileID: 1691365817}
+  - component: {fileID: 1691365821}
   m_Layer: 0
   m_Name: Button (13)
   m_TagString: Untagged
@@ -12108,9 +12201,9 @@ RectTransform:
   m_Father: {fileID: 1696068343}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -45.06001, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -45.06001, y: -42.1788}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691365817
@@ -12209,6 +12302,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691365815}
   m_CullTransparentMesh: 1
+--- !u!114 &1691365821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691365815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1691365819}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1696068342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12219,6 +12327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696068343}
   - component: {fileID: 1696068345}
+  - component: {fileID: 1696068346}
   m_Layer: 0
   m_Name: StockCard
   m_TagString: Untagged
@@ -12283,6 +12392,30 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1696068346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696068342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04ae2e439d7f1541ae2e33329726406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stockCardUtilList:
+  - {fileID: 1333941529}
+  - {fileID: 1899720980}
+  - {fileID: 1709958987}
+  - {fileID: 934523274}
+  - {fileID: 1177486605}
+  - {fileID: 951426606}
+  - {fileID: 463024755}
+  - {fileID: 2124544397}
+  - {fileID: 1776480455}
+  - {fileID: 1536098316}
+  - {fileID: 1691365821}
 --- !u!1 &1702175467
 GameObject:
   m_ObjectHideFlags: 0
@@ -12295,7 +12428,6 @@ GameObject:
   - component: {fileID: 1702175471}
   - component: {fileID: 1702175470}
   - component: {fileID: 1702175469}
-  - component: {fileID: 1702175472}
   - component: {fileID: 1702175473}
   m_Layer: 0
   m_Name: HandCard (9)
@@ -12406,34 +12538,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702175467}
   m_CullTransparentMesh: 1
---- !u!114 &1702175472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702175467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9269786e45c0c34482a92fa972e4933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  level: -1
-  cost: -1
-  color: 5
-  trigger: 12
-  type: 3
-  attributeOne: 3
-  attributeTwo: 3
-  attributeThree: 3
-  cardNo: 13
-  cardName: 
-  power: 0
-  zone: 16
-  isBack: 0
-  isCounter: 0
-  canAttack: 0
 --- !u!114 &1702175473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12446,7 +12550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53165f50d68cf44b1244179af550b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_battleCardInfo: {fileID: 1702175472}
+  m_battleCardInfo: {fileID: 0}
   image: {fileID: 1702175470}
 --- !u!1 &1709958981
 GameObject:
@@ -12461,6 +12565,7 @@ GameObject:
   - component: {fileID: 1709958985}
   - component: {fileID: 1709958984}
   - component: {fileID: 1709958983}
+  - component: {fileID: 1709958987}
   m_Layer: 0
   m_Name: Button (5)
   m_TagString: Untagged
@@ -12485,7 +12590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35.036003, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1709958983
@@ -12584,6 +12689,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709958981}
   m_CullTransparentMesh: 1
+--- !u!114 &1709958987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709958981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1709958985}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1773004068
 GameObject:
   m_ObjectHideFlags: 0
@@ -12673,6 +12793,7 @@ GameObject:
   - component: {fileID: 1776480453}
   - component: {fileID: 1776480452}
   - component: {fileID: 1776480451}
+  - component: {fileID: 1776480455}
   m_Layer: 0
   m_Name: Button (11)
   m_TagString: Untagged
@@ -12697,7 +12818,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -25.036003, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1776480451
@@ -12796,6 +12917,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1776480449}
   m_CullTransparentMesh: 1
+--- !u!114 &1776480455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776480449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1776480453}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1806748930
 GameObject:
   m_ObjectHideFlags: 0
@@ -12806,7 +12942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806748931}
   m_Layer: 0
-  m_Name: Util
+  m_Name: TempPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12838,6 +12974,7 @@ GameObject:
   - component: {fileID: 1839561788}
   - component: {fileID: 1839561790}
   - component: {fileID: 1839561789}
+  - component: {fileID: 1839561791}
   m_Layer: 0
   m_Name: ClockCard
   m_TagString: Untagged
@@ -12912,6 +13049,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1839561791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839561787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ae2210f286e2c4591b7fdaae563f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clockCardUtilList:
+  - {fileID: 1597981720}
+  - {fileID: 274179665}
+  - {fileID: 34557042}
+  - {fileID: 133610457}
+  - {fileID: 362502039}
+  - {fileID: 2001510597}
+  - {fileID: 916876113}
 --- !u!1 &1874522316
 GameObject:
   m_ObjectHideFlags: 0
@@ -12949,7 +13106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35.036003, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1874522318
@@ -13085,7 +13242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -25.036003, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1878942476
@@ -13277,6 +13434,7 @@ GameObject:
   - component: {fileID: 1887497618}
   - component: {fileID: 1887497617}
   - component: {fileID: 1887497616}
+  - component: {fileID: 1887497619}
   m_Layer: 0
   m_Name: Button (6)
   m_TagString: Untagged
@@ -13386,6 +13544,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887497614}
   m_CullTransparentMesh: 1
+--- !u!114 &1887497619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887497614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48deb570c456f6b47b7dcbd26c003fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1887497617}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1899720974
 GameObject:
   m_ObjectHideFlags: 0
@@ -13399,6 +13571,7 @@ GameObject:
   - component: {fileID: 1899720978}
   - component: {fileID: 1899720977}
   - component: {fileID: 1899720976}
+  - component: {fileID: 1899720980}
   m_Layer: 0
   m_Name: Button (4)
   m_TagString: Untagged
@@ -13423,7 +13596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 45.048004, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1899720976
@@ -13522,6 +13695,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899720974}
   m_CullTransparentMesh: 1
+--- !u!114 &1899720980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899720974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 1899720978}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &1915297910
 GameObject:
   m_ObjectHideFlags: 0
@@ -13913,6 +14101,7 @@ GameObject:
   - component: {fileID: 2001510596}
   - component: {fileID: 2001510595}
   - component: {fileID: 2001510594}
+  - component: {fileID: 2001510597}
   m_Layer: 0
   m_Name: Button (8)
   m_TagString: Untagged
@@ -14022,6 +14211,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001510592}
   m_CullTransparentMesh: 1
+--- !u!114 &2001510597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001510592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29887b7fcd84fca4788dab1f816700b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 2001510595}
 --- !u!1 &2080139970
 GameObject:
   m_ObjectHideFlags: 0
@@ -14168,6 +14371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118035220}
   - component: {fileID: 2118035219}
+  - component: {fileID: 2118035221}
   m_Layer: 0
   m_Name: GameManage
   m_TagString: Untagged
@@ -14187,35 +14391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9f94212f1f676489a69997e5b8519d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handCards:
-  - {fileID: 1176426190}
-  - {fileID: 140555814}
-  - {fileID: 554655489}
-  - {fileID: 878119709}
-  - {fileID: 541247156}
-  - {fileID: 756062939}
-  - {fileID: 1639882357}
-  - {fileID: 125988988}
-  - {fileID: 1110044386}
-  - {fileID: 1702175472}
-  - {fileID: 691163899}
-  - {fileID: 760882397}
-  - {fileID: 560297003}
-  handCardUtilList:
-  - {fileID: 1176426191}
-  - {fileID: 140555815}
-  - {fileID: 554655490}
-  - {fileID: 878119710}
-  - {fileID: 541247157}
-  - {fileID: 756062940}
-  - {fileID: 1639882358}
-  - {fileID: 125988989}
-  - {fileID: 1110044387}
-  - {fileID: 1702175473}
-  - {fileID: 691163900}
-  - {fileID: 760882398}
-  - {fileID: 560297004}
-  m_myDeckListUtil: {fileID: 75643546}
+  gameController: {fileID: 0}
 --- !u!224 &2118035220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14236,6 +14412,32 @@ RectTransform:
   m_AnchoredPosition: {x: 600, y: 400}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2118035221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118035218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b88b33f6b000cb439785dc6cac642aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handCardUtilList: []
+  m_myBackCardUtil: {fileID: 770768034}
+  m_myClockCardUtil: {fileID: 1839561791}
+  m_myClimaxCardUtil: {fileID: 1333765127}
+  m_myDeckListUtil: {fileID: 75643546}
+  m_myFrontCardListUtil: {fileID: 66380439}
+  m_myGraveYardListUtil: {fileID: 1171459633}
+  m_myHandCardUtil: {fileID: 540950739}
+  m_myLevelCardListUtil: {fileID: 1686863210}
+  m_myMemoryListUtil: {fileID: 1016222519}
+  m_myStockCardUtil: {fileID: 1696068346}
+  enemyHandCardUtil: {fileID: 131359432}
+  myPlayer: {fileID: 0}
+  enemyPlayer: {fileID: 0}
 --- !u!1 &2124544391
 GameObject:
   m_ObjectHideFlags: 0
@@ -14249,6 +14451,7 @@ GameObject:
   - component: {fileID: 2124544395}
   - component: {fileID: 2124544394}
   - component: {fileID: 2124544393}
+  - component: {fileID: 2124544397}
   m_Layer: 0
   m_Name: Button (10)
   m_TagString: Untagged
@@ -14273,7 +14476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -15.024002, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124544393
@@ -14372,6 +14575,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124544391}
   m_CullTransparentMesh: 1
+--- !u!114 &2124544397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124544391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f79cd3b6c61bda4c86db92ac9bc62e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_battleCardInfo: {fileID: 0}
+  image: {fileID: 2124544395}
+  backImage: {fileID: 21300000, guid: b9840fbfcfee38647a8f3d93cb351c1c, type: 3}
 --- !u!1 &2142962293
 GameObject:
   m_ObjectHideFlags: 0

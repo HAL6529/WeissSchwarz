@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] List<BattleCardInfo> handCards = new List<BattleCardInfo>();
-
-    [SerializeField] List<HandCardUtil> handCardUtilList = new List<HandCardUtil>();
-    [SerializeField] MyDeckListUtil m_myDeckListUtil;
-    Player myPlayer;
-
+    [SerializeField] GameController gameController;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +16,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // ƒƒr[‚Ö“üºŠ®—¹
@@ -48,10 +43,6 @@ public class GameManager : MonoBehaviour
     void OnJoinedRoom() {
         Debug.Log("ƒ‹[ƒ€‚Ö“üº‚µ‚Ü‚µ‚½");
         GameObject tempPlayer = PhotonNetwork.Instantiate("Player", new Vector3(0, 0, 0), Quaternion.identity, 0);
-        myPlayer = tempPlayer.GetComponent<Player>();
-        myPlayer.setDeckList();
-        updateHandList();
-        updateDeckList();
     }
 
     // PhotonRealTime‚ÆÚ‘±‚ªØ‚ê‚½ê‡
@@ -69,33 +60,6 @@ public class GameManager : MonoBehaviour
         else
         {
 
-        }
-    }
-
-    public void updateHandList()
-    {
-        int num = myPlayer.myHandList.Count;
-        if (num < 11)
-        {
-            for (int i = 0; i < num; i++)
-            {
-                handCards[i] = myPlayer.myHandList[i];
-            }           
-        }
-
-        for(int i = 0; i < handCardUtilList.Count; i++)
-        {
-            handCardUtilList[i].updateSprite();
-        }
-    }
-
-    public void updateDeckList()
-    {
-        Debug.Log(myPlayer.myDeckList.Count);
-        Debug.Log(myPlayer.myDeckList[0].cardName);
-        if (myPlayer.myDeckList.Count > 0)
-        {
-            m_myDeckListUtil.updateSprite(myPlayer.myDeckList[0]);
         }
     }
 }

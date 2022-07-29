@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HandCardUtil : MonoBehaviour
 {
-    [SerializeField] BattleCardInfo m_battleCardInfo;
+    public BattleCardInfo m_battleCardInfo;
     [SerializeField] Image image;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class HandCardUtil : MonoBehaviour
 
     public void updateSprite()
     {
-        if(m_battleCardInfo.sprite == null)
+        if(m_battleCardInfo == null || m_battleCardInfo.sprite == null)
         {
             this.gameObject.SetActive(false);
             return;

@@ -1,7 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - PunSceneSettings
     Assembly-CSharp.dll:
     - BattleCardInfo
     - CardGuideUtil
@@ -9,7 +7,9 @@ ScriptsOnlyBuild:
     - CardInfoUtil
     - DeckListManager
     - DeckListPanelUtil
+    - EnemyHandCardUtil
     - ExitButton
+    - GameController
     - GameManager
     - HandCardUtil
     - Menu
@@ -441,6 +441,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5224}
     - Class: 114
       Script: {instanceID: 5618}
+    - Class: 114
+      Script: {instanceID: 6232}
+    - Class: 114
+      Script: {instanceID: 107228}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -533,7 +537,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6098}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6480}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1380,7 +1384,7 @@ ScriptsOnlyBuild:
     className: TextButtonTransition
   - hash:
       serializedVersion: 2
-      Hash: 1ce36a5322550de3b405434035a40237
+      Hash: 87c60dbe3d3008093730e1d73af2edbd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1494,7 +1498,7 @@ ScriptsOnlyBuild:
     className: SpriteLibraryAsset
   - hash:
       serializedVersion: 2
-      Hash: 6ee5917e4efd17fd1b329d81a286ad3c
+      Hash: 1152f0e27b83d3b9e32ee80bed4ff5a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1626,6 +1630,12 @@ ScriptsOnlyBuild:
     className: BufferManager
   - hash:
       serializedVersion: 2
+      Hash: 767a7ba6acee7b722f0c1419653a1963
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyHandCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: b6514f552bd2ee9e736a5678aa7f7de3
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1684,6 +1694,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: 73253b61326d3b08041111839887ea54
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Menu.unity

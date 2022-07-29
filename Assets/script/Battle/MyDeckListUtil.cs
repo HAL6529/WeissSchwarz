@@ -21,6 +21,12 @@ public class MyDeckListUtil : MonoBehaviour
 
     public void updateSprite(BattleCardInfo m_battleCardInfo)
     {
+        if (m_battleCardInfo == null)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+
         if (m_battleCardInfo.isBack)
         {
             image.sprite = backImage;
@@ -38,6 +44,5 @@ public class MyDeckListUtil : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-
     }
 }
