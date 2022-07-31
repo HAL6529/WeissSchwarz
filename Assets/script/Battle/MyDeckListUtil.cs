@@ -23,14 +23,15 @@ public class MyDeckListUtil : MonoBehaviour
     {
         if (m_battleCardInfo == null)
         {
-            this.gameObject.SetActive(false);
+            image.sprite = null;
+            image.color = new Color(255 / 255, 255 / 255, 255 / 255, 0 / 255);
             return;
         }
 
         if (m_battleCardInfo.isBack)
         {
             image.sprite = backImage;
-            this.gameObject.SetActive(true);
+            image.color = new Color(255 / 255, 255 / 255, 255 / 255, 255 / 255);
             return;
         }
 
@@ -38,11 +39,12 @@ public class MyDeckListUtil : MonoBehaviour
         if (sprite != null)
         {
             image.sprite = sprite;
-            this.gameObject.SetActive(true);
+            image.color = new Color(255 / 255, 255 / 255, 255 / 255, 255 / 255);
         }
         else
         {
-            this.gameObject.SetActive(false);
+            image.sprite = null;
+            image.color = new Color(255 / 255, 255 / 255, 255 / 255, 0 / 255);
         }
     }
 }

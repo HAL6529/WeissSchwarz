@@ -19,6 +19,16 @@ public class MyLevelCardUtil : MonoBehaviour
 
     public void updateMyLevelList(Player player)
     {
+        if(player == null)
+        {
+            for (int i = 0; i < levelCardUtilList.Count; i++)
+            {
+                levelCardUtilList[i].m_battleCardInfo = null;
+                levelCardUtilList[i].updateSprite();
+            }
+            return;
+        }
+
         int num = player.LevelList.Count;
         if (num <= 3)
         {
