@@ -91,5 +91,24 @@ namespace EnumController
         AT_WX02_A13,
         VOID,
     }
+
+    public enum Turn
+    {
+        Player1_Draw,
+        Player1_Clock,
+        Player1_Main,
+        Player1_Climax,
+        Player1_Attack,
+        Player1_Counter,
+        Player1_Encore,
+        Player2_Draw,
+        Player2_Clock,
+        Player2_Main,
+        Player2_Climax,
+        Player2_Attack,
+        Player2_Counter,
+        Player2_Encore,
+        VOID,
+    }
 }
 
