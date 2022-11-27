@@ -62,10 +62,12 @@ namespace EnumController
 
     public enum Attribute
     {
+        VOID,
+        NONE,
         Ooo,
         Hero,
-        NONE,
-        VOID,
+        Royality,
+        Vampire,
     }
 
     public enum Limit
