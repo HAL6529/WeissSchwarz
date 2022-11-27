@@ -10,6 +10,7 @@ public class BattleModeCard : MonoBehaviour
     public Sprite sprite;
     public int level;
     public int cost;
+    public int soul;
     public EnumController.CardColor color;
     public EnumController.Trriger trigger;
     public EnumController.Type type;
@@ -19,7 +20,8 @@ public class BattleModeCard : MonoBehaviour
     public EnumController.CardNo cardNo;
     public string name;
     public int power;
-    bool isCounter;
+    public bool isCounter;
+    public string explanation;
 
     /// <summary>
     /// コンストラクタ
@@ -49,6 +51,7 @@ public class BattleModeCard : MonoBehaviour
                    EnumController.Attribute attributeThree,
                    EnumController.CardNo cardNo,
                    string name,
+                   int soul,
                    int power,
                    bool isCounter)
     {
@@ -63,6 +66,7 @@ public class BattleModeCard : MonoBehaviour
         attributeThree = attributeThree;
         cardNo = cardNo;
         name = name;
+        soul = soul;
         power = power;
         isCounter = isCounter;
     }
@@ -77,5 +81,10 @@ public class BattleModeCard : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void onClick()
+    {
+        Debug.Log("押された");
     }
 }
