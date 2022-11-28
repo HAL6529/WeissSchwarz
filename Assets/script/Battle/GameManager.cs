@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> myStockList = new List<BattleModeCard>();
     public List<BattleModeCard> myLevelList = new List<BattleModeCard>();
     public List<BattleModeCard> myMemoryList = new List<BattleModeCard>();
+    public List<BattleModeCard> GraveYardList = new List<BattleModeCard>();
+
+    public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
+
     public BattleModeCard climaxCard = null;
 
     public GameObject MyClimaxCardObject = null;
@@ -19,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public bool MariganMode = false;
 
+    [SerializeField] GameObject dialog;
     private int turn = 0;
 
     // Start is called before the first frame update
@@ -52,10 +57,26 @@ public class GameManager : MonoBehaviour
     public void MariganStart()
     {
         MariganMode = true;
+        dialog.SetActive(true);
     }
 
     public void MariganEnd()
     {
+        dialog.SetActive(false);
+        int num = myMariganList.Count;
+        for (int i = 0; i < num; i++)
+        {
+            myHandList.Remove(myMariganList[i]);
+            GraveYardList.Add(myMariganList[i]);
+        }
+
+        for (int i = 0; i < num; i++)
+        {
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        myMariganList = new List<BattleModeCard>();
+        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
         MariganMode = false;
     }
 }
