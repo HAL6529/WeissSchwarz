@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class BattleHandCardUtil : MonoBehaviour
 {
     private BattleModeCard m_BattleModeCard = null;
+
+    public bool isSelected = false;
+    [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
     // Start is called before the first frame update
@@ -40,5 +43,37 @@ public class BattleHandCardUtil : MonoBehaviour
     public void onClick()
     {
         m_BattleModeGuide.showImage(m_BattleModeCard);
+
+        if (m_GameManager.MariganMode)
+        {
+            MariganClick();
+        }
+
+        /*if (isSelected)
+        {
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+        }
+        else
+        {
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 168f / 255f);
+        }*/
+    }
+
+    private void MariganClick()
+    {
+        if (isSelected)
+        {
+            m_GameManager.myMariganList.Remove(m_BattleModeCard);
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+        }
+        else
+        {
+            m_GameManager.myMariganList.Add(m_BattleModeCard);
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 125f / 255f);
+        }
     }
 }
