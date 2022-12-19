@@ -6,16 +6,17 @@ namespace EnumController
 {
     public enum CardColor
     {
+        VOID,
         RED,
         BLUE,
         YELLOW,
         GREEN,
         PURPLE,
-        VOID,
     }
 
     public enum Trriger
     {
+        VOID,
         COMEBACK,
         STANDBY,
         BOOK,
@@ -28,19 +29,19 @@ namespace EnumController
         SOUL,
         DOUBLE_SOUL,
         NONE,
-        VOID,
     }
 
     public enum Type
     {
+        VOID,
         CHARACTER,
         EVENT,
         CLIMAX,
-        VOID,
     }
 
     public enum Zone
     {
+        VOID,
         DECK,
         HAND,
         GRAVEYARD,
@@ -57,7 +58,6 @@ namespace EnumController
         BACKWARD_LEFT,
         BACKWARD_RIGHT,
         EVENT,
-        VOID,
     }
 
     public enum Attribute
@@ -78,6 +78,7 @@ namespace EnumController
 
     public enum CardNo
     {
+        VOID,
         AT_WX02_A01,
         AT_WX02_A02,
         AT_WX02_A03,
@@ -91,11 +92,11 @@ namespace EnumController
         AT_WX02_A11,
         AT_WX02_A12,
         AT_WX02_A13,
-        VOID,
     }
 
     public enum Turn
     {
+        VOID,
         Player1_Draw,
         Player1_Clock,
         Player1_Main,
@@ -110,7 +111,6 @@ namespace EnumController
         Player2_Attack,
         Player2_Counter,
         Player2_Encore,
-        VOID,
     }
 }
 

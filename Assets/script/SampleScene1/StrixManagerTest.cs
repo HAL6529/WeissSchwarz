@@ -35,7 +35,7 @@ public class StrixManagerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
+        
     }
 
     // Update is called once per frame

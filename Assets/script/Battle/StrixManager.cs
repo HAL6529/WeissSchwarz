@@ -16,8 +16,11 @@ public class StrixManager : MonoBehaviour
     public string applicationId = "00000000-0000-0000-0000-000000000000";
     private string pass;
 
-    public bool isCreateMode = false;
-    
+    public bool isCreateMode = true;
+
+    private bool isOwnerFirstAttacker = false;
+    [SerializeField] GameManager m_GameManager;
+
     /// <summary>
     /// ルームに参加可能な最大人数
     /// </summary>
@@ -28,19 +31,9 @@ public class StrixManager : MonoBehaviour
     /// </summary>
     public string roomName = "New Room";
 
-    /// <summary>
-    /// ルーム入室完了時イベント
-    /// </summary>
-    public UnityEvent onRoomEntered;
-
-    /// <summary>
-    /// ルーム入室失敗時イベント
-    /// </summary>
-    public UnityEvent onRoomEnterFailed;
     // Start is called before the first frame update
     void Start()
     {
-        Connect();
 
     }
 
@@ -54,8 +47,12 @@ public class StrixManager : MonoBehaviour
     {
         StrixNetwork.instance.applicationId = applicationId;
         StrixNetwork.instance.playerName = "";
-
-        if (isCreateMode)
+        StrixNetwork.instance.ConnectMasterServer(host, port,
+            connectEventHandler: _ => {
+                CreateRoom();
+                //this.gameObject.GetComponent<BattleStrix>().SendGameStart();
+            }, OnConnectFailedCallback);
+        /*if (isCreateMode)
         {
             StrixNetwork.instance.ConnectMasterServer(host, port,
                 connectEventHandler: _ => {
@@ -68,7 +65,8 @@ public class StrixManager : MonoBehaviour
                 connectEventHandler: _ => {
                     JoinRoom();
                 }, OnConnectFailedCallback);
-        }
+        }*/
+        Debug.Log("Connect");
 
     }
 
@@ -92,27 +90,14 @@ public class StrixManager : MonoBehaviour
         RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs();
 
         m_RoomJoinArgs.host = host;
-        // m_RoomJoinArgs.port = port;
-        // m_RoomJoinArgs.protocol = "TCP";
-        // マスターサーバーに接続したら、そのサーバーでルームを検索できます
-        /* StrixNetwork.instance.SearchJoinableRoom(
-            condition: null,                                            // 全てのルームを検索します
-            order: new Order("memberCount", OrderType.Ascending),       // 最もすいているルームが最初になるように並べます
-            limit: 10,                                                                     // 結果を10件のみ取得します
-            offset: 0,                                                                     // 結果を最初から取得します
-            handler: searchResults => {
-                Debug.Log("searchResult");
-            },
-            failureHandler: searchError => Debug.LogError("Search failed.Reason: " )
-        );*/
-
         StrixNetwork.instance.JoinRoom(m_RoomJoinArgs, args => { Debug.Log("searchResult"); }, args => { Debug.Log("searchResult"); }, null);
-
+        this.gameObject.GetComponent<BattleStrix>().SendGameStart();
         Debug.Log("成功");
     }
 
     private void CreateRoom()
     {
+        CoinToss();
         RoomProperties roomProperties = new RoomProperties
         {
             capacity = 2,
@@ -125,10 +110,32 @@ public class StrixManager : MonoBehaviour
             name = StrixNetwork.instance.playerName
         };
 
-        StrixNetwork.instance.CreateRoom(roomProperties, memberProperties, args => {
+        StrixNetwork.instance.CreateRoom(roomProperties, memberProperties, createResult => {
             //onRoomEntered.Invoke();
         }, args => {
             //onRoomEnterFailed.Invoke();
         });
+    }
+
+    private void CoinToss()
+    {
+        if (UnityEngine.Random.Range(0, 2) == 0)
+        {
+            isOwnerFirstAttacker = true;
+        }
+        else
+        {
+            isOwnerFirstAttacker = false;
+        }
+    }
+
+    public void SetTrueCreateMode()
+    {
+        isCreateMode = true;
+    }
+
+    public void SetFalseCreateMode()
+    {
+        isCreateMode = false;
     }
 }
