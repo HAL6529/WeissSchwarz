@@ -1,6 +1,17 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BattleClimaxCardUtil
+    - BattleDeckCardUtil
+    - BattleGraveYardUtil
+    - BattleHandCardUtil
+    - BattleMemoryCardUtil
+    - BattleModeCard
+    - BattleModeCardList
+    - BattleModeDeck
+    - BattleModeGuide
+    - BattleMyMainCardUtil
+    - BattleStrix
     - CardControllerTest
     - CardGuideUtil
     - CardInfoManager
@@ -9,8 +20,14 @@ ScriptsOnlyBuild:
     - ChatTest
     - DeckListManager
     - DeckListPanelUtil
+    - Dialog
     - ExitButton
+    - GameManager
     - Menu
+    - MyClockCardsManager
+    - MyHandCardsManager
+    - MyLevelCardsManager
+    - MyStockCardsManager
     - PlayerManager
     - PlayerTest
     - SearchFilter
@@ -132,6 +149,60 @@ ScriptsOnlyBuild:
     strix-client-csharp-replica:
     - SoftGear.Strix.Client.Replica.Model.Replica
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: FirstDraw
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: MariganStart
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: DrawPhaseStart
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: SetTrueCreateMode
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: MariganEnd
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: Connect
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: SetFalseCreateMode
   - assembly: Assembly-CSharp
     fullTypeName: StrixManagerTest
     methodName: onRandomJoinButton
@@ -444,95 +515,109 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 2158}
+      Script: {instanceID: 2072}
     - Class: 114
-      Script: {instanceID: 2558}
+      Script: {instanceID: 2162}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2562}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 2718}
     - Class: 114
-      Script: {instanceID: 3682}
+      Script: {instanceID: 2764}
     - Class: 114
-      Script: {instanceID: 3810}
+      Script: {instanceID: 2904}
     - Class: 114
-      Script: {instanceID: 3900}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3912}
+      Script: {instanceID: 3146}
     - Class: 114
-      Script: {instanceID: 4176}
+      Script: {instanceID: 3526}
     - Class: 114
-      Script: {instanceID: 4826}
+      Script: {instanceID: 3664}
     - Class: 114
-      Script: {instanceID: 4900}
+      Script: {instanceID: 3696}
     - Class: 114
-      Script: {instanceID: 4974}
+      Script: {instanceID: 3758}
     - Class: 114
-      Script: {instanceID: 4976}
+      Script: {instanceID: 3826}
     - Class: 114
-      Script: {instanceID: 5456}
+      Script: {instanceID: 3916}
+    - Class: 114
+      Script: {instanceID: 3928}
+    - Class: 114
+      Script: {instanceID: 4192}
+    - Class: 114
+      Script: {instanceID: 4266}
+    - Class: 114
+      Script: {instanceID: 4342}
+    - Class: 114
+      Script: {instanceID: 4502}
+    - Class: 114
+      Script: {instanceID: 4782}
+    - Class: 114
+      Script: {instanceID: 4850}
+    - Class: 114
+      Script: {instanceID: 4924}
+    - Class: 114
+      Script: {instanceID: 4996}
+    - Class: 114
+      Script: {instanceID: 4998}
+    - Class: 114
+      Script: {instanceID: 5000}
+    - Class: 114
+      Script: {instanceID: 5030}
+    - Class: 114
+      Script: {instanceID: 5482}
     - Class: 114
       Script: {instanceID: 5908}
     - Class: 114
-      Script: {instanceID: 5920}
+      Script: {instanceID: 5922}
     - Class: 114
-      Script: {instanceID: 6324}
+      Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 6922}
+      Script: {instanceID: 5950}
     - Class: 114
-      Script: {instanceID: 23608}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 23612}
+      Script: {instanceID: 6442}
     - Class: 114
-      Script: {instanceID: 23614}
+      Script: {instanceID: 6566}
     - Class: 114
-      Script: {instanceID: 23616}
+      Script: {instanceID: 6956}
     - Class: 114
-      Script: {instanceID: 23620}
+      Script: {instanceID: 7306}
     - Class: 114
-      Script: {instanceID: 23622}
+      Script: {instanceID: 24252}
     - Class: 114
-      Script: {instanceID: 23624}
+      Script: {instanceID: 24254}
     - Class: 114
-      Script: {instanceID: 23626}
+      Script: {instanceID: 24258}
     - Class: 114
-      Script: {instanceID: 23628}
+      Script: {instanceID: 24260}
     - Class: 114
-      Script: {instanceID: 23630}
+      Script: {instanceID: 24262}
     - Class: 114
-      Script: {instanceID: 23632}
+      Script: {instanceID: 24264}
     - Class: 114
-      Script: {instanceID: 23634}
+      Script: {instanceID: 24266}
     - Class: 114
-      Script: {instanceID: 23636}
+      Script: {instanceID: 24268}
     - Class: 114
-      Script: {instanceID: 23640}
+      Script: {instanceID: 24270}
     - Class: 114
-      Script: {instanceID: 23642}
+      Script: {instanceID: 24274}
     - Class: 114
-      Script: {instanceID: 23644}
+      Script: {instanceID: 24276}
     - Class: 114
-      Script: {instanceID: 23646}
+      Script: {instanceID: 24278}
     - Class: 114
-      Script: {instanceID: 23648}
+      Script: {instanceID: 24280}
     - Class: 114
-      Script: {instanceID: 23650}
+      Script: {instanceID: 24282}
     - Class: 114
-      Script: {instanceID: 23652}
+      Script: {instanceID: 24284}
     - Class: 114
-      Script: {instanceID: 23654}
-    - Class: 114
-      Script: {instanceID: 23656}
-    - Class: 114
-      Script: {instanceID: 23658}
-    - Class: 114
-      Script: {instanceID: 23660}
-    - Class: 114
-      Script: {instanceID: 23662}
-    - Class: 114
-      Script: {instanceID: 23664}
-    - Class: 114
-      Script: {instanceID: 23666}
+      Script: {instanceID: 24286}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -573,59 +658,61 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1736}
+      Script: {instanceID: 1738}
     - Class: 114
-      Script: {instanceID: 1786}
+      Script: {instanceID: 1788}
     - Class: 114
-      Script: {instanceID: 2558}
+      Script: {instanceID: 2562}
     - Class: 114
-      Script: {instanceID: 2572}
+      Script: {instanceID: 2576}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2786}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3026}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 3146}
     - Class: 114
-      Script: {instanceID: 3530}
+      Script: {instanceID: 3542}
     - Class: 114
-      Script: {instanceID: 3682}
+      Script: {instanceID: 3696}
     - Class: 114
-      Script: {instanceID: 3894}
+      Script: {instanceID: 3910}
     - Class: 114
-      Script: {instanceID: 4758}
+      Script: {instanceID: 4780}
     - Class: 114
-      Script: {instanceID: 4826}
+      Script: {instanceID: 4850}
     - Class: 114
-      Script: {instanceID: 4900}
+      Script: {instanceID: 4924}
     - Class: 114
-      Script: {instanceID: 5334}
+      Script: {instanceID: 5000}
     - Class: 114
-      Script: {instanceID: 5456}
+      Script: {instanceID: 5360}
     - Class: 114
-      Script: {instanceID: 5520}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5600}
+      Script: {instanceID: 5546}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5626}
     - Class: 114
-      Script: {instanceID: 5920}
+      Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 5948}
+      Script: {instanceID: 5950}
     - Class: 114
-      Script: {instanceID: 6134}
+      Script: {instanceID: 5978}
     - Class: 114
-      Script: {instanceID: 6324}
+      Script: {instanceID: 6164}
     - Class: 114
-      Script: {instanceID: 6608}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 6922}
+      Script: {instanceID: 6642}
     - Class: 114
-      Script: {instanceID: 7440}
+      Script: {instanceID: 6956}
     - Class: 114
-      Script: {instanceID: 7690}
+      Script: {instanceID: 7476}
+    - Class: 114
+      Script: {instanceID: 7726}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -664,23 +751,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 2558}
+      Script: {instanceID: 2562}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 3146}
     - Class: 114
-      Script: {instanceID: 4900}
+      Script: {instanceID: 4924}
     - Class: 114
-      Script: {instanceID: 5456}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5600}
+      Script: {instanceID: 5626}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 6324}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 6340}
+      Script: {instanceID: 6370}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -721,65 +808,65 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1736}
+      Script: {instanceID: 1738}
     - Class: 114
-      Script: {instanceID: 1806}
+      Script: {instanceID: 1808}
     - Class: 114
-      Script: {instanceID: 1978}
+      Script: {instanceID: 1980}
     - Class: 114
-      Script: {instanceID: 2558}
+      Script: {instanceID: 2562}
     - Class: 114
-      Script: {instanceID: 2598}
+      Script: {instanceID: 2602}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2786}
     - Class: 114
-      Script: {instanceID: 2848}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3682}
+      Script: {instanceID: 3696}
     - Class: 114
-      Script: {instanceID: 3894}
+      Script: {instanceID: 3910}
     - Class: 114
-      Script: {instanceID: 4026}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 4066}
+      Script: {instanceID: 4082}
     - Class: 114
-      Script: {instanceID: 4140}
+      Script: {instanceID: 4156}
     - Class: 114
-      Script: {instanceID: 4242}
+      Script: {instanceID: 4258}
     - Class: 114
-      Script: {instanceID: 4688}
+      Script: {instanceID: 4710}
     - Class: 114
-      Script: {instanceID: 4826}
+      Script: {instanceID: 4850}
     - Class: 114
-      Script: {instanceID: 4900}
+      Script: {instanceID: 4924}
     - Class: 114
-      Script: {instanceID: 4972}
+      Script: {instanceID: 4996}
     - Class: 114
-      Script: {instanceID: 4976}
+      Script: {instanceID: 5000}
     - Class: 114
-      Script: {instanceID: 5028}
+      Script: {instanceID: 5054}
     - Class: 114
-      Script: {instanceID: 5456}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5600}
+      Script: {instanceID: 5626}
     - Class: 114
-      Script: {instanceID: 5880}
+      Script: {instanceID: 5906}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 5920}
+      Script: {instanceID: 5950}
     - Class: 114
-      Script: {instanceID: 6324}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 6802}
+      Script: {instanceID: 6836}
     - Class: 114
-      Script: {instanceID: 6922}
+      Script: {instanceID: 6956}
     - Class: 114
-      Script: {instanceID: 7076}
+      Script: {instanceID: 7110}
     - Class: 114
-      Script: {instanceID: 60382}
+      Script: {instanceID: 54154}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -891,6 +978,12 @@ ScriptsOnlyBuild:
     className: TextBox
   - hash:
       serializedVersion: 2
+      Hash: f58f89c740a55727d840548e896dba4d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleHandCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: 63815508dfd6cf329d5c593ac8e76888
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -987,10 +1080,22 @@ ScriptsOnlyBuild:
     className: TMP_TextSelector_A
   - hash:
       serializedVersion: 2
+      Hash: cd150fb2ab363acf03f4fdabdc1de83e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleMemoryCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestRunner.Utils
     className: TestRunCallbackListener
+  - hash:
+      serializedVersion: 2
+      Hash: 4b28c1952ed3a57e41146d784ec52b3e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleStrix
   - hash:
       serializedVersion: 2
       Hash: 34fa63a30926bcf55d7323dae76be890
@@ -1027,6 +1132,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardTest
+  - hash:
+      serializedVersion: 2
+      Hash: d3a54aadadbdfe4ed80da63a1c5e26e7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleDeckCardUtil
   - hash:
       serializedVersion: 2
       Hash: 9f5cca8c22d9a2d2a819c5ba5c0675a8
@@ -1125,6 +1236,12 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
+      Hash: 305de6d2042ebeb924057b90183ba3e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleMyMainCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: 0286ed84936a6e3c4dba049ae21a7b1c
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1143,6 +1260,12 @@ ScriptsOnlyBuild:
     className: EnvMapAnimator
   - hash:
       serializedVersion: 2
+      Hash: 8affca3b33e0f1dc26c9c89f939c6077
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyStockCardsManager
+  - hash:
+      serializedVersion: 2
       Hash: 098f025716fad3521c89a222b6058556
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1159,6 +1282,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.SpriteShape.Runtime.dll
     namespaceName: 
     className: SpriteShapeGeometryCache
+  - hash:
+      serializedVersion: 2
+      Hash: ffc57693065788801fc200194b0da9d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyLevelCardsManager
   - hash:
       serializedVersion: 2
       Hash: f60085eba621f0023ea84554fae25344
@@ -1191,7 +1320,7 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: d3b0c27d8db7fe37c02deb1c4f959231
+      Hash: d22404413d517b770f9d615d8862c1b0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StrixManager
@@ -1263,10 +1392,22 @@ ScriptsOnlyBuild:
     className: TMP_ExampleScript_01
   - hash:
       serializedVersion: 2
+      Hash: 4c64cf3db7bc983c6583e312652eed8a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleModeGuide
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TextConsoleSimulator
+  - hash:
+      serializedVersion: 2
+      Hash: 8471d274e4e5f79e7f591364f4dcc17a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
   - hash:
       serializedVersion: 2
       Hash: 26dacff44c1c1bb89901b0b06dafc1de
@@ -1285,6 +1426,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TMP_TextInfoDebugTool
+  - hash:
+      serializedVersion: 2
+      Hash: cd150fb2ab363acf03f4fdabdc1de83e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleClimaxCardUtil
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1327,6 +1474,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Toggle
+  - hash:
+      serializedVersion: 2
+      Hash: 687da4c8e855627f1f050455fb48ee08
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyHandCardsManager
   - hash:
       serializedVersion: 2
       Hash: 775631fd356b05ee67cacc967dd94cf1
@@ -1411,6 +1564,12 @@ ScriptsOnlyBuild:
     assemblyName: StrixUnityRuntime.dll
     namespaceName: SoftGear.Strix.Unity.Runtime
     className: StrixVehicleMovementSynchronizer
+  - hash:
+      serializedVersion: 2
+      Hash: 06d96549eae9236c3e1949cb44412410
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleModeCardList
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1503,6 +1662,18 @@ ScriptsOnlyBuild:
     className: StrixManagerTest
   - hash:
       serializedVersion: 2
+      Hash: ffc57693065788801fc200194b0da9d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyClockCardsManager
+  - hash:
+      serializedVersion: 2
+      Hash: b86bcbee0409cc08dcef16ea13aa7549
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleModeCard
+  - hash:
+      serializedVersion: 2
       Hash: 596956ba5a4c7f862f342d4838159063
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1593,6 +1764,12 @@ ScriptsOnlyBuild:
     className: Menu
   - hash:
       serializedVersion: 2
+      Hash: cd150fb2ab363acf03f4fdabdc1de83e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleGraveYardUtil
+  - hash:
+      serializedVersion: 2
       Hash: b6e08e9716184d5736af5af9ffaf1513
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1621,6 +1798,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: f9004df9c1da7a82ca183cf13c16a5c4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Dialog
   - hash:
       serializedVersion: 2
       Hash: 6829bea31b0631acecdc94f44ca7ede8
@@ -1741,6 +1924,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro
     className: TMP_PhoneNumberValidator
+  - hash:
+      serializedVersion: 2
+      Hash: 06d6c37c438f223830ce9516567ee55f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleModeDeck
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
