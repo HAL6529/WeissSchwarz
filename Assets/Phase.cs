@@ -3,28 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EnumController;
+using UnityForge.AnimCallbacks;
 
 public class Phase : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] PhaseText phaseText;
     [SerializeField] Text text;
     [SerializeField] GameObject Panel;
+    EnumController.Turn phase;
     bool isAnimation = false;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Animator animator;
+    [SerializeField] private int layerIndex;
+    [SerializeField] private string clipName;
+
+    private void Start()
     {
-        
+        animator.AddClipStartCallback(layerIndex, clipName, () => print("äJén"));
+        //animator.AddClipEndCallback(layerIndex, clipName, () => AnimationEnd());
+        animator.AddClipCallback(layerIndex, clipName, 2.5f, () => AnimationEnd());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AnimationStart(EnumController.Turn phase)
     {
         Panel.SetActive(true);
+        this.phase = phase;
+
         switch (phase){
             case EnumController.Turn.Player1_Draw:
                 text.text = "Draw";
@@ -73,14 +83,12 @@ public class Phase : MonoBehaviour
                 break;
         }
         isAnimation = true;
+        animator.Play("PhaseAnimation", 0, 0);
     }
 
     public void AnimationEnd()
     {
-        Debug.Log("åƒÇŒÇÍÇΩ");
+        print("èIóπ");
         Panel.SetActive(false);
-        phaseText.enabled = false;
-        //isAnimation = false;
-        //Panel.SetActive(false);
     }
 }

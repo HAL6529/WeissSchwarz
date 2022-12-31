@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using EnumController;
 
 public class GameManager : MonoBehaviour
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
 
     public bool isFirstAttacker = false;
 
+    [SerializeField] Text testPhaseText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     public void MariganStart()
     {
+        testPhaseText.text = "Marigan";
         MariganMode = true;
         dialog.SetActive(true);
     }
@@ -109,23 +113,25 @@ public class GameManager : MonoBehaviour
 
     public void DrawPhaseStart()
     {
+        dialog.SetActive(false);
+        testPhaseText.text = "Draw";
         phase = EnumController.Turn.Player1_Draw;
         PhaseObject.GetComponent<Phase>().AnimationStart(phase);
-        Draw();
-        DrawPhaseEnd();
     }
 
     public void DrawPhaseEnd()
     {
+        Draw();
         ClockPhaseStart();
     }
 
     public void ClockPhaseStart()
     {
+        testPhaseText.text = "Clock";
         phase = EnumController.Turn.Player1_Clock;
         dialog.SetActive(true);
         m_Dialog.setText("Please Choice Clock Card");
-        ClockPhaseEnd();
+        //ClockPhaseEnd();
     }
 
     public void ClockPhaseEnd()
@@ -136,6 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void MainStart()
     {
+        testPhaseText.text = "Main";
         phase = EnumController.Turn.Player1_Main;
     } 
 
