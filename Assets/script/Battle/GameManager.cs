@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
 
     public bool MariganMode = false;
 
-    [SerializeField] GameObject dialog;
+    [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] GameObject LordScreen;
     [SerializeField] GameObject PhaseObject;
-    private Dialog m_Dialog;
+
     private int turn = 0;
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Dialog = dialog.GetComponent<Dialog>();
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
         GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList.Count);
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
@@ -88,12 +87,10 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Marigan";
         MariganMode = true;
-        dialog.SetActive(true);
     }
 
     public void MariganEnd()
     {
-        dialog.SetActive(false);
         int num = myMariganList.Count;
         for (int i = 0; i < num; i++)
         {
@@ -113,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void DrawPhaseStart()
     {
-        dialog.SetActive(false);
+        m_ClockDialog.ClockDialogEnd();
         testPhaseText.text = "Draw";
         phase = EnumController.Turn.Player1_Draw;
         PhaseObject.GetComponent<Phase>().AnimationStart(phase);
@@ -127,16 +124,13 @@ public class GameManager : MonoBehaviour
 
     public void ClockPhaseStart()
     {
+        m_ClockDialog.setText("クロックするカードを選択してください");
         testPhaseText.text = "Clock";
         phase = EnumController.Turn.Player1_Clock;
-        dialog.SetActive(true);
-        m_Dialog.setText("Please Choice Clock Card");
-        //ClockPhaseEnd();
     }
 
     public void ClockPhaseEnd()
     {
-        dialog.SetActive(false);
         MainStart();
     }
 

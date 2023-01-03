@@ -12,6 +12,8 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] ClockDialog m_ClockDialog;
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,10 +52,21 @@ public class BattleHandCardUtil : MonoBehaviour
             MariganClick();
         }
 
-        if(m_GameManager.phase == EnumController.Turn.Player1_Main)
+        if (m_GameManager.phase == EnumController.Turn.Player1_Clock)
+        {
+            ClockClick();
+        }
+
+        if (m_GameManager.phase == EnumController.Turn.Player1_Main)
         {
             MainClick();
         }
+    }
+
+    public void ResetSelected()
+    {
+        isSelected = false;
+        image.color = new Color(1, 1, 1, 255 / 255);
     }
 
     private void MariganClick()
@@ -69,6 +82,23 @@ public class BattleHandCardUtil : MonoBehaviour
             m_GameManager.myMariganList.Add(m_BattleModeCard);
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
+        }
+    }
+
+    private void ClockClick()
+    {
+        if (isSelected)
+        {
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+            m_ClockDialog.setBattleModeCard(null);
+        }
+        else
+        {
+            m_MyHandCardsManager.CallResetSelected();
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 125f / 255f);
+            m_ClockDialog.setBattleModeCard(m_BattleModeCard);
         }
     }
 
