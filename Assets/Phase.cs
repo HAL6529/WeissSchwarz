@@ -8,10 +8,9 @@ using UnityForge.AnimCallbacks;
 public class Phase : MonoBehaviour
 {
     [SerializeField] GameManager gameManager;
-    [SerializeField] PhaseText phaseText;
     [SerializeField] Text text;
     [SerializeField] GameObject Panel;
-    EnumController.Turn phase;
+    EnumController.Turn phase = EnumController.Turn.VOID;
     bool isAnimation = false;
     [SerializeField] private Animator animator;
     [SerializeField] private int layerIndex;
@@ -90,5 +89,39 @@ public class Phase : MonoBehaviour
     {
         print("èIóπ");
         Panel.SetActive(false);
+        switch (phase)
+        {
+            case EnumController.Turn.Player1_Draw:
+                gameManager.DrawPhaseEnd();
+                break;
+            case EnumController.Turn.Player1_Clock:
+                break;
+            case EnumController.Turn.Player1_Main:
+                break;
+            case EnumController.Turn.Player1_Climax:
+                break;
+            case EnumController.Turn.Player1_Attack:
+                break;
+            case EnumController.Turn.Player1_Counter:
+                break;
+            case EnumController.Turn.Player1_Encore:
+                break;
+            case EnumController.Turn.Player2_Draw:
+                break;
+            case EnumController.Turn.Player2_Clock:
+                break;
+            case EnumController.Turn.Player2_Main:
+                break;
+            case EnumController.Turn.Player2_Climax:
+                break;
+            case EnumController.Turn.Player2_Attack:
+                break;
+            case EnumController.Turn.Player2_Counter:
+                break;
+            case EnumController.Turn.Player2_Encore:
+                break;
+            default:
+                break;
+        }
     }
 }

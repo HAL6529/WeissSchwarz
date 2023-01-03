@@ -71,11 +71,15 @@ public class MyHandCardsManager : MonoBehaviour
             onlyEleven.SetActive(false);
             rightCard.SetActive(true);
         }
-
-        for(int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].GetComponent<BattleHandCardUtil>().isSelected = false;
-        }
+        CallResetSelected();
         onlyEleven.GetComponent<BattleHandCardUtil>().isSelected = false;
+    }
+
+    public void CallResetSelected()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleHandCardUtil>().ResetSelected();
+        }
     }
 }
