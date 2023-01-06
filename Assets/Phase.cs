@@ -11,7 +11,6 @@ public class Phase : MonoBehaviour
     [SerializeField] Text text;
     [SerializeField] GameObject Panel;
     EnumController.Turn phase = EnumController.Turn.VOID;
-    bool isAnimation = false;
     [SerializeField] private Animator animator;
     [SerializeField] private int layerIndex;
     [SerializeField] private string clipName;
@@ -31,6 +30,7 @@ public class Phase : MonoBehaviour
 
     public void AnimationStart(EnumController.Turn phase)
     {
+        gameManager.isAnimation = true;
         Panel.SetActive(true);
         this.phase = phase;
 
@@ -81,7 +81,6 @@ public class Phase : MonoBehaviour
                 text.text = "Error";
                 break;
         }
-        isAnimation = true;
         animator.Play("PhaseAnimation", 0, 0);
     }
 
@@ -89,12 +88,14 @@ public class Phase : MonoBehaviour
     {
         print("èIóπ");
         Panel.SetActive(false);
+        gameManager.isAnimation = false ;
         switch (phase)
         {
             case EnumController.Turn.Player1_Draw:
                 gameManager.DrawPhaseEnd();
                 break;
             case EnumController.Turn.Player1_Clock:
+                gameManager.ClockPhaseStart();
                 break;
             case EnumController.Turn.Player1_Main:
                 break;

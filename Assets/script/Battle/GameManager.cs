@@ -34,12 +34,12 @@ public class GameManager : MonoBehaviour
     public GameObject EnemyGraveYardObject = null;
 
     public bool MariganMode = false;
+    public bool isAnimation = false;
 
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] GameObject LordScreen;
     [SerializeField] GameObject PhaseObject;
 
-    private int turn = 0;
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
     public bool isFirstAttacker = false;
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
-        GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList.Count);
+        UpdateMyClockCards();
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
         GetComponent<MyLevelCardsManager>().updateMyLevelCards(myStockList.Count);
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
@@ -119,18 +119,20 @@ public class GameManager : MonoBehaviour
     public void DrawPhaseEnd()
     {
         Draw();
+        testPhaseText.text = "Clock";
+        phase = EnumController.Turn.Player1_Clock;
+        PhaseObject.GetComponent<Phase>().AnimationStart(phase);
         ClockPhaseStart();
     }
 
     public void ClockPhaseStart()
     {
         m_ClockDialog.setText("クロックするカードを選択してください");
-        testPhaseText.text = "Clock";
-        phase = EnumController.Turn.Player1_Clock;
     }
 
     public void ClockPhaseEnd()
     {
+        m_ClockDialog.ClockDialogEnd();
         MainStart();
     }
 
@@ -157,6 +159,11 @@ public class GameManager : MonoBehaviour
             myDeckList.RemoveAt(0);
         }
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+    }
+
+    public void UpdateMyClockCards()
+    {
+        GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
     }
 
     public void GameStart()

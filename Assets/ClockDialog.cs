@@ -58,6 +58,15 @@ public class ClockDialog : MonoBehaviour
 
     public void onClick()
     {
+        if(m_BattleModeCard != null)
+        {
+            m_GameManager.myClockList.Add(m_BattleModeCard);
+            m_GameManager.myHandList.Remove(m_BattleModeCard);
+            m_GameManager.Draw();
+            m_GameManager.Draw();
+            m_GameManager.UpdateMyClockCards();
+        }
+        m_GameManager.ClockPhaseEnd();
         ClockDialogEnd();
     }
 }
