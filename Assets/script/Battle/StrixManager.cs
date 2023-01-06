@@ -18,7 +18,6 @@ public class StrixManager : MonoBehaviour
 
     public bool isCreateMode = true;
 
-    private bool isOwnerFirstAttacker = false;
     [SerializeField] GameManager m_GameManager;
 
     /// <summary>
@@ -97,7 +96,6 @@ public class StrixManager : MonoBehaviour
 
     private void CreateRoom()
     {
-        CoinToss();
         RoomProperties roomProperties = new RoomProperties
         {
             capacity = 2,
@@ -115,18 +113,6 @@ public class StrixManager : MonoBehaviour
         }, args => {
             //onRoomEnterFailed.Invoke();
         });
-    }
-
-    private void CoinToss()
-    {
-        if (UnityEngine.Random.Range(0, 2) == 0)
-        {
-            isOwnerFirstAttacker = true;
-        }
-        else
-        {
-            isOwnerFirstAttacker = false;
-        }
     }
 
     public void SetTrueCreateMode()

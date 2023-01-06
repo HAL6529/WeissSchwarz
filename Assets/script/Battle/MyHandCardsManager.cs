@@ -11,8 +11,6 @@ public class MyHandCardsManager : MonoBehaviour
     public GameObject onlyEleven;
     public GameObject rightCard;
 
-    private int point = 4;
-    private int width = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +78,14 @@ public class MyHandCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].GetComponent<BattleHandCardUtil>().ResetSelected();
+        }
+    }
+
+    public void CallNotShowPlayButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleHandCardUtil>().NotShowPlayButton();
         }
     }
 }

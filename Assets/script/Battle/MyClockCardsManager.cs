@@ -17,13 +17,15 @@ public class MyClockCardsManager : MonoBehaviour
         
     }
 
-    public void updateMyClockCards(int num)
+    public void updateMyClockCards(List<BattleModeCard> list)
     {
+        int num = list.Count;
         for(int i = 0; i < CardList.Count; i++)
         {
             if(i < num)
             {
                 CardList[i].SetActive(true);
+                CardList[i].GetComponent<BattleClockCardUtil>().setBattleModeCard(list[i]);
             }
             else
             {

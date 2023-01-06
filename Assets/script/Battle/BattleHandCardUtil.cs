@@ -14,6 +14,7 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] BattleModeGuide m_BattleModeGuide;
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] GameObject PlayButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,11 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onClick()
     {
+        if (m_GameManager.isAnimation)
+        {
+            return;
+        }
+
         m_BattleModeGuide.showImage(m_BattleModeCard);
 
         if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
@@ -67,6 +73,11 @@ public class BattleHandCardUtil : MonoBehaviour
     {
         isSelected = false;
         image.color = new Color(1, 1, 1, 255 / 255);
+    }
+
+    public void NotShowPlayButton()
+    {
+        PlayButton.SetActive(false);
     }
 
     private void MariganClick()
@@ -104,6 +115,7 @@ public class BattleHandCardUtil : MonoBehaviour
 
     private void MainClick()
     {
-
+        m_MyHandCardsManager.CallNotShowPlayButton();
+        PlayButton.SetActive(true);
     }
 }
