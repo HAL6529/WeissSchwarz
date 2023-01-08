@@ -9,12 +9,15 @@ public class BattleHandCardUtil : MonoBehaviour
     private BattleModeCard m_BattleModeCard = null;
 
     public bool isSelected = false;
+
+    private bool isMainSelected = false;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] GameObject PlayButton;
+    [SerializeField] MainDialog m_MainDialog;
     // Start is called before the first frame update
     void Start()
     {
@@ -115,7 +118,22 @@ public class BattleHandCardUtil : MonoBehaviour
 
     private void MainClick()
     {
+        m_MainDialog.OffMainDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
-        PlayButton.SetActive(true);
+        if (isMainSelected)
+        {
+            PlayButton.SetActive(false);
+            isMainSelected = false;
+        }
+        else
+        {
+            PlayButton.SetActive(true);
+            isMainSelected = true;
+        }
+    }
+
+    public void onPlayButton()
+    {
+        m_MainDialog.SetBattleMordCard(m_BattleModeCard);
     }
 }

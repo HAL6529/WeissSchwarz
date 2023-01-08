@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> myLevelList = new List<BattleModeCard>();
     public List<BattleModeCard> myMemoryList = new List<BattleModeCard>();
     public List<BattleModeCard> GraveYardList = new List<BattleModeCard>();
+    public List<BattleModeCard> myMainList = new List<BattleModeCard>{null, null, null, null, null};
 
     public List<BattleModeCard> enemyHandList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyClockList = new List<BattleModeCard>();
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] GameObject LordScreen;
-    [SerializeField] GameObject PhaseObject;
+    [SerializeField] Phase m_Phase;
+    [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        UpdateMyHandCards();
         UpdateMyClockCards();
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
         GetComponent<MyLevelCardsManager>().updateMyLevelCards(myStockList.Count);
@@ -113,7 +115,7 @@ public class GameManager : MonoBehaviour
         m_ClockDialog.ClockDialogEnd();
         testPhaseText.text = "Draw";
         phase = EnumController.Turn.Player1_Draw;
-        PhaseObject.GetComponent<Phase>().AnimationStart(phase);
+        m_Phase.AnimationStart(phase);
     }
 
     public void DrawPhaseEnd()
@@ -121,7 +123,7 @@ public class GameManager : MonoBehaviour
         Draw();
         testPhaseText.text = "Clock";
         phase = EnumController.Turn.Player1_Clock;
-        PhaseObject.GetComponent<Phase>().AnimationStart(phase);
+        m_Phase.AnimationStart(phase);
         ClockPhaseStart();
     }
 
@@ -146,6 +148,7 @@ public class GameManager : MonoBehaviour
     {
         if(myDeckList.Count > 0)
         {
+            m_DummyDeckAnimation.AnimationStart();
             myHandList.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
         }
@@ -158,6 +161,11 @@ public class GameManager : MonoBehaviour
             myHandList.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
         }
+        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+    }
+
+    public void UpdateMyHandCards()
+    {
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
     }
 
