@@ -27,6 +27,10 @@ public class BattleModeGuide : MonoBehaviour
 
     public void showImage(BattleModeCard card)
     {
+        if(card == null)
+        {
+            return;
+        }
         image.sprite = card.sprite;
         name.text = card.name;
         cost.text = card.cost.ToString();

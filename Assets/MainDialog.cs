@@ -9,10 +9,21 @@ public class MainDialog : MonoBehaviour
     [SerializeField] List<Image> images = new List<Image>();
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] GameObject OKButton;
 
     private List<bool> isSelected = new List<bool>{false, false, false, false, false };
     private int place = -1;
     private BattleModeCard m_BattleModeCard = null;
+
+    private DialogMode mode = DialogMode.VOID;
+
+    private enum DialogMode
+    {
+        VOID,
+        HandToField,
+        MainMove
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +41,7 @@ public class MainDialog : MonoBehaviour
         // ä˘Ç…ëIÇŒÇÍÇƒÇ¢ÇÈèÍçá
         if (isSelected[num])
         {
+            OKButton.SetActive(false);
             images[num].color = new Color(1, 1, 255 / 255, 255 / 255);
             isSelected[num] = false;
             return;
@@ -38,6 +50,7 @@ public class MainDialog : MonoBehaviour
         // ëIÇŒÇÍÇƒÇ¢Ç»Ç¢èÍçá
         for (int i = 0; i < images.Count; i++)
         {
+            OKButton.SetActive(true);
             images[i].color = new Color(1, 1, 255 / 255, 255 / 255);
             isSelected[i] = false;
         }
@@ -48,31 +61,36 @@ public class MainDialog : MonoBehaviour
 
     public void onOkClick()
     {
-        if(place == -1)
+        if (place == -1)
         {
             return;
         }
-        if (m_BattleModeCard != null)
+        if (mode == DialogMode.HandToField)
         {
-            m_GameManager.myMainList[place] = m_BattleModeCard;
-            m_GameManager.myHandList.Remove(m_BattleModeCard);
-            m_GameManager.UpdateMyHandCards();
+            if (m_BattleModeCard != null)
+            {
+                m_GameManager.myFieldList[place] = m_BattleModeCard;
+                m_GameManager.myHandList.Remove(m_BattleModeCard);
+                m_GameManager.UpdateMyHandCards();
+                m_GameManager.UpdateMyMainCards();
+            }
+            m_MyHandCardsManager.CallNotShowPlayButton();
         }
         OffMainDialog();
-        m_MyHandCardsManager.CallNotShowPlayButton();
+    }
+
+    public void MoveMode(BattleModeCard card)
+    {
+        mode = DialogMode.MainMove;
+        ResetSelectZone();
+        this.gameObject.SetActive(true);
     }
 
     public void SetBattleMordCard(BattleModeCard card)
     {
+        mode = DialogMode.HandToField;
+        ResetSelectZone();
         this.gameObject.SetActive(true);
-        // ëIÇŒÇÍÇƒÇ¢Ç»Ç¢èÍçá
-        for (int i = 0; i < images.Count; i++)
-        {
-            images[i].color = new Color(1, 1, 255 / 255, 255 / 255);
-            isSelected[i] = false;
-        }
-        isSelected = new List<bool> {false, false, false, false, false};        
-        place = -1;
         m_BattleModeCard = card;
     }
 
@@ -82,5 +100,17 @@ public class MainDialog : MonoBehaviour
     public void OffMainDialog()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private void ResetSelectZone()
+    {
+        for (int i = 0; i < images.Count; i++)
+        {
+            images[i].color = new Color(1, 1, 255 / 255, 255 / 255);
+            isSelected[i] = false;
+        }
+        OKButton.SetActive(false);
+        isSelected = new List<bool> { false, false, false, false, false };
+        place = -1;
     }
 }

@@ -9,6 +9,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] GameObject MoveButton;
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+
+    private bool isMoveButton = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +46,29 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onClick()
     {
+        if(m_BattleModeCard == null)
+        {
+            return;
+        }
+        bool temp = isMoveButton;
+        m_MyHandCardsManager.CallResetSelected();
+        m_MyHandCardsManager.CallNotShowPlayButton();
+        m_MyMainCardsManager.CallNotShowMoveButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
+        if (isMoveButton)
+        {
+            isMoveButton = false;
+        }
+        else
+        {
+            MoveButton.SetActive(true);
+            isMoveButton = true;
+        }
+    }
+
+    public void NotShowMoveButton()
+    {
+        MoveButton.SetActive(false);
+        isMoveButton = false;
     }
 }

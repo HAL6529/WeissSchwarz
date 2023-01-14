@@ -37,7 +37,7 @@ public class BattleModeCard : MonoBehaviour
     /// <param name="cardNo">カードナンバー</param>
     public BattleModeCard(EnumController.CardNo cardNo)
     {
-        cardNo = cardNo;
+        this.cardNo = cardNo;
     }
 
     public BattleModeCard(Sprite sprite,
@@ -55,20 +55,20 @@ public class BattleModeCard : MonoBehaviour
                    int power,
                    bool isCounter)
     {
-        sprite = sprite;
-        level = level;
-        cost = cost;
-        color = color;
-        trigger = trigger;
-        type = type;
-        attributeOne = attributeOne;
-        attributeTwo = attributeTwo;
-        attributeThree = attributeThree;
-        cardNo = cardNo;
-        name = name;
-        soul = soul;
-        power = power;
-        isCounter = isCounter;
+        this.sprite = sprite;
+        this.level = level;
+        this.cost = cost;
+        this.color = color;
+        this.trigger = trigger;
+        this.type = type;
+        this.attributeOne = attributeOne;
+        this.attributeTwo = attributeTwo;
+        this.attributeThree = attributeThree;
+        this.cardNo = cardNo;
+        this.name = name;
+        this.soul = soul;
+        this.power = power;
+        this.isCounter = isCounter;
     }
 
     // Start is called before the first frame update
