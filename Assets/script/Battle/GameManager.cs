@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> myLevelList = new List<BattleModeCard>();
     public List<BattleModeCard> myMemoryList = new List<BattleModeCard>();
     public List<BattleModeCard> GraveYardList = new List<BattleModeCard>();
-    public List<BattleModeCard> myMainList = new List<BattleModeCard>{null, null, null, null, null};
+    public List<BattleModeCard> myFieldList = new List<BattleModeCard>{null, null, null, null, null};
 
     public List<BattleModeCard> enemyHandList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyClockList = new List<BattleModeCard>();
@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     public BattleModeCard climaxCard = null;
 
-    public GameObject MyClimaxCardObject = null;
-    public GameObject MyDeckObject = null;
-    public GameObject MyMemoryObject = null;
+    public BattleClimaxCardUtil MyClimaxCardObject = null;
+    public BattleDeckCardUtil MyDeckObject = null;
+    public BattleMemoryCardUtil MyMemoryObject = null;
     public GameObject MyGraveYardObject = null;
 
     public GameObject EnemyClimaxCardObject = null;
@@ -172,6 +172,11 @@ public class GameManager : MonoBehaviour
     public void UpdateMyClockCards()
     {
         GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
+    }
+
+    public void UpdateMyMainCards()
+    {
+        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
     }
 
     public void GameStart()
