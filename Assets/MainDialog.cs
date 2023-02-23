@@ -9,6 +9,7 @@ public class MainDialog : MonoBehaviour
     [SerializeField] List<Image> images = new List<Image>();
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject OKButton;
 
     private List<bool> isSelected = new List<bool>{false, false, false, false, false };
@@ -79,11 +80,19 @@ public class MainDialog : MonoBehaviour
         OffMainDialog();
     }
 
+    public void onCloseButton()
+    {
+        OffMainDialog();
+        m_MyHandCardsManager.CallNotShowPlayButton();
+        m_MyMainCardsManager.CallNotShowMoveButton();
+    }
+
     public void MoveMode(BattleModeCard card)
     {
         mode = DialogMode.MainMove;
         ResetSelectZone();
         this.gameObject.SetActive(true);
+        m_BattleModeCard = card;
     }
 
     public void SetBattleMordCard(BattleModeCard card)

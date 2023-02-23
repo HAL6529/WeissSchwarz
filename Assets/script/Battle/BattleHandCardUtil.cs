@@ -19,6 +19,7 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject PlayButton;
     [SerializeField] MainDialog m_MainDialog;
+    [SerializeField] DialogManager m_DialogManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +57,7 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
-
+        // m_DialogManager.CloseAllDialog();
         if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
         {
             MariganClick();
