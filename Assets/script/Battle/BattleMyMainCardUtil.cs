@@ -12,6 +12,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameObject MoveButton;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] MoveDialog m_MoveDialog;
+    [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] int PlaceNum;
 
     private bool isMoveButton = false;
     // Start is called before the first frame update
@@ -55,6 +58,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyHandCardsManager.CallNotShowPlayButton();
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
+        m_DialogManager.CloseAllDialog();
         if (isMoveButton)
         {
             isMoveButton = false;
@@ -70,5 +74,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         MoveButton.SetActive(false);
         isMoveButton = false;
+    }
+
+    public void onMoveButton()
+    {
+        m_MoveDialog.Open(PlaceNum, m_BattleModeCard);
     }
 }

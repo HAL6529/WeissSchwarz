@@ -61,11 +61,9 @@ public class GameManager : MonoBehaviour
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList.Count);
         MyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(climaxCard);
-        MyMemoryObject.GetComponent<BattleMemoryCardUtil>().ChangeMemory(null);
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
         EnemyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
         EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(climaxCard);
-        EnemyMemoryObject.GetComponent<BattleMemoryCardUtil>().ChangeMemory(null);
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
     }
 
@@ -142,7 +140,13 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Main";
         phase = EnumController.Turn.Player1_Main;
-    } 
+    }
+
+    public void AttackStart()
+    {
+        testPhaseText.text = "Attack";
+        phase = EnumController.Turn.Player1_Attack;
+    }
 
     public void Draw()
     {

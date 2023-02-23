@@ -18,15 +18,8 @@ public class BattleMemoryCardUtil : MonoBehaviour
         
     }
 
-    public void ChangeMemory(BattleModeCard memory)
+    public void ChangeMemory()
     {
-        if(memory == memory)
-        {
-            image.color = new Color(1, 1, 1, 0 / 255);
-            image.sprite = null;
-            return;
-        }
-        image.color = new Color(1, 1, 1, 255 / 255);
-        image.sprite = memory.sprite;
+
     }
 }
