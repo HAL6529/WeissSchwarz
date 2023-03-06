@@ -1,5 +1,5 @@
 using System;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
@@ -51,8 +51,35 @@ public class StrixManager : MonoBehaviour
                                    if(foundRooms.Count == 0)
                                    {
                                        Debug.Log("Success");
+                                       strixNetwork.CreateRoom(
+                                           new RoomProperties
+                                           {
+                                               password = "aaa",
+                                               capacity = 4,
+                                               key1 = 4.0,
+                                           },
+                                           new RoomMemberProperties
+                                           {
+                                               name = "Braille"
+                                           },
+                                           handler: __ =>
+                                           {
+                                               Debug.Log("RoomCreated");
+                                           },
+                                           failureHandler: createRoomError => Debug.LogError("Could not create room.Reason: " + createRoomError.cause)
+                                       );
                                        return;
                                    }
+                                   var roomInfo = foundRooms.First();
+                                   strixNetwork.JoinRoom(
+                                        host: roomInfo.host,
+                                        port: roomInfo.port,
+                                        protocol: roomInfo.protocol,
+                                        roomId: roomInfo.roomId,
+                                        playerName: "My Player Name",
+                                        handler: __ => Debug.Log("Room joined."),
+                                        failureHandler: joinError => Debug.LogError("Join failed.Reason: " + joinError.cause)
+                                   );
                                },
                                failureHandler: searchError => Debug.LogError("aa")
                                );
