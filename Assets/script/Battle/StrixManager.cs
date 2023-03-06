@@ -1,9 +1,11 @@
 using System;
+using System.Linq.Expressions;
 using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
 using SoftGear.Strix.Client.Core.Request;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter;
+using SoftGear.Strix.Client.Core.Model.Manager.Filter.Builder;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -11,9 +13,9 @@ using UnityEngine.UI;
 
 public class StrixManager : MonoBehaviour
 {
-    public string host = "127.0.0.1";
+    public string host = "ec593633b2ecaca37e597b51.game.strixcloud.net";
     public int port = 9122;
-    public string applicationId = "00000000-0000-0000-0000-000000000000";
+    public string applicationId = "de65fc24-a8f1-49e8-becf-732e0420ac94";
     private string pass;
 
     public bool isCreateMode = true;
@@ -33,6 +35,74 @@ public class StrixManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var strixNetwork = StrixNetwork.instance;
+
+        strixNetwork.applicationId = applicationId;
+        strixNetwork.ConnectMasterServer(host, port,
+            connectEventHandler: _ => {
+                strixNetwork.SearchRoom(
+                               condition: ConditionBuilder.Builder().Field("key1").GreaterThan(2.0).Build(),
+                               order: new Order("memberCount", OrderType.Ascending),
+                               limit: 10,
+                               offset: 0,
+                               handler: searchResults =>
+                               {
+                                   var foundRooms = searchResults.roomInfoCollection;
+                                   if(foundRooms.Count == 0)
+                                   {
+                                       Debug.Log("Success");
+                                       return;
+                                   }
+                               },
+                               failureHandler: searchError => Debug.LogError("aa")
+                               );
+            }, OnConnectFailedCallback);
+       
+        /*strixNetwork.ConnectMasterServer(
+            host: host,
+            port: port,
+            connectEventHandler: _ =>
+            {
+                Debug.Log("Connection established.");
+                strixNetwork.CreateRoom(
+                    new RoomProperties
+                    {
+                        password = "aaa",
+                        capacity = 4,
+                        key1 = 4.0,
+                    },
+                    new RoomMemberProperties
+                    {
+                        name = "Braille" // これがプレイヤーの名前になります
+                    },
+                    handler: __ => { 
+                        Debug.Log("Room created.");
+
+                        strixNetwork.SearchRoom(
+                            condition: ConditionBuilder.Builder().Field("key1").GreaterThan(2.0).Build(),
+                            order: new Order("memberCount", OrderType.Ascending),
+                            limit: 10,
+                            offset: 0,
+                            handler: searchResults =>
+                            {
+                                var foundRooms = searchResults.roomInfoCollection;
+                                foreach (var roomInfo in foundRooms)
+                                    Debug.Log("Room ID: " + roomInfo.id
+                                        + "\nHost: " + roomInfo.host
+                                        + "\nMember count: " + roomInfo.memberCount
+                                        + "\nCapacity: " + roomInfo.capacity
+                                        + "\nDifficulty: " + roomInfo.key1
+                                        + "\nDescription: " + (roomInfo.properties != null && roomInfo.properties.ContainsKey("description") ? roomInfo.properties["description"] : "None")
+                                    );
+                            },
+                            failureHandler: searchError => Debug.LogError("aa")
+                            );
+                        },
+                    failureHandler: createRoomError => Debug.LogError("Could not create room.Reason: " + createRoomError.cause)
+                );
+            },
+            errorEventHandler: connectError => Debug.LogError("Connection failed.Reason: " + connectError.cause)
+        );*/
 
     }
 
