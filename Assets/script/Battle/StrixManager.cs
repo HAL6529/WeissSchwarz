@@ -1,5 +1,5 @@
 using System;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
@@ -32,16 +32,31 @@ public class StrixManager : MonoBehaviour
     /// </summary>
     public string roomName = "New Room";
 
+    public string passPhrase = "";
+
     // Start is called before the first frame update
     void Start()
     {
         var strixNetwork = StrixNetwork.instance;
+        roomName = RoomSelectClass.getRoomName();
+        passPhrase = RoomSelectClass.getPassPhrase();
+        Debug.Log(roomName);
+        Debug.Log(passPhrase);
+
+        if (roomName == string.Empty)
+        {
+            return;
+        }
+
+        IConditionBuilder builder;
+        builder = ConditionBuilder.Builder().Field("name").EqualTo(roomName);
+        builder.And().Field("password").EqualTo(passPhrase);
 
         strixNetwork.applicationId = applicationId;
         strixNetwork.ConnectMasterServer(host, port,
             connectEventHandler: _ => {
                 strixNetwork.SearchRoom(
-                               condition: ConditionBuilder.Builder().Field("key1").GreaterThan(2.0).Build(),
+                               condition: builder.Build(),
                                order: new Order("memberCount", OrderType.Ascending),
                                limit: 10,
                                offset: 0,
@@ -51,59 +66,42 @@ public class StrixManager : MonoBehaviour
                                    if(foundRooms.Count == 0)
                                    {
                                        Debug.Log("Success");
+                                       strixNetwork.CreateRoom(
+                                           new RoomProperties
+                                           {
+                                               name = roomName,
+                                               password = "aaa",
+                                               capacity = 4,
+                                               key1 = 4.0,
+                                           },
+                                           new RoomMemberProperties
+                                           {
+                                               name = "Braille"
+                                           },
+                                           handler: __ =>
+                                           {
+                                               Debug.Log("RoomCreated");
+                                           },
+                                           failureHandler: createRoomError => Debug.LogError("Could not create room.Reason: " + createRoomError.cause)
+                                       );
                                        return;
                                    }
+                                   var roomInfo = foundRooms.First();
+
+                                   Debug.Log(roomInfo.roomId);
+                                   strixNetwork.JoinRoom(
+                                        host: roomInfo.host,
+                                        port: roomInfo.port,
+                                        protocol: roomInfo.protocol,
+                                        roomId: roomInfo.roomId,
+                                        playerName: "My Player Name",
+                                        handler: __ => Debug.Log("Room joined."),
+                                        failureHandler: joinError => Debug.LogError("Join failed.Reason: " + joinError.cause)
+                                   );
                                },
                                failureHandler: searchError => Debug.LogError("aa")
                                );
             }, OnConnectFailedCallback);
-       
-        /*strixNetwork.ConnectMasterServer(
-            host: host,
-            port: port,
-            connectEventHandler: _ =>
-            {
-                Debug.Log("Connection established.");
-                strixNetwork.CreateRoom(
-                    new RoomProperties
-                    {
-                        password = "aaa",
-                        capacity = 4,
-                        key1 = 4.0,
-                    },
-                    new RoomMemberProperties
-                    {
-                        name = "Braille" // これがプレイヤーの名前になります
-                    },
-                    handler: __ => { 
-                        Debug.Log("Room created.");
-
-                        strixNetwork.SearchRoom(
-                            condition: ConditionBuilder.Builder().Field("key1").GreaterThan(2.0).Build(),
-                            order: new Order("memberCount", OrderType.Ascending),
-                            limit: 10,
-                            offset: 0,
-                            handler: searchResults =>
-                            {
-                                var foundRooms = searchResults.roomInfoCollection;
-                                foreach (var roomInfo in foundRooms)
-                                    Debug.Log("Room ID: " + roomInfo.id
-                                        + "\nHost: " + roomInfo.host
-                                        + "\nMember count: " + roomInfo.memberCount
-                                        + "\nCapacity: " + roomInfo.capacity
-                                        + "\nDifficulty: " + roomInfo.key1
-                                        + "\nDescription: " + (roomInfo.properties != null && roomInfo.properties.ContainsKey("description") ? roomInfo.properties["description"] : "None")
-                                    );
-                            },
-                            failureHandler: searchError => Debug.LogError("aa")
-                            );
-                        },
-                    failureHandler: createRoomError => Debug.LogError("Could not create room.Reason: " + createRoomError.cause)
-                );
-            },
-            errorEventHandler: connectError => Debug.LogError("Connection failed.Reason: " + connectError.cause)
-        );*/
-
     }
 
     // Update is called once per frame
