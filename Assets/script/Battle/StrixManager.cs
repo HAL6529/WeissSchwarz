@@ -3,7 +3,10 @@ using System.Linq;
 using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
+using SoftGear.Strix.Unity.Runtime.Session;
 using SoftGear.Strix.Client.Core.Request;
+using SoftGear.Strix.Client.Core.Auth.Message;
+using SoftGear.Strix.Client.Core.Error;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter.Builder;
 using UnityEngine;
@@ -30,9 +33,14 @@ public class StrixManager : MonoBehaviour
     /// <summary>
     /// ルーム名
     /// </summary>
-    public string roomName = "New Room";
+    public string roomName;
 
-    public string passPhrase = "";
+    /// <summary>
+    /// パスワード
+    /// </summary>
+    public string passPhrase;
+
+    public string Name;
 
     // Start is called before the first frame update
     void Start()
@@ -70,9 +78,8 @@ public class StrixManager : MonoBehaviour
                                            new RoomProperties
                                            {
                                                name = roomName,
-                                               password = "aaa",
+                                               password = passPhrase,
                                                capacity = 4,
-                                               key1 = 4.0,
                                            },
                                            new RoomMemberProperties
                                            {
@@ -86,17 +93,25 @@ public class StrixManager : MonoBehaviour
                                        );
                                        return;
                                    }
-                                   var roomInfo = foundRooms.First();
+                                   RoomInfo roomInfo = foundRooms.First();
+                                   Debug.Log(roomInfo.host);
+                                   RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs()
+                                   {
+                                       host = roomInfo.host,
+                                       port = roomInfo.port,
+                                       protocol = roomInfo.protocol,
+                                       roomId = roomInfo.roomId,
+                                       password = passPhrase,
+                                       memberProperties = new RoomMemberProperties
+                                       {
+                                           name = "Braille"
+                                       }
+                                   };
 
-                                   Debug.Log(roomInfo.roomId);
                                    strixNetwork.JoinRoom(
-                                        host: roomInfo.host,
-                                        port: roomInfo.port,
-                                        protocol: roomInfo.protocol,
-                                        roomId: roomInfo.roomId,
-                                        playerName: "My Player Name",
-                                        handler: __ => Debug.Log("Room joined."),
-                                        failureHandler: joinError => Debug.LogError("Join failed.Reason: " + joinError.cause)
+                                        m_RoomJoinArgs,
+                                        OnRoomJoin, 
+                                        OnRoomJoinFailed
                                    );
                                },
                                failureHandler: searchError => Debug.LogError("aa")
@@ -112,28 +127,6 @@ public class StrixManager : MonoBehaviour
 
     public void Connect()
     {
-        StrixNetwork.instance.applicationId = applicationId;
-        StrixNetwork.instance.playerName = "";
-        StrixNetwork.instance.ConnectMasterServer(host, port,
-            connectEventHandler: _ => {
-                CreateRoom();
-                //this.gameObject.GetComponent<BattleStrix>().SendGameStart();
-            }, OnConnectFailedCallback);
-        /*if (isCreateMode)
-        {
-            StrixNetwork.instance.ConnectMasterServer(host, port,
-                connectEventHandler: _ => {
-                    CreateRoom();
-                }, OnConnectFailedCallback);
-        }
-        else
-        {
-            StrixNetwork.instance.ConnectMasterServer(host, port,
-                connectEventHandler: _ => {
-                    JoinRoom();
-                }, OnConnectFailedCallback);
-        }*/
-        Debug.Log("Connect");
 
     }
 
@@ -145,6 +138,16 @@ public class StrixManager : MonoBehaviour
     private void OnConnectFailedCallback(StrixNetworkConnectFailedEventArgs args)
     {
 
+    }
+
+    private void OnRoomJoin(RoomJoinEventArgs args)
+    {
+        Debug.Log("succcess");
+    }
+
+    private void OnRoomJoinFailed(FailureEventArgs args)
+    {
+        Debug.Log("Failed");
     }
 
     private void RoomJoined()

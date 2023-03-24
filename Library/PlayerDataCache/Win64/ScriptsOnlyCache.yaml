@@ -1,8 +1,12 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AnimationBasic
     - BattleClimaxCardUtil
+    - BattleClockCardUtil
     - BattleDeckCardUtil
+    - BattleEnemyMainCardUtil
+    - BattleGraveYardCardUtil
     - BattleGraveYardUtil
     - BattleHandCardUtil
     - BattleMemoryCardUtil
@@ -16,29 +20,33 @@ ScriptsOnlyBuild:
     - CardGuideUtil
     - CardInfoManager
     - CardInfoUtil
-    - CardTest
     - ChatTest
+    - ClockDialog
     - DeckListManager
     - DeckListPanelUtil
-    - Dialog
+    - DialogManager
+    - DummyDeckAnimation
+    - EnemyClockCardsManager
+    - EnemyHandsCardManager
+    - EnemyLevelCardsManager
+    - EnemyStockCardsManager
     - ExitButton
     - GameManager
+    - MainDialog
     - Menu
+    - MoveDialog
     - MyClockCardsManager
     - MyHandCardsManager
     - MyLevelCardsManager
+    - MyMainCardsManager
     - MyStockCardsManager
+    - Phase
     - PlayerManager
     - PlayerTest
+    - RoomSelectClass
     - SearchFilter
-    - StrixConnectGUI
-    - StrixEnterRoom
-    - StrixListView
     - StrixManager
     - StrixManagerTest
-    - StrixRoomListGUI
-    - StrixRoomListItem
-    - TextBox
     - cardInfo
     - filterDialog
     StrixUnityRuntime.dll:
@@ -65,11 +73,16 @@ ScriptsOnlyBuild:
     - TMPro.TMP_ColorGradient
     - TMPro.TMP_Dropdown
     - TMPro.TMP_FontAsset
-    - TMPro.TMP_InputField
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -107,11 +120,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_GlyphAdjustmentRecord
     - TMPro.TMP_GlyphPairAdjustmentRecord
     - TMPro.TMP_GlyphValueRecord
-    - TMPro.TMP_InputField/OnChangeEvent
-    - TMPro.TMP_InputField/SelectionEvent
-    - TMPro.TMP_InputField/SubmitEvent
-    - TMPro.TMP_InputField/TextSelectionEvent
-    - TMPro.TMP_InputField/TouchScreenKeyboardEvent
     - TMPro.TMP_Sprite
     - TMPro.TMP_SpriteCharacter
     - TMPro.TMP_SpriteGlyph
@@ -150,74 +158,17 @@ ScriptsOnlyBuild:
     - SoftGear.Strix.Client.Replica.Model.Replica
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: FirstDraw
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: MariganStart
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: DrawPhaseStart
-  - assembly: Assembly-CSharp
-    fullTypeName: StrixManager
-    methodName: SetTrueCreateMode
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleHandCardUtil
-    methodName: onClick
-  - assembly: Assembly-CSharp
-    fullTypeName: GameManager
-    methodName: MariganEnd
-  - assembly: Assembly-CSharp
-    fullTypeName: StrixManager
-    methodName: Connect
-  - assembly: Assembly-CSharp
-    fullTypeName: StrixManager
-    methodName: SetFalseCreateMode
+    fullTypeName: RoomSelectClass
+    methodName: onCreateRoomMenuButton
   - assembly: Assembly-CSharp
     fullTypeName: StrixManagerTest
     methodName: onRandomJoinButton
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerTest
-    methodName: onClicked
+    fullTypeName: RoomSelectClass
+    methodName: onCreateRoomButton
   - assembly: Assembly-CSharp
-    fullTypeName: PlayerManager
-    methodName: CallUpdateEnemyName
-  - assembly: Assembly-CSharp
-    fullTypeName: ChatTest
-    methodName: onclicked
-  - assembly: Assembly-CSharp
-    fullTypeName: CardControllerTest
-    methodName: onClicked
+    fullTypeName: RoomSelectClass
+    methodName: onCloseCreateRoomButton
   - assembly: Assembly-CSharp
     fullTypeName: Menu
     methodName: TransitionToBattleMode
@@ -488,6 +439,189 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchFilter
     methodName: onTypeFilterChanged
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onCloseButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: AttackStart
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: DrawPhaseStart
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: SetTrueCreateMode
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onCloseButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleStrix
+    methodName: SendGameStart
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ClockDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: MoveDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: MainDialog
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: MariganEnd
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleHandCardUtil
+    methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: Connect
+  - assembly: Assembly-CSharp
+    fullTypeName: StrixManager
+    methodName: SetFalseCreateMode
   sceneClasses:
     Assets/Scenes/Battle.unity:
     - Class: 1
@@ -502,9 +636,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
+    - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -517,107 +655,91 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2072}
     - Class: 114
-      Script: {instanceID: 2162}
+      Script: {instanceID: 2136}
     - Class: 114
-      Script: {instanceID: 2562}
+      Script: {instanceID: 2442}
     - Class: 114
-      Script: {instanceID: 2718}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2764}
+      Script: {instanceID: 2724}
     - Class: 114
-      Script: {instanceID: 2904}
+      Script: {instanceID: 2770}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 2910}
     - Class: 114
-      Script: {instanceID: 3146}
+      Script: {instanceID: 2968}
     - Class: 114
-      Script: {instanceID: 3526}
+      Script: {instanceID: 3010}
     - Class: 114
-      Script: {instanceID: 3664}
+      Script: {instanceID: 3016}
     - Class: 114
-      Script: {instanceID: 3696}
+      Script: {instanceID: 3156}
     - Class: 114
-      Script: {instanceID: 3758}
+      Script: {instanceID: 3536}
     - Class: 114
-      Script: {instanceID: 3826}
+      Script: {instanceID: 3540}
     - Class: 114
-      Script: {instanceID: 3916}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 3928}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 4192}
+      Script: {instanceID: 3772}
     - Class: 114
-      Script: {instanceID: 4266}
+      Script: {instanceID: 3936}
     - Class: 114
-      Script: {instanceID: 4342}
+      Script: {instanceID: 4286}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4298}
     - Class: 114
-      Script: {instanceID: 4782}
+      Script: {instanceID: 4364}
     - Class: 114
-      Script: {instanceID: 4850}
+      Script: {instanceID: 4524}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 4574}
     - Class: 114
-      Script: {instanceID: 4996}
+      Script: {instanceID: 4806}
     - Class: 114
-      Script: {instanceID: 4998}
+      Script: {instanceID: 4874}
     - Class: 114
-      Script: {instanceID: 5000}
+      Script: {instanceID: 5012}
     - Class: 114
-      Script: {instanceID: 5030}
+      Script: {instanceID: 5022}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 5908}
+      Script: {instanceID: 5056}
     - Class: 114
-      Script: {instanceID: 5922}
+      Script: {instanceID: 5508}
+    - Class: 114
+      Script: {instanceID: 5534}
     - Class: 114
       Script: {instanceID: 5938}
     - Class: 114
-      Script: {instanceID: 5950}
+      Script: {instanceID: 5952}
     - Class: 114
-      Script: {instanceID: 6354}
+      Script: {instanceID: 5968}
     - Class: 114
-      Script: {instanceID: 6442}
+      Script: {instanceID: 5980}
     - Class: 114
-      Script: {instanceID: 6566}
+      Script: {instanceID: 6118}
     - Class: 114
-      Script: {instanceID: 6956}
+      Script: {instanceID: 6322}
     - Class: 114
-      Script: {instanceID: 7306}
+      Script: {instanceID: 6390}
     - Class: 114
-      Script: {instanceID: 24252}
+      Script: {instanceID: 6412}
     - Class: 114
-      Script: {instanceID: 24254}
+      Script: {instanceID: 6426}
     - Class: 114
-      Script: {instanceID: 24258}
+      Script: {instanceID: 6482}
     - Class: 114
-      Script: {instanceID: 24260}
+      Script: {instanceID: 6778}
     - Class: 114
-      Script: {instanceID: 24262}
+      Script: {instanceID: 7000}
     - Class: 114
-      Script: {instanceID: 24264}
+      Script: {instanceID: 7352}
     - Class: 114
-      Script: {instanceID: 24266}
-    - Class: 114
-      Script: {instanceID: 24268}
-    - Class: 114
-      Script: {instanceID: 24270}
-    - Class: 114
-      Script: {instanceID: 24274}
-    - Class: 114
-      Script: {instanceID: 24276}
-    - Class: 114
-      Script: {instanceID: 24278}
-    - Class: 114
-      Script: {instanceID: 24280}
-    - Class: 114
-      Script: {instanceID: 24282}
-    - Class: 114
-      Script: {instanceID: 24284}
-    - Class: 114
-      Script: {instanceID: 24286}
+      Script: {instanceID: 7466}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -658,61 +780,61 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1738}
+      Script: {instanceID: 1736}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1786}
     - Class: 114
-      Script: {instanceID: 2562}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2576}
+      Script: {instanceID: 2580}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2792}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 3010}
     - Class: 114
-      Script: {instanceID: 3036}
+      Script: {instanceID: 3046}
     - Class: 114
-      Script: {instanceID: 3146}
+      Script: {instanceID: 3156}
     - Class: 114
-      Script: {instanceID: 3542}
+      Script: {instanceID: 3554}
     - Class: 114
-      Script: {instanceID: 3696}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 3910}
+      Script: {instanceID: 3926}
     - Class: 114
-      Script: {instanceID: 4780}
+      Script: {instanceID: 4804}
     - Class: 114
-      Script: {instanceID: 4850}
+      Script: {instanceID: 4874}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 4948}
     - Class: 114
-      Script: {instanceID: 5000}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 5360}
+      Script: {instanceID: 5386}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5508}
     - Class: 114
-      Script: {instanceID: 5546}
+      Script: {instanceID: 5574}
     - Class: 114
-      Script: {instanceID: 5626}
+      Script: {instanceID: 5654}
     - Class: 114
-      Script: {instanceID: 5938}
+      Script: {instanceID: 5968}
     - Class: 114
-      Script: {instanceID: 5950}
+      Script: {instanceID: 5980}
     - Class: 114
-      Script: {instanceID: 5978}
+      Script: {instanceID: 6008}
     - Class: 114
-      Script: {instanceID: 6164}
+      Script: {instanceID: 6198}
     - Class: 114
-      Script: {instanceID: 6354}
+      Script: {instanceID: 6390}
     - Class: 114
-      Script: {instanceID: 6642}
+      Script: {instanceID: 6682}
     - Class: 114
-      Script: {instanceID: 6956}
+      Script: {instanceID: 7000}
     - Class: 114
-      Script: {instanceID: 7476}
+      Script: {instanceID: 7524}
     - Class: 114
-      Script: {instanceID: 7726}
+      Script: {instanceID: 7774}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -751,23 +873,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 2562}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 3010}
     - Class: 114
-      Script: {instanceID: 3146}
+      Script: {instanceID: 3156}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 4948}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5508}
     - Class: 114
-      Script: {instanceID: 5626}
+      Script: {instanceID: 5654}
     - Class: 114
-      Script: {instanceID: 5938}
+      Script: {instanceID: 5968}
     - Class: 114
-      Script: {instanceID: 6354}
+      Script: {instanceID: 6390}
     - Class: 114
-      Script: {instanceID: 6370}
+      Script: {instanceID: 6406}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -784,7 +906,7 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 224
       Script: {instanceID: 0}
-    Assets/Scenes/SampleScene 1.unity:
+    Assets/Scenes/RoomSelect.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -797,6 +919,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
@@ -808,65 +932,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1610}
     - Class: 114
-      Script: {instanceID: 1738}
+      Script: {instanceID: 2164}
     - Class: 114
-      Script: {instanceID: 1808}
+      Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 1980}
+      Script: {instanceID: 2792}
     - Class: 114
-      Script: {instanceID: 2562}
+      Script: {instanceID: 3010}
     - Class: 114
-      Script: {instanceID: 2602}
+      Script: {instanceID: 3156}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 3708}
     - Class: 114
-      Script: {instanceID: 2856}
+      Script: {instanceID: 3842}
     - Class: 114
-      Script: {instanceID: 3002}
+      Script: {instanceID: 3946}
     - Class: 114
-      Script: {instanceID: 3696}
+      Script: {instanceID: 4060}
     - Class: 114
-      Script: {instanceID: 3910}
+      Script: {instanceID: 4210}
     - Class: 114
-      Script: {instanceID: 4042}
+      Script: {instanceID: 4278}
     - Class: 114
-      Script: {instanceID: 4082}
+      Script: {instanceID: 4874}
     - Class: 114
-      Script: {instanceID: 4156}
+      Script: {instanceID: 4948}
     - Class: 114
-      Script: {instanceID: 4258}
+      Script: {instanceID: 5022}
     - Class: 114
-      Script: {instanceID: 4710}
+      Script: {instanceID: 5024}
     - Class: 114
-      Script: {instanceID: 4850}
+      Script: {instanceID: 5026}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 5080}
     - Class: 114
-      Script: {instanceID: 4996}
+      Script: {instanceID: 5508}
     - Class: 114
-      Script: {instanceID: 5000}
+      Script: {instanceID: 5674}
     - Class: 114
-      Script: {instanceID: 5054}
+      Script: {instanceID: 5936}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5968}
     - Class: 114
-      Script: {instanceID: 5626}
+      Script: {instanceID: 5980}
     - Class: 114
-      Script: {instanceID: 5906}
+      Script: {instanceID: 6390}
     - Class: 114
-      Script: {instanceID: 5938}
+      Script: {instanceID: 6878}
     - Class: 114
-      Script: {instanceID: 5950}
+      Script: {instanceID: 7000}
     - Class: 114
-      Script: {instanceID: 6354}
-    - Class: 114
-      Script: {instanceID: 6836}
-    - Class: 114
-      Script: {instanceID: 6956}
-    - Class: 114
-      Script: {instanceID: 7110}
-    - Class: 114
-      Script: {instanceID: 54154}
+      Script: {instanceID: 22716}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -960,6 +1076,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: 676b5bacebcc692709003ab4d8c001a6
+    assemblyName: UnityForge.AnimCallbacks.Samples.dll
+    namespaceName: UnityForge.AnimCallbacks.Examples
+    className: AnimatorRemoveCallbackExample
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -978,10 +1100,16 @@ ScriptsOnlyBuild:
     className: TextBox
   - hash:
       serializedVersion: 2
-      Hash: f58f89c740a55727d840548e896dba4d
+      Hash: 241f24c07b6aecb5c6adf716f51271a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHandCardUtil
+  - hash:
+      serializedVersion: 2
+      Hash: 8affca3b33e0f1dc26c9c89f939c6077
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyStockCardsManager
   - hash:
       serializedVersion: 2
       Hash: 63815508dfd6cf329d5c593ac8e76888
@@ -1036,6 +1164,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MLAPI_GUI
+  - hash:
+      serializedVersion: 2
+      Hash: 8ce612bfce9a4088a2b33acefea59b53
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DialogManager
   - hash:
       serializedVersion: 2
       Hash: 1bfcfbce150993e56fae19f40f3da27f
@@ -1146,6 +1280,12 @@ ScriptsOnlyBuild:
     className: VertexShakeA
   - hash:
       serializedVersion: 2
+      Hash: 305de6d2042ebeb924057b90183ba3e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleClockCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: a4d905db69ca7f45f45458ae380fb66f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -1162,6 +1302,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleGraveYardCardUtil
   - hash:
       serializedVersion: 2
       Hash: 85000d725b3d59681683bd7467fe9099
@@ -1236,10 +1382,16 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
-      Hash: 305de6d2042ebeb924057b90183ba3e8
+      Hash: 3fcab2ed79bd86325ba54e0d072cd48c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleMyMainCardUtil
+  - hash:
+      serializedVersion: 2
+      Hash: f3f149c175af7e229b0f22cd3083413e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DummyDeckAnimation
   - hash:
       serializedVersion: 2
       Hash: 0286ed84936a6e3c4dba049ae21a7b1c
@@ -1290,6 +1442,12 @@ ScriptsOnlyBuild:
     className: MyLevelCardsManager
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: UnityForge.AnimCallbacks.dll
+    namespaceName: UnityForge.AnimCallbacks
+    className: AnimationEventReceiver
+  - hash:
+      serializedVersion: 2
       Hash: f60085eba621f0023ea84554fae25344
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1320,7 +1478,13 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: d22404413d517b770f9d615d8862c1b0
+      Hash: 676b5bacebcc692709003ab4d8c001a6
+    assemblyName: UnityForge.AnimCallbacks.Samples.dll
+    namespaceName: UnityForge.AnimCallbacks.Examples
+    className: AnimatorAddCallbackExample
+  - hash:
+      serializedVersion: 2
+      Hash: 4dabf98ec7971028a5f050ed532b9544
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StrixManager
@@ -1374,6 +1538,12 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAsset
   - hash:
       serializedVersion: 2
+      Hash: 41437032ffab59647125392f17460f7c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PhaseText
+  - hash:
+      serializedVersion: 2
       Hash: 8092d6aa649f9a77e3aaba32d32d0107
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1398,13 +1568,19 @@ ScriptsOnlyBuild:
     className: BattleModeGuide
   - hash:
       serializedVersion: 2
+      Hash: e8632b9db0269906129bdf89dc2b9c6d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MyMainCardsManager
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 8471d274e4e5f79e7f591364f4dcc17a
+      Hash: 77c8c4c07368bddff57b17121b82c9a6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1444,6 +1620,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: GridLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: ffc57693065788801fc200194b0da9d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyLevelCardsManager
   - hash:
       serializedVersion: 2
       Hash: 6fc777aac0ea7171de5755ec920b26c3
@@ -1522,6 +1704,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 73fda36945837d3d3b5c4697b3023c60
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveDialog
   - hash:
       serializedVersion: 2
       Hash: 03db3a2ad808f8844cba6efc5fda1f25
@@ -1632,6 +1820,12 @@ ScriptsOnlyBuild:
     className: TextMeshSpawner
   - hash:
       serializedVersion: 2
+      Hash: ffc57693065788801fc200194b0da9d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyHandsCardManager
+  - hash:
+      serializedVersion: 2
       Hash: 6d812ed659c4d76b267e4092b0abac3f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1648,6 +1842,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 1e505b5ee5cb4b1c48cf82d32b9d454b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RoomSelectClass
   - hash:
       serializedVersion: 2
       Hash: af33740fd008fddf067c2bd4ecacf9c0
@@ -1722,6 +1922,12 @@ ScriptsOnlyBuild:
     className: SpriteShapeController
   - hash:
       serializedVersion: 2
+      Hash: 441940fcb1e24dc9b4c2536ddfcbae70
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AnimationBasic
+  - hash:
+      serializedVersion: 2
       Hash: f4f39b64f410b0cd98b49df4bad0eb7e
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1746,6 +1952,12 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
+      Hash: 73fda36945837d3d3b5c4697b3023c60
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MainDialog
+  - hash:
+      serializedVersion: 2
       Hash: be140ea01a11255b651c097661ac55b1
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1762,6 +1974,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Menu
+  - hash:
+      serializedVersion: 2
+      Hash: ffc57693065788801fc200194b0da9d6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyClockCardsManager
+  - hash:
+      serializedVersion: 2
+      Hash: 893783a4fec695c39f3a4474ae4bacfd
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Phase
   - hash:
       serializedVersion: 2
       Hash: cd150fb2ab363acf03f4fdabdc1de83e
@@ -1854,6 +2078,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: 0566d39f89e126d2f424c216816d0630
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ClockDialog
+  - hash:
+      serializedVersion: 2
       Hash: a31fd79490479c7454bc49ff7ef65bbf
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -1878,6 +2108,12 @@ ScriptsOnlyBuild:
     className: PlayerManager
   - hash:
       serializedVersion: 2
+      Hash: aa2fbe8d49a44b161fe04855d955f7dd
+    assemblyName: UnityForge.AnimCallbacks.Samples.dll
+    namespaceName: UnityForge.AnimCallbacks.Examples
+    className: AnimationRemoveCallbackExample
+  - hash:
+      serializedVersion: 2
       Hash: eb08d30e33bc3276f2249349d4fae510
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
@@ -1894,6 +2130,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ScrollRect
+  - hash:
+      serializedVersion: 2
+      Hash: aa2fbe8d49a44b161fe04855d955f7dd
+    assemblyName: UnityForge.AnimCallbacks.Samples.dll
+    namespaceName: UnityForge.AnimCallbacks.Examples
+    className: AnimationAddCallbackExample
   - hash:
       serializedVersion: 2
       Hash: 5a89fb1ea8ac19b34abcc65cb703c0e4
@@ -1956,6 +2198,12 @@ ScriptsOnlyBuild:
     className: TeleType
   - hash:
       serializedVersion: 2
+      Hash: 305de6d2042ebeb924057b90183ba3e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BattleEnemyMainCardUtil
+  - hash:
+      serializedVersion: 2
       Hash: b6e08e9716184d5736af5af9ffaf1513
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
@@ -2004,9 +2252,9 @@ ScriptsOnlyBuild:
     className: CardInfoUtil
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Battle.unity
-  - Assets/Scenes/SampleScene 1.unity
+  - Assets/Scenes/RoomSelect.unity
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/DeckEdit.unity
+  - Assets/Scenes/Battle.unity
   playerPath: "C:/Users/yuu/Unity/Repository/Wei\u03B2 Schwarz 20210831/Wei\xDF Schwarz
     20210831.exe"

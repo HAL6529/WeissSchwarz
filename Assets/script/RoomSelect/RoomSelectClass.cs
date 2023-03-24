@@ -13,14 +13,19 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] Text t_PassPhrase;
 
+    [SerializeField] Text t_Name;
+
     public static string RoomName;
 
     public static string PassPhrase;
 
+    public static string Name;
+
     RoomSelectClass()
     {
-        RoomName = null;
-        PassPhrase = null;
+        RoomName = "";
+        PassPhrase = "";
+        Name = "";
     }
 
     // Start is called before the first frame update
@@ -61,6 +66,22 @@ public class RoomSelectClass : MonoBehaviour
         SceneManager.LoadScene("Battle");
     }
 
+    public void onExitButton()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void onNameOKButton()
+    {
+        string name = t_Name.text;
+        if (name == string.Empty)
+        {
+            return;
+        }
+        Name = name;
+    }
+
+
     public static string getRoomName()
     {
         return RoomName;
@@ -69,5 +90,10 @@ public class RoomSelectClass : MonoBehaviour
     public static string getPassPhrase()
     {
         return PassPhrase;
+    }
+
+    public static string getName()
+    {
+        return Name;
     }
 }
