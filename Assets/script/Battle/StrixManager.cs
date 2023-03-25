@@ -48,6 +48,7 @@ public class StrixManager : MonoBehaviour
         var strixNetwork = StrixNetwork.instance;
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
+        Name = RoomSelectClass.getName();
         Debug.Log(roomName);
         Debug.Log(passPhrase);
 
@@ -83,7 +84,7 @@ public class StrixManager : MonoBehaviour
                                            },
                                            new RoomMemberProperties
                                            {
-                                               name = "Braille"
+                                               name = Name
                                            },
                                            handler: __ =>
                                            {
@@ -104,10 +105,9 @@ public class StrixManager : MonoBehaviour
                                        password = passPhrase,
                                        memberProperties = new RoomMemberProperties
                                        {
-                                           name = "Braille"
+                                           name = Name
                                        }
                                    };
-
                                    strixNetwork.JoinRoom(
                                         m_RoomJoinArgs,
                                         OnRoomJoin, 
@@ -147,7 +147,7 @@ public class StrixManager : MonoBehaviour
 
     private void OnRoomJoinFailed(FailureEventArgs args)
     {
-        Debug.Log("Failed");
+        Debug.Log(args);
     }
 
     private void RoomJoined()
@@ -157,33 +157,12 @@ public class StrixManager : MonoBehaviour
 
     private void JoinRoom()
     {
-        RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs();
 
-        m_RoomJoinArgs.host = host;
-        StrixNetwork.instance.JoinRoom(m_RoomJoinArgs, args => { Debug.Log("searchResult"); }, args => { Debug.Log("searchResult"); }, null);
-        this.gameObject.GetComponent<BattleStrix>().SendGameStart();
-        Debug.Log("¬Œ÷");
     }
 
     private void CreateRoom()
     {
-        RoomProperties roomProperties = new RoomProperties
-        {
-            capacity = 2,
-            name = "New Room",
-            password = pass,
-        };
 
-        RoomMemberProperties memberProperties = new RoomMemberProperties
-        {
-            name = StrixNetwork.instance.playerName
-        };
-
-        StrixNetwork.instance.CreateRoom(roomProperties, memberProperties, createResult => {
-            //onRoomEntered.Invoke();
-        }, args => {
-            //onRoomEnterFailed.Invoke();
-        });
     }
 
     public void SetTrueCreateMode()

@@ -13,7 +13,9 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] Text t_PassPhrase;
 
-    [SerializeField] Text t_Name;
+    [SerializeField] Text t_PlayerName;
+
+    [SerializeField] InputField t_Name;
 
     public static string RoomName;
 
@@ -54,7 +56,7 @@ public class RoomSelectClass : MonoBehaviour
     {
         string roomName = t_RoomName.text;
         string passPhrase = t_PassPhrase.text;
-        if (roomName == string.Empty)
+        if (roomName == string.Empty || Name == string.Empty)
         {
             Debug.Log("Error");
             return;
@@ -78,6 +80,8 @@ public class RoomSelectClass : MonoBehaviour
         {
             return;
         }
+        t_Name.text = "";
+        t_PlayerName.text = name;
         Name = name;
     }
 
