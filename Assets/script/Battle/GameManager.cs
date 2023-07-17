@@ -146,6 +146,13 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Attack";
         phase = EnumController.Turn.Player1_Attack;
+
+        for(int i = 0; i < 10; i++)
+        {
+            GraveYardList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        UpdateMyGraveYardCards();
     }
 
     public void Draw()
@@ -181,6 +188,11 @@ public class GameManager : MonoBehaviour
     public void UpdateMyMainCards()
     {
         GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
+    }
+
+    public void UpdateMyGraveYardCards()
+    {
+        MyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(GraveYardList);
     }
 
     public void GameStart()

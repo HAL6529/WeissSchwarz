@@ -9,6 +9,9 @@ using SoftGear.Strix.Client.Core.Auth.Message;
 using SoftGear.Strix.Client.Core.Error;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter.Builder;
+using SoftGear.Strix.Client.Match.Room.Model;
+using SoftGear.Strix.Client.Room;
+using SoftGear.Strix.Client.Room.Message;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -24,11 +27,6 @@ public class StrixManager : MonoBehaviour
     public bool isCreateMode = true;
 
     [SerializeField] GameManager m_GameManager;
-
-    /// <summary>
-    /// ルームに参加可能な最大人数
-    /// </summary>
-    public int capacity = 4;
 
     /// <summary>
     /// ルーム名
@@ -80,7 +78,7 @@ public class StrixManager : MonoBehaviour
                                            {
                                                name = roomName,
                                                password = passPhrase,
-                                               capacity = 4,
+                                               capacity = 2,
                                            },
                                            new RoomMemberProperties
                                            {
@@ -122,7 +120,6 @@ public class StrixManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void Connect()
@@ -163,6 +160,12 @@ public class StrixManager : MonoBehaviour
     private void CreateRoom()
     {
 
+    }
+
+    // 誰かが部屋に入ってきたときに呼び出される
+    private void RoomJoinNotified()
+    {
+        Debug.Log("誰かが入ってきた");
     }
 
     public void SetTrueCreateMode()

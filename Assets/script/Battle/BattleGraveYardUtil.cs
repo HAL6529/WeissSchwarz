@@ -36,4 +36,17 @@ public class BattleGraveYardUtil : MonoBehaviour
         image.sprite = m_BattleModeCard.sprite;
         image.color = new Color(1, 1, 1, 255 / 255);
     }
+
+    public void updateMyGraveYardCards(List<BattleModeCard> list)
+    {
+        if(list.Count == 0)
+        {
+            m_BattleModeCard = null;
+        }
+        else
+        {
+            m_BattleModeCard = list[0];
+        }
+        changeSprite();
+    }
 }

@@ -18,6 +18,7 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject PlayButton;
+    [SerializeField] GameObject DummyHandCard;
     [SerializeField] MainDialog m_MainDialog;
     [SerializeField] DialogManager m_DialogManager;
     // Start is called before the first frame update
@@ -138,5 +139,27 @@ public class BattleHandCardUtil : MonoBehaviour
     public void onPlayButton()
     {
         m_MainDialog.SetBattleMordCard(m_BattleModeCard);
+    }
+
+    // rightCardがクリックされたとき
+    public void onRightCardClick()
+    {
+        if (m_GameManager.isAnimation)
+        {
+            return;
+        }
+        m_MyHandCardsManager.cursorNum++;
+        m_GameManager.UpdateMyHandCards();
+    }
+
+    // leftCardがクリックされたとき
+    public void onLeftCardClick()
+    {
+        if (m_GameManager.isAnimation)
+        {
+            return;
+        }
+        m_MyHandCardsManager.cursorNum--;
+        m_GameManager.UpdateMyHandCards();
     }
 }

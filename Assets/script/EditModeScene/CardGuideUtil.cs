@@ -12,6 +12,12 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Text levelIndex;
     [SerializeField] Text costIndex;
 
+    void Start()
+    {
+        // âÊñ ÇêÆÇ¶ÇÈ
+        Canvas.ForceUpdateCanvases();
+    }
+
     public void onShowInfo(cardInfo info)
     {
         cardName.text = info.cardName;

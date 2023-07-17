@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
@@ -24,6 +23,15 @@ public class BattleStrix : StrixBehaviour
         
     }
 
+    public bool CoinToss()
+    {
+        if (Random.Range(0, 1) == 0)
+        {
+            return true;
+        }
+        return false;               
+    }
+
     public void SendGameStart()
     {
         if (StrixNetwork.instance.masterSession.IsConnected)
@@ -36,20 +44,6 @@ public class BattleStrix : StrixBehaviour
         }
         Debug.Log("SendGameStart");
         RpcToAll(nameof(GameStart));
-    }
-
-    [StrixRpc]
-    private void SetFirstAttacker(bool isCreateMode, bool isOwnerFirstAttacker)
-    {
-        Debug.Log("SetFirstAttacker");
-        /*if (StrixNetwork.instance.isRoomOwner)
-        {
-            m_GameManager.isFirstAttacker = isOwnerFirstAttacker;
-        }
-        else
-        {
-            m_GameManager.isFirstAttacker = !isOwnerFirstAttacker;
-        }*/
     }
 
     [StrixRpc]

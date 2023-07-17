@@ -58,7 +58,8 @@ public class RoomSelectClass : MonoBehaviour
         string passPhrase = t_PassPhrase.text;
         if (roomName == string.Empty || Name == string.Empty)
         {
-            Debug.Log("Error");
+            Debug.Log("roomName:" + roomName);
+            Debug.Log("Name:" + Name);
             return;
         }
 
