@@ -6,6 +6,8 @@ using EnumController;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Text logText;
+
     public List<BattleModeCard> myDeckList = new List<BattleModeCard>();
     public List<BattleModeCard> myHandList = new List<BattleModeCard>();
     public List<BattleModeCard> myClockList = new List<BattleModeCard>();
@@ -38,9 +40,10 @@ public class GameManager : MonoBehaviour
     public bool isAnimation = false;
 
     [SerializeField] ClockDialog m_ClockDialog;
-    [SerializeField] GameObject LordScreen;
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
+    [SerializeField] StrixManager m_StrixManager;
+    [SerializeField] BattleStrix m_BattleStrix;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -146,13 +149,6 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Attack";
         phase = EnumController.Turn.Player1_Attack;
-
-        for(int i = 0; i < 10; i++)
-        {
-            GraveYardList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        UpdateMyGraveYardCards();
     }
 
     public void Draw()
@@ -197,8 +193,31 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        LordScreen.SetActive(false);
-        FirstDraw();
-        MariganStart();
+        // FirstDraw();
+        if (m_StrixManager.isOwner)
+        {
+            if (CoinToss())
+            {
+                isFirstAttacker = true;
+                logText.text = "æU";
+            }
+            else
+            {
+                isFirstAttacker = false;
+                logText.text = "ŒãU";
+            }
+            m_BattleStrix.SendSetIsFirstAttacker(isFirstAttacker);
+        }
+
+        // MariganStart();
+    }
+
+    public bool CoinToss()
+    {
+        if (Random.Range(0, 2) == 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

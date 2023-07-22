@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
 using SoftGear.Strix.Unity.Runtime.Session;
+using SoftGear.Strix.Client.Core;
 using SoftGear.Strix.Client.Core.Request;
 using SoftGear.Strix.Client.Core.Auth.Message;
 using SoftGear.Strix.Client.Core.Error;
@@ -24,9 +25,13 @@ public class StrixManager : MonoBehaviour
     public string applicationId = "de65fc24-a8f1-49e8-becf-732e0420ac94";
     private string pass;
 
-    public bool isCreateMode = true;
-
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] Text logText;
+
+    /// <summary>
+    /// 部屋を作っているか。作っていた場合true
+    /// </summary>
+    public bool isOwner;
 
     /// <summary>
     /// ルーム名
@@ -40,10 +45,19 @@ public class StrixManager : MonoBehaviour
 
     public string Name;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public StrixManager()
+    {
+        isOwner = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         var strixNetwork = StrixNetwork.instance;
+        strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
         Name = RoomSelectClass.getName();
@@ -73,6 +87,8 @@ public class StrixManager : MonoBehaviour
                                    if(foundRooms.Count == 0)
                                    {
                                        Debug.Log("Success");
+                                       isOwner = true;
+                                       logText.text = "true";
                                        strixNetwork.CreateRoom(
                                            new RoomProperties
                                            {
@@ -163,18 +179,9 @@ public class StrixManager : MonoBehaviour
     }
 
     // 誰かが部屋に入ってきたときに呼び出される
-    private void RoomJoinNotified()
+    private void RoomJoinNotified(NotificationEventArgs<RoomJoinNotification<CustomizableMatchRoom>> notification)
     {
-        Debug.Log("誰かが入ってきた");
+        logText.text = "誰かが入ってきた";
     }
 
-    public void SetTrueCreateMode()
-    {
-        isCreateMode = true;
-    }
-
-    public void SetFalseCreateMode()
-    {
-        isCreateMode = false;
-    }
 }

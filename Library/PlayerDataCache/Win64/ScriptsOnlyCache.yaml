@@ -58,12 +58,14 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -490,7 +492,7 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
-    methodName: AttackStart
+    methodName: GameStart
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
@@ -579,14 +581,8 @@ ScriptsOnlyBuild:
     fullTypeName: GameManager
     methodName: DrawPhaseStart
   - assembly: Assembly-CSharp
-    fullTypeName: StrixManager
-    methodName: SetTrueCreateMode
-  - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onCloseButton
-  - assembly: Assembly-CSharp
-    fullTypeName: BattleStrix
-    methodName: SendGameStart
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
@@ -629,9 +625,6 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: StrixManager
     methodName: Connect
-  - assembly: Assembly-CSharp
-    fullTypeName: StrixManager
-    methodName: SetFalseCreateMode
   sceneClasses:
     Assets/Scenes/Battle.unity:
     - Class: 1
@@ -1234,7 +1227,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 4b28c1952ed3a57e41146d784ec52b3e
+      Hash: 2984379588c4f9750a335c359092fdbf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleStrix
@@ -1492,7 +1485,7 @@ ScriptsOnlyBuild:
     className: AnimatorAddCallbackExample
   - hash:
       serializedVersion: 2
-      Hash: 4dabf98ec7971028a5f050ed532b9544
+      Hash: 35340b8022824ecec8ea056a180b1d27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StrixManager
@@ -1588,7 +1581,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 77c8c4c07368bddff57b17121b82c9a6
+      Hash: 60384e36e27e15b875b06c43cc7293bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

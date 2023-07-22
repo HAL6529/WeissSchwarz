@@ -10,7 +10,9 @@ using UnityEngine.UI;
 
 public class BattleStrix : StrixBehaviour
 {
+    [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] StrixManager m_StrixManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,27 +25,33 @@ public class BattleStrix : StrixBehaviour
         
     }
 
-    public bool CoinToss()
+    public void SendSetIsFirstAttacker(bool b)
     {
-        if (Random.Range(0, 1) == 0)
+        if (b)
         {
-            return true;
+            RpcToAll(nameof(SetIsFirstAttacker), false);
+            return;
         }
-        return false;               
+        RpcToAll(nameof(SetIsFirstAttacker), true);
     }
 
-    public void SendGameStart()
+    [StrixRpc]
+    public void SetIsFirstAttacker(bool b)
     {
-        if (StrixNetwork.instance.masterSession.IsConnected)
+        Debug.Log("SetIsFirstAttacker");
+        if (m_StrixManager.isOwner)
         {
-            Debug.Log("ゲームサーバーに接続されています。");
+            return;
+        }
+        m_GameManager.isFirstAttacker = b;
+        if (b)
+        {
+            logText.text = "先攻";
         }
         else
         {
-            Debug.Log("ゲームサーバーに接続されていません。");
+            logText.text = "後攻";
         }
-        Debug.Log("SendGameStart");
-        RpcToAll(nameof(GameStart));
     }
 
     [StrixRpc]
