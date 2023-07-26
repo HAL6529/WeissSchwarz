@@ -26,6 +26,7 @@ public class StrixManager : MonoBehaviour
     private string pass;
 
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] Text logText;
 
     /// <summary>
@@ -127,6 +128,7 @@ public class StrixManager : MonoBehaviour
                                         OnRoomJoin, 
                                         OnRoomJoinFailed
                                    );
+                                   m_BattleStrix.SendSetGameStartBtn();
                                },
                                failureHandler: searchError => Debug.LogError("aa")
                                );
