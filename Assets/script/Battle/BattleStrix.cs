@@ -35,6 +35,11 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(SetIsFirstAttacker), true);
     }
 
+    public void SendSetGameStartBtn()
+    {
+        RpcToAll(nameof(SetGameStartBtn));
+    }
+
     [StrixRpc]
     public void SetIsFirstAttacker(bool b)
     {
@@ -52,6 +57,18 @@ public class BattleStrix : StrixBehaviour
         {
             logText.text = "å„çU";
         }
+    }
+
+
+    [StrixRpc]
+    public void SetGameStartBtn()
+    {
+        Debug.Log("SetGameStartBtn");
+        if (m_StrixManager.isOwner)
+        {
+            return;
+        }
+        m_GameManager.SetGameStartBtn();
     }
 
     [StrixRpc]
