@@ -112,5 +112,11 @@ namespace EnumController
         Player2_Counter,
         Player2_Encore,
     }
+
+    public enum DialogParamater
+    {
+        VOID,
+        Marigan,
+    }
 }
 

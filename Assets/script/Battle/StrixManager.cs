@@ -13,6 +13,7 @@ using SoftGear.Strix.Client.Core.Model.Manager.Filter.Builder;
 using SoftGear.Strix.Client.Match.Room.Model;
 using SoftGear.Strix.Client.Room;
 using SoftGear.Strix.Client.Room.Message;
+using SoftGear.Strix.Net.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;

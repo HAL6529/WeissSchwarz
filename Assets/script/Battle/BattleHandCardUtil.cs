@@ -62,16 +62,19 @@ public class BattleHandCardUtil : MonoBehaviour
         if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
         {
             MariganClick();
+            return;
         }
 
         if (m_GameManager.phase == EnumController.Turn.Player1_Clock)
         {
             ClockClick();
+            return;
         }
 
         if (m_GameManager.phase == EnumController.Turn.Player1_Main)
         {
             MainClick();
+            return;
         }
     }
 

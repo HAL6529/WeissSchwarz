@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> enemyClockList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyStockList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyLevelList = new List<BattleModeCard>();
+    public List<BattleModeCard> enemyGraveYardList = new List<BattleModeCard>();
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool MariganMode = false;
     public bool isAnimation = false;
 
+    [SerializeField] OKDialog m_OKDialog;
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void Shuffle()
+    public void Shuffle()
     {
         for(int i = myDeckList.Count - 1; i > 0; i--)
         {
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Marigan";
         MariganMode = true;
+        m_OKDialog.SetParamater(EnumController.DialogParamater.Marigan);
     }
 
     public void MariganEnd()
@@ -119,8 +122,16 @@ public class GameManager : MonoBehaviour
             myDeckList.RemoveAt(0);
         }
         myMariganList = new List<BattleModeCard>();
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        UpdateMyHandCards();
+        UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
         MariganMode = false;
+
+        // êÊçUÇÃèÍçá
+        if (isFirstAttacker)
+        {
+            m_BattleStrix.SendMarigan();
+        }
     }
 
     public void DrawPhaseStart()
@@ -203,9 +214,15 @@ public class GameManager : MonoBehaviour
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(GraveYardList);
     }
 
+    public void UpdateEnemyGraveYardCards(List<BattleModeCard> list)
+    {
+        enemyGraveYardList = list;
+        EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
+
+    }
+
     public void GameStart()
     {
-        // FirstDraw();
         if (m_StrixManager.isOwner)
         {
             if (CoinToss())
@@ -219,9 +236,8 @@ public class GameManager : MonoBehaviour
                 logText.text = "å„çU";
             }
             m_BattleStrix.SendSetIsFirstAttacker(isFirstAttacker);
+            m_BattleStrix.SendGameStart();
         }
-
-        // MariganStart();
     }
 
     public bool CoinToss()
