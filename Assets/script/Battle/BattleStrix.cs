@@ -20,16 +20,11 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] StrixManager m_StrixManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
+
     // Start is called before the first frame update
     void Start()
     {
-        ObjectFactory.Instance.Register(typeof(BattleModeCard));
-        ObjectFactory.Instance.Register(typeof(List<BattleModeCard>));
-        ObjectFactory.Instance.Register(typeof(EnumController.CardColor));
-        ObjectFactory.Instance.Register(typeof(EnumController.Trriger));
-        ObjectFactory.Instance.Register(typeof(EnumController.Type));
-        ObjectFactory.Instance.Register(typeof(EnumController.Attribute));
-        ObjectFactory.Instance.Register(typeof(EnumController.CardNo));
+        ObjectFactory.Instance.Register(typeof(BattleModeCardTemp));
     }
 
     // Update is called once per frame
@@ -123,17 +118,23 @@ public class BattleStrix : StrixBehaviour
     {
         logText.text = "UpdateEnemyGraveYard";
         Debug.Log("UpdateEnemyGraveYard");
-        tempList = list;
 
-        BattleModeCard b = list[0];
-        RpcToAll(nameof(UpdateEnemyGraveYard), list, isFirstAttacker);
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+        
+        for (int i = 0; i < list.Count; i++)
+        {
+            temp.Add(new BattleModeCardTemp(list[i]));
+        }
+        RpcToAll(nameof(UpdateEnemyGraveYard), temp, isFirstAttacker);
     }
 
     [StrixRpc]
-    public void UpdateEnemyGraveYard(List<BattleModeCard> list,  bool isFirstAttacker)
+    public void UpdateEnemyGraveYard(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
-        // tempList = list;
-        m_GameManager.UpdateEnemyGraveYardCards(tempList);
-
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.UpdateEnemyGraveYardCards(list);
+        }
+        
     }
 }

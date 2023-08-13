@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] SpriteList m_SpriteList;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -214,11 +215,38 @@ public class GameManager : MonoBehaviour
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(GraveYardList);
     }
 
-    public void UpdateEnemyGraveYardCards(List<BattleModeCard> list)
+    public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)
     {
-        enemyGraveYardList = list;
+        enemyGraveYardList = new List<BattleModeCard>();
+        for(int i = 0; i < list.Count; i++)
+        {
+            Sprite s = m_SpriteList.cardNoToSprite(list[i].cardNo);
+            enemyGraveYardList.Add(
+                   new BattleModeCard(s,
+                   list[i].level,
+                   list[i].cost,
+                   list[i].color,
+                   list[i].trigger,
+                   list[i].type,
+                   list[i].attributeOne,
+                   list[i].attributeTwo,
+                   list[i].attributeThree,
+                   list[i].cardNo,
+                   list[i].name,
+                   list[i].soul,
+                   list[i].power,
+                   list[i].isCounter)
+                   );
+        }
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
 
+        for(int i = 0; i < enemyGraveYardList.Count; i++)
+        {
+            if(enemyGraveYardList[i].sprite != null)
+            {
+                Debug.Log(enemyGraveYardList[i].name);
+            }          
+        }
     }
 
     public void GameStart()
