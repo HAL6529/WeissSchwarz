@@ -65,13 +65,13 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
-        if (m_GameManager.phase == EnumController.Turn.Player1_Clock)
+        if (m_GameManager.phase == EnumController.Turn.Clock && m_GameManager.isTurnPlayer)
         {
             ClockClick();
             return;
         }
 
-        if (m_GameManager.phase == EnumController.Turn.Player1_Main)
+        if (m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
         {
             MainClick();
             return;

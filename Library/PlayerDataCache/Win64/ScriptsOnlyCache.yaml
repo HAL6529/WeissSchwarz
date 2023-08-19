@@ -81,8 +81,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -468,8 +470,14 @@ ScriptsOnlyBuild:
     fullTypeName: BattleHandCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
@@ -519,6 +527,12 @@ ScriptsOnlyBuild:
     fullTypeName: BattleHandCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -537,6 +551,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleHandCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
   - assembly: Assembly-CSharp
@@ -549,10 +566,16 @@ ScriptsOnlyBuild:
     fullTypeName: MoveDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleGraveYardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
@@ -629,6 +652,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleClockCardUtil
+    methodName: onClick
   sceneClasses:
     Assets/Scenes/Battle.unity:
     - Class: 1
@@ -1593,7 +1619,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 4ae9d6fff51bbf9dad514f3018811a64
+      Hash: 1543e5718bbb809a3b383f94af4f4631
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -2091,7 +2117,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 0566d39f89e126d2f424c216816d0630
+      Hash: 0003a494f12e36cd65eaeaeb7ba531e6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ClockDialog

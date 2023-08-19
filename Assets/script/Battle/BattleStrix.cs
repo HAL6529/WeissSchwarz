@@ -52,6 +52,7 @@ public class BattleStrix : StrixBehaviour
             return;
         }
         m_GameManager.isFirstAttacker = b;
+        m_GameManager.isTurnPlayer = b;
         if (b)
         {
             logText.text = "先攻";
@@ -117,7 +118,6 @@ public class BattleStrix : StrixBehaviour
     public void SendUpdateEnemyGraveYard(List<BattleModeCard> list, bool isFirstAttacker)
     {
         logText.text = "UpdateEnemyGraveYard";
-        Debug.Log("UpdateEnemyGraveYard");
 
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         
@@ -135,6 +135,79 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.UpdateEnemyGraveYardCards(list);
         }
-
     }
+
+    public void SendUpdateEnemyClock(List<BattleModeCard> list, bool isTurnPlayer)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            temp.Add(new BattleModeCardTemp(list[i]));
+        }
+        RpcToAll(nameof(UpdateEnemyClock), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.UpdateEnemyClock(list);
+        }
+    }
+
+    public void SendDrawPhase()
+    {
+        logText.text = "ドローフェイズ";
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Draw);
+        RpcToAll(nameof(DrawPhase));
+    }
+
+    [StrixRpc]
+    public void DrawPhase()
+    {
+        if (m_GameManager.isTurnPlayer)
+        {
+            m_GameManager.DrawPhaseStart();
+        }
+    }
+
+    public void SendClockPhase()
+    {
+        logText.text = "クロックフェイズ";
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Clock);
+        RpcToAll(nameof(ClockPhase));
+    }
+
+    [StrixRpc]
+    public void ClockPhase()
+    {
+        if (m_GameManager.isTurnPlayer)
+        {
+            m_GameManager.ClockPhaseStart();
+        }
+    }
+
+    public void SendMainPhase()
+    {
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Main);
+        RpcToAll(nameof(MainPhase));
+    }
+
+    [StrixRpc]
+    public void MainPhase()
+    {
+        if (m_GameManager.isTurnPlayer)
+        {
+            m_GameManager.MainStart();
+        }
+    }
+
+    [StrixRpc]
+    public void ChangePhase(EnumController.Turn turn)
+    {
+        m_GameManager.ChangePhase(turn);
+    }
+
 }

@@ -8,6 +8,7 @@ public class ClockDialog : MonoBehaviour
     [SerializeField] Text text;
     [SerializeField] Image image;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleStrix m_BattleStrix;
     private BattleModeCard m_BattleModeCard = null;
     // Start is called before the first frame update
     void Start()

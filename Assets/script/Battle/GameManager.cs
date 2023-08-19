@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public bool MariganMode = false;
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
+    public bool isTurnPlayer = false;
+    private int turn = 1;
 
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] ClockDialog m_ClockDialog;
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
         GetComponent<MyLevelCardsManager>().updateMyLevelCards(myStockList.Count);
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
-        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList.Count);
+        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList.Count);
         MyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
@@ -132,23 +134,24 @@ public class GameManager : MonoBehaviour
         {
             m_BattleStrix.SendMarigan();
         }
+        else
+        {
+            m_BattleStrix.SendDrawPhase();
+        }
     }
 
     public void DrawPhaseStart()
     {
         m_ClockDialog.ClockDialogEnd();
-        testPhaseText.text = "Draw";
-        phase = EnumController.Turn.Player1_Draw;
-        m_Phase.AnimationStart(phase);
+        // m_Phase.AnimationStart(phase);
+        DrawPhaseEnd();
     }
 
     public void DrawPhaseEnd()
     {
         Draw();
-        testPhaseText.text = "Clock";
-        phase = EnumController.Turn.Player1_Clock;
-        m_Phase.AnimationStart(phase);
-        ClockPhaseStart();
+        // m_Phase.AnimationStart(phase);
+        m_BattleStrix.SendClockPhase();
     }
 
     public void ClockPhaseStart()
@@ -159,19 +162,17 @@ public class GameManager : MonoBehaviour
     public void ClockPhaseEnd()
     {
         m_ClockDialog.ClockDialogEnd();
-        MainStart();
+        m_BattleStrix.SendMainPhase();
     }
 
     public void MainStart()
     {
-        testPhaseText.text = "Main";
-        phase = EnumController.Turn.Player1_Main;
+
     }
 
     public void AttackStart()
     {
         testPhaseText.text = "Attack";
-        phase = EnumController.Turn.Player1_Attack;
     }
 
     public void Draw()
@@ -202,6 +203,7 @@ public class GameManager : MonoBehaviour
     public void UpdateMyClockCards()
     {
         GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
+        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
     }
 
     public void UpdateMyMainCards()
@@ -223,14 +225,17 @@ public class GameManager : MonoBehaviour
             enemyGraveYardList.Add(b);
         }
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
+    }
 
-        for(int i = 0; i < enemyGraveYardList.Count; i++)
+    public void UpdateEnemyClock(List<BattleModeCardTemp> list)
+    {
+        enemyClockList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
         {
-            if(enemyGraveYardList[i].sprite != null)
-            {
-                Debug.Log(enemyGraveYardList[i].name);
-            }          
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyClockList.Add(b);
         }
+        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
     }
 
     public void GameStart()
@@ -240,12 +245,12 @@ public class GameManager : MonoBehaviour
             if (CoinToss())
             {
                 isFirstAttacker = true;
-                logText.text = "先攻";
+                isTurnPlayer = true;
             }
             else
             {
                 isFirstAttacker = false;
-                logText.text = "後攻";
+                isTurnPlayer = false;
             }
             m_BattleStrix.SendSetIsFirstAttacker(isFirstAttacker);
             m_BattleStrix.SendGameStart();
@@ -265,5 +270,10 @@ public class GameManager : MonoBehaviour
     {
         // ルームのオーナーでない場合、ゲームスタートボタンを非活性にする
         GameStartBtn.SetActive(false);
+    }
+
+    public void ChangePhase(EnumController.Turn turn)
+    {
+          phase = turn;
     }
 }
