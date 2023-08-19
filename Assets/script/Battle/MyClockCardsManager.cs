@@ -30,6 +30,7 @@ public class MyClockCardsManager : MonoBehaviour
             else
             {
                 CardList[i].SetActive(false);
+                //CardList[i].GetComponent<BattleClockCardUtil>().setBattleModeCard(null);
             }
         }
     }

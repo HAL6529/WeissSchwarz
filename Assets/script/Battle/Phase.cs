@@ -35,46 +35,25 @@ public class Phase : MonoBehaviour
         this.phase = phase;
 
         switch (phase){
-            case EnumController.Turn.Player1_Draw:
+            case EnumController.Turn.Draw:
                 text.text = "Draw";
                 break;
-            case EnumController.Turn.Player1_Clock:
+            case EnumController.Turn.Clock:
                 text.text = "Clock";
                 break;
-            case EnumController.Turn.Player1_Main:
+            case EnumController.Turn.Main:
                 text.text = "Main";
                 break;
-            case EnumController.Turn.Player1_Climax:
+            case EnumController.Turn.Climax:
                 text.text = "Climax";
                 break;
-            case EnumController.Turn.Player1_Attack:
+            case EnumController.Turn.Attack:
                 text.text = "Attack";
                 break;
-            case EnumController.Turn.Player1_Counter:
+            case EnumController.Turn.Counter:
                 text.text = "Counter";
                 break;
-            case EnumController.Turn.Player1_Encore:
-                text.text = "Encore";
-                break;
-            case EnumController.Turn.Player2_Draw:
-                text.text = "Draw";
-                break;
-            case EnumController.Turn.Player2_Clock:
-                text.text = "Clock";
-                break;
-            case EnumController.Turn.Player2_Main:
-                text.text = "Main";
-                break;
-            case EnumController.Turn.Player2_Climax:
-                text.text = "Climax";
-                break;
-            case EnumController.Turn.Player2_Attack:
-                text.text = "Attack";
-                break;
-            case EnumController.Turn.Player2_Counter:
-                text.text = "Counter";
-                break;
-            case EnumController.Turn.Player2_Encore:
+            case EnumController.Turn.Encore:
                 text.text = "Encore";
                 break;
             default:
@@ -91,35 +70,19 @@ public class Phase : MonoBehaviour
         gameManager.isAnimation = false ;
         switch (phase)
         {
-            case EnumController.Turn.Player1_Draw:
-                gameManager.DrawPhaseEnd();
+            case EnumController.Turn.Draw:
                 break;
-            case EnumController.Turn.Player1_Clock:
-                gameManager.ClockPhaseStart();
+            case EnumController.Turn.Clock:
                 break;
-            case EnumController.Turn.Player1_Main:
+            case EnumController.Turn.Main:
                 break;
-            case EnumController.Turn.Player1_Climax:
+            case EnumController.Turn.Climax:
                 break;
-            case EnumController.Turn.Player1_Attack:
+            case EnumController.Turn.Attack:
                 break;
-            case EnumController.Turn.Player1_Counter:
+            case EnumController.Turn.Counter:
                 break;
-            case EnumController.Turn.Player1_Encore:
-                break;
-            case EnumController.Turn.Player2_Draw:
-                break;
-            case EnumController.Turn.Player2_Clock:
-                break;
-            case EnumController.Turn.Player2_Main:
-                break;
-            case EnumController.Turn.Player2_Climax:
-                break;
-            case EnumController.Turn.Player2_Attack:
-                break;
-            case EnumController.Turn.Player2_Counter:
-                break;
-            case EnumController.Turn.Player2_Encore:
+            case EnumController.Turn.Encore:
                 break;
             default:
                 break;

@@ -17,17 +17,20 @@ public class EnemyClockCardsManager : MonoBehaviour
         
     }
 
-    public void updateEnemyClockCards(int num)
+    public void updateEnemyClockCards(List<BattleModeCard> list)
     {
+        int num = list.Count;
         for (int i = 0; i < CardList.Count; i++)
         {
             if (i < num)
             {
                 CardList[i].SetActive(true);
+                CardList[i].GetComponent<BattleClockCardUtil>().setBattleModeCard(list[i]);
             }
             else
             {
                 CardList[i].SetActive(false);
+                //CardList[i].GetComponent<BattleClockCardUtil>().setBattleModeCard(null);
             }
         }
     }
