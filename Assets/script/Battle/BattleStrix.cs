@@ -135,6 +135,6 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.UpdateEnemyGraveYardCards(list);
         }
-        
+
     }
 }
