@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public bool MariganMode = false;
     public bool isAnimation = false;
+    public bool isFirstAttacker = false;
 
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] ClockDialog m_ClockDialog;
@@ -46,11 +47,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] BattleStrix m_BattleStrix;
-    [SerializeField] SpriteList m_SpriteList;
+    [SerializeField] BattleModeCardList m_BattleModeCardList;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
-
-    public bool isFirstAttacker = false;
 
     [SerializeField] Text testPhaseText;
     [SerializeField] GameObject GameStartBtn;
@@ -220,23 +219,8 @@ public class GameManager : MonoBehaviour
         enemyGraveYardList = new List<BattleModeCard>();
         for(int i = 0; i < list.Count; i++)
         {
-            Sprite s = m_SpriteList.cardNoToSprite(list[i].cardNo);
-            enemyGraveYardList.Add(
-                   new BattleModeCard(s,
-                   list[i].level,
-                   list[i].cost,
-                   list[i].color,
-                   list[i].trigger,
-                   list[i].type,
-                   list[i].attributeOne,
-                   list[i].attributeTwo,
-                   list[i].attributeThree,
-                   list[i].cardNo,
-                   list[i].name,
-                   list[i].soul,
-                   list[i].power,
-                   list[i].isCounter)
-                   );
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyGraveYardList.Add(b);
         }
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
 

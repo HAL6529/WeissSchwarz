@@ -7,6 +7,7 @@ public class BattleGraveYardUtil : MonoBehaviour
 {
     private BattleModeCard m_BattleModeCard = null;
     [SerializeField] Image image;
+    [SerializeField] BattleModeGuide m_BattleModeGuide;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,7 @@ public class BattleGraveYardUtil : MonoBehaviour
 
     public void updateMyGraveYardCards(List<BattleModeCard> list)
     {
-        if(list.Count == 0)
+        if (list.Count == 0)
         {
             m_BattleModeCard = null;
         }
@@ -48,5 +49,14 @@ public class BattleGraveYardUtil : MonoBehaviour
             m_BattleModeCard = list[0];
         }
         changeSprite();
+    }
+
+    public void onClick()
+    {
+        if(m_BattleModeCard == null)
+        {
+            return;
+        }
+        m_BattleModeGuide.showImage(m_BattleModeCard);
     }
 }
