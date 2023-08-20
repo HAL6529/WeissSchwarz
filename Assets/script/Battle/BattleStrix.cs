@@ -204,6 +204,33 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    public void SendUpdateMainCards(List<BattleModeCard> list, bool isTurnPlayer)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp> { null, null, null, null, null };
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == null)
+            {
+                temp[i] = null;
+            }
+            else
+            {
+                temp[i] = new BattleModeCardTemp(list[i]);
+            }
+        }
+        RpcToAll(nameof(UpdateMainCards), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void UpdateMainCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.UpdateEnemyMainCards(list);
+        }
+    }
+
     [StrixRpc]
     public void ChangePhase(EnumController.Turn turn)
     {

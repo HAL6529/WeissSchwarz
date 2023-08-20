@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> enemyStockList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyLevelList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyGraveYardList = new List<BattleModeCard>();
+    public List<BattleModeCard> enemyFieldList = new List<BattleModeCard> { null, null, null, null, null };
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
 
@@ -209,6 +210,7 @@ public class GameManager : MonoBehaviour
     public void UpdateMyMainCards()
     {
         GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
+        m_BattleStrix.SendUpdateMainCards(myFieldList, isTurnPlayer);
     }
 
     public void UpdateMyGraveYardCards()
@@ -236,6 +238,21 @@ public class GameManager : MonoBehaviour
             enemyClockList.Add(b);
         }
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+    }
+
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == null)
+            {
+                enemyFieldList[i] = null;
+                break;
+            }
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyFieldList[i] = b;
+        }
+        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
     }
 
     public void GameStart()

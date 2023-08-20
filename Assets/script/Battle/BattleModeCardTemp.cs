@@ -27,18 +27,22 @@ public class BattleModeCardTemp
 
     public BattleModeCardTemp(BattleModeCard m_BattleModeCard)
     {
-        this.level = m_BattleModeCard.level;
-        this.cost = m_BattleModeCard.cost;
-        this.color = m_BattleModeCard.color;
-        this.trigger = m_BattleModeCard.trigger;
-        this.type = m_BattleModeCard.type;
-        this.attributeOne = m_BattleModeCard.attributeOne;
-        this.attributeTwo = m_BattleModeCard.attributeTwo;
-        this.attributeThree = m_BattleModeCard.attributeThree;
-        this.cardNo = m_BattleModeCard.cardNo;
-        this.name = m_BattleModeCard.name;
-        this.soul = m_BattleModeCard.soul;
-        this.power = m_BattleModeCard.power;
-        this.isCounter = m_BattleModeCard.isCounter;
+        if(m_BattleModeCard != null)
+        {
+            this.level = m_BattleModeCard.level;
+            this.cost = m_BattleModeCard.cost;
+            this.color = m_BattleModeCard.color;
+            this.trigger = m_BattleModeCard.trigger;
+            this.type = m_BattleModeCard.type;
+            this.attributeOne = m_BattleModeCard.attributeOne;
+            this.attributeTwo = m_BattleModeCard.attributeTwo;
+            this.attributeThree = m_BattleModeCard.attributeThree;
+            this.cardNo = m_BattleModeCard.cardNo;
+            this.name = m_BattleModeCard.name;
+            this.soul = m_BattleModeCard.soul;
+            this.power = m_BattleModeCard.power;
+            this.isCounter = m_BattleModeCard.isCounter;
+            return;
+        }
     }
 }
