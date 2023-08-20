@@ -29,6 +29,7 @@ ScriptsOnlyBuild:
     - EnemyClockCardsManager
     - EnemyHandsCardManager
     - EnemyLevelCardsManager
+    - EnemyMainCardsManager
     - EnemyStockCardsManager
     - ExitButton
     - GameManager
@@ -81,10 +82,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -775,6 +774,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7358}
     - Class: 114
       Script: {instanceID: 7472}
+    - Class: 114
+      Script: {instanceID: 24986}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1619,7 +1620,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 1543e5718bbb809a3b383f94af4f4631
+      Hash: 9d1f440ca60af3a807a88726ce8fe968
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -2295,6 +2296,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: 0ec26f6da02218ce60f21f6467d26378
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyMainCardsManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity
