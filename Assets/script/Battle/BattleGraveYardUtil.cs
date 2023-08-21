@@ -5,20 +5,14 @@ using UnityEngine.UI;
 
 public class BattleGraveYardUtil : MonoBehaviour
 {
+    private bool isActiveShowGraveYardBtn = false;
     private BattleModeCard m_BattleModeCard = null;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
+    [SerializeField] GraveYardDetail m_GraveYardDetail;
+    [SerializeField] GameManager m_GameManager;
+    [SerializeField] GameObject ShowButton;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void setBattleModeCard(BattleModeCard card)
     {
@@ -58,5 +52,27 @@ public class BattleGraveYardUtil : MonoBehaviour
             return;
         }
         m_BattleModeGuide.showImage(m_BattleModeCard);
+
+        if (isActiveShowGraveYardBtn)
+        {
+            isActiveShowGraveYardBtn = false;
+            ShowButton.SetActive(false);
+        }
+        else
+        {
+            isActiveShowGraveYardBtn = true;
+            ShowButton.SetActive(true);
+        }
+    }
+
+    // Ç±Ç±Ç©ÇÁçTé∫è⁄ç◊ï\é¶É{É^Éì
+    public void onClickShowMyGraveYardButton()
+    {
+        m_GraveYardDetail.UpdateList(m_GameManager.GraveYardList);
+    }
+
+    public void onClickShowEnemyGraveYardButton()
+    {
+        m_GraveYardDetail.UpdateList(m_GameManager.enemyGraveYardList);
     }
 }
