@@ -206,17 +206,17 @@ public class BattleStrix : StrixBehaviour
 
     public void SendUpdateMainCards(List<BattleModeCard> list, bool isTurnPlayer)
     {
-        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp> { null, null, null, null, null };
-
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+        Debug.Log(list.Count);
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i] == null)
+            if (list[i] != null)
             {
-                temp[i] = null;
+                temp.Add(new BattleModeCardTemp(list[i]));
             }
             else
             {
-                temp[i] = new BattleModeCardTemp(list[i]);
+                temp.Add(null);
             }
         }
         RpcToAll(nameof(UpdateMainCards), temp, isTurnPlayer);
@@ -225,6 +225,7 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void UpdateMainCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
     {
+        logText.text = "UpdateMainCards";
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_GameManager.UpdateEnemyMainCards(list);
