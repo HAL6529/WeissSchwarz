@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
             if (list[i] == null)
             {
                 enemyFieldList[i] = null;
-                break;
+                continue;
             }
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyFieldList[i] = b;
