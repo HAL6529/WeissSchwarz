@@ -44,13 +44,13 @@ public class GameManager : MonoBehaviour
     public bool isTurnPlayer = false;
     private int turn = 1;
 
-    [SerializeField] OKDialog m_OKDialog;
     [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
+    [SerializeField] DialogManager m_DialogManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
     {
         testPhaseText.text = "Marigan";
         MariganMode = true;
-        m_OKDialog.SetParamater(EnumController.DialogParamater.Marigan);
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Marigan);
     }
 
     public void MariganEnd()
@@ -171,9 +171,30 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// クライマックスフェイズに入るときに呼び出す
+    /// </summary>
+    public void SendClimaxPhase()
+    {
+        m_BattleStrix.SendClimaxPhase();
+    }
+
+    public void ClimaxStart()
+    {
+
+    }
+
+    /// <summary>
+    /// アタックフェイズに入るときに呼び出す
+    /// </summary>
+    public void SendAttackPhase()
+    {
+        m_BattleStrix.SendAttackPhase();
+    }
+
     public void AttackStart()
     {
-        testPhaseText.text = "Attack";
+        
     }
 
     public void Draw()

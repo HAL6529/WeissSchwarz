@@ -7,20 +7,28 @@ public class DialogManager : MonoBehaviour
     [SerializeField] MainDialog m_MainDialog;
     [SerializeField] MoveDialog m_MoveDialog;
     [SerializeField] ClockDialog m_ClockDialog;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] OKDialog m_OKDialog;
+    [SerializeField] YesOrNoDialog m_YesOrNoDialog;
+
+    public void MainDialog()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
-        
+        m_YesOrNoDialog.SetParamater(paramater);
+    }
+
+    public void OKDialog(EnumController.OKDialogParamater paramater)
+    {
+        m_OKDialog.SetParamater(paramater);
     }
 
     public void CloseAllDialog()
     {
+        m_YesOrNoDialog.OffDialog();
+        m_OKDialog.OffDialog();
         m_MainDialog.OffMainDialog();
         m_MoveDialog.OffMainDialog();
         m_ClockDialog.ClockDialogEnd();

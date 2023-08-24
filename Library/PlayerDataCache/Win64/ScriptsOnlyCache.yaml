@@ -51,6 +51,7 @@ ScriptsOnlyBuild:
     - SearchFilter
     - StrixManager
     - StrixManagerTest
+    - YesOrNoDialog
     - cardInfo
     - filterDialog
     StrixUnityRuntime.dll:
@@ -480,6 +481,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleClockCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: YesOrNoDialog
+    methodName: onNoClick
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onOkClick
   - assembly: Assembly-CSharp
@@ -557,6 +561,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClickShowEnemyGraveYardButton
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
+    methodName: SendAttackPhase
+  - assembly: Assembly-CSharp
+    fullTypeName: YesOrNoDialog
+    methodName: onYesClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
@@ -790,6 +800,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7368}
     - Class: 114
       Script: {instanceID: 7482}
+    - Class: 114
+      Script: {instanceID: 101364}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1214,7 +1226,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: 8ce612bfce9a4088a2b33acefea59b53
+      Hash: b9eab539f6968e73f4d21f72debb9a61
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -1646,7 +1658,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 9d1f440ca60af3a807a88726ce8fe968
+      Hash: 9433b6925c3d386550ee2fc3bb09fa36
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -2328,6 +2340,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: 0bb195377e703c1d44af115ed817d8d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: YesOrNoDialog
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity

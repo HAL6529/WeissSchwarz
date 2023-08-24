@@ -10,7 +10,7 @@ public class OKDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
 
-    private EnumController.DialogParamater m_DialogParamater;
+    private EnumController.OKDialogParamater m_DialogParamater;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +25,10 @@ public class OKDialog : MonoBehaviour
 
     public OKDialog()
     {
-        m_DialogParamater = EnumController.DialogParamater.VOID;
+        m_DialogParamater = EnumController.OKDialogParamater.VOID;
     }
 
-    public void SetParamater(EnumController.DialogParamater paramater)
+    public void SetParamater(EnumController.OKDialogParamater paramater)
     {
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -38,7 +38,7 @@ public class OKDialog : MonoBehaviour
     private void SetText()
     {
         string str = "";
-        if (m_DialogParamater == EnumController.DialogParamater.Marigan)
+        if (m_DialogParamater == EnumController.OKDialogParamater.Marigan)
         {
             str = "マリガンするカードを選択してください";
         }
@@ -47,10 +47,15 @@ public class OKDialog : MonoBehaviour
 
     public void onClick()
     {
-        if(m_DialogParamater == EnumController.DialogParamater.Marigan)
+        if(m_DialogParamater == EnumController.OKDialogParamater.Marigan)
         {
             m_GameManager.MariganEnd();
         }
+        this.gameObject.SetActive(false);
+    }
+
+    public void OffDialog()
+    {
         this.gameObject.SetActive(false);
     }
 }
