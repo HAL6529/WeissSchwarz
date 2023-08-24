@@ -139,7 +139,7 @@ public class BattleHandCardUtil : MonoBehaviour
             case EnumController.Type.EVENT:
                 return;
             case EnumController.Type.CLIMAX:
-                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CLIMAX_PHASE);
+                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CLIMAX_PHASE, m_BattleModeCard);
                 return;
             case EnumController.Type.VOID:
                 return;

@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
 
-    public BattleModeCard climaxCard = null;
+    public BattleModeCard ClimaxCard = null;
 
     public BattleClimaxCardUtil MyClimaxCardObject = null;
     public BattleDeckCardUtil MyDeckObject = null;
@@ -69,10 +69,10 @@ public class GameManager : MonoBehaviour
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList.Count);
         MyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
-        MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(climaxCard);
+        MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
         EnemyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
-        EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(climaxCard);
+        EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
     }
 
@@ -174,14 +174,18 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// クライマックスフェイズに入るときに呼び出す
     /// </summary>
-    public void SendClimaxPhase()
+    public void SendClimaxPhase(BattleModeCard m_BattleModeCard)
     {
-        m_BattleStrix.SendClimaxPhase();
+        ClimaxCard = m_BattleModeCard;
+        MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
+        m_BattleStrix.SendClimaxPhase(m_BattleModeCard, isTurnPlayer);
     }
 
-    public void ClimaxStart()
+    public void ClimaxStart(BattleModeCardTemp m_BattleModeCardTemp)
     {
-
+        BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_BattleModeCardTemp.cardNo);
+        ClimaxCard = b;
+        EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
     }
 
     /// <summary>

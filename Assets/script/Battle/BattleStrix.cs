@@ -215,17 +215,21 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
-    public void SendClimaxPhase()
+    public void SendClimaxPhase(BattleModeCard m_BattleModeCard, bool isTurnPlayer)
     {
+        BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
         RpcToAll(nameof(ChangePhase), EnumController.Turn.Climax);
-        RpcToAll(nameof(ClimaxPhase));
+        RpcToAll(nameof(ClimaxPhase), temp, isTurnPlayer);
     }
 
-
     [StrixRpc]
-    public void ClimaxPhase()
+    public void ClimaxPhase(BattleModeCardTemp m_BattleModeCardTemp, bool isTurnPlayer)
     {
         logText.text = "ClimaxPhase";
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ClimaxStart(m_BattleModeCardTemp);
+        }
     }
 
     public void SendAttackPhase()
