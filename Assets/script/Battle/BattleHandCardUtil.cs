@@ -14,7 +14,6 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
-    [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject PlayButton;
@@ -101,14 +100,14 @@ public class BattleHandCardUtil : MonoBehaviour
         {
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
-            m_ClockDialog.setBattleModeCard(null);
+            m_DialogManager.OKDialog(null);
         }
         else
         {
             m_MyHandCardsManager.CallResetSelected();
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
-            m_ClockDialog.setBattleModeCard(m_BattleModeCard);
+            m_DialogManager.OKDialog(m_BattleModeCard);
         }
     }
 
