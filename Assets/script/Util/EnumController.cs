@@ -106,10 +106,16 @@ namespace EnumController
         Encore,
     }
 
-    public enum DialogParamater
+    public enum OKDialogParamater
     {
         VOID,
         Marigan,
+    }
+
+    public enum YesOrNoDialogParamater
+    {
+        VOID,
+        CLIMAX_PHASE,
     }
 }
 

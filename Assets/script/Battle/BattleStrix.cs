@@ -27,12 +27,6 @@ public class BattleStrix : StrixBehaviour
         ObjectFactory.Instance.Register(typeof(BattleModeCardTemp));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SendSetIsFirstAttacker(bool b)
     {
         if (b)
@@ -46,21 +40,12 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void SetIsFirstAttacker(bool b)
     {
-        Debug.Log("SetIsFirstAttacker");
         if (m_StrixManager.isOwner)
         {
             return;
         }
         m_GameManager.isFirstAttacker = b;
         m_GameManager.isTurnPlayer = b;
-        if (b)
-        {
-            logText.text = "êÊçU";
-        }
-        else
-        {
-            logText.text = "å„çU";
-        }
     }
 
     public void SendSetGameStartBtn()
@@ -71,7 +56,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void SetGameStartBtn()
     {
-        Debug.Log("SetGameStartBtn");
         if (m_StrixManager.isOwner)
         {
             return;
@@ -87,7 +71,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void GameStart()
     {
-        Debug.Log("GameStart");
         m_GameManager.Shuffle();
         m_GameManager.FirstDraw();
 
@@ -230,6 +213,35 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.UpdateEnemyMainCards(list);
         }
+    }
+
+    public void SendClimaxPhase(BattleModeCard m_BattleModeCard, bool isTurnPlayer)
+    {
+        BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Climax);
+        RpcToAll(nameof(ClimaxPhase), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void ClimaxPhase(BattleModeCardTemp m_BattleModeCardTemp, bool isTurnPlayer)
+    {
+        logText.text = "ClimaxPhase";
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ClimaxStart(m_BattleModeCardTemp);
+        }
+    }
+
+    public void SendAttackPhase()
+    {
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Attack);
+        RpcToAll(nameof(AttackPhase));
+    }
+
+    [StrixRpc]
+    public void AttackPhase()
+    {
+        logText.text = "AttackPhase";
     }
 
     [StrixRpc]

@@ -21,17 +21,6 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] GameObject DummyHandCard;
     [SerializeField] MainDialog m_MainDialog;
     [SerializeField] DialogManager m_DialogManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void setBattleModeCard(BattleModeCard card)
     {
@@ -126,7 +115,8 @@ public class BattleHandCardUtil : MonoBehaviour
     private void MainClick()
     {
         bool temp = isMainSelected;
-        m_MainDialog.OffMainDialog();
+        m_DialogManager.CloseAllDialog();
+        // m_MainDialog.OffMainDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
         if (temp)
         {
@@ -141,7 +131,21 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onPlayButton()
     {
-        m_MainDialog.SetBattleMordCard(m_BattleModeCard);
+        switch (m_BattleModeCard.type)
+        {
+            case EnumController.Type.CHARACTER:
+                m_MainDialog.SetBattleMordCard(m_BattleModeCard);
+                return;
+            case EnumController.Type.EVENT:
+                return;
+            case EnumController.Type.CLIMAX:
+                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CLIMAX_PHASE, m_BattleModeCard);
+                return;
+            case EnumController.Type.VOID:
+                return;
+            default: return;
+        }
+
     }
 
     // rightCard‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«
