@@ -27,17 +27,6 @@ public class MoveDialog : MonoBehaviour
     /// ステージで押されたカードの場所
     /// </summary>
     private int selectedPlace = -1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Open(int num, BattleModeCard m_BattleModeCard)
     {

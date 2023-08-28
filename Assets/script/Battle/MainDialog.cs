@@ -16,27 +16,6 @@ public class MainDialog : MonoBehaviour
     private int place = -1;
     private BattleModeCard m_BattleModeCard = null;
 
-    private DialogMode mode = DialogMode.VOID;
-
-    private enum DialogMode
-    {
-        VOID,
-        HandToField,
-        MainMove
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void onClick(int num)
     {
         // ä˘Ç…ëIÇŒÇÍÇƒÇ¢ÇÈèÍçá
@@ -66,17 +45,14 @@ public class MainDialog : MonoBehaviour
         {
             return;
         }
-        if (mode == DialogMode.HandToField)
+        if (m_BattleModeCard != null)
         {
-            if (m_BattleModeCard != null)
-            {
-                m_GameManager.myFieldList[place] = m_BattleModeCard;
-                m_GameManager.myHandList.Remove(m_BattleModeCard);
-                m_GameManager.UpdateMyHandCards();
-                m_GameManager.UpdateMyMainCards();
-            }
-            m_MyHandCardsManager.CallNotShowPlayButton();
+            m_GameManager.myFieldList[place] = m_BattleModeCard;
+            m_GameManager.myHandList.Remove(m_BattleModeCard);
+            m_GameManager.UpdateMyHandCards();
+            m_GameManager.UpdateMyMainCards();
         }
+        m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
     }
 
@@ -87,17 +63,8 @@ public class MainDialog : MonoBehaviour
         m_MyMainCardsManager.CallNotShowMoveButton();
     }
 
-    public void MoveMode(BattleModeCard card)
-    {
-        mode = DialogMode.MainMove;
-        ResetSelectZone();
-        this.gameObject.SetActive(true);
-        m_BattleModeCard = card;
-    }
-
     public void SetBattleMordCard(BattleModeCard card)
     {
-        mode = DialogMode.HandToField;
         ResetSelectZone();
         this.gameObject.SetActive(true);
         m_BattleModeCard = card;

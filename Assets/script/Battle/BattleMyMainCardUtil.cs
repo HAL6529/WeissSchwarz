@@ -12,7 +12,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameObject MoveButton;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
-    [SerializeField] MoveDialog m_MoveDialog;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] int PlaceNum;
 
@@ -21,12 +20,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
     void Start()
     {
         changeSprite();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void setBattleModeCard(BattleModeCard card)
@@ -78,6 +71,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onMoveButton()
     {
-        m_MoveDialog.Open(PlaceNum, m_BattleModeCard);
+        m_DialogManager.MoveDialog(PlaceNum, m_BattleModeCard);
     }
 }

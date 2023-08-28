@@ -9,11 +9,6 @@ public class DialogManager : MonoBehaviour
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] YesOrNoDialog m_YesOrNoDialog;
 
-    public void MainDialog()
-    {
-
-    }
-
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
         m_YesOrNoDialog.SetParamater(paramater);
@@ -32,6 +27,16 @@ public class DialogManager : MonoBehaviour
     public void OKDialog(BattleModeCard card)
     {
         m_OKDialog.SetBattleModeCard(card);
+    }
+
+    public void MoveDialog(int place,  BattleModeCard card)
+    {
+        m_MoveDialog.Open(place, card);
+    }
+
+    public void MainDialog(BattleModeCard card)
+    {
+        m_MainDialog.SetBattleMordCard(card);
     }
 
     public void CloseAllDialog()

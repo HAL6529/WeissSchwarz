@@ -18,7 +18,6 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject PlayButton;
     [SerializeField] GameObject DummyHandCard;
-    [SerializeField] MainDialog m_MainDialog;
     [SerializeField] DialogManager m_DialogManager;
 
     public void setBattleModeCard(BattleModeCard card)
@@ -133,7 +132,7 @@ public class BattleHandCardUtil : MonoBehaviour
         switch (m_BattleModeCard.type)
         {
             case EnumController.Type.CHARACTER:
-                m_MainDialog.SetBattleMordCard(m_BattleModeCard);
+                m_DialogManager.MainDialog(m_BattleModeCard);
                 return;
             case EnumController.Type.EVENT:
                 return;
