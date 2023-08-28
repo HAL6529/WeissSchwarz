@@ -89,7 +89,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void Marigan()
     {
-        Debug.Log("Marigan");
         logText.text = "マリガン";
         // 後攻の場合
         if (!m_GameManager.isFirstAttacker)
@@ -142,7 +141,6 @@ public class BattleStrix : StrixBehaviour
 
     public void SendDrawPhase()
     {
-        logText.text = "ドローフェイズ";
         RpcToAll(nameof(ChangePhase), EnumController.Turn.Draw);
         RpcToAll(nameof(DrawPhase));
     }
@@ -150,6 +148,7 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void DrawPhase()
     {
+        logText.text = "DrawPhase";
         if (m_GameManager.isTurnPlayer)
         {
             m_GameManager.DrawPhaseStart();
@@ -158,7 +157,6 @@ public class BattleStrix : StrixBehaviour
 
     public void SendClockPhase()
     {
-        logText.text = "クロックフェイズ";
         RpcToAll(nameof(ChangePhase), EnumController.Turn.Clock);
         RpcToAll(nameof(ClockPhase));
     }
@@ -166,6 +164,7 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void ClockPhase()
     {
+        logText.text = "ClockPhase";
         if (m_GameManager.isTurnPlayer)
         {
             m_GameManager.ClockPhaseStart();
@@ -181,6 +180,7 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void MainPhase()
     {
+        logText.text = "MainPhase";
         if (m_GameManager.isTurnPlayer)
         {
             m_GameManager.MainStart();
@@ -242,6 +242,19 @@ public class BattleStrix : StrixBehaviour
     public void AttackPhase()
     {
         logText.text = "AttackPhase";
+    }
+
+    public void SendEncorePhase()
+    {
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Encore);
+        RpcToAll(nameof(EncorePhase));
+    }
+
+    [StrixRpc]
+    public void EncorePhase()
+    {
+        logText.text = "EncorePhase";
+        m_GameManager.EncoreStart();
     }
 
     [StrixRpc]
