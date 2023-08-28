@@ -14,12 +14,10 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
-    [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject PlayButton;
     [SerializeField] GameObject DummyHandCard;
-    [SerializeField] MainDialog m_MainDialog;
     [SerializeField] DialogManager m_DialogManager;
 
     public void setBattleModeCard(BattleModeCard card)
@@ -101,14 +99,14 @@ public class BattleHandCardUtil : MonoBehaviour
         {
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
-            m_ClockDialog.setBattleModeCard(null);
+            m_DialogManager.OKDialog(null);
         }
         else
         {
             m_MyHandCardsManager.CallResetSelected();
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
-            m_ClockDialog.setBattleModeCard(m_BattleModeCard);
+            m_DialogManager.OKDialog(m_BattleModeCard);
         }
     }
 
@@ -134,7 +132,7 @@ public class BattleHandCardUtil : MonoBehaviour
         switch (m_BattleModeCard.type)
         {
             case EnumController.Type.CHARACTER:
-                m_MainDialog.SetBattleMordCard(m_BattleModeCard);
+                m_DialogManager.MainDialog(m_BattleModeCard);
                 return;
             case EnumController.Type.EVENT:
                 return;

@@ -110,6 +110,7 @@ namespace EnumController
     {
         VOID,
         Marigan,
+        CLOCK,
     }
 
     public enum YesOrNoDialogParamater

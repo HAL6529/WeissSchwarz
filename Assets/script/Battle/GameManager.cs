@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public bool isTurnPlayer = false;
     private int turn = 1;
 
-    [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
@@ -143,26 +142,22 @@ public class GameManager : MonoBehaviour
 
     public void DrawPhaseStart()
     {
-        m_ClockDialog.ClockDialogEnd();
-        // m_Phase.AnimationStart(phase);
         DrawPhaseEnd();
     }
 
     public void DrawPhaseEnd()
     {
         Draw();
-        // m_Phase.AnimationStart(phase);
         m_BattleStrix.SendClockPhase();
     }
 
     public void ClockPhaseStart()
     {
-        m_ClockDialog.setText("クロックするカードを選択してください");
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.CLOCK);
     }
 
     public void ClockPhaseEnd()
     {
-        m_ClockDialog.ClockDialogEnd();
         m_BattleStrix.SendMainPhase();
     }
 

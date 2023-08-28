@@ -10,6 +10,8 @@ public class OKDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
 
+    private BattleModeCard m_BattleModeCard = null;
+
     private EnumController.OKDialogParamater m_DialogParamater;
     // Start is called before the first frame update
     void Start()
@@ -28,8 +30,14 @@ public class OKDialog : MonoBehaviour
         m_DialogParamater = EnumController.OKDialogParamater.VOID;
     }
 
+    public void SetBattleModeCard(BattleModeCard card)
+    {
+        m_BattleModeCard = card;
+    }
+
     public void SetParamater(EnumController.OKDialogParamater paramater)
     {
+        m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
         SetText();
@@ -38,18 +46,43 @@ public class OKDialog : MonoBehaviour
     private void SetText()
     {
         string str = "";
-        if (m_DialogParamater == EnumController.OKDialogParamater.Marigan)
+        switch (m_DialogParamater)
         {
-            str = "マリガンするカードを選択してください";
+            case EnumController.OKDialogParamater.Marigan:
+                str = "マリガンするカードを選択してください";
+                break;
+            case EnumController.OKDialogParamater.CLOCK:
+                str = "クロックするカードを選択してください";
+                break;
+            default:
+                str = "無効メッセージ";
+                break;
+
         }
         text.text = str;
     }
 
     public void onClick()
     {
-        if(m_DialogParamater == EnumController.OKDialogParamater.Marigan)
+        switch (m_DialogParamater)
         {
-            m_GameManager.MariganEnd();
+            case EnumController.OKDialogParamater.Marigan:
+                m_GameManager.MariganEnd();
+                break;
+            case EnumController.OKDialogParamater.CLOCK:
+                if (m_BattleModeCard != null)
+                {
+                    m_GameManager.myClockList.Add(m_BattleModeCard);
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.Draw();
+                    m_GameManager.Draw();
+                    m_GameManager.UpdateMyClockCards();
+                }
+                m_GameManager.ClockPhaseEnd();
+                break;
+            default:
+                break;
+
         }
         this.gameObject.SetActive(false);
     }

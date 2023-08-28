@@ -6,14 +6,8 @@ public class DialogManager : MonoBehaviour
 {
     [SerializeField] MainDialog m_MainDialog;
     [SerializeField] MoveDialog m_MoveDialog;
-    [SerializeField] ClockDialog m_ClockDialog;
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] YesOrNoDialog m_YesOrNoDialog;
-
-    public void MainDialog()
-    {
-
-    }
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -30,12 +24,26 @@ public class DialogManager : MonoBehaviour
         m_OKDialog.SetParamater(paramater);
     }
 
+    public void OKDialog(BattleModeCard card)
+    {
+        m_OKDialog.SetBattleModeCard(card);
+    }
+
+    public void MoveDialog(int place,  BattleModeCard card)
+    {
+        m_MoveDialog.Open(place, card);
+    }
+
+    public void MainDialog(BattleModeCard card)
+    {
+        m_MainDialog.SetBattleMordCard(card);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
         m_OKDialog.OffDialog();
         m_MainDialog.OffMainDialog();
         m_MoveDialog.OffMainDialog();
-        m_ClockDialog.ClockDialogEnd();
     }
 }
