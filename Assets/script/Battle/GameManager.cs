@@ -128,6 +128,7 @@ public class GameManager : MonoBehaviour
         UpdateMyGraveYardCards();
         m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
         MariganMode = false;
+        turn = 1;
 
         // 先攻の場合
         if (isFirstAttacker)
@@ -172,6 +173,8 @@ public class GameManager : MonoBehaviour
     public void SendClimaxPhase(BattleModeCard m_BattleModeCard)
     {
         ClimaxCard = m_BattleModeCard;
+        myHandList.Remove(m_BattleModeCard);
+        UpdateMyHandCards();
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         m_BattleStrix.SendClimaxPhase(m_BattleModeCard, isTurnPlayer);
     }
@@ -194,6 +197,33 @@ public class GameManager : MonoBehaviour
     public void AttackStart()
     {
         
+    }
+
+    /// <summary>
+    /// エンドフェイズに入るときに呼び出す
+    /// </summary>
+    public void SendEncorePhase()
+    {
+        m_BattleStrix.SendEncorePhase();
+    }
+
+    public void EncoreStart()
+    {
+        TurnChange();
+    }
+
+    public void TurnChange()
+    {
+        turn++;
+        if (isTurnPlayer)
+        {
+            isTurnPlayer = false;
+        }
+        else
+        {
+            isTurnPlayer = true;
+        }
+        m_BattleStrix.SendDrawPhase();
     }
 
     public void Draw()
