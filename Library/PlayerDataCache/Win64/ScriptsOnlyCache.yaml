@@ -84,8 +84,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -460,6 +462,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleClockCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onCloseButton
   - assembly: Assembly-CSharp
@@ -477,6 +482,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onDirectAttack
   - assembly: Assembly-CSharp
     fullTypeName: YesOrNoDialog
     methodName: onNoClick
@@ -496,11 +504,17 @@ ScriptsOnlyBuild:
     fullTypeName: BattleClockCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
@@ -523,6 +537,12 @@ ScriptsOnlyBuild:
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onDirectAttack
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -544,6 +564,9 @@ ScriptsOnlyBuild:
     fullTypeName: MoveDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
@@ -555,6 +578,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onLeftCardClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClickShowEnemyGraveYardButton
@@ -587,6 +613,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
+    methodName: onDirectAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
@@ -610,11 +639,23 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onDirectAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClickShowMyGraveYardButton
   - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onDirectAttack
   - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
@@ -627,6 +668,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onCloseButton
@@ -648,6 +692,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
@@ -1455,7 +1502,7 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
-      Hash: da5d60e818647671a58111bbd03b1151
+      Hash: 3264fabb7492cd86abd35689bc8f9cde
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleMyMainCardUtil
@@ -1653,7 +1700,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 64332c2910308e7aff01524999f87831
+      Hash: 0810087aa98df70ae0fc42c0cbc70108
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

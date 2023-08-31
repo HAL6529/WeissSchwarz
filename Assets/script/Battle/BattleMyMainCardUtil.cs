@@ -10,11 +10,15 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
     [SerializeField] GameObject MoveButton;
+    [SerializeField] GameObject FrontAttackButton;
+    [SerializeField] GameObject SideAttackButton;
+    [SerializeField] GameObject DirectAttackButton;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] int PlaceNum;
 
+    private bool isRest = false;
     private bool isMoveButton = false;
     // Start is called before the first frame update
     void Start()
@@ -50,17 +54,42 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyHandCardsManager.CallResetSelected();
         m_MyHandCardsManager.CallNotShowPlayButton();
         m_MyMainCardsManager.CallNotShowMoveButton();
+        m_MyMainCardsManager.CallNotShowDirectAttackButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_DialogManager.CloseAllDialog();
-        if (isMoveButton)
+        if(m_GameManager.phase == EnumController.Turn.Main)
         {
-            isMoveButton = false;
+            if (isMoveButton)
+            {
+                isMoveButton = false;
+            }
+            else
+            {
+                MoveButton.SetActive(true);
+                isMoveButton = true;
+            }
         }
-        else
+        else if(m_GameManager.phase == EnumController.Turn.Attack)
         {
-            MoveButton.SetActive(true);
-            isMoveButton = true;
+            if(PlaceNum > 2 || m_BattleModeCard == null || isRest)
+            {
+                return;
+            }
+
+            if(PlaceNum == 0 && m_GameManager.enemyFieldList[2] == null ||
+               PlaceNum == 1 && m_GameManager.enemyFieldList[1] == null ||
+               PlaceNum == 2 && m_GameManager.enemyFieldList[0] == null )
+            {
+                DirectAttackButton.SetActive(true);
+                return;
+            }
         }
+    }
+
+    public void Stand()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        isRest = false;
     }
 
     public void NotShowMoveButton()
@@ -72,5 +101,28 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public void onMoveButton()
     {
         m_DialogManager.MoveDialog(PlaceNum, m_BattleModeCard);
+    }
+
+    public void onFrontAttack()
+    {
+        isRest = true;
+    }
+
+    public void onSideAttack()
+    {
+        isRest = true;
+    }
+
+    public void NotShowDirectAttackButton()
+    {
+        DirectAttackButton.SetActive(false);
+    }
+
+    public void onDirectAttack()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+        DirectAttackButton.SetActive(false);
+        isRest = true;
+        m_GameManager.onDirectAttack(PlaceNum);
     }
 }

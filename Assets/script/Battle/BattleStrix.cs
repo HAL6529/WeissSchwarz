@@ -139,6 +139,19 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    public void SendStandPhase()
+    {
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Stand);
+        RpcToAll(nameof(StandPhase));
+    }
+
+    [StrixRpc]
+    public void StandPhase()
+    {
+        logText.text = "StandPhase";
+        m_GameManager.StandPhaseStart();
+    }
+
     public void SendDrawPhase()
     {
         RpcToAll(nameof(ChangePhase), EnumController.Turn.Draw);
@@ -255,6 +268,21 @@ public class BattleStrix : StrixBehaviour
     {
         logText.text = "EncorePhase";
         m_GameManager.EncoreStart();
+    }
+
+    public void SendDamage(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(Damage),num ,isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void Damage(int num, bool isTurnPlayer)
+    {
+        logText.text = "Damage:" + Convert.ToString(num);
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.Damage(num);
+        }
     }
 
     [StrixRpc]
