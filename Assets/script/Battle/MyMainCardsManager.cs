@@ -40,4 +40,12 @@ public class MyMainCardsManager : MonoBehaviour
             CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowDirectAttackButton();
         }
     }
+
+    public void CallNotShowFrontAndSideButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowFrontAndSideButton();
+        }
+    }
 }

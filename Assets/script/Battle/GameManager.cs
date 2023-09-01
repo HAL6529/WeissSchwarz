@@ -324,7 +324,37 @@ public class GameManager : MonoBehaviour
     {
         int damage = myFieldList[num].soul + 1;
         damage = damage + TrrigerCheck();
-        Debug.Log(damage);
+        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+    }
+
+    public void onFrontAttack(int num)
+    {
+        int damage = myFieldList[num].soul;
+        damage = damage + TrrigerCheck();
+        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+    }
+
+    public void onSideAttack(int num)
+    {
+        int damage = myFieldList[num].soul;
+        int minus = 0;
+        switch (num)
+        {
+            case 0:
+                minus = enemyFieldList[2].level;
+                break;
+            case 1:
+                minus = enemyFieldList[1].level;
+                break;
+            case 2:
+                minus = enemyFieldList[0].level;
+                break;
+            default:
+                minus = 0;
+                break;
+        }
+        damage = damage - minus;
+        damage = damage + TrrigerCheck();
         m_BattleStrix.SendDamage(damage, isTurnPlayer);
     }
 
@@ -363,6 +393,11 @@ public class GameManager : MonoBehaviour
     public void Damage(int num)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();
+        if(num < 0)
+        {
+            return;
+        }
+
         for (int i = 0; i < num; i++)
         {
             temp.Add(myDeckList[i]);

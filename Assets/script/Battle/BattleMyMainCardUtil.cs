@@ -55,6 +55,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyHandCardsManager.CallNotShowPlayButton();
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_MyMainCardsManager.CallNotShowDirectAttackButton();
+        m_MyMainCardsManager.CallNotShowFrontAndSideButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_DialogManager.CloseAllDialog();
         if(m_GameManager.phase == EnumController.Turn.Main)
@@ -83,6 +84,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 DirectAttackButton.SetActive(true);
                 return;
             }
+            FrontAttackButton.SetActive(true);
+            SideAttackButton.SetActive(true);
+            return;
         }
     }
 
@@ -103,14 +107,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_DialogManager.MoveDialog(PlaceNum, m_BattleModeCard);
     }
 
-    public void onFrontAttack()
+    public void NotShowFrontAndSideButton()
     {
-        isRest = true;
-    }
-
-    public void onSideAttack()
-    {
-        isRest = true;
+        FrontAttackButton.SetActive(false);
+        SideAttackButton.SetActive(false);
     }
 
     public void NotShowDirectAttackButton()
@@ -124,5 +124,21 @@ public class BattleMyMainCardUtil : MonoBehaviour
         DirectAttackButton.SetActive(false);
         isRest = true;
         m_GameManager.onDirectAttack(PlaceNum);
+    }
+
+    public void onFrontAttack()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+        NotShowFrontAndSideButton();
+        isRest = true;
+        m_GameManager.onFrontAttack(PlaceNum);
+    }
+
+    public void onSideAttack()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+        NotShowFrontAndSideButton();
+        isRest = true;
+        m_GameManager.onSideAttack(PlaceNum);
     }
 }
