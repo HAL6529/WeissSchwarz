@@ -6,17 +6,6 @@ public class EnemyStockCardsManager : MonoBehaviour
 {
     public List<GameObject> CardList = new List<GameObject>();
     public GameObject onlyEleven;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void updateEnemyStockCards(int num)
     {

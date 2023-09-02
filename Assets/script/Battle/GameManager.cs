@@ -387,6 +387,7 @@ public class GameManager : MonoBehaviour
         myStockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
         UpdateMyStockCards();
+        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
         return num;
     }
 

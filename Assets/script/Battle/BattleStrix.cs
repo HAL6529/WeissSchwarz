@@ -19,6 +19,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
+    [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -117,6 +118,26 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyGraveYardCards(list);
+        }
+    }
+
+    public void SendUpdateEnemyStockCards(List<BattleModeCard> list, bool isTurnPlayer)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            temp.Add(new BattleModeCardTemp(list[i]));
+        }
+        RpcToAll(nameof(UpdateEnemyStockCards), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyStockCardsManager.updateEnemyStockCards(list.Count);
         }
     }
 
@@ -293,6 +314,15 @@ public class BattleStrix : StrixBehaviour
     public void SendCallEnemyRest(int num, bool isTurnPlayer)
     {
         RpcToAll(nameof(CallEnemyRest), num, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void updateEnemyStockCards(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallRest(num);
+        }
     }
 
     [StrixRpc]
