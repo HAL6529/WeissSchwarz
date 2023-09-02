@@ -114,8 +114,13 @@ public class BattleHandCardUtil : MonoBehaviour
     {
         bool temp = isMainSelected;
         m_DialogManager.CloseAllDialog();
-        // m_MainDialog.OffMainDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
+
+        if(m_GameManager.PlayerLevel < m_BattleModeCard.level)
+        {
+            return;
+        }
+
         if (temp)
         {
             isMainSelected = false;

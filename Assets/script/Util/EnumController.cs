@@ -97,6 +97,7 @@ namespace EnumController
     public enum Turn
     {
         VOID,
+        Stand,
         Draw,
         Clock,
         Main,

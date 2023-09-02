@@ -18,6 +18,8 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] StrixManager m_StrixManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
+    [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -119,6 +121,26 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    public void SendUpdateEnemyStockCards(List<BattleModeCard> list, bool isTurnPlayer)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            temp.Add(new BattleModeCardTemp(list[i]));
+        }
+        RpcToAll(nameof(UpdateEnemyStockCards), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyStockCardsManager.updateEnemyStockCards(list.Count);
+        }
+    }
+
     public void SendUpdateEnemyClock(List<BattleModeCard> list, bool isTurnPlayer)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
@@ -137,6 +159,19 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.UpdateEnemyClock(list);
         }
+    }
+
+    public void SendStandPhase()
+    {
+        RpcToAll(nameof(ChangePhase), EnumController.Turn.Stand);
+        RpcToAll(nameof(StandPhase));
+    }
+
+    [StrixRpc]
+    public void StandPhase()
+    {
+        logText.text = "StandPhase";
+        m_GameManager.StandPhaseStart();
     }
 
     public void SendDrawPhase()
@@ -255,6 +290,58 @@ public class BattleStrix : StrixBehaviour
     {
         logText.text = "EncorePhase";
         m_GameManager.EncoreStart();
+    }
+
+    public void SendDamage(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(Damage),num ,isTurnPlayer);
+    }
+
+    public void SendCallEnemyStand(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(CallEnemyStand), num, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void CallEnemyStand(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallStand(num);
+        }
+    }
+
+    public void SendCallEnemyRest(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(CallEnemyRest), num, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void updateEnemyStockCards(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallRest(num);
+        }
+    }
+
+    [StrixRpc]
+    public void CallEnemyRest(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallRest(num);
+        }
+    }
+
+    [StrixRpc]
+    public void Damage(int num, bool isTurnPlayer)
+    {
+        logText.text = "Damage:" + Convert.ToString(num);
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.Damage(num);
+        }
     }
 
     [StrixRpc]

@@ -7,16 +7,13 @@ public class MyMainCardsManager : MonoBehaviour
 {
     private List<BattleModeCard> myFieldList = new List<BattleModeCard>();
     public List<BattleMyMainCardUtil> CardList = new List<BattleMyMainCardUtil>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void CallStand()
     {
-        
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].Stand();
+        }
     }
 
     public void updateMyFieldCards(List<BattleModeCard> list)
@@ -33,6 +30,22 @@ public class MyMainCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowMoveButton();
+        }
+    }
+
+    public void CallNotShowDirectAttackButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowDirectAttackButton();
+        }
+    }
+
+    public void CallNotShowFrontAndSideButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowFrontAndSideButton();
         }
     }
 }

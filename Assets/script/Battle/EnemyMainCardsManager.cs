@@ -8,18 +8,6 @@ public class EnemyMainCardsManager : MonoBehaviour
     private List<BattleModeCard> enemyFieldList = new List<BattleModeCard>();
     public List<BattleEnemyMainCardUtil> CardList = new List<BattleEnemyMainCardUtil>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void updateEnemyFieldCards(List<BattleModeCard> list)
     {
         enemyFieldList = list;
@@ -27,5 +15,15 @@ public class EnemyMainCardsManager : MonoBehaviour
         {
             CardList[i].setBattleModeCard(enemyFieldList[i]);
         }
+    }
+
+    public void CallRest(int num)
+    {
+        CardList[num].Rest();
+    }
+
+    public void CallStand(int num)
+    {
+        CardList[num].Stand();
     }
 }

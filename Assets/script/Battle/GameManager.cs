@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
+    public int PlayerLevel = 0;
     private int turn = 1;
 
     [SerializeField] Phase m_Phase;
@@ -141,6 +142,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StandPhaseStart()
+    {
+        if (isTurnPlayer)
+        {
+            GetComponent<MyMainCardsManager>().CallStand();
+            m_BattleStrix.SendDrawPhase();
+        }
+    }
+
     public void DrawPhaseStart()
     {
         DrawPhaseEnd();
@@ -223,7 +233,7 @@ public class GameManager : MonoBehaviour
         {
             isTurnPlayer = true;
         }
-        m_BattleStrix.SendDrawPhase();
+        m_BattleStrix.SendStandPhase();
     }
 
     public void Draw()
@@ -251,16 +261,47 @@ public class GameManager : MonoBehaviour
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
     }
 
+    public void UpdateMyStockCards()
+    {
+        GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+    }
+
     public void UpdateMyClockCards()
     {
         GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
         m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
     }
 
+    public void UpdateEnemyClock(List<BattleModeCardTemp> list)
+    {
+        enemyClockList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyClockList.Add(b);
+        }
+        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+    }
+
     public void UpdateMyMainCards()
     {
         GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
         m_BattleStrix.SendUpdateMainCards(myFieldList, isTurnPlayer);
+    }
+
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == null)
+            {
+                enemyFieldList[i] = null;
+                continue;
+            }
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyFieldList[i] = b;
+        }
+        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
     }
 
     public void UpdateMyGraveYardCards()
@@ -279,30 +320,107 @@ public class GameManager : MonoBehaviour
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
     }
 
-    public void UpdateEnemyClock(List<BattleModeCardTemp> list)
+    public void onDirectAttack(int num)
     {
-        enemyClockList = new List<BattleModeCard>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyClockList.Add(b);
-        }
-        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+        int damage = myFieldList[num].soul + 1;
+        damage = damage + TrrigerCheck();
+        m_BattleStrix.SendDamage(damage, isTurnPlayer);
     }
 
-    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
+    public void onFrontAttack(int num)
     {
-        for (int i = 0; i < list.Count; i++)
+        int damage = myFieldList[num].soul;
+        damage = damage + TrrigerCheck();
+        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+    }
+
+    public void onSideAttack(int num)
+    {
+        int damage = myFieldList[num].soul;
+        int minus = 0;
+        switch (num)
         {
-            if (list[i] == null)
-            {
-                enemyFieldList[i] = null;
-                continue;
-            }
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyFieldList[i] = b;
+            case 0:
+                minus = enemyFieldList[2].level;
+                break;
+            case 1:
+                minus = enemyFieldList[1].level;
+                break;
+            case 2:
+                minus = enemyFieldList[0].level;
+                break;
+            default:
+                minus = 0;
+                break;
         }
-        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
+        damage = damage - minus;
+        damage = damage + TrrigerCheck();
+        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+    }
+
+    private int TrrigerCheck()
+    {
+        int num = 0;
+        switch(myDeckList[0].trigger)
+        {
+            case EnumController.Trriger.DOUBLE_SOUL:
+                num = 2;
+                break;
+            case EnumController.Trriger.STANDBY:
+            case EnumController.Trriger.BOUNCE:
+            case EnumController.Trriger.SHOT:
+            case EnumController.Trriger.SOUL:
+                num = 1;
+                break;
+            case EnumController.Trriger.COMEBACK:
+            case EnumController.Trriger.BOOK:
+            case EnumController.Trriger.GATE:
+            case EnumController.Trriger.CHOICE:
+            case EnumController.Trriger.TREASURE:
+            case EnumController.Trriger.POOL:
+            case EnumController.Trriger.NONE:
+            case EnumController.Trriger.VOID:
+                break;
+            default:
+                break;
+        }
+        myStockList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+        UpdateMyStockCards();
+        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
+        return num;
+    }
+
+    public void Damage(int num)
+    {
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+        if(num < 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < num; i++)
+        {
+            temp.Add(myDeckList[i]);
+            if (myDeckList[i].type == EnumController.Type.CLIMAX)
+            {
+                myDeckList.RemoveAt(i);
+                for (int n = 0; n < temp.Count; n++)
+                {
+                    GraveYardList.Add(temp[n]);
+                }
+                UpdateMyGraveYardCards();
+                return;
+            }
+            myDeckList.RemoveAt(i);
+        }
+
+        for (int n = 0; n < temp.Count; n++)
+        {
+            myClockList.Add(temp[n]);
+        }
+        UpdateMyClockCards();
+        return;
     }
 
     public void GameStart()
