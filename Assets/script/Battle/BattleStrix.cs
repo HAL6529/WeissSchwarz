@@ -18,6 +18,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] StrixManager m_StrixManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -273,6 +274,34 @@ public class BattleStrix : StrixBehaviour
     public void SendDamage(int num, bool isTurnPlayer)
     {
         RpcToAll(nameof(Damage),num ,isTurnPlayer);
+    }
+
+    public void SendCallEnemyStand(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(CallEnemyStand), num, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void CallEnemyStand(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallStand(num);
+        }
+    }
+
+    public void SendCallEnemyRest(int num, bool isTurnPlayer)
+    {
+        RpcToAll(nameof(CallEnemyRest), num, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void CallEnemyRest(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallRest(num);
+        }
     }
 
     [StrixRpc]

@@ -9,16 +9,12 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+
+    private bool isRest = false;
     // Start is called before the first frame update
     void Start()
     {
         changeSprite();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void setBattleModeCard(BattleModeCard card)
@@ -42,5 +38,17 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public void onClick()
     {
         m_BattleModeGuide.showImage(m_BattleModeCard);
+    }
+
+    public void Rest()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 270.0f);
+        isRest = true;
+    }
+
+    public void Stand()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+        isRest = false;
     }
 }
