@@ -503,6 +503,7 @@ public class GameManager : MonoBehaviour
             GraveYardList.Add(myClockList[0]);
             myClockList.RemoveAt(0);
         }
+        PlayerLevel++;
 
         UpdateMyClockCards();
 

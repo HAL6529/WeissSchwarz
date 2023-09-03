@@ -34,6 +34,11 @@ public class LevelUpButtonUtil : MonoBehaviour
 
     private void changeSprite()
     {
+        if (m_BattleModeCard == null)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
         image.sprite = m_BattleModeCard.sprite;
         image.color = new Color(1, 1, 1, 255 / 255);
     }
@@ -42,17 +47,16 @@ public class LevelUpButtonUtil : MonoBehaviour
     {
         if (isSelected)
         {
-            isSelected = false;
-            image.color = new Color(1, 1, 1, 255 / 255);
+            m_LevelUpDialog.CallOffSelected();
             m_LevelUpDialog.num = -1;
         }
         else
         {
+            m_LevelUpDialog.CallOffSelected();
             isSelected = true;
-            image.color = new Color(145 / 255, 145 / 255, 145 / 255, 60 / 255);
+            image.color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 255 / 255);
             m_LevelUpDialog.num = num;
         }
-        changeSprite();
     }
 
     public void OffSelected()
