@@ -94,7 +94,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public void Stand()
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-        m_BattleStrix.SendCallEnemyStand(PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("CallEnemyStand", PlaceNum, m_GameManager.isTurnPlayer);
         isRest = false;
     }
 
@@ -125,7 +125,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         DirectAttackButton.SetActive(false);
         isRest = true;
-        m_BattleStrix.SendCallEnemyRest(PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_GameManager.onDirectAttack(PlaceNum);
     }
 
@@ -134,7 +134,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         NotShowFrontAndSideButton();
         isRest = true;
-        m_BattleStrix.SendCallEnemyRest(PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_GameManager.onFrontAttack(PlaceNum);
     }
 
@@ -143,7 +143,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         NotShowFrontAndSideButton();
         isRest = true;
-        m_BattleStrix.SendCallEnemyRest(PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_GameManager.onSideAttack(PlaceNum);
     }
 }

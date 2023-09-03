@@ -76,78 +76,13 @@ public class GameManager : MonoBehaviour
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void Shuffle()
-    {
-        for(int i = myDeckList.Count - 1; i > 0; i--)
-        {
-            int r = Random.Range(0, i + 1);
-            BattleModeCard temp = myDeckList[r];
-            myDeckList[r] = myDeckList[i];
-            myDeckList[i] = temp;
-        } 
-    }
-
-    public void FirstDraw()
-    {
-        for(int i = 0; i < 5; i++)
-        {
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
-    }
-
-    public void MariganStart()
-    {
-        testPhaseText.text = "Marigan";
-        MariganMode = true;
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Marigan);
-    }
-
-    public void MariganEnd()
-    {
-        int num = myMariganList.Count;
-        for (int i = 0; i < num; i++)
-        {
-            myHandList.Remove(myMariganList[i]);
-            GraveYardList.Add(myMariganList[i]);
-        }
-
-        for (int i = 0; i < num; i++)
-        {
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        myMariganList = new List<BattleModeCard>();
-        UpdateMyHandCards();
-        UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
-        MariganMode = false;
-        turn = 1;
-
-        // 先攻の場合
-        if (isFirstAttacker)
-        {
-            m_BattleStrix.SendMarigan();
-        }
-        else
-        {
-            m_BattleStrix.SendDrawPhase();
-        }
-    }
-
     public void StandPhaseStart()
     {
         if (isTurnPlayer)
         {
             GetComponent<MyMainCardsManager>().CallStand();
-            m_BattleStrix.SendDrawPhase();
+            m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
+            m_BattleStrix.RpcToAll("DrawPhase");
         }
     }
 
@@ -159,7 +94,8 @@ public class GameManager : MonoBehaviour
     public void DrawPhaseEnd()
     {
         Draw();
-        m_BattleStrix.SendClockPhase();
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Clock);
+        m_BattleStrix.RpcToAll("ClockPhase");
     }
 
     public void ClockPhaseStart()
@@ -169,12 +105,8 @@ public class GameManager : MonoBehaviour
 
     public void ClockPhaseEnd()
     {
-        m_BattleStrix.SendMainPhase();
-    }
-
-    public void MainStart()
-    {
-
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Main);
+        m_BattleStrix.RpcToAll("MainPhase");
     }
 
     /// <summary>
@@ -186,7 +118,31 @@ public class GameManager : MonoBehaviour
         myHandList.Remove(m_BattleModeCard);
         UpdateMyHandCards();
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
-        m_BattleStrix.SendClimaxPhase(m_BattleModeCard, isTurnPlayer);
+        BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Climax);
+        m_BattleStrix.RpcToAll("ClimaxPhase", temp, isTurnPlayer);
+    }
+
+    /// <summary>
+    /// アタックフェイズに入るときに呼び出す
+    /// </summary>
+    public void SendAttackPhase()
+    {
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Attack);
+        m_BattleStrix.RpcToAll("AttackPhase");
+    }
+
+    /// <summary>
+    /// エンドフェイズに入るときに呼び出す
+    /// </summary>
+    public void SendEncorePhase()
+    {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Encore);
+        m_BattleStrix.RpcToAll("EncorePhase");
     }
 
     public void ClimaxStart(BattleModeCardTemp m_BattleModeCardTemp)
@@ -196,25 +152,14 @@ public class GameManager : MonoBehaviour
         EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
     }
 
-    /// <summary>
-    /// アタックフェイズに入るときに呼び出す
-    /// </summary>
-    public void SendAttackPhase()
+    public void MainStart()
     {
-        m_BattleStrix.SendAttackPhase();
+
     }
 
     public void AttackStart()
     {
         
-    }
-
-    /// <summary>
-    /// エンドフェイズに入るときに呼び出す
-    /// </summary>
-    public void SendEncorePhase()
-    {
-        m_BattleStrix.SendEncorePhase();
     }
 
     public void EncoreStart()
@@ -233,27 +178,8 @@ public class GameManager : MonoBehaviour
         {
             isTurnPlayer = true;
         }
-        m_BattleStrix.SendStandPhase();
-    }
-
-    public void Draw()
-    {
-        if(myDeckList.Count > 0)
-        {
-            m_DummyDeckAnimation.AnimationStart();
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        else
-        {
-            myDeckList = GraveYardList;
-            GraveYardList = new List<BattleModeCard>();
-            MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
-
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Stand);
+        m_BattleStrix.RpcToAll("StandPhase");
     }
 
     public void UpdateMyHandCards()
@@ -264,6 +190,17 @@ public class GameManager : MonoBehaviour
     public void UpdateMyStockCards()
     {
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+    }
+
+    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
+    {
+        enemyStockList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyStockList.Add(b);
+        }
+        GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(list.Count);
     }
 
     public void UpdateMyClockCards()
@@ -285,8 +222,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateMyMainCards()
     {
-        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
-        m_BattleStrix.SendUpdateMainCards(myFieldList, isTurnPlayer);
+        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);   
     }
 
     public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
@@ -320,18 +256,100 @@ public class GameManager : MonoBehaviour
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
     }
 
+    public void Shuffle()
+    {
+        for (int i = myDeckList.Count - 1; i > 0; i--)
+        {
+            int r = Random.Range(0, i + 1);
+            BattleModeCard temp = myDeckList[r];
+            myDeckList[r] = myDeckList[i];
+            myDeckList[i] = temp;
+        }
+    }
+
+    public void FirstDraw()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+    }
+
+    public void MariganStart()
+    {
+        MariganMode = true;
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Marigan);
+    }
+
+    public void MariganEnd()
+    {
+        int num = myMariganList.Count;
+        for (int i = 0; i < num; i++)
+        {
+            myHandList.Remove(myMariganList[i]);
+            GraveYardList.Add(myMariganList[i]);
+        }
+
+        for (int i = 0; i < num; i++)
+        {
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        myMariganList = new List<BattleModeCard>();
+        UpdateMyHandCards();
+
+        UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+        MariganMode = false;
+        turn = 1;
+
+        // 先攻の場合
+        if (isFirstAttacker)
+        {
+            m_BattleStrix.RpcToAll("MariganStart");
+        }
+        else
+        {
+            m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
+            m_BattleStrix.RpcToAll("DrawPhase");
+        }
+    }
+
+    public void Draw()
+    {
+        if (myDeckList.Count > 0)
+        {
+            m_DummyDeckAnimation.AnimationStart();
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        else
+        {
+            myDeckList = GraveYardList;
+            GraveYardList = new List<BattleModeCard>();
+            MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
+
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+    }
+
     public void onDirectAttack(int num)
     {
         int damage = myFieldList[num].soul + 1;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+        m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
     }
 
     public void onFrontAttack(int num)
     {
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+        m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
     }
 
     public void onSideAttack(int num)
@@ -355,7 +373,7 @@ public class GameManager : MonoBehaviour
         }
         damage = damage - minus;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.SendDamage(damage, isTurnPlayer);
+        m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
     }
 
     private int TrrigerCheck()
@@ -386,8 +404,10 @@ public class GameManager : MonoBehaviour
         }
         myStockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
+
         UpdateMyStockCards();
         m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
+
         return num;
     }
 
@@ -409,7 +429,10 @@ public class GameManager : MonoBehaviour
                 {
                     GraveYardList.Add(temp[n]);
                 }
+
                 UpdateMyGraveYardCards();
+                m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
                 return;
             }
             myDeckList.RemoveAt(i);
@@ -431,14 +454,16 @@ public class GameManager : MonoBehaviour
             {
                 isFirstAttacker = true;
                 isTurnPlayer = true;
+                m_BattleStrix.RpcToAll("SetIsFirstAttacker", false);
             }
             else
             {
                 isFirstAttacker = false;
                 isTurnPlayer = false;
+                m_BattleStrix.RpcToAll("SetIsFirstAttacker", true);
             }
-            m_BattleStrix.SendSetIsFirstAttacker(isFirstAttacker);
-            m_BattleStrix.SendGameStart();
+
+            m_BattleStrix.RpcToAll(nameof(GameStart));
         }
     }
 

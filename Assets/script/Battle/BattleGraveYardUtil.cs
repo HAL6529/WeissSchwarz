@@ -40,7 +40,7 @@ public class BattleGraveYardUtil : MonoBehaviour
         }
         else
         {
-            m_BattleModeCard = list[0];
+            m_BattleModeCard = list[list.Count - 1];
         }
         changeSprite();
     }

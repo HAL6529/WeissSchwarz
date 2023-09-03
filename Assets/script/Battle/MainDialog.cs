@@ -10,6 +10,7 @@ public class MainDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameObject OKButton;
 
     private List<bool> isSelected = new List<bool>{false, false, false, false, false };
@@ -50,7 +51,10 @@ public class MainDialog : MonoBehaviour
             m_GameManager.myFieldList[place] = m_BattleModeCard;
             m_GameManager.myHandList.Remove(m_BattleModeCard);
             m_GameManager.UpdateMyHandCards();
+
             m_GameManager.UpdateMyMainCards();
+            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_GameManager.isTurnPlayer);
+
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();

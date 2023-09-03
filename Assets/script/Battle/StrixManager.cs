@@ -129,7 +129,7 @@ public class StrixManager : MonoBehaviour
                                         OnRoomJoin, 
                                         OnRoomJoinFailed
                                    );
-                                   m_BattleStrix.SendSetGameStartBtn();
+                                   m_BattleStrix.RpcToAll("SetGameStartBtn");
                                },
                                failureHandler: searchError => Debug.LogError("aa")
                                );
