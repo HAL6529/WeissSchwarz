@@ -34,6 +34,9 @@ ScriptsOnlyBuild:
     - GameManager
     - GraveYardDetail
     - GraveYardDetailButtonUtil
+    - LevelCardUtil
+    - LevelUpButtonUtil
+    - LevelUpDialog
     - MainDialog
     - Menu
     - MoveDialog
@@ -84,8 +87,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -842,6 +847,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7364}
     - Class: 114
       Script: {instanceID: 7478}
+    - Class: 114
+      Script: {instanceID: 122390}
+    - Class: 114
+      Script: {instanceID: 126246}
+    - Class: 114
+      Script: {instanceID: 126294}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1266,7 +1277,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: af6cd940c9c15e3901c165d9453a7f57
+      Hash: 53ef3b04837977ac5aeb2ad93e12d7fa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -1554,7 +1565,7 @@ ScriptsOnlyBuild:
     className: SpriteShapeGeometryCache
   - hash:
       serializedVersion: 2
-      Hash: ffc57693065788801fc200194b0da9d6
+      Hash: edd88df8017b00afea9b465cc9a8ea3e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MyLevelCardsManager
@@ -2380,6 +2391,24 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: ade25c6be0a1ef4358347ffd66635f3f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelUpDialog
+  - hash:
+      serializedVersion: 2
+      Hash: e3c870344f38c57367790f2130d8545e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelUpButtonUtil
+  - hash:
+      serializedVersion: 2
+      Hash: a9dc6c493ba656f2d10d790d816adc9f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LevelCardUtil
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity

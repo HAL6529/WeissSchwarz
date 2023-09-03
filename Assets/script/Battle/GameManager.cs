@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         UpdateMyHandCards();
         UpdateMyClockCards();
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
-        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myStockList.Count);
+        UpdateMyLevelCards();
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
@@ -256,6 +256,11 @@ public class GameManager : MonoBehaviour
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
     }
 
+    public void UpdateMyLevelCards()
+    {
+        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
+    }
+
     public void Shuffle()
     {
         for (int i = myDeckList.Count - 1; i > 0; i--)
@@ -443,6 +448,8 @@ public class GameManager : MonoBehaviour
             myClockList.Add(temp[n]);
         }
         UpdateMyClockCards();
+
+        LevelUpCheck();
         return;
     }
 
@@ -485,5 +492,33 @@ public class GameManager : MonoBehaviour
     public void ChangePhase(EnumController.Turn turn)
     {
           phase = turn;
+    }
+
+    public void LevelUp(int num)
+    {
+        myLevelList.Add(myClockList[num]);
+        myClockList.RemoveAt(num);
+        for (int i = 0; i < 6; i++)
+        {
+            GraveYardList.Add(myClockList[0]);
+            myClockList.RemoveAt(0);
+        }
+
+        UpdateMyClockCards();
+
+        UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+        UpdateMyLevelCards();
+    }
+
+    private bool LevelUpCheck()
+    {
+        if (myClockList.Count < 7)
+        {
+            return false;
+        }
+        m_DialogManager.LevelUpDialog(myClockList);
+        return true;
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MyLevelCardsManager : MonoBehaviour
 {
-    public List<GameObject> CardList = new List<GameObject>();
+    public List<LevelCardUtil> CardList = new List<LevelCardUtil>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,17 +18,17 @@ public class MyLevelCardsManager : MonoBehaviour
         
     }
 
-    public void updateMyLevelCards(int num)
+    public void updateMyLevelCards(List<BattleModeCard> list)
     {
-        for (int i = 0; i < CardList.Count; i++)
+        for(int i = 0; i < CardList.Count; i++)
         {
-            if (i < num)
+            if(i < list.Count)
             {
-                CardList[i].SetActive(true);
+                CardList[i].SetBattleModeCard(list[i]);
             }
             else
             {
-                CardList[i].SetActive(false);
+                CardList[i].SetBattleModeCard(null);
             }
         }
     }

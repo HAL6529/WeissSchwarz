@@ -8,6 +8,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] MoveDialog m_MoveDialog;
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] YesOrNoDialog m_YesOrNoDialog;
+    [SerializeField] LevelUpDialog m_LevelUpDialog;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -39,11 +40,17 @@ public class DialogManager : MonoBehaviour
         m_MainDialog.SetBattleMordCard(card);
     }
 
+    public void LevelUpDialog(List<BattleModeCard> myClockList)
+    {
+        m_LevelUpDialog.SetBattleModeCard(myClockList);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
         m_OKDialog.OffDialog();
         m_MainDialog.OffMainDialog();
         m_MoveDialog.OffMainDialog();
+        m_LevelUpDialog.OffDialog();
     }
 }
