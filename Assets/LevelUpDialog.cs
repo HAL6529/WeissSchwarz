@@ -22,6 +22,7 @@ public class LevelUpDialog : MonoBehaviour
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)
     {
+        num = -1;
         this.gameObject.SetActive(true);
         for (int i = 0; i < buttons.Count; i++)
         {

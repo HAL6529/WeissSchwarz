@@ -79,6 +79,23 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateMainCards), temp, isTurnPlayer);
     }
 
+    public void SendUpdateLevelCards(List<BattleModeCard> list, bool isTurnPlayer)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] != null)
+            {
+                temp.Add(new BattleModeCardTemp(list[i]));
+            }
+            else
+            {
+                temp.Add(null);
+            }
+        }
+        RpcToAll(nameof(UpdateEnemyLevelCards), temp, isTurnPlayer);
+    }
+
     [StrixRpc]
     public void SetIsFirstAttacker(bool b)
     {
@@ -158,6 +175,15 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_GameManager.UpdateEnemyClock(list);
+        }
+    }
+
+    [StrixRpc]
+    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.UpdateEnemyLevelCards(list);
         }
     }
 

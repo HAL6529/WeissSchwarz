@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
-        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList.Count);
+        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
         MyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
@@ -259,6 +259,17 @@ public class GameManager : MonoBehaviour
     public void UpdateMyLevelCards()
     {
         GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
+    }
+
+    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
+    {
+        enemyLevelList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyLevelList.Add(b);
+        }
+        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
     }
 
     public void Shuffle()
@@ -511,6 +522,7 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
 
         UpdateMyLevelCards();
+        m_BattleStrix.SendUpdateLevelCards(myLevelList, isFirstAttacker);
     }
 
     private bool LevelUpCheck()
