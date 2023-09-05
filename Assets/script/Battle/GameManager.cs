@@ -354,6 +354,21 @@ public class GameManager : MonoBehaviour
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
     }
 
+    public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
+    {
+        if (m_BattleModeCard != null)
+        {
+            myClockList.Add(m_BattleModeCard);
+            myHandList.Remove(m_BattleModeCard);
+
+            LevelUpCheck();
+
+            Draw();
+            Draw();
+            UpdateMyClockCards();
+        }
+    }
+
     public void onDirectAttack(int num)
     {
         int damage = myFieldList[num].soul + 1;
