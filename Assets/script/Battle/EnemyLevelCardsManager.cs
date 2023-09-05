@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class EnemyLevelCardsManager : MonoBehaviour
 {
-    public List<GameObject> CardList = new List<GameObject>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<LevelCardUtil> CardList = new List<LevelCardUtil>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void updateEnemyLevelCards(int num)
+    public void updateEnemyLevelCards(List<BattleModeCard> list)
     {
         for (int i = 0; i < CardList.Count; i++)
         {
-            if (i < num)
+            if (i < list.Count)
             {
-                CardList[i].SetActive(true);
+                CardList[i].SetBattleModeCard(list[i]);
             }
             else
             {
-                CardList[i].SetActive(false);
+                CardList[i].SetBattleModeCard(null);
             }
         }
     }

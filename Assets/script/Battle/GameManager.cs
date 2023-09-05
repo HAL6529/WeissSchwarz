@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
+    public bool isLevelUpProcess = false;
     public int PlayerLevel = 0;
     private int turn = 1;
 
@@ -63,11 +64,11 @@ public class GameManager : MonoBehaviour
         UpdateMyHandCards();
         UpdateMyClockCards();
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
-        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myStockList.Count);
+        UpdateMyLevelCards();
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
-        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList.Count);
+        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
         MyDeckObject.GetComponent<BattleDeckCardUtil>().ChangeFrontAndBack(false);
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
@@ -114,6 +115,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendClimaxPhase(BattleModeCard m_BattleModeCard)
     {
+        if (!isTurnPlayer || isLevelUpProcess)
+        {
+            return;
+        }
         ClimaxCard = m_BattleModeCard;
         myHandList.Remove(m_BattleModeCard);
         UpdateMyHandCards();
@@ -128,6 +133,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendAttackPhase()
     {
+        if (!isTurnPlayer || isLevelUpProcess)
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Attack);
         m_BattleStrix.RpcToAll("AttackPhase");
     }
@@ -137,7 +146,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendEncorePhase()
     {
-        if (!isTurnPlayer)
+        if (!isTurnPlayer || isLevelUpProcess)
         {
             return;
         }
@@ -256,6 +265,22 @@ public class GameManager : MonoBehaviour
         EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
     }
 
+    public void UpdateMyLevelCards()
+    {
+        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
+    }
+
+    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
+    {
+        enemyLevelList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyLevelList.Add(b);
+        }
+        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
+    }
+
     public void Shuffle()
     {
         for (int i = myDeckList.Count - 1; i > 0; i--)
@@ -336,6 +361,32 @@ public class GameManager : MonoBehaviour
             myDeckList.RemoveAt(0);
         }
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+    }
+
+    public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
+    {
+        if (m_BattleModeCard != null)
+        {
+            myClockList.Add(m_BattleModeCard);
+            myHandList.Remove(m_BattleModeCard);
+
+            if (LevelUpCheck())
+            {
+                m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+                m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+                return;
+            }
+
+            ClockAndTwoDraw2();
+        }
+    }
+
+    public void ClockAndTwoDraw2()
+    {
+        Draw();
+        Draw();
+        UpdateMyClockCards();
+        ClockPhaseEnd();
     }
 
     public void onDirectAttack(int num)
@@ -443,6 +494,12 @@ public class GameManager : MonoBehaviour
             myClockList.Add(temp[n]);
         }
         UpdateMyClockCards();
+
+        if (LevelUpCheck())
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+        }
+
         return;
     }
 
@@ -485,5 +542,35 @@ public class GameManager : MonoBehaviour
     public void ChangePhase(EnumController.Turn turn)
     {
           phase = turn;
+    }
+
+    public void LevelUp(int num)
+    {
+        myLevelList.Add(myClockList[num]);
+        myClockList.RemoveAt(num);
+        for (int i = 0; i < 6; i++)
+        {
+            GraveYardList.Add(myClockList[0]);
+            myClockList.RemoveAt(0);
+        }
+        PlayerLevel++;
+
+        UpdateMyClockCards();
+
+        UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+        UpdateMyLevelCards();
+        m_BattleStrix.SendUpdateLevelCards(myLevelList, isFirstAttacker);
+    }
+
+    private bool LevelUpCheck()
+    {
+        if (myClockList.Count < 7)
+        {
+            return false;
+        }
+        m_DialogManager.LevelUpDialog(myClockList);
+        return true;
     }
 }

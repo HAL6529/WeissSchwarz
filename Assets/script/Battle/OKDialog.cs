@@ -70,15 +70,7 @@ public class OKDialog : MonoBehaviour
                 m_GameManager.MariganEnd();
                 break;
             case EnumController.OKDialogParamater.CLOCK:
-                if (m_BattleModeCard != null)
-                {
-                    m_GameManager.myClockList.Add(m_BattleModeCard);
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
-                    m_GameManager.Draw();
-                    m_GameManager.Draw();
-                    m_GameManager.UpdateMyClockCards();
-                }
-                m_GameManager.ClockPhaseEnd();
+                m_GameManager.ClockAndTwoDraw(m_BattleModeCard);
                 break;
             default:
                 break;

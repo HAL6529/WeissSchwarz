@@ -59,6 +59,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyMainCardsManager.CallNotShowFrontAndSideButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_DialogManager.CloseAllDialog();
+
+        if (m_GameManager.isLevelUpProcess)
+        {
+            return;
+        }
+
         if(m_GameManager.phase == EnumController.Turn.Main)
         {
             if (isMoveButton)
