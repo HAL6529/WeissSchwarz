@@ -71,7 +71,6 @@ public class OKDialog : MonoBehaviour
                 break;
             case EnumController.OKDialogParamater.CLOCK:
                 m_GameManager.ClockAndTwoDraw(m_BattleModeCard);
-                m_GameManager.ClockPhaseEnd();
                 break;
             default:
                 break;

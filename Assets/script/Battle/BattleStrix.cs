@@ -188,6 +188,12 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void UpdateIsLevelUpProcess(bool b)
+    {
+        m_GameManager.isLevelUpProcess = b;
+    }
+
+    [StrixRpc]
     public void StandPhase()
     {
         logText.text = "StandPhase";

@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
+    public bool isLevelUpProcess = false;
     public int PlayerLevel = 0;
     private int turn = 1;
 
@@ -114,6 +115,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendClimaxPhase(BattleModeCard m_BattleModeCard)
     {
+        if (!isTurnPlayer || isLevelUpProcess)
+        {
+            return;
+        }
         ClimaxCard = m_BattleModeCard;
         myHandList.Remove(m_BattleModeCard);
         UpdateMyHandCards();
@@ -128,6 +133,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendAttackPhase()
     {
+        if (!isTurnPlayer || isLevelUpProcess)
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Attack);
         m_BattleStrix.RpcToAll("AttackPhase");
     }
@@ -137,7 +146,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void SendEncorePhase()
     {
-        if (!isTurnPlayer)
+        if (!isTurnPlayer || isLevelUpProcess)
         {
             return;
         }
@@ -361,12 +370,23 @@ public class GameManager : MonoBehaviour
             myClockList.Add(m_BattleModeCard);
             myHandList.Remove(m_BattleModeCard);
 
-            LevelUpCheck();
+            if (LevelUpCheck())
+            {
+                m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+                m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+                return;
+            }
 
-            Draw();
-            Draw();
-            UpdateMyClockCards();
+            ClockAndTwoDraw2();
         }
+    }
+
+    public void ClockAndTwoDraw2()
+    {
+        Draw();
+        Draw();
+        UpdateMyClockCards();
+        ClockPhaseEnd();
     }
 
     public void onDirectAttack(int num)
@@ -475,7 +495,11 @@ public class GameManager : MonoBehaviour
         }
         UpdateMyClockCards();
 
-        LevelUpCheck();
+        if (LevelUpCheck())
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+        }
+
         return;
     }
 

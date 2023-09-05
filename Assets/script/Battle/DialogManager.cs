@@ -45,6 +45,11 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.SetBattleModeCard(myClockList);
     }
 
+    public void SetIsClockAndTwoDrawProcessOfLevelUpDialog()
+    {
+        m_LevelUpDialog.isClockAndTwoDrawProcess = true;
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();

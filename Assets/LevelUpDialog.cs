@@ -7,6 +7,9 @@ public class LevelUpDialog : MonoBehaviour
 {
     [SerializeField] List<LevelUpButtonUtil> buttons = new List<LevelUpButtonUtil>();
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleStrix m_BattleStrix;
+
+    public bool isClockAndTwoDrawProcess = false;
 
     public int num = -1;
 
@@ -17,7 +20,14 @@ public class LevelUpDialog : MonoBehaviour
             return;
         }
         m_GameManager.LevelUp(num);
+        m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
         OffDialog();
+
+        if (isClockAndTwoDrawProcess)
+        {
+            isClockAndTwoDrawProcess = false;
+            m_GameManager.ClockAndTwoDraw2();
+        }
     }
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)

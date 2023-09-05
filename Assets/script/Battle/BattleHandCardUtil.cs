@@ -45,7 +45,12 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
-        // m_DialogManager.CloseAllDialog();
+
+        if (m_GameManager.isLevelUpProcess)
+        {
+            return;
+        }
+
         if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
         {
             MariganClick();
