@@ -30,11 +30,9 @@ public class GameManager : MonoBehaviour
 
     public BattleClimaxCardUtil MyClimaxCardObject = null;
     public BattleMemoryCardUtil MyMemoryObject = null;
-    public GameObject MyGraveYardObject = null;
 
     public GameObject EnemyClimaxCardObject = null;
     public GameObject EnemyMemoryObject = null;
-    public GameObject EnemyGraveYardObject = null;
 
     public bool MariganMode = false;
     public bool isAnimation = false;
@@ -52,6 +50,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] BattleDeckCardUtil myBattleDeckCardUtil;
     [SerializeField] BattleDeckCardUtil enemyBattleDeckCardUtil;
+    [SerializeField] BattleGraveYardUtil myBattleGraveYardUtil;
+    [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -71,10 +71,10 @@ public class GameManager : MonoBehaviour
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
         myBattleDeckCardUtil.ChangeFrontAndBack(false);
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
-        MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
+        UpdateMyGraveYardCards();
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
         EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
-        EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
+        enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
 
     public void StandPhaseStart()
@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateMyGraveYardCards()
     {
-        MyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(GraveYardList);
+        myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
     }
 
     public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)
@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyGraveYardList.Add(b);
         }
-        EnemyGraveYardObject.GetComponent<BattleGraveYardUtil>().updateMyGraveYardCards(enemyGraveYardList);
+        enemyBattleGraveYardUtil.updateMyGraveYardCards(enemyGraveYardList);
     }
 
     public void UpdateMyLevelCards()
@@ -371,7 +371,8 @@ public class GameManager : MonoBehaviour
         {
             myDeckList = GraveYardList;
             GraveYardList = new List<BattleModeCard>();
-            MyGraveYardObject.GetComponent<BattleGraveYardUtil>().setBattleModeCard(null);
+            UpdateMyGraveYardCards();
+            m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
 
             myHandList.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
