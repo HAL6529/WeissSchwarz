@@ -144,7 +144,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void UpdateMainCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
     {
-        logText.text = "UpdateMainCards";
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_GameManager.UpdateEnemyMainCards(list);
@@ -184,6 +183,16 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_GameManager.UpdateEnemyLevelCards(list);
+        }
+    }
+
+    [StrixRpc]
+    public void UpdateEnemyDeckCount(int num, bool isTurnPlayer)
+    {
+        logText.text = "UpdateEnemyDeckCount" + num;
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.UpdateEnemyDeckCount(num);
         }
     }
 

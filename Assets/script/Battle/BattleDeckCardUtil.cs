@@ -8,17 +8,7 @@ public class BattleDeckCardUtil : MonoBehaviour
     public Sprite back;
     public Image image;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] Text DeckCount;
 
     public void ChangeFrontAndBack(bool isFront)
     {
@@ -30,5 +20,10 @@ public class BattleDeckCardUtil : MonoBehaviour
         {
             image.sprite = back;
         }
+    }
+
+    public void SetDeckCount(int num)
+    {
+        DeckCount.text = num.ToString();
     }
 }
