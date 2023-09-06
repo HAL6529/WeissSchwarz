@@ -63,8 +63,6 @@ public class StrixManager : MonoBehaviour
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
         Name = RoomSelectClass.getName();
-        Debug.Log(roomName);
-        Debug.Log(passPhrase);
 
         if (roomName == string.Empty)
         {

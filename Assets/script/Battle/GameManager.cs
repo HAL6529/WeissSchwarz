@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> enemyClockList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyStockList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyLevelList = new List<BattleModeCard>();
+    public List<BattleModeCard> enemyMemoryList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyGraveYardList = new List<BattleModeCard>();
     public List<BattleModeCard> enemyFieldList = new List<BattleModeCard> { null, null, null, null, null };
 
@@ -29,10 +30,8 @@ public class GameManager : MonoBehaviour
     public BattleModeCard ClimaxCard = null;
 
     public BattleClimaxCardUtil MyClimaxCardObject = null;
-    public BattleMemoryCardUtil MyMemoryObject = null;
 
     public GameObject EnemyClimaxCardObject = null;
-    public GameObject EnemyMemoryObject = null;
 
     public bool MariganMode = false;
     public bool isAnimation = false;
@@ -52,6 +51,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleDeckCardUtil enemyBattleDeckCardUtil;
     [SerializeField] BattleGraveYardUtil myBattleGraveYardUtil;
     [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
+    [SerializeField] BattleMemoryCardUtil myBattleMemoryCardUtil;
+    [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -63,15 +64,17 @@ public class GameManager : MonoBehaviour
     {
         UpdateMyHandCards();
         UpdateMyClockCards();
-        GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+        UpdateMyMemoryCards();
+        UpdateMyStockCards();
         UpdateMyLevelCards();
+        UpdateMyGraveYardCards();
+        myBattleDeckCardUtil.ChangeFrontAndBack(false);
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
-        myBattleDeckCardUtil.ChangeFrontAndBack(false);
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
-        UpdateMyGraveYardCards();
+        enemyBattleMemoryCardUtil.setBattleModeCard(null);
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
         EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         enemyBattleGraveYardUtil.setBattleModeCard(null);
@@ -209,6 +212,11 @@ public class GameManager : MonoBehaviour
     public void UpdateMyStockCards()
     {
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+    }
+
+    public void UpdateMyMemoryCards()
+    {
+        myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
     }
 
     public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
