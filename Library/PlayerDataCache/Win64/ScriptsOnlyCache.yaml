@@ -87,8 +87,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -619,6 +621,9 @@ ScriptsOnlyBuild:
     fullTypeName: MainDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMemoryCardUtil
+    methodName: onClickShowMyMemoryButton
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -739,6 +744,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMemoryCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -753,6 +761,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMemoryCardUtil
+    methodName: onClickShowEnemyMemoryButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClick
@@ -807,6 +818,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMemoryCardUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onDirectAttack
@@ -1536,7 +1550,7 @@ ScriptsOnlyBuild:
     className: TMP_TextSelector_A
   - hash:
       serializedVersion: 2
-      Hash: cd150fb2ab363acf03f4fdabdc1de83e
+      Hash: be5fb30ef1a6ac2d6bc846699b2f3637
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleMemoryCardUtil
@@ -1590,7 +1604,7 @@ ScriptsOnlyBuild:
     className: CardTest
   - hash:
       serializedVersion: 2
-      Hash: d3a54aadadbdfe4ed80da63a1c5e26e7
+      Hash: 0ad881c19d3e4d9030da0d56cc2fe437
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleDeckCardUtil
@@ -1920,7 +1934,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 016c6f52f5dce7c1d0eb53d74c7990b7
+      Hash: cf549efc66164d7ecdd69aac958ab644
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -2352,7 +2366,7 @@ ScriptsOnlyBuild:
     className: Phase
   - hash:
       serializedVersion: 2
-      Hash: 2e801897a96df1d5faad3c51f9aba310
+      Hash: ac54619286fac1825ab1b2c0c7d216db
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleGraveYardUtil
