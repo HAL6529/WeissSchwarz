@@ -609,4 +609,24 @@ public class GameManager : MonoBehaviour
         m_DialogManager.LevelUpDialog(myClockList);
         return true;
     }
+
+    public bool ColorCheck(EnumController.CardColor color)
+    {
+        for(int i = 0; i < myLevelList.Count; i++)
+        {
+            if (myLevelList[i].color == color)
+            {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < myClockList.Count; i++)
+        {
+            if (myClockList[i].color == color)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

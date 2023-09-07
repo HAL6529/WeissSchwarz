@@ -126,6 +126,18 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
+        //色条件がクリアできているかチェック
+        if(m_BattleModeCard.level > 0 && !m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type == EnumController.Type.CHARACTER)
+        {
+            return;
+        }
+        if(!m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type != EnumController.Type.CHARACTER)
+        {
+            return;
+        }
+
+
+
         if (temp)
         {
             isMainSelected = false;
@@ -153,7 +165,6 @@ public class BattleHandCardUtil : MonoBehaviour
                 return;
             default: return;
         }
-
     }
 
     // rightCardがクリックされたとき
