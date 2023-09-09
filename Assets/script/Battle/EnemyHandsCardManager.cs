@@ -8,18 +8,6 @@ public class EnemyHandsCardManager : MonoBehaviour
     public List<GameObject> CardList = new List<GameObject>();
     private List<BattleModeCard> handList = new List<BattleModeCard>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void updateEnemyHandCards(List<BattleModeCard> list)
     {
         handList = list;

@@ -71,7 +71,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        if(m_GameManager.phase == EnumController.Turn.Main)
+        if(m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
         {
             if (isMoveButton)
             {
@@ -83,7 +83,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 isMoveButton = true;
             }
         }
-        else if(m_GameManager.phase == EnumController.Turn.Attack)
+        else if(m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
             if(PlaceNum > 2 || m_BattleModeCard == null || isRest)
             {

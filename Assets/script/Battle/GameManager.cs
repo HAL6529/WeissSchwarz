@@ -124,7 +124,10 @@ public class GameManager : MonoBehaviour
         }
         ClimaxCard = m_BattleModeCard;
         myHandList.Remove(m_BattleModeCard);
+
         UpdateMyHandCards();
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+
         MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
         BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Climax);
@@ -217,6 +220,17 @@ public class GameManager : MonoBehaviour
     public void UpdateMyMemoryCards()
     {
         myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
+    }
+
+    public void UpdateEnemyHandCards(List<BattleModeCardTemp> list)
+    {
+        enemyHandList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyHandList.Add(b);
+        }
+        GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
     }
 
     public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
@@ -321,6 +335,7 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
 
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
     }
 
     public void MariganStart()
@@ -348,6 +363,7 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
 
         UpdateMyHandCards();
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
 
         UpdateMyGraveYardCards();
         m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
@@ -389,6 +405,7 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
 
         UpdateMyHandCards();
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
     }
 
     public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
