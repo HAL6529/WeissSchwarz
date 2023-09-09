@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BattleEnemyMainCardUtil : MonoBehaviour
 {
     private BattleModeCard m_BattleModeCard = null;
+    [SerializeField] GameObject Power;
+    [SerializeField] Text PowerText;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
@@ -29,10 +31,14 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         {
             image.sprite = null;
             image.color = new Color(1, 1, 1, 0 / 255);
+            Power.SetActive(false);
             return;
         }
         image.sprite = m_BattleModeCard.sprite;
         image.color = new Color(1, 1, 1, 255 / 255);
+
+        Power.SetActive(true);
+        PowerText.text = m_BattleModeCard.power.ToString();
     }
 
     public void onClick()

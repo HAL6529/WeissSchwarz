@@ -13,10 +13,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameObject FrontAttackButton;
     [SerializeField] GameObject SideAttackButton;
     [SerializeField] GameObject DirectAttackButton;
+    [SerializeField] GameObject Power;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] Text PowerText;
     [SerializeField] int PlaceNum;
 
     private bool isRest = false;
@@ -39,10 +41,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             image.sprite = null;
             image.color = new Color(1, 1, 1, 0 / 255);
+            Power.SetActive(false);
             return;
         }
         image.sprite = m_BattleModeCard.sprite;
         image.color = new Color(1, 1, 1, 255 / 255);
+
+        Power.SetActive(true);
+        PowerText.text = m_BattleModeCard.power.ToString();
     }
 
     public void onClick()
