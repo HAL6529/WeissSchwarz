@@ -9,6 +9,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] OKDialog m_OKDialog;
     [SerializeField] YesOrNoDialog m_YesOrNoDialog;
     [SerializeField] LevelUpDialog m_LevelUpDialog;
+    [SerializeField] PhaseDialog m_PhaseDialog;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -50,6 +51,11 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.isClockAndTwoDrawProcess = true;
     }
 
+    public void PhaseDialog()
+    {
+        m_PhaseDialog.Open();
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -57,5 +63,6 @@ public class DialogManager : MonoBehaviour
         m_MainDialog.OffMainDialog();
         m_MoveDialog.OffMainDialog();
         m_LevelUpDialog.OffDialog();
+        m_PhaseDialog.OffDialog();
     }
 }
