@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// エンドフェイズに入るときに呼び出す
+    /// アンコールフェイズに入るときに呼び出す
     /// </summary>
     public void SendEncorePhase()
     {
@@ -446,6 +446,7 @@ public class GameManager : MonoBehaviour
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
         m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
+        PowerCheck(num);
     }
 
     public void onSideAttack(int num)
@@ -508,6 +509,36 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
 
         return num;
+    }
+
+    private void PowerCheck(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                if (myFieldList[0].power > enemyFieldList[2].power)
+                {
+                    break;
+                }
+                GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                break;
+            case 1:
+                if (myFieldList[1].power > enemyFieldList[1].power)
+                {
+                    break;
+                }
+                GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                break;
+            case 2:
+                if (myFieldList[2].power > enemyFieldList[0].power)
+                {
+                    break;
+                }
+                GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                break;
+            default:
+                break;
+        }
     }
 
     public void Damage(int num)

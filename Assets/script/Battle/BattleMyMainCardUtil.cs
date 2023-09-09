@@ -22,6 +22,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] int PlaceNum;
 
     private bool isRest = false;
+    private bool isReverse = false;
     private bool isMoveButton = false;
     // Start is called before the first frame update
     void Start()
@@ -85,7 +86,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         else if(m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
-            if(PlaceNum > 2 || m_BattleModeCard == null || isRest)
+            if(PlaceNum > 2 || m_BattleModeCard == null || isRest || isReverse)
             {
                 return;
             }
@@ -108,6 +109,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         m_BattleStrix.RpcToAll("CallEnemyStand", PlaceNum, m_GameManager.isTurnPlayer);
         isRest = false;
+        isReverse = false;
     }
 
     public void NotShowMoveButton()
@@ -157,5 +159,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_GameManager.onSideAttack(PlaceNum);
+    }
+
+    public void onReverse()
+    {
+        isRest = false;
+        isReverse = true;
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
 }

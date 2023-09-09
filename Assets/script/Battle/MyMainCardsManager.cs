@@ -16,6 +16,11 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    public void CallOnReverse(int num)
+    {
+        CardList[num].onReverse();
+    }
+
     public void updateMyFieldCards(List<BattleModeCard> list)
     {
         myFieldList = list;
