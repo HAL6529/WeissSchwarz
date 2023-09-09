@@ -48,13 +48,20 @@ public class MainDialog : MonoBehaviour
         }
         if (m_BattleModeCard != null)
         {
+            if(m_GameManager.myFieldList[place] != null)
+            {
+                m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[place]);
+                m_GameManager.UpdateMyGraveYardCards();
+                m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
+            }
             m_GameManager.myFieldList[place] = m_BattleModeCard;
+
             m_GameManager.myHandList.Remove(m_BattleModeCard);
             m_GameManager.UpdateMyHandCards();
+            m_BattleStrix.SendUpdateEnemyHandCards(m_GameManager.myHandList, m_GameManager.isTurnPlayer);
 
             m_GameManager.UpdateMyMainCards();
             m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_GameManager.isTurnPlayer);
-
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
