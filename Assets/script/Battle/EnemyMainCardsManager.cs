@@ -26,4 +26,9 @@ public class EnemyMainCardsManager : MonoBehaviour
     {
         CardList[num].Stand();
     }
+
+    public void CallReverse(int num)
+    {
+        CardList[num].Reverse();
+    }
 }

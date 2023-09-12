@@ -446,7 +446,7 @@ public class GameManager : MonoBehaviour
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
         m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
-        PowerCheck(num);
+        PowerCheck(num);            
     }
 
     public void onSideAttack(int num)
@@ -518,26 +518,68 @@ public class GameManager : MonoBehaviour
             case 0:
                 if (myFieldList[0].power > enemyFieldList[2].power)
                 {
-                    break;
+                    GetComponent<EnemyMainCardsManager>().CallReverse(2);
+                    m_BattleStrix.RpcToAll("CallMyReverse", 2, isTurnPlayer);
+                    return;
+                } 
+                else if (myFieldList[0].power == enemyFieldList[2].power)
+                {
+                    GetComponent<EnemyMainCardsManager>().CallReverse(2);
+                    m_BattleStrix.RpcToAll("CallMyReverse", 2, isTurnPlayer);
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
                 }
-                GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                break;
+                else
+                {
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
+                }
             case 1:
                 if (myFieldList[1].power > enemyFieldList[1].power)
                 {
-                    break;
+                    GetComponent<EnemyMainCardsManager>().CallReverse(1);
+                    m_BattleStrix.RpcToAll("CallMyReverse", 1, isTurnPlayer);
+                    return;
                 }
-                GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                break;
+                else if (myFieldList[1].power == enemyFieldList[1].power)
+                {
+                    GetComponent<EnemyMainCardsManager>().CallReverse(1);
+                    m_BattleStrix.RpcToAll("CallMyReverse", 1, isTurnPlayer);
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
+                }
+                else
+                {
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
+                }
             case 2:
                 if (myFieldList[2].power > enemyFieldList[0].power)
                 {
-                    break;
+                    GetComponent<EnemyMainCardsManager>().CallReverse(0);
+                    m_BattleStrix.RpcToAll("CallMyRest", 0, isTurnPlayer);
+                    return;
                 }
-                GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                break;
+                else if (myFieldList[2].power == enemyFieldList[0].power)
+                {
+                    GetComponent<EnemyMainCardsManager>().CallReverse(0);
+                    m_BattleStrix.RpcToAll("CallMyRest", 0, isTurnPlayer);
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
+                }
+                else
+                {
+                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
+                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+                    return;
+                }
             default:
-                break;
+                return;
         }
     }
 
@@ -591,6 +633,7 @@ public class GameManager : MonoBehaviour
     {
         if (m_StrixManager.isOwner)
         {
+            GameStartBtn.SetActive(false);
             if (CoinToss())
             {
                 isFirstAttacker = true;
