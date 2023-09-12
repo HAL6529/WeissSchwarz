@@ -18,6 +18,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] StrixManager m_StrixManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
 
@@ -311,6 +312,24 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_EnemyMainCardsManager.CallRest(num);
+        }
+    }
+
+    [StrixRpc]
+    public void CallMyReverse(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.CallOnReverse(num);
+        }
+    }
+
+    [StrixRpc]
+    public void CallEnemyReverse(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallReverse(num);
         }
     }
 

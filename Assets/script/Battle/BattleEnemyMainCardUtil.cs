@@ -13,6 +13,7 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     [SerializeField] BattleModeGuide m_BattleModeGuide;
 
     private bool isRest = false;
+    private bool isReverse = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +51,20 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 270.0f);
         isRest = true;
+        isReverse = false;
     }
 
     public void Stand()
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
         isRest = false;
+        isReverse = false;
+    }
+
+    public void Reverse()
+    {
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        isRest = false;
+        isReverse = true;
     }
 }
