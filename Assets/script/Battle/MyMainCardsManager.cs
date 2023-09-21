@@ -53,4 +53,9 @@ public class MyMainCardsManager : MonoBehaviour
             CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowFrontAndSideButton();
         }
     }
+
+    public bool GetIsReverse(int num)
+    {
+        return CardList[num].GetIsReverse();
+    }
 }

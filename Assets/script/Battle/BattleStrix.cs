@@ -229,16 +229,9 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void StandPhase()
-    {
-        logText.text = "StandPhase";
-        m_GameManager.StandPhaseStart();
-    }
-
-    [StrixRpc]
     public void DrawPhase()
     {
-        logText.text = "DrawPhase";
+        //logText.text = "DrawPhase";
         if (m_GameManager.isTurnPlayer)
         {
             m_GameManager.DrawPhaseStart();
@@ -248,11 +241,12 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void ClockPhase()
     {
-        logText.text = "ClockPhase";
+        //logText.text = "ClockPhase";
         if (m_GameManager.isTurnPlayer)
         {
             m_GameManager.ClockPhaseStart();
         }
+
     }
 
     [StrixRpc]
@@ -275,7 +269,8 @@ public class BattleStrix : StrixBehaviour
     public void EncorePhase()
     {
         logText.text = "EncorePhase";
-        m_GameManager.EncoreStart();
+        m_GameManager.EncoreStart
+            ();
     }
 
     [StrixRpc]
@@ -349,4 +344,9 @@ public class BattleStrix : StrixBehaviour
         m_GameManager.ChangePhase(turn);
     }
 
+    [StrixRpc]
+    public void TurnChange()
+    {
+        m_GameManager.TurnChange();
+    }
 }

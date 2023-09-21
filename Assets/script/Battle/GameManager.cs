@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
     public int PlayerLevel = 0;
-    private int turn = 1;
+    public int turn = 1;
 
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
@@ -82,12 +82,13 @@ public class GameManager : MonoBehaviour
 
     public void StandPhaseStart()
     {
-        if (isTurnPlayer)
+        if (!isTurnPlayer)
         {
-            GetComponent<MyMainCardsManager>().CallStand();
-            m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
-            m_BattleStrix.RpcToAll("DrawPhase");
+            return;
         }
+        GetComponent<MyMainCardsManager>().CallStand();
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
+        m_BattleStrix.RpcToAll("DrawPhase");
     }
 
     public void DrawPhaseStart()
@@ -97,6 +98,11 @@ public class GameManager : MonoBehaviour
 
     public void DrawPhaseEnd()
     {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
+        Debug.Log("DrawPhaseEnd");
         Draw();
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Clock);
         m_BattleStrix.RpcToAll("ClockPhase");
@@ -104,11 +110,19 @@ public class GameManager : MonoBehaviour
 
     public void ClockPhaseStart()
     {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
         m_DialogManager.OKDialog(EnumController.OKDialogParamater.CLOCK);
     }
 
     public void ClockPhaseEnd()
     {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Main);
         m_BattleStrix.RpcToAll("MainPhase");
     }
@@ -158,6 +172,7 @@ public class GameManager : MonoBehaviour
         }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Encore);
         m_BattleStrix.RpcToAll("EncorePhase");
+        return;
     }
 
     public void ClimaxStart(BattleModeCardTemp m_BattleModeCardTemp)
@@ -179,47 +194,43 @@ public class GameManager : MonoBehaviour
 
     public void EncoreStart()
     {
-        TurnChange();
-    }
-
-    public void TurnChange()
-    {
-        turn++;
-        if (isTurnPlayer)
+        Debug.Log("EncoreStart");
+        if (!isTurnPlayer)
         {
-            isTurnPlayer = false;
+            return;
         }
-        else
-        {
-            isTurnPlayer = true;
-        }
-        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Stand);
-        m_BattleStrix.RpcToAll("StandPhase");
+        m_DialogManager.EncoreDialog(myFieldList);
+        return;
     }
 
     public void UpdateMyDeckCount()
     {
         myBattleDeckCardUtil.SetDeckCount(myDeckList.Count);
+        return;
     }
 
     public void UpdateEnemyDeckCount(int num)
     {
         enemyBattleDeckCardUtil.SetDeckCount(num);
+        return;
     }
 
     public void UpdateMyHandCards()
     {
         GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        return;
     }
 
     public void UpdateMyStockCards()
     {
         GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+        return;
     }
 
     public void UpdateMyMemoryCards()
     {
         myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
+        return;
     }
 
     public void UpdateEnemyHandCards(List<BattleModeCardTemp> list)
@@ -231,6 +242,7 @@ public class GameManager : MonoBehaviour
             enemyHandList.Add(b);
         }
         GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
+        return;
     }
 
     public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
@@ -242,12 +254,14 @@ public class GameManager : MonoBehaviour
             enemyStockList.Add(b);
         }
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(list.Count);
+        return;
     }
 
     public void UpdateMyClockCards()
     {
         GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
         m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
+        return;
     }
 
     public void UpdateEnemyClock(List<BattleModeCardTemp> list)
@@ -259,11 +273,13 @@ public class GameManager : MonoBehaviour
             enemyClockList.Add(b);
         }
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+        return;
     }
 
     public void UpdateMyMainCards()
     {
-        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);   
+        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
+        return;
     }
 
     public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
@@ -387,7 +403,6 @@ public class GameManager : MonoBehaviour
     {
         if (myDeckList.Count > 0)
         {
-            m_DummyDeckAnimation.AnimationStart();
             myHandList.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
         }
@@ -432,6 +447,7 @@ public class GameManager : MonoBehaviour
         Draw();
         UpdateMyClockCards();
         ClockPhaseEnd();
+        return;
     }
 
     public void onDirectAttack(int num)
@@ -719,5 +735,16 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void TurnChange()
+    {
+        SetIsTurnPlayer(!isTurnPlayer);
+        turn++;
+    }
+
+    private void SetIsTurnPlayer(bool b)
+    {
+        isTurnPlayer = b;
     }
 }
