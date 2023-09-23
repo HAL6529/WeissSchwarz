@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
+    public bool isMyReady = false;
+    public bool isEnemyReady = false;
     public int PlayerLevel = 0;
     public int turn = 1;
 
@@ -201,132 +203,6 @@ public class GameManager : MonoBehaviour
         }
         m_DialogManager.EncoreDialog(myFieldList);
         return;
-    }
-
-    public void UpdateMyDeckCount()
-    {
-        myBattleDeckCardUtil.SetDeckCount(myDeckList.Count);
-        return;
-    }
-
-    public void UpdateEnemyDeckCount(int num)
-    {
-        enemyBattleDeckCardUtil.SetDeckCount(num);
-        return;
-    }
-
-    public void UpdateMyHandCards()
-    {
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
-        return;
-    }
-
-    public void UpdateMyStockCards()
-    {
-        GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
-        return;
-    }
-
-    public void UpdateMyMemoryCards()
-    {
-        myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
-        return;
-    }
-
-    public void UpdateEnemyHandCards(List<BattleModeCardTemp> list)
-    {
-        enemyHandList = new List<BattleModeCard>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyHandList.Add(b);
-        }
-        GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
-        return;
-    }
-
-    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
-    {
-        enemyStockList = new List<BattleModeCard>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyStockList.Add(b);
-        }
-        GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(list.Count);
-        return;
-    }
-
-    public void UpdateMyClockCards()
-    {
-        GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
-        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
-        return;
-    }
-
-    public void UpdateEnemyClock(List<BattleModeCardTemp> list)
-    {
-        enemyClockList = new List<BattleModeCard>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyClockList.Add(b);
-        }
-        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
-        return;
-    }
-
-    public void UpdateMyMainCards()
-    {
-        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
-        return;
-    }
-
-    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i] == null)
-            {
-                enemyFieldList[i] = null;
-                continue;
-            }
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyFieldList[i] = b;
-        }
-        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
-    }
-
-    public void UpdateMyGraveYardCards()
-    {
-        myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
-    }
-
-    public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)
-    {
-        enemyGraveYardList = new List<BattleModeCard>();
-        for(int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyGraveYardList.Add(b);
-        }
-        enemyBattleGraveYardUtil.updateMyGraveYardCards(enemyGraveYardList);
-    }
-
-    public void UpdateMyLevelCards()
-    {
-        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
-    }
-
-    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
-    {
-        enemyLevelList = new List<BattleModeCard>();
-        for (int i = 0; i < list.Count; i++)
-        {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
-            enemyLevelList.Add(b);
-        }
-        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
     }
 
     public void Shuffle()
@@ -737,14 +613,129 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    public void TurnChange()
+    public void UpdateMyDeckCount()
     {
-        SetIsTurnPlayer(!isTurnPlayer);
-        turn++;
+        myBattleDeckCardUtil.SetDeckCount(myDeckList.Count);
+        return;
     }
 
-    private void SetIsTurnPlayer(bool b)
+    public void UpdateEnemyDeckCount(int num)
     {
-        isTurnPlayer = b;
+        enemyBattleDeckCardUtil.SetDeckCount(num);
+        return;
+    }
+
+    public void UpdateMyHandCards()
+    {
+        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        return;
+    }
+
+    public void UpdateMyStockCards()
+    {
+        GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+        return;
+    }
+
+    public void UpdateMyMemoryCards()
+    {
+        myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
+        return;
+    }
+
+    public void UpdateEnemyHandCards(List<BattleModeCardTemp> list)
+    {
+        enemyHandList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyHandList.Add(b);
+        }
+        GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
+        return;
+    }
+
+    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list)
+    {
+        enemyStockList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyStockList.Add(b);
+        }
+        GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(list.Count);
+        return;
+    }
+
+    public void UpdateMyClockCards()
+    {
+        GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
+        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
+        return;
+    }
+
+    public void UpdateEnemyClock(List<BattleModeCardTemp> list)
+    {
+        enemyClockList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyClockList.Add(b);
+        }
+        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+        return;
+    }
+
+    public void UpdateMyMainCards()
+    {
+        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
+        return;
+    }
+
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == null)
+            {
+                enemyFieldList[i] = null;
+                continue;
+            }
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyFieldList[i] = b;
+        }
+        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
+    }
+
+    public void UpdateMyGraveYardCards()
+    {
+        myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
+    }
+
+    public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)
+    {
+        enemyGraveYardList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyGraveYardList.Add(b);
+        }
+        enemyBattleGraveYardUtil.updateMyGraveYardCards(enemyGraveYardList);
+    }
+
+    public void UpdateMyLevelCards()
+    {
+        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
+    }
+
+    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
+    {
+        enemyLevelList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyLevelList.Add(b);
+        }
+        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
     }
 }
