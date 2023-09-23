@@ -229,13 +229,6 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void StandPhase()
-    {
-        logText.text = "StandPhase";
-        m_GameManager.StandPhaseStart();
-    }
-
-    [StrixRpc]
     public void DrawPhase()
     {
         logText.text = "DrawPhase";
@@ -356,9 +349,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void TurnChange()
     {
-        m_GameManager.turn++;
-        m_GameManager.isTurnPlayer = !m_GameManager.isTurnPlayer;
-        m_GameManager.phase = EnumController.Turn.Stand;
-        m_GameManager.StandPhaseStart();
+        m_GameManager.TurnChange();
     }
 }
