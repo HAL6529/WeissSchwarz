@@ -327,6 +327,12 @@ public class GameManager : MonoBehaviour
             }
 
             ClockAndTwoDraw2();
+            return;
+        }
+        else
+        {
+            ClockPhaseEnd();
+            return;
         }
     }
 
