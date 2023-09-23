@@ -205,6 +205,19 @@ public class GameManager : MonoBehaviour
         return;
     }
 
+    public void TurnChange()
+    {
+        Invoke("TurnChange2", 1.0f);
+    }
+
+    private void TurnChange2()
+    {
+        isTurnPlayer = !isTurnPlayer;
+        turn++;
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Stand);
+        StandPhaseStart();
+    }
+
     public void Shuffle()
     {
         for (int i = myDeckList.Count - 1; i > 0; i--)

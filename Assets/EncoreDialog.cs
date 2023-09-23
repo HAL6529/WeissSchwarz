@@ -41,6 +41,7 @@ public class EncoreDialog : MonoBehaviour
         Debug.Log(count);
         if(count == 0)
         {
+            m_BattleStrix.RpcToAll("TurnChange");
             return;
         }
         Open();
