@@ -10,6 +10,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] YesOrNoDialog m_YesOrNoDialog;
     [SerializeField] LevelUpDialog m_LevelUpDialog;
     [SerializeField] PhaseDialog m_PhaseDialog;
+    [SerializeField] EncoreDialog m_EncoreDialog;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -56,6 +57,12 @@ public class DialogManager : MonoBehaviour
         m_PhaseDialog.Open();
     }
 
+    public void EncoreDialog(List<BattleModeCard> list)
+    {
+        m_EncoreDialog.SetBattleModeCard(list);
+        return;
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -64,5 +71,6 @@ public class DialogManager : MonoBehaviour
         m_MoveDialog.OffMainDialog();
         m_LevelUpDialog.OffDialog();
         m_PhaseDialog.OffDialog();
+        m_EncoreDialog.OffDialog();
     }
 }

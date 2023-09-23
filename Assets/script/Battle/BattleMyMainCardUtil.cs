@@ -167,4 +167,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
         isReverse = true;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
+
+    public bool GetIsReverse()
+    {
+        return isReverse;
+    }
 }

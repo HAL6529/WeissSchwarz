@@ -253,6 +253,7 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.ClockPhaseStart();
         }
+
     }
 
     [StrixRpc]
@@ -275,7 +276,10 @@ public class BattleStrix : StrixBehaviour
     public void EncorePhase()
     {
         logText.text = "EncorePhase";
-        m_GameManager.EncoreStart();
+        if (m_GameManager.isTurnPlayer)
+        {
+            m_GameManager.EncoreStart();
+        }
     }
 
     [StrixRpc]
@@ -349,4 +353,12 @@ public class BattleStrix : StrixBehaviour
         m_GameManager.ChangePhase(turn);
     }
 
+    [StrixRpc]
+    public void TurnChange()
+    {
+        m_GameManager.turn++;
+        m_GameManager.isTurnPlayer = !m_GameManager.isTurnPlayer;
+        m_GameManager.phase = EnumController.Turn.Stand;
+        m_GameManager.StandPhaseStart();
+    }
 }
