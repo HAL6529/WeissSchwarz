@@ -16,6 +16,11 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    public void CallOnStand(int num)
+    {
+        CardList[num].Stand();
+    }
+
     public void CallOnReverse(int num)
     {
         CardList[num].onReverse();
