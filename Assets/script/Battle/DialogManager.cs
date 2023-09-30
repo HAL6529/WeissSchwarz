@@ -11,6 +11,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] LevelUpDialog m_LevelUpDialog;
     [SerializeField] PhaseDialog m_PhaseDialog;
     [SerializeField] EncoreDialog m_EncoreDialog;
+    [SerializeField] GameManager m_GameManager;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -59,6 +60,10 @@ public class DialogManager : MonoBehaviour
 
     public void PhaseDialog()
     {
+        if (m_GameManager.isLevelUpProcess)
+        {
+            return;
+        }
         m_PhaseDialog.Open();
     }
 

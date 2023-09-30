@@ -84,7 +84,8 @@ public class GameManager : MonoBehaviour
 
     public void StandPhaseStart()
     {
-        if (!isTurnPlayer)
+        phase = EnumController.Turn.Stand;
+        if (!isTurnPlayer || phase == EnumController.Turn.Clock)
         {
             return;
         }
@@ -219,7 +220,6 @@ public class GameManager : MonoBehaviour
     {
         isTurnPlayer = !isTurnPlayer;
         turn++;
-        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Stand);
         StandPhaseStart();
     }
 
