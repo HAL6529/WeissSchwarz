@@ -360,4 +360,13 @@ public class BattleStrix : StrixBehaviour
     {
         m_GameManager.TurnChange();
     }
+
+    [StrixRpc]
+    public void SetEnemyWait(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.enemyWait = false;
+        }
+    }
 }
