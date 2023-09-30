@@ -242,6 +242,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Refresh()
+    {
+        for(int i = 0; i < GraveYardList.Count; i++)
+        {
+            myDeckList.Add(GraveYardList[i]);
+        }
+        GraveYardList = new List<BattleModeCard>();
+        Shuffle();
+        myClockList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+
+        UpdateMyClockCards();
+
+        UpdateMyDeckCount();
+        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+
+        UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+        if (LevelUpCheck())
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+            return;
+        }
+    }
+
     public void FirstDraw()
     {
         for (int i = 0; i < 5; i++)
@@ -310,13 +337,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            myDeckList = GraveYardList;
-            GraveYardList = new List<BattleModeCard>();
-            UpdateMyGraveYardCards();
-            m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
-
             myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
+            Refresh();
         }
         UpdateMyDeckCount();
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
@@ -432,6 +454,11 @@ public class GameManager : MonoBehaviour
         UpdateMyStockCards();
         m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
 
+        if(myDeckList.Count == 0)
+        {
+            Refresh();
+        }
+
         return num;
     }
 
@@ -537,6 +564,10 @@ public class GameManager : MonoBehaviour
 
             UpdateMyDeckCount();
             m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+            if (myDeckList.Count == 0)
+            {
+                Refresh();
+            }
         }
 
         for (int n = 0; n < temp.Count; n++)
