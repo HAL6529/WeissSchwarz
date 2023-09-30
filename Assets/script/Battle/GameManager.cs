@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public bool isLevelUpProcess = false;
     public bool isMyReady = false;
     public bool isEnemyReady = false;
+    public bool enemyWait = false;
     public int PlayerLevel = 0;
     public int turn = 1;
 
@@ -84,10 +85,17 @@ public class GameManager : MonoBehaviour
 
     public void StandPhaseStart()
     {
-        if (!isTurnPlayer)
+        phase = EnumController.Turn.Stand;
+        m_BattleStrix.RpcToAll("SetEnemyWait", isFirstAttacker);
+        if (!isTurnPlayer || phase == EnumController.Turn.Clock)
         {
             return;
         }
+        while (enemyWait)
+        {
+            break;
+        }
+
         GetComponent<MyMainCardsManager>().CallStand();
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
         m_BattleStrix.RpcToAll("DrawPhase");
@@ -212,6 +220,7 @@ public class GameManager : MonoBehaviour
 
     public void TurnChange()
     {
+        enemyWait = true;
         Invoke("TurnChange2", 1.0f);
     }
 
@@ -219,7 +228,6 @@ public class GameManager : MonoBehaviour
     {
         isTurnPlayer = !isTurnPlayer;
         turn++;
-        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Stand);
         StandPhaseStart();
     }
 
