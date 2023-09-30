@@ -43,6 +43,11 @@ public class EncoreDialog : MonoBehaviour
         Debug.Log(count);
         if(count == 0)
         {
+            if (m_GameManager.isTurnPlayer)
+            {
+                m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isTurnPlayer);
+                return;
+            }
             m_BattleStrix.RpcToAll("TurnChange");
             return;
         }
