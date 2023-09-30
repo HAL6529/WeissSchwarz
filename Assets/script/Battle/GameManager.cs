@@ -205,6 +205,11 @@ public class GameManager : MonoBehaviour
         return;
     }
 
+    public void SendEncoreDialog()
+    {
+        m_DialogManager.EncoreDialog(myFieldList);
+    }
+
     public void TurnChange()
     {
         Invoke("TurnChange2", 1.0f);

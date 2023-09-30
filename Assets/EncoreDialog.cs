@@ -11,6 +11,8 @@ public class EncoreDialog : MonoBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameObject OKButton;
+    [SerializeField] Sprite Background;
+    [SerializeField] DialogManager m_DialogManager;
 
     private void Open()
     {
@@ -24,7 +26,7 @@ public class EncoreDialog : MonoBehaviour
         {
             if (list[i] == null)
             {
-                images[i].sprite = null;
+                images[i].sprite = Background;
                 buttons[i].interactable = false;
                 continue;
             }
@@ -41,6 +43,11 @@ public class EncoreDialog : MonoBehaviour
         Debug.Log(count);
         if(count == 0)
         {
+            if (m_GameManager.isTurnPlayer)
+            {
+                m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isTurnPlayer);
+                return;
+            }
             m_BattleStrix.RpcToAll("TurnChange");
             return;
         }
@@ -50,5 +57,30 @@ public class EncoreDialog : MonoBehaviour
     public void OffDialog()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void onClick(int num)
+    {
+        BattleModeCard temp = m_GameManager.myFieldList[num];
+        m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
+        m_GameManager.myFieldList[num] = null;
+
+
+        m_GameManager.UpdateMyMainCards();
+        m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_GameManager.isTurnPlayer);
+
+        m_GameManager.UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
+        this.gameObject.SetActive(false);
+
+        if(m_GameManager.myStockList.Count > 2)
+        {
+            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM, temp, num);
+        }
+        else
+        {
+            m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+        }
+        return;
     }
 }

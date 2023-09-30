@@ -347,6 +347,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void EncoreDialog(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.SendEncoreDialog();
+        }
+    }
+
+    [StrixRpc]
     public void TurnChange()
     {
         m_GameManager.TurnChange();

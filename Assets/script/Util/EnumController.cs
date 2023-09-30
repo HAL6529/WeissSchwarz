@@ -119,6 +119,7 @@ namespace EnumController
         VOID,
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
+        ENCORE_CONFIRM,
     }
 }
 
