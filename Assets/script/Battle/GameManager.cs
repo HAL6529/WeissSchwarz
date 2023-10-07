@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
     [SerializeField] BattleMemoryCardUtil myBattleMemoryCardUtil;
     [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
+    [SerializeField] Animator trrigerCheckAnimator;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
