@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
     [SerializeField] BattleMemoryCardUtil myBattleMemoryCardUtil;
     [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
-    [SerializeField] Animator trrigerCheckAnimator;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -423,7 +422,7 @@ public class GameManager : MonoBehaviour
     private int TrrigerCheck()
     {
         int num = 0;
-        switch(myDeckList[0].trigger)
+        switch (myDeckList[0].trigger)
         {
             case EnumController.Trriger.DOUBLE_SOUL:
                 num = 2;

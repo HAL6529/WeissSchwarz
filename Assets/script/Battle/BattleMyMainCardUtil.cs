@@ -20,6 +20,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] Text PowerText;
     [SerializeField] int PlaceNum;
+    [SerializeField] TriggerCardAnimation m_TriggerCardAnimation;
 
     private bool isRest = false;
     private bool isReverse = false;
@@ -140,7 +141,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         DirectAttackButton.SetActive(false);
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-        m_GameManager.onDirectAttack(PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
     }
 
     public void onFrontAttack()
@@ -149,7 +150,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         NotShowFrontAndSideButton();
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-        m_GameManager.onFrontAttack(PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
     }
 
     public void onSideAttack()
@@ -158,7 +159,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         NotShowFrontAndSideButton();
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-        m_GameManager.onSideAttack(PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
     }
 
     public void onReverse()
