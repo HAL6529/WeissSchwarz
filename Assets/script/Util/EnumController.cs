@@ -121,5 +121,13 @@ namespace EnumController
         CLIMAX_PHASE_CONFIRM,
         ENCORE_CONFIRM,
     }
+
+    public enum Attack
+    {
+        VOID,
+        DIRECT_ATTACK,
+        FRONT_ATTACK,
+        SIDE_ATTACK,
+    }
 }
 
