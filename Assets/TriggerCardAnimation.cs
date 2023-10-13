@@ -46,7 +46,7 @@ public class TriggerCardAnimation : MonoBehaviour
                 m_GameManager.onFrontAttack(PlaceNum);
                 return;
             case EnumController.Attack.SIDE_ATTACK:
-                m_GameManager.onFrontAttack(PlaceNum);
+                m_GameManager.onSideAttack(PlaceNum);
                 return;
         }
     }

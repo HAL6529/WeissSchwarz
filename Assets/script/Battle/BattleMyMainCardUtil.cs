@@ -141,6 +141,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         DirectAttackButton.SetActive(false);
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
     }
 
@@ -150,6 +151,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         NotShowFrontAndSideButton();
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
     }
 
@@ -159,6 +161,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         NotShowFrontAndSideButton();
         isRest = true;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
     }
 

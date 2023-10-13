@@ -21,6 +21,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
+    [SerializeField] TriggerCardAnimationForEnemy m_TriggerCardAnimationForEnemy;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -361,12 +362,18 @@ public class BattleStrix : StrixBehaviour
         m_GameManager.TurnChange();
     }
 
-    [StrixRpc]
-    public void SetEnemyWait(bool isFirstAttacker)
+    public void CallPlayEnemyTriggerAnimation(BattleModeCard card, bool isTurnPlayer)
     {
-        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        BattleModeCardTemp temp = new BattleModeCardTemp(card);
+        RpcToAll(nameof(PlayEnemyTriggerAnimation), temp, isTurnPlayer);
+    }
+
+    [StrixRpc]
+    public void PlayEnemyTriggerAnimation(BattleModeCardTemp card, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
-            m_GameManager.enemyWait = false;
+            m_TriggerCardAnimationForEnemy.Play(card);
         }
     }
 }
