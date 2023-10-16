@@ -136,6 +136,11 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
+        // コストが支払えるかチェック
+        if(m_BattleModeCard.cost > m_GameManager.myStockList.Count && m_BattleModeCard.type != EnumController.Type.CLIMAX)
+        {
+            return;
+        }
 
 
         if (temp)
@@ -154,7 +159,7 @@ public class BattleHandCardUtil : MonoBehaviour
         switch (m_BattleModeCard.type)
         {
             case EnumController.Type.CHARACTER:
-                m_DialogManager.MainDialog(m_BattleModeCard);
+                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard);
                 return;
             case EnumController.Type.EVENT:
                 return;
