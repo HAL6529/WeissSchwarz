@@ -48,13 +48,24 @@ public class MainDialog : MonoBehaviour
         }
         if (m_BattleModeCard != null)
         {
-            if(m_GameManager.myFieldList[place] != null)
+            for(int i = 0; i < m_BattleModeCard.cost; i++)
+            {
+                BattleModeCard temp = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
+                m_GameManager.GraveYardList.Add(temp);
+                m_GameManager.myStockList.Remove(temp);
+            }
+
+            if (m_GameManager.myFieldList[place] != null)
             {
                 m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[place]);
-                m_GameManager.UpdateMyGraveYardCards();
-                m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
             }
             m_GameManager.myFieldList[place] = m_BattleModeCard;
+
+            m_GameManager.UpdateMyStockCards();
+            m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
+
+            m_GameManager.UpdateMyGraveYardCards();
+            m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
 
             m_GameManager.myHandList.Remove(m_BattleModeCard);
             m_GameManager.UpdateMyHandCards();

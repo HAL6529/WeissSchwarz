@@ -120,6 +120,7 @@ namespace EnumController
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
         ENCORE_CONFIRM,
+        COST_CONFIRM_HAND_TO_FIELD,
     }
 
     public enum Attack

@@ -62,9 +62,10 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 str = m_BattleModeCard.name + "をアンコールしますか";
                 break;
-            case EnumController.YesOrNoDialogParamater.VOID:
-                str = "無効メッセージ";
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
+                str = "このカードをプレイするにはコスト'" + m_BattleModeCard.cost + "'必要です";
                 break;
+            case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
                 break;
@@ -102,6 +103,9 @@ public class YesOrNoDialog : MonoBehaviour
 
                 m_GameManager.UpdateMyStockCards();
                 m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
+                m_DialogManager.MainDialog(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
                 break;
