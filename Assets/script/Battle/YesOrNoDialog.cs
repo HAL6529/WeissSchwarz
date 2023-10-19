@@ -65,6 +65,22 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = "このカードをプレイするにはコスト'" + m_BattleModeCard.cost + "'必要です";
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
+                string bondName = "";
+                int cost = 0;
+                switch (m_BattleModeCard.cardNo)
+                {
+                    case EnumController.CardNo.AT_WX02_A10:
+                        bondName = "Marceline: Party Crasher";
+                        cost = 1;
+                        break;
+                    default:
+                        bondName = "";
+                        cost = 0;
+                        break;
+                }
+                str = "次の能力を使用しますか。:"+"【自】 絆／「" + bondName + "」 ［(" + cost + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + bondName + "」を1枚選び、手札に戻す）";
+                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
