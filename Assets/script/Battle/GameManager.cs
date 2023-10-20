@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public BattleClimaxCardUtil MyClimaxCardObject = null;
 
+    public Effect m_Effect;
+
     public GameObject EnemyClimaxCardObject = null;
 
     public bool MariganMode = false;
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
-    [SerializeField] DialogManager m_DialogManager;
+    public DialogManager m_DialogManager;
     [SerializeField] BattleDeckCardUtil myBattleDeckCardUtil;
     [SerializeField] BattleDeckCardUtil enemyBattleDeckCardUtil;
     [SerializeField] BattleGraveYardUtil myBattleGraveYardUtil;
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Effect = new Effect(this, m_BattleStrix);
         UpdateMyHandCards();
         UpdateMyClockCards();
         UpdateMyMemoryCards();

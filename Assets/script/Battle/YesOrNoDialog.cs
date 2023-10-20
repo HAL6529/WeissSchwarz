@@ -12,12 +12,23 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
 
     private BattleModeCard m_BattleModeCard = null;
 
     private EnumController.YesOrNoDialogParamater m_YesOrNoDialogParamater;
 
     private int numberParamater = -1;
+
+    /// <summary>
+    /// カードの効果を使用するためのコスト
+    /// </summary>
+    private int cost = 0;
+
+    /// <summary>
+    /// 絆効果で回収するカードのナンバー
+    /// </summary>
+    private EnumController.CardNo sulvageCardNo = EnumController.CardNo.VOID;
 
     public YesOrNoDialog()
     {
@@ -28,6 +39,8 @@ public class YesOrNoDialog : MonoBehaviour
     {
         numberParamater = -1;
         m_BattleModeCard = null;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
         SetText();
@@ -37,6 +50,8 @@ public class YesOrNoDialog : MonoBehaviour
     {
         numberParamater = -1;
         m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
         SetText();
@@ -46,6 +61,8 @@ public class YesOrNoDialog : MonoBehaviour
     {
         numberParamater = num;
         m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
         SetText();
@@ -64,6 +81,22 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = "このカードをプレイするにはコスト'" + m_BattleModeCard.cost + "'必要です";
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
+                string bondName = "";
+                switch (m_BattleModeCard.cardNo)
+                {
+                    case EnumController.CardNo.AT_WX02_A10:
+                        sulvageCardNo = EnumController.CardNo.AT_WX02_A12;
+                        bondName = "Marceline: Party Crasher";
+                        cost = 1;
+                        break;
+                    default:
+                        bondName = "";
+                        cost = 0;
+                        break;
+                }
+                str = "次の能力を使用しますか。:"+"【自】 絆／「" + bondName + "」 ［(" + cost + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + bondName + "」を1枚選び、手札に戻す）";
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
@@ -107,8 +140,10 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 m_DialogManager.MainDialog(m_BattleModeCard);
                 break;
-            case EnumController.YesOrNoDialogParamater.VOID:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
+                m_EffectBondForHandToField.BondForCost(sulvageCardNo, cost);
                 break;
+            case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 break;
         }

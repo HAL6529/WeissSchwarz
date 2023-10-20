@@ -16,6 +16,12 @@ public class MainDialog : MonoBehaviour
     private List<bool> isSelected = new List<bool>{false, false, false, false, false };
     private int place = -1;
     private BattleModeCard m_BattleModeCard = null;
+    public Effect m_Effect;
+
+    void Start()
+    {
+        m_Effect = new Effect(m_GameManager, m_BattleStrix);
+    }
 
     public void onClick(int num)
     {
@@ -76,6 +82,9 @@ public class MainDialog : MonoBehaviour
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
+
+        // カードの登場時の効果起動
+        m_Effect.BondForHandToFild(m_BattleModeCard);
     }
 
     public void onCloseButton()
