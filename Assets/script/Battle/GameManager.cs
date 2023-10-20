@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Effect = new Effect(this);
+        m_Effect = new Effect(this, m_BattleStrix);
         UpdateMyHandCards();
         UpdateMyClockCards();
         UpdateMyMemoryCards();

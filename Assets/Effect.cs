@@ -5,12 +5,12 @@ using UnityEngine;
 public class Effect : MonoBehaviour
 {
     private GameManager m_GameManager = null;
-    private EffectBondForHandToField m_EffectBondForHandToField = null;
+    private BattleStrix m_BattleStrix = null;
 
-    public Effect(GameManager m_GameManager)
+    public Effect(GameManager m_GameManager, BattleStrix m_BattleStrix)
     {
         this.m_GameManager = m_GameManager;
-        m_EffectBondForHandToField = new EffectBondForHandToField(m_GameManager);
+        this.m_BattleStrix = m_BattleStrix;
     }
 
     public void WhenAttack(BattleModeCard card)
@@ -34,6 +34,7 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, card);
                     Debug.Log("絆能力");
                 }
+                Debug.Log("絆能力のコストが足りない");
                 return;
             default:
                 Debug.Log("絆能力を持っていない");

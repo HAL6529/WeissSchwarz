@@ -20,7 +20,7 @@ public class MainDialog : MonoBehaviour
 
     void Start()
     {
-        m_Effect = new Effect(m_GameManager);
+        m_Effect = new Effect(m_GameManager, m_BattleStrix);
     }
 
     public void onClick(int num)
