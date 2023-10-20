@@ -10,6 +10,7 @@ public class TriggerCardAnimationForEnemy : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Animator m_Animator;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
+    [SerializeField] Sprite back;
     private BattleModeCard temp;
 
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class TriggerCardAnimationForEnemy : MonoBehaviour
 
     public void Play(BattleModeCardTemp card)
     {
+        m_Image.sprite = back;
         temp = m_BattleModeCardList.ConvertCardNoToBattleModeCard(card.cardNo);
         this.gameObject.SetActive(true);
         m_GameManager.isAnimation = true;
