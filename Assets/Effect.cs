@@ -32,12 +32,9 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, card);
-                    Debug.Log("絆能力");
                 }
-                Debug.Log("絆能力のコストが足りない");
                 return;
             default:
-                Debug.Log("絆能力を持っていない");
                 return;
         }
     }

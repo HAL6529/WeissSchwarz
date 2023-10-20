@@ -16,7 +16,6 @@ public class EffectBondForHandToField : MonoBehaviour
         }
         m_GameManager.UpdateMyStockCards();
         m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
-        Debug.Log("ƒRƒXƒg‚ðŽx•¥‚Á‚½");
         CheckExistSulvageCard(sulvageCardNo);
     }
 
