@@ -13,6 +13,7 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
+    [SerializeField] EffectBrainStormForDraw m_EffectBrainStormForDraw;
 
     private BattleModeCard m_BattleModeCard = null;
 
@@ -98,6 +99,9 @@ public class YesOrNoDialog : MonoBehaviour
                 }
                 str = "次の能力を使用しますか。:"+"【自】 絆／「" + bondName + "」 ［(" + cost + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + bondName + "」を1枚選び、手札に戻す）";
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
+                str = "次の能力を使用しますか。:"+"【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
+                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
@@ -142,6 +146,9 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
                 m_EffectBondForHandToField.BondForCost(sulvageCardNo, cost);
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
+                m_EffectBrainStormForDraw.BrainStormForDraw(numberParamater);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:

@@ -9,6 +9,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] GameObject ActButton;
     [SerializeField] GameObject MoveButton;
     [SerializeField] GameObject FrontAttackButton;
     [SerializeField] GameObject SideAttackButton;
@@ -25,10 +26,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
     private bool isRest = false;
     private bool isReverse = false;
     private bool isMoveButton = false;
+
+    public Effect m_Effect;
+
     // Start is called before the first frame update
     void Start()
     {
         changeSprite();
+        m_Effect = new Effect(m_GameManager, m_BattleStrix);
     }
 
     public void setBattleModeCard(BattleModeCard card)
@@ -82,6 +87,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             else
             {
                 MoveButton.SetActive(true);
+                ActButton.SetActive(true);
                 isMoveButton = true;
             }
         }
@@ -116,6 +122,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public void NotShowMoveButton()
     {
         MoveButton.SetActive(false);
+        ActButton.SetActive(false);
         isMoveButton = false;
     }
 
@@ -175,5 +182,17 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public bool GetIsReverse()
     {
         return isReverse;
+    }
+
+    public void onRest()
+    {
+        isRest = true;
+        isReverse = false;
+    }
+
+    public void onActButton()
+    {
+        NotShowMoveButton();
+        m_Effect.CheckEffectForAct(m_BattleModeCard, PlaceNum);
     }
 }

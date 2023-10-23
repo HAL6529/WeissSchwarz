@@ -47,4 +47,20 @@ public class Effect : MonoBehaviour
         }
         return false;
     }
+
+    public void CheckEffectForAct(BattleModeCard card, int num)
+    {
+        switch (card.cardNo)
+        {
+            //ÉhÉçÅ[èWíÜ
+            case EnumController.CardNo.AT_WX02_A09:
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW, card, num);
+                }
+                return;
+            default:
+                return;
+        }
+    }
 }
