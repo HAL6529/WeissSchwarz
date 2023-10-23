@@ -12,10 +12,15 @@ public class EffectBondForHandToField : MonoBehaviour
     {
         for(int i = 0; i < num; i++)
         {
+            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[0]);
             m_GameManager.myStockList.RemoveAt(0);
         }
+        m_GameManager.UpdateMyGraveYardCards();
+        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
+
         m_GameManager.UpdateMyStockCards();
         m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
+
         CheckExistSulvageCard(sulvageCardNo);
     }
 
