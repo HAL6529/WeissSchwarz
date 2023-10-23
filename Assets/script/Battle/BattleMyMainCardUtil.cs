@@ -23,9 +23,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] int PlaceNum;
     [SerializeField] TriggerCardAnimation m_TriggerCardAnimation;
 
-    private bool isRest = false;
-    private bool isReverse = false;
     private bool isMoveButton = false;
+
+    private EnumController.State state = EnumController.State.STAND;
 
     public Effect m_Effect;
 
@@ -93,7 +93,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         else if(m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
-            if(PlaceNum > 2 || m_BattleModeCard == null || isRest || isReverse)
+            if(PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
                 return;
             }
@@ -115,8 +115,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         m_BattleStrix.RpcToAll("CallEnemyStand", PlaceNum, m_GameManager.isTurnPlayer);
-        isRest = false;
-        isReverse = false;
+        state = EnumController.State.STAND;
     }
 
     public void NotShowMoveButton()
@@ -146,7 +145,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         DirectAttackButton.SetActive(false);
-        isRest = true;
+        state = EnumController.State.REST;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
@@ -156,7 +155,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         NotShowFrontAndSideButton();
-        isRest = true;
+        state = EnumController.State.REST;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
@@ -166,7 +165,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         NotShowFrontAndSideButton();
-        isRest = true;
+        state = EnumController.State.REST;
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
@@ -174,20 +173,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onReverse()
     {
-        isRest = false;
-        isReverse = true;
+        state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
 
-    public bool GetIsReverse()
+    public EnumController.State GetState()
     {
-        return isReverse;
+        return state;
     }
 
     public void onRest()
     {
-        isRest = true;
-        isReverse = false;
+        state = EnumController.State.REST;
     }
 
     public void onActButton()

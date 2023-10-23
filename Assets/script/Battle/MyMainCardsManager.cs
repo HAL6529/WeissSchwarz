@@ -59,8 +59,8 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
-    public bool GetIsReverse(int num)
+    public EnumController.State GetState(int num)
     {
-        return CardList[num].GetIsReverse();
+        return CardList[num].GetState();
     }
 }

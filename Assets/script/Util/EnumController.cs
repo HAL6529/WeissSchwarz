@@ -132,5 +132,13 @@ namespace EnumController
         FRONT_ATTACK,
         SIDE_ATTACK,
     }
+
+    public enum State
+    {
+        VOID,
+        STAND,
+        REST,
+        REVERSE,
+    }
 }
 
