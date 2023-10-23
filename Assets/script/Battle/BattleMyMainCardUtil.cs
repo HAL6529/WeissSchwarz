@@ -29,11 +29,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public Effect m_Effect;
 
+    private CheckHaveActAvility m_CheckHaveActAvility;
+
     // Start is called before the first frame update
     void Start()
     {
         changeSprite();
         m_Effect = new Effect(m_GameManager, m_BattleStrix);
+        m_CheckHaveActAvility = new CheckHaveActAvility();
     }
 
     public void setBattleModeCard(BattleModeCard card)
@@ -87,7 +90,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
             else
             {
                 MoveButton.SetActive(true);
-                ActButton.SetActive(true);
+                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo);
+                if (minCost > -1 && m_GameManager.myStockList.Count >= minCost)
+                {
+                    ActButton.SetActive(true);
+                }
                 isMoveButton = true;
             }
         }
