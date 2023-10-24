@@ -32,7 +32,7 @@ public class EncoreDialog : MonoBehaviour
             }
 
             images[i].sprite = list[i].sprite;
-            if (m_MyMainCardsManager.GetIsReverse(i))
+            if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
             {
                 buttons[i].interactable = true;
                 count++;

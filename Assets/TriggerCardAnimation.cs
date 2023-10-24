@@ -9,6 +9,7 @@ public class TriggerCardAnimation : MonoBehaviour
     [SerializeField] Image m_Image;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Animator m_Animator;
+    [SerializeField] Sprite back;
     private EnumController.Attack paramater;
     private int PlaceNum;
 
@@ -20,6 +21,7 @@ public class TriggerCardAnimation : MonoBehaviour
 
     public void Play(EnumController.Attack paramater, int PlaceNum)
     {
+        m_Image.sprite = back;
         this.paramater = paramater;
         this.PlaceNum = PlaceNum;
         this.gameObject.SetActive(true);

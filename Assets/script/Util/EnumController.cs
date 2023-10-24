@@ -122,6 +122,7 @@ namespace EnumController
         ENCORE_CONFIRM,
         COST_CONFIRM_HAND_TO_FIELD,
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,
+        COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
     }
 
     public enum Attack
@@ -130,6 +131,14 @@ namespace EnumController
         DIRECT_ATTACK,
         FRONT_ATTACK,
         SIDE_ATTACK,
+    }
+
+    public enum State
+    {
+        VOID,
+        STAND,
+        REST,
+        REVERSE,
     }
 }
 

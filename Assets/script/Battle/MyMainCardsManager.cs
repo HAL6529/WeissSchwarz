@@ -26,6 +26,11 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].onReverse();
     }
 
+    public void CallOnRest(int num)
+    {
+        CardList[num].onRest();
+    }
+
     public void updateMyFieldCards(List<BattleModeCard> list)
     {
         myFieldList = list;
@@ -59,8 +64,8 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
-    public bool GetIsReverse(int num)
+    public EnumController.State GetState(int num)
     {
-        return CardList[num].GetIsReverse();
+        return CardList[num].GetState();
     }
 }
