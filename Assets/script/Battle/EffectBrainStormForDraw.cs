@@ -6,15 +6,49 @@ public class EffectBrainStormForDraw : MonoBehaviour
 {
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
 
     public void BrainStormForDraw(int place)
     {
         m_GameManager.GraveYardList.Add(m_GameManager.myStockList[0]);
         m_GameManager.myStockList.RemoveAt(0);
+
+        m_MyMainCardsManager.CallOnRest(place);
+        m_BattleStrix.RpcToAll("CallEnemyRest", place, m_GameManager.isTurnPlayer);
+
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+        int count = 0;
+
         for (int i = 0; i < 4; i++)
         {
+            if (m_GameManager.myDeckList[0].type == EnumController.Type.CLIMAX)
+            {
+                Debug.Log("集中ヒット");
+                count++;
+            }
+            temp.Add(m_GameManager.myDeckList[0]);
+            m_GameManager.myDeckList.RemoveAt(0);
 
+            if (m_GameManager.myDeckList.Count == 0)
+            {
+                m_GameManager.Refresh();
+            }
+
+            m_GameManager.UpdateMyDeckCount();
+            m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", m_GameManager.myDeckList.Count, m_GameManager.isTurnPlayer);
         }
+
+        for(int i = 0; i < temp.Count; i++)
+        {
+            m_GameManager.GraveYardList.Add(temp[i]);
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            Debug.Log("ドロー");
+            m_GameManager.Draw();
+        }
+
         m_GameManager.UpdateMyGraveYardCards();
         m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
 

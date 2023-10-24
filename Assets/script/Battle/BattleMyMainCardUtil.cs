@@ -150,9 +150,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
-        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
-        DirectAttackButton.SetActive(false);
-        state = EnumController.State.REST;
+        onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
@@ -160,9 +158,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onFrontAttack()
     {
-        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
-        NotShowFrontAndSideButton();
-        state = EnumController.State.REST;
+        onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
@@ -170,9 +166,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
-        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
-        NotShowFrontAndSideButton();
-        state = EnumController.State.REST;
+        onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
@@ -192,6 +186,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public void onRest()
     {
         state = EnumController.State.REST;
+        this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
+        NotShowFrontAndSideButton();
+        NotShowDirectAttackButton();
     }
 
     public void onActButton()
