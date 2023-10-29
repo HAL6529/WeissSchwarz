@@ -85,6 +85,9 @@ public class MainDialog : MonoBehaviour
 
         // カードの登場時の効果起動
         m_Effect.BondForHandToFild(m_BattleModeCard);
+
+        // カードパワー再計算
+        m_MyMainCardsManager.FieldPowerReset();
     }
 
     public void onCloseButton()

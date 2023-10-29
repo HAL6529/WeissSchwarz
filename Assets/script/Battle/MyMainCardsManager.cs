@@ -31,6 +31,11 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].onRest();
     }
 
+    public int GetAssistPower(int num)
+    {
+        return CardList[num].m_Assist.getAssistPower();
+    }
+
     public void updateMyFieldCards(List<BattleModeCard> list)
     {
         myFieldList = list;
@@ -67,5 +72,13 @@ public class MyMainCardsManager : MonoBehaviour
     public EnumController.State GetState(int num)
     {
         return CardList[num].GetState();
+    }
+
+    public void FieldPowerReset()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].PowerUpdate();
+        }
     }
 }

@@ -23,6 +23,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] int PlaceNum;
     [SerializeField] TriggerCardAnimation m_TriggerCardAnimation;
 
+    public int FieldPower = 0;
+
     private bool isMoveButton = false;
 
     private EnumController.State state = EnumController.State.STAND;
@@ -30,6 +32,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public Effect m_Effect;
 
     private CheckHaveActAvility m_CheckHaveActAvility;
+
+    /// <summary>
+    /// 応援クラス
+    /// </summary>
+    public PowerInstance.Assist m_Assist = new PowerInstance.Assist(0);
+
+    /// <summary>
+    /// 全体パワーアップクラス
+    /// </summary>
+    public PowerInstance.AllAssist m_AllAssist = new PowerInstance.AllAssist(0, null);
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +53,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void setBattleModeCard(BattleModeCard card)
     {
+        onReset();
         m_BattleModeCard = card;
+        // 応援のカードなら能力付与
+        m_Assist = m_Effect.CheckEffectForAssist(m_BattleModeCard);
+
         changeSprite();
     }
 
@@ -58,12 +74,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         image.color = new Color(1, 1, 1, 255 / 255);
 
         Power.SetActive(true);
-        PowerText.text = m_BattleModeCard.power.ToString();
+        PowerText.text = FieldPower.ToString();
     }
 
     public void onClick()
     {
-        if(m_BattleModeCard == null)
+        if (m_BattleModeCard == null)
         {
             return;
         }
@@ -81,7 +97,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        if(m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
+        if (m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
         {
             if (isMoveButton)
             {
@@ -98,16 +114,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 isMoveButton = true;
             }
         }
-        else if(m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
+        else if (m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
-            if(PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
+            if (PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
                 return;
             }
 
-            if(PlaceNum == 0 && m_GameManager.enemyFieldList[2] == null ||
+            if (PlaceNum == 0 && m_GameManager.enemyFieldList[2] == null ||
                PlaceNum == 1 && m_GameManager.enemyFieldList[1] == null ||
-               PlaceNum == 2 && m_GameManager.enemyFieldList[0] == null )
+               PlaceNum == 2 && m_GameManager.enemyFieldList[0] == null)
             {
                 DirectAttackButton.SetActive(true);
                 return;
@@ -195,5 +211,40 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         NotShowMoveButton();
         m_Effect.CheckEffectForAct(m_BattleModeCard, PlaceNum);
+    }
+
+    public void onReset()
+    {
+        Stand();
+        m_BattleModeCard = null;
+    }
+
+    public void PowerUpdate()
+    {
+        if(m_BattleModeCard == null)
+        {
+            FieldPower = 0;
+            Power.SetActive(false);
+            return;
+        }
+
+        FieldPower = m_BattleModeCard.power;
+        // 応援の効果を受けられるかチェック
+        if (PlaceNum == 0)
+        {
+            FieldPower += m_MyMainCardsManager.GetAssistPower(3);
+        }
+        else if (PlaceNum == 1)
+        {
+            FieldPower += m_MyMainCardsManager.GetAssistPower(3);
+            FieldPower += m_MyMainCardsManager.GetAssistPower(4);
+        }
+        else if (PlaceNum == 2)
+        {
+            FieldPower += m_MyMainCardsManager.GetAssistPower(4);
+        }
+
+            Power.SetActive(true);
+        PowerText.text = FieldPower.ToString();
     }
 }
