@@ -7,6 +7,8 @@ public class MyMainCardsManager : MonoBehaviour
 {
     private List<BattleModeCard> myFieldList = new List<BattleModeCard>();
     public List<BattleMyMainCardUtil> CardList = new List<BattleMyMainCardUtil>();
+    [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] GameManager m_GameManager;
 
     public void CallStand()
     {
@@ -80,5 +82,15 @@ public class MyMainCardsManager : MonoBehaviour
         {
             CardList[i].PowerUpdate();
         }
+    }
+
+    public List<int> GetFieldPower()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldPower());
+        }
+        return list;
     }
 }

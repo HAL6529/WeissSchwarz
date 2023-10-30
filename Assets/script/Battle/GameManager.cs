@@ -758,7 +758,7 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list)
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList)
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -771,6 +771,7 @@ public class GameManager : MonoBehaviour
             enemyFieldList[i] = b;
         }
         GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
+        GetComponent<EnemyMainCardsManager>().SetFieldPower(FieldPowerList);
     }
 
     public void UpdateMyGraveYardCards()

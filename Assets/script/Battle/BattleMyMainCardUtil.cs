@@ -23,6 +23,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] int PlaceNum;
     [SerializeField] TriggerCardAnimation m_TriggerCardAnimation;
 
+    /// <summary>
+    /// フィールド上でのパワー
+    /// </summary>
     public int FieldPower = 0;
 
     private bool isMoveButton = false;
@@ -194,11 +197,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
 
-    public EnumController.State GetState()
-    {
-        return state;
-    }
-
     public void onRest()
     {
         state = EnumController.State.REST;
@@ -244,7 +242,17 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
         }
 
-            Power.SetActive(true);
+        Power.SetActive(true);
         PowerText.text = FieldPower.ToString();
+    }
+
+    public int GetFieldPower()
+    {
+        return FieldPower;
+    }
+
+    public EnumController.State GetState()
+    {
+        return state;
     }
 }

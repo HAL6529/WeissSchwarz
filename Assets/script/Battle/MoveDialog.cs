@@ -51,9 +51,10 @@ public class MoveDialog : MonoBehaviour
             m_GameManager.myFieldList[selectedPlace] = temp;
 
             m_GameManager.UpdateMyMainCards();
-            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_GameManager.isTurnPlayer);
             // ƒpƒ[‚ÌŒvZ
             m_MyMainCardsManager.FieldPowerReset();
+            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
+
         }
         OffMainDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
