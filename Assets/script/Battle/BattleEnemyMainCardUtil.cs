@@ -12,6 +12,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
 
+    /// <summary>
+    /// フィールド上でのパワー
+    /// </summary>
+    private int FieldPower = 0;
+
     private bool isRest = false;
     private bool isReverse = false;
     // Start is called before the first frame update
@@ -39,7 +44,7 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         image.color = new Color(1, 1, 1, 255 / 255);
 
         Power.SetActive(true);
-        PowerText.text = m_BattleModeCard.power.ToString();
+        PowerText.text = FieldPower.ToString();
     }
 
     public void onClick()
@@ -66,5 +71,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         isRest = false;
         isReverse = true;
+    }
+
+    public void SetFieldPower(int power)
+    {
+        FieldPower = power;
+        PowerText.text = FieldPower.ToString();
     }
 }

@@ -13,17 +13,6 @@ public class Effect : MonoBehaviour
         this.m_BattleStrix = m_BattleStrix;
     }
 
-    public void WhenAttack(BattleModeCard card)
-    {
-        switch (card.cardNo)
-        {
-            case EnumController.CardNo.AT_WX02_A02:
-                return;
-            default:
-                return;
-        }
-    }
-
     public void BondForHandToFild(BattleModeCard card)
     {
         switch (card.cardNo)
@@ -58,6 +47,33 @@ public class Effect : MonoBehaviour
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW, card, num);
                 }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public PowerInstance.Assist CheckEffectForAssist(BattleModeCard card)
+    {
+        if(card == null)
+        {
+            return new PowerInstance.Assist(0);
+        }
+        switch (card.cardNo)
+        {
+            // 500‰ž‰‡
+            case EnumController.CardNo.AT_WX02_A11:
+                return new PowerInstance.Assist(500);
+            default:
+                return new PowerInstance.Assist(0);
+        }
+    }
+
+    public void WhenAttack(BattleModeCard card)
+    {
+        switch (card.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A02:
                 return;
             default:
                 return;

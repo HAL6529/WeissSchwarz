@@ -78,13 +78,18 @@ public class MainDialog : MonoBehaviour
             m_BattleStrix.SendUpdateEnemyHandCards(m_GameManager.myHandList, m_GameManager.isTurnPlayer);
 
             m_GameManager.UpdateMyMainCards();
-            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_GameManager.isTurnPlayer);
+            // パワーの計算
+            m_MyMainCardsManager.FieldPowerReset();
+            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
 
         // カードの登場時の効果起動
         m_Effect.BondForHandToFild(m_BattleModeCard);
+
+        // カードパワー再計算
+        m_MyMainCardsManager.FieldPowerReset();
     }
 
     public void onCloseButton()

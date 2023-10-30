@@ -64,7 +64,7 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateEnemyClock), temp, isTurnPlayer);
     }
 
-    public void SendUpdateMainCards(List<BattleModeCard> list, bool isTurnPlayer)
+    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList ,bool isTurnPlayer)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -78,7 +78,7 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateMainCards), temp, isTurnPlayer);
+        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, isTurnPlayer);
     }
 
     public void SendUpdateEnemyHandCards(List<BattleModeCard> list, bool isTurnPlayer)
@@ -161,6 +161,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void SyncFieldPower(List<int> list, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.SetFieldPower(list);
+        }
+    }
+
+    [StrixRpc]
     public void UpdateEnemyHandCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
@@ -170,11 +179,11 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateMainCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
-            m_GameManager.UpdateEnemyMainCards(list);
+            m_GameManager.UpdateEnemyMainCards(list, FieldPowerList);
         }
     }
 
@@ -247,7 +256,6 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.ClockPhaseStart();
         }
-
     }
 
     [StrixRpc]

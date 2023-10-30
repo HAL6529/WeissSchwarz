@@ -31,4 +31,12 @@ public class EnemyMainCardsManager : MonoBehaviour
     {
         CardList[num].Reverse();
     }
+
+    public void SetFieldPower(List<int> list)
+    {
+        for(int i = 0; i < list.Count; i++)
+        {
+            CardList[i].SetFieldPower(list[i]);
+        }
+    }
 }
