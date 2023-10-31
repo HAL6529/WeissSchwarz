@@ -27,13 +27,10 @@ public class GameManager : MonoBehaviour
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
 
-    public BattleModeCard ClimaxCard = null;
-
-    public BattleClimaxCardUtil MyClimaxCardObject = null;
+    public BattleModeCard MyClimaxCard = null;
+    public BattleModeCard EnemyClimaxCard = null;
 
     public Effect m_Effect;
-
-    public GameObject EnemyClimaxCardObject = null;
 
     public bool MariganMode = false;
     public bool isAnimation = false;
@@ -58,6 +55,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
     [SerializeField] BattleMemoryCardUtil myBattleMemoryCardUtil;
     [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
+    [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
+    [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -79,10 +78,10 @@ public class GameManager : MonoBehaviour
         GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
         GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
         GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
-        MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
+        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
         enemyBattleMemoryCardUtil.setBattleModeCard(null);
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
-        EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
+        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
         enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
 
@@ -149,16 +148,29 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        ClimaxCard = m_BattleModeCard;
+        SetMyClimaxCard(m_BattleModeCard);
         myHandList.Remove(m_BattleModeCard);
 
         UpdateMyHandCards();
         m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
 
-        MyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
+        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
+        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
         BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Climax);
-        m_BattleStrix.RpcToAll("ClimaxPhase", temp, isTurnPlayer);
+        m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
+    }
+
+    private void SetMyClimaxCard(BattleModeCard m_BattleModeCard)
+    {
+        MyClimaxCard = m_BattleModeCard;
+        EnemyClimaxCard = null;
+    }
+
+    private void SetEnemyClimaxCard(BattleModeCard m_BattleModeCard)
+    {
+        MyClimaxCard = null;
+        EnemyClimaxCard = m_BattleModeCard;
     }
 
     /// <summary>
@@ -188,11 +200,16 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void ClimaxStart(BattleModeCardTemp m_BattleModeCardTemp)
+    /// <summary>
+    /// 相手フィールドのクライマックスを更新する
+    /// </summary>
+    /// <param name="m_BattleModeCardTemp"></param>
+    public void UpdateClimaxCard(BattleModeCardTemp m_BattleModeCardTemp)
     {
         BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_BattleModeCardTemp.cardNo);
-        ClimaxCard = b;
-        EnemyClimaxCardObject.GetComponent<BattleClimaxCardUtil>().SetClimax(ClimaxCard);
+        SetEnemyClimaxCard(b);
+        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
+        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
     }
 
     public void MainStart()

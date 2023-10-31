@@ -285,12 +285,12 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void ClimaxPhase(BattleModeCardTemp m_BattleModeCardTemp, bool isTurnPlayer)
+    public void UpdateClimaxCard(BattleModeCardTemp m_BattleModeCardTemp, bool isTurnPlayer)
     {
         logText.text = "ClimaxPhase";
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
-            m_GameManager.ClimaxStart(m_BattleModeCardTemp);
+            m_GameManager.UpdateClimaxCard(m_BattleModeCardTemp);
         }
     }
 
