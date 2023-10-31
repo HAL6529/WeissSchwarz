@@ -240,6 +240,18 @@ public class GameManager : MonoBehaviour
 
     public void TurnChange()
     {
+        if(MyClimaxCard != null)
+        {
+            GraveYardList.Add(MyClimaxCard);
+            UpdateMyGraveYardCards();
+            m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+            SetMyClimaxCard(null);
+            myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
+            enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
+            BattleModeCardTemp temp = new BattleModeCardTemp(null);
+            m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
+        }
         enemyWait = true;
         Invoke("TurnChange2", 1.0f);
     }
