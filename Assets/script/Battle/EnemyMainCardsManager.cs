@@ -39,4 +39,9 @@ public class EnemyMainCardsManager : MonoBehaviour
             CardList[i].SetFieldPower(list[i]);
         }
     }
+
+    public int GetFieldPower(int place)
+    {
+        return CardList[place].GetFieldPower();
+    }
 }
