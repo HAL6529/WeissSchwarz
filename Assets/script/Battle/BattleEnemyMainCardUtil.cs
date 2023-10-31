@@ -78,4 +78,9 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         FieldPower = power;
         PowerText.text = FieldPower.ToString();
     }
+
+    public int GetFieldPower()
+    {
+        return FieldPower;
+    }
 }

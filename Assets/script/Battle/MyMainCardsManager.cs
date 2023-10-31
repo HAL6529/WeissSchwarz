@@ -93,4 +93,9 @@ public class MyMainCardsManager : MonoBehaviour
         }
         return list;
     }
+
+    public int GetFieldPower(int place)
+    {
+        return CardList[place].GetFieldPower();
+    }
 }

@@ -467,73 +467,45 @@ public class GameManager : MonoBehaviour
 
     private void PowerCheck(int num)
     {
+        int myPower = GetComponent<MyMainCardsManager>().GetFieldPower(num);
+        int enemyPlace = -1;
+
         switch (num)
         {
             case 0:
-                if (myFieldList[0].power > enemyFieldList[2].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(2);
-                    m_BattleStrix.RpcToAll("CallMyReverse", 2, isTurnPlayer);
-                    return;
-                } 
-                else if (myFieldList[0].power == enemyFieldList[2].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(2);
-                    m_BattleStrix.RpcToAll("CallMyReverse", 2, isTurnPlayer);
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
-                else
-                {
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
+                enemyPlace = 2; 
+                break;
             case 1:
-                if (myFieldList[1].power > enemyFieldList[1].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(1);
-                    m_BattleStrix.RpcToAll("CallMyReverse", 1, isTurnPlayer);
-                    return;
-                }
-                else if (myFieldList[1].power == enemyFieldList[1].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(1);
-                    m_BattleStrix.RpcToAll("CallMyReverse", 1, isTurnPlayer);
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
-                else
-                {
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
+                enemyPlace = 1;
+                break;
             case 2:
-                if (myFieldList[2].power > enemyFieldList[0].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(0);
-                    m_BattleStrix.RpcToAll("CallMyRest", 0, isTurnPlayer);
-                    return;
-                }
-                else if (myFieldList[2].power == enemyFieldList[0].power)
-                {
-                    GetComponent<EnemyMainCardsManager>().CallReverse(0);
-                    m_BattleStrix.RpcToAll("CallMyRest", 0, isTurnPlayer);
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
-                else
-                {
-                    GetComponent<MyMainCardsManager>().CallOnReverse(num);
-                    m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-                    return;
-                }
-            default:
-                return;
+                enemyPlace = 0;
+                break;
+            default : 
+                break;
+        }
+
+        int enemyPower = GetComponent<EnemyMainCardsManager>().GetFieldPower(enemyPlace);
+
+        if(myPower > enemyPower)
+        {
+            GetComponent<EnemyMainCardsManager>().CallReverse(enemyPlace);
+            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+            return;
+        }
+        else if (myPower == enemyPower)
+        {
+            GetComponent<EnemyMainCardsManager>().CallReverse(enemyPlace);
+            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+            GetComponent<MyMainCardsManager>().CallOnReverse(num);
+            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            return;
+        }
+        else
+        {
+            GetComponent<MyMainCardsManager>().CallOnReverse(num);
+            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            return;
         }
     }
 
