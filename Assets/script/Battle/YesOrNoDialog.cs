@@ -116,6 +116,9 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
+                // ÉpÉèÅ[ÇÃåvéZ
+                m_MyMainCardsManager.FieldPowerReset();
+                m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 if(numberParamater == -1)

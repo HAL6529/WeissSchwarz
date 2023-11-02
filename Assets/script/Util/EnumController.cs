@@ -140,5 +140,11 @@ namespace EnumController
         REST,
         REVERSE,
     }
+
+    public enum ClimaxType
+    {
+        VOID,
+        POWER_THOUSAND_AND_SOUL_ONE,
+    }
 }
 

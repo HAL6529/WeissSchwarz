@@ -28,6 +28,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public int FieldPower = 0;
 
+    /// <summary>
+    /// フィールド上でのソウル
+    /// </summary>
+    public int FieldSoul = 0;
+
     private bool isMoveButton = false;
 
     private EnumController.State state = EnumController.State.STAND;
@@ -45,6 +50,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// 全体パワーアップクラス
     /// </summary>
     public PowerInstance.AllAssist m_AllAssist = new PowerInstance.AllAssist(0, null);
+
+    /// <summary>
+    /// クライマックスUtil
+    /// </summary>
+    private ClimaxUtil m_ClimaxUtil = new ClimaxUtil();
 
     // Start is called before the first frame update
     void Start()
@@ -217,6 +227,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeCard = null;
     }
 
+    /// <summary>
+    /// フィールド上でのパワーの計算
+    /// </summary>
     public void PowerUpdate()
     {
         if(m_BattleModeCard == null)
@@ -241,6 +254,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
         }
+
+        if(m_GameManager.MyClimaxCard != null)
+        {
+            // 1000/1のクライマックスが使用されているかチェック
+            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
+            {
+                FieldPower += 1000;
+            }
+        }
+
 
         Power.SetActive(true);
         PowerText.text = FieldPower.ToString();
