@@ -116,8 +116,8 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
-                // パワーの計算
-                m_MyMainCardsManager.FieldPowerReset();
+                // パワー、レベル、特徴の計算
+                m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
                 m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
@@ -136,8 +136,8 @@ public class YesOrNoDialog : MonoBehaviour
                 m_MyMainCardsManager.CallOnStand(numberParamater);
 
                 m_GameManager.UpdateMyMainCards();
-                // パワーの計算
-                m_MyMainCardsManager.FieldPowerReset();
+                // パワー、レベル、特徴の計算
+                m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
                 m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
 
                 m_GameManager.UpdateMyGraveYardCards();

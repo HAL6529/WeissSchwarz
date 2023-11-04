@@ -252,7 +252,8 @@ public class GameManager : MonoBehaviour
             BattleModeCardTemp temp = new BattleModeCardTemp(null);
             m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
 
-            GetComponent<MyMainCardsManager>().FieldPowerReset();
+            // パワー、レベル、特徴の計算
+            GetComponent<MyMainCardsManager>().FieldPowerAndLevelAndAttributeReset();
             m_BattleStrix.SendUpdateMainCards(myFieldList, GetComponent<MyMainCardsManager>().GetFieldPower(), isTurnPlayer);
         }
         enemyWait = true;

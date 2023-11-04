@@ -34,6 +34,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public int FieldSoul = 0;
 
     /// <summary>
+    /// フィールド上でのレベル
+    /// </summary>
+    public int FieldLevel = 0;
+
+    /// <summary>
     /// フィールド上での特徴
     /// </summary>
     public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
@@ -60,6 +65,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// ガウル効果クラス
     /// </summary>
     public PowerInstance.Gaul m_Gaul = new PowerInstance.Gaul();
+
+    /// <summary>
+    /// レベル応援クラス
+    /// </summary>
+    public PowerInstance.LevelAssist m_LevelAssist = new PowerInstance.LevelAssist(0);
 
     /// <summary>
     /// クライマックスUtil
@@ -97,6 +107,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_Assist = m_Effect.CheckEffectForAssist(m_BattleModeCard);
         // ガウルのカードなら能力付与
         m_Gaul = m_Effect.CheckEffectForGaul(m_BattleModeCard);
+        // レベル応援のカードなら能力付与
+        m_LevelAssist = m_Effect.CheckEffectForLevelAssist(m_BattleModeCard);
         changeSprite();
     }
 
@@ -254,6 +266,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールド上のレベルの計算
+    /// </summary>
+    public void LevelUpdate()
+    {
+        if (m_BattleModeCard == null)
+        {
+            FieldLevel = 0;
+            return;
+        }
+
+        FieldLevel = m_BattleModeCard.level;
+    }
+
+    /// <summary>
     /// フィールド上でのパワーの計算
     /// </summary>
     public void PowerUpdate()
@@ -274,17 +300,24 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(3);
+            // レベル応援を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetLevelAssistPower(3, FieldLevel);
         }
         else if (PlaceNum == 1)
         {
             // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(3);
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
+            // レベル応援を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetLevelAssistPower(3, FieldLevel);
+            FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
         }
         else if (PlaceNum == 2)
         {
             // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
+            // レベル応援を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
         }
 
         if(m_GameManager.MyClimaxCard != null)
@@ -295,8 +328,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 FieldPower += 1000;
             }
         }
-
-
         Power.SetActive(true);
         PowerText.text = FieldPower.ToString();
     }

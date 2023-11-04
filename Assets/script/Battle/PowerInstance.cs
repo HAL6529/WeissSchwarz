@@ -76,4 +76,24 @@ namespace PowerInstance
             return AttributeList;
         }
     }
+
+    public class LevelAssist
+    {
+        private int AssistPower = 0;
+
+        public LevelAssist(int num)
+        {
+            AssistPower = num;
+        }
+
+        public int getAssistPower(int level)
+        {
+            return AssistPower * level;
+        }
+
+        public void Reset()
+        {
+            AssistPower = 0;
+        }
+    }
 }

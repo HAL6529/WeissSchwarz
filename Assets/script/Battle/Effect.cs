@@ -98,6 +98,27 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ƒŒƒxƒ‹‰‰‡‚ÌŒø‰Ê‚ğ‚Á‚Ä‚¢‚é‚©’²‚×‚é
+    /// </summary>
+    /// <param name="card">BattleModeCard</param>
+    /// <returns></returns>
+    public PowerInstance.LevelAssist CheckEffectForLevelAssist(BattleModeCard card)
+    {
+        if (card == null)
+        {
+            return new PowerInstance.LevelAssist(0);
+        }
+        switch (card.cardNo)
+        {
+            // ƒŒƒxƒ‹*500‰‰‡
+            case EnumController.CardNo.AT_WX02_A06:
+                return new PowerInstance.LevelAssist(500);
+            default:
+                return new PowerInstance.LevelAssist(0);
+        }
+    }
+
     public void WhenAttack(BattleModeCard card)
     {
         switch (card.cardNo)
