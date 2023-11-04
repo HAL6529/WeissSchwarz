@@ -251,6 +251,9 @@ public class GameManager : MonoBehaviour
             enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
             BattleModeCardTemp temp = new BattleModeCardTemp(null);
             m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
+
+            GetComponent<MyMainCardsManager>().FieldPowerReset();
+            m_BattleStrix.SendUpdateMainCards(myFieldList, GetComponent<MyMainCardsManager>().GetFieldPower(), isTurnPlayer);
         }
         enemyWait = true;
         Invoke("TurnChange2", 1.0f);
@@ -362,16 +365,13 @@ public class GameManager : MonoBehaviour
 
     public void Draw()
     {
-        if (myDeckList.Count > 0)
+        myHandList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+        if (myDeckList.Count == 0)
         {
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        else
-        {
-            myHandList.Add(myDeckList[0]);
             Refresh();
         }
+
         UpdateMyDeckCount();
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
 

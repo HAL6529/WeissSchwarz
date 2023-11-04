@@ -53,6 +53,11 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ‰‰‡‚ÌŒø‰Ê‚ğ‚Á‚Ä‚¢‚é‚©’²‚×‚é
+    /// </summary>
+    /// <param name="card">BattleModeCard</param>
+    /// <returns></returns>
     public PowerInstance.Assist CheckEffectForAssist(BattleModeCard card)
     {
         if(card == null)
@@ -66,6 +71,30 @@ public class Effect : MonoBehaviour
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);
+        }
+    }
+
+    /// <summary>
+    /// ƒKƒEƒ‹‚ÌŒø‰Ê‚ğ‚Á‚Ä‚¢‚é‚©’²‚×‚é
+    /// </summary>
+    /// <param name="card"></param>
+    /// <returns></returns>
+    public PowerInstance.Gaul CheckEffectForGaul(BattleModeCard card)
+    {
+        if (card == null)
+        {
+            return new PowerInstance.Gaul();
+        }
+        List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
+
+        switch (card.cardNo)
+        {
+            // ƒKƒEƒ‹Œø‰Ê‚ğ‚Á‚Ä‚¢‚é
+            case EnumController.CardNo.AT_WX02_A12:
+                AttributeList.Add(EnumController.Attribute.Ooo);
+                return new PowerInstance.Gaul(500, AttributeList);
+            default:
+                return new PowerInstance.Gaul();
         }
     }
 
