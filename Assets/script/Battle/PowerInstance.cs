@@ -47,4 +47,33 @@ namespace PowerInstance
             AssistPower = 0;
         }
     }
+
+    public class Gaul
+    {
+        private List<EnumController.Attribute> AttributeList;
+
+        private int AssistPower = 0;
+
+        public Gaul()
+        {
+            AssistPower = 0;
+            AttributeList = null;
+        }
+
+        public Gaul(int num, List<EnumController.Attribute> attribute)
+        {
+            AssistPower = num;
+            AttributeList = attribute;
+        }
+
+        public int GetAssistPower(int num)
+        {
+            return AssistPower * num;
+        }
+
+        public List<EnumController.Attribute> GetAttributeList()
+        {
+            return AttributeList;
+        }
+    }
 }

@@ -33,6 +33,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public int FieldSoul = 0;
 
+    /// <summary>
+    /// フィールド上での特徴
+    /// </summary>
+    public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
+
     private bool isMoveButton = false;
 
     private EnumController.State state = EnumController.State.STAND;
@@ -52,6 +57,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public PowerInstance.AllAssist m_AllAssist = new PowerInstance.AllAssist(0, null);
 
     /// <summary>
+    /// ガウル効果クラス
+    /// </summary>
+    public PowerInstance.Gaul m_Gaul = new PowerInstance.Gaul();
+
+    /// <summary>
     /// クライマックスUtil
     /// </summary>
     private ClimaxUtil m_ClimaxUtil = new ClimaxUtil();
@@ -68,9 +78,25 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         onReset();
         m_BattleModeCard = card;
+
+        AttributeList = new List<EnumController.Attribute>();
+        if (card != null && card.attributeOne != null)
+        {
+            AttributeList.Add(card.attributeOne);
+        }
+        if (card != null && card.attributeTwo != null)
+        {
+            AttributeList.Add(card.attributeTwo);
+        }
+        if (card != null && card.attributeThree != null)
+        {
+            AttributeList.Add(card.attributeThree);
+        }
+
         // 応援のカードなら能力付与
         m_Assist = m_Effect.CheckEffectForAssist(m_BattleModeCard);
-
+        // ガウルのカードなら能力付与
+        m_Gaul = m_Effect.CheckEffectForGaul(m_BattleModeCard);
         changeSprite();
     }
 
@@ -240,18 +266,24 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         FieldPower = m_BattleModeCard.power;
-        // 応援の効果を受けられるかチェック
+
+        // ガウルの効果を持っているかチェック
+        FieldPower += m_MyMainCardsManager.GetGaulPower(PlaceNum, m_Gaul.GetAttributeList());
+
         if (PlaceNum == 0)
         {
+            // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(3);
         }
         else if (PlaceNum == 1)
         {
+            // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(3);
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
         }
         else if (PlaceNum == 2)
         {
+            // 応援の効果を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
         }
 
@@ -277,5 +309,26 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public EnumController.State GetState()
     {
         return state;
+    }
+
+    /// <summary>
+    /// フィールド上で検索対象の特徴を持っているか調べる
+    /// </summary>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    public bool HaveAttribute(List<EnumController.Attribute> list)
+    {
+        for(int i = 0; i < list.Count; i++)
+        {
+            for(int r = 0; r < AttributeList.Count; r++)
+            {
+                if(AttributeList[r] == list[i])
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

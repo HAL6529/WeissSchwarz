@@ -33,9 +33,37 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].onRest();
     }
 
+    /// <summary>
+    /// ‰‰‡‚ÌŒvZ—p
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     public int GetAssistPower(int num)
     {
         return CardList[num].m_Assist.getAssistPower();
+    }
+
+    /// <summary>
+    /// ƒKƒEƒ‹Œø‰Ê‚ÌŒvZ—p
+    /// </summary>
+    /// <returns></returns>
+    public int GetGaulPower(int num, List<EnumController.Attribute> attributeList)
+    {
+        if(attributeList == null)
+        {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (CardList[i].HaveAttribute(attributeList))
+            {
+                count++;
+            }
+        }
+
+        return CardList[num].m_Gaul.GetAssistPower(count);
     }
 
     public void updateMyFieldCards(List<BattleModeCard> list)
