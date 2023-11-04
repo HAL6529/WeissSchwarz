@@ -66,6 +66,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].m_Gaul.GetAssistPower(count);
     }
 
+    public int GetLevelAssistPower(int num, int FieldLevel)
+    {
+        return CardList[num].m_LevelAssist.getAssistPower(FieldLevel);
+    }
+
     public void updateMyFieldCards(List<BattleModeCard> list)
     {
         myFieldList = list;
@@ -104,10 +109,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].GetState();
     }
 
-    public void FieldPowerReset()
+    public void FieldPowerAndLevelAndAttributeReset()
     {
         for (int i = 0; i < CardList.Count; i++)
         {
+            CardList[i].LevelUpdate();
             CardList[i].PowerUpdate();
         }
     }
