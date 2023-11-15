@@ -50,7 +50,11 @@ public class MoveDialog : MonoBehaviour
             m_GameManager.myFieldList[place] = m_BattleModeCard;
             m_GameManager.myFieldList[selectedPlace] = temp;
 
-            m_GameManager.UpdateMyMainCards();
+            EnumController.State placeStatus = m_MyMainCardsManager.GetState(place);
+            EnumController.State selectedPlaceStatus = m_MyMainCardsManager.GetState(selectedPlace);
+
+            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, placeStatus);
+            m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, selectedPlaceStatus);
             // パワー、レベル、特徴の計算
             m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
             m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);

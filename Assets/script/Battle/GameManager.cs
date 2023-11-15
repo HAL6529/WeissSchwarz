@@ -754,12 +754,6 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void UpdateMyMainCards()
-    {
-        GetComponent<MyMainCardsManager>().updateMyFieldCards(myFieldList);
-        return;
-    }
-
     public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList)
     {
         for (int i = 0; i < list.Count; i++)

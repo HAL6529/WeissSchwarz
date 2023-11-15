@@ -77,7 +77,7 @@ public class MainDialog : MonoBehaviour
             m_GameManager.UpdateMyHandCards();
             m_BattleStrix.SendUpdateEnemyHandCards(m_GameManager.myHandList, m_GameManager.isTurnPlayer);
 
-            m_GameManager.UpdateMyMainCards();
+            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, EnumController.State.STAND);
             // パワー、レベル、特徴の計算
             m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
             m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);

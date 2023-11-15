@@ -59,14 +59,17 @@ public class EncoreDialog : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// アンコールするカードをクリックしたとき
+    /// </summary>
+    /// <param name="num"></param>
     public void onClick(int num)
     {
         BattleModeCard temp = m_GameManager.myFieldList[num];
         m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
         m_GameManager.myFieldList[num] = null;
 
-
-        m_GameManager.UpdateMyMainCards();
+        m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
         // パワー、レベル、特徴の計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
         m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);

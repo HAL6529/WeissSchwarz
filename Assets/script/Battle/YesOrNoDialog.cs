@@ -135,7 +135,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.myFieldList[numberParamater] = m_BattleModeCard;
                 m_MyMainCardsManager.CallOnStand(numberParamater);
 
-                m_GameManager.UpdateMyMainCards();
+                m_MyMainCardsManager.setBattleModeCard(numberParamater, m_BattleModeCard, EnumController.State.REST);
                 // パワー、レベル、特徴の計算
                 m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
                 m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
