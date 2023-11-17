@@ -57,6 +57,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
+    private MyMainCardsManager m_MyMainCardsManager;
+    private MyHandCardsManager m_MyHandCardsManager;
+    private MyStockCardsManager m_MyStockCardsManager;
+    private MyClockCardsManager m_MyClockCardsManager;
+    private MyLevelCardsManager m_MyLevelCardsManager;
+    private EnemyMainCardsManager m_EnemyMainCardsManager;
+    private EnemyHandsCardManager m_EnemyHandsCardManager;
+    private EnemyClockCardsManager m_EnemyClockCardsManager;
+    private EnemyStockCardsManager m_EnemyStockCardsManager;
+    private EnemyLevelCardsManager m_EnemyLevelCardsManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -67,6 +77,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         m_Effect = new Effect(this, m_BattleStrix);
+        m_MyMainCardsManager = GetComponent<MyMainCardsManager>();
+        m_MyHandCardsManager = GetComponent<MyHandCardsManager>();
+        m_MyStockCardsManager = GetComponent<MyStockCardsManager>();
+        m_MyClockCardsManager = GetComponent<MyClockCardsManager>();
+        m_MyLevelCardsManager = GetComponent<MyLevelCardsManager>();
+        m_EnemyMainCardsManager = GetComponent<EnemyMainCardsManager>();
+        m_EnemyHandsCardManager = GetComponent<EnemyHandsCardManager>();
+        m_EnemyClockCardsManager = GetComponent<EnemyClockCardsManager>();
+        m_EnemyStockCardsManager = GetComponent<EnemyStockCardsManager>();
+        m_EnemyLevelCardsManager = GetComponent<EnemyLevelCardsManager>();
+
         UpdateMyHandCards();
         UpdateMyClockCards();
         UpdateMyMemoryCards();
@@ -74,10 +95,10 @@ public class GameManager : MonoBehaviour
         UpdateMyLevelCards();
         UpdateMyGraveYardCards();
         myBattleDeckCardUtil.ChangeFrontAndBack(false);
-        GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
-        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
-        GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(enemyStockList.Count);
-        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
+        m_EnemyHandsCardManager.updateEnemyHandCards(enemyHandList);
+        m_EnemyClockCardsManager.updateEnemyClockCards(enemyClockList);
+        m_EnemyStockCardsManager.updateEnemyStockCards(enemyStockList.Count);
+        m_EnemyLevelCardsManager.updateEnemyLevelCards(enemyLevelList);
         myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
         enemyBattleMemoryCardUtil.setBattleModeCard(null);
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
@@ -98,7 +119,7 @@ public class GameManager : MonoBehaviour
             break;
         }
 
-        GetComponent<MyMainCardsManager>().CallStand();
+        m_MyMainCardsManager.CallStand();
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
         m_BattleStrix.RpcToAll("DrawPhase");
     }
@@ -253,8 +274,8 @@ public class GameManager : MonoBehaviour
             m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
 
             // パワー、レベル、特徴の計算
-            GetComponent<MyMainCardsManager>().FieldPowerAndLevelAndAttributeReset();
-            m_BattleStrix.SendUpdateMainCards(myFieldList, GetComponent<MyMainCardsManager>().GetFieldPower(), isTurnPlayer);
+            m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
+            m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isTurnPlayer);
         }
         enemyWait = true;
         Invoke("TurnChange2", 1.0f);
@@ -315,7 +336,7 @@ public class GameManager : MonoBehaviour
         UpdateMyDeckCount();
         m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
 
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        m_MyHandCardsManager.updateMyHandCards(myHandList);
         m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
     }
 
@@ -497,7 +518,7 @@ public class GameManager : MonoBehaviour
 
     private void PowerCheck(int num)
     {
-        int myPower = GetComponent<MyMainCardsManager>().GetFieldPower(num);
+        int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
 
         switch (num)
@@ -515,25 +536,25 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        int enemyPower = GetComponent<EnemyMainCardsManager>().GetFieldPower(enemyPlace);
+        int enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
 
         if(myPower > enemyPower)
         {
-            GetComponent<EnemyMainCardsManager>().CallReverse(enemyPlace);
+            m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
             return;
         }
         else if (myPower == enemyPower)
         {
-            GetComponent<EnemyMainCardsManager>().CallReverse(enemyPlace);
+            m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            GetComponent<MyMainCardsManager>().CallOnReverse(num);
+            m_MyMainCardsManager.CallOnReverse(num);
             m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
             return;
         }
         else
         {
-            GetComponent<MyMainCardsManager>().CallOnReverse(num);
+            m_MyMainCardsManager.CallOnReverse(num);
             m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
             return;
         }
@@ -695,13 +716,13 @@ public class GameManager : MonoBehaviour
 
     public void UpdateMyHandCards()
     {
-        GetComponent<MyHandCardsManager>().updateMyHandCards(myHandList);
+        m_MyHandCardsManager.updateMyHandCards(myHandList);
         return;
     }
 
     public void UpdateMyStockCards()
     {
-        GetComponent<MyStockCardsManager>().updateMyStockCards(myStockList.Count);
+        m_MyStockCardsManager.updateMyStockCards(myStockList.Count);
         return;
     }
 
@@ -719,7 +740,7 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyHandList.Add(b);
         }
-        GetComponent<EnemyHandsCardManager>().updateEnemyHandCards(enemyHandList);
+        m_EnemyHandsCardManager.updateEnemyHandCards(enemyHandList);
         return;
     }
 
@@ -731,13 +752,13 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyStockList.Add(b);
         }
-        GetComponent<EnemyStockCardsManager>().updateEnemyStockCards(list.Count);
+        m_EnemyStockCardsManager.updateEnemyStockCards(list.Count);
         return;
     }
 
     public void UpdateMyClockCards()
     {
-        GetComponent<MyClockCardsManager>().updateMyClockCards(myClockList);
+        m_MyClockCardsManager.updateMyClockCards(myClockList);
         m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
         return;
     }
@@ -750,7 +771,7 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyClockList.Add(b);
         }
-        GetComponent<EnemyClockCardsManager>().updateEnemyClockCards(enemyClockList);
+        m_EnemyClockCardsManager.updateEnemyClockCards(enemyClockList);
         return;
     }
 
@@ -766,8 +787,8 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyFieldList[i] = b;
         }
-        GetComponent<EnemyMainCardsManager>().updateEnemyFieldCards(enemyFieldList);
-        GetComponent<EnemyMainCardsManager>().SetFieldPower(FieldPowerList);
+        m_EnemyMainCardsManager.updateEnemyFieldCards(enemyFieldList);
+        m_EnemyMainCardsManager.SetFieldPower(FieldPowerList);
     }
 
     public void UpdateMyGraveYardCards()
@@ -788,7 +809,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateMyLevelCards()
     {
-        GetComponent<MyLevelCardsManager>().updateMyLevelCards(myLevelList);
+        m_MyLevelCardsManager.updateMyLevelCards(myLevelList);
     }
 
     public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
@@ -799,6 +820,6 @@ public class GameManager : MonoBehaviour
             BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
             enemyLevelList.Add(b);
         }
-        GetComponent<EnemyLevelCardsManager>().updateEnemyLevelCards(enemyLevelList);
+        m_EnemyLevelCardsManager.updateEnemyLevelCards(enemyLevelList);
     }
 }
