@@ -180,7 +180,7 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
         m_MyHandCardsManager.cursorNum++;
-        m_GameManager.UpdateMyHandCards();
+        m_GameManager.Syncronize();
     }
 
     // leftCard‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«
@@ -191,6 +191,6 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
         m_MyHandCardsManager.cursorNum--;
-        m_GameManager.UpdateMyHandCards();
+        m_GameManager.Syncronize();
     }
 }

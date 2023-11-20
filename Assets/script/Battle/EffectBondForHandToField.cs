@@ -15,12 +15,7 @@ public class EffectBondForHandToField : MonoBehaviour
             m_GameManager.GraveYardList.Add(m_GameManager.myStockList[0]);
             m_GameManager.myStockList.RemoveAt(0);
         }
-        m_GameManager.UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
-
-        m_GameManager.UpdateMyStockCards();
-        m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
-
+        m_GameManager.Syncronize();
         CheckExistSulvageCard(sulvageCardNo);
     }
 
@@ -34,11 +29,7 @@ public class EffectBondForHandToField : MonoBehaviour
                 m_GameManager.GraveYardList.RemoveAt(i);
                 m_GameManager.myHandList.Add(card);
 
-                m_GameManager.UpdateMyGraveYardCards();
-                m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
-
-                m_GameManager.UpdateMyHandCards();
-                m_BattleStrix.SendUpdateEnemyHandCards(m_GameManager.myHandList, m_GameManager.isTurnPlayer);
+                m_GameManager.Syncronize();
                 return;
             }
         }

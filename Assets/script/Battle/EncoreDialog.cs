@@ -70,12 +70,8 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.myFieldList[num] = null;
 
         m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
-        // パワー、レベル、特徴の計算
-        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-        m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
 
-        m_GameManager.UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
 
         if(m_GameManager.myStockList.Count > 2)

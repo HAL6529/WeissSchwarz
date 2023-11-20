@@ -34,8 +34,7 @@ public class EffectBrainStormForDraw : MonoBehaviour
                 m_GameManager.Refresh();
             }
 
-            m_GameManager.UpdateMyDeckCount();
-            m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", m_GameManager.myDeckList.Count, m_GameManager.isTurnPlayer);
+            m_GameManager.Syncronize();
         }
 
         for(int i = 0; i < temp.Count; i++)
@@ -49,11 +48,6 @@ public class EffectBrainStormForDraw : MonoBehaviour
             m_GameManager.Draw();
         }
 
-        m_GameManager.UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
-
-        m_GameManager.UpdateMyStockCards();
-        m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
-        Debug.Log("W’†");
+        m_GameManager.Syncronize();
     }
 }

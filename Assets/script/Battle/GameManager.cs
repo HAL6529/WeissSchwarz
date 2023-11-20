@@ -88,12 +88,7 @@ public class GameManager : MonoBehaviour
         m_EnemyStockCardsManager = GetComponent<EnemyStockCardsManager>();
         m_EnemyLevelCardsManager = GetComponent<EnemyLevelCardsManager>();
 
-        UpdateMyHandCards();
-        UpdateMyClockCards();
-        UpdateMyMemoryCards();
-        UpdateMyStockCards();
-        UpdateMyLevelCards();
-        UpdateMyGraveYardCards();
+        Syncronize();
         myBattleDeckCardUtil.ChangeFrontAndBack(false);
         m_EnemyHandsCardManager.updateEnemyHandCards(enemyHandList);
         m_EnemyClockCardsManager.updateEnemyClockCards(enemyClockList);
@@ -172,8 +167,7 @@ public class GameManager : MonoBehaviour
         SetMyClimaxCard(m_BattleModeCard);
         myHandList.Remove(m_BattleModeCard);
 
-        UpdateMyHandCards();
-        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+        Syncronize();
 
         myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
         enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
@@ -264,8 +258,6 @@ public class GameManager : MonoBehaviour
         if(MyClimaxCard != null)
         {
             GraveYardList.Add(MyClimaxCard);
-            UpdateMyGraveYardCards();
-            m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
 
             SetMyClimaxCard(null);
             myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
@@ -276,6 +268,8 @@ public class GameManager : MonoBehaviour
             // パワー、レベル、特徴の計算
             m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
             m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isTurnPlayer);
+
+            Syncronize();
         }
         enemyWait = true;
         Invoke("TurnChange2", 1.0f);
@@ -310,13 +304,7 @@ public class GameManager : MonoBehaviour
         myClockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
 
-        UpdateMyClockCards();
-
-        UpdateMyDeckCount();
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
-
-        UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+        Syncronize();
 
         if (LevelUpCheck())
         {
@@ -333,11 +321,7 @@ public class GameManager : MonoBehaviour
             myHandList.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
         }
-        UpdateMyDeckCount();
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
-
-        m_MyHandCardsManager.updateMyHandCards(myHandList);
-        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+        Syncronize();
     }
 
     public void MariganStart()
@@ -361,14 +345,7 @@ public class GameManager : MonoBehaviour
             myDeckList.RemoveAt(0);
         }
         myMariganList = new List<BattleModeCard>();
-        UpdateMyDeckCount();
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
-
-        UpdateMyHandCards();
-        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
-
-        UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+        Syncronize();
 
         MariganMode = false;
         turn = 1;
@@ -394,11 +371,7 @@ public class GameManager : MonoBehaviour
             Refresh();
         }
 
-        UpdateMyDeckCount();
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
-
-        UpdateMyHandCards();
-        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+        Syncronize();
     }
 
     public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
@@ -429,7 +402,7 @@ public class GameManager : MonoBehaviour
     {
         Draw();
         Draw();
-        UpdateMyClockCards();
+        Syncronize();
         ClockPhaseEnd();
         return;
     }
@@ -502,13 +475,9 @@ public class GameManager : MonoBehaviour
         myStockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
 
-        UpdateMyDeckCount();
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+        Syncronize();
 
-        UpdateMyStockCards();
-        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
-
-        if(myDeckList.Count == 0)
+        if (myDeckList.Count == 0)
         {
             Refresh();
         }
@@ -578,18 +547,12 @@ public class GameManager : MonoBehaviour
                 {
                     GraveYardList.Add(temp[n]);
                 }
-
-                UpdateMyGraveYardCards();
-                m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
-
-                UpdateMyDeckCount();
-                m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+                Syncronize();
                 return;
             }
             myDeckList.RemoveAt(i);
 
-            UpdateMyDeckCount();
-            m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+            Syncronize();
             if (myDeckList.Count == 0)
             {
                 Refresh();
@@ -600,7 +563,7 @@ public class GameManager : MonoBehaviour
         {
             myClockList.Add(temp[n]);
         }
-        UpdateMyClockCards();
+        Syncronize();
 
         if (LevelUpCheck())
         {
@@ -662,14 +625,7 @@ public class GameManager : MonoBehaviour
             myClockList.RemoveAt(0);
         }
         PlayerLevel++;
-
-        UpdateMyClockCards();
-
-        UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
-
-        UpdateMyLevelCards();
-        m_BattleStrix.SendUpdateLevelCards(myLevelList, isFirstAttacker);
+        Syncronize();
     }
 
     private bool LevelUpCheck()
@@ -682,6 +638,11 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 色発生がクリアできているかチェックする
+    /// </summary>
+    /// <param name="color"></param>
+    /// <returns></returns>
     public bool ColorCheck(EnumController.CardColor color)
     {
         for(int i = 0; i < myLevelList.Count; i++)
@@ -702,33 +663,44 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    public void UpdateMyDeckCount()
+    public void Syncronize()
     {
+        // デッキ枚数の更新
         myBattleDeckCardUtil.SetDeckCount(myDeckList.Count);
-        return;
+        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+
+        // 手札の枚数の更新
+        m_MyHandCardsManager.updateMyHandCards(myHandList);
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+
+        // 墓地のカードの更新
+        myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
+        m_BattleStrix.SendUpdateEnemyGraveYard(GraveYardList, isFirstAttacker);
+
+        // クロックのカードの更新
+        m_MyClockCardsManager.updateMyClockCards(myClockList);
+        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
+
+        // ストックのカードの更新
+        m_MyStockCardsManager.updateMyStockCards(myStockList.Count);
+        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
+
+        // レベル置き場のカードの更新
+        m_MyLevelCardsManager.updateMyLevelCards(myLevelList);
+        m_BattleStrix.SendUpdateLevelCards(myLevelList, isFirstAttacker);
+
+        // 思い出のカードの更新
+        myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
+
+        // メインのカードの更新
+        // パワー、レベル、特徴の計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
+        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isTurnPlayer);
     }
 
     public void UpdateEnemyDeckCount(int num)
     {
         enemyBattleDeckCardUtil.SetDeckCount(num);
-        return;
-    }
-
-    public void UpdateMyHandCards()
-    {
-        m_MyHandCardsManager.updateMyHandCards(myHandList);
-        return;
-    }
-
-    public void UpdateMyStockCards()
-    {
-        m_MyStockCardsManager.updateMyStockCards(myStockList.Count);
-        return;
-    }
-
-    public void UpdateMyMemoryCards()
-    {
-        myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
         return;
     }
 
@@ -753,13 +725,6 @@ public class GameManager : MonoBehaviour
             enemyStockList.Add(b);
         }
         m_EnemyStockCardsManager.updateEnemyStockCards(list.Count);
-        return;
-    }
-
-    public void UpdateMyClockCards()
-    {
-        m_MyClockCardsManager.updateMyClockCards(myClockList);
-        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
         return;
     }
 
@@ -791,11 +756,6 @@ public class GameManager : MonoBehaviour
         m_EnemyMainCardsManager.SetFieldPower(FieldPowerList);
     }
 
-    public void UpdateMyGraveYardCards()
-    {
-        myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
-    }
-
     public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)
     {
         enemyGraveYardList = new List<BattleModeCard>();
@@ -805,11 +765,6 @@ public class GameManager : MonoBehaviour
             enemyGraveYardList.Add(b);
         }
         enemyBattleGraveYardUtil.updateMyGraveYardCards(enemyGraveYardList);
-    }
-
-    public void UpdateMyLevelCards()
-    {
-        m_MyLevelCardsManager.updateMyLevelCards(myLevelList);
     }
 
     public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list)
