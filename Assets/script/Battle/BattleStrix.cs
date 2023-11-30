@@ -356,18 +356,35 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void EncoreDialog(bool isTurnPlayer)
+    public void EncoreDialog(bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        Debug.Log("EncoreDialog");
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.SendEncoreDialog();
+            m_GameManager.SendEncoreDialogFromRPC();
         }
     }
 
     [StrixRpc]
-    public void TurnChange()
+    public void SendReceiveTurnChange(bool isFirstAttacker)
     {
-        m_GameManager.TurnChange();
+        Debug.Log("SendReceiveTurnChange");
+        if (m_GameManager.isFirstAttacker == isFirstAttacker)
+        {
+            return;
+        }
+        m_GameManager.ReceiveTurnChange();
+    }
+
+    [StrixRpc]
+    public void SendReceiveReadyOK(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker == isFirstAttacker)
+        {
+            return;
+        }
+        Debug.Log("SendReceiveReadyOK");
+        m_GameManager.ReceiveReadyOK();
     }
 
     public void CallPlayEnemyTriggerAnimation(BattleModeCard card, bool isTurnPlayer)

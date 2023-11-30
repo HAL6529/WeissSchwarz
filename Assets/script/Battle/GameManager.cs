@@ -211,7 +211,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Encore);
-        m_BattleStrix.RpcToAll("EncorePhase");
+        // m_BattleStrix.RpcToAll("EncorePhase");
+        EncoreStart();
         return;
     }
 
@@ -244,16 +245,42 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        m_DialogManager.EncoreDialog(myFieldList);
+        m_DialogManager.EncoreDialog(myFieldList, false);
         return;
     }
 
-    public void SendEncoreDialog()
+    public void SendEncoreDialogFromRPC()
     {
-        m_DialogManager.EncoreDialog(myFieldList);
+        m_DialogManager.EncoreDialog(myFieldList, true);
     }
 
     public void TurnChange()
+    {
+        Debug.Log("TurnChange");
+        SwitchTurnUtil();
+        m_BattleStrix.RpcToAll("SendReceiveTurnChange", isFirstAttacker);
+    }
+
+    public void ReceiveTurnChange()
+    {
+        Debug.Log("ReceiveTurnChange");
+        SwitchTurnUtil();
+        m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
+    }
+
+    public void SwitchTurnUtil()
+    {
+        Debug.Log("SwitchTurnUtil");
+        isTurnPlayer = !isTurnPlayer;
+        turn++;
+    }
+    
+    public void ReceiveReadyOK()
+    {
+        StandPhaseStart();
+    }
+
+    /*public void TurnChange()
     {
         if(MyClimaxCard != null)
         {
@@ -280,7 +307,7 @@ public class GameManager : MonoBehaviour
         isTurnPlayer = !isTurnPlayer;
         turn++;
         StandPhaseStart();
-    }
+    }*/
 
     public void Shuffle()
     {

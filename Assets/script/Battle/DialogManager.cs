@@ -28,6 +28,18 @@ public class DialogManager : MonoBehaviour
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num);
     }
 
+    /// <summary>
+    /// アンコールダイアログ用
+    /// </summary>
+    /// <param name="paramater"></param>
+    /// <param name="m_BattleModeCard"></param>
+    /// <param name="num"></param>
+    /// <param name="isReceivedFromRPC"></param>
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, bool isReceivedFromRPC)
+    {
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, isReceivedFromRPC);
+    }
+
     public void OKDialog(EnumController.OKDialogParamater paramater)
     {
         m_OKDialog.SetParamater(paramater);
@@ -67,9 +79,9 @@ public class DialogManager : MonoBehaviour
         m_PhaseDialog.Open();
     }
 
-    public void EncoreDialog(List<BattleModeCard> list)
+    public void EncoreDialog(List<BattleModeCard> list, bool isReceivedFromRPC)
     {
-        m_EncoreDialog.SetBattleModeCard(list);
+        m_EncoreDialog.SetBattleModeCard(list, isReceivedFromRPC);
         return;
     }
 
