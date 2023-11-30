@@ -161,7 +161,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_DialogManager.CloseAllDialog();
 
-        if (m_GameManager.isLevelUpProcess)
+        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
         {
             return;
         }
@@ -235,6 +235,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
@@ -243,6 +244,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onFrontAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
@@ -251,6 +253,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);

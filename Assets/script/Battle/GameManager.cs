@@ -37,9 +37,7 @@ public class GameManager : MonoBehaviour
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
-    public bool isMyReady = false;
-    public bool isEnemyReady = false;
-    public bool enemyWait = false;
+    public bool isAttackProcess = false;
     public int PlayerLevel = 0;
     public int turn = 1;
 
@@ -104,16 +102,10 @@ public class GameManager : MonoBehaviour
     public void StandPhaseStart()
     {
         phase = EnumController.Turn.Stand;
-        m_BattleStrix.RpcToAll("SetEnemyWait", isFirstAttacker);
         if (!isTurnPlayer || phase == EnumController.Turn.Clock)
         {
             return;
         }
-        while (enemyWait)
-        {
-            break;
-        }
-
         m_MyMainCardsManager.CallStand();
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
         m_BattleStrix.RpcToAll("DrawPhase");
@@ -279,35 +271,6 @@ public class GameManager : MonoBehaviour
     {
         StandPhaseStart();
     }
-
-    /*public void TurnChange()
-    {
-        if(MyClimaxCard != null)
-        {
-            GraveYardList.Add(MyClimaxCard);
-
-            SetMyClimaxCard(null);
-            myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
-            enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
-            BattleModeCardTemp temp = new BattleModeCardTemp(null);
-            m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
-
-            // パワー、レベル、特徴の計算
-            m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-            m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isTurnPlayer);
-
-            Syncronize();
-        }
-        enemyWait = true;
-        Invoke("TurnChange2", 1.0f);
-    }
-
-    private void TurnChange2()
-    {
-        isTurnPlayer = !isTurnPlayer;
-        turn++;
-        StandPhaseStart();
-    }*/
 
     public void Shuffle()
     {
@@ -561,6 +524,7 @@ public class GameManager : MonoBehaviour
         List<BattleModeCard> temp = new List<BattleModeCard>();
         if(num < 0)
         {
+            m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
             return;
         }
 
@@ -575,6 +539,7 @@ public class GameManager : MonoBehaviour
                     GraveYardList.Add(temp[n]);
                 }
                 Syncronize();
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
                 return;
             }
             myDeckList.RemoveAt(i);
@@ -597,6 +562,7 @@ public class GameManager : MonoBehaviour
             m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
         }
 
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
         return;
     }
 

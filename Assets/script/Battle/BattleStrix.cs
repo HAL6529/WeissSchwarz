@@ -401,4 +401,10 @@ public class BattleStrix : StrixBehaviour
             m_TriggerCardAnimationForEnemy.Play(card);
         }
     }
+
+    [StrixRpc]
+    public void SetIsAttackProcess(bool isAttackProcess)
+    {
+        m_GameManager.isAttackProcess = isAttackProcess;
+    }
 }
