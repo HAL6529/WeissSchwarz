@@ -133,7 +133,6 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
-                m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 if(numberParamater == -1)

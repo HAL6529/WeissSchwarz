@@ -92,10 +92,8 @@ public class GameManager : MonoBehaviour
         m_EnemyClockCardsManager.updateEnemyClockCards(enemyClockList);
         m_EnemyStockCardsManager.updateEnemyStockCards(enemyStockList.Count);
         m_EnemyLevelCardsManager.updateEnemyLevelCards(enemyLevelList);
-        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
         enemyBattleMemoryCardUtil.setBattleModeCard(null);
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
-        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
         enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
 
@@ -158,14 +156,9 @@ public class GameManager : MonoBehaviour
         }
         SetMyClimaxCard(m_BattleModeCard);
         myHandList.Remove(m_BattleModeCard);
-
         Syncronize();
 
-        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
-        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
-        BattleModeCardTemp temp = new BattleModeCardTemp(m_BattleModeCard);
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Climax);
-        m_BattleStrix.RpcToAll("UpdateClimaxCard", temp, isTurnPlayer);
     }
 
     private void SetMyClimaxCard(BattleModeCard m_BattleModeCard)
@@ -212,10 +205,12 @@ public class GameManager : MonoBehaviour
     /// 相手フィールドのクライマックスを更新する
     /// </summary>
     /// <param name="m_BattleModeCardTemp"></param>
-    public void UpdateClimaxCard(BattleModeCardTemp m_BattleModeCardTemp)
+    public void UpdateClimaxCard(BattleModeCardTemp m_enemyClimax, BattleModeCardTemp m_myClimax)
     {
-        BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_BattleModeCardTemp.cardNo);
-        SetEnemyClimaxCard(b);
+        BattleModeCard mClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_myClimax.cardNo);
+        BattleModeCard eClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_enemyClimax.cardNo);
+        MyClimaxCard = mClimax;
+        EnemyClimaxCard = eClimax;
         myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
         enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
     }
@@ -256,6 +251,7 @@ public class GameManager : MonoBehaviour
     public void ReceiveTurnChange()
     {
         Debug.Log("ReceiveTurnChange");
+        DiscardClimaxCard();
         SwitchTurnUtil();
         m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
     }
@@ -265,6 +261,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("SwitchTurnUtil");
         isTurnPlayer = !isTurnPlayer;
         turn++;
+    }
+
+    private void DiscardClimaxCard()
+    {
+        if (MyClimaxCard != null)
+        {
+            Debug.Log("DiscardClimaxCard");
+            GraveYardList.Add(MyClimaxCard);
+            SetMyClimaxCard(null);
+            Syncronize();
+        }
     }
     
     public void ReceiveReadyOK()
@@ -685,10 +692,17 @@ public class GameManager : MonoBehaviour
         // 思い出のカードの更新
         myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
 
+        // クライマックスカードの更新
+        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
+        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
+        BattleModeCardTemp MyClimaxTemp = new BattleModeCardTemp(MyClimaxCard);
+        BattleModeCardTemp EnemyClimaxTemp = new BattleModeCardTemp(EnemyClimaxCard);
+        m_BattleStrix.RpcToAll("UpdateClimaxCard", MyClimaxTemp, EnemyClimaxTemp, isFirstAttacker);
+
         // メインのカードの更新
         // パワー、レベル、特徴の計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isTurnPlayer);
+        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isFirstAttacker);
     }
 
     public void UpdateEnemyDeckCount(int num)
