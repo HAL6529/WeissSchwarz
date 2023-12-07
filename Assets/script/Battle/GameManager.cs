@@ -667,11 +667,11 @@ public class GameManager : MonoBehaviour
     {
         // デッキ枚数の更新
         myBattleDeckCardUtil.SetDeckCount(myDeckList.Count);
-        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isTurnPlayer);
+        m_BattleStrix.RpcToAll("UpdateEnemyDeckCount", myDeckList.Count, isFirstAttacker);
 
         // 手札の枚数の更新
         m_MyHandCardsManager.updateMyHandCards(myHandList);
-        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isTurnPlayer);
+        m_BattleStrix.SendUpdateEnemyHandCards(myHandList, isFirstAttacker);
 
         // 墓地のカードの更新
         myBattleGraveYardUtil.updateMyGraveYardCards(GraveYardList);
@@ -679,11 +679,11 @@ public class GameManager : MonoBehaviour
 
         // クロックのカードの更新
         m_MyClockCardsManager.updateMyClockCards(myClockList);
-        m_BattleStrix.SendUpdateEnemyClock(myClockList, isTurnPlayer);
+        m_BattleStrix.SendUpdateEnemyClock(myClockList, isFirstAttacker);
 
         // ストックのカードの更新
         m_MyStockCardsManager.updateMyStockCards(myStockList.Count);
-        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isTurnPlayer);
+        m_BattleStrix.SendUpdateEnemyStockCards(myStockList, isFirstAttacker);
 
         // レベル置き場のカードの更新
         m_MyLevelCardsManager.updateMyLevelCards(myLevelList);
