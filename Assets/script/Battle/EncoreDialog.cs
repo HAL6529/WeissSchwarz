@@ -14,14 +14,17 @@ public class EncoreDialog : MonoBehaviour
     [SerializeField] Sprite Background;
     [SerializeField] DialogManager m_DialogManager;
 
+    private bool isReceivedFromRPC = false;
+
     private void Open()
     {
         this.gameObject.SetActive(true);
     }
 
-    public void SetBattleModeCard(List<BattleModeCard> list)
+    public void SetBattleModeCard(List<BattleModeCard> list, bool isReceivedFromRPC)
     {
         int count = 0;
+        this.isReceivedFromRPC = isReceivedFromRPC;
         for (int i = 0; i < list.Count; i++)
         {
             if (list[i] == null)
@@ -43,12 +46,12 @@ public class EncoreDialog : MonoBehaviour
         Debug.Log(count);
         if(count == 0)
         {
-            if (m_GameManager.isTurnPlayer)
+            if (this.isReceivedFromRPC)
             {
-                m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isTurnPlayer);
+                m_GameManager.TurnChange();
                 return;
             }
-            m_BattleStrix.RpcToAll("TurnChange");
+            m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker);
             return;
         }
         Open();
@@ -59,29 +62,28 @@ public class EncoreDialog : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// アンコールするカードをクリックしたとき
+    /// </summary>
+    /// <param name="num"></param>
     public void onClick(int num)
     {
         BattleModeCard temp = m_GameManager.myFieldList[num];
         m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
         m_GameManager.myFieldList[num] = null;
 
+        m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
 
-        m_GameManager.UpdateMyMainCards();
-        // パワー、レベル、特徴の計算
-        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-        m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
-
-        m_GameManager.UpdateMyGraveYardCards();
-        m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
 
         if(m_GameManager.myStockList.Count > 2)
         {
-            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM, temp, num);
+            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM, temp, num, isReceivedFromRPC);
         }
         else
         {
-            m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+            m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
         }
         return;
     }

@@ -42,7 +42,7 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateEnemyGraveYard), temp, isFirstAttacker);
     }
 
-    public void SendUpdateEnemyStockCards(List<BattleModeCard> list, bool isTurnPlayer)
+    public void SendUpdateEnemyStockCards(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
 
@@ -50,10 +50,10 @@ public class BattleStrix : StrixBehaviour
         {
             temp.Add(new BattleModeCardTemp(list[i]));
         }
-        RpcToAll(nameof(UpdateEnemyStockCards), temp, isTurnPlayer);
+        RpcToAll(nameof(UpdateEnemyStockCards), temp, isFirstAttacker);
     }
 
-    public void SendUpdateEnemyClock(List<BattleModeCard> list, bool isTurnPlayer)
+    public void SendUpdateEnemyClock(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
 
@@ -61,10 +61,10 @@ public class BattleStrix : StrixBehaviour
         {
             temp.Add(new BattleModeCardTemp(list[i]));
         }
-        RpcToAll(nameof(UpdateEnemyClock), temp, isTurnPlayer);
+        RpcToAll(nameof(UpdateEnemyClock), temp, isFirstAttacker);
     }
 
-    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList ,bool isTurnPlayer)
+    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList ,bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -78,10 +78,10 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, isTurnPlayer);
+        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, isFirstAttacker);
     }
 
-    public void SendUpdateEnemyHandCards(List<BattleModeCard> list, bool isTurnPlayer)
+    public void SendUpdateEnemyHandCards(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -95,10 +95,10 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateEnemyHandCards), temp, isTurnPlayer);
+        RpcToAll(nameof(UpdateEnemyHandCards), temp, isFirstAttacker);
     }
 
-    public void SendUpdateLevelCards(List<BattleModeCard> list, bool isTurnPlayer)
+    public void SendUpdateLevelCards(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -112,7 +112,7 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateEnemyLevelCards), temp, isTurnPlayer);
+        RpcToAll(nameof(UpdateEnemyLevelCards), temp, isFirstAttacker);
     }
 
     [StrixRpc]
@@ -170,18 +170,18 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateEnemyHandCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    public void UpdateEnemyHandCards(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyHandCards(list);
         }
     }
 
     [StrixRpc]
-    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, bool isTurnPlayer)
+    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyMainCards(list, FieldPowerList);
         }
@@ -197,36 +197,36 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    public void UpdateEnemyStockCards(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyStockCards(list);
         }
     }
 
     [StrixRpc]
-    public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyClock(list);
         }
     }
 
     [StrixRpc]
-    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    public void UpdateEnemyLevelCards(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyLevelCards(list);
         }
     }
 
     [StrixRpc]
-    public void UpdateEnemyDeckCount(int num, bool isTurnPlayer)
+    public void UpdateEnemyDeckCount(int num, bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyDeckCount(num);
         }
@@ -285,12 +285,11 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateClimaxCard(BattleModeCardTemp m_BattleModeCardTemp, bool isTurnPlayer)
+    public void UpdateClimaxCard(BattleModeCardTemp myClimax, BattleModeCardTemp enemyClimax, bool isFirstAttacker)
     {
-        logText.text = "ClimaxPhase";
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.UpdateClimaxCard(m_BattleModeCardTemp);
+            m_GameManager.UpdateClimaxCard(myClimax, enemyClimax);
         }
     }
 
@@ -356,18 +355,35 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void EncoreDialog(bool isTurnPlayer)
+    public void EncoreDialog(bool isFirstAttacker)
     {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        Debug.Log("EncoreDialog");
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.SendEncoreDialog();
+            m_GameManager.SendEncoreDialogFromRPC();
         }
     }
 
     [StrixRpc]
-    public void TurnChange()
+    public void SendReceiveTurnChange(bool isFirstAttacker)
     {
-        m_GameManager.TurnChange();
+        Debug.Log("SendReceiveTurnChange");
+        if (m_GameManager.isFirstAttacker == isFirstAttacker)
+        {
+            return;
+        }
+        m_GameManager.ReceiveTurnChange();
+    }
+
+    [StrixRpc]
+    public void SendReceiveReadyOK(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker == isFirstAttacker)
+        {
+            return;
+        }
+        Debug.Log("SendReceiveReadyOK");
+        m_GameManager.ReceiveReadyOK();
     }
 
     public void CallPlayEnemyTriggerAnimation(BattleModeCard card, bool isTurnPlayer)
@@ -383,5 +399,11 @@ public class BattleStrix : StrixBehaviour
         {
             m_TriggerCardAnimationForEnemy.Play(card);
         }
+    }
+
+    [StrixRpc]
+    public void SetIsAttackProcess(bool isAttackProcess)
+    {
+        m_GameManager.isAttackProcess = isAttackProcess;
     }
 }

@@ -43,9 +43,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
 
-    private bool isMoveButton = false;
-
+    /// <summary>
+    /// フィールド上でのステータス
+    /// </summary>
     private EnumController.State state = EnumController.State.STAND;
+
+    private bool isMoveButton = false;
 
     public Effect m_Effect;
 
@@ -84,21 +87,36 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_CheckHaveActAvility = new CheckHaveActAvility();
     }
 
-    public void setBattleModeCard(BattleModeCard card)
+    public void setBattleModeCard(BattleModeCard card, EnumController.State state)
     {
-        onReset();
+        switch (state)
+        {
+            case EnumController.State.STAND:
+                Stand();
+                break;
+            case EnumController.State.REST:
+                onRest();
+                break;
+            case EnumController.State.REVERSE:
+                onReverse();
+                break;
+            default:
+                onReset();
+                break;
+        }
+
         m_BattleModeCard = card;
 
         AttributeList = new List<EnumController.Attribute>();
-        if (card != null && card.attributeOne != null)
+        if (card != null && card.attributeOne != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeOne);
         }
-        if (card != null && card.attributeTwo != null)
+        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeTwo);
         }
-        if (card != null && card.attributeThree != null)
+        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeThree);
         }
@@ -143,7 +161,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_DialogManager.CloseAllDialog();
 
-        if (m_GameManager.isLevelUpProcess)
+        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
         {
             return;
         }
@@ -217,6 +235,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
@@ -225,6 +244,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onFrontAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
@@ -233,6 +253,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);

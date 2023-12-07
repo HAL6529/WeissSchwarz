@@ -21,6 +21,8 @@ public class YesOrNoDialog : MonoBehaviour
 
     private int numberParamater = -1;
 
+    private bool isReceivedFromRPC = false;
+
     /// <summary>
     /// カードの効果を使用するためのコスト
     /// </summary>
@@ -44,6 +46,7 @@ public class YesOrNoDialog : MonoBehaviour
         cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
+        this.isReceivedFromRPC = false;
         SetText();
     }
 
@@ -55,6 +58,7 @@ public class YesOrNoDialog : MonoBehaviour
         cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
+        this.isReceivedFromRPC = false;
         SetText();
     }
 
@@ -66,6 +70,19 @@ public class YesOrNoDialog : MonoBehaviour
         cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
+        this.isReceivedFromRPC = false;
+        SetText();
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, bool isReceivedFromRPC)
+    {
+        numberParamater = num;
+        m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
+        this.gameObject.SetActive(true);
+        m_YesOrNoDialogParamater = paramater;
+        this.isReceivedFromRPC = isReceivedFromRPC;
         SetText();
     }
 
@@ -116,9 +133,6 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
-                // パワー、レベル、特徴の計算
-                m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-                m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 if(numberParamater == -1)
@@ -135,16 +149,9 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.myFieldList[numberParamater] = m_BattleModeCard;
                 m_MyMainCardsManager.CallOnStand(numberParamater);
 
-                m_GameManager.UpdateMyMainCards();
-                // パワー、レベル、特徴の計算
-                m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-                m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
+                m_MyMainCardsManager.setBattleModeCard(numberParamater, m_BattleModeCard, EnumController.State.REST);
 
-                m_GameManager.UpdateMyGraveYardCards();
-                m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
-
-                m_GameManager.UpdateMyStockCards();
-                m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
+                m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 m_DialogManager.MainDialog(m_BattleModeCard);
@@ -167,7 +174,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 return;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
                 return;
             case EnumController.YesOrNoDialogParamater.VOID:
                 return;
@@ -183,7 +190,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
                 break;

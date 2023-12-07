@@ -66,21 +66,10 @@ public class MainDialog : MonoBehaviour
                 m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[place]);
             }
             m_GameManager.myFieldList[place] = m_BattleModeCard;
-
-            m_GameManager.UpdateMyStockCards();
-            m_BattleStrix.SendUpdateEnemyStockCards(m_GameManager.myStockList, m_GameManager.isTurnPlayer);
-
-            m_GameManager.UpdateMyGraveYardCards();
-            m_BattleStrix.SendUpdateEnemyGraveYard(m_GameManager.GraveYardList, m_GameManager.isFirstAttacker);
-
             m_GameManager.myHandList.Remove(m_BattleModeCard);
-            m_GameManager.UpdateMyHandCards();
-            m_BattleStrix.SendUpdateEnemyHandCards(m_GameManager.myHandList, m_GameManager.isTurnPlayer);
+            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, EnumController.State.STAND);
 
-            m_GameManager.UpdateMyMainCards();
-            // パワー、レベル、特徴の計算
-            m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
-            m_BattleStrix.SendUpdateMainCards(m_GameManager.myFieldList, m_MyMainCardsManager.GetFieldPower(), m_GameManager.isTurnPlayer);
+            m_GameManager.Syncronize();
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();

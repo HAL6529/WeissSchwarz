@@ -11,7 +11,7 @@ using SoftGear.Strix.Unity.Runtime.Event;
 
 public class PlayerTest : MonoBehaviour
 {
-    public string name;
+    public string playerName;
 
     private string enemyName;
 
@@ -41,12 +41,12 @@ public class PlayerTest : MonoBehaviour
 
     public void UpdateMyPlayerName()
     {
-        text.text = name;
+        text.text = playerName;
     }
 
     public void onClicked()
     {
-        name = inputField.text;
+        playerName = inputField.text;
         UpdateMyPlayerName();
     }
 }

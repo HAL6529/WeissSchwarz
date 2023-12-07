@@ -71,13 +71,9 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].m_LevelAssist.getAssistPower(FieldLevel);
     }
 
-    public void updateMyFieldCards(List<BattleModeCard> list)
+    public void setBattleModeCard(int num, BattleModeCard card, EnumController.State status)
     {
-        myFieldList = list;
-        for(int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].setBattleModeCard(myFieldList[i]);
-        }       
+        CardList[num].setBattleModeCard(card, status);
     }
 
     public void CallNotShowMoveButton()
