@@ -51,6 +51,12 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
+        if(m_GameManager.isHandOver && m_GameManager.phase == EnumController.Turn.Encore)
+        {
+            HandOverClick();
+            return;
+        }
+
         if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
         {
             MariganClick();
@@ -80,6 +86,23 @@ public class BattleHandCardUtil : MonoBehaviour
     {
         isMainSelected = false;
         PlayButton.SetActive(false);
+    }
+
+    private void HandOverClick()
+    {
+        if (isSelected)
+        {
+            m_GameManager.HandOverList.Remove(m_BattleModeCard);
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+        }
+        else
+        {
+            m_GameManager.HandOverList.Add(m_BattleModeCard);
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 125f / 255f);
+        }
+        m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Confirm);
     }
 
     private void MariganClick()

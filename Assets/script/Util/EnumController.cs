@@ -125,6 +125,13 @@ namespace EnumController
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
     }
 
+    public enum HandOverDialogParamater
+    {
+        VOID,
+        Active,
+        Confirm,
+    }
+
     public enum Attack
     {
         VOID,
