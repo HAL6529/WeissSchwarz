@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> enemyFieldList = new List<BattleModeCard> { null, null, null, null, null };
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
+    public List<BattleModeCard> HandOverList = new List<BattleModeCard>();
 
     public BattleModeCard MyClimaxCard = null;
     public BattleModeCard EnemyClimaxCard = null;
@@ -38,8 +39,10 @@ public class GameManager : MonoBehaviour
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
+    public bool isHandOver = false;
     public int PlayerLevel = 0;
     public int turn = 1;
+    private static int HAND_LIMIT_NUM = 7;
 
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
@@ -201,20 +204,6 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    /// <summary>
-    /// 相手フィールドのクライマックスを更新する
-    /// </summary>
-    /// <param name="m_BattleModeCardTemp"></param>
-    public void UpdateClimaxCard(BattleModeCardTemp m_enemyClimax, BattleModeCardTemp m_myClimax)
-    {
-        BattleModeCard mClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_myClimax.cardNo);
-        BattleModeCard eClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_enemyClimax.cardNo);
-        MyClimaxCard = mClimax;
-        EnemyClimaxCard = eClimax;
-        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
-        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
-    }
-
     public void MainStart()
     {
 
@@ -251,6 +240,32 @@ public class GameManager : MonoBehaviour
     public void ReceiveTurnChange()
     {
         Debug.Log("ReceiveTurnChange");
+        if(myHandList.Count > HAND_LIMIT_NUM)
+        {
+            isHandOver = true;
+            m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
+            return;
+        }
+        ReceiveTurnChange2();
+    }
+
+    public void HandOver()
+    {
+        for (int i = 0; i < HandOverList.Count; i++)
+        {
+            myHandList.Remove(HandOverList[i]);
+            GraveYardList.Add(HandOverList[i]);
+        }
+        HandOverList = new List<BattleModeCard>();
+        Syncronize();
+
+        isHandOver = false;
+
+        ReceiveTurnChange2();
+    }
+
+    private void ReceiveTurnChange2()
+    {
         DiscardClimaxCard();
         SwitchTurnUtil();
         m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
@@ -705,6 +720,11 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isFirstAttacker);
     }
 
+    public int GetHAND_LIMIT_NUM()
+    {
+        return HAND_LIMIT_NUM;
+    }
+
     public void UpdateEnemyDeckCount(int num)
     {
         enemyBattleDeckCardUtil.SetDeckCount(num);
@@ -783,5 +803,19 @@ public class GameManager : MonoBehaviour
             enemyLevelList.Add(b);
         }
         m_EnemyLevelCardsManager.updateEnemyLevelCards(enemyLevelList);
+    }
+
+    /// <summary>
+    /// 相手フィールドのクライマックスを更新する
+    /// </summary>
+    /// <param name="m_BattleModeCardTemp"></param>
+    public void UpdateClimaxCard(BattleModeCardTemp m_enemyClimax, BattleModeCardTemp m_myClimax)
+    {
+        BattleModeCard mClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_myClimax.cardNo);
+        BattleModeCard eClimax = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_enemyClimax.cardNo);
+        MyClimaxCard = mClimax;
+        EnemyClimaxCard = eClimax;
+        myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
+        enemyBattleClimaxCardUtil.SetClimax(EnemyClimaxCard);
     }
 }

@@ -11,6 +11,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] LevelUpDialog m_LevelUpDialog;
     [SerializeField] PhaseDialog m_PhaseDialog;
     [SerializeField] EncoreDialog m_EncoreDialog;
+    [SerializeField] HandOverDialog m_HandOverDialog;
     [SerializeField] GameManager m_GameManager;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
@@ -85,6 +86,11 @@ public class DialogManager : MonoBehaviour
         return;
     }
 
+    public void HandOverDialog(EnumController.HandOverDialogParamater paramater)
+    {
+        m_HandOverDialog.SetParamater(paramater);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -94,5 +100,6 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.OffDialog();
         m_PhaseDialog.OffDialog();
         m_EncoreDialog.OffDialog();
+        m_HandOverDialog.OffDialog();
     }
 }

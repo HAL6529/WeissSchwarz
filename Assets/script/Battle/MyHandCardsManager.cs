@@ -124,4 +124,17 @@ public class MyHandCardsManager : MonoBehaviour
             CardList[i].GetComponent<BattleHandCardUtil>().NotShowPlayButton();
         }
     }
+
+    public int GetIsSelectedNum()
+    {
+        int num = 0;
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (CardList[i].GetComponent<BattleHandCardUtil>().isSelected)
+            {
+                num++;
+            }
+        }
+        return num;
+    }
 }
