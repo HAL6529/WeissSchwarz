@@ -10,6 +10,7 @@ public class OKDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
 
+    private StringValues stringValues = new StringValues();
     private BattleModeCard m_BattleModeCard = null;
 
     private EnumController.OKDialogParamater m_DialogParamater;
@@ -49,10 +50,10 @@ public class OKDialog : MonoBehaviour
         switch (m_DialogParamater)
         {
             case EnumController.OKDialogParamater.Marigan:
-                str = "マリガンするカードを選択してください";
+                str = stringValues.OKDialog_Marigan;
                 break;
             case EnumController.OKDialogParamater.CLOCK:
-                str = "クロックするカードを選択してください";
+                str = stringValues.OKDialog_Clock;
                 break;
             default:
                 str = "無効メッセージ";

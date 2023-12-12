@@ -23,7 +23,6 @@ public class EffectBrainStormForDraw : MonoBehaviour
         {
             if (m_GameManager.myDeckList[0].type == EnumController.Type.CLIMAX)
             {
-                Debug.Log("集中ヒット");
                 count++;
             }
             temp.Add(m_GameManager.myDeckList[0]);
@@ -44,7 +43,6 @@ public class EffectBrainStormForDraw : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            Debug.Log("ドロー");
             m_GameManager.Draw();
         }
 

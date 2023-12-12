@@ -152,7 +152,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void MariganStart()
     {
-        logText.text = "É}ÉäÉKÉì";
         // å„çUÇÃèÍçá
         if (!m_GameManager.isFirstAttacker)
         {
@@ -357,7 +356,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void EncoreDialog(bool isFirstAttacker)
     {
-        Debug.Log("EncoreDialog");
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.SendEncoreDialogFromRPC();
@@ -367,7 +365,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void SendReceiveTurnChange(bool isFirstAttacker)
     {
-        Debug.Log("SendReceiveTurnChange");
         if (m_GameManager.isFirstAttacker == isFirstAttacker)
         {
             return;
@@ -382,7 +379,6 @@ public class BattleStrix : StrixBehaviour
         {
             return;
         }
-        Debug.Log("SendReceiveReadyOK");
         m_GameManager.ReceiveReadyOK();
     }
 
