@@ -153,5 +153,12 @@ namespace EnumController
         VOID,
         POWER_THOUSAND_AND_SOUL_ONE,
     }
+
+    public enum Language
+    {
+        VOID,
+        Japanese,
+        English,
+    }
 }
 

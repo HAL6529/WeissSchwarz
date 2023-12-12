@@ -9,7 +9,8 @@ public class HandOverDialog : MonoBehaviour
     [SerializeField] GameObject button;
     [SerializeField] Text text;
     [SerializeField] GameManager m_GameManager;
-    private bool isActive = false;
+
+    private StringValues stringValues = new StringValues();
 
     public void SetParamater(EnumController.HandOverDialogParamater paramater)
     {
@@ -28,7 +29,7 @@ public class HandOverDialog : MonoBehaviour
 
     public void Active()
     {
-        text.text = "ŽèŽD‚ª7–‡‚É‚È‚é‚æ‚¤‚ÉŽÌ‚Ä‚Ä‚­‚¾‚³‚¢";
+        text.text = stringValues.HandOverDialog;
         this.gameObject.SetActive(true);
         button.SetActive(false);
         Confirm();

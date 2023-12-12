@@ -23,6 +23,8 @@ public class YesOrNoDialog : MonoBehaviour
 
     private bool isReceivedFromRPC = false;
 
+    private StringValues stringValues = new StringValues();
+
     /// <summary>
     /// カードの効果を使用するためのコスト
     /// </summary>
@@ -92,13 +94,13 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
-                str = "クライマックスフェイズに移動しますか";
+                str = stringValues.YesOrNoDialog_CLIMAX_PHASE;
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                str = m_BattleModeCard.name + "をアンコールしますか";
+                str = stringValues.YesOrNoDialog_ENCORE_CONFIRM(m_BattleModeCard.name); 
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
-                str = "このカードをプレイするにはコスト'" + m_BattleModeCard.cost + "'必要です";
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.cost);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
                 string bondName = "";
@@ -106,7 +108,7 @@ public class YesOrNoDialog : MonoBehaviour
                 {
                     case EnumController.CardNo.AT_WX02_A10:
                         sulvageCardNo = EnumController.CardNo.AT_WX02_A12;
-                        bondName = "Marceline: Party Crasher";
+                        bondName = stringValues.AT_WX02_A12_NAME;
                         cost = 1;
                         break;
                     default:
@@ -114,10 +116,10 @@ public class YesOrNoDialog : MonoBehaviour
                         cost = 0;
                         break;
                 }
-                str = "次の能力を使用しますか。:"+"【自】 絆／「" + bondName + "」 ［(" + cost + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + bondName + "」を1枚選び、手札に戻す）";
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_BOND_FOR_HAND_TO_FIELD(bondName, cost);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
-                str = "次の能力を使用しますか。:"+"【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
