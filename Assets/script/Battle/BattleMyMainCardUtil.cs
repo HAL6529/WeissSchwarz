@@ -96,9 +96,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 break;
             case EnumController.State.REST:
                 onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 break;
             case EnumController.State.REVERSE:
                 onReverse();
+                m_BattleStrix.RpcToAll("CallEnemyReverse", PlaceNum, m_GameManager.isTurnPlayer);
                 break;
             default:
                 onReset();
@@ -222,6 +224,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_DialogManager.MoveDialog(PlaceNum, m_BattleModeCard);
     }
 
+
+    public void onActButton()
+    {
+        NotShowMoveButton();
+        m_Effect.CheckEffectForAct(m_BattleModeCard, PlaceNum);
+    }
+
     public void NotShowFrontAndSideButton()
     {
         FrontAttackButton.SetActive(false);
@@ -272,12 +281,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90.0f);
         NotShowFrontAndSideButton();
         NotShowDirectAttackButton();
-    }
-
-    public void onActButton()
-    {
-        NotShowMoveButton();
-        m_Effect.CheckEffectForAct(m_BattleModeCard, PlaceNum);
     }
 
     public void onReset()

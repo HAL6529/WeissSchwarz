@@ -53,8 +53,8 @@ public class MoveDialog : MonoBehaviour
             EnumController.State placeStatus = m_MyMainCardsManager.GetState(place);
             EnumController.State selectedPlaceStatus = m_MyMainCardsManager.GetState(selectedPlace);
 
-            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, placeStatus);
-            m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, selectedPlaceStatus);
+            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, selectedPlaceStatus);
+            m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, placeStatus);
 
             m_GameManager.Syncronize();
         }
