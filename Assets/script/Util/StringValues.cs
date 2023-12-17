@@ -13,6 +13,7 @@ public class StringValues
     public string HandOverDialog;
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
+    public string SearchDialog_SearchMessage;
     public string AT_WX02_A01_Explanation = "";
     public string AT_WX02_A02_Explanation = "【AUTO】 When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.";
     public string AT_WX02_A03_Explanation = "【AUTO】 【CXCOMBO】 When this card's battle opponent becomes 【REVERSE】, if [Memory of a Memory] is in your climax area, you may draw 1 card.";
@@ -51,6 +52,7 @@ public class StringValues
                 HandOverDialog = japanese.HandOverDialog;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
+                SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 break;
             default:
                 break;
@@ -64,6 +66,7 @@ public class StringValues
         public string HandOverDialog = "手札が7枚になるように捨ててください";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
+        public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
     }
 
     public string YesOrNoDialog_ENCORE_CONFIRM(string paramater1)
@@ -79,5 +82,10 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_BOND_FOR_HAND_TO_FIELD(string paramater1, int paramater2)
     {
         return "次の能力を使用しますか。:" + "【自】 絆／「" + paramater1 + "」 ［(" + paramater2 + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + paramater1 + "」を1枚選び、手札に戻す）";
+    }
+
+    public string YesOrNoDialog_EVENT_CONFIRM(string paramater1)
+    {
+        return paramater1 + "をプレイしますか";
     }
 }

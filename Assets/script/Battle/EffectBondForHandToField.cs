@@ -12,8 +12,8 @@ public class EffectBondForHandToField : MonoBehaviour
     {
         for(int i = 0; i < num; i++)
         {
-            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[0]);
-            m_GameManager.myStockList.RemoveAt(0);
+            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+            m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
         }
         m_GameManager.Syncronize();
         CheckExistSulvageCard(sulvageCardNo);

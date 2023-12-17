@@ -99,6 +99,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 str = stringValues.YesOrNoDialog_ENCORE_CONFIRM(m_BattleModeCard.name); 
                 break;
+            case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
+                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.cost);
                 break;
@@ -144,8 +147,8 @@ public class YesOrNoDialog : MonoBehaviour
 
                 for(int i = 0; i < 3; i++)
                 {
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[0]);
-                    m_GameManager.myStockList.RemoveAt(0);
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 }
                 m_GameManager.GraveYardList.Remove(m_BattleModeCard);
                 m_GameManager.myFieldList[numberParamater] = m_BattleModeCard;
@@ -154,6 +157,9 @@ public class YesOrNoDialog : MonoBehaviour
                 m_MyMainCardsManager.setBattleModeCard(numberParamater, m_BattleModeCard, EnumController.State.REST);
 
                 m_GameManager.Syncronize();
+                break;
+            case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
+                m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 m_DialogManager.MainDialog(m_BattleModeCard);

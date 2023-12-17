@@ -185,6 +185,10 @@ public class BattleHandCardUtil : MonoBehaviour
                 m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard);
                 return;
             case EnumController.Type.EVENT:
+                if (ConfirmStockForCost(1))
+                {
+                    m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                }
                 return;
             case EnumController.Type.CLIMAX:
                 m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CLIMAX_PHASE, m_BattleModeCard);
@@ -215,5 +219,14 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyHandCardsManager.cursorNum--;
         m_GameManager.Syncronize();
+    }
+
+    private bool ConfirmStockForCost(int num)
+    {
+        if (m_GameManager.myStockList.Count >= num)
+        {
+            return true;
+        }
+        return false;
     }
 }
