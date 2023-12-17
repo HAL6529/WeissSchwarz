@@ -120,6 +120,7 @@ namespace EnumController
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
         ENCORE_CONFIRM,
+        EVENT_CONFIRM,
         COST_CONFIRM_HAND_TO_FIELD,
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
@@ -130,6 +131,13 @@ namespace EnumController
         VOID,
         Active,
         Confirm,
+    }
+
+    public enum SearchDialogParamater
+    {
+        VOID,
+        Search,
+        Sulvage,
     }
 
     public enum Attack

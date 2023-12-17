@@ -24,6 +24,7 @@ ScriptsOnlyBuild:
     - DeckListPanelUtil
     - DialogManager
     - DummyDeckAnimation
+    - DummyEffectCardAnimation
     - DummyHandCardUtil
     - EffectBondForHandToField
     - EffectBrainStormForDraw
@@ -55,6 +56,8 @@ ScriptsOnlyBuild:
     - PlayerManager
     - PlayerTest
     - RoomSelectClass
+    - SearchButtonUtil
+    - SearchDialog
     - SearchFilter
     - StrixManager
     - StrixManagerTest
@@ -72,12 +75,14 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -92,6 +97,7 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
     - UnityEditor.Graphs.AnimatorControllerTool
@@ -480,8 +486,17 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onSideAttack
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onCloseButton
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -489,6 +504,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetail
     methodName: onCloseButton
   - assembly: Assembly-CSharp
+    fullTypeName: SearchDialog
+    methodName: onOKbutton
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -496,6 +514,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
@@ -507,7 +528,13 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
@@ -515,6 +542,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onDirectAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
@@ -546,6 +576,12 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onFrontAttack
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -558,7 +594,19 @@ ScriptsOnlyBuild:
     fullTypeName: BattleEnemyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
@@ -576,13 +624,22 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onSideAttack
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleEnemyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
@@ -609,8 +666,14 @@ ScriptsOnlyBuild:
     fullTypeName: BattleHandCardUtil
     methodName: onRightCardClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
@@ -620,6 +683,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onFrontAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onDirectAttack
@@ -636,6 +702,12 @@ ScriptsOnlyBuild:
     fullTypeName: MainDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMemoryCardUtil
     methodName: onClickShowMyMemoryButton
   - assembly: Assembly-CSharp
@@ -646,6 +718,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
@@ -693,6 +768,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onFrontAttack
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -703,6 +781,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
@@ -726,10 +807,16 @@ ScriptsOnlyBuild:
     fullTypeName: BattleClockCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
@@ -742,6 +829,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
@@ -780,7 +870,19 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMemoryCardUtil
     methodName: onClickShowEnemyMemoryButton
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleEnemyMainCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
@@ -822,6 +924,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onSideAttack
   - assembly: Assembly-CSharp
@@ -840,6 +945,9 @@ ScriptsOnlyBuild:
     fullTypeName: EncoreDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClickShowMyGraveYardButton
   - assembly: Assembly-CSharp
@@ -855,6 +963,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMemoryCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: PhaseDialog
     methodName: onAttackButton
   - assembly: Assembly-CSharp
@@ -867,8 +978,17 @@ ScriptsOnlyBuild:
     fullTypeName: EncoreDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onDirectAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
@@ -903,10 +1023,19 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleEnemyMainCardUtil
@@ -936,8 +1065,14 @@ ScriptsOnlyBuild:
     fullTypeName: MoveDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -947,6 +1082,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onFrontAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
@@ -972,7 +1110,19 @@ ScriptsOnlyBuild:
     fullTypeName: BattleEnemyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
@@ -984,11 +1134,20 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
     fullTypeName: DialogManager
     methodName: PhaseDialog
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: SearchButtonUtil
+    methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -1151,6 +1310,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7482}
     - Class: 114
       Script: {instanceID: 7506}
+    - Class: 114
+      Script: {instanceID: 27490}
+    - Class: 114
+      Script: {instanceID: 38388}
+    - Class: 114
+      Script: {instanceID: 38396}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1581,7 +1746,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: b753916c0a93f88d232639f37edd98eb
+      Hash: b22131885bfabbb2bb7303b6575193fd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -2761,6 +2926,24 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: f3f149c175af7e229b0f22cd3083413e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DummyEffectCardAnimation
+  - hash:
+      serializedVersion: 2
+      Hash: 4ebe449a2c6600fb4d70d84332a363f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SearchDialog
+  - hash:
+      serializedVersion: 2
+      Hash: 418da211f03a29988402280cdf35a536
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SearchButtonUtil
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity
