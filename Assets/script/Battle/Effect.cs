@@ -119,6 +119,10 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アタックしたときの効果を持っているか調べる
+    /// </summary>
+    /// <param name="card"></param>
     public void WhenAttack(BattleModeCard card)
     {
         switch (card.cardNo)

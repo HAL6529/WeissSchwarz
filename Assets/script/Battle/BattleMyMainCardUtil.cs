@@ -75,6 +75,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public PowerInstance.LevelAssist m_LevelAssist = new PowerInstance.LevelAssist(0);
 
     /// <summary>
+    /// ターン終了時までアップするパワークラス
+    /// </summary>
+    public PowerInstance.PowerUpUntilTurnEnd m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+
+    /// <summary>
     /// クライマックスUtil
     /// </summary>
     private ClimaxUtil m_ClimaxUtil = new ClimaxUtil();
@@ -316,6 +321,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         FieldPower = m_BattleModeCard.power;
+        FieldPower += m_PowerUpUntilTurnEnd.GetUpPower();
 
         // ガウルの効果を持っているかチェック
         FieldPower += m_MyMainCardsManager.GetGaulPower(PlaceNum, m_Gaul.GetAttributeList());
