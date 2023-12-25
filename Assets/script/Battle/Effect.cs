@@ -123,14 +123,15 @@ public class Effect : MonoBehaviour
     /// アタックしたときの効果を持っているか調べる
     /// </summary>
     /// <param name="card"></param>
-    public void WhenAttack(BattleModeCard card)
+    public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.AttackStatus status)
     {
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A02:
-                return;
+                m_GameManager.m_DialogManager.CharacterSelectDialog(m_GameManager.myFieldList, place, status);
+                return true;
             default:
-                return;
+                return false;
         }
     }
 }

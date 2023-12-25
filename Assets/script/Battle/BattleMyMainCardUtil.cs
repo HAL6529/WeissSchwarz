@@ -52,6 +52,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public Effect m_Effect;
 
+    /// <summary>
+    /// 起動効果を持っているかチェッククラス
+    /// </summary>
     private CheckHaveActAvility m_CheckHaveActAvility;
 
     /// <summary>
@@ -119,11 +122,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             AttributeList.Add(card.attributeOne);
         }
-        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
+        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeTwo != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeTwo);
         }
-        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
+        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeThree != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeThree);
         }
@@ -252,6 +255,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.DIRECT))
+        {
+            return;
+        }
+
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
     }
@@ -261,6 +270,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.FRONT))
+        {
+            return;
+        }
+
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
     }
@@ -270,8 +285,35 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.SIDE))
+        {
+            return;
+        }
+
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+    }
+
+    public void Attack2(EnumController.AttackStatus status)
+    {
+        switch (status)
+        {
+            case EnumController.AttackStatus.DIRECT:
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
+                break;
+            case EnumController.AttackStatus.FRONT:
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
+                break;
+            case EnumController.AttackStatus.SIDE:
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+                break;
+            default:
+                break;
+        }
     }
 
     public void onReverse()
