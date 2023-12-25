@@ -252,45 +252,39 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.DIRECT))
         {
             return;
         }
-
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
     }
 
     public void onFrontAttack()
     {
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.FRONT))
         {
             return;
         }
-
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
     }
 
     public void onSideAttack()
     {
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
-
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.SIDE))
         {
             return;
         }
-
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
     }
@@ -300,14 +294,23 @@ public class BattleMyMainCardUtil : MonoBehaviour
         switch (status)
         {
             case EnumController.AttackStatus.DIRECT:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
                 m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
                 break;
             case EnumController.AttackStatus.FRONT:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
                 m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
                 break;
             case EnumController.AttackStatus.SIDE:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
                 m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
                 break;
@@ -334,6 +337,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         Stand();
         m_BattleModeCard = null;
+    }
+
+    public void ResetPowerUpUntilTurnEnd()
+    {
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
     }
 
     /// <summary>

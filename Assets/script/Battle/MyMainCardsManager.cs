@@ -138,4 +138,12 @@ public class MyMainCardsManager : MonoBehaviour
     {
         CardList[num].Attack2(status);
     }
+
+    public void ExecuteResetPowerUpUntilTurnEnd()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetPowerUpUntilTurnEnd();
+        }
+    }
 }

@@ -10,6 +10,7 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] GameObject m_OKButton;
     [SerializeField] Sprite BackImage;
+    [SerializeField] GameManager m_GameManager;
     private int place = -1;
     private int ButtonSelectedNum = -1;
     private EnumController.AttackStatus status = EnumController.AttackStatus.VOID;
@@ -27,19 +28,19 @@ public class CharacterSelectDialog : MonoBehaviour
             {
                 images[i].sprite = BackImage;
                 cnt++;
-            }
-            else
-            {
-                images[i].sprite = list[i].sprite;
-            }
-
-            if (i == place)
-            {
                 buttons[i].interactable = false;
             }
             else
             {
-                buttons[i].interactable = true;
+                images[i].sprite = list[i].sprite;
+                if (i == place)
+                {
+                    buttons[i].interactable = false;
+                }
+                else
+                {
+                    buttons[i].interactable = true;
+                }
             }
         }
 
@@ -77,6 +78,10 @@ public class CharacterSelectDialog : MonoBehaviour
     public void OffDialog()
     {
         this.gameObject.SetActive(false);
+        for (int i = 0; i < images.Count; i++)
+        {
+            images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
+        }
         status = EnumController.AttackStatus.VOID;
         place = -1;
         ButtonSelectedNum = -1;
@@ -85,6 +90,7 @@ public class CharacterSelectDialog : MonoBehaviour
     public void OKButton()
     {
         m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ButtonSelectedNum, 1500);
+        m_GameManager.Syncronize();
         m_MyMainCardsManager.ExecuteAttack2(place, status);
         OffDialog();
     }

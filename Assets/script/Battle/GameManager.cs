@@ -239,8 +239,7 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveTurnChange()
     {
-        Debug.Log("ReceiveTurnChange");
-        if(myHandList.Count > HAND_LIMIT_NUM)
+        if (myHandList.Count > HAND_LIMIT_NUM)
         {
             isHandOver = true;
             m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
@@ -273,7 +272,10 @@ public class GameManager : MonoBehaviour
 
     public void SwitchTurnUtil()
     {
-        Debug.Log("SwitchTurnUtil");
+        // ターン終了時まで上がるパワーをリセット
+        m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
+        Syncronize();
+
         isTurnPlayer = !isTurnPlayer;
         turn++;
     }
