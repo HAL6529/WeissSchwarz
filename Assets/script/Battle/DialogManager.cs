@@ -13,6 +13,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] EncoreDialog m_EncoreDialog;
     [SerializeField] HandOverDialog m_HandOverDialog;
     [SerializeField] SearchDialog m_SearchDialog;
+    [SerializeField] CharacterSelectDialog m_CharacterSelectDialog;
     [SerializeField] GameManager m_GameManager;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
@@ -97,6 +98,11 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.SetBattleModeCard(list, paramater, card);
     }
 
+    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.AttackStatus status)
+    {
+        m_CharacterSelectDialog.Open(list, place, status);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -108,5 +114,6 @@ public class DialogManager : MonoBehaviour
         m_EncoreDialog.OffDialog();
         m_HandOverDialog.OffDialog();
         m_SearchDialog.OffDialog();
+        m_CharacterSelectDialog.OffDialog();
     }
 }

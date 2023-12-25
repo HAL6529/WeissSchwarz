@@ -52,6 +52,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public Effect m_Effect;
 
+    /// <summary>
+    /// 起動効果を持っているかチェッククラス
+    /// </summary>
     private CheckHaveActAvility m_CheckHaveActAvility;
 
     /// <summary>
@@ -73,6 +76,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// レベル応援クラス
     /// </summary>
     public PowerInstance.LevelAssist m_LevelAssist = new PowerInstance.LevelAssist(0);
+
+    /// <summary>
+    /// ターン終了時までアップするパワークラス
+    /// </summary>
+    public PowerInstance.PowerUpUntilTurnEnd m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
 
     /// <summary>
     /// クライマックスUtil
@@ -114,11 +122,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             AttributeList.Add(card.attributeOne);
         }
-        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
+        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeTwo != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeTwo);
         }
-        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
+        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeThree != EnumController.Attribute.VOID)
         {
             AttributeList.Add(card.attributeThree);
         }
@@ -244,6 +252,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.DIRECT))
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
@@ -253,6 +265,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onFrontAttack()
     {
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.FRONT))
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
@@ -262,11 +278,45 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.SIDE))
+        {
+            return;
+        }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+    }
+
+    public void Attack2(EnumController.AttackStatus status)
+    {
+        switch (status)
+        {
+            case EnumController.AttackStatus.DIRECT:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
+                break;
+            case EnumController.AttackStatus.FRONT:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
+                break;
+            case EnumController.AttackStatus.SIDE:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+                onRest();
+                m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+                m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
+                m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+                break;
+            default:
+                break;
+        }
     }
 
     public void onReverse()
@@ -287,6 +337,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         Stand();
         m_BattleModeCard = null;
+    }
+
+    public void ResetPowerUpUntilTurnEnd()
+    {
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
     }
 
     /// <summary>
@@ -316,6 +371,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         FieldPower = m_BattleModeCard.power;
+        FieldPower += m_PowerUpUntilTurnEnd.GetUpPower();
 
         // ガウルの効果を持っているかチェック
         FieldPower += m_MyMainCardsManager.GetGaulPower(PlaceNum, m_Gaul.GetAttributeList());

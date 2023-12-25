@@ -96,4 +96,27 @@ namespace PowerInstance
             AssistPower = 0;
         }
     }
+
+    /// <summary>
+    /// ターン終了時までアップするパワークラス
+    /// </summary>
+    public class PowerUpUntilTurnEnd
+    {
+        private int UpPower = 0;
+
+        public PowerUpUntilTurnEnd(int num)
+        {
+            UpPower = num;
+        }
+
+        public int GetUpPower()
+        {
+            return UpPower;
+        }
+
+        public void AddUpPower(int num)
+        {
+            UpPower += num;
+        }
+    }
 }

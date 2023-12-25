@@ -128,4 +128,22 @@ public class MyMainCardsManager : MonoBehaviour
     {
         return CardList[place].GetFieldPower();
     }
+
+    public void AddPowerUpUntilTurnEnd(int num, int power)
+    {
+        CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
+    }
+
+    public void ExecuteAttack2(int num, EnumController.AttackStatus status)
+    {
+        CardList[num].Attack2(status);
+    }
+
+    public void ExecuteResetPowerUpUntilTurnEnd()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetPowerUpUntilTurnEnd();
+        }
+    }
 }

@@ -239,8 +239,7 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveTurnChange()
     {
-        Debug.Log("ReceiveTurnChange");
-        if(myHandList.Count > HAND_LIMIT_NUM)
+        if (myHandList.Count > HAND_LIMIT_NUM)
         {
             isHandOver = true;
             m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
@@ -273,7 +272,10 @@ public class GameManager : MonoBehaviour
 
     public void SwitchTurnUtil()
     {
-        Debug.Log("SwitchTurnUtil");
+        // ターン終了時まで上がるパワーをリセット
+        m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
+        Syncronize();
+
         isTurnPlayer = !isTurnPlayer;
         turn++;
     }
@@ -552,10 +554,10 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < num; i++)
         {
-            temp.Add(myDeckList[i]);
-            if (myDeckList[i].type == EnumController.Type.CLIMAX)
+            temp.Add(myDeckList[0]);
+            if (myDeckList[0].type == EnumController.Type.CLIMAX)
             {
-                myDeckList.RemoveAt(i);
+                myDeckList.RemoveAt(0);
                 for (int n = 0; n < temp.Count; n++)
                 {
                     GraveYardList.Add(temp[n]);
@@ -564,7 +566,7 @@ public class GameManager : MonoBehaviour
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
                 return;
             }
-            myDeckList.RemoveAt(i);
+            myDeckList.RemoveAt(0);
 
             Syncronize();
             if (myDeckList.Count == 0)
