@@ -31,6 +31,11 @@ public class DialogManager : MonoBehaviour
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num);
     }
 
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int ParamaterNum1, int ParamaterNum2)
+    {
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, ParamaterNum1, ParamaterNum2);
+    }
+
     /// <summary>
     /// アンコールダイアログ用
     /// </summary>
@@ -46,6 +51,11 @@ public class DialogManager : MonoBehaviour
     public void OKDialog(EnumController.OKDialogParamater paramater)
     {
         m_OKDialog.SetParamater(paramater);
+    }
+
+    public void OKDialog(EnumController.OKDialogParamater paramater, int ParamaterNum1, int ParamaterNum2)
+    {
+        m_OKDialog.SetParamater(paramater, ParamaterNum1, ParamaterNum2);
     }
 
     public void OKDialog(BattleModeCard card)

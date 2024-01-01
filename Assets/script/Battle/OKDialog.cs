@@ -14,17 +14,8 @@ public class OKDialog : MonoBehaviour
     private BattleModeCard m_BattleModeCard = null;
 
     private EnumController.OKDialogParamater m_DialogParamater;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int ParamaterNum1;
+    private int ParamaterNum2;
 
     public OKDialog()
     {
@@ -38,6 +29,18 @@ public class OKDialog : MonoBehaviour
 
     public void SetParamater(EnumController.OKDialogParamater paramater)
     {
+        ParamaterNum1 = -1;
+        ParamaterNum2 = -1;
+        m_BattleModeCard = null;
+        this.gameObject.SetActive(true);
+        m_DialogParamater = paramater;
+        SetText();
+    }
+
+    public void SetParamater(EnumController.OKDialogParamater paramater, int num1, int num2)
+    {
+        ParamaterNum1 = num1;
+        ParamaterNum2 = num2;
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -49,6 +52,12 @@ public class OKDialog : MonoBehaviour
         string str = "";
         switch (m_DialogParamater)
         {
+            case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
+                str = stringValues.OKDialog_Counter_Confirm_Use_Card;
+                break;
+            case EnumController.OKDialogParamater.Counter_Not_Exist:
+                str = stringValues.OKDialog_Counter;
+                break;
             case EnumController.OKDialogParamater.Marigan:
                 str = stringValues.OKDialog_Marigan;
                 break;
@@ -67,6 +76,18 @@ public class OKDialog : MonoBehaviour
     {
         switch (m_DialogParamater)
         {
+            case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
+                m_GameManager.CounterSelectMode = false;
+                if (m_BattleModeCard != null)
+                {
+                    return;
+                }
+                DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                break;
+            // ParamaterNum1: damage, ParamaterNum2: Power
+            case EnumController.OKDialogParamater.Counter_Not_Exist:
+                DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                break;
             case EnumController.OKDialogParamater.Marigan:
                 m_GameManager.MariganEnd();
                 break;
@@ -83,5 +104,27 @@ public class OKDialog : MonoBehaviour
     public void OffDialog()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private void DamageAndPowerCheck(int param1, int param2)
+    {
+        m_GameManager.Damage(param1);
+        int i = -1;
+        switch (param2)
+        {
+            case 0:
+                i = 2;
+                break;
+            case 1:
+                i = 1;
+                break;
+            case 2:
+                i = 0;
+                break;
+            default:
+                i = 0;
+                break;
+        }
+        m_GameManager.PowerCheck(i);
     }
 }

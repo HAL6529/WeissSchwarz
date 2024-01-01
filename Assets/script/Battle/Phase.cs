@@ -50,9 +50,6 @@ public class Phase : MonoBehaviour
             case EnumController.Turn.Attack:
                 text.text = "Attack";
                 break;
-            case EnumController.Turn.Counter:
-                text.text = "Counter";
-                break;
             case EnumController.Turn.Encore:
                 text.text = "Encore";
                 break;
@@ -79,8 +76,6 @@ public class Phase : MonoBehaviour
             case EnumController.Turn.Climax:
                 break;
             case EnumController.Turn.Attack:
-                break;
-            case EnumController.Turn.Counter:
                 break;
             case EnumController.Turn.Encore:
                 break;

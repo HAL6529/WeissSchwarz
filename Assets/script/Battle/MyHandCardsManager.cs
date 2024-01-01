@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class MyHandCardsManager : MonoBehaviour
 {
     public GameObject leftCard;
     public List<GameObject> CardList = new List<GameObject>();
+    [SerializeField] List<Button> buttons = new List<Button>();
     private List<BattleModeCard> handList = new List<BattleModeCard>();
     public GameObject onlyEleven;
     public GameObject rightCard;

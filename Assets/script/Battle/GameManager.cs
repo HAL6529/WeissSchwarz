@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public Effect m_Effect;
 
     public bool MariganMode = false;
+    public bool CounterSelectMode = false;
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
@@ -432,8 +433,22 @@ public class GameManager : MonoBehaviour
     {
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
-        PowerCheck(num);            
+        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);
+        // m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
+        // PowerCheck(num);            
+    }
+
+    public void CounterCheck(int damage, int power)
+    {
+        for(int i = 0; i < myHandList.Count; i++)
+        {
+            if (myHandList[i].isCounter)
+            {
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, power);
+                return;
+            }
+        }
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, power);
     }
 
     public void onSideAttack(int num)
@@ -499,8 +514,9 @@ public class GameManager : MonoBehaviour
         return num;
     }
 
-    private void PowerCheck(int num)
+    public void PowerCheck(int num)
     {
+        Debug.Log("PowerCheck");
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
 

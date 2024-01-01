@@ -103,7 +103,6 @@ namespace EnumController
         Main,
         Climax,
         Attack,
-        Counter,
         Encore,
     }
 
@@ -112,11 +111,14 @@ namespace EnumController
         VOID,
         Marigan,
         CLOCK,
+        Counter_Not_Exist,
+        Counter_Confirm_Use_Card,
     }
 
     public enum YesOrNoDialogParamater
     {
         VOID,
+        CONFIRM_USE_COUNTER,
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
         ENCORE_CONFIRM,
