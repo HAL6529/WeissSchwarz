@@ -167,7 +167,7 @@ public class BattleHandCardUtil : MonoBehaviour
         m_DialogManager.CloseAllDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
 
-        if(m_GameManager.PlayerLevel < m_BattleModeCard.level)
+        if(m_GameManager.myLevelList.Count < m_BattleModeCard.level)
         {
             return;
         }

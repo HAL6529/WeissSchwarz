@@ -80,7 +80,9 @@ public class OKDialog : MonoBehaviour
                 m_GameManager.CounterSelectMode = false;
                 if (m_BattleModeCard != null)
                 {
-                    return;
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
                 }
                 DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
                 break;

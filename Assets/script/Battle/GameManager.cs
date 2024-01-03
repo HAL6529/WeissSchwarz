@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
     public bool isHandOver = false;
-    public int PlayerLevel = 0;
     public int turn = 1;
     private static int HAND_LIMIT_NUM = 7;
 
@@ -442,7 +441,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < myHandList.Count; i++)
         {
-            if (myHandList[i].isCounter)
+            if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
             {
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, power);
                 return;
@@ -657,7 +656,6 @@ public class GameManager : MonoBehaviour
             GraveYardList.Add(myClockList[0]);
             myClockList.RemoveAt(0);
         }
-        PlayerLevel++;
         Syncronize();
     }
 

@@ -7,6 +7,7 @@ using System;
 public class MyHandCardsManager : MonoBehaviour
 {
     public GameObject leftCard;
+    [SerializeField] GameManager m_GameManager;
     public List<GameObject> CardList = new List<GameObject>();
     [SerializeField] List<Button> buttons = new List<Button>();
     private List<BattleModeCard> handList = new List<BattleModeCard>();
@@ -15,18 +16,6 @@ public class MyHandCardsManager : MonoBehaviour
     public int cursorNum = 0;
 
     private static int HAND_DISPLAY_NUM = 11;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     public void updateMyHandCards(List<BattleModeCard> list)
     {
@@ -138,5 +127,25 @@ public class MyHandCardsManager : MonoBehaviour
             }
         }
         return num;
+    }
+
+    /// <summary>
+    /// 手札のカウンターカード以外を非活性にする
+    /// </summary>
+    public void canUseCounter()
+    {
+        for(int i = 0; i < buttons.Count; i++)
+        {
+            /* if(handList[i].isCounter && m_GameManager.PlayerLevel >= handList[i].level && handList[i].cost >= m_GameManager.myStockList.Count)
+            {
+                buttons[i].interactable = true;
+            }
+            else
+            {
+                buttons[i].interactable = false;
+            } */
+            buttons[i].interactable = false;
+        }
+
     }
 }
