@@ -23,6 +23,8 @@ public class YesOrNoDialog : MonoBehaviour
 
     private int ParamaterNum2 = -1;
 
+    private int ParamaterNum3 = -1;
+
     private bool isReceivedFromRPC = false;
 
     private StringValues stringValues = new StringValues();
@@ -46,6 +48,7 @@ public class YesOrNoDialog : MonoBehaviour
     {
         ParamaterNum1 = -1;
         ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = null;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -59,6 +62,7 @@ public class YesOrNoDialog : MonoBehaviour
     {
         ParamaterNum1 = -1;
         ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -72,6 +76,7 @@ public class YesOrNoDialog : MonoBehaviour
     {
         ParamaterNum1 = num;
         ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -85,6 +90,20 @@ public class YesOrNoDialog : MonoBehaviour
     {
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
+        ParamaterNum3 = -1;
+        m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
+        this.gameObject.SetActive(true);
+        m_YesOrNoDialogParamater = paramater;
+        SetText();
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
+    {
+        ParamaterNum1 = num1;
+        ParamaterNum2 = num2;
+        ParamaterNum3 = num3;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -166,6 +185,8 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 m_GameManager.CounterSelectMode = true;
+                m_MyHandCardsManager.canUseCounter();
+                // ParamaterNum1:damage ParamaterNum2:place
                 m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Confirm_Use_Card, ParamaterNum1, ParamaterNum2);
                 break;
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:

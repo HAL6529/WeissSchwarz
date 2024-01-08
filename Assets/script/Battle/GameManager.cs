@@ -437,17 +437,17 @@ public class GameManager : MonoBehaviour
         // PowerCheck(num);            
     }
 
-    public void CounterCheck(int damage, int power)
+    public void CounterCheck(int damage, int place)
     {
         for(int i = 0; i < myHandList.Count; i++)
         {
             if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
             {
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, power);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
                 return;
             }
         }
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, power);
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, place);
     }
 
     public void onSideAttack(int num)

@@ -136,16 +136,30 @@ public class MyHandCardsManager : MonoBehaviour
     {
         for(int i = 0; i < buttons.Count; i++)
         {
-            /* if(handList[i].isCounter && m_GameManager.PlayerLevel >= handList[i].level && handList[i].cost >= m_GameManager.myStockList.Count)
+            if(i > m_GameManager.myHandList.Count - 1)
+            {
+                break;
+            }
+
+            if (m_GameManager.myHandList[i].isCounter && m_GameManager.myStockList.Count >= m_GameManager.myHandList[i].cost && m_GameManager.myLevelList.Count >= m_GameManager.myHandList[i].level)
             {
                 buttons[i].interactable = true;
             }
             else
             {
                 buttons[i].interactable = false;
-            } */
-            buttons[i].interactable = false;
+            }
         }
+    }
 
+    /// <summary>
+    /// èD‚ÌƒJ[ƒh‚·‚×‚Ä‚ğŠˆ«ó‘Ô‚É‚·‚é
+    /// </summary>
+    public void ActiveAllMyHand()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].interactable = true;
+        }
     }
 }
