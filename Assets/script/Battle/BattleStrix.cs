@@ -22,6 +22,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
     [SerializeField] TriggerCardAnimationForEnemy m_TriggerCardAnimationForEnemy;
+    [SerializeField] DialogManager m_DialogManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -114,6 +115,17 @@ public class BattleStrix : StrixBehaviour
         }
         RpcToAll(nameof(UpdateEnemyLevelCards), temp, isFirstAttacker);
     }
+
+    [StrixRpc]
+    public void CallOKDialogForCounter(int ParamaterNum1, int ParamaterNum2, bool isFirstAttacker)
+    {
+        Debug.Log("CallOKDialogForCounter");
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.CounterCheck(ParamaterNum1, ParamaterNum2);
+        }
+    }
+
 
     [StrixRpc]
     public void SetIsFirstAttacker(bool b)

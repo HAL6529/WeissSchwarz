@@ -19,7 +19,11 @@ public class YesOrNoDialog : MonoBehaviour
 
     private EnumController.YesOrNoDialogParamater m_YesOrNoDialogParamater;
 
-    private int numberParamater = -1;
+    private int ParamaterNum1 = -1;
+
+    private int ParamaterNum2 = -1;
+
+    private int ParamaterNum3 = -1;
 
     private bool isReceivedFromRPC = false;
 
@@ -42,7 +46,9 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater)
     {
-        numberParamater = -1;
+        ParamaterNum1 = -1;
+        ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = null;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -54,7 +60,9 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card)
     {
-        numberParamater = -1;
+        ParamaterNum1 = -1;
+        ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -66,7 +74,9 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
-        numberParamater = num;
+        ParamaterNum1 = num;
+        ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -76,9 +86,43 @@ public class YesOrNoDialog : MonoBehaviour
         SetText();
     }
 
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
+    {
+        ParamaterNum1 = num1;
+        ParamaterNum2 = num2;
+        ParamaterNum3 = -1;
+        m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
+        this.gameObject.SetActive(true);
+        m_YesOrNoDialogParamater = paramater;
+        SetText();
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
+    {
+        ParamaterNum1 = num1;
+        ParamaterNum2 = num2;
+        ParamaterNum3 = num3;
+        m_BattleModeCard = card;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
+        this.gameObject.SetActive(true);
+        m_YesOrNoDialogParamater = paramater;
+        SetText();
+    }
+
+    /// <summary>
+    /// アンコールダイアログ用
+    /// </summary>
+    /// <param name="paramater"></param>
+    /// <param name="m_BattleModeCard"></param>
+    /// <param name="num"></param>
+    /// <param name="isReceivedFromRPC"></param>
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, bool isReceivedFromRPC)
     {
-        numberParamater = num;
+        ParamaterNum1 = num;
+        ParamaterNum2 = -1;
         m_BattleModeCard = card;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
@@ -93,6 +137,9 @@ public class YesOrNoDialog : MonoBehaviour
         string str = "";
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
+                str = stringValues.YesOrNoDialog_CONFIRM_USE_COUNTER;
+                break;
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 str = stringValues.YesOrNoDialog_CLIMAX_PHASE;
                 break;
@@ -136,11 +183,17 @@ public class YesOrNoDialog : MonoBehaviour
     {
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
+                m_GameManager.CounterSelectMode = true;
+                m_MyHandCardsManager.canUseCounter();
+                // ParamaterNum1:damage ParamaterNum2:place
+                m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Confirm_Use_Card, ParamaterNum1, ParamaterNum2);
+                break;
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                if(numberParamater == -1)
+                if(ParamaterNum1 == -1)
                 {
                     break;
                 }
@@ -151,10 +204,10 @@ public class YesOrNoDialog : MonoBehaviour
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 }
                 m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-                m_GameManager.myFieldList[numberParamater] = m_BattleModeCard;
-                m_MyMainCardsManager.CallOnStand(numberParamater);
+                m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
+                m_MyMainCardsManager.CallOnStand(ParamaterNum1);
 
-                m_MyMainCardsManager.setBattleModeCard(numberParamater, m_BattleModeCard, EnumController.State.REST);
+                m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
 
                 m_GameManager.Syncronize();
                 break;
@@ -168,7 +221,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_EffectBondForHandToField.BondForCost(sulvageCardNo, cost);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
-                m_EffectBrainStormForDraw.BrainStormForDraw(numberParamater);
+                m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
@@ -197,6 +250,26 @@ public class YesOrNoDialog : MonoBehaviour
         this.gameObject.SetActive(false);
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
+                m_GameManager.Damage(ParamaterNum1);
+                int i = -1;
+                switch (ParamaterNum2)
+                {
+                    case 0:
+                        i = 2;
+                        break;
+                    case 1:
+                        i = 1;
+                        break;
+                    case 2:
+                        i = 0;
+                        break;
+                    default:
+                        i = 0;
+                        break;
+                }
+                m_GameManager.PowerCheck(i);
+                break;
             case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
                 break;

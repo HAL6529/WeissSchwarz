@@ -10,7 +10,10 @@ public class StringValues
 
     public string OKDialog_Clock;
     public string OKDialog_Marigan;
+    public string OKDialog_Counter;
+    public string OKDialog_Counter_Confirm_Use_Card;
     public string HandOverDialog;
+    public string YesOrNoDialog_CONFIRM_USE_COUNTER;
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
     public string SearchDialog_SearchMessage;
@@ -49,7 +52,10 @@ public class StringValues
             case EnumController.Language.Japanese:
                 OKDialog_Clock = japanese.OKDialog_Clock;
                 OKDialog_Marigan = japanese.OKDialog_Marigan;
+                OKDialog_Counter = japanese.OKDialog_Counter;
+                OKDialog_Counter_Confirm_Use_Card = japanese.OKDialog_Counter_Confirm_Use_Card;
                 HandOverDialog = japanese.HandOverDialog;
+                YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
@@ -63,7 +69,10 @@ public class StringValues
     {
         public string OKDialog_Clock = "クロックするカードを選択してください";
         public string OKDialog_Marigan = "マリガンするカードを選択してください";
+        public string OKDialog_Counter = "カウンターカードがありません。";
+        public string OKDialog_Counter_Confirm_Use_Card = "使用するカードを選択してください";
         public string HandOverDialog = "手札が7枚になるように捨ててください";
+        public string YesOrNoDialog_CONFIRM_USE_COUNTER = "手札の助太刀カードを使用しますか";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";

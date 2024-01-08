@@ -63,6 +63,12 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
+        if (m_GameManager.CounterSelectMode && m_GameManager.phase == EnumController.Turn.Attack)
+        {
+            CounterClick();
+            return;
+        }
+
         if (m_GameManager.phase == EnumController.Turn.Clock && m_GameManager.isTurnPlayer)
         {
             ClockClick();
@@ -121,6 +127,23 @@ public class BattleHandCardUtil : MonoBehaviour
         }
     }
 
+    private void CounterClick()
+    {
+        if (isSelected)
+        {
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+            m_DialogManager.OKDialog(null);
+        }
+        else
+        {
+            m_MyHandCardsManager.CallResetSelected();
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 125f / 255f);
+            m_DialogManager.OKDialog(m_BattleModeCard);
+        }
+    }
+
     private void ClockClick()
     {
         if (isSelected)
@@ -144,7 +167,7 @@ public class BattleHandCardUtil : MonoBehaviour
         m_DialogManager.CloseAllDialog();
         m_MyHandCardsManager.CallNotShowPlayButton();
 
-        if(m_GameManager.PlayerLevel < m_BattleModeCard.level)
+        if(m_GameManager.myLevelList.Count < m_BattleModeCard.level)
         {
             return;
         }

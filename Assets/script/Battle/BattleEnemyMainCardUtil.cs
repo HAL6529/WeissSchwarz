@@ -17,11 +17,6 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     /// </summary>
     private int FieldPower = 0;
 
-    /// <summary>
-    /// フィールド上でのステータス
-    /// </summary>
-    private EnumController.State state = EnumController.State.STAND;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,19 +53,16 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public void Rest()
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 270.0f);
-        state = EnumController.State.REST;
     }
 
     public void Stand()
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
-        state = EnumController.State.STAND;
     }
 
     public void Reverse()
     {
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-        state = EnumController.State.REVERSE;
     }
 
     public void SetFieldPower(int power)

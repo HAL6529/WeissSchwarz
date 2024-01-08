@@ -34,13 +34,13 @@ public class GameManager : MonoBehaviour
     public Effect m_Effect;
 
     public bool MariganMode = false;
+    public bool CounterSelectMode = false;
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
     public bool isHandOver = false;
-    public int PlayerLevel = 0;
     public int turn = 1;
     private static int HAND_LIMIT_NUM = 7;
 
@@ -432,8 +432,22 @@ public class GameManager : MonoBehaviour
     {
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
-        PowerCheck(num);            
+        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);
+        // m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
+        // PowerCheck(num);            
+    }
+
+    public void CounterCheck(int damage, int place)
+    {
+        for(int i = 0; i < myHandList.Count; i++)
+        {
+            if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
+            {
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
+                return;
+            }
+        }
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, place);
     }
 
     public void onSideAttack(int num)
@@ -499,8 +513,9 @@ public class GameManager : MonoBehaviour
         return num;
     }
 
-    private void PowerCheck(int num)
+    public void PowerCheck(int num)
     {
+        Debug.Log("PowerCheck");
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
 
@@ -641,7 +656,6 @@ public class GameManager : MonoBehaviour
             GraveYardList.Add(myClockList[0]);
             myClockList.RemoveAt(0);
         }
-        PlayerLevel++;
         Syncronize();
     }
 
