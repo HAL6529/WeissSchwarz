@@ -143,9 +143,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 str = stringValues.YesOrNoDialog_CLIMAX_PHASE;
                 break;
-            case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                str = stringValues.YesOrNoDialog_ENCORE_CONFIRM(m_BattleModeCard.name); 
-                break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
                 break;
@@ -192,25 +189,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
-            case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                if(ParamaterNum1 == -1)
-                {
-                    break;
-                }
-
-                for(int i = 0; i < 3; i++)
-                {
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                }
-                m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-                m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
-                m_MyMainCardsManager.CallOnStand(ParamaterNum1);
-
-                m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
-
-                m_GameManager.Syncronize();
-                break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
                 break;
@@ -234,9 +212,9 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 return;
-            case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
+            /*case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
-                return;
+                return;*/
             case EnumController.YesOrNoDialogParamater.VOID:
                 return;
             default:
@@ -270,9 +248,9 @@ public class YesOrNoDialog : MonoBehaviour
                 }
                 m_GameManager.PowerCheck(i);
                 break;
-            case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
+            /*case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
                 m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
-                break;
+                break;*/
             case EnumController.YesOrNoDialogParamater.VOID:
                 break;
             default: 

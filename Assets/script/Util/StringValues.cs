@@ -78,10 +78,10 @@ public class StringValues
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
     }
 
-    public string YesOrNoDialog_ENCORE_CONFIRM(string paramater1)
+    /*public string YesOrNoDialog_ENCORE_CONFIRM(string paramater1)
     {
         return paramater1 + "をアンコールしますか";
-    }
+    }*/
 
     public string YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(int paramater1)
     {

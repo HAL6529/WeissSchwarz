@@ -43,7 +43,6 @@ public class EncoreDialog : MonoBehaviour
             }
             buttons[i].interactable = false;
         }
-        Debug.Log(count);
         if(count == 0)
         {
             if (this.isReceivedFromRPC)
@@ -77,14 +76,56 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
 
-        if(m_GameManager.myStockList.Count > 2)
+        bool isStockThree = isExistStockThree();
+        bool isStockTwo = isExistStockTwo();
+        bool haveHandEncore = isHandEncore(temp);
+        bool haveClockEncore = isClockEncore(temp);
+
+        Debug.Log(isStockThree);
+        Debug.Log(isStockTwo);
+        Debug.Log(haveHandEncore);
+        Debug.Log(haveClockEncore);
+
+        if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
-            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM, temp, num, isReceivedFromRPC);
+            Debug.Log("test1");
+            m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
         }
         else
         {
-            m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
+            Debug.Log("test");
+            m_DialogManager.ConfirmEncoreKindsDialog(temp, num, isReceivedFromRPC, haveHandEncore, isStockTwo, isStockThree, haveClockEncore);
         }
         return;
+    }
+
+    private bool isExistStockThree()
+    {
+        if (m_GameManager.myStockList.Count > 2)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool isExistStockTwo()
+    {
+        return false;
+    }
+
+    private bool isHandEncore(BattleModeCard card)
+    {
+        switch (card.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A04:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private bool isClockEncore(BattleModeCard card)
+    {
+        return false;
     }
 }
