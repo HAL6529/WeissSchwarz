@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] HandOverDialog m_HandOverDialog;
     [SerializeField] SearchDialog m_SearchDialog;
     [SerializeField] CharacterSelectDialog m_CharacterSelectDialog;
+    [SerializeField] ConfirmEncoreKindsDialog m_ConfirmEncoreKindsDialog;
     [SerializeField] GameManager m_GameManager;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
@@ -123,6 +124,11 @@ public class DialogManager : MonoBehaviour
         m_CharacterSelectDialog.Open(list, place, status);
     }
 
+    public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, bool isReceivedFromRPC, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
+    {
+        m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, isReceivedFromRPC, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -135,5 +141,6 @@ public class DialogManager : MonoBehaviour
         m_HandOverDialog.OffDialog();
         m_SearchDialog.OffDialog();
         m_CharacterSelectDialog.OffDialog();
+        m_ConfirmEncoreKindsDialog.OffDialog();
     }
 }

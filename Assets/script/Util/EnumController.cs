@@ -111,6 +111,7 @@ namespace EnumController
         VOID,
         Marigan,
         CLOCK,
+        HAND_ENCORE_CONFIRM,
         Counter_Not_Exist,
         Counter_Confirm_Use_Card,
     }
@@ -121,7 +122,6 @@ namespace EnumController
         CONFIRM_USE_COUNTER,
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
-        ENCORE_CONFIRM,
         EVENT_CONFIRM,
         COST_CONFIRM_HAND_TO_FIELD,
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,
