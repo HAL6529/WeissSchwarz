@@ -93,6 +93,11 @@ public class StringValues
         return "次の能力を使用しますか。:" + "【自】 絆／「" + paramater1 + "」 ［(" + paramater2 + ")］ （このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「" + paramater1 + "」を1枚選び、手札に戻す）";
     }
 
+    public string YesOrNoDialog_CONFIRM_CARD_EFFECT(string paramater1)
+    {
+        return paramater1 + "のカードの効果を使用しますか";
+    }
+
     public string YesOrNoDialog_EVENT_CONFIRM(string paramater1)
     {
         return paramater1 + "をプレイしますか";

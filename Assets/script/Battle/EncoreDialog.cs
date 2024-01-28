@@ -81,19 +81,12 @@ public class EncoreDialog : MonoBehaviour
         bool haveHandEncore = isHandEncore(temp);
         bool haveClockEncore = isClockEncore(temp);
 
-        Debug.Log(isStockThree);
-        Debug.Log(isStockTwo);
-        Debug.Log(haveHandEncore);
-        Debug.Log(haveClockEncore);
-
         if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
-            Debug.Log("test1");
             m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
         }
         else
         {
-            Debug.Log("test");
             m_DialogManager.ConfirmEncoreKindsDialog(temp, num, isReceivedFromRPC, haveHandEncore, isStockTwo, isStockThree, haveClockEncore);
         }
         return;

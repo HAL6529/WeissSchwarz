@@ -28,9 +28,45 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 相手のカードをリバースしたときに発動する効果
+    /// </summary>
+    public void WhenReverseEnemyCardEffect(BattleModeCard card)
+    {
+        switch (card.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A03:
+                if (ConfirmClimaxCombo(EnumController.CardNo.AT_WX02_A08))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
+                }
+                else
+                {
+                    Debug.Log("効果なし");
+                }
+                return;
+            default:
+                Debug.Log("効果なし");
+                return;
+        }
+    }
+
     private bool ConfirmStockForCost(int num)
     {
         if(m_GameManager.myStockList.Count >= num)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool ConfirmClimaxCombo(EnumController.CardNo card)
+    {
+        if (m_GameManager.MyClimaxCard == null)
+        {
+            return false;
+        }
+        if (m_GameManager.MyClimaxCard.cardNo == card)
         {
             return true;
         }

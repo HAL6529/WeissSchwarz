@@ -199,7 +199,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Encore);
-        // m_BattleStrix.RpcToAll("EncorePhase");
         EncoreStart();
         return;
     }
@@ -432,9 +431,7 @@ public class GameManager : MonoBehaviour
     {
         int damage = myFieldList[num].soul;
         damage = damage + TrrigerCheck();
-        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);
-        // m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
-        // PowerCheck(num);            
+        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
     }
 
     public void CounterCheck(int damage, int place)

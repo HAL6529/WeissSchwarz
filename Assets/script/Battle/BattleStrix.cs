@@ -340,12 +340,19 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// 相手をリバースしたとき呼び出される
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="isTurnPlayer"></param>
     [StrixRpc]
     public void CallEnemyReverse(int num, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_EnemyMainCardsManager.CallReverse(num);
+            Debug.Log("aaaa");
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(num);
         }
     }
 
