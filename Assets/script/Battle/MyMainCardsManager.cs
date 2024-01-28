@@ -18,6 +18,26 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    public void CallWhenReverseEnemyCard(int num)
+    {
+        int Place = -1;
+        switch (num)
+        {
+            case 0:
+                Place = 2;
+                break;
+            case 1:
+                Place = 1;
+                break;
+            case 2:
+                Place = 0;
+                break;
+            default:
+                break;
+        }
+        CardList[Place].WhenReverseEnemyCard();
+    }
+
     public void CallOnStand(int num)
     {
         CardList[num].Stand();

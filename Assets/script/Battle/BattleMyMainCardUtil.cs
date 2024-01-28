@@ -319,12 +319,26 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 相手をリバースしたときの効果
+    /// </summary>
+    public void WhenReverseEnemyCard()
+    {
+        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard);
+    }
+
+    /// <summary>
+    /// リバースしたときにカードの向きとステータスを変更
+    /// </summary>
     public void onReverse()
     {
         state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
 
+    /// <summary>
+    /// レスト状態になったときにカードの向きとステータスを変更
+    /// </summary>
     public void onRest()
     {
         state = EnumController.State.REST;

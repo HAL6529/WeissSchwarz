@@ -137,6 +137,9 @@ public class YesOrNoDialog : MonoBehaviour
         string str = "";
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                str = stringValues.YesOrNoDialog_CONFIRM_CARD_EFFECT(m_BattleModeCard.name);
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 str = stringValues.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 break;
@@ -180,6 +183,16 @@ public class YesOrNoDialog : MonoBehaviour
     {
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                switch (m_BattleModeCard.cardNo)
+                {
+                    case EnumController.CardNo.AT_WX02_A03:
+                        m_GameManager.Draw();
+                        break;
+                    default:
+                        break;
+                }
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 m_GameManager.CounterSelectMode = true;
                 m_MyHandCardsManager.canUseCounter();
@@ -212,9 +225,6 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 return;
-            /*case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
-                return;*/
             case EnumController.YesOrNoDialogParamater.VOID:
                 return;
             default:
@@ -248,9 +258,6 @@ public class YesOrNoDialog : MonoBehaviour
                 }
                 m_GameManager.PowerCheck(i);
                 break;
-            /*case EnumController.YesOrNoDialogParamater.ENCORE_CONFIRM:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
-                break;*/
             case EnumController.YesOrNoDialogParamater.VOID:
                 break;
             default: 
