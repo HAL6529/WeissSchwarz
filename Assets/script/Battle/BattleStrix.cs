@@ -416,9 +416,29 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// アタック中フラグ更新
+    /// </summary>
+    /// <param name="isAttackProcess"></param>
     [StrixRpc]
     public void SetIsAttackProcess(bool isAttackProcess)
     {
         m_GameManager.isAttackProcess = isAttackProcess;
+    }
+
+    [StrixRpc]
+    public void NotEraseDialog(bool isOpen, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            if (isOpen)
+            {
+                m_DialogManager.NotEraseDialog_Open();
+            }
+            else
+            {
+                m_DialogManager.NotEraseDialog_Close();
+            }
+        }
     }
 }

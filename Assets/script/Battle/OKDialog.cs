@@ -39,6 +39,7 @@ public class OKDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
         SetText();
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
 
     public void SetParamater(EnumController.OKDialogParamater paramater, int num1, int num2)
@@ -50,6 +51,7 @@ public class OKDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
         SetText();
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
 
     public void SetParamater(EnumController.OKDialogParamater paramater, int num1, int num2, int num3)
@@ -61,6 +63,7 @@ public class OKDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
         SetText();
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
 
     private void SetText()
@@ -127,9 +130,8 @@ public class OKDialog : MonoBehaviour
                     m_GameManager.myHandList.Remove(m_BattleModeCard);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
-
-                    m_MyHandCardsManager.ActiveAllMyHand();
                 }
+                m_MyHandCardsManager.ActiveAllMyHand();
                 DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
                 break;
             // ParamaterNum1: damage, ParamaterNum2: Place
@@ -147,6 +149,7 @@ public class OKDialog : MonoBehaviour
                 break;
 
         }
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         this.gameObject.SetActive(false);
     }
 

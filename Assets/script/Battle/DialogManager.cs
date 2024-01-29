@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] HandOverDialog m_HandOverDialog;
     [SerializeField] SearchDialog m_SearchDialog;
     [SerializeField] CharacterSelectDialog m_CharacterSelectDialog;
+    [SerializeField] NotEraseDialog m_NotEraseDialog;
     [SerializeField] ConfirmEncoreKindsDialog m_ConfirmEncoreKindsDialog;
     [SerializeField] GameManager m_GameManager;
 
@@ -96,7 +97,7 @@ public class DialogManager : MonoBehaviour
 
     public void PhaseDialog()
     {
-        if (m_GameManager.isLevelUpProcess)
+        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
         {
             return;
         }
@@ -129,6 +130,16 @@ public class DialogManager : MonoBehaviour
         m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, isReceivedFromRPC, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
     }
 
+    public void NotEraseDialog_Open()
+    {
+        m_NotEraseDialog.Open();
+    }
+
+    public void NotEraseDialog_Close()
+    {
+        m_NotEraseDialog.OffDialog();
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -142,5 +153,6 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.OffDialog();
         m_CharacterSelectDialog.OffDialog();
         m_ConfirmEncoreKindsDialog.OffDialog();
+        m_NotEraseDialog.OffDialog();
     }
 }

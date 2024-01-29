@@ -436,7 +436,7 @@ public class GameManager : MonoBehaviour
 
     public void CounterCheck(int damage, int place)
     {
-        for(int i = 0; i < myHandList.Count; i++)
+        for (int i = 0; i < myHandList.Count; i++)
         {
             if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
             {
