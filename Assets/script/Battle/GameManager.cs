@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
     public bool isHandOver = false;
+    public bool isFirstAttacked = false;
     public int turn = 1;
     private static int HAND_LIMIT_NUM = 7;
 

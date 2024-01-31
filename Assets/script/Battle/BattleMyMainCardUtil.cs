@@ -195,6 +195,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         else if (m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
+            // 先攻は1キャラしかアタックできない
+            if (m_GameManager.isFirstAttacked && m_GameManager.turn == 1)
+            {
+                return;
+            }
+
             if (PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
                 return;
@@ -252,6 +258,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
+        // 先攻は1キャラしかアタックできなくするためにフラグを変更
+        if(!m_GameManager.isFirstAttacked && m_GameManager.turn == 1)
+        {
+            m_GameManager.isFirstAttacked = true;
+        }
+
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.DIRECT))
         {
             return;
