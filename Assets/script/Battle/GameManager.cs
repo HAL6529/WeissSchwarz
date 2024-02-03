@@ -556,6 +556,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PowerCheckForLevelUpDialog(int num)
+    {
+        PowerCheck(num);
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+    }
+
     public void Damage(int num)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();
@@ -597,7 +603,79 @@ public class GameManager : MonoBehaviour
         if (LevelUpCheck())
         {
             m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            return;
         }
+
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+        return;
+    }
+
+    public void DamageForFrontAttack(int damage, int place)
+    {
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+
+        int placeNum = -1;
+        switch (place)
+        {
+            case 0:
+                placeNum = 2;
+                break;
+            case 1:
+                placeNum = 1;
+                break;
+            case 2:
+                placeNum = 0;
+                break;
+            default:
+                placeNum = 0;
+                break;
+        }
+
+        if (damage < 0)
+        {
+            PowerCheck(placeNum);
+            m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+            return;
+        }
+
+        for (int i = 0; i < damage; i++)
+        {
+            temp.Add(myDeckList[0]);
+            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            {
+                myDeckList.RemoveAt(0);
+                for (int n = 0; n < temp.Count; n++)
+                {
+                    GraveYardList.Add(temp[n]);
+                }
+                Syncronize();
+
+                PowerCheck(placeNum);
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                return;
+            }
+            myDeckList.RemoveAt(0);
+
+            Syncronize();
+            if (myDeckList.Count == 0)
+            {
+                Refresh();
+            }
+        }
+
+        for (int n = 0; n < temp.Count; n++)
+        {
+            myClockList.Add(temp[n]);
+        }
+        Syncronize();
+
+        if (LevelUpCheck(place))
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            return;
+        }
+
+        PowerCheck(placeNum);
 
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
         return;
@@ -664,6 +742,16 @@ public class GameManager : MonoBehaviour
             return false;
         }
         m_DialogManager.LevelUpDialog(myClockList);
+        return true;
+    }
+
+    private bool LevelUpCheck(int place)
+    {
+        if (myClockList.Count < 7)
+        {
+            return false;
+        }
+        m_DialogManager.LevelUpDialog(myClockList, EnumController.LevelUpDialogParamater.FRONT_ATTACK, place);
         return true;
     }
 

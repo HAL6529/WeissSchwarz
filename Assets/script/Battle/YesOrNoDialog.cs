@@ -239,24 +239,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
-                m_GameManager.Damage(ParamaterNum1);
-                int i = -1;
-                switch (ParamaterNum2)
-                {
-                    case 0:
-                        i = 2;
-                        break;
-                    case 1:
-                        i = 1;
-                        break;
-                    case 2:
-                        i = 0;
-                        break;
-                    default:
-                        i = 0;
-                        break;
-                }
-                m_GameManager.PowerCheck(i);
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
                 break;

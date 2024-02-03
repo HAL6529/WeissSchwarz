@@ -90,6 +90,11 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.SetBattleModeCard(myClockList);
     }
 
+    public void LevelUpDialog(List<BattleModeCard> myClockList, EnumController.LevelUpDialogParamater paramater, int place)
+    {
+        m_LevelUpDialog.SetBattleModeCard(myClockList, paramater, place);
+    }
+
     public void SetIsClockAndTwoDrawProcessOfLevelUpDialog()
     {
         m_LevelUpDialog.isClockAndTwoDrawProcess = true;

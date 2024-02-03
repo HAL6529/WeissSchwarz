@@ -132,12 +132,14 @@ public class OKDialog : MonoBehaviour
                     m_GameManager.Syncronize();
                 }
                 m_MyHandCardsManager.ActiveAllMyHand();
-                DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                //DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
                 break;
             // ParamaterNum1: damage, ParamaterNum2: Place
             case EnumController.OKDialogParamater.Counter_Not_Exist:
                 m_MyHandCardsManager.ActiveAllMyHand();
-                DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                //DamageAndPowerCheck(ParamaterNum1, ParamaterNum2);
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
                 break;
             case EnumController.OKDialogParamater.Marigan:
                 m_GameManager.MariganEnd();
@@ -158,7 +160,7 @@ public class OKDialog : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void DamageAndPowerCheck(int param1, int param2)
+    /*private void DamageAndPowerCheck(int param1, int param2)
     {
         m_GameManager.Damage(param1);
         int i = -1;
@@ -178,5 +180,5 @@ public class OKDialog : MonoBehaviour
                 break;
         }
         m_GameManager.PowerCheck(i);
-    }
+    }*/
 }

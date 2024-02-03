@@ -129,6 +129,14 @@ namespace EnumController
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
     }
 
+    public enum LevelUpDialogParamater
+    {
+        VOID,
+        CLOCK_ANDTWO_DRAW,
+        FRONT_ATTACK,
+        REFRESH,
+    }
+
     public enum HandOverDialogParamater
     {
         VOID,
