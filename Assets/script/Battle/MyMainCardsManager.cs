@@ -154,7 +154,7 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
     }
 
-    public void ExecuteAttack2(int num, EnumController.AttackStatus status)
+    public void ExecuteAttack2(int num, EnumController.Attack status)
     {
         CardList[num].Attack2(status);
     }

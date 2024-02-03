@@ -159,7 +159,7 @@ public class Effect : MonoBehaviour
     /// アタックしたときの効果を持っているか調べる
     /// </summary>
     /// <param name="card"></param>
-    public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.AttackStatus status)
+    public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.Attack status)
     {
         switch (card.cardNo)
         {

@@ -13,9 +13,9 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     private int place = -1;
     private int ButtonSelectedNum = -1;
-    private EnumController.AttackStatus status = EnumController.AttackStatus.VOID;
+    private EnumController.Attack status = EnumController.Attack.VOID;
 
-    public void Open(List<BattleModeCard> list, int place, EnumController.AttackStatus status)
+    public void Open(List<BattleModeCard> list, int place, EnumController.Attack status)
     {
         m_OKButton.SetActive(false);
         ButtonSelectedNum = -1;
@@ -82,7 +82,7 @@ public class CharacterSelectDialog : MonoBehaviour
         {
             images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
         }
-        status = EnumController.AttackStatus.VOID;
+        status = EnumController.Attack.VOID;
         place = -1;
         ButtonSelectedNum = -1;
     }

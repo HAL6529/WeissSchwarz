@@ -171,13 +171,5 @@ namespace EnumController
         Japanese,
         English,
     }
-
-    public enum AttackStatus
-    {
-        VOID,
-        DIRECT,
-        FRONT,
-        SIDE,
-    }
 }
 

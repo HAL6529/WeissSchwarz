@@ -120,7 +120,7 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.SetBattleModeCard(list, paramater, card);
     }
 
-    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.AttackStatus status)
+    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.Attack status)
     {
         m_CharacterSelectDialog.Open(list, place, status);
     }
