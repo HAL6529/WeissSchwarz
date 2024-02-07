@@ -194,7 +194,7 @@ public class YesOrNoDialog : MonoBehaviour
                 }
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
-                m_GameManager.CounterSelectMode = true;
+                m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.COUNTER_SELECT_MODE;
                 m_MyHandCardsManager.canUseCounter();
                 // ParamaterNum1:damage ParamaterNum2:place
                 m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Confirm_Use_Card, ParamaterNum1, ParamaterNum2);

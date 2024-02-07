@@ -31,16 +31,17 @@ public class GameManager : MonoBehaviour
     public BattleModeCard MyClimaxCard = null;
     public BattleModeCard EnemyClimaxCard = null;
 
+    public BattleModeCard DisCardForHandEncore = null;
+
     public Effect m_Effect;
 
-    public bool MariganMode = false;
-    public bool CounterSelectMode = false;
+    public EnumController.HandCardUtilStatus m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
+
     public bool isAnimation = false;
     public bool isFirstAttacker = false;
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
-    public bool isHandOver = false;
     public bool isFirstAttacked = false;
     public int turn = 1;
     private static int HAND_LIMIT_NUM = 7;
@@ -216,7 +217,6 @@ public class GameManager : MonoBehaviour
 
     public void EncoreStart()
     {
-        Debug.Log("EncoreStart");
         if (!isTurnPlayer)
         {
             return;
@@ -232,7 +232,6 @@ public class GameManager : MonoBehaviour
 
     public void TurnChange()
     {
-        Debug.Log("TurnChange");
         SwitchTurnUtil();
         m_BattleStrix.RpcToAll("SendReceiveTurnChange", isFirstAttacker);
     }
@@ -241,7 +240,7 @@ public class GameManager : MonoBehaviour
     {
         if (myHandList.Count > HAND_LIMIT_NUM)
         {
-            isHandOver = true;
+            m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_OVER;
             m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
             return;
         }
@@ -258,7 +257,7 @@ public class GameManager : MonoBehaviour
         HandOverList = new List<BattleModeCard>();
         Syncronize();
 
-        isHandOver = false;
+        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
 
         ReceiveTurnChange2();
     }
@@ -340,7 +339,7 @@ public class GameManager : MonoBehaviour
 
     public void MariganStart()
     {
-        MariganMode = true;
+        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.MARIGAN_MODE;
         m_DialogManager.OKDialog(EnumController.OKDialogParamater.Marigan);
     }
 
@@ -361,7 +360,7 @@ public class GameManager : MonoBehaviour
         myMariganList = new List<BattleModeCard>();
         Syncronize();
 
-        MariganMode = false;
+        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
         turn = 1;
 
         // êÊçUÇÃèÍçá

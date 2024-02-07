@@ -78,14 +78,12 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -547,6 +545,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEncoreKindsDialog
+    methodName: onHandEncoreBtn
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
@@ -2024,7 +2025,7 @@ ScriptsOnlyBuild:
     className: GraveYardDetailButtonUtil
   - hash:
       serializedVersion: 2
-      Hash: b726d9b0609568b64c42d480053d4429
+      Hash: e97a849834179d59574e610dc513ce78
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OKDialog
@@ -2240,7 +2241,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 62244cdb0c86c2cb259ab54598a52bf3
+      Hash: 199e303c46691221600aa71f4985cb3d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

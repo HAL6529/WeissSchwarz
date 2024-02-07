@@ -111,7 +111,7 @@ namespace EnumController
         VOID,
         Marigan,
         CLOCK,
-        HAND_ENCORE_CONFIRM,
+        HAND_ENCORE_SELECT_DISCARD_CONFIRM,
         Counter_Not_Exist,
         Counter_Confirm_Use_Card,
     }
@@ -178,6 +178,15 @@ namespace EnumController
         VOID,
         Japanese,
         English,
+    }
+
+    public enum HandCardUtilStatus
+    {
+        VOID,
+        HAND_OVER,
+        MARIGAN_MODE,
+        COUNTER_SELECT_MODE,
+        HAND_ENCORE,
     }
 }
 

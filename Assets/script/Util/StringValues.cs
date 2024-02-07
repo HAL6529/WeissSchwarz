@@ -12,6 +12,7 @@ public class StringValues
     public string OKDialog_Marigan;
     public string OKDialog_Counter;
     public string OKDialog_Counter_Confirm_Use_Card;
+    public string OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
     public string HandOverDialog;
     public string YesOrNoDialog_CONFIRM_USE_COUNTER;
     public string YesOrNoDialog_CLIMAX_PHASE;
@@ -54,6 +55,7 @@ public class StringValues
                 OKDialog_Marigan = japanese.OKDialog_Marigan;
                 OKDialog_Counter = japanese.OKDialog_Counter;
                 OKDialog_Counter_Confirm_Use_Card = japanese.OKDialog_Counter_Confirm_Use_Card;
+                OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM = japanese.OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
                 HandOverDialog = japanese.HandOverDialog;
                 YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
@@ -71,6 +73,7 @@ public class StringValues
         public string OKDialog_Marigan = "マリガンするカードを選択してください";
         public string OKDialog_Counter = "カウンターカードがありません。";
         public string OKDialog_Counter_Confirm_Use_Card = "使用するカードを選択してください";
+        public string OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM = "手札アンコールをします。捨てるカードを選んでください。";
         public string HandOverDialog = "手札が7枚になるように捨ててください";
         public string YesOrNoDialog_CONFIRM_USE_COUNTER = "手札の助太刀カードを使用しますか";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";

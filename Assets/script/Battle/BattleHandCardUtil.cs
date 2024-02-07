@@ -51,19 +51,19 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
-        if(m_GameManager.isHandOver && m_GameManager.phase == EnumController.Turn.Encore)
+        if(m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.HAND_OVER && m_GameManager.phase == EnumController.Turn.Encore)
         {
             HandOverClick();
             return;
         }
 
-        if (m_GameManager.MariganMode && m_GameManager.phase == EnumController.Turn.VOID)
+        if (m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.MARIGAN_MODE && m_GameManager.phase == EnumController.Turn.VOID)
         {
             MariganClick();
             return;
         }
 
-        if (m_GameManager.CounterSelectMode && m_GameManager.phase == EnumController.Turn.Attack)
+        if (m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.COUNTER_SELECT_MODE && m_GameManager.phase == EnumController.Turn.Attack)
         {
             CounterClick();
             return;
