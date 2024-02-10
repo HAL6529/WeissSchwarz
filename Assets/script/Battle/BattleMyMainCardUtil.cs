@@ -195,6 +195,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         else if (m_GameManager.phase == EnumController.Turn.Attack && m_GameManager.isTurnPlayer)
         {
+            // 先攻は1キャラしかアタックできない
+            if (m_GameManager.isFirstAttacked && m_GameManager.turn == 1)
+            {
+                return;
+            }
+
             if (PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
                 return;
@@ -252,7 +258,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onDirectAttack()
     {
-        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.DIRECT))
+        // 先攻は1キャラしかアタックできなくするためにフラグを変更
+        if(!m_GameManager.isFirstAttacked && m_GameManager.turn == 1)
+        {
+            m_GameManager.isFirstAttacked = true;
+        }
+
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.DIRECT_ATTACK))
         {
             return;
         }
@@ -265,7 +277,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onFrontAttack()
     {
-        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.FRONT))
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.FRONT_ATTACK))
         {
             return;
         }
@@ -278,7 +290,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
-        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.AttackStatus.SIDE))
+        if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.SIDE_ATTACK))
         {
             return;
         }
@@ -289,25 +301,25 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
     }
 
-    public void Attack2(EnumController.AttackStatus status)
+    public void Attack2(EnumController.Attack status)
     {
         switch (status)
         {
-            case EnumController.AttackStatus.DIRECT:
+            case EnumController.Attack.DIRECT_ATTACK:
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
                 m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
                 break;
-            case EnumController.AttackStatus.FRONT:
+            case EnumController.Attack.FRONT_ATTACK:
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
                 m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
                 break;
-            case EnumController.AttackStatus.SIDE:
+            case EnumController.Attack.SIDE_ATTACK:
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);

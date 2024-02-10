@@ -111,7 +111,7 @@ namespace EnumController
         VOID,
         Marigan,
         CLOCK,
-        HAND_ENCORE_CONFIRM,
+        HAND_ENCORE_SELECT_DISCARD_CONFIRM,
         Counter_Not_Exist,
         Counter_Confirm_Use_Card,
     }
@@ -127,6 +127,14 @@ namespace EnumController
         COST_CONFIRM_HAND_TO_FIELD,
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
+    }
+
+    public enum LevelUpDialogParamater
+    {
+        VOID,
+        CLOCK_ANDTWO_DRAW,
+        FRONT_ATTACK,
+        REFRESH,
     }
 
     public enum HandOverDialogParamater
@@ -172,12 +180,13 @@ namespace EnumController
         English,
     }
 
-    public enum AttackStatus
+    public enum HandCardUtilStatus
     {
         VOID,
-        DIRECT,
-        FRONT,
-        SIDE,
+        HAND_OVER,
+        MARIGAN_MODE,
+        COUNTER_SELECT_MODE,
+        HAND_ENCORE,
     }
 }
 

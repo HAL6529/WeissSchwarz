@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] HandOverDialog m_HandOverDialog;
     [SerializeField] SearchDialog m_SearchDialog;
     [SerializeField] CharacterSelectDialog m_CharacterSelectDialog;
+    [SerializeField] NotEraseDialog m_NotEraseDialog;
     [SerializeField] ConfirmEncoreKindsDialog m_ConfirmEncoreKindsDialog;
     [SerializeField] GameManager m_GameManager;
 
@@ -59,6 +60,16 @@ public class DialogManager : MonoBehaviour
         m_OKDialog.SetParamater(paramater);
     }
 
+    public void OKDialog_SwitchActiveOKButton()
+    {
+        m_OKDialog.SwitchActiveOKButton();
+    }
+
+    public void OKDialog(EnumController.OKDialogParamater paramater, BattleModeCard card, int ParamaterNum1, bool isReceivedFromRPC)
+    {
+        m_OKDialog.SetParamater(paramater, card, ParamaterNum1, isReceivedFromRPC);
+    }
+
     public void OKDialog(EnumController.OKDialogParamater paramater, int ParamaterNum1, int ParamaterNum2)
     {
         m_OKDialog.SetParamater(paramater, ParamaterNum1, ParamaterNum2);
@@ -89,6 +100,11 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.SetBattleModeCard(myClockList);
     }
 
+    public void LevelUpDialog(List<BattleModeCard> myClockList, EnumController.LevelUpDialogParamater paramater, int place)
+    {
+        m_LevelUpDialog.SetBattleModeCard(myClockList, paramater, place);
+    }
+
     public void SetIsClockAndTwoDrawProcessOfLevelUpDialog()
     {
         m_LevelUpDialog.isClockAndTwoDrawProcess = true;
@@ -96,7 +112,7 @@ public class DialogManager : MonoBehaviour
 
     public void PhaseDialog()
     {
-        if (m_GameManager.isLevelUpProcess)
+        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
         {
             return;
         }
@@ -119,7 +135,7 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.SetBattleModeCard(list, paramater, card);
     }
 
-    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.AttackStatus status)
+    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.Attack status)
     {
         m_CharacterSelectDialog.Open(list, place, status);
     }
@@ -127,6 +143,16 @@ public class DialogManager : MonoBehaviour
     public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, bool isReceivedFromRPC, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
         m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, isReceivedFromRPC, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
+    }
+
+    public void NotEraseDialog_Open()
+    {
+        m_NotEraseDialog.Open();
+    }
+
+    public void NotEraseDialog_Close()
+    {
+        m_NotEraseDialog.OffDialog();
     }
 
     public void CloseAllDialog()
@@ -142,5 +168,6 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.OffDialog();
         m_CharacterSelectDialog.OffDialog();
         m_ConfirmEncoreKindsDialog.OffDialog();
+        m_NotEraseDialog.OffDialog();
     }
 }

@@ -18,6 +18,7 @@ public class EncoreDialog : MonoBehaviour
 
     private void Open()
     {
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
         this.gameObject.SetActive(true);
     }
 
@@ -67,6 +68,7 @@ public class EncoreDialog : MonoBehaviour
     /// <param name="num"></param>
     public void onClick(int num)
     {
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         BattleModeCard temp = m_GameManager.myFieldList[num];
         m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
         m_GameManager.myFieldList[num] = null;
