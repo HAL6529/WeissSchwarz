@@ -153,6 +153,29 @@ public class MyHandCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 手札のキャラクターカード以外を非活性にする
+    /// </summary>
+    public void canCharacterCard()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (i > m_GameManager.myHandList.Count - 1)
+            {
+                break;
+            }
+
+            if (m_GameManager.myHandList[i].type == EnumController.Type.CHARACTER)
+            {
+                buttons[i].interactable = true;
+            }
+            else
+            {
+                buttons[i].interactable = false;
+            }
+        }
+    }
+
+    /// <summary>
     /// 手札のカードすべてを活性状態にする
     /// </summary>
     public void ActiveAllMyHand()

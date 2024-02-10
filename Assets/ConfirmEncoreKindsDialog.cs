@@ -39,7 +39,9 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     public void onHandEncoreBtn()
     {
+        Debug.Log("onHandEncoreBtn");
         m_MyHandCardsManager.CallNotShowPlayButton();
+        m_MyHandCardsManager.canCharacterCard();
         this.gameObject.SetActive(false);
         m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_ENCORE;
         m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1, isReceivedFromRPC);

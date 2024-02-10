@@ -12,6 +12,7 @@ public class OKDialog : MonoBehaviour
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] GameObject OKBtn;
 
     private StringValues stringValues = new StringValues();
     private BattleModeCard m_BattleModeCard = null;
@@ -42,6 +43,7 @@ public class OKDialog : MonoBehaviour
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
+        InactiveOKButton();
         SetText();
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
@@ -55,6 +57,7 @@ public class OKDialog : MonoBehaviour
         m_BattleModeCard = card;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
+        InactiveOKButton();
         SetText();
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
@@ -68,6 +71,7 @@ public class OKDialog : MonoBehaviour
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
+        InactiveOKButton();
         SetText();
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
@@ -81,6 +85,7 @@ public class OKDialog : MonoBehaviour
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
+        InactiveOKButton();
         SetText();
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
@@ -111,6 +116,29 @@ public class OKDialog : MonoBehaviour
 
         }
         text.text = str;
+    }
+
+    private void InactiveOKButton()
+    {
+        switch (m_DialogParamater)
+        {
+            case EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM:
+                SwitchActiveOKButton();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SwitchActiveOKButton()
+    {
+        Debug.Log("SwitchActiveOKButton");
+        if (m_GameManager.DisCardForHandEncore == null)
+        {
+            OKBtn.gameObject.SetActive(false);
+            return;
+        }
+        OKBtn.gameObject.SetActive(true);
     }
 
     public void onClick()
@@ -162,18 +190,21 @@ public class OKDialog : MonoBehaviour
                 m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
                 break;
             case EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM:
-                if(m_GameManager.DisCardForHandEncore != null)
+                Debug.Log("SwitchActiveOKButton_HAND_ENCORE_SELECT_DISCARD_CONFIRM");
+                if (m_GameManager.DisCardForHandEncore != null)
                 {
                     m_GameManager.myHandList.Remove(m_GameManager.DisCardForHandEncore);
                     m_GameManager.GraveYardList.Add(m_GameManager.DisCardForHandEncore);
-                    m_GameManager.Syncronize();
+                    m_GameManager.DisCardForHandEncore = null;
 
                     m_GameManager.GraveYardList.Remove(m_BattleModeCard);
                     m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
                     m_MyMainCardsManager.CallOnStand(ParamaterNum1);
                     m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
+                    m_GameManager.Syncronize();
                 }
-
+                m_MyHandCardsManager.ActiveAllMyHand();
+                m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
                 m_DialogManager.EncoreDialog(m_GameManager.myFieldList, BoolParamater);
                 break;
             case EnumController.OKDialogParamater.Marigan:

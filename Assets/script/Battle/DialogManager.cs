@@ -60,6 +60,11 @@ public class DialogManager : MonoBehaviour
         m_OKDialog.SetParamater(paramater);
     }
 
+    public void OKDialog_SwitchActiveOKButton()
+    {
+        m_OKDialog.SwitchActiveOKButton();
+    }
+
     public void OKDialog(EnumController.OKDialogParamater paramater, BattleModeCard card, int ParamaterNum1, bool isReceivedFromRPC)
     {
         m_OKDialog.SetParamater(paramater, card, ParamaterNum1, isReceivedFromRPC);
