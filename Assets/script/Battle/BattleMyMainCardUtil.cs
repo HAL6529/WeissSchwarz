@@ -438,9 +438,37 @@ public class BattleMyMainCardUtil : MonoBehaviour
         PowerText.text = FieldPower.ToString();
     }
 
+    /// <summary>
+    /// フィールド上でのソウル計算
+    /// </summary>
+    public void SoulUpdate()
+    {
+        if (m_BattleModeCard == null)
+        {
+            FieldSoul = 0;
+            return;
+        }
+
+        FieldSoul = m_BattleModeCard.soul;
+
+        if (m_GameManager.MyClimaxCard != null)
+        {
+            // 1000/1のクライマックスが使用されているかチェック
+            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
+            {
+                FieldSoul += 1;
+            }
+        }
+    }
+
     public int GetFieldPower()
     {
         return FieldPower;
+    }
+
+    public int GetFieldSoul()
+    {
+        return FieldSoul;
     }
 
     public EnumController.State GetState()
