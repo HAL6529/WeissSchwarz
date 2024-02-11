@@ -422,14 +422,14 @@ public class GameManager : MonoBehaviour
 
     public void onDirectAttack(int num)
     {
-        int damage = myFieldList[num].soul + 1;
+        int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
         damage = damage + TrrigerCheck();
         m_BattleStrix.RpcToAll("Damage", damage, isTurnPlayer);
     }
 
     public void onFrontAttack(int num)
     {
-        int damage = myFieldList[num].soul;
+        int damage = m_MyMainCardsManager.GetFieldSoul(num);
         damage = damage + TrrigerCheck();
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
     }
@@ -449,7 +449,7 @@ public class GameManager : MonoBehaviour
 
     public void onSideAttack(int num)
     {
-        int damage = myFieldList[num].soul;
+        int damage = m_MyMainCardsManager.GetFieldSoul(num);
         int minus = 0;
         switch (num)
         {
@@ -817,7 +817,7 @@ public class GameManager : MonoBehaviour
 
         // メインのカードの更新
         // パワー、レベル、特徴の計算
-        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
         m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isFirstAttacker);
     }
 

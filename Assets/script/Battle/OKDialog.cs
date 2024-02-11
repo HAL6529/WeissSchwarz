@@ -190,7 +190,6 @@ public class OKDialog : MonoBehaviour
                 m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
                 break;
             case EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM:
-                Debug.Log("SwitchActiveOKButton_HAND_ENCORE_SELECT_DISCARD_CONFIRM");
                 if (m_GameManager.DisCardForHandEncore != null)
                 {
                     m_GameManager.myHandList.Remove(m_GameManager.DisCardForHandEncore);

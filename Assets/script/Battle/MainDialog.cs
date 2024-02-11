@@ -77,8 +77,8 @@ public class MainDialog : MonoBehaviour
         // カードの登場時の効果起動
         m_Effect.BondForHandToFild(m_BattleModeCard);
 
-        // パワー、レベル、特徴の計算
-        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeReset();
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
     }
 
     public void onCloseButton()

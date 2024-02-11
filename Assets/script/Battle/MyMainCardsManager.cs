@@ -125,12 +125,13 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].GetState();
     }
 
-    public void FieldPowerAndLevelAndAttributeReset()
+    public void FieldPowerAndLevelAndAttributeAndSoulReset()
     {
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].LevelUpdate();
             CardList[i].PowerUpdate();
+            CardList[i].SoulUpdate();
         }
     }
 
@@ -147,6 +148,11 @@ public class MyMainCardsManager : MonoBehaviour
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();
+    }
+
+    public int GetFieldSoul(int place)
+    {
+        return CardList[place].GetFieldSoul();
     }
 
     public void AddPowerUpUntilTurnEnd(int num, int power)
