@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
+    [SerializeField] WinAndLose m_WinAndLose;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
     private MyStockCardsManager m_MyStockCardsManager;
@@ -734,24 +735,47 @@ public class GameManager : MonoBehaviour
         Syncronize();
     }
 
+    /// <summary>
+    /// レベルアップする場合true
+    /// </summary>
+    /// <returns></returns>
     private bool LevelUpCheck()
     {
         if (myClockList.Count < 7)
         {
             return false;
         }
-        m_DialogManager.LevelUpDialog(myClockList);
-        return true;
+
+        if(myLevelList.Count < 3)
+        {
+            m_DialogManager.LevelUpDialog(myClockList);
+            return true;
+        }
+        m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
+        m_WinAndLose.Lose();
+        return false;
     }
 
+    /// <summary>
+    /// レベルアップする場合true
+    /// </summary>
+    /// <returns></returns>
     private bool LevelUpCheck(int place)
     {
         if (myClockList.Count < 7)
         {
             return false;
         }
-        m_DialogManager.LevelUpDialog(myClockList, EnumController.LevelUpDialogParamater.FRONT_ATTACK, place);
-        return true;
+
+        if (myLevelList.Count < 3)
+        {
+            m_DialogManager.LevelUpDialog(myClockList);
+            return true;
+        }
+
+        m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
+        m_WinAndLose.Lose();
+        return false;
     }
 
     /// <summary>
