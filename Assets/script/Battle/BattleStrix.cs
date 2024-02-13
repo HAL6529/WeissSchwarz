@@ -23,6 +23,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] EnemyStockCardsManager m_EnemyStockCardsManager;
     [SerializeField] TriggerCardAnimationForEnemy m_TriggerCardAnimationForEnemy;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] WinAndLose m_WinAndLose;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -439,6 +440,15 @@ public class BattleStrix : StrixBehaviour
             {
                 m_DialogManager.NotEraseDialog_Close();
             }
+        }
+    }
+
+    [StrixRpc]
+    public void WinAndLose_Win(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_WinAndLose.Win();
         }
     }
 }
