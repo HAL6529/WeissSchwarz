@@ -82,9 +82,4 @@ public class BattleModeCard : MonoBehaviour
     {
         
     }
-
-    public void onClick()
-    {
-        Debug.Log("‰Ÿ‚³‚ê‚½");
-    }
 }

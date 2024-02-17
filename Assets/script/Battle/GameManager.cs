@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] WinAndLose m_WinAndLose;
+    [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
     private MyStockCardsManager m_MyStockCardsManager;
@@ -593,6 +594,8 @@ public class GameManager : MonoBehaviour
                 Refresh();
             }
         }
+        // ダメージアニメーションの再生
+        m_DamageAnimationDialog.SetBattleModeCard(temp);
 
         for (int n = 0; n < temp.Count; n++)
         {
