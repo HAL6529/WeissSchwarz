@@ -8,6 +8,7 @@ public class DamageCardAnimation : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] Image m_image;
+    [SerializeField] Sprite backImage;
     [SerializeField] GameObject gameObject;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
 
@@ -17,17 +18,23 @@ public class DamageCardAnimation : MonoBehaviour
 
     public void AnimationStart(int num, BattleModeCard card, bool isEnd)
     {
+        // アニメーション再生を停止するためにspeedを0にする
+        animator.speed = 0;
         gameObject.SetActive(true);
+        m_image.sprite = backImage;
+
+        animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.sprite; });
         if (isEnd)
         {
             animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
         }
-        m_image.sprite = card.sprite;
         Invoke("Animation", delay * num);
     }
 
     private void Animation()
-    {  
+    {
+        // アニメーション再生を再生するためにspeedを1にする
+        animator.speed = 1;
         animator.Play("DamageAnimation", 0, 0);
     }
 
