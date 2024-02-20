@@ -8,6 +8,7 @@ public class DamageAnimationDialog : MonoBehaviour
     
     public void SetBattleModeCard(List<BattleModeCard> list)
     {
+        Debug.Log(list.Count);
         if(list.Count == 0)
         {
             return;
@@ -16,7 +17,8 @@ public class DamageAnimationDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         for (int i = 0;i < DamageCardAnimationList.Count; i++)
         {
-            if(i < list.Count - 1)
+            Debug.Log(i);
+            if (i < list.Count - 1)
             {
                 DamageCardAnimationList[i].AnimationStart(i, list[i], false);
             }

@@ -6,7 +6,7 @@ using UnityForge.AnimCallbacks;
 
 public class DamageCardAnimation : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] Animator animator;
     [SerializeField] Image m_image;
     [SerializeField] Sprite backImage;
     [SerializeField] GameObject gameObject;
@@ -15,6 +15,7 @@ public class DamageCardAnimation : MonoBehaviour
     private static float delay = 0.5f;
     private static int NormalAnimationLayerIndex = 0;
     private static string AnimationName = "DamageAnimation";
+    private bool isEnd = false;
 
     public void AnimationStart(int num, BattleModeCard card, bool isEnd)
     {
@@ -22,12 +23,16 @@ public class DamageCardAnimation : MonoBehaviour
         animator.speed = 0;
         gameObject.SetActive(true);
         m_image.sprite = backImage;
-
+        // animator = GetComponent<Animator>();
         animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.sprite; });
-        if (isEnd)
+        animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+        this.isEnd = isEnd;
+        /* if (isEnd)
         {
-            animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
-        }
+
+            // animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 1.1f, () => { AnimationEnd(); });
+            // animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+        } */
         Invoke("Animation", delay * num);
     }
 
@@ -40,11 +45,16 @@ public class DamageCardAnimation : MonoBehaviour
 
     private void AnimationEnd()
     {
-        m_DamageAnimationDialog.OffDialog();
+        if (isEnd)
+        {
+            m_DamageAnimationDialog.OffDialog();
+        }
+
     }
 
     public void NotAnimation()
     {
+        this.isEnd = false;
         gameObject.SetActive(false);
     }
 }

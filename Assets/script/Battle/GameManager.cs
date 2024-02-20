@@ -595,6 +595,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // ダメージアニメーションの再生
+        Debug.Log(temp.Count);
         m_DamageAnimationDialog.SetBattleModeCard(temp);
 
         for (int n = 0; n < temp.Count; n++)
