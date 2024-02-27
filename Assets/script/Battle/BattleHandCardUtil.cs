@@ -39,7 +39,7 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onClick()
     {
-        if (m_GameManager.isAnimation)
+        if (m_GameManager.isAnimation())
         {
             return;
         }
@@ -250,7 +250,7 @@ public class BattleHandCardUtil : MonoBehaviour
     // rightCardがクリックされたとき
     public void onRightCardClick()
     {
-        if (m_GameManager.isAnimation)
+        if (m_GameManager.isAnimation())
         {
             return;
         }
@@ -261,7 +261,7 @@ public class BattleHandCardUtil : MonoBehaviour
     // leftCardがクリックされたとき
     public void onLeftCardClick()
     {
-        if (m_GameManager.isAnimation)
+        if (m_GameManager.isAnimation())
         {
             return;
         }

@@ -4,60 +4,12 @@ using UnityEngine;
 
 namespace EnumController
 {
-    public enum CardColor
+    public enum Attack
     {
         VOID,
-        RED,
-        BLUE,
-        YELLOW,
-        GREEN,
-        PURPLE,
-    }
-
-    public enum Trriger
-    {
-        VOID,
-        COMEBACK,
-        STANDBY,
-        BOOK,
-        GATE,
-        BOUNCE,
-        CHOICE,
-        SHOT,
-        TREASURE,
-        POOL,
-        SOUL,
-        DOUBLE_SOUL,
-        NONE,
-    }
-
-    public enum Type
-    {
-        VOID,
-        CHARACTER,
-        EVENT,
-        CLIMAX,
-    }
-
-    public enum Zone
-    {
-        VOID,
-        DECK,
-        HAND,
-        GRAVEYARD,
-        MEMORY,
-        CLOCK,
-        LEVEL_ONE,
-        LEVEL_TWO,
-        LEVEL_THREE,
-        STOCK,
-        CLIMAX,
-        FORWARD_LEFT,
-        FORWARD_CENTER,
-        FORWARD_RIGHT,
-        BACKWARD_LEFT,
-        BACKWARD_RIGHT,
-        EVENT,
+        DIRECT_ATTACK,
+        FRONT_ATTACK,
+        SIDE_ATTACK,
     }
 
     public enum Attribute
@@ -70,10 +22,14 @@ namespace EnumController
         Vampire,
     }
 
-    public enum Limit
+    public enum CardColor
     {
-        NORMAL,
         VOID,
+        RED,
+        BLUE,
+        YELLOW,
+        GREEN,
+        PURPLE,
     }
 
     public enum CardNo
@@ -94,6 +50,107 @@ namespace EnumController
         AT_WX02_A13,
     }
 
+    public enum ClimaxType
+    {
+        VOID,
+        POWER_THOUSAND_AND_SOUL_ONE,
+    }
+
+    public enum Damage
+    {
+        VOID,
+        DIRECT_ATTACK,
+        FRONT_ATTACK,
+        SIDE_ATTACK,
+        SHOT,
+    }
+
+    public enum DamageAnimation
+    {
+        VOID,
+        CANCEL,
+        DAMAGED,
+    }
+
+    public enum HandCardUtilStatus
+    {
+        VOID,
+        HAND_OVER,
+        MARIGAN_MODE,
+        COUNTER_SELECT_MODE,
+        HAND_ENCORE,
+    }
+
+    public enum HandOverDialogParamater
+    {
+        VOID,
+        Active,
+        Confirm,
+    }
+
+    public enum Language
+    {
+        VOID,
+        Japanese,
+        English,
+    }
+
+    public enum LevelUpDialogParamater
+    {
+        VOID,
+        CLOCK_ANDTWO_DRAW,
+        FRONT_ATTACK,
+        REFRESH,
+    }
+
+    public enum Limit
+    {
+        NORMAL,
+        VOID,
+    }
+
+    public enum OKDialogParamater
+    {
+        VOID,
+        Marigan,
+        CLOCK,
+        HAND_ENCORE_SELECT_DISCARD_CONFIRM,
+        Counter_Not_Exist,
+        Counter_Confirm_Use_Card,
+    }
+
+    public enum SearchDialogParamater
+    {
+        VOID,
+        Search,
+        Sulvage,
+    }
+
+    public enum State
+    {
+        VOID,
+        STAND,
+        REST,
+        REVERSE,
+    }
+
+    public enum Trriger
+    {
+        VOID,
+        COMEBACK,
+        STANDBY,
+        BOOK,
+        GATE,
+        BOUNCE,
+        CHOICE,
+        SHOT,
+        TREASURE,
+        POOL,
+        SOUL,
+        DOUBLE_SOUL,
+        NONE,
+    }
+
     public enum Turn
     {
         VOID,
@@ -106,14 +163,12 @@ namespace EnumController
         Encore,
     }
 
-    public enum OKDialogParamater
+    public enum Type
     {
         VOID,
-        Marigan,
-        CLOCK,
-        HAND_ENCORE_SELECT_DISCARD_CONFIRM,
-        Counter_Not_Exist,
-        Counter_Confirm_Use_Card,
+        CHARACTER,
+        EVENT,
+        CLIMAX,
     }
 
     public enum YesOrNoDialogParamater
@@ -129,64 +184,26 @@ namespace EnumController
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
     }
 
-    public enum LevelUpDialogParamater
-    {
-        VOID,
-        CLOCK_ANDTWO_DRAW,
-        FRONT_ATTACK,
-        REFRESH,
-    }
 
-    public enum HandOverDialogParamater
+    public enum Zone
     {
         VOID,
-        Active,
-        Confirm,
-    }
-
-    public enum SearchDialogParamater
-    {
-        VOID,
-        Search,
-        Sulvage,
-    }
-
-    public enum Attack
-    {
-        VOID,
-        DIRECT_ATTACK,
-        FRONT_ATTACK,
-        SIDE_ATTACK,
-    }
-
-    public enum State
-    {
-        VOID,
-        STAND,
-        REST,
-        REVERSE,
-    }
-
-    public enum ClimaxType
-    {
-        VOID,
-        POWER_THOUSAND_AND_SOUL_ONE,
-    }
-
-    public enum Language
-    {
-        VOID,
-        Japanese,
-        English,
-    }
-
-    public enum HandCardUtilStatus
-    {
-        VOID,
-        HAND_OVER,
-        MARIGAN_MODE,
-        COUNTER_SELECT_MODE,
-        HAND_ENCORE,
+        DECK,
+        HAND,
+        GRAVEYARD,
+        MEMORY,
+        CLOCK,
+        LEVEL_ONE,
+        LEVEL_TWO,
+        LEVEL_THREE,
+        STOCK,
+        CLIMAX,
+        FORWARD_LEFT,
+        FORWARD_CENTER,
+        FORWARD_RIGHT,
+        BACKWARD_LEFT,
+        BACKWARD_RIGHT,
+        EVENT,
     }
 }
 

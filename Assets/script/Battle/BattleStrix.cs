@@ -358,12 +358,12 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void Damage(int num, bool isTurnPlayer)
+    public void Damage(int num, bool isFirstAttacker, EnumController.Damage damage)
     {
         logText.text = "Damage:" + Convert.ToString(num);
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.Damage(num);
+            m_GameManager.Damage(num, damage);
         }
     }
 

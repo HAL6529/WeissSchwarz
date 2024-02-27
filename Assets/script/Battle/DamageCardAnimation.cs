@@ -23,16 +23,9 @@ public class DamageCardAnimation : MonoBehaviour
         animator.speed = 0;
         gameObject.SetActive(true);
         m_image.sprite = backImage;
-        // animator = GetComponent<Animator>();
+        this.isEnd = isEnd;
         animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.sprite; });
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
-        this.isEnd = isEnd;
-        /* if (isEnd)
-        {
-
-            // animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 1.1f, () => { AnimationEnd(); });
-            // animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
-        } */
         Invoke("Animation", delay * num);
     }
 
@@ -48,6 +41,7 @@ public class DamageCardAnimation : MonoBehaviour
         if (isEnd)
         {
             m_DamageAnimationDialog.OffDialog();
+            m_DamageAnimationDialog.NextAction();
         }
 
     }
