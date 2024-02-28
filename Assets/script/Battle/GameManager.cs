@@ -599,6 +599,7 @@ public class GameManager : MonoBehaviour
             if (myDeckList[0].type == EnumController.Type.CLIMAX)
             {
                 // ダメージアニメーションの再生
+                m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
                 m_DamageAnimationDialog.SetBattleModeCard(temp);
                 return;
             }
@@ -611,6 +612,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // ダメージアニメーションの再生
+        m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
         m_DamageAnimationDialog.SetBattleModeCard(temp);
         return;
     }
@@ -649,6 +651,7 @@ public class GameManager : MonoBehaviour
             if (myDeckList[0].type == EnumController.Type.CLIMAX)
             {
                 // ダメージアニメーションの再生
+                m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
                 m_DamageAnimationDialog.SetBattleModeCard(temp, place);
                 return;
             }
@@ -661,6 +664,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // ダメージアニメーションの再生
+        m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
         m_DamageAnimationDialog.SetBattleModeCard(temp, place);
         return;
     }

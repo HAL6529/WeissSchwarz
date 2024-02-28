@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageAnimationDialog : MonoBehaviour
 {
+    [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] List<DamageCardAnimation> DamageCardAnimationList = new List<DamageCardAnimation>();
     [SerializeField] GameManager m_GameManager;
 
@@ -40,7 +41,6 @@ public class DamageAnimationDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         for (int i = 0;i < DamageCardAnimationList.Count; i++)
         {
-            Debug.Log(i);
             if (i < list.Count - 1)
             {
                 DamageCardAnimationList[i].AnimationStart(i, list[i], false);
@@ -80,7 +80,46 @@ public class DamageAnimationDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         for (int i = 0; i < DamageCardAnimationList.Count; i++)
         {
-            Debug.Log(i);
+            if (i < list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], false);
+            }
+            else if (i == list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], true);
+            }
+            else
+            {
+                DamageCardAnimationList[i].NotAnimation();
+            }
+        }
+    }
+
+    /// <summary>
+    /// このメソッドはターンプレイヤーが呼び出用
+    /// </summary>
+    /// <param name="list"></param>
+    public void SetBattleModeCardForTurnPlayer(List<BattleModeCardTemp> cardList)
+    {
+        List<BattleModeCard> list = new List<BattleModeCard>();
+        for (int i = 0; i < cardList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(cardList[i].cardNo);
+            list.Add(b);
+        }
+
+        m_GameManager.isDamageAnimation = true;
+        m_DamageAnimation = EnumController.DamageAnimation.VOID;
+        place = -1;
+        tempList = list;
+        if (list.Count == 0)
+        {
+            return;
+        }
+
+        this.gameObject.SetActive(true);
+        for (int i = 0; i < DamageCardAnimationList.Count; i++)
+        {
             if (i < list.Count - 1)
             {
                 DamageCardAnimationList[i].AnimationStart(i, list[i], false);
@@ -117,7 +156,7 @@ public class DamageAnimationDialog : MonoBehaviour
                     return;
                 }
                 m_GameManager.DamageForFrontAttack2ForCancel(tempList, place);
-                break;
+                return;
             case EnumController.DamageAnimation.DAMAGED:
                 if (this.place == -1)
                 {
@@ -125,9 +164,9 @@ public class DamageAnimationDialog : MonoBehaviour
                     return;
                 }
                 m_GameManager.DamageForFrontAttack2ForDamaged(tempList, place);
-                break;
+                return;
             default:
-                break;
+                return;
         }
     }
 }

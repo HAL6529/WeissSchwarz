@@ -24,6 +24,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] TriggerCardAnimationForEnemy m_TriggerCardAnimationForEnemy;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] WinAndLose m_WinAndLose;
+    [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -115,6 +116,23 @@ public class BattleStrix : StrixBehaviour
             }
         }
         RpcToAll(nameof(UpdateEnemyLevelCards), temp, isFirstAttacker);
+    }
+
+    public void SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(List<BattleModeCard> list, bool isFirstAttacker)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] != null)
+            {
+                temp.Add(new BattleModeCardTemp(list[i]));
+            }
+            else
+            {
+                temp.Add(null);
+            }
+        }
+        RpcToAll(nameof(DamageAnimationDialog_SetBattleModeCardForTurnPlayer), temp, isFirstAttacker);
     }
 
     [StrixRpc]
@@ -449,6 +467,21 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_WinAndLose.Win();
+        }
+    }
+
+    /// <summary>
+    /// ダメージを受けた時のアニメーションをターンプレイヤーにも流すためのメソッド
+    /// </summary>
+    /// <param name="list"></param>
+    /// <param name="isFirstAttacker"></param>
+    [StrixRpc]
+    public void DamageAnimationDialog_SetBattleModeCardForTurnPlayer(List<BattleModeCardTemp> list, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            // ダメージアニメーションの再生
+            m_DamageAnimationDialog.SetBattleModeCardForTurnPlayer(list);
         }
     }
 }
