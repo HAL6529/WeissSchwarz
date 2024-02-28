@@ -30,7 +30,7 @@ public class Phase : MonoBehaviour
 
     public void AnimationStart(EnumController.Turn phase)
     {
-        gameManager.isAnimation = true;
+        gameManager.isPhaseAnimation = true;
         Panel.SetActive(true);
         this.phase = phase;
 
@@ -64,7 +64,7 @@ public class Phase : MonoBehaviour
     {
         print("èIóπ");
         Panel.SetActive(false);
-        gameManager.isAnimation = false ;
+        gameManager.isPhaseAnimation = false ;
         switch (phase)
         {
             case EnumController.Turn.Draw:

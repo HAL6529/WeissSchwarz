@@ -69,6 +69,7 @@ public class LevelUpDialog : MonoBehaviour
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)
     {
+        Debug.Log("SetBattleModeCard Void");
         this.paramater = EnumController.LevelUpDialogParamater.VOID;
         this.place = -1;
         num = -1;
@@ -102,6 +103,7 @@ public class LevelUpDialog : MonoBehaviour
     /// <param name="place"></param>
     public void SetBattleModeCard(List<BattleModeCard> myLevelList, EnumController.LevelUpDialogParamater paramater, int place)
     {
+        Debug.Log("SetBattleModeCard Front");
         this.paramater = paramater;
         this.place = place;
         num = -1;

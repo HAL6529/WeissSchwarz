@@ -25,7 +25,7 @@ public class TriggerCardAnimation : MonoBehaviour
         this.paramater = paramater;
         this.PlaceNum = PlaceNum;
         this.gameObject.SetActive(true);
-        m_GameManager.isAnimation = true;
+        m_GameManager.isTriggerAnimation = true;
         m_Animator.Play("TriggerCheck", 0, 0.0f);
     }
 
@@ -37,7 +37,7 @@ public class TriggerCardAnimation : MonoBehaviour
     private void AnimationEnd()
     {
         this.gameObject.SetActive(false);
-        m_GameManager.isAnimation = false;
+        m_GameManager.isTriggerAnimation = false;
         switch (paramater)
         {
             case EnumController.Attack.VOID:

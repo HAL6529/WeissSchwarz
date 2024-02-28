@@ -25,7 +25,7 @@ public class TriggerCardAnimationForEnemy : MonoBehaviour
         m_Image.sprite = back;
         temp = m_BattleModeCardList.ConvertCardNoToBattleModeCard(card.cardNo);
         this.gameObject.SetActive(true);
-        m_GameManager.isAnimation = true;
+        m_GameManager.isTriggerAnimationForEnemy = true;
         m_Animator.Play("TriggerCheck", 0, 0.0f);
     }
 
@@ -37,6 +37,6 @@ public class TriggerCardAnimationForEnemy : MonoBehaviour
     private void AnimationEnd()
     {
         this.gameObject.SetActive(false);
-        m_GameManager.isAnimation = false;
+        m_GameManager.isTriggerAnimationForEnemy = false;
     }
 }
