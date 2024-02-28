@@ -14,10 +14,13 @@ public class DamageAnimationDialog : MonoBehaviour
     /// </summary>
     private List<BattleModeCard> tempList = new List<BattleModeCard>();
 
+    private int place = -1;
+
     public void SetBattleModeCard(List<BattleModeCard> list)
     {
         m_GameManager.isDamageAnimation = true;
         m_DamageAnimation = EnumController.DamageAnimation.VOID;
+        place = -1;
         tempList = list;
         if (list.Count == 0)
         {
@@ -53,6 +56,46 @@ public class DamageAnimationDialog : MonoBehaviour
         }
     }
 
+    public void SetBattleModeCard(List<BattleModeCard> list, int place)
+    {
+        m_GameManager.isDamageAnimation = true;
+        m_DamageAnimation = EnumController.DamageAnimation.VOID;
+        this.place = place;
+        tempList = list;
+        if (list.Count == 0)
+        {
+            return;
+        }
+
+        /// キャンセルの場合、ステータスをキャンセルに変更
+        if (list[list.Count - 1].type == EnumController.Type.CLIMAX)
+        {
+            m_DamageAnimation = EnumController.DamageAnimation.CANCEL;
+        }
+        else
+        {
+            m_DamageAnimation = EnumController.DamageAnimation.DAMAGED;
+        }
+
+        this.gameObject.SetActive(true);
+        for (int i = 0; i < DamageCardAnimationList.Count; i++)
+        {
+            Debug.Log(i);
+            if (i < list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], false);
+            }
+            else if (i == list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], true);
+            }
+            else
+            {
+                DamageCardAnimationList[i].NotAnimation();
+            }
+        }
+    }
+
     public void OffDialog()
     {
         m_GameManager.isDamageAnimation = false;
@@ -68,10 +111,20 @@ public class DamageAnimationDialog : MonoBehaviour
         switch (m_DamageAnimation)
         {
             case EnumController.DamageAnimation.CANCEL:
-                m_GameManager.Damage2ForCancel(tempList);
+                if(this.place == -1)
+                {
+                    m_GameManager.Damage2ForCancel(tempList);
+                    return;
+                }
+                m_GameManager.DamageForFrontAttack2ForCancel(tempList, place);
                 break;
             case EnumController.DamageAnimation.DAMAGED:
-                m_GameManager.Damage2ForDamaged(tempList);
+                if (this.place == -1)
+                {
+                    m_GameManager.Damage2ForDamaged(tempList);
+                    return;
+                }
+                m_GameManager.DamageForFrontAttack2ForDamaged(tempList, place);
                 break;
             default:
                 break;
