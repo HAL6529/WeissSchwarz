@@ -10,7 +10,7 @@ public class cardInfo : MonoBehaviour
     public int level;
     public int cost;
     public EnumController.CardColor color;
-    public EnumController.Trriger trigger;
+    public EnumController.Trigger trigger;
     public EnumController.Type type;
     public EnumController.Attribute attributeOne;
     public EnumController.Attribute attributeTwo;

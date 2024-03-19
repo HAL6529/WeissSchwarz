@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] WinAndLose m_WinAndLose;
+    [SerializeField] ComeBackDetail m_ComeBackDetail;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
@@ -78,6 +79,11 @@ public class GameManager : MonoBehaviour
     private EnemyLevelCardsManager m_EnemyLevelCardsManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
+
+    /// <summary>
+    /// トリガーチェック時に次に行う処理の判別のために使用
+    /// </summary>
+    private EnumController.Trigger trigger = EnumController.Trigger.VOID;
 
     [SerializeField] Text testPhaseText;
     [SerializeField] GameObject GameStartBtn;
@@ -307,7 +313,6 @@ public class GameManager : MonoBehaviour
 
     public void PowerCheck(int num)
     {
-        Debug.Log("PowerCheck");
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
 
@@ -568,14 +573,32 @@ public class GameManager : MonoBehaviour
     public void onDirectAttack(int num)
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
-        damage = damage + TrrigerCheck();
+        damage = damage + TriggerCheck();
+        switch (trigger)
+        {
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
+                return;
+            default:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
+                return;
+        }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
     }
 
     public void onFrontAttack(int num)
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
-        damage = damage + TrrigerCheck();
+        damage = damage + TriggerCheck();
+        switch (trigger)
+        {
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
+                return;
+            default:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
+                return;
+        }
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
     }
 
@@ -599,32 +622,42 @@ public class GameManager : MonoBehaviour
                 break;
         }
         damage = damage - minus;
-        damage = damage + TrrigerCheck();
+        damage = damage + TriggerCheck();
+        switch (trigger)
+        {
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
+                return;
+            default:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
+                return;
+        }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
     }
 
-    private int TrrigerCheck()
+    private int TriggerCheck()
     {
         int num = 0;
+        this.trigger = myDeckList[0].trigger;
         switch (myDeckList[0].trigger)
         {
-            case EnumController.Trriger.DOUBLE_SOUL:
+            case EnumController.Trigger.DOUBLE_SOUL:
                 num = 2;
                 break;
-            case EnumController.Trriger.STANDBY:
-            case EnumController.Trriger.BOUNCE:
-            case EnumController.Trriger.SHOT:
-            case EnumController.Trriger.SOUL:
+            case EnumController.Trigger.STANDBY:
+            case EnumController.Trigger.BOUNCE:
+            case EnumController.Trigger.SHOT:
+            case EnumController.Trigger.SOUL:
                 num = 1;
                 break;
-            case EnumController.Trriger.COMEBACK:
-            case EnumController.Trriger.BOOK:
-            case EnumController.Trriger.GATE:
-            case EnumController.Trriger.CHOICE:
-            case EnumController.Trriger.TREASURE:
-            case EnumController.Trriger.POOL:
-            case EnumController.Trriger.NONE:
-            case EnumController.Trriger.VOID:
+            case EnumController.Trigger.COMEBACK:
+            case EnumController.Trigger.BOOK:
+            case EnumController.Trigger.GATE:
+            case EnumController.Trigger.CHOICE:
+            case EnumController.Trigger.TREASURE:
+            case EnumController.Trigger.POOL:
+            case EnumController.Trigger.NONE:
+            case EnumController.Trigger.VOID:
                 break;
             default:
                 break;

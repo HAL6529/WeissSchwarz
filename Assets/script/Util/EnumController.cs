@@ -134,7 +134,7 @@ namespace EnumController
         REVERSE,
     }
 
-    public enum Trriger
+    public enum Trigger
     {
         VOID,
         COMEBACK,
