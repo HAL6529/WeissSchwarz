@@ -28,8 +28,6 @@ public class ComeBackDetail : MonoBehaviour
         this.place = place;
         this.isFirstAttacker = isFirstAttacker;
         this.damageParamater = EnumController.Damage.FRONT_ATTACK;
-        this.gameObject.SetActive(true);
-        OkButton.SetActive(false);
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for(int i = 0; i < list.Count; i++)
         {
@@ -38,6 +36,15 @@ public class ComeBackDetail : MonoBehaviour
                 tempList.Add(list[i]);
             }
         }
+
+        if(tempList.Count == 0)
+        {
+            m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker);
+            return;
+        }
+
+        this.gameObject.SetActive(true);
+        OkButton.SetActive(false);
 
         for (int i = 0; i < BtnList.Count; i++)
         {
@@ -66,8 +73,6 @@ public class ComeBackDetail : MonoBehaviour
         this.place = -1;
         this.isFirstAttacker = isFirstAttacker;
         this.damageParamater = damageParamater;
-        this.gameObject.SetActive(true);
-        OkButton.SetActive(false);
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for (int i = 0; i < list.Count; i++)
         {
@@ -76,6 +81,15 @@ public class ComeBackDetail : MonoBehaviour
                 tempList.Add(list[i]);
             }
         }
+
+        if (tempList.Count == 0)
+        {
+            m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater);
+            return;
+        }
+
+        this.gameObject.SetActive(true);
+        OkButton.SetActive(false);
 
         for (int i = 0; i < BtnList.Count; i++)
         {
