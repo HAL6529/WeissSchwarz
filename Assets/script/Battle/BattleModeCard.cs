@@ -12,7 +12,7 @@ public class BattleModeCard : MonoBehaviour
     public int cost;
     public int soul;
     public EnumController.CardColor color;
-    public EnumController.Trriger trigger;
+    public EnumController.Trigger trigger;
     public EnumController.Type type;
     public EnumController.Attribute attributeOne;
     public EnumController.Attribute attributeTwo;
@@ -44,7 +44,7 @@ public class BattleModeCard : MonoBehaviour
                    int level,
                    int cost,
                    EnumController.CardColor color,
-                   EnumController.Trriger trigger,
+                   EnumController.Trigger trigger,
                    EnumController.Type type,
                    EnumController.Attribute attributeOne,
                    EnumController.Attribute attributeTwo,

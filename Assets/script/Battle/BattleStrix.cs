@@ -32,6 +32,19 @@ public class BattleStrix : StrixBehaviour
     void Start()
     {
         ObjectFactory.Instance.Register(typeof(BattleModeCardTemp));
+        ObjectFactory.Instance.Register(typeof(ExecuteActionTemp));
+    }
+
+    public void SendConfirmSearchOrSulvageCardDialog(List<BattleModeCard> list, EnumController.ConfirmSearchOrSulvageCardDialog paramater, ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            temp.Add(new BattleModeCardTemp(list[i]));
+        }
+
+        RpcToAll(nameof(ConfirmSearchOrSulvageCardDialog), temp, paramater, m_ExecuteActionTemp, isFirstAttacker);
     }
 
     public void SendUpdateEnemyGraveYard(List<BattleModeCard> list, bool isFirstAttacker)
@@ -467,6 +480,43 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_WinAndLose.Win();
+        }
+    }
+
+    /// <summary>
+    /// サーチや回収を行った際に出力されるダイアログ
+    /// </summary>
+    /// <param name="list"></param>
+    /// <param name="paramater"></param>
+    /// <param name="isFirstAttacker"></param>
+    [StrixRpc]
+    public void ConfirmSearchOrSulvageCardDialog(List<BattleModeCardTemp> list, EnumController.ConfirmSearchOrSulvageCardDialog paramater, ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_DialogManager.ConfirmSearchOrSulvageCardDialog(list, paramater, m_ExecuteActionTemp);
+        }
+        else
+        {
+            m_DialogManager.NotEraseDialog_Open();
+        }
+    }
+
+    /// <summary>
+    /// カムバックアイコンが捲れた後確認ダイアログでOKボタンが押された後の処理
+    /// </summary>
+    [StrixRpc]
+    public void ExecuteAction_ComeBackActionAfterConfirmDialog(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        Debug.Log("ExecuteAction_ComeBackActionAfterConfirmDialog");
+        if(m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
+            m_GameManager.m_ExecuteAction.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
+            m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
+
+            m_GameManager.m_ExecuteAction.ComeBackActionAfterConfirmDialog();
         }
     }
 

@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
-    [SerializeField] BattleStrix m_BattleStrix;
-    [SerializeField] BattleModeCardList m_BattleModeCardList;
+    public BattleStrix m_BattleStrix;
+    public BattleModeCardList m_BattleModeCardList;
     public DialogManager m_DialogManager;
     [SerializeField] BattleDeckCardUtil myBattleDeckCardUtil;
     [SerializeField] BattleDeckCardUtil enemyBattleDeckCardUtil;
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] WinAndLose m_WinAndLose;
+    [SerializeField] ComeBackDetail m_ComeBackDetail;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
@@ -78,6 +79,13 @@ public class GameManager : MonoBehaviour
     private EnemyLevelCardsManager m_EnemyLevelCardsManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
+
+    /// <summary>
+    /// トリガーチェック時に次に行う処理の判別のために使用
+    /// </summary>
+    private EnumController.Trigger trigger = EnumController.Trigger.VOID;
+
+    public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
     [SerializeField] Text testPhaseText;
     [SerializeField] GameObject GameStartBtn;
@@ -108,33 +116,47 @@ public class GameManager : MonoBehaviour
         enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
 
-    public void StandPhaseStart()
+    public void AttackStart()
     {
-        phase = EnumController.Turn.Stand;
-        if (!isTurnPlayer || phase == EnumController.Turn.Clock)
-        {
-            return;
-        }
-        m_MyMainCardsManager.CallStand();
-        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
-        m_BattleStrix.RpcToAll("DrawPhase");
+
     }
 
-    public void DrawPhaseStart()
+    public void ChangePhase(EnumController.Turn turn)
     {
-        DrawPhaseEnd();
+        phase = turn;
     }
 
-    public void DrawPhaseEnd()
+    public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
     {
-        if (!isTurnPlayer)
+        if (m_BattleModeCard != null)
         {
+            myClockList.Add(m_BattleModeCard);
+            myHandList.Remove(m_BattleModeCard);
+
+            if (LevelUpCheck())
+            {
+                m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+                m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+                return;
+            }
+
+            ClockAndTwoDraw2();
             return;
         }
-        Debug.Log("DrawPhaseEnd");
+        else
+        {
+            ClockPhaseEnd();
+            return;
+        }
+    }
+
+    public void ClockAndTwoDraw2()
+    {
         Draw();
-        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Clock);
-        m_BattleStrix.RpcToAll("ClockPhase");
+        Draw();
+        Syncronize();
+        ClockPhaseEnd();
+        return;
     }
 
     public void ClockPhaseStart()
@@ -154,6 +176,237 @@ public class GameManager : MonoBehaviour
         }
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Main);
         m_BattleStrix.RpcToAll("MainPhase");
+    }
+
+    public void CounterCheck(int damage, int place)
+    {
+        for (int i = 0; i < myHandList.Count; i++)
+        {
+            if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
+            {
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
+                return;
+            }
+        }
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, place);
+    }
+
+    private void DiscardClimaxCard()
+    {
+        if (MyClimaxCard != null)
+        {
+            GraveYardList.Add(MyClimaxCard);
+            SetMyClimaxCard(null);
+            Syncronize();
+        }
+    }
+
+    public bool CoinToss()
+    {
+        if (Random.Range(0, 2) == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void Draw()
+    {
+        myHandList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+        if (myDeckList.Count == 0)
+        {
+            Refresh();
+        }
+
+        Syncronize();
+    }
+
+    public void DrawPhaseStart()
+    {
+        DrawPhaseEnd();
+    }
+
+    public void DrawPhaseEnd()
+    {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
+        Debug.Log("DrawPhaseEnd");
+        Draw();
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Clock);
+        m_BattleStrix.RpcToAll("ClockPhase");
+    }
+
+    public void EncoreStart()
+    {
+        if (!isTurnPlayer)
+        {
+            return;
+        }
+        m_DialogManager.EncoreDialog(myFieldList, false);
+        return;
+    }
+
+    public void FirstDraw()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            myHandList.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+        }
+        Syncronize();
+    }
+
+    public void GameStart()
+    {
+        if (m_StrixManager.isOwner)
+        {
+            GameStartBtn.SetActive(false);
+            if (CoinToss())
+            {
+                isFirstAttacker = true;
+                isTurnPlayer = true;
+                m_BattleStrix.RpcToAll("SetIsFirstAttacker", false);
+            }
+            else
+            {
+                isFirstAttacker = false;
+                isTurnPlayer = false;
+                m_BattleStrix.RpcToAll("SetIsFirstAttacker", true);
+            }
+
+            m_BattleStrix.RpcToAll(nameof(GameStart));
+        }
+    }
+
+    public int GetHAND_LIMIT_NUM()
+    {
+        return HAND_LIMIT_NUM;
+    }
+
+    public void HandOver()
+    {
+        for (int i = 0; i < HandOverList.Count; i++)
+        {
+            myHandList.Remove(HandOverList[i]);
+            GraveYardList.Add(HandOverList[i]);
+        }
+        HandOverList = new List<BattleModeCard>();
+        Syncronize();
+
+        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
+
+        ReceiveTurnChange2();
+    }
+
+    public void LevelUp(int num)
+    {
+        myLevelList.Add(myClockList[num]);
+        myClockList.RemoveAt(num);
+        for (int i = 0; i < 6; i++)
+        {
+            GraveYardList.Add(myClockList[0]);
+            myClockList.RemoveAt(0);
+        }
+        Syncronize();
+    }
+
+    public void PowerCheck(int num)
+    {
+        int myPower = m_MyMainCardsManager.GetFieldPower(num);
+        int enemyPlace = -1;
+
+        switch (num)
+        {
+            case 0:
+                enemyPlace = 2;
+                break;
+            case 1:
+                enemyPlace = 1;
+                break;
+            case 2:
+                enemyPlace = 0;
+                break;
+            default:
+                break;
+        }
+
+        int enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
+
+        if (myPower > enemyPower)
+        {
+            m_EnemyMainCardsManager.CallReverse(enemyPlace);
+            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+            return;
+        }
+        else if (myPower == enemyPower)
+        {
+            m_EnemyMainCardsManager.CallReverse(enemyPlace);
+            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+            m_MyMainCardsManager.CallOnReverse(num);
+            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            return;
+        }
+        else
+        {
+            m_MyMainCardsManager.CallOnReverse(num);
+            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            return;
+        }
+    }
+
+    public void PowerCheckForLevelUpDialog(int place)
+    {
+        int placeNum = -1;
+        switch (place)
+        {
+            case 0:
+                placeNum = 2;
+                break;
+            case 1:
+                placeNum = 1;
+                break;
+            case 2:
+                placeNum = 0;
+                break;
+            default:
+                placeNum = 0;
+                break;
+        }
+
+        PowerCheck(placeNum);
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+    }
+
+    public void Shuffle()
+    {
+        for (int i = myDeckList.Count - 1; i > 0; i--)
+        {
+            int r = Random.Range(0, i + 1);
+            BattleModeCard temp = myDeckList[r];
+            myDeckList[r] = myDeckList[i];
+            myDeckList[i] = temp;
+        }
+    }
+
+    public void StandPhaseStart()
+    {
+        phase = EnumController.Turn.Stand;
+        if (!isTurnPlayer || phase == EnumController.Turn.Clock)
+        {
+            return;
+        }
+        m_MyMainCardsManager.CallStand();
+        m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
+        m_BattleStrix.RpcToAll("DrawPhase");
+    }
+
+    public void TurnChange()
+    {
+        SwitchTurnUtil();
+        m_BattleStrix.RpcToAll("SendReceiveTurnChange", isFirstAttacker);
     }
 
     /// <summary>
@@ -216,133 +469,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void AttackStart()
-    {
-        
-    }
-
-    public void EncoreStart()
-    {
-        if (!isTurnPlayer)
-        {
-            return;
-        }
-        m_DialogManager.EncoreDialog(myFieldList, false);
-        return;
-    }
-
-    public void SendEncoreDialogFromRPC()
-    {
-        m_DialogManager.EncoreDialog(myFieldList, true);
-    }
-
-    public void TurnChange()
-    {
-        SwitchTurnUtil();
-        m_BattleStrix.RpcToAll("SendReceiveTurnChange", isFirstAttacker);
-    }
-
-    public void ReceiveTurnChange()
-    {
-        if (myHandList.Count > HAND_LIMIT_NUM)
-        {
-            m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_OVER;
-            m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
-            return;
-        }
-        ReceiveTurnChange2();
-    }
-
-    public void HandOver()
-    {
-        for (int i = 0; i < HandOverList.Count; i++)
-        {
-            myHandList.Remove(HandOverList[i]);
-            GraveYardList.Add(HandOverList[i]);
-        }
-        HandOverList = new List<BattleModeCard>();
-        Syncronize();
-
-        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
-
-        ReceiveTurnChange2();
-    }
-
-    private void ReceiveTurnChange2()
-    {
-        DiscardClimaxCard();
-        SwitchTurnUtil();
-        m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
-    }
-
-    public void SwitchTurnUtil()
-    {
-        // ターン終了時まで上がるパワーをリセット
-        m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
-        Syncronize();
-
-        isTurnPlayer = !isTurnPlayer;
-        turn++;
-    }
-
-    private void DiscardClimaxCard()
-    {
-        if (MyClimaxCard != null)
-        {
-            Debug.Log("DiscardClimaxCard");
-            GraveYardList.Add(MyClimaxCard);
-            SetMyClimaxCard(null);
-            Syncronize();
-        }
-    }
-    
-    public void ReceiveReadyOK()
-    {
-        StandPhaseStart();
-    }
-
-    public void Shuffle()
-    {
-        for (int i = myDeckList.Count - 1; i > 0; i--)
-        {
-            int r = Random.Range(0, i + 1);
-            BattleModeCard temp = myDeckList[r];
-            myDeckList[r] = myDeckList[i];
-            myDeckList[i] = temp;
-        }
-    }
-
-    public void Refresh()
-    {
-        for(int i = 0; i < GraveYardList.Count; i++)
-        {
-            myDeckList.Add(GraveYardList[i]);
-        }
-        GraveYardList = new List<BattleModeCard>();
-        Shuffle();
-        myClockList.Add(myDeckList[0]);
-        myDeckList.RemoveAt(0);
-
-        Syncronize();
-
-        if (LevelUpCheck())
-        {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
-            return;
-        }
-    }
-
-    public void FirstDraw()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            myHandList.Add(myDeckList[0]);
-            myDeckList.RemoveAt(0);
-        }
-        Syncronize();
-    }
-
     public void MariganStart()
     {
         m_HandCardUtilStatus = EnumController.HandCardUtilStatus.MARIGAN_MODE;
@@ -381,76 +507,99 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Draw()
+    public void ReceiveReadyOK()
     {
-        myHandList.Add(myDeckList[0]);
+        StandPhaseStart();
+    }
+
+    public void ReceiveTurnChange()
+    {
+        if (myHandList.Count > HAND_LIMIT_NUM)
+        {
+            m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_OVER;
+            m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Active);
+            return;
+        }
+        ReceiveTurnChange2();
+    }
+
+    private void ReceiveTurnChange2()
+    {
+        DiscardClimaxCard();
+        SwitchTurnUtil();
+        m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
+    }
+
+    public void Refresh()
+    {
+        for (int i = 0; i < GraveYardList.Count; i++)
+        {
+            myDeckList.Add(GraveYardList[i]);
+        }
+        GraveYardList = new List<BattleModeCard>();
+        Shuffle();
+        myClockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
-        if (myDeckList.Count == 0)
-        {
-            Refresh();
-        }
 
         Syncronize();
-    }
 
-    public void ClockAndTwoDraw(BattleModeCard m_BattleModeCard)
-    {
-        if (m_BattleModeCard != null)
+        if (LevelUpCheck())
         {
-            myClockList.Add(m_BattleModeCard);
-            myHandList.Remove(m_BattleModeCard);
-
-            if (LevelUpCheck())
-            {
-                m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-                m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
-                return;
-            }
-
-            ClockAndTwoDraw2();
-            return;
-        }
-        else
-        {
-            ClockPhaseEnd();
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
             return;
         }
     }
 
-    public void ClockAndTwoDraw2()
+    public void SendEncoreDialogFromRPC()
     {
-        Draw();
-        Draw();
+        m_DialogManager.EncoreDialog(myFieldList, true);
+    }
+
+    public void SetGameStartBtn()
+    {
+        // ルームのオーナーでない場合、ゲームスタートボタンを非活性にする
+        GameStartBtn.SetActive(false);
+    }
+
+    public void SwitchTurnUtil()
+    {
+        // ターン終了時まで上がるパワーをリセット
+        m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
         Syncronize();
-        ClockPhaseEnd();
-        return;
+
+        isTurnPlayer = !isTurnPlayer;
+        turn++;
     }
 
     public void onDirectAttack(int num)
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
-        damage = damage + TrrigerCheck();
+        damage = damage + TriggerCheck();
+        switch (trigger)
+        {
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
+                return;
+            default:
+                break;
+        }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
     }
 
     public void onFrontAttack(int num)
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
-        damage = damage + TrrigerCheck();
-        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
-    }
-
-    public void CounterCheck(int damage, int place)
-    {
-        for (int i = 0; i < myHandList.Count; i++)
+        damage = damage + TriggerCheck();
+        switch (trigger)
         {
-            if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
-            {
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
                 return;
-            }
+            default:
+                break;
         }
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, place);
+        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
     }
 
     public void onSideAttack(int num)
@@ -473,32 +622,41 @@ public class GameManager : MonoBehaviour
                 break;
         }
         damage = damage - minus;
-        damage = damage + TrrigerCheck();
+        damage = damage + TriggerCheck();
+        switch (trigger)
+        {
+            case EnumController.Trigger.COMEBACK:
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
+                return;
+            default:
+                break;
+        }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
     }
 
-    private int TrrigerCheck()
+    private int TriggerCheck()
     {
         int num = 0;
+        this.trigger = myDeckList[0].trigger;
         switch (myDeckList[0].trigger)
         {
-            case EnumController.Trriger.DOUBLE_SOUL:
+            case EnumController.Trigger.DOUBLE_SOUL:
                 num = 2;
                 break;
-            case EnumController.Trriger.STANDBY:
-            case EnumController.Trriger.BOUNCE:
-            case EnumController.Trriger.SHOT:
-            case EnumController.Trriger.SOUL:
+            case EnumController.Trigger.STANDBY:
+            case EnumController.Trigger.BOUNCE:
+            case EnumController.Trigger.SHOT:
+            case EnumController.Trigger.SOUL:
                 num = 1;
                 break;
-            case EnumController.Trriger.COMEBACK:
-            case EnumController.Trriger.BOOK:
-            case EnumController.Trriger.GATE:
-            case EnumController.Trriger.CHOICE:
-            case EnumController.Trriger.TREASURE:
-            case EnumController.Trriger.POOL:
-            case EnumController.Trriger.NONE:
-            case EnumController.Trriger.VOID:
+            case EnumController.Trigger.COMEBACK:
+            case EnumController.Trigger.BOOK:
+            case EnumController.Trigger.GATE:
+            case EnumController.Trigger.CHOICE:
+            case EnumController.Trigger.TREASURE:
+            case EnumController.Trigger.POOL:
+            case EnumController.Trigger.NONE:
+            case EnumController.Trigger.VOID:
                 break;
             default:
                 break;
@@ -514,74 +672,6 @@ public class GameManager : MonoBehaviour
         }
 
         return num;
-    }
-
-    public void PowerCheck(int num)
-    {
-        Debug.Log("PowerCheck");
-        int myPower = m_MyMainCardsManager.GetFieldPower(num);
-        int enemyPlace = -1;
-
-        switch (num)
-        {
-            case 0:
-                enemyPlace = 2; 
-                break;
-            case 1:
-                enemyPlace = 1;
-                break;
-            case 2:
-                enemyPlace = 0;
-                break;
-            default : 
-                break;
-        }
-
-        int enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
-
-        if(myPower > enemyPower)
-        {
-            m_EnemyMainCardsManager.CallReverse(enemyPlace);
-            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            return;
-        }
-        else if (myPower == enemyPower)
-        {
-            m_EnemyMainCardsManager.CallReverse(enemyPlace);
-            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            m_MyMainCardsManager.CallOnReverse(num);
-            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-            return;
-        }
-        else
-        {
-            m_MyMainCardsManager.CallOnReverse(num);
-            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
-            return;
-        }
-    }
-
-    public void PowerCheckForLevelUpDialog(int place)
-    {
-        int placeNum = -1;
-        switch (place)
-        {
-            case 0:
-                placeNum = 2;
-                break;
-            case 1:
-                placeNum = 1;
-                break;
-            case 2:
-                placeNum = 0;
-                break;
-            default:
-                placeNum = 0;
-                break;
-        }
-
-        PowerCheck(placeNum);
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
     }
 
     public void Damage(int num, EnumController.Damage damage)
@@ -783,58 +873,54 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
     }
 
-    public void GameStart()
+    /// <summary>
+    /// 色発生がクリアできているかチェックする
+    /// </summary>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public bool ColorCheck(EnumController.CardColor color)
     {
-        if (m_StrixManager.isOwner)
+        for (int i = 0; i < myLevelList.Count; i++)
         {
-            GameStartBtn.SetActive(false);
-            if (CoinToss())
+            if (myLevelList[i].color == color)
             {
-                isFirstAttacker = true;
-                isTurnPlayer = true;
-                m_BattleStrix.RpcToAll("SetIsFirstAttacker", false);
+                return true;
             }
-            else
-            {
-                isFirstAttacker = false;
-                isTurnPlayer = false;
-                m_BattleStrix.RpcToAll("SetIsFirstAttacker", true);
-            }
-
-            m_BattleStrix.RpcToAll(nameof(GameStart));
         }
-    }
 
-    public bool CoinToss()
-    {
-        if (Random.Range(0, 2) == 0)
+        for (int i = 0; i < myClockList.Count; i++)
         {
-            return true;
+            if (myClockList[i].color == color)
+            {
+                return true;
+            }
         }
         return false;
     }
 
-    public void SetGameStartBtn()
+    /// <summary>
+    /// アニメーションが再生中かチェックする
+    /// </summary>
+    /// <returns></returns>
+    public bool isAnimation()
     {
-        // ルームのオーナーでない場合、ゲームスタートボタンを非活性にする
-        GameStartBtn.SetActive(false);
-    }
-
-    public void ChangePhase(EnumController.Turn turn)
-    {
-          phase = turn;
-    }
-
-    public void LevelUp(int num)
-    {
-        myLevelList.Add(myClockList[num]);
-        myClockList.RemoveAt(num);
-        for (int i = 0; i < 6; i++)
+        if (isTriggerAnimation)
         {
-            GraveYardList.Add(myClockList[0]);
-            myClockList.RemoveAt(0);
+            return true;
         }
-        Syncronize();
+        if (isPhaseAnimation)
+        {
+            return true;
+        }
+        if (isTriggerAnimationForEnemy)
+        {
+            return true;
+        }
+        if (isDamageAnimation)
+        {
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -880,56 +966,6 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// 色発生がクリアできているかチェックする
-    /// </summary>
-    /// <param name="color"></param>
-    /// <returns></returns>
-    public bool ColorCheck(EnumController.CardColor color)
-    {
-        for(int i = 0; i < myLevelList.Count; i++)
-        {
-            if (myLevelList[i].color == color)
-            {
-                return true;
-            }
-        }
-
-        for (int i = 0; i < myClockList.Count; i++)
-        {
-            if (myClockList[i].color == color)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// アニメーションが再生中かチェックする
-    /// </summary>
-    /// <returns></returns>
-    public bool isAnimation()
-    {
-        if (isTriggerAnimation)
-        {
-            return true;
-        }
-        if (isPhaseAnimation)
-        {
-            return true;
-        }
-        if (isTriggerAnimationForEnemy)
-        {
-            return true;
-        }
-        if (isDamageAnimation)
-        {
-            return true;
-        }
-        return false;
-    }
-
     public void Syncronize()
     {
         // デッキ枚数の更新
@@ -970,11 +1006,6 @@ public class GameManager : MonoBehaviour
         // パワー、レベル、特徴の計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
         m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isFirstAttacker);
-    }
-
-    public int GetHAND_LIMIT_NUM()
-    {
-        return HAND_LIMIT_NUM;
     }
 
     public void UpdateEnemyDeckCount(int num)

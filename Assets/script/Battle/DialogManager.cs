@@ -16,6 +16,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] CharacterSelectDialog m_CharacterSelectDialog;
     [SerializeField] NotEraseDialog m_NotEraseDialog;
     [SerializeField] ConfirmEncoreKindsDialog m_ConfirmEncoreKindsDialog;
+    [SerializeField] ConfirmSearchOrSulvageCardDialog m_ConfirmSearchOrSulvageCardDialog;
+    [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] GameManager m_GameManager;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
@@ -155,6 +157,23 @@ public class DialogManager : MonoBehaviour
         m_NotEraseDialog.OffDialog();
     }
 
+    /// <summary>
+    /// サーチや回収を行った際に出力されるダイアログ
+    /// BattleStrixから呼ばれるだけ
+    /// </summary>
+    /// <param name="list"></param>
+    /// <param name="paramater"></param>
+    public void ConfirmSearchOrSulvageCardDialog(List<BattleModeCardTemp> list, EnumController.ConfirmSearchOrSulvageCardDialog paramater, ExecuteActionTemp m_ExecuteActionTemp)
+    {
+        List<BattleModeCard> tempList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            tempList.Add(b);
+        }
+        m_ConfirmSearchOrSulvageCardDialog.SetBattleModeCard(tempList, paramater, m_ExecuteActionTemp);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -169,5 +188,6 @@ public class DialogManager : MonoBehaviour
         m_CharacterSelectDialog.OffDialog();
         m_ConfirmEncoreKindsDialog.OffDialog();
         m_NotEraseDialog.OffDialog();
+        m_ConfirmSearchOrSulvageCardDialog.OffDialog();
     }
 }

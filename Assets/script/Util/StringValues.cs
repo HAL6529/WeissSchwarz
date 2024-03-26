@@ -18,6 +18,8 @@ public class StringValues
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
     public string SearchDialog_SearchMessage;
+    public string ConfirmSearchOrSulvageCardDialog_Search;
+    public string ConfirmSearchOrSulvageCardDialog_Sulvage;
     public string AT_WX02_A01_Explanation = "";
     public string AT_WX02_A02_Explanation = "【AUTO】 When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.";
     public string AT_WX02_A03_Explanation = "【AUTO】 【CXCOMBO】 When this card's battle opponent becomes 【REVERSE】, if [Memory of a Memory] is in your climax area, you may draw 1 card.";
@@ -61,6 +63,8 @@ public class StringValues
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
+                ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
+                ConfirmSearchOrSulvageCardDialog_Sulvage = japanese.ConfirmSearchOrSulvageCardDialog_Sulvage;
                 break;
             default:
                 break;
@@ -79,6 +83,8 @@ public class StringValues
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
+        public string ConfirmSearchOrSulvageCardDialog_Search = "相手がカードを山札から加えようとしています";
+        public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";
     }
 
     /*public string YesOrNoDialog_ENCORE_CONFIRM(string paramater1)
