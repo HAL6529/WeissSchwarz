@@ -50,6 +50,14 @@ namespace EnumController
         AT_WX02_A13,
     }
 
+    public enum ConfirmSearchOrSulvageCardDialog
+    {
+        VOID,
+        SEARCH,
+        SULVAGE,
+        COMEBACK,
+    }
+
     public enum ClimaxType
     {
         VOID,

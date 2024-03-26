@@ -8,6 +8,7 @@ public class ComeBackDetail : MonoBehaviour
     [SerializeField] GameObject OkButton;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] ConfirmSearchOrSulvageCardDialog m_ConfirmSearchOrSulvageCardDialog;
     private BattleModeCard m_BattleModeCard = null;
     private int damage = -1;
     private int place = -1;
@@ -142,7 +143,25 @@ public class ComeBackDetail : MonoBehaviour
             return;
         }
 
-        m_GameManager.myHandList.Add(m_BattleModeCard);
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+        temp.Add(m_BattleModeCard);
+
+        List<BattleModeCardTemp> m_BattleModeCardTemp = new List<BattleModeCardTemp>();
+        for (int i = 0; i < temp.Count; i++)
+        {
+            m_BattleModeCardTemp.Add(new BattleModeCardTemp(temp[i]));
+        }
+
+        ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
+        m_ExecuteActionTemp.damageParamater = damageParamater;
+        m_ExecuteActionTemp.m_BattleModeCardTempList = m_BattleModeCardTemp;
+        m_ExecuteActionTemp.intParamater = damage;
+        m_ExecuteActionTemp.intParamater2 = place;
+        m_ExecuteActionTemp.isFirstAttacker = isFirstAttacker;
+
+        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(temp, EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK, m_ExecuteActionTemp, isFirstAttacker);
+        this.gameObject.SetActive(false);
+        /*m_GameManager.myHandList.Add(m_BattleModeCard);
         m_GameManager.GraveYardList.Remove(m_BattleModeCard);
         m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
@@ -151,6 +170,6 @@ public class ComeBackDetail : MonoBehaviour
             m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker);
             return;
         }
-        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater);
+        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater);*/
     }
 }

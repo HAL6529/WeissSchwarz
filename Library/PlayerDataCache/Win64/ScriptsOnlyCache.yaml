@@ -24,6 +24,8 @@ ScriptsOnlyBuild:
     - ComeBackButtonUtil
     - ComeBackDetail
     - ConfirmEncoreKindsDialog
+    - ConfirmSearchOrSulvageCardDialog
+    - ConfirmSearchOrSulvageCardDialogsBtnUtil
     - DamageAnimationDialog
     - DamageCardAnimation
     - DeckListManager
@@ -681,6 +683,9 @@ ScriptsOnlyBuild:
     fullTypeName: BattleEnemyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
@@ -775,6 +780,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMemoryCardUtil
@@ -894,6 +902,9 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -937,6 +948,9 @@ ScriptsOnlyBuild:
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: BattleMemoryCardUtil
@@ -1257,6 +1271,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
+    methodName: onClick
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1298,6 +1315,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmSearchOrSulvageCardDialog
+    methodName: onOKButton
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -1521,6 +1541,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7506}
     - Class: 114
       Script: {instanceID: 7530}
+    - Class: 114
+      Script: {instanceID: 29574}
+    - Class: 114
+      Script: {instanceID: 29592}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1951,7 +1975,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: cfe1d680215894d1abc87540073e707f
+      Hash: 3039056379fb3ad82cfdba45defdfe74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -3067,7 +3091,7 @@ ScriptsOnlyBuild:
     className: EffectBrainStormForDraw
   - hash:
       serializedVersion: 2
-      Hash: b09f8508e4b3764c6b45517986f78022
+      Hash: fafdf649d16dc22fdbaf4534c70fbcd9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ComeBackDetail
@@ -3197,6 +3221,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: f1c6dad28e9d6e439a016ee5543d3d28
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ConfirmSearchOrSulvageCardDialog
+  - hash:
+      serializedVersion: 2
+      Hash: a9dc6c493ba656f2d10d790d816adc9f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ConfirmSearchOrSulvageCardDialogsBtnUtil
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity

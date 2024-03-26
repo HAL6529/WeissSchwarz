@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Phase m_Phase;
     [SerializeField] DummyDeckAnimation m_DummyDeckAnimation;
     [SerializeField] StrixManager m_StrixManager;
-    [SerializeField] BattleStrix m_BattleStrix;
-    [SerializeField] BattleModeCardList m_BattleModeCardList;
+    public BattleStrix m_BattleStrix;
+    public BattleModeCardList m_BattleModeCardList;
     public DialogManager m_DialogManager;
     [SerializeField] BattleDeckCardUtil myBattleDeckCardUtil;
     [SerializeField] BattleDeckCardUtil enemyBattleDeckCardUtil;
@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
     /// トリガーチェック時に次に行う処理の判別のために使用
     /// </summary>
     private EnumController.Trigger trigger = EnumController.Trigger.VOID;
+
+    public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
     [SerializeField] Text testPhaseText;
     [SerializeField] GameObject GameStartBtn;
@@ -580,8 +582,7 @@ public class GameManager : MonoBehaviour
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
                 return;
             default:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
-                return;
+                break;
         }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
     }
@@ -596,8 +597,7 @@ public class GameManager : MonoBehaviour
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
                 return;
             default:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
-                return;
+                break;
         }
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
     }
@@ -629,8 +629,7 @@ public class GameManager : MonoBehaviour
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
                 return;
             default:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
-                return;
+                break;
         }
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
     }
