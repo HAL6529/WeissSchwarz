@@ -61,52 +61,52 @@ public class BattleModeGuide : MonoBehaviour
 
         switch (card.trigger)
         {
-            case EnumController.Trriger.COMEBACK:
+            case EnumController.Trigger.COMEBACK:
                 Trigger1.sprite = comeback;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.STANDBY:
+            case EnumController.Trigger.STANDBY:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = standby;
                 break;
-            case EnumController.Trriger.BOOK:
+            case EnumController.Trigger.BOOK:
                 Trigger1.sprite = draw;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.GATE:
+            case EnumController.Trigger.GATE:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = gate;
                 break;
-            case EnumController.Trriger.BOUNCE:
+            case EnumController.Trigger.BOUNCE:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = bounce;
                 break;
-            case EnumController.Trriger.CHOICE:
+            case EnumController.Trigger.CHOICE:
                 Trigger1.sprite = choice;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.SHOT:
+            case EnumController.Trigger.SHOT:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = shot;
                 break;
-            case EnumController.Trriger.TREASURE:
+            case EnumController.Trigger.TREASURE:
                 Trigger1.sprite = treasure;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.POOL:
+            case EnumController.Trigger.POOL:
                 Trigger1.sprite = stock;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.SOUL:
+            case EnumController.Trigger.SOUL:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = null;
                 break;
-            case EnumController.Trriger.DOUBLE_SOUL:
+            case EnumController.Trigger.DOUBLE_SOUL:
                 Trigger1.sprite = soul;
                 Trigger2.sprite = soul;
                 break;
-            case EnumController.Trriger.VOID:
-            case EnumController.Trriger.NONE:
+            case EnumController.Trigger.VOID:
+            case EnumController.Trigger.NONE:
                 Trigger1.sprite = null;
                 Trigger2.sprite = null;
                 break;
