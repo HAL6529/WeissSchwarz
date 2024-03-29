@@ -85,6 +85,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private EnumController.Trigger trigger = EnumController.Trigger.VOID;
 
+    /// <summary>
+    /// ダメージを受けた時どれだけショット効果が蓄積されているか
+    /// </summary>
+    private List<EnumController.Shot> ReceiveShotList = new List<EnumController.Shot>();
+
     public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
     [SerializeField] Text testPhaseText;
@@ -178,8 +183,9 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("MainPhase");
     }
 
-    public void CounterCheck(int damage, int place)
+    public void CounterCheck(int damage, int place, List<EnumController.Shot> ReceiveShotList)
     {
+        this.ReceiveShotList = ReceiveShotList;
         for (int i = 0; i < myHandList.Count; i++)
         {
             if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
@@ -576,30 +582,38 @@ public class GameManager : MonoBehaviour
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
         damage = damage + TriggerCheck();
+        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
                 return;
+            case EnumController.Trigger.SHOT:
+                SendShotList.Add(EnumController.Shot.SHOT);
+                break;
             default:
                 break;
         }
-        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
+        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
     }
 
     public void onFrontAttack(int num)
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
         damage = damage + TriggerCheck();
+        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
                 return;
+            case EnumController.Trigger.SHOT:
+                SendShotList.Add(EnumController.Shot.SHOT);
+                break;
             default:
                 break;
         }
-        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker);          
+        m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker, SendShotList);
     }
 
     public void onSideAttack(int num)
@@ -623,15 +637,20 @@ public class GameManager : MonoBehaviour
         }
         damage = damage - minus;
         damage = damage + TriggerCheck();
+
+        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
                 m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
                 return;
+            case EnumController.Trigger.SHOT:
+                SendShotList.Add(EnumController.Shot.SHOT);
+                break;
             default:
                 break;
         }
-        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
+        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
     }
 
     private int TriggerCheck()
@@ -674,10 +693,11 @@ public class GameManager : MonoBehaviour
         return num;
     }
 
-    public void Damage(int num, EnumController.Damage damage)
+    public void Damage(int num, EnumController.Damage damage, List<EnumController.Shot> ReceiveShotList)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();
-        if(num <= 0)
+        this.ReceiveShotList = ReceiveShotList;
+        if (num <= 0)
         {
             m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
             return;
@@ -704,13 +724,13 @@ public class GameManager : MonoBehaviour
         // ダメージアニメーションの再生
         m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
         m_DamageAnimationDialog.SetBattleModeCard(temp);
+        this.ReceiveShotList = new List<EnumController.Shot>();
         return;
     }
 
     public void DamageForFrontAttack(int damage, int place)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();
-
         int placeNum = -1;
         switch (place)
         {
@@ -756,6 +776,7 @@ public class GameManager : MonoBehaviour
         // ダメージアニメーションの再生
         m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
         m_DamageAnimationDialog.SetBattleModeCard(temp, place);
+        this.ReceiveShotList = new List<EnumController.Shot>();
         return;
     }
 
@@ -772,6 +793,13 @@ public class GameManager : MonoBehaviour
             GraveYardList.Add(tempList[n]);
         }
         Syncronize();
+        if(this.ReceiveShotList.Count > 0)
+        {
+            Debug.Log("キャンセル処理が呼ばれた");
+            ReceiveShotList.RemoveAt(0);
+            Damage(1, EnumController.Damage.SHOT, ReceiveShotList);
+            return;
+        }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
         return;
     }
@@ -808,6 +836,14 @@ public class GameManager : MonoBehaviour
         Syncronize();
 
         PowerCheck(placeNum);
+        if (this.ReceiveShotList.Count > 0)
+        {
+            Debug.Log("キャンセル処理が呼ばれた");
+            ReceiveShotList.RemoveAt(0);
+            Damage(1, EnumController.Damage.SHOT, ReceiveShotList);
+            return;
+        }
+
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
     }
 

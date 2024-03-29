@@ -134,6 +134,11 @@ namespace EnumController
         Sulvage,
     }
 
+    public enum Shot
+    {
+        SHOT,
+    }
+
     public enum State
     {
         VOID,
