@@ -13,7 +13,8 @@ public class BattleGraveYardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GameObject ShowButton;
     [SerializeField] Text GraveYardCount;
-
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    public BattleGraveYardUtil m_BattleGraveYardUtil;
 
     public void setBattleModeCard(BattleModeCard card)
     {
@@ -55,6 +56,11 @@ public class BattleGraveYardUtil : MonoBehaviour
         }
         m_BattleModeGuide.showImage(m_BattleModeCard);
 
+        // 自分フィールドのデッキの控室詳細ボタンを押した場合は相手フィールドの控室詳細ボタンを非表示にする
+        // 相手フィールドのデッキの控室詳細ボタンを押した場合は自分フィールドの控室詳細ボタンを非表示にする
+        m_BattleGraveYardUtil.OffBtn();
+        // 手札のプレイボタンを非表示にする
+        m_MyHandCardsManager.CallNotShowPlayButton();
         if (isActiveShowGraveYardBtn)
         {
             isActiveShowGraveYardBtn = false;
@@ -71,15 +77,25 @@ public class BattleGraveYardUtil : MonoBehaviour
     public void onClickShowMyGraveYardButton()
     {
         m_GraveYardDetail.UpdateList(m_GameManager.GraveYardList);
+        isActiveShowGraveYardBtn = false;
+        ShowButton.SetActive(false);
     }
 
     public void onClickShowEnemyGraveYardButton()
     {
         m_GraveYardDetail.UpdateList(m_GameManager.enemyGraveYardList);
+        isActiveShowGraveYardBtn = false;
+        ShowButton.SetActive(false);
     }
 
     private void SetGraveYardCount(int num)
     {
         GraveYardCount.text = num.ToString();
+    }
+
+    public void OffBtn()
+    {
+        isActiveShowGraveYardBtn = false;
+        ShowButton.SetActive(false);
     }
 }

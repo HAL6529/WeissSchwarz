@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GraveYardDetail : MonoBehaviour
 {
     [SerializeField] List<GraveYardDetailButtonUtil> BtnList = new List<GraveYardDetailButtonUtil>();
+    [SerializeField] List<BattleGraveYardUtil> BattleGraveYardUtilList = new List<BattleGraveYardUtil>();
 
     public void onCloseButton()
     {
@@ -26,6 +27,14 @@ public class GraveYardDetail : MonoBehaviour
                 BtnList[i].setBattleModeCard(null);
             }
 
+        }
+    }
+
+    public void OffShowGraveYardButton()
+    {
+        for (int i = 0; i < BattleGraveYardUtilList.Count; i++)
+        {
+            BattleGraveYardUtilList[i].OffBtn();
         }
     }
 }

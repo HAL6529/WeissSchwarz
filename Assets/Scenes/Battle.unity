@@ -920,6 +920,8 @@ MonoBehaviour:
   m_GameManager: {fileID: 2118035221}
   ShowButton: {fileID: 826090717}
   GraveYardCount: {fileID: 1138526558}
+  m_MyHandCardsManager: {fileID: 2118035222}
+  m_BattleGraveYardUtil: {fileID: 1171459633}
 --- !u!114 &22208443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6289,6 +6291,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1340348150}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &125988989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8111,6 +8114,7 @@ MonoBehaviour:
   PlayButton: {fileID: 29821540}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &140555815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18146,7 +18150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -26.578007, y: 0}
+  m_AnchoredPosition: {x: -26.57801, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463024751
@@ -20958,6 +20962,7 @@ MonoBehaviour:
   PlayButton: {fileID: 739284997}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &541247157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21697,6 +21702,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1894793015}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &554655490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22308,6 +22314,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1523966068}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!1 &565501927
 GameObject:
   m_ObjectHideFlags: 0
@@ -27574,6 +27581,7 @@ MonoBehaviour:
   PlayButton: {fileID: 446632179}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &691163900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27811,6 +27819,9 @@ MonoBehaviour:
   - {fileID: 612093773}
   - {fileID: 1042285111}
   - {fileID: 2133564541}
+  BattleGraveYardUtilList:
+  - {fileID: 1171459633}
+  - {fileID: 22208442}
 --- !u!1 &704421375
 GameObject:
   m_ObjectHideFlags: 0
@@ -30552,6 +30563,7 @@ MonoBehaviour:
   PlayButton: {fileID: 271252863}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &756062940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31056,6 +31068,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1523966068}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!1 &762118028
 GameObject:
   m_ObjectHideFlags: 0
@@ -34697,6 +34710,7 @@ MonoBehaviour:
   PlayButton: {fileID: 619807409}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &878119710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38198,7 +38212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -16.566006, y: 0}
+  m_AnchoredPosition: {x: -16.566002, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951426602
@@ -43027,6 +43041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameManager: {fileID: 2118035221}
+  m_GraveYardDetail: {fileID: 702305067}
   MainPhaseButton: {fileID: 227319606}
   ClimaxPhaseButton: {fileID: 633516495}
   AttackPhaseButton: {fileID: 1467195979}
@@ -43192,6 +43207,7 @@ MonoBehaviour:
   PlayButton: {fileID: 582038302}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &1110044387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45011,6 +45027,8 @@ MonoBehaviour:
   m_GameManager: {fileID: 2118035221}
   ShowButton: {fileID: 1427742750}
   GraveYardCount: {fileID: 393693578}
+  m_MyHandCardsManager: {fileID: 2118035222}
+  m_BattleGraveYardUtil: {fileID: 22208442}
 --- !u!114 &1171459634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45421,6 +45439,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1787389773}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &1176426191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45484,7 +45503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -6.5540047, y: 0}
+  m_AnchoredPosition: {x: -6.5540085, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177486601
@@ -54566,6 +54585,7 @@ MonoBehaviour:
   m_ConfirmSearchOrSulvageCardDialog: {fileID: 2009285246}
   m_BattleModeCardList: {fileID: 656069240}
   m_GameManager: {fileID: 2118035221}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!1 &1440428290
 GameObject:
   m_ObjectHideFlags: 0
@@ -59004,7 +59024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -56.61401, y: 0}
+  m_AnchoredPosition: {x: -56.614006, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536098312
@@ -62563,6 +62583,7 @@ MonoBehaviour:
   PlayButton: {fileID: 2037097533}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &1639882358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64210,7 +64231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -66.62601, y: 0}
+  m_AnchoredPosition: {x: -66.626, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1691365817
@@ -65028,6 +65049,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1523966068}
   DummyHandCard: {fileID: 0}
   m_DialogManager: {fileID: 1433858515}
+  m_GraveYardDetail: {fileID: 702305067}
 --- !u!114 &1702175473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67420,7 +67442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -46.60201, y: 0}
+  m_AnchoredPosition: {x: -46.602013, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1776480451
@@ -78244,6 +78266,7 @@ MonoBehaviour:
   m_ConfirmSearchOrSulvageCardDialog: {fileID: 0}
   m_BattleModeCardList: {fileID: 0}
   m_GameManager: {fileID: 0}
+  m_GraveYardDetail: {fileID: 0}
 --- !u!114 &2118035232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78328,7 +78351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -36.590008, y: 0}
+  m_AnchoredPosition: {x: -36.590004, y: 0}
   m_SizeDelta: {x: 66.988, y: 84.3576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124544393

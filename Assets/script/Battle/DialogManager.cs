@@ -19,6 +19,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] ConfirmSearchOrSulvageCardDialog m_ConfirmSearchOrSulvageCardDialog;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] GraveYardDetail m_GraveYardDetail;
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -189,5 +190,6 @@ public class DialogManager : MonoBehaviour
         m_ConfirmEncoreKindsDialog.OffDialog();
         m_NotEraseDialog.OffDialog();
         m_ConfirmSearchOrSulvageCardDialog.OffDialog();
+        m_GraveYardDetail.onCloseButton();
     }
 }
