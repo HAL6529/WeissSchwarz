@@ -25,17 +25,14 @@ public class ExecuteAction
 
     public void ComeBackActionAfterConfirmDialog()
     {
-        Debug.Log("ComeBackActionAfterConfirmDialog");
         if (m_GameManager == null || m_BattleModeCardList == null)
         {
             return;
         }
-        Debug.Log("ComeBackActionAfterConfirmDialog2");
         if (m_ExecuteActionTemp.m_BattleModeCardTempList.Count == 0)
         {
             return;
         }
-        Debug.Log("ComeBackActionAfterConfirmDialog3");
         List <BattleModeCard> BattleModeCardList = new List<BattleModeCard>();
         for (int i = 0; i < m_ExecuteActionTemp.m_BattleModeCardTempList.Count; i++)
         {
@@ -53,9 +50,9 @@ public class ExecuteAction
 
         if (m_ExecuteActionTemp.damageParamater == EnumController.Damage.FRONT_ATTACK)
         {
-            m_BattleStrix.RpcToAll("CallOKDialogForCounter", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.intParamater2, m_ExecuteActionTemp.isFirstAttacker);
+            m_BattleStrix.RpcToAll("CallOKDialogForCounter", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.intParamater2, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.SendShotList);
             return;
         }
-        m_BattleStrix.RpcToAll("Damage", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.damageParamater);
+        m_BattleStrix.RpcToAll("Damage", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.damageParamater, m_ExecuteActionTemp.SendShotList);
     }
 }

@@ -14,6 +14,7 @@ public class ComeBackDetail : MonoBehaviour
     private int place = -1;
     private bool isFirstAttacker = false;
     private EnumController.Damage damageParamater = EnumController.Damage.VOID;
+    private List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
 
     /// <summary>
     /// フロントアタック用
@@ -22,13 +23,14 @@ public class ComeBackDetail : MonoBehaviour
     /// <param name="damage"></param>
     /// <param name="place"></param>
     /// <param name="isFirstAttacker"></param>
-    public void SetBattleModeCard(List<BattleModeCard> list, int damage, int place, bool isFirstAttacker)
+    public void SetBattleModeCard(List<BattleModeCard> list, int damage, int place, bool isFirstAttacker, List<EnumController.Shot> SendShotList)
     {
         m_BattleModeCard = null;
         this.damage = damage;
         this.place = place;
         this.isFirstAttacker = isFirstAttacker;
         this.damageParamater = EnumController.Damage.FRONT_ATTACK;
+        this.SendShotList = SendShotList;
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for(int i = 0; i < list.Count; i++)
         {
@@ -38,9 +40,10 @@ public class ComeBackDetail : MonoBehaviour
             }
         }
 
+        // 回収するカードがない場合
         if(tempList.Count == 0)
         {
-            m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker);
+            m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker, SendShotList);
             return;
         }
 
@@ -67,13 +70,14 @@ public class ComeBackDetail : MonoBehaviour
     /// <param name="damage"></param>
     /// <param name="isFirstAttacker"></param>
     /// <param name="damageParamater"></param>
-    public void SetBattleModeCard(List<BattleModeCard> list, int damage, bool isFirstAttacker, EnumController.Damage damageParamater)
+    public void SetBattleModeCard(List<BattleModeCard> list, int damage, bool isFirstAttacker, EnumController.Damage damageParamater, List<EnumController.Shot> SendShotList)
     {
         m_BattleModeCard = null;
         this.damage = damage;
         this.place = -1;
         this.isFirstAttacker = isFirstAttacker;
         this.damageParamater = damageParamater;
+        this.SendShotList = SendShotList;
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for (int i = 0; i < list.Count; i++)
         {
@@ -83,9 +87,10 @@ public class ComeBackDetail : MonoBehaviour
             }
         }
 
+        // 回収するカードがない場合
         if (tempList.Count == 0)
         {
-            m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater);
+            m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater, SendShotList);
             return;
         }
 
@@ -158,18 +163,9 @@ public class ComeBackDetail : MonoBehaviour
         m_ExecuteActionTemp.intParamater = damage;
         m_ExecuteActionTemp.intParamater2 = place;
         m_ExecuteActionTemp.isFirstAttacker = isFirstAttacker;
+        m_ExecuteActionTemp.SendShotList = SendShotList;
 
         m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(temp, EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK, m_ExecuteActionTemp, isFirstAttacker);
         this.gameObject.SetActive(false);
-        /*m_GameManager.myHandList.Add(m_BattleModeCard);
-        m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-        m_GameManager.Syncronize();
-        this.gameObject.SetActive(false);
-        if(damageParamater == EnumController.Damage.FRONT_ATTACK)
-        {
-            m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker);
-            return;
-        }
-        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater);*/
     }
 }

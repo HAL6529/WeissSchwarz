@@ -9,4 +9,5 @@ public class ExecuteActionTemp
     public int intParamater { get; set; }
     public int intParamater2 { get; set; }
     public bool isFirstAttacker { get; set; }
+    public List<EnumController.Shot> SendShotList { get; set; }
 }
