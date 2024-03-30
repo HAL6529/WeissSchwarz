@@ -149,12 +149,12 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void CallOKDialogForCounter(int ParamaterNum1, int ParamaterNum2, bool isFirstAttacker)
+    public void CallOKDialogForCounter(int ParamaterNum1, int ParamaterNum2, bool isFirstAttacker, List<EnumController.Shot> SendShotList)
     {
         Debug.Log("CallOKDialogForCounter");
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.CounterCheck(ParamaterNum1, ParamaterNum2);
+            m_GameManager.CounterCheck(ParamaterNum1, ParamaterNum2, SendShotList);
         }
     }
 
@@ -389,12 +389,12 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void Damage(int num, bool isFirstAttacker, EnumController.Damage damage)
+    public void Damage(int num, bool isFirstAttacker, EnumController.Damage damage, List<EnumController.Shot> SendShotList)
     {
         logText.text = "Damage:" + Convert.ToString(num);
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.Damage(num, damage);
+            m_GameManager.Damage(num, damage, SendShotList);
         }
     }
 
