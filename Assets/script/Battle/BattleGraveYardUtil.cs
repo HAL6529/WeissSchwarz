@@ -14,6 +14,7 @@ public class BattleGraveYardUtil : MonoBehaviour
     [SerializeField] GameObject ShowButton;
     [SerializeField] Text GraveYardCount;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] PhaseDialog m_PhaseDialog;
     public BattleGraveYardUtil m_BattleGraveYardUtil;
 
     public void setBattleModeCard(BattleModeCard card)
@@ -59,6 +60,8 @@ public class BattleGraveYardUtil : MonoBehaviour
         // 自分フィールドのデッキの控室詳細ボタンを押した場合は相手フィールドの控室詳細ボタンを非表示にする
         // 相手フィールドのデッキの控室詳細ボタンを押した場合は自分フィールドの控室詳細ボタンを非表示にする
         m_BattleGraveYardUtil.OffBtn();
+        // フェーズダイアログを非表示にする
+        m_PhaseDialog.onCloseButton();
         // 手札のプレイボタンを非表示にする
         m_MyHandCardsManager.CallNotShowPlayButton();
         if (isActiveShowGraveYardBtn)
