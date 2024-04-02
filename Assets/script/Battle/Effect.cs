@@ -51,6 +51,11 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 効果を発動するために必要なストックを満たしているか
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     private bool ConfirmStockForCost(int num)
     {
         if(m_GameManager.myStockList.Count >= num)

@@ -185,7 +185,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             else
             {
                 MoveButton.SetActive(true);
-                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo);
+                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo, state);
                 if (minCost > -1 && m_GameManager.myStockList.Count >= minCost)
                 {
                     ActButton.SetActive(true);
