@@ -107,8 +107,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -495,6 +497,9 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -657,6 +662,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onActButton
+  - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -771,6 +779,9 @@ ScriptsOnlyBuild:
     fullTypeName: MainDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
+  - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -825,8 +836,14 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onActButton
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
@@ -905,6 +922,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
@@ -1230,6 +1250,9 @@ ScriptsOnlyBuild:
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onActButton
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1282,6 +1305,9 @@ ScriptsOnlyBuild:
     methodName: onOKButton
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
+    methodName: onActButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: EncoreDialog
@@ -1310,6 +1336,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onActButton
+  - assembly: Assembly-CSharp
+    fullTypeName: BattleMyMainCardUtil
+    methodName: onMoveButton
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
@@ -2258,7 +2290,7 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
-      Hash: faf682cc2ee3c88d1181292259e4f3d5
+      Hash: dd63d254e9ffe3e96a75af746760ec07
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleMyMainCardUtil
