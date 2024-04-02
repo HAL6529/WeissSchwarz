@@ -148,24 +148,42 @@ public class ComeBackDetail : MonoBehaviour
             return;
         }
 
-        List<BattleModeCard> temp = new List<BattleModeCard>();
-        temp.Add(m_BattleModeCard);
+        List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
+        List<BattleModeCard> handListTemp = m_GameManager.myHandList;
+        List<BattleModeCard> sulvageListTemp = new List<BattleModeCard>();
+        sulvageListTemp.Add(m_BattleModeCard);
 
-        List<BattleModeCardTemp> m_BattleModeCardTemp = new List<BattleModeCardTemp>();
-        for (int i = 0; i < temp.Count; i++)
+        graveyardTemp.Remove(m_BattleModeCard);
+        handListTemp.Add(m_BattleModeCard);
+
+        List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
+        for (int i = 0; i < graveyardTemp.Count; i++)
         {
-            m_BattleModeCardTemp.Add(new BattleModeCardTemp(temp[i]));
+            m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
+        }
+        for (int i = 0; i < handListTemp.Count; i++)
+        {
+            m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
         }
 
         ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
         m_ExecuteActionTemp.damageParamater = damageParamater;
-        m_ExecuteActionTemp.m_BattleModeCardTempList = m_BattleModeCardTemp;
+        m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
+        m_ExecuteActionTemp.handList = m_handListTemp;
         m_ExecuteActionTemp.intParamater = damage;
         m_ExecuteActionTemp.intParamater2 = place;
         m_ExecuteActionTemp.isFirstAttacker = isFirstAttacker;
         m_ExecuteActionTemp.SendShotList = SendShotList;
 
-        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(temp, EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK, m_ExecuteActionTemp, isFirstAttacker);
+        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(sulvageListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK, m_ExecuteActionTemp, isFirstAttacker);
         this.gameObject.SetActive(false);
+    }
+
+    public void onCloseButton()
+    {
+        m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater, SendShotList);
+        this.gameObject.SetActive(false);
+        return;
     }
 }

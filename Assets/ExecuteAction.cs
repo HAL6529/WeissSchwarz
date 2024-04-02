@@ -29,22 +29,22 @@ public class ExecuteAction
         {
             return;
         }
-        if (m_ExecuteActionTemp.m_BattleModeCardTempList.Count == 0)
+
+        List <BattleModeCard> graveyardList = new List<BattleModeCard>();
+        List <BattleModeCard> handList = new List<BattleModeCard>();
+        for (int i = 0; i < m_ExecuteActionTemp.graveyardList.Count; i++)
         {
-            return;
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.graveyardList[i].cardNo);
+            graveyardList.Add(b);
         }
-        List <BattleModeCard> BattleModeCardList = new List<BattleModeCard>();
-        for (int i = 0; i < m_ExecuteActionTemp.m_BattleModeCardTempList.Count; i++)
+        for (int i = 0; i < m_ExecuteActionTemp.handList.Count; i++)
         {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.m_BattleModeCardTempList[i].cardNo);
-            BattleModeCardList.Add(b);
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.handList[i].cardNo);
+            handList.Add(b);
         }
 
-        for (int i = 0; i < BattleModeCardList.Count; i++)
-        {
-            m_GameManager.myHandList.Add(BattleModeCardList[i]);
-            m_GameManager.GraveYardList.Remove(BattleModeCardList[i]);
-        }
+        m_GameManager.GraveYardList = graveyardList;
+        m_GameManager.myHandList = handList;
         m_GameManager.Syncronize();
 
 
