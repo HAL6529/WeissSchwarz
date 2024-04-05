@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using SoftGear.Strix.Unity.Runtime;
 using SoftGear.Strix.Unity.Runtime.Event;
 using SoftGear.Strix.Unity.Runtime.Session;
+using SoftGear.Strix.Unity.Runtime.Error;
 using SoftGear.Strix.Client.Core;
 using SoftGear.Strix.Client.Core.Request;
 using SoftGear.Strix.Client.Core.Auth.Message;
@@ -12,6 +13,7 @@ using SoftGear.Strix.Client.Core.Model.Manager.Filter;
 using SoftGear.Strix.Client.Core.Model.Manager.Filter.Builder;
 using SoftGear.Strix.Client.Match.Room.Model;
 using SoftGear.Strix.Client.Room;
+using SoftGear.Strix.Client.Room.Error;
 using SoftGear.Strix.Client.Room.Message;
 using SoftGear.Strix.Net.Serialization;
 using UnityEngine;
@@ -28,7 +30,6 @@ public class StrixManager : MonoBehaviour
 
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
-    [SerializeField] Text logText;
 
     /// <summary>
     /// 部屋を作っているか。作っていた場合true
@@ -79,7 +80,7 @@ public class StrixManager : MonoBehaviour
                 strixNetwork.SearchRoom(
                                condition: builder.Build(),
                                order: new Order("memberCount", OrderType.Ascending),
-                               limit: 10,
+                               limit: 2,
                                offset: 0,
                                handler: searchResults =>
                                {
@@ -88,7 +89,6 @@ public class StrixManager : MonoBehaviour
                                    {
                                        Debug.Log("Success");
                                        isOwner = true;
-                                       logText.text = "true";
                                        strixNetwork.CreateRoom(
                                            new RoomProperties
                                            {
@@ -127,7 +127,7 @@ public class StrixManager : MonoBehaviour
                                         OnRoomJoin, 
                                         OnRoomJoinFailed
                                    );
-                                   m_BattleStrix.RpcToAll("SetGameStartBtn");
+                                   // m_BattleStrix.RpcToAll("SetGameStartBtn");
                                },
                                failureHandler: searchError => Debug.LogError("aa")
                                );
@@ -162,6 +162,12 @@ public class StrixManager : MonoBehaviour
     private void OnRoomJoinFailed(FailureEventArgs args)
     {
         Debug.Log(args);
+        var errorCodeException = args.cause as ErrorCodeException;
+        if (errorCodeException.errorCode == SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers)
+        {
+            SceneManager.LoadScene("RoomSelect");
+        }
+        //SceneManager.LoadScene("RoomSelect");
     }
 
     private void RoomJoined()
@@ -182,7 +188,7 @@ public class StrixManager : MonoBehaviour
     // 誰かが部屋に入ってきたときに呼び出される
     private void RoomJoinNotified(NotificationEventArgs<RoomJoinNotification<CustomizableMatchRoom>> notification)
     {
-        logText.text = "誰かが入ってきた";
+        m_GameManager.GameStart();
     }
 
 }

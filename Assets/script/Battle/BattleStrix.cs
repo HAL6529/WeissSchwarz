@@ -171,16 +171,6 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void SetGameStartBtn()
-    {
-        if (m_StrixManager.isOwner)
-        {
-            return;
-        }
-        m_GameManager.SetGameStartBtn();
-    }
-
-    [StrixRpc]
     public void GameStart()
     {
         m_GameManager.Shuffle();
@@ -190,7 +180,10 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker)
         {
             m_GameManager.MariganStart();
+            return;
         }
+
+        m_DialogManager.NotEraseDialog_Open();
     }
 
     [StrixRpc]

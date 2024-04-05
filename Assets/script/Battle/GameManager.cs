@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
     [SerializeField] Text testPhaseText;
-    [SerializeField] GameObject GameStartBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -269,7 +268,6 @@ public class GameManager : MonoBehaviour
     {
         if (m_StrixManager.isOwner)
         {
-            GameStartBtn.SetActive(false);
             if (CoinToss())
             {
                 isFirstAttacker = true;
@@ -560,12 +558,6 @@ public class GameManager : MonoBehaviour
     public void SendEncoreDialogFromRPC()
     {
         m_DialogManager.EncoreDialog(myFieldList, true);
-    }
-
-    public void SetGameStartBtn()
-    {
-        // ルームのオーナーでない場合、ゲームスタートボタンを非活性にする
-        GameStartBtn.SetActive(false);
     }
 
     public void SwitchTurnUtil()
