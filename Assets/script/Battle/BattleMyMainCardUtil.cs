@@ -11,6 +11,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] BattleModeGuide m_BattleModeGuide;
     [SerializeField] GameObject ActButton;
     [SerializeField] GameObject MoveButton;
+    [SerializeField] GameObject ActButton_Beside;
+    [SerializeField] GameObject MoveButton_Beside;
     [SerializeField] GameObject FrontAttackButton;
     [SerializeField] GameObject SideAttackButton;
     [SerializeField] GameObject DirectAttackButton;
@@ -184,11 +186,26 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
             else
             {
-                MoveButton.SetActive(true);
-                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo);
+                if(state == EnumController.State.REST)
+                {
+                    MoveButton_Beside.SetActive(true);
+                }
+                else
+                {
+                    MoveButton.SetActive(true);
+                }
+
+                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo, state);
                 if (minCost > -1 && m_GameManager.myStockList.Count >= minCost)
                 {
-                    ActButton.SetActive(true);
+                    if (state == EnumController.State.REST)
+                    {
+                        ActButton_Beside.SetActive(true);
+                    }
+                    else
+                    {
+                        ActButton.SetActive(true);
+                    }           
                 }
                 isMoveButton = true;
             }
@@ -230,6 +247,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         MoveButton.SetActive(false);
         ActButton.SetActive(false);
+        MoveButton_Beside.SetActive(false);
+        ActButton_Beside.SetActive(false);
         isMoveButton = false;
     }
 

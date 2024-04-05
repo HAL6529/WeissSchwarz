@@ -19,6 +19,7 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] GameObject PlayButton;
     [SerializeField] GameObject DummyHandCard;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] GraveYardDetail m_GraveYardDetail;
 
     public void setBattleModeCard(BattleModeCard card)
     {
@@ -45,6 +46,7 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
+        m_GraveYardDetail.OffShowGraveYardButton();
 
         if (m_GameManager.isLevelUpProcess)
         {

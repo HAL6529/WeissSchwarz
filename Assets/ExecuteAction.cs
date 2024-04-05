@@ -25,37 +25,34 @@ public class ExecuteAction
 
     public void ComeBackActionAfterConfirmDialog()
     {
-        Debug.Log("ComeBackActionAfterConfirmDialog");
         if (m_GameManager == null || m_BattleModeCardList == null)
         {
             return;
         }
-        Debug.Log("ComeBackActionAfterConfirmDialog2");
-        if (m_ExecuteActionTemp.m_BattleModeCardTempList.Count == 0)
+
+        List <BattleModeCard> graveyardList = new List<BattleModeCard>();
+        List <BattleModeCard> handList = new List<BattleModeCard>();
+        for (int i = 0; i < m_ExecuteActionTemp.graveyardList.Count; i++)
         {
-            return;
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.graveyardList[i].cardNo);
+            graveyardList.Add(b);
         }
-        Debug.Log("ComeBackActionAfterConfirmDialog3");
-        List <BattleModeCard> BattleModeCardList = new List<BattleModeCard>();
-        for (int i = 0; i < m_ExecuteActionTemp.m_BattleModeCardTempList.Count; i++)
+        for (int i = 0; i < m_ExecuteActionTemp.handList.Count; i++)
         {
-            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.m_BattleModeCardTempList[i].cardNo);
-            BattleModeCardList.Add(b);
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.handList[i].cardNo);
+            handList.Add(b);
         }
 
-        for (int i = 0; i < BattleModeCardList.Count; i++)
-        {
-            m_GameManager.myHandList.Add(BattleModeCardList[i]);
-            m_GameManager.GraveYardList.Remove(BattleModeCardList[i]);
-        }
+        m_GameManager.GraveYardList = graveyardList;
+        m_GameManager.myHandList = handList;
         m_GameManager.Syncronize();
 
 
         if (m_ExecuteActionTemp.damageParamater == EnumController.Damage.FRONT_ATTACK)
         {
-            m_BattleStrix.RpcToAll("CallOKDialogForCounter", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.intParamater2, m_ExecuteActionTemp.isFirstAttacker);
+            m_BattleStrix.RpcToAll("CallOKDialogForCounter", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.intParamater2, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.SendShotList);
             return;
         }
-        m_BattleStrix.RpcToAll("Damage", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.damageParamater);
+        m_BattleStrix.RpcToAll("Damage", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.damageParamater, m_ExecuteActionTemp.SendShotList);
     }
 }

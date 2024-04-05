@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class PhaseDialog : MonoBehaviour
 {
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] GraveYardDetail m_GraveYardDetail;
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] DialogManager m_DialogManager;
     [SerializeField] Button MainPhaseButton;
     [SerializeField] Button ClimaxPhaseButton;
     [SerializeField] Button AttackPhaseButton;
@@ -23,7 +27,16 @@ public class PhaseDialog : MonoBehaviour
 
     public void Open()
     {
-        if(m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
+        // 控室詳細表示ボタンを非表示にする
+        m_GraveYardDetail.OffShowGraveYardButton();
+
+        m_MyHandCardsManager.CallNotShowPlayButton();
+        m_MyMainCardsManager.CallNotShowMoveButton();
+        m_MyMainCardsManager.CallNotShowDirectAttackButton();
+        m_MyMainCardsManager.CallNotShowFrontAndSideButton();
+        m_DialogManager.CloseAllDialog();
+
+        if (m_GameManager.phase == EnumController.Turn.Main && m_GameManager.isTurnPlayer)
         {
             this.gameObject.SetActive(true);
             MainPhaseButton.interactable = false;

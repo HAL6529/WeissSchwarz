@@ -586,7 +586,7 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK);
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
@@ -605,7 +605,7 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker);
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker, SendShotList);
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
@@ -642,7 +642,7 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK);
+                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
