@@ -188,7 +188,7 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.OffDialog();
         m_CharacterSelectDialog.OffDialog();
         m_ConfirmEncoreKindsDialog.OffDialog();
-        m_NotEraseDialog.OffDialog();
+        // m_NotEraseDialog.OffDialog();
         m_ConfirmSearchOrSulvageCardDialog.OffDialog();
         m_GraveYardDetail.onCloseButton();
     }

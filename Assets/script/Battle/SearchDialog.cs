@@ -66,7 +66,50 @@ public class SearchDialog : MonoBehaviour
                 {
                     return;
                 }
-                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+
+                List<BattleModeCard> deckListTemp = m_GameManager.myDeckList;
+                List<BattleModeCard> stockListTemp = m_GameManager.myStockList;
+                List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
+                List<BattleModeCard> handListTemp = m_GameManager.myHandList;
+                List<BattleModeCard> searchListTemp = new List<BattleModeCard>();
+                searchListTemp.Add(deckListTemp[num]);
+
+                graveyardTemp.Add(stockListTemp[stockListTemp.Count - 1]);
+                stockListTemp.RemoveAt(stockListTemp.Count - 1);
+                handListTemp.Remove(card);
+                graveyardTemp.Add(card);
+                handListTemp.Add(deckListTemp[num]);
+                deckListTemp.Remove(deckListTemp[num]);
+
+                List<BattleModeCardTemp> m_deckListTemp = new List<BattleModeCardTemp>();
+                List<BattleModeCardTemp> m_stockListTemp = new List<BattleModeCardTemp>();
+                List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
+                List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
+
+                for (int i = 0; i < deckListTemp.Count; i++)
+                {
+                    m_deckListTemp.Add(new BattleModeCardTemp(deckListTemp[i]));
+                }
+                for (int i = 0; i < stockListTemp.Count; i++)
+                {
+                    m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
+                }
+                for (int i = 0; i < graveyardTemp.Count; i++)
+                {
+                    m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
+                }
+                for (int i = 0; i < handListTemp.Count; i++)
+                {
+                    m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
+                }
+
+                ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
+                m_ExecuteActionTemp.deckList = m_deckListTemp;
+                m_ExecuteActionTemp.stockList = m_stockListTemp;
+                m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
+                m_ExecuteActionTemp.handList = m_handListTemp;
+                m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
+                /* m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                 m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 m_GameManager.myHandList.Remove(card);
                 m_GameManager.GraveYardList.Add(card);
@@ -77,9 +120,11 @@ public class SearchDialog : MonoBehaviour
                 if (m_GameManager.myDeckList.Count == 0)
                 {
                     m_GameManager.Refresh();
-                }
+                } */
 
-                OffDialog();
+                m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+
+                OffDialog(); 
                 break;
             default:
                 break;
