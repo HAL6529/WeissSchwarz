@@ -14,8 +14,10 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
 
     private ExecuteActionTemp m_ExecuteActionTemp = null;
 
+    private EnumController.ConfirmSearchOrSulvageCardDialog paramater = EnumController.ConfirmSearchOrSulvageCardDialog.VOID;
+
     /// <summary>
-    /// カムバックアイコンがトリガーしたとき用
+    /// サーチカードやサルベージカードの確認用
     /// </summary>
     /// <param name="list"></param>
     /// <param name="paramater"></param>
@@ -26,6 +28,7 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
             return;
         }
         this.m_ExecuteActionTemp = m_ExecuteActionTemp;
+        this.paramater = paramater;
         switch (paramater)
         {
             case EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH:
@@ -65,6 +68,18 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
-        m_BattleStrix.RpcToAll("ExecuteAction_ComeBackActionAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+        switch (paramater)
+        {
+            case EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH:
+                m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                return;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.SULVAGE:
+                return;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK:
+                m_BattleStrix.RpcToAll("ExecuteAction_ComeBackActionAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                return;
+            default:
+                return;
+        }
     }
 }

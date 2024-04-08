@@ -514,6 +514,23 @@ public class BattleStrix : StrixBehaviour
     }
 
     /// <summary>
+    /// サーチ後確認ダイアログでOKボタンが押された後の処理
+    /// </summary>
+    [StrixRpc]
+    public void ExecuteAction_SearchAfterConfirmDialog(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
+            m_GameManager.m_ExecuteAction.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
+            m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
+
+            m_GameManager.m_ExecuteAction.ComeBackActionAfterConfirmDialog();
+        }
+    }
+
+    /// <summary>
     /// ダメージを受けた時のアニメーションをターンプレイヤーにも流すためのメソッド
     /// </summary>
     /// <param name="list"></param>
