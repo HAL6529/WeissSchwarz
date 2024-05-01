@@ -789,7 +789,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("キャンセル処理が呼ばれた");
             ReceiveShotList.RemoveAt(0);
-            Damage(1, EnumController.Damage.SHOT, ReceiveShotList);
+            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
             return;
         }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
@@ -832,7 +832,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("キャンセル処理が呼ばれた");
             ReceiveShotList.RemoveAt(0);
-            Damage(1, EnumController.Damage.SHOT, ReceiveShotList);
+            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
             return;
         }
 
@@ -899,6 +899,11 @@ public class GameManager : MonoBehaviour
         PowerCheck(placeNum);
 
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+    }
+
+    public void Shot(int shotDamageNum, List<EnumController.Shot> ShotList)
+    {
+        m_BattleStrix.RpcToAll("Damage", shotDamageNum, isFirstAttacker, EnumController.Damage.SHOT, ShotList);
     }
 
     /// <summary>

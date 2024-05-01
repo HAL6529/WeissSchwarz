@@ -392,6 +392,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void Shot(int damage, List<EnumController.Shot> ShotList, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.Shot(damage, ShotList);
+        }
+    }
+
+    [StrixRpc]
     public void ChangePhase(EnumController.Turn turn)
     {
         m_GameManager.ChangePhase(turn);
