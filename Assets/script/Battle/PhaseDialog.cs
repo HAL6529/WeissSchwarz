@@ -27,6 +27,15 @@ public class PhaseDialog : MonoBehaviour
 
     public void Open()
     {
+        if (m_GameManager.phase == EnumController.Turn.VOID)
+        {
+            return;
+        }
+        if (m_GameManager.phase == EnumController.Turn.Clock && m_GameManager.isTurnPlayer)
+        {
+            return;
+        }
+
         // 控室詳細表示ボタンを非表示にする
         m_GraveYardDetail.OffShowGraveYardButton();
 
