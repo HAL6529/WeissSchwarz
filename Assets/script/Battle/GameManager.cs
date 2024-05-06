@@ -238,7 +238,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log("DrawPhaseEnd");
         Draw();
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Clock);
         m_BattleStrix.RpcToAll("ClockPhase");
@@ -555,6 +554,66 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// DamageForFrontAttack2ForDamagedから呼ばれる用
+    /// </summary>
+    /// <param name="placeNum"></param>
+    private void Refresh(int placeNum)
+    {
+        for (int i = 0; i < GraveYardList.Count; i++)
+        {
+            myDeckList.Add(GraveYardList[i]);
+        }
+        GraveYardList = new List<BattleModeCard>();
+        Shuffle();
+        myClockList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+
+        Syncronize();
+
+        if (LevelUpCheck(placeNum))
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            return;
+        }
+
+        PowerCheck(placeNum);
+
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+    }
+
+    /// <summary>
+    /// Damage2ForCancel,DamageForFrontAttack2ForCancelから呼び出される用
+    /// </summary>
+    private void RefreshForCancel()
+    {
+        for (int i = 0; i < GraveYardList.Count; i++)
+        {
+            myDeckList.Add(GraveYardList[i]);
+        }
+        GraveYardList = new List<BattleModeCard>();
+        Shuffle();
+        myClockList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+
+        Syncronize();
+
+        if (LevelUpCheck())
+        {
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+            return;
+        }
+
+        if (this.ReceiveShotList.Count > 0)
+        {
+            ReceiveShotList.RemoveAt(0);
+            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
+            return;
+        }
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+    }
+
     public void SendEncoreDialogFromRPC()
     {
         m_DialogManager.EncoreDialog(myFieldList, true);
@@ -785,7 +844,12 @@ public class GameManager : MonoBehaviour
             GraveYardList.Add(tempList[n]);
         }
         Syncronize();
-        if(this.ReceiveShotList.Count > 0)
+        if (myDeckList.Count == 0)
+        {
+            RefreshForCancel();
+        }
+
+        if (this.ReceiveShotList.Count > 0)
         {
             Debug.Log("キャンセル処理が呼ばれた");
             ReceiveShotList.RemoveAt(0);
@@ -827,6 +891,11 @@ public class GameManager : MonoBehaviour
         }
         Syncronize();
 
+        if (myDeckList.Count == 0)
+        {
+            RefreshForCancel();
+        }
+
         PowerCheck(placeNum);
         if (this.ReceiveShotList.Count > 0)
         {
@@ -850,6 +919,12 @@ public class GameManager : MonoBehaviour
             myClockList.Add(tempList[n]);
         }
         Syncronize();
+
+        if (myDeckList.Count == 0)
+        {
+            Refresh();
+            return;
+        }
 
         if (LevelUpCheck())
         {
@@ -889,6 +964,12 @@ public class GameManager : MonoBehaviour
             myClockList.Add(tempList[n]);
         }
         Syncronize();
+
+        if (myDeckList.Count == 0)
+        {
+            Refresh(placeNum);
+            return;
+        }
 
         if (LevelUpCheck(placeNum))
         {

@@ -40,13 +40,8 @@ public class Effect : MonoBehaviour
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
                 }
-                else
-                {
-                    Debug.Log("Œø‰Ê‚È‚µ");
-                }
                 return;
             default:
-                Debug.Log("Œø‰Ê‚È‚µ");
                 return;
         }
     }

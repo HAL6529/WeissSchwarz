@@ -109,18 +109,6 @@ public class SearchDialog : MonoBehaviour
                 m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
                 m_ExecuteActionTemp.handList = m_handListTemp;
                 m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
-                /* m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                m_GameManager.myHandList.Remove(card);
-                m_GameManager.GraveYardList.Add(card);
-                m_GameManager.myHandList.Add(m_GameManager.myDeckList[num]);
-                m_GameManager.myDeckList.Remove(m_GameManager.myDeckList[num]);
-                m_GameManager.Syncronize();
-
-                if (m_GameManager.myDeckList.Count == 0)
-                {
-                    m_GameManager.Refresh();
-                } */
 
                 m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
 

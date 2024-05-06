@@ -151,7 +151,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void CallOKDialogForCounter(int ParamaterNum1, int ParamaterNum2, bool isFirstAttacker, List<EnumController.Shot> SendShotList)
     {
-        Debug.Log("CallOKDialogForCounter");
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.CounterCheck(ParamaterNum1, ParamaterNum2, SendShotList);
@@ -376,7 +375,6 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_EnemyMainCardsManager.CallReverse(num);
-            Debug.Log("aaaa");
             m_MyMainCardsManager.CallWhenReverseEnemyCard(num);
         }
     }
@@ -510,7 +508,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void ExecuteAction_ComeBackActionAfterConfirmDialog(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
     {
-        Debug.Log("ExecuteAction_ComeBackActionAfterConfirmDialog");
         if(m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
@@ -535,7 +532,7 @@ public class BattleStrix : StrixBehaviour
             m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
             m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
 
-            m_GameManager.m_ExecuteAction.ComeBackActionAfterConfirmDialog();
+            m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog();
         }
     }
 
