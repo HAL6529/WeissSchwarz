@@ -485,6 +485,15 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    [StrixRpc]
+    public void WinAndLose_Lose(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_WinAndLose.Lose();
+        }
+    }
+
     /// <summary>
     /// サーチや回収を行った際に出力されるダイアログ
     /// </summary>
