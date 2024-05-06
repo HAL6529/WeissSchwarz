@@ -30,6 +30,7 @@ public class StrixManager : MonoBehaviour
 
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] WinAndLose m_WinAndLose;
 
     /// <summary>
     /// 部屋を作っているか。作っていた場合true
@@ -191,4 +192,9 @@ public class StrixManager : MonoBehaviour
         m_GameManager.GameStart();
     }
 
+    // オブジェクトが破棄された場合に呼び出される
+    private void OnDestroy()
+    {
+        m_WinAndLose.Win();
+    }
 }
