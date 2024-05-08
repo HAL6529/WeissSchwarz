@@ -27,6 +27,7 @@ public class StrixManager : MonoBehaviour
     public int port = 9122;
     public string applicationId = "de65fc24-a8f1-49e8-becf-732e0420ac94";
     private string pass;
+    StrixNetwork strixNetwork;
 
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
@@ -55,12 +56,12 @@ public class StrixManager : MonoBehaviour
     public StrixManager()
     {
         isOwner = false;
+        strixNetwork = StrixNetwork.instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        var strixNetwork = StrixNetwork.instance;
         strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
@@ -164,11 +165,16 @@ public class StrixManager : MonoBehaviour
     {
         Debug.Log(args);
         var errorCodeException = args.cause as ErrorCodeException;
-        if (errorCodeException.errorCode == SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers)
+
+        switch (errorCodeException.errorCode)
         {
-            SceneManager.LoadScene("RoomSelect");
+            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomNotJoinable:
+            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers:
+                SceneManager.LoadScene("RoomSelect");
+                break;
+            default:
+                break;
         }
-        //SceneManager.LoadScene("RoomSelect");
     }
 
     private void RoomJoined()
@@ -190,6 +196,16 @@ public class StrixManager : MonoBehaviour
     private void RoomJoinNotified(NotificationEventArgs<RoomJoinNotification<CustomizableMatchRoom>> notification)
     {
         m_GameManager.GameStart();
+        strixNetwork.SetRoom(strixNetwork.selfRoomMember.GetRoomId(),
+            new RoomProperties
+            {
+                name = roomName,
+                password = passPhrase,
+                capacity = 2,
+                isJoinable = false,
+            }
+            , handler: __ =>{}
+            , failureHandler: __ => {});
     }
 
     // オブジェクトが破棄された場合に呼び出される
