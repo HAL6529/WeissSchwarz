@@ -41,6 +41,11 @@ public class RoomSelectClass : MonoBehaviour
     {
         
     }
+    
+    public void onCreateDeckButton()
+    {
+        SceneManager.LoadScene("DeckEdit");
+    }
 
     public void onCreateRoomMenuButton()
     {
