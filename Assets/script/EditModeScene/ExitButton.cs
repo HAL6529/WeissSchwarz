@@ -19,6 +19,6 @@ public class ExitButton : MonoBehaviour
 
     public void TransitionToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("RoomSelect");
     }
 }
