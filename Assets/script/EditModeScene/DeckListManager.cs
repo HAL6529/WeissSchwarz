@@ -63,18 +63,6 @@ public class DeckListManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     /// <summary>
     /// デッキ編集リストにカード情報を加える関数
     /// </summary>
@@ -146,5 +134,17 @@ public class DeckListManager : MonoBehaviour
         deckList.RemoveAt(index);
         sortDeckList();
         updateDeckList();
+    }
+
+    public List<EnumController.CardNo> GetDeckList()
+    {
+        List<EnumController.CardNo> list = new List<EnumController.CardNo>();
+        
+        for (int i = 0; i < deckList.Count; i++)
+        {
+            list.Add(deckList[i].cardId);
+        }
+
+        return list;
     }
 }
