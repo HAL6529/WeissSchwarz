@@ -21,6 +21,24 @@ namespace ExtendUtil
                     return stringValues.AT_WX02_A03_Explanation;
                 case EnumController.CardNo.AT_WX02_A04:
                     return stringValues.AT_WX02_A04_Explanation;
+                case EnumController.CardNo.AT_WX02_A05:
+                    return stringValues.AT_WX02_A05_Explanation;
+                case EnumController.CardNo.AT_WX02_A06:
+                    return stringValues.AT_WX02_A06_Explanation;
+                case EnumController.CardNo.AT_WX02_A07:
+                    return stringValues.AT_WX02_A07_Explanation;
+                case EnumController.CardNo.AT_WX02_A08:
+                    return stringValues.AT_WX02_A08_Explanation;
+                case EnumController.CardNo.AT_WX02_A09:
+                    return stringValues.AT_WX02_A09_Explanation;
+                case EnumController.CardNo.AT_WX02_A10:
+                    return stringValues.AT_WX02_A10_Explanation;
+                case EnumController.CardNo.AT_WX02_A11:
+                    return stringValues.AT_WX02_A11_Explanation;
+                case EnumController.CardNo.AT_WX02_A12:
+                    return stringValues.AT_WX02_A12_Explanation;
+                case EnumController.CardNo.AT_WX02_A13:
+                    return stringValues.AT_WX02_A13_Explanation;
                 default:
                     break;
             }
@@ -39,6 +57,24 @@ namespace ExtendUtil
                     return stringValues.AT_WX02_A03_CardNo;
                 case EnumController.CardNo.AT_WX02_A04:
                     return stringValues.AT_WX02_A04_CardNo;
+                case EnumController.CardNo.AT_WX02_A05:
+                    return stringValues.AT_WX02_A05_CardNo;
+                case EnumController.CardNo.AT_WX02_A06:
+                    return stringValues.AT_WX02_A06_CardNo;
+                case EnumController.CardNo.AT_WX02_A07:
+                    return stringValues.AT_WX02_A07_CardNo;
+                case EnumController.CardNo.AT_WX02_A08:
+                    return stringValues.AT_WX02_A08_CardNo;
+                case EnumController.CardNo.AT_WX02_A09:
+                    return stringValues.AT_WX02_A09_CardNo;
+                case EnumController.CardNo.AT_WX02_A10:
+                    return stringValues.AT_WX02_A10_CardNo;
+                case EnumController.CardNo.AT_WX02_A11:
+                    return stringValues.AT_WX02_A11_CardNo;
+                case EnumController.CardNo.AT_WX02_A12:
+                    return stringValues.AT_WX02_A12_CardNo;
+                case EnumController.CardNo.AT_WX02_A13:
+                    return stringValues.AT_WX02_A13_CardNo;
                 default:
                     break;
             }

@@ -18,6 +18,7 @@ namespace EnumController
         NONE,
         Ooo,
         Hero,
+        Magic,
         Royality,
         Vampire,
     }
