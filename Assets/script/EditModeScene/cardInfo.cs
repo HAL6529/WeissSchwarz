@@ -7,7 +7,9 @@ using EnumController;
 public class cardInfo : MonoBehaviour
 {
     public Sprite sprite;
+    // クライマックスの場合はlevelを-1
     public int level;
+    // クライマックスの場合はcostを-1
     public int cost;
     public EnumController.CardColor color;
     public EnumController.Trigger trigger;
@@ -17,6 +19,7 @@ public class cardInfo : MonoBehaviour
     public EnumController.Attribute attributeThree;
     public EnumController.CardNo cardNo;
     public string cardName;
+    // イベントカードやクライマックスの場合はpowerを-1
     public int power;
     public EnumController.Limit limit;
 

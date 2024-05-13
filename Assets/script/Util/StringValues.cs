@@ -87,11 +87,6 @@ public class StringValues
         public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";
     }
 
-    /*public string YesOrNoDialog_ENCORE_CONFIRM(string paramater1)
-    {
-        return paramater1 + "をアンコールしますか";
-    }*/
-
     public string YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(int paramater1)
     {
         return "このカードをプレイするにはコスト'" + paramater1 + "'必要です";
