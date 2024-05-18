@@ -8,7 +8,7 @@ using System.Linq;
 public class DeckListManager : MonoBehaviour
 {
     public List<DeckListPanelUtil> panels;
-    List<cardInfo> cardInfoList = new List<cardInfo>();
+    public List<cardInfo> cardInfoList = new List<cardInfo>();
 
     [SerializeField] Text cardName;
     [SerializeField] Image cardInfoImage;

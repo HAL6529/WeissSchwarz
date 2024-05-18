@@ -61,10 +61,11 @@ public class RoomSelectClass : MonoBehaviour
     {
         string roomName = t_RoomName.text;
         string passPhrase = t_PassPhrase.text;
-        if (roomName == string.Empty || Name == string.Empty)
+        if (roomName == string.Empty || Name == string.Empty || SaveData.cardInfoList.Count != 50)
         {
             Debug.Log("roomName:" + roomName);
             Debug.Log("Name:" + Name);
+            Debug.Log("cardInfoList:" + SaveData.cardInfoList.Count);
             return;
         }
 
