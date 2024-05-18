@@ -56,19 +56,20 @@ public class StrixManager : MonoBehaviour
     public StrixManager()
     {
         isOwner = false;
-        strixNetwork = StrixNetwork.instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        strixNetwork = StrixNetwork.instance;
         strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
         Name = RoomSelectClass.getName();
 
-        if (roomName == string.Empty)
+        if (roomName == string.Empty || SaveData.cardInfoList.Count != 50)
         {
+            SceneManager.LoadScene("RoomSelect");
             return;
         }
 

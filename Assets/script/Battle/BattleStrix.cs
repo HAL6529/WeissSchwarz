@@ -96,7 +96,7 @@ public class BattleStrix : StrixBehaviour
         }
         RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, isFirstAttacker);
     }
-
+    
     public void SendUpdateEnemyHandCards(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
