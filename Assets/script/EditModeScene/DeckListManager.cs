@@ -18,6 +18,14 @@ public class DeckListManager : MonoBehaviour
 
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.cardInfoList = SaveData.cardInfoList;
+        sortDeckList();
+        updateDeckList();
+    }
+
     /// <summary>
     /// デッキ編集リストにカード情報を加える関数
     /// </summary>
