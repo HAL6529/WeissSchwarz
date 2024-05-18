@@ -8,7 +8,7 @@ using System.Linq;
 public class DeckListManager : MonoBehaviour
 {
     public List<DeckListPanelUtil> panels;
-    List<DeckListUtil> deckList = new List<DeckListUtil>();
+    List<cardInfo> cardInfoList = new List<cardInfo>();
 
     [SerializeField] Text cardName;
     [SerializeField] Image cardInfoImage;
@@ -18,64 +18,19 @@ public class DeckListManager : MonoBehaviour
 
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
 
-    class DeckListUtil
-    {
-        public Sprite sprite;
-        public EnumController.CardNo cardId;
-        public string name;
-        public string effect;
-        public EnumController.Attribute attributeOne;
-        public EnumController.Attribute attributeTwo;
-        public EnumController.Attribute attributeThree;
-        public int level;
-        public int cost;
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public DeckListUtil()
-        {
-            this.sprite = null;
-            this.cardId = EnumController.CardNo.VOID;
-            this.name = null;
-            this.effect = null;
-            this.attributeOne = EnumController.Attribute.VOID;
-            this.attributeTwo = EnumController.Attribute.VOID;
-            this.attributeThree = EnumController.Attribute.VOID;
-            this.level = -1;
-            this.cost = -1;
-        }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="info">追加するカードの情報</param>
-        public DeckListUtil(cardInfo info)
-        {
-            this.sprite = info.sprite;
-            this.cardId = info.cardNo;
-            this.name = info.cardName;
-            this.attributeOne = info.attributeOne;
-            this.attributeTwo = info.attributeTwo;
-            this.attributeThree = info.attributeThree;
-            this.level = info.level;
-            this.cost = info.cost;
-        }
-    }
-
     /// <summary>
     /// デッキ編集リストにカード情報を加える関数
     /// </summary>
     /// <param name="info">cardInfo型　カード情報</param>
     public void addCard(cardInfo info)
     {
-        if (deckList.Count >= 64)
+        if (cardInfoList.Count >= 64)
         {
             return;
         }
 
         // 同名カードが4枚以上の場合処理は行わない。
-        int index = deckList.Count(obj => obj.cardId == info.cardNo);
+        int index = cardInfoList.Count(obj => obj.cardNo == info.cardNo);
         if (info.limit == EnumController.Limit.NORMAL)
         {
             if(index > 3)
@@ -83,8 +38,7 @@ public class DeckListManager : MonoBehaviour
                 return;
             }
         }
-        DeckListUtil deckListUtil = new DeckListUtil(info);
-        deckList.Add(deckListUtil);
+        cardInfoList.Add(info);
         sortDeckList();
         updateDeckList();
     }
@@ -93,9 +47,9 @@ public class DeckListManager : MonoBehaviour
     {
         for (int i = 0; i < panels.Count; i++)
         {
-            if(i < deckList.Count)
+            if(i < cardInfoList.Count)
             {
-                panels[i].setInfo(deckList[i].sprite);             
+                panels[i].setInfo(cardInfoList[i].sprite);             
             }
             else
             {
@@ -106,15 +60,15 @@ public class DeckListManager : MonoBehaviour
 
     private void sortDeckList()
     {
-        for (int i = 0; i < deckList.Count; i++)
+        for (int i = 0; i < cardInfoList.Count; i++)
         {
-           for(int k = i + 1; k < deckList.Count; k++)
+           for(int k = i + 1; k < cardInfoList.Count; k++)
             {
-                if ((int)deckList[i].cardId > (int)deckList[k].cardId)
+                if ((int)cardInfoList[i].cardNo > (int)cardInfoList[k].cardNo)
                 {
-                    DeckListUtil temp = deckList[i];
-                    deckList[i] = deckList[k];
-                    deckList[k] = temp;
+                    cardInfo temp = cardInfoList[i];
+                    cardInfoList[i] = cardInfoList[k];
+                    cardInfoList[k] = temp;
                 }
             }
         }
@@ -122,16 +76,16 @@ public class DeckListManager : MonoBehaviour
 
     public void onShowInfo(int index)
     {
-        cardName.text = deckList[index].name;
-        explanation.text = extendUtil.Explanation(deckList[index].cardId);
-        cardInfoImage.sprite = deckList[index].sprite;
-        levelIndex.text = deckList[index].level.ToString();
-        costIndex.text = deckList[index].cost.ToString();
+        cardName.text = cardInfoList[index].name;
+        explanation.text = extendUtil.Explanation(cardInfoList[index].cardNo);
+        cardInfoImage.sprite = cardInfoList[index].sprite;
+        levelIndex.text = cardInfoList[index].level.ToString();
+        costIndex.text = cardInfoList[index].cost.ToString();
     }
 
     public void removeCard(int index)
     {
-        deckList.RemoveAt(index);
+        cardInfoList.RemoveAt(index);
         sortDeckList();
         updateDeckList();
     }
@@ -140,9 +94,9 @@ public class DeckListManager : MonoBehaviour
     {
         List<EnumController.CardNo> list = new List<EnumController.CardNo>();
         
-        for (int i = 0; i < deckList.Count; i++)
+        for (int i = 0; i < cardInfoList.Count; i++)
         {
-            list.Add(deckList[i].cardId);
+            list.Add(cardInfoList[i].cardNo);
         }
 
         return list;
