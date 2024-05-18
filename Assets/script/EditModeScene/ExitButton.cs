@@ -5,20 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ExitButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField] DeckListManager m_DeckListManager;
     public void TransitionToMenu()
     {
+        SaveData.cardInfoList = m_DeckListManager.cardInfoList;
         SceneManager.LoadScene("RoomSelect");
     }
 }
