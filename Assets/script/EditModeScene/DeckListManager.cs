@@ -51,7 +51,7 @@ public class DeckListManager : MonoBehaviour
         updateDeckList();
     }
 
-    private void updateDeckList()
+    public void updateDeckList()
     {
         for (int i = 0; i < panels.Count; i++)
         {
@@ -66,7 +66,7 @@ public class DeckListManager : MonoBehaviour
         }
     }
 
-    private void sortDeckList()
+    public void sortDeckList()
     {
         for (int i = 0; i < cardInfoList.Count; i++)
         {
