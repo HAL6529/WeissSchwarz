@@ -25,6 +25,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
+    [SerializeField] EventAnimationManager m_EventAnimationManager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -35,13 +36,19 @@ public class BattleStrix : StrixBehaviour
         ObjectFactory.Instance.Register(typeof(ExecuteActionTemp));
     }
 
+    public void EventAnimation(BattleModeCard card, bool isFirstAttacker)
+    {
+        BattleModeCardTemp temp = new BattleModeCardTemp(card);
+        RpcToAll(nameof(EventAnimationStart), temp, isFirstAttacker);
+    }
+
     public void SendConfirmSearchOrSulvageCardDialog(List<BattleModeCard> list, EnumController.ConfirmSearchOrSulvageCardDialog paramater, ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
 
         for (int i = 0; i < list.Count; i++)
         {
-            temp.Add(new BattleModeCardTemp(list[i]));
+            temp.Add(new (list[i]));
         }
 
         RpcToAll(nameof(ConfirmSearchOrSulvageCardDialog), temp, paramater, m_ExecuteActionTemp, isFirstAttacker);
@@ -157,6 +164,14 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    [StrixRpc]
+    private void EventAnimationStart(BattleModeCardTemp temp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_EventAnimationManager.AnimationStartForRPC(temp);
+        }
+    }
 
     [StrixRpc]
     public void SetIsFirstAttacker(bool b)
