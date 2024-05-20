@@ -14,6 +14,7 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
     [SerializeField] EffectBrainStormForDraw m_EffectBrainStormForDraw;
+    [SerializeField] EventAnimationManager m_EventAnimationManager;
 
     private BattleModeCard m_BattleModeCard = null;
 
@@ -203,7 +204,8 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 m_DialogManager.MainDialog(m_BattleModeCard);
