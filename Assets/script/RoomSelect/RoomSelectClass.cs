@@ -17,6 +17,8 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] InputField t_Name;
 
+    [SerializeField] RoomSelectAlertAnimation m_RoomSelectAlertAnimation;
+
     public static string RoomName;
 
     public static string PassPhrase;
@@ -61,11 +63,39 @@ public class RoomSelectClass : MonoBehaviour
     {
         string roomName = t_RoomName.text;
         string passPhrase = t_PassPhrase.text;
-        if (roomName == string.Empty || Name == string.Empty || SaveData.cardInfoList.Count != 50)
+        bool result = false;
+        bool roomNameResult = false;
+        bool passPhraseResult = false;
+        bool nameResult = false;
+        bool deckCountResult = false;
+
+        if (roomName == string.Empty)
         {
-            Debug.Log("roomName:" + roomName);
-            Debug.Log("Name:" + Name);
-            Debug.Log("cardInfoList:" + SaveData.cardInfoList.Count);
+            result = true;
+            roomNameResult = true;
+        }
+
+        if (passPhrase == string.Empty)
+        {
+            result = true;
+            passPhraseResult = true;
+        }
+
+        if (Name == string.Empty)
+        {
+            result = true;
+            nameResult = true;
+        }
+
+        if (SaveData.cardInfoList.Count != 50)
+        {
+            result = true;
+            deckCountResult = true;
+        }
+
+        if (result)
+        {
+            m_RoomSelectAlertAnimation.AnimationStart(deckCountResult, roomNameResult, passPhraseResult, nameResult);
             return;
         }
 
