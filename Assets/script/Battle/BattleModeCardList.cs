@@ -5,17 +5,8 @@ using UnityEngine;
 public class BattleModeCardList : MonoBehaviour
 {
     public List<BattleModeCard> AdventureTimeList = new List<BattleModeCard>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<BattleModeCard> DC_2008TrialDeck = new List<BattleModeCard>();
+    public List<BattleModeCard> LittleBusters_2008TrialDeck = new List<BattleModeCard>();
 
     public BattleModeCard ConvertCardNoToBattleModeCard(EnumController.CardNo num)
     {
