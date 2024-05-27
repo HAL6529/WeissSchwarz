@@ -25,9 +25,13 @@ public class BattleModeDeck : MonoBehaviour
 
     private void SetDeckList()
     {
-        for(int i = 0; i < cardNoList.Count; i++)
+        /*for(int i = 0; i < cardNoList.Count; i++)
         {
             myDeckList.Add(m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(SaveData.cardInfoList[i].cardNo));
+        }*/
+        for (int i = 0; i < cardNoList.Count; i++)
+        {
+            myDeckList.Add(m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(cardNoList[i]));
         }
     }
 }
