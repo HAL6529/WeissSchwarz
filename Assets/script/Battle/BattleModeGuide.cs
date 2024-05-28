@@ -54,20 +54,28 @@ public class BattleModeGuide : MonoBehaviour
         image.sprite = card.sprite;
         name.text = card.name;
 
-        if(card.type != EnumController.Type.CHARACTER)
-        {
-            cost.text = null;
-            level.text = null;
-            power.text = null;
-            soulIndex.text = null;
-        }
-        else
+        if(card.type == EnumController.Type.CHARACTER)
         {
             cost.text = card.cost.ToString();
             level.text = card.level.ToString();
             power.text = card.power.ToString();
             soulIndex.text = card.soul.ToString();
         }
+        else if(card.type == EnumController.Type.EVENT)
+        {
+            cost.text = card.cost.ToString();
+            level.text = card.level.ToString();
+            power.text = null;
+            soulIndex.text = null;
+        }
+        else
+        {
+            cost.text = null;
+            level.text = null;
+            power.text = null;
+            soulIndex.text = null;
+        }
+
         explanation.text = m_CardNoToExplanation.Explanation(card.cardNo);
 
         switch (card.trigger)

@@ -120,6 +120,7 @@ namespace EnumController
     {
         VOID,
         POWER_THOUSAND_AND_SOUL_ONE,
+        SOUL_PLUS_TWO,
     }
 
     public enum Damage

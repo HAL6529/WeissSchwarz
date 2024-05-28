@@ -477,6 +477,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
             {
                 FieldSoul += 1;
             }
+            // ソウル＋2が使用されているかチェック
+            else if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.SOUL_PLUS_TWO)
+            {
+                FieldSoul += 2;
+            }
         }
     }
 

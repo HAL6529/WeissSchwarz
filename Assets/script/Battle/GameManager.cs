@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
     public bool isFirstAttacked = false;
+
+    /// <summary>
+    /// 扉アイコンのためのトリガーがデッキ残り1枚でトリガーしたかの判定用
+    /// </summary>
+    private bool isLastTrigger = false;
+
     public int turn = 1;
     private static int HAND_LIMIT_NUM = 7;
 
@@ -637,7 +643,10 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
+                if (!isLastTrigger)
+                {
+                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
+                }
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
@@ -645,6 +654,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        isLastTrigger = false;
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
     }
 
@@ -656,7 +666,10 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker, SendShotList);
+                if (!isLastTrigger)
+                {
+                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker, SendShotList);
+                }
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
@@ -664,6 +677,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        isLastTrigger = false;
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker, SendShotList);
     }
 
@@ -693,7 +707,10 @@ public class GameManager : MonoBehaviour
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
-                m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
+                if (!isLastTrigger)
+                {
+                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
+                }
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
@@ -701,11 +718,13 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        isLastTrigger = false;
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
     }
 
     private int TriggerCheck()
     {
+        isLastTrigger = false;
         int num = 0;
         this.trigger = myDeckList[0].trigger;
         switch (myDeckList[0].trigger)
@@ -738,6 +757,7 @@ public class GameManager : MonoBehaviour
 
         if (myDeckList.Count == 0)
         {
+            isLastTrigger = true;
             Refresh();
         }
 
