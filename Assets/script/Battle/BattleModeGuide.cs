@@ -53,10 +53,21 @@ public class BattleModeGuide : MonoBehaviour
         }
         image.sprite = card.sprite;
         name.text = card.name;
-        cost.text = card.cost.ToString();
-        level.text = card.level.ToString();
-        power.text = card.power.ToString();
-        soulIndex.text = card.soul.ToString();
+
+        if(card.type != EnumController.Type.CHARACTER)
+        {
+            cost.text = null;
+            level.text = null;
+            power.text = null;
+            soulIndex.text = null;
+        }
+        else
+        {
+            cost.text = card.cost.ToString();
+            level.text = card.level.ToString();
+            power.text = card.power.ToString();
+            soulIndex.text = card.soul.ToString();
+        }
         explanation.text = m_CardNoToExplanation.Explanation(card.cardNo);
 
         switch (card.trigger)
@@ -135,6 +146,6 @@ public class BattleModeGuide : MonoBehaviour
         }
 
         // âÊñ ÇêÆÇ¶ÇÈ
-        //Canvas.ForceUpdateCanvases();
+        Canvas.ForceUpdateCanvases();
     }
 }
