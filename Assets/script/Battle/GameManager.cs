@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private List<EnumController.Shot> ReceiveShotList = new List<EnumController.Shot>();
 
+    public List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
+
     public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
     [SerializeField] Text testPhaseText;
@@ -639,7 +641,7 @@ public class GameManager : MonoBehaviour
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
         damage = damage + TriggerCheck();
-        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
+        this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
@@ -651,10 +653,13 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
                 break;
+            case EnumController.Trigger.POOL:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, null, damage);
+                return;
             default:
                 break;
         }
-        isLastTrigger = false;
+        TriggerAfter();
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
     }
 
@@ -662,7 +667,7 @@ public class GameManager : MonoBehaviour
     {
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
         damage = damage + TriggerCheck();
-        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
+        this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
@@ -674,10 +679,13 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
                 break;
+            case EnumController.Trigger.POOL:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage);
+                return;
             default:
                 break;
         }
-        isLastTrigger = false;
+        TriggerAfter();
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker, SendShotList);
     }
 
@@ -703,22 +711,26 @@ public class GameManager : MonoBehaviour
         damage = damage - minus;
         damage = damage + TriggerCheck();
 
-        List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
+        this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
             case EnumController.Trigger.COMEBACK:
                 if (!isLastTrigger)
                 {
                     m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
+                    return;
                 }
-                return;
+                break;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
                 break;
+            case EnumController.Trigger.POOL:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE, null, damage);
+                return;
             default:
                 break;
         }
-        isLastTrigger = false;
+        TriggerAfter();
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
     }
 
@@ -750,6 +762,15 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+        if (myDeckList.Count == 0)
+        {
+            isLastTrigger = true;
+        }
+        return num;
+    }
+
+    public void TriggerAfter()
+    {
         myStockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
 
@@ -757,11 +778,9 @@ public class GameManager : MonoBehaviour
 
         if (myDeckList.Count == 0)
         {
-            isLastTrigger = true;
             Refresh();
         }
-
-        return num;
+        isLastTrigger = false;
     }
 
     public void Damage(int num, EnumController.Damage damage, List<EnumController.Shot> ReceiveShotList)

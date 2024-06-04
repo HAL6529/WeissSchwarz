@@ -41,8 +41,9 @@ public class ComeBackDetail : MonoBehaviour
         }
 
         // 回収するカードがない場合
-        if(tempList.Count == 0)
+        if(tempList.Count == 0 || m_GameManager.myDeckList.Count <= 1)
         {
+            m_GameManager.TriggerAfter();
             m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, isFirstAttacker, SendShotList);
             return;
         }
@@ -88,8 +89,9 @@ public class ComeBackDetail : MonoBehaviour
         }
 
         // 回収するカードがない場合
-        if (tempList.Count == 0)
+        if (tempList.Count == 0 || m_GameManager.myDeckList.Count <= 1)
         {
+            m_GameManager.TriggerAfter();
             m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater, SendShotList);
             return;
         }
@@ -182,6 +184,7 @@ public class ComeBackDetail : MonoBehaviour
 
     public void onCloseButton()
     {
+        m_GameManager.TriggerAfter();
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, damageParamater, SendShotList);
         this.gameObject.SetActive(false);
         return;
