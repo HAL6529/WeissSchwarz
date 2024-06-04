@@ -120,6 +120,7 @@ namespace EnumController
     {
         VOID,
         POWER_THOUSAND_AND_SOUL_ONE,
+        SOUL_PLUS_TWO,
     }
 
     public enum Damage
@@ -247,6 +248,9 @@ namespace EnumController
         VOID,
         CONFIRM_USE_COUNTER,
         CONFIRM_CARD_EFFECT,
+        CONFIRM_POOL_TRIGGER_FRONT,
+        CONFIRM_POOL_TRIGGER_SIDE,
+        CONFIRM_POOL_TRIGGER_DIRECT,
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
         EVENT_CONFIRM,

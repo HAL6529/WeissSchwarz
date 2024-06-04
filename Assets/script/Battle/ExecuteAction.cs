@@ -50,9 +50,11 @@ public class ExecuteAction
 
         if (m_ExecuteActionTemp.damageParamater == EnumController.Damage.FRONT_ATTACK)
         {
+            m_GameManager.TriggerAfter();
             m_BattleStrix.RpcToAll("CallOKDialogForCounter", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.intParamater2, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.SendShotList);
             return;
         }
+        m_GameManager.TriggerAfter();
         m_BattleStrix.RpcToAll("Damage", m_ExecuteActionTemp.intParamater, m_ExecuteActionTemp.isFirstAttacker, m_ExecuteActionTemp.damageParamater, m_ExecuteActionTemp.SendShotList);
     }
 

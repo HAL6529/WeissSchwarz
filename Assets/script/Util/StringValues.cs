@@ -15,6 +15,7 @@ public class StringValues
     public string OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
     public string HandOverDialog;
     public string YesOrNoDialog_CONFIRM_USE_COUNTER;
+    public string YesOrNoDialog_CONFIRM_POOL_TRIGGER;
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
     public string SearchDialog_SearchMessage;
@@ -140,6 +141,7 @@ public class StringValues
                 OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM = japanese.OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
                 HandOverDialog = japanese.HandOverDialog;
                 YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
+                YesOrNoDialog_CONFIRM_POOL_TRIGGER = japanese.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
@@ -202,6 +204,7 @@ public class StringValues
         public string YesOrNoDialog_CONFIRM_USE_COUNTER = "手札の助太刀カードを使用しますか";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
+        public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
         public string ConfirmSearchOrSulvageCardDialog_Search = "相手がカードを山札から加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";
