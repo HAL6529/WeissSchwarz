@@ -113,6 +113,7 @@ public class EncoreDialog : MonoBehaviour
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A04:
+            case EnumController.CardNo.LB_W02_03T:
                 return true;
             default:
                 return false;
