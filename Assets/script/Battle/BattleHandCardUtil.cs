@@ -241,9 +241,22 @@ public class BattleHandCardUtil : MonoBehaviour
                 m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard);
                 return;
             case EnumController.Type.EVENT:
-                if (ConfirmStockForCost(1))
+                switch (m_BattleModeCard.cardNo)
                 {
-                    m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                    case EnumController.CardNo.DC_W01_12T:
+                        if (ConfirmStockForCost(2))
+                        {
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                        }
+                        return;
+                    case EnumController.CardNo.AT_WX02_A05:
+                        if (ConfirmStockForCost(1))
+                        {
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                        }
+                        return;
+                    default:
+                        break;
                 }
                 return;
             case EnumController.Type.CLIMAX:
