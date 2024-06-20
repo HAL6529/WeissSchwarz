@@ -149,6 +149,7 @@ public class OKDialog : MonoBehaviour
             case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
                 int place = 0;
                 int pumpPoint = 0;
+                int cost = 0;
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
                 if (m_BattleModeCard != null)
                 {
@@ -170,11 +171,26 @@ public class OKDialog : MonoBehaviour
 
                     switch (m_BattleModeCard.cardNo)
                     {
+                        case EnumController.CardNo.LB_W02_07T:
+                            pumpPoint = 2000;
+                            cost = 1;
+                            break;
                         case EnumController.CardNo.AT_WX02_A05:
                             pumpPoint = 2500;
+                            cost = 1;
+                            break;
+                        case EnumController.CardNo.DC_W01_17T:
+                            pumpPoint = 3000;
+                            cost = 1;
                             break;
                         default:
                             break;
+                    }
+                    for(int i = 0; i < cost; i++)
+                    {
+                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
+                        m_GameManager.GraveYardList.Add(t);
+                        m_GameManager.myStockList.Remove(t);
                     }
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.Remove(m_BattleModeCard);

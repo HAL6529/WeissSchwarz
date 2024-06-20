@@ -73,11 +73,6 @@ public class BattleMemoryCardUtil : MonoBehaviour
         m_GraveYardDetail.UpdateList(m_GameManager.myMemoryList);
     }
 
-    public void onClickShowEnemyMemoryButton()
-    {
-        m_GraveYardDetail.UpdateList(m_GameManager.enemyMemoryList);
-    }
-
     private void SetMemoryCount(int num)
     {
         MemoryCount.text = num.ToString();

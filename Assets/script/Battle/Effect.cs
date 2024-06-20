@@ -84,6 +84,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW, card, num);
                 }
                 return;
+            // [(1)］ このカードを思い出にする。
+            case EnumController.CardNo.LB_W02_02T:
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY, card, num);
+                }
+                return;
             default:
                 return;
         }
@@ -104,6 +111,8 @@ public class Effect : MonoBehaviour
         {
             // 500応援
             case EnumController.CardNo.AT_WX02_A11:
+            case EnumController.CardNo.LB_W02_05T:
+            case EnumController.CardNo.LB_W02_17T:
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);

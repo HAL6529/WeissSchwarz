@@ -118,19 +118,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         m_BattleModeCard = card;
-
-        AttributeList = new List<EnumController.Attribute>();
-        if (card != null && card.attributeOne != EnumController.Attribute.NONE && card.attributeOne != EnumController.Attribute.VOID)
+        if(card != null)
         {
-            AttributeList.Add(card.attributeOne);
-        }
-        if (card != null && card.attributeTwo != EnumController.Attribute.NONE && card.attributeTwo != EnumController.Attribute.VOID)
-        {
-            AttributeList.Add(card.attributeTwo);
-        }
-        if (card != null && card.attributeThree != EnumController.Attribute.NONE && card.attributeThree != EnumController.Attribute.VOID)
-        {
-            AttributeList.Add(card.attributeThree);
+            AttributeList = card.attribute;
         }
 
         // 応援のカードなら能力付与

@@ -39,7 +39,14 @@ public class EventAnimationManager : MonoBehaviour
     private void AnimationEnd()
     {
         m_gameObject.SetActive(false);
-        m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A07:
+                m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>
