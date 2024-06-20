@@ -135,6 +135,28 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    public int GetNumFieldCardNo(List<EnumController.CardNo> list)
+    {
+        if(list.Count == 0)
+        {
+            return 0;
+        }
+        int num = 0;
+        for(int i = 0; i < CardList.Count; i++)
+        {
+            for(int n = 0; n < list.Count; n++)
+            {
+                BattleModeCard temp = CardList[i].getBattleModeCard();
+                if(temp.cardNo == list[n])
+                {
+                    num++;
+                }
+            }
+        }
+
+        return num;
+    }
+
     public List<int> GetFieldPower()
     {
         List<int> list = new List<int>();
