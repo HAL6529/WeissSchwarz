@@ -88,7 +88,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.LB_W02_02T:
                 if (ConfirmStockForCost(1))
                 {
-                    
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY, card, num);
                 }
                 return;
             default:

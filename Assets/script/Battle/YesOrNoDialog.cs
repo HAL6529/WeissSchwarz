@@ -14,6 +14,7 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
     [SerializeField] EffectBrainStormForDraw m_EffectBrainStormForDraw;
+    [SerializeField] EffectSendMemory m_EffectSendMemory;
     [SerializeField] EventAnimationManager m_EventAnimationManager;
 
     private BattleModeCard m_BattleModeCard = null;
@@ -261,6 +262,9 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
+                m_EffectSendMemory.SendFieldToMemory(ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
