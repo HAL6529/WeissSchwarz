@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleGraveYardUtil myBattleGraveYardUtil;
     [SerializeField] BattleGraveYardUtil enemyBattleGraveYardUtil;
     [SerializeField] BattleMemoryCardUtil myBattleMemoryCardUtil;
-    [SerializeField] BattleMemoryCardUtil enemyBattleMemoryCardUtil;
+    [SerializeField] BattleEnemyMemoryCardUtil enemyBattleMemoryCardUtil;
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] WinAndLose m_WinAndLose;
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         m_EnemyClockCardsManager.updateEnemyClockCards(enemyClockList);
         m_EnemyStockCardsManager.updateEnemyStockCards(enemyStockList.Count);
         m_EnemyLevelCardsManager.updateEnemyLevelCards(enemyLevelList);
-        enemyBattleMemoryCardUtil.setBattleModeCard(null);
+        enemyBattleMemoryCardUtil.updateEnemyMemoryCards(enemyMemoryList);
         enemyBattleDeckCardUtil.ChangeFrontAndBack(false);
         enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
@@ -1147,6 +1147,7 @@ public class GameManager : MonoBehaviour
 
         // 思い出のカードの更新
         myBattleMemoryCardUtil.updateMyMemoryCards(myMemoryList);
+        m_BattleStrix.SendUpdateEnemyMemoryCards(myMemoryList, isFirstAttacker);
 
         // クライマックスカードの更新
         myBattleClimaxCardUtil.SetClimax(MyClimaxCard);
@@ -1217,6 +1218,17 @@ public class GameManager : MonoBehaviour
         }
         m_EnemyMainCardsManager.updateEnemyFieldCards(enemyFieldList);
         m_EnemyMainCardsManager.SetFieldPower(FieldPowerList);
+    }
+
+    public void UpdateEnemyMemoryCards(List<BattleModeCardTemp> list)
+    {
+        enemyMemoryList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyMemoryList.Add(b);
+        }
+        enemyBattleMemoryCardUtil.updateEnemyMemoryCards(enemyMemoryList);
     }
 
     public void UpdateEnemyGraveYardCards(List<BattleModeCardTemp> list)

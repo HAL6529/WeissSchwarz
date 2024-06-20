@@ -14,9 +14,7 @@ public class BattleModeCard : MonoBehaviour
     public EnumController.CardColor color;
     public EnumController.Trigger trigger;
     public EnumController.Type type;
-    public EnumController.Attribute attributeOne;
-    public EnumController.Attribute attributeTwo;
-    public EnumController.Attribute attributeThree;
+    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>();
     public EnumController.CardNo cardNo;
     public string name;
     public int power;
@@ -46,9 +44,7 @@ public class BattleModeCard : MonoBehaviour
                    EnumController.CardColor color,
                    EnumController.Trigger trigger,
                    EnumController.Type type,
-                   EnumController.Attribute attributeOne,
-                   EnumController.Attribute attributeTwo,
-                   EnumController.Attribute attributeThree,
+                   List<EnumController.Attribute> attribute,
                    EnumController.CardNo cardNo,
                    string name,
                    int soul,
@@ -61,25 +57,11 @@ public class BattleModeCard : MonoBehaviour
         this.color = color;
         this.trigger = trigger;
         this.type = type;
-        this.attributeOne = attributeOne;
-        this.attributeTwo = attributeTwo;
-        this.attributeThree = attributeThree;
+        this.attribute = attribute;
         this.cardNo = cardNo;
         this.name = name;
         this.soul = soul;
         this.power = power;
         this.isCounter = isCounter;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -177,6 +177,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
+                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";

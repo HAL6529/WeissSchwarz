@@ -11,9 +11,7 @@ public class BattleModeCardTemp
     public EnumController.CardColor color;
     public EnumController.Trigger trigger;
     public EnumController.Type type;
-    public EnumController.Attribute attributeOne;
-    public EnumController.Attribute attributeTwo;
-    public EnumController.Attribute attributeThree;
+    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>();
     public EnumController.CardNo cardNo;
     public string name;
     public int power;
@@ -34,9 +32,7 @@ public class BattleModeCardTemp
             this.color = m_BattleModeCard.color;
             this.trigger = m_BattleModeCard.trigger;
             this.type = m_BattleModeCard.type;
-            this.attributeOne = m_BattleModeCard.attributeOne;
-            this.attributeTwo = m_BattleModeCard.attributeTwo;
-            this.attributeThree = m_BattleModeCard.attributeThree;
+            this.attribute = m_BattleModeCard.attribute;
             this.cardNo = m_BattleModeCard.cardNo;
             this.name = m_BattleModeCard.name;
             this.soul = m_BattleModeCard.soul;
