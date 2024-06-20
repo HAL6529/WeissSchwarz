@@ -468,7 +468,15 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
         }
 
-        if(m_GameManager.MyClimaxCard != null)
+        // "女王猫”佐々美の効果
+        if(m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.LB_W02_07T);
+            FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+        }
+
+        if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
             if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
@@ -542,5 +550,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         return false;
+    }
+
+    public BattleModeCard getBattleModeCard()
+    {
+        return m_BattleModeCard;
     }
 }
