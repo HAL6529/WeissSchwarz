@@ -40,6 +40,9 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
             case EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK:
                 text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Sulvage;
                 break;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
+                text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
+                break;
             default:
                 text.text = "無効メッセージ";
                 break;
@@ -77,6 +80,9 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK:
                 m_BattleStrix.RpcToAll("ExecuteAction_ComeBackActionAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                return;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
+                m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_ClockSulvage", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
             default:
                 return;

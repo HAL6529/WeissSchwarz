@@ -29,23 +29,41 @@ public class SearchDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         this.card = card;
         text.text = stringValues.SearchDialog_SearchMessage;
-        for (int i = 0; i < buttons.Count; i++)
+        switch (paramater)
         {
-            if (i > list.Count - 1)
-            {
-                buttons[i].SetBattleModeCard(null, false);
-            }
-            else
-            {
-                if(list[i].type == EnumController.Type.CHARACTER)
+            case EnumController.SearchDialogParamater.ClockSulvage:
+                for (int i = 0; i < buttons.Count; i++)
                 {
-                    buttons[i].SetBattleModeCard(list[i], true);
+                    if (i > list.Count - 1)
+                    {
+                        buttons[i].SetBattleModeCard(null, false);
+                    }
+                    else
+                    {
+                        buttons[i].SetBattleModeCard(list[i], true);
+                    }
                 }
-                else
+                break;
+            default:
+                for (int i = 0; i < buttons.Count; i++)
                 {
-                    buttons[i].SetBattleModeCard(list[i], false);
+                    if (i > list.Count - 1)
+                    {
+                        buttons[i].SetBattleModeCard(null, false);
+                    }
+                    else
+                    {
+                        if (list[i].type == EnumController.Type.CHARACTER)
+                        {
+                            buttons[i].SetBattleModeCard(list[i], true);
+                        }
+                        else
+                        {
+                            buttons[i].SetBattleModeCard(list[i], false);
+                        }
+                    }
                 }
-            }
+                break;
         }
     }
 
@@ -59,19 +77,89 @@ public class SearchDialog : MonoBehaviour
 
     public void onOKbutton()
     {
+        List<BattleModeCard> deckListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> memoryListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> stockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> graveyardTemp = new List<BattleModeCard>();
+        List<BattleModeCard> clockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> handListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> searchListTemp = new List<BattleModeCard>();
+
+        List<BattleModeCardTemp> m_deckListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_memoryListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_stockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_clockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
+
+        ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
+
         switch (paramater)
         {
+            case EnumController.SearchDialogParamater.ClockSulvage:
+                if (num < 0)
+                {
+                    return;
+                }
+                memoryListTemp = m_GameManager.myMemoryList;
+                stockListTemp = m_GameManager.myStockList;
+                graveyardTemp = m_GameManager.GraveYardList;
+                clockListTemp = m_GameManager.myClockList;
+                handListTemp = m_GameManager.myHandList;
+                searchListTemp.Add(clockListTemp[num]);
+
+                for(int i = 0; i < 3; i++)
+                {
+                    graveyardTemp.Add(stockListTemp[stockListTemp.Count - 1]);
+                    stockListTemp.RemoveAt(stockListTemp.Count - 1);
+                }
+                handListTemp.Remove(card);
+                memoryListTemp.Add(card);
+                handListTemp.Add(clockListTemp[num]);
+                clockListTemp.Remove(clockListTemp[num]);
+
+                for (int i = 0; i < memoryListTemp.Count; i++)
+                {
+                    m_memoryListTemp.Add(new BattleModeCardTemp(memoryListTemp[i]));
+                }
+                for (int i = 0; i < stockListTemp.Count; i++)
+                {
+                    m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
+                }
+                for (int i = 0; i < graveyardTemp.Count; i++)
+                {
+                    m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
+                }
+                for (int i = 0; i < clockListTemp.Count; i++)
+                {
+                    m_clockListTemp.Add(new BattleModeCardTemp(clockListTemp[i]));
+                }
+                for (int i = 0; i < handListTemp.Count; i++)
+                {
+                    m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
+                }
+
+                m_ExecuteActionTemp.memoryList = m_memoryListTemp;
+                m_ExecuteActionTemp.stockList = m_stockListTemp;
+                m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
+                m_ExecuteActionTemp.memoryList = m_memoryListTemp;
+                m_ExecuteActionTemp.clockList = m_clockListTemp;
+                m_ExecuteActionTemp.handList = m_handListTemp;
+                m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
+
+                m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                OffDialog();
+                break;
             case EnumController.SearchDialogParamater.Search:
                 if(num < 0)
                 {
                     return;
                 }
 
-                List<BattleModeCard> deckListTemp = m_GameManager.myDeckList;
-                List<BattleModeCard> stockListTemp = m_GameManager.myStockList;
-                List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
-                List<BattleModeCard> handListTemp = m_GameManager.myHandList;
-                List<BattleModeCard> searchListTemp = new List<BattleModeCard>();
+                deckListTemp = m_GameManager.myDeckList;
+                stockListTemp = m_GameManager.myStockList;
+                graveyardTemp = m_GameManager.GraveYardList;
+                handListTemp = m_GameManager.myHandList;
                 searchListTemp.Add(deckListTemp[num]);
 
                 graveyardTemp.Add(stockListTemp[stockListTemp.Count - 1]);
@@ -80,11 +168,6 @@ public class SearchDialog : MonoBehaviour
                 graveyardTemp.Add(card);
                 handListTemp.Add(deckListTemp[num]);
                 deckListTemp.Remove(deckListTemp[num]);
-
-                List<BattleModeCardTemp> m_deckListTemp = new List<BattleModeCardTemp>();
-                List<BattleModeCardTemp> m_stockListTemp = new List<BattleModeCardTemp>();
-                List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
-                List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
 
                 for (int i = 0; i < deckListTemp.Count; i++)
                 {
@@ -103,7 +186,6 @@ public class SearchDialog : MonoBehaviour
                     m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
                 }
 
-                ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
                 m_ExecuteActionTemp.deckList = m_deckListTemp;
                 m_ExecuteActionTemp.stockList = m_stockListTemp;
                 m_ExecuteActionTemp.graveyardList = m_graveyardTemp;

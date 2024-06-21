@@ -114,6 +114,7 @@ namespace EnumController
         SEARCH,
         SULVAGE,
         COMEBACK,
+        CLOCK_SULVAGE,
     }
 
     public enum ClimaxType
@@ -189,6 +190,7 @@ namespace EnumController
     public enum SearchDialogParamater
     {
         VOID,
+        ClockSulvage,
         Search,
         Sulvage,
     }
