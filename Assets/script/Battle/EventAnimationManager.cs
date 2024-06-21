@@ -44,6 +44,21 @@ public class EventAnimationManager : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A07:
                 m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
                 break;
+            case EnumController.CardNo.LB_W02_16T:
+                if (m_GameManager.myClockList.Count == 0)
+                {
+                    for(int i = 0;i < 3; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.myMemoryList.Add(m_BattleModeCard);
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    return;
+                }
+                m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
+                break;
             default:
                 break;
         }

@@ -362,6 +362,23 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// クロックから回収するカードを確認するダイアログでOKボタンが押された後の処理
+    /// </summary>
+    [StrixRpc]
+    public void ExecuteAction_SearchAfterConfirmDialog_ClockSulvage(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
+            m_GameManager.m_ExecuteAction.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
+            m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
+
+            m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_ClockSulvage();
+        }
+    }
+
     [StrixRpc]
     public void GameStart()
     {
