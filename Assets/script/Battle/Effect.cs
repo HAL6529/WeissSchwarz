@@ -73,6 +73,11 @@ public class Effect : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 起動効果の分岐
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="num">メインのどの場所にいてるか</param>
     public void CheckEffectForAct(BattleModeCard card, int num)
     {
         switch (card.cardNo)
@@ -82,6 +87,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW, card, num);
+                }
+                return;
+            // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
+            case EnumController.CardNo.DC_W01_04T:
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_POWER_UP_2000, card, num);
                 }
                 return;
             // [(1)］ このカードを思い出にする。
