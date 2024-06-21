@@ -182,6 +182,16 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
     }
 
+    public PowerInstance.PowerUpUntilTurnEnd GetPowerUpUntilTurnEnd(int place)
+    {
+        return CardList[place].m_PowerUpUntilTurnEnd;
+    }
+
+    public void SetPowerUpUntilTurnEnd(int place, PowerInstance.PowerUpUntilTurnEnd paramater)
+    {
+        CardList[place].m_PowerUpUntilTurnEnd = paramater;
+    }
+
     public void ExecuteAttack2(int num, EnumController.Attack status)
     {
         CardList[num].Attack2(status);

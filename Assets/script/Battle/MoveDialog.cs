@@ -56,6 +56,10 @@ public class MoveDialog : MonoBehaviour
             m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, selectedPlaceStatus);
             m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, placeStatus);
 
+            PowerInstance.PowerUpUntilTurnEnd t_PowerUpUntilTurnEnd = m_MyMainCardsManager.GetPowerUpUntilTurnEnd(selectedPlace);
+            m_MyMainCardsManager.SetPowerUpUntilTurnEnd(selectedPlace, m_MyMainCardsManager.GetPowerUpUntilTurnEnd(place));
+            m_MyMainCardsManager.SetPowerUpUntilTurnEnd(place, t_PowerUpUntilTurnEnd);
+
             m_GameManager.Syncronize();
         }
         OffMainDialog();

@@ -178,6 +178,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_POWER_UP_2000:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_POWER_UP_2000;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 break;
@@ -262,6 +265,12 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_POWER_UP_2000:
+                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 2000);
+                m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 m_EffectSendMemory.SendFieldToMemory(ParamaterNum1);
