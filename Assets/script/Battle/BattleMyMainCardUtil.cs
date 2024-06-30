@@ -476,16 +476,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
         }
 
-        List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
-        cardNoList.Add(EnumController.CardNo.LB_W02_07T);
-        FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         // "—‰¤”Lh²X”ü‚ÌŒø‰Ê
-        /*if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-        }*/
+        }
 
         if (m_GameManager.MyClimaxCard != null)
         {
