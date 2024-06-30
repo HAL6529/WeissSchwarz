@@ -50,6 +50,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     private EnumController.State state = EnumController.State.STAND;
 
+    /// <summary>
+    /// 大活躍をもっているか
+    /// </summary>
+    public bool isGreatPerformance = false;
+
     private bool isMoveButton = false;
 
     public Effect m_Effect;
@@ -116,11 +121,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 onReset();
                 break;
         }
+        AttributeList = new List<EnumController.Attribute>();
+        isGreatPerformance = false;
 
         m_BattleModeCard = card;
         if(card != null)
         {
             AttributeList = card.attribute;
+            isGreatPerformance = card.isGreatPerformance;
         }
 
         // 応援のカードなら能力付与
@@ -468,13 +476,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
         }
 
+        List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+        cardNoList.Add(EnumController.CardNo.LB_W02_07T);
+        FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         // "女王猫”佐々美の効果
-        if(m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
+        /*if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-        }
+        }*/
 
         if (m_GameManager.MyClimaxCard != null)
         {

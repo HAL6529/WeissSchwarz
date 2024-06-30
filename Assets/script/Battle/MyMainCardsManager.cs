@@ -147,7 +147,11 @@ public class MyMainCardsManager : MonoBehaviour
             for(int n = 0; n < list.Count; n++)
             {
                 BattleModeCard temp = CardList[i].getBattleModeCard();
-                if(temp.cardNo == list[n])
+                if(temp == null)
+                {
+                    continue;
+                }
+                if (temp.cardNo == list[n])
                 {
                     num++;
                 }
