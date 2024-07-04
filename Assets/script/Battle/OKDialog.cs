@@ -169,6 +169,13 @@ public class OKDialog : MonoBehaviour
                             break;
                     }
 
+                    // --‚±‚±‚©‚ç‘åŠˆ–ô—p--
+                    if (m_MyMainCardsManager.GetIsGreatPerformance(1))
+                    {
+                        place = 1;
+                    }
+                    // --‚±‚±‚Ü‚Å‘åŠˆ–ô—p--
+
                     switch (m_BattleModeCard.cardNo)
                     {
                         case EnumController.CardNo.LB_W02_07T:

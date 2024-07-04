@@ -40,8 +40,26 @@ public class EnemyMainCardsManager : MonoBehaviour
         }
     }
 
+    public void SetIsGreatProcessList(List<bool> IsGreatProcessList)
+    {
+        for (int i = 0; i < IsGreatProcessList.Count; i++)
+        {
+            CardList[i].SetIsGreatProcess(IsGreatProcessList[i]);
+        }
+    }
+
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();
+    }
+
+    public bool GetIsGreatProcessList(int place)
+    {
+        return CardList[place].GetIsGreatPerformance();
+    }
+
+    public EnumController.State GetState(int place)
+    {
+        return CardList[place].GetState();
     }
 }

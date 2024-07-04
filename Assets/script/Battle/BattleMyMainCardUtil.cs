@@ -19,6 +19,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameObject Power;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] Text PowerText;
@@ -218,6 +219,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
             if (PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
+                return;
+            }
+
+            // 中央の枠に大活躍のキャラがいないかチェック
+            if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+            {
+                FrontAttackButton.SetActive(true);
+                SideAttackButton.SetActive(false);
                 return;
             }
 

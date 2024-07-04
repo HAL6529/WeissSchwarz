@@ -326,8 +326,11 @@ public class GameManager : MonoBehaviour
 
     public void PowerCheck(int num)
     {
+        Debug.Log("PowerCheck");
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
+        int myPlace = num;
+        int enemyPower = -1;
 
         switch (num)
         {
@@ -343,8 +346,36 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-
-        int enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
+        enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
+        // 相手の中央枠に大活躍のキャラがいる場合
+        if (m_MyMainCardsManager.GetIsGreatPerformance(1))
+        {
+            if (m_MyMainCardsManager.GetState(1) == EnumController.State.STAND || m_MyMainCardsManager.GetState(1) == EnumController.State.REST)
+            {
+                myPlace = 1;
+                myPower = m_MyMainCardsManager.GetFieldPower(myPlace);
+                if (myPower > enemyPower)
+                {
+                    m_EnemyMainCardsManager.CallReverse(enemyPlace);
+                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+                    return;
+                }
+                else if (myPower == enemyPower)
+                {
+                    m_EnemyMainCardsManager.CallReverse(enemyPlace);
+                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+                    m_MyMainCardsManager.CallOnReverse(myPlace);
+                    m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+                    return;
+                }
+                else
+                {
+                    m_MyMainCardsManager.CallOnReverse(myPlace);
+                    m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+                    return;
+                }
+            }
+        }
 
         if (myPower > enemyPower)
         {
@@ -1159,7 +1190,7 @@ public class GameManager : MonoBehaviour
         // メインのカードの更新
         // パワー、レベル、特徴の計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
-        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), isFirstAttacker);
+        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), m_MyMainCardsManager.GetIsGreatPerformance(), isFirstAttacker);
     }
 
     public void UpdateEnemyDeckCount(int num)
@@ -1204,7 +1235,7 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList)
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, List<bool> IsGreatProcessList)
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -1218,6 +1249,7 @@ public class GameManager : MonoBehaviour
         }
         m_EnemyMainCardsManager.updateEnemyFieldCards(enemyFieldList);
         m_EnemyMainCardsManager.SetFieldPower(FieldPowerList);
+        m_EnemyMainCardsManager.SetIsGreatProcessList(IsGreatProcessList);
     }
 
     public void UpdateEnemyMemoryCards(List<BattleModeCardTemp> list)
