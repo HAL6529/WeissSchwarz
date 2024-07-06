@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EnumController;
+using ExtendUtil;
 using CardNoToCardInfo;
 
 public class BattleModeGuide : MonoBehaviour
@@ -14,6 +15,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text cost;
     [SerializeField] Text power;
     [SerializeField] Text soulIndex;
+    [SerializeField] Text attribute;
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
 
@@ -30,7 +32,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite stock;
     [SerializeField] Sprite treasure;
     CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
-
+    ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,28 @@ public class BattleModeGuide : MonoBehaviour
             power.text = null;
             soulIndex.text = null;
         }
+
+        if (card.type == EnumController.Type.CHARACTER)
+        {
+            if (card.attribute.Count > 0)
+            {
+                for (int i = 0; i < card.attribute.Count; i++)
+                {
+                    attribute.text = "";
+                    attribute.text += "<" + m_ExtendUtil.AttributeConvertToString(card.attribute[i]) + ">";
+                }
+            }
+            else
+            {
+                attribute.text = "<“Á’¥‚È‚µ>";
+            }
+        }
+        else
+        {
+            attribute.text = "";
+        }
+
+ 
 
         explanation.text = m_CardNoToExplanation.Explanation(card.cardNo);
 

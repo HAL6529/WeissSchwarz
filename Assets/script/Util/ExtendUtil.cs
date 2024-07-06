@@ -245,12 +245,52 @@ namespace ExtendUtil
         {
             switch (attribute)
             {
+                case EnumController.Attribute.NONE:
+                    return "特徴なし";
                 case EnumController.Attribute.Ooo:
                     return "Ooo";
                 case EnumController.Attribute.Hero:
                     return "Hero";
-                case EnumController.Attribute.NONE:
-                    return null;
+                case EnumController.Attribute.Royality:
+                    return "Royality";
+                case EnumController.Attribute.Vampire:
+                    return "Vampire";
+                case EnumController.Attribute.Animal:
+                    return "動物";
+                case EnumController.Attribute.Book:
+                    return "本";
+                case EnumController.Attribute.Shadow:
+                    return "影";
+                case EnumController.Attribute.ShrineMaiden:
+                    return "巫女";
+                case EnumController.Attribute.Sports:
+                    return "スポーツ";
+                case EnumController.Attribute.Sweets:
+                    return "お菓子";
+                case EnumController.Attribute.Magic:
+                    return "魔法";
+                case EnumController.Attribute.Music:
+                    return "音楽";
+                case EnumController.Attribute.Marble:
+                    return "ビー玉";
+                case EnumController.Attribute.Parasol:
+                    return "日傘";
+                case EnumController.Attribute.Comics:
+                    return "漫画";
+                case EnumController.Attribute.Glasses:
+                    return "メガネ";
+                case EnumController.Attribute.Teacher:
+                    return "先生";
+                case EnumController.Attribute.Banana:
+                    return "バナナ";
+                case EnumController.Attribute.Mecha:
+                    return "メカ";
+                case EnumController.Attribute.JapaneseClothes:
+                    return "和服";
+                case EnumController.Attribute.Pajamas:
+                    return "パジャマ";
+                case EnumController.Attribute.FairyTale:
+                    return "童話";
                 default:
                     break;
             }
