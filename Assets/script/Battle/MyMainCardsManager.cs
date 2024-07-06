@@ -147,7 +147,11 @@ public class MyMainCardsManager : MonoBehaviour
             for(int n = 0; n < list.Count; n++)
             {
                 BattleModeCard temp = CardList[i].getBattleModeCard();
-                if(temp.cardNo == list[n])
+                if(temp == null)
+                {
+                    continue;
+                }
+                if (temp.cardNo == list[n])
                 {
                     num++;
                 }
@@ -155,6 +159,11 @@ public class MyMainCardsManager : MonoBehaviour
         }
 
         return num;
+    }
+
+    public int GetFieldPower(int place)
+    {
+        return CardList[place].GetFieldPower();
     }
 
     public List<int> GetFieldPower()
@@ -167,9 +176,19 @@ public class MyMainCardsManager : MonoBehaviour
         return list;
     }
 
-    public int GetFieldPower(int place)
+    public List<bool> GetIsGreatPerformance()
     {
-        return CardList[place].GetFieldPower();
+        List<bool> list = new List<bool>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].isGreatPerformance);
+        }
+        return list;
+    }
+
+    public bool GetIsGreatPerformance(int place)
+    {
+        return CardList[place].isGreatPerformance;
     }
 
     public int GetFieldSoul(int place)

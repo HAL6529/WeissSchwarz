@@ -128,7 +128,7 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateEnemyStockCards), temp, isFirstAttacker);
     }
 
-    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList, bool isFirstAttacker)
+    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList, List<bool> IsGreatProcessList, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -142,7 +142,7 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, isFirstAttacker);
+        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, IsGreatProcessList, isFirstAttacker);
     }
 
     public void SendUpdateEnemyMemoryCards(List<BattleModeCard> list, bool isFirstAttacker)
@@ -200,6 +200,22 @@ public class BattleStrix : StrixBehaviour
         {
             m_EnemyMainCardsManager.CallReverse(num);
             m_MyMainCardsManager.CallWhenReverseEnemyCard(num);
+        }
+    }
+
+    /// <summary>
+    /// 相手をリバースしたとき呼び出される
+    /// </summary>
+    /// <param name="place1">攻撃されたキャラの位置</param>
+    /// <param name="place2">攻撃したキャラの位置</param>
+    /// <param name="isTurnPlayer"></param>
+    [StrixRpc]
+    public void CallEnemyReverseForGreatPerformance(int place1, int place2, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallReverse(place1);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place2);
         }
     }
 
@@ -537,11 +553,11 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, bool isFirstAttacker)
+    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, List<bool> IsGreatProcessList, bool isFirstAttacker)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.UpdateEnemyMainCards(list, FieldPowerList);
+            m_GameManager.UpdateEnemyMainCards(list, FieldPowerList, IsGreatProcessList);
         }
     }
 

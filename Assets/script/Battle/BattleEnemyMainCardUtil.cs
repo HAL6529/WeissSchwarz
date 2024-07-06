@@ -13,9 +13,19 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     [SerializeField] BattleModeGuide m_BattleModeGuide;
 
     /// <summary>
+    /// フィールド上でのステータス
+    /// </summary>
+    private EnumController.State state = EnumController.State.STAND;
+
+    /// <summary>
     /// フィールド上でのパワー
     /// </summary>
     private int FieldPower = 0;
+
+    /// <summary>
+    /// 大活躍をもっているか
+    /// </summary>
+    public bool isGreatPerformance = false;
 
     // Start is called before the first frame update
     void Start()
@@ -52,17 +62,35 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
 
     public void Rest()
     {
+        state = EnumController.State.REST;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 270.0f);
     }
 
     public void Stand()
     {
+        state = EnumController.State.STAND;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
     }
 
     public void Reverse()
     {
+        state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    }
+
+    public int GetFieldPower()
+    {
+        return FieldPower;
+    }
+
+    public bool GetIsGreatPerformance()
+    {
+        return isGreatPerformance;
+    }
+
+    public EnumController.State GetState()
+    {
+        return state;
     }
 
     public void SetFieldPower(int power)
@@ -71,8 +99,13 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         PowerText.text = FieldPower.ToString();
     }
 
-    public int GetFieldPower()
+    public void SetIsGreatProcess(bool b)
     {
-        return FieldPower;
+        isGreatPerformance = b;
+    }
+
+    public void SetIsGreatPerformance(bool b)
+    {
+        isGreatPerformance = b;
     }
 }

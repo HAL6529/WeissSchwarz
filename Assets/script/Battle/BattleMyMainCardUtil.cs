@@ -19,6 +19,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameObject Power;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] Text PowerText;
@@ -49,6 +50,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// フィールド上でのステータス
     /// </summary>
     private EnumController.State state = EnumController.State.STAND;
+
+    /// <summary>
+    /// 大活躍をもっているか
+    /// </summary>
+    public bool isGreatPerformance = false;
 
     private bool isMoveButton = false;
 
@@ -116,11 +122,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 onReset();
                 break;
         }
+        AttributeList = new List<EnumController.Attribute>();
+        isGreatPerformance = false;
 
         m_BattleModeCard = card;
         if(card != null)
         {
             AttributeList = card.attribute;
+            isGreatPerformance = card.isGreatPerformance;
         }
 
         // 応援のカードなら能力付与
@@ -210,6 +219,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
             if (PlaceNum > 2 || m_BattleModeCard == null || state != EnumController.State.STAND)
             {
+                return;
+            }
+
+            // 中央の枠に大活躍のキャラがいないかチェック
+            if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+            {
+                FrontAttackButton.SetActive(true);
+                SideAttackButton.SetActive(false);
                 return;
             }
 
@@ -469,7 +486,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         // "女王猫”佐々美の効果
-        if(m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);

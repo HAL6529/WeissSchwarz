@@ -19,6 +19,7 @@ public class BattleModeCard : MonoBehaviour
     public string name;
     public int power;
     public bool isCounter;
+    public bool isGreatPerformance;
     public string explanation;
 
     /// <summary>
