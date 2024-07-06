@@ -166,12 +166,32 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].GetFieldPower();
     }
 
+    public List<int> GetFieldLevel()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldLevel());
+        }
+        return list;
+    }
+
     public List<int> GetFieldPower()
     {
         List<int> list = new List<int>();
         for (int i = 0; i < CardList.Count; i++)
         {
             list.Add(CardList[i].GetFieldPower());
+        }
+        return list;
+    }
+
+    public List<int> GetFieldSoul()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldSoul());
         }
         return list;
     }

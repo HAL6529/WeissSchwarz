@@ -169,7 +169,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_MyMainCardsManager.CallNotShowDirectAttackButton();
         m_MyMainCardsManager.CallNotShowFrontAndSideButton();
-        m_BattleModeGuide.showImage(m_BattleModeCard);
+
+        // ---ここからカードのガイド用---
+        BattleModeCard t_BattleModeCard = new BattleModeCard();
+        t_BattleModeCard.power = FieldPower;
+        t_BattleModeCard.soul = FieldSoul;
+        t_BattleModeCard.level = FieldLevel;
+
+        m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
+        // ---ここまでカードのガイド用---
+
         m_DialogManager.CloseAllDialog();
 
         if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
@@ -531,6 +540,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 FieldSoul += 2;
             }
         }
+    }
+
+    public int GetFieldLevel()
+    {
+        return FieldLevel;
     }
 
     public int GetFieldPower()

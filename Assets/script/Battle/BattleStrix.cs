@@ -128,7 +128,7 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateEnemyStockCards), temp, isFirstAttacker);
     }
 
-    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldPowerList, List<bool> IsGreatProcessList, bool isFirstAttacker)
+    public void SendUpdateMainCards(List<BattleModeCard> list, List<int> FieldLevelList, List<int> FieldPowerList, List<int> FieldSoulList, List<bool> IsGreatProcessList, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
         for (int i = 0; i < list.Count; i++)
@@ -142,7 +142,7 @@ public class BattleStrix : StrixBehaviour
                 temp.Add(null);
             }
         }
-        RpcToAll(nameof(UpdateMainCards), temp, FieldPowerList, IsGreatProcessList, isFirstAttacker);
+        RpcToAll(nameof(UpdateMainCards), temp, FieldLevelList, FieldPowerList, FieldSoulList, IsGreatProcessList, isFirstAttacker);
     }
 
     public void SendUpdateEnemyMemoryCards(List<BattleModeCard> list, bool isFirstAttacker)
@@ -553,11 +553,11 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, List<bool> IsGreatProcessList, bool isFirstAttacker)
+    public void UpdateMainCards(List<BattleModeCardTemp> list, List<int> FieldLevelList, List<int> FieldPowerList, List<int> FieldSoulList, List<bool> IsGreatProcessList, bool isFirstAttacker)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.UpdateEnemyMainCards(list, FieldPowerList, IsGreatProcessList);
+            m_GameManager.UpdateEnemyMainCards(list, FieldLevelList, FieldPowerList, FieldSoulList, IsGreatProcessList);
         }
     }
 

@@ -153,7 +153,65 @@ public class BattleModeGuide : MonoBehaviour
             Trigger2.color = new Color(1, 1, 1, 1);
         }
 
+        level.color = new Color(0, 0, 0, 1);
+        power.color = new Color(0, 0, 0, 1);
+        soulIndex.color = new Color(0, 0, 0, 1);
         // 画面を整える
         Canvas.ForceUpdateCanvases();
+    }
+
+    /// <summary>
+    /// 手札やフィールドでステータスが変わっている場合に利用
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="NowCard">手札やフィールドの現状のカード情報</param>
+    public void showImage(BattleModeCard card, BattleModeCard NowCard)
+    {
+        showImage(card);
+
+        // levelが元々と異なっていた場合
+        if(card.level > NowCard.level)
+        {
+            level.color = new Color(1, 0, 0, 1);
+        }else if(card.level == NowCard.level)
+        {
+            level.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            level.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        // powerが元々と異なっていた場合
+        if (card.power > NowCard.power)
+        {
+            power.color = new Color(1, 0, 0, 1);
+        }
+        else if (card.power == NowCard.power)
+        {
+            power.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            power.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        // soulが元々と異なっていた場合
+        if (card.soul > NowCard.soul)
+        {
+            soulIndex.color = new Color(1, 0, 0, 1);
+        }
+        else if (card.soul == NowCard.soul)
+        {
+            soulIndex.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            soulIndex.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        level.text = NowCard.level.ToString();
+        power.text = NowCard.power.ToString();
+        soulIndex.text = NowCard.soul.ToString();
     }
 }
