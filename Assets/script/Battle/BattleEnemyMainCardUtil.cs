@@ -33,6 +33,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public int FieldLevel = 0;
 
     /// <summary>
+    /// フィールド上での特徴
+    /// </summary>
+    public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
+
+    /// <summary>
     /// 大活躍をもっているか
     /// </summary>
     public bool isGreatPerformance = false;

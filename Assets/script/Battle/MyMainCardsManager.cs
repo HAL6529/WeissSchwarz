@@ -161,6 +161,16 @@ public class MyMainCardsManager : MonoBehaviour
         return num;
     }
 
+    public List<List<EnumController.Attribute>> GetFieldAttributeList()
+    {
+        List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].AttributeList);
+        }
+        return list;
+    }
+
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();

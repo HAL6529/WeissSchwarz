@@ -32,6 +32,11 @@ public class EnemyMainCardsManager : MonoBehaviour
         CardList[num].Reverse();
     }
 
+    public void SetFieldAttribute(List<EnumController.Attribute> list, int place)
+    {
+        CardList[place].AttributeList = list;
+    }
+
     public void SetFieldLevel(List<int> list)
     {
         for (int i = 0; i < list.Count; i++)

@@ -145,6 +145,15 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateMainCards), temp, FieldLevelList, FieldPowerList, FieldSoulList, IsGreatProcessList, isFirstAttacker);
     }
 
+    public void SendUpdateMainCardsAttribute(List<List<EnumController.Attribute>> list, bool isFirstAttacker)
+    {
+        for(int i = 0; i < list.Count; i++)
+        {
+            RpcToAll(nameof(UpdateMainCardsAttribute), list[i], i, isFirstAttacker);
+        }
+
+    }
+
     public void SendUpdateEnemyMemoryCards(List<BattleModeCard> list, bool isFirstAttacker)
     {
         List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
@@ -558,6 +567,15 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.UpdateEnemyMainCards(list, FieldLevelList, FieldPowerList, FieldSoulList, IsGreatProcessList);
+        }
+    }
+
+    [StrixRpc]
+    public void UpdateMainCardsAttribute(List<EnumController.Attribute> list, int place, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.UpdateEnemyMainCardsAttribute(list, place);
         }
     }
 
