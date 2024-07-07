@@ -4,38 +4,120 @@ using UnityEngine;
 
 public class CardInfoList : MonoBehaviour
 {
-    [SerializeField] List<cardInfo> cardInfo_list = new List<cardInfo>();
+    [SerializeField] List<cardInfo> AT_WX02_A_CardInfo_list = new List<cardInfo>();
+    [SerializeField] List<cardInfo> DC_W01_T_CardInfo_list = new List<cardInfo>();
+    [SerializeField] List<cardInfo> LB_W02_T_CardInfo_list = new List<cardInfo>();
 
     public cardInfo Convert(string cardNo)
     {
         switch (cardNo)
         {
             case "AT_WX02_A01":
-                return cardInfo_list[0];
+                return AT_WX02_A_CardInfo_list[0];
             case "AT_WX02_A02":
-                return cardInfo_list[1];
+                return AT_WX02_A_CardInfo_list[1];
             case "AT_WX02_A03":
-                return cardInfo_list[2];
+                return AT_WX02_A_CardInfo_list[2];
             case "AT_WX02_A04":
-                return cardInfo_list[3];
+                return AT_WX02_A_CardInfo_list[3];
             case "AT_WX02_A05":
-                return cardInfo_list[4];
+                return AT_WX02_A_CardInfo_list[4];
             case "AT_WX02_A06":
-                return cardInfo_list[5];
+                return AT_WX02_A_CardInfo_list[5];
             case "AT_WX02_A07":
-                return cardInfo_list[6];
+                return AT_WX02_A_CardInfo_list[6];
             case "AT_WX02_A08":
-                return cardInfo_list[7];
+                return AT_WX02_A_CardInfo_list[7];
             case "AT_WX02_A09":
-                return cardInfo_list[8];
+                return AT_WX02_A_CardInfo_list[8];
             case "AT_WX02_A10":
-                return cardInfo_list[9];
+                return AT_WX02_A_CardInfo_list[9];
             case "AT_WX02_A11":
-                return cardInfo_list[10];
+                return AT_WX02_A_CardInfo_list[10];
             case "AT_WX02_A12":
-                return cardInfo_list[11];
+                return AT_WX02_A_CardInfo_list[11];
             case "AT_WX02_A13":
-                return cardInfo_list[12];
+                return AT_WX02_A_CardInfo_list[12];
+            case "DC_W01_01T":
+                return DC_W01_T_CardInfo_list[0];
+            case "DC_W01_02T":
+                return DC_W01_T_CardInfo_list[1];
+            case "DC_W01_03T":
+                return DC_W01_T_CardInfo_list[2];
+            case "DC_W01_04T":
+                return DC_W01_T_CardInfo_list[3];
+            case "DC_W01_05T":
+                return DC_W01_T_CardInfo_list[4];
+            case "DC_W01_06T":
+                return DC_W01_T_CardInfo_list[5];
+            case "DC_W01_07T":
+                return DC_W01_T_CardInfo_list[6];
+            case "DC_W01_08T":
+                return DC_W01_T_CardInfo_list[7];
+            case "DC_W01_09T":
+                return DC_W01_T_CardInfo_list[8];
+            case "DC_W01_10T":
+                return DC_W01_T_CardInfo_list[9];
+            case "DC_W01_11T":
+                return DC_W01_T_CardInfo_list[10];
+            case "DC_W01_12T":
+                return DC_W01_T_CardInfo_list[11];
+            case "DC_W01_13T":
+                return DC_W01_T_CardInfo_list[12];
+            case "DC_W01_14T":
+                return DC_W01_T_CardInfo_list[13];
+            case "DC_W01_15T":
+                return DC_W01_T_CardInfo_list[14];
+            case "DC_W01_16T":
+                return DC_W01_T_CardInfo_list[15];
+            case "DC_W01_17T":
+                return DC_W01_T_CardInfo_list[16];
+            case "DC_W01_18T":
+                return DC_W01_T_CardInfo_list[17];
+            case "DC_W01_19T":
+                return DC_W01_T_CardInfo_list[18];
+            case "DC_W01_20T":
+                return DC_W01_T_CardInfo_list[19];
+            case "LB_W02_01T":
+                return LB_W02_T_CardInfo_list[0];
+            case "LB_W02_02T":
+                return LB_W02_T_CardInfo_list[1];
+            case "LB_W02_03T":
+                return LB_W02_T_CardInfo_list[2];
+            case "LB_W02_04T":
+                return LB_W02_T_CardInfo_list[3];
+            case "LB_W02_05T":
+                return LB_W02_T_CardInfo_list[4];
+            case "LB_W02_06T":
+                return LB_W02_T_CardInfo_list[5];
+            case "LB_W02_07T":
+                return LB_W02_T_CardInfo_list[6];
+            case "LB_W02_08T":
+                return LB_W02_T_CardInfo_list[7];
+            case "LB_W02_09T":
+                return LB_W02_T_CardInfo_list[8];
+            case "LB_W02_10T":
+                return LB_W02_T_CardInfo_list[9];
+            case "LB_W02_11T":
+                return LB_W02_T_CardInfo_list[10];
+            case "LB_W02_12T":
+                return LB_W02_T_CardInfo_list[11];
+            case "LB_W02_13T":
+                return LB_W02_T_CardInfo_list[12];
+            case "LB_W02_14T":
+                return LB_W02_T_CardInfo_list[13];
+            case "LB_W02_15T":
+                return LB_W02_T_CardInfo_list[14];
+            case "LB_W02_16T":
+                return LB_W02_T_CardInfo_list[15];
+            case "LB_W02_17T":
+                return LB_W02_T_CardInfo_list[16];
+            case "LB_W02_18T":
+                return LB_W02_T_CardInfo_list[17];
+            case "LB_W02_19T":
+                return LB_W02_T_CardInfo_list[18];
+            case "LB_W02_20T":
+                return LB_W02_T_CardInfo_list[19];
             default:
                 return null;
         }
