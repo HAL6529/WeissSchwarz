@@ -161,9 +161,29 @@ public class MyMainCardsManager : MonoBehaviour
         return num;
     }
 
+    public List<List<EnumController.Attribute>> GetFieldAttributeList()
+    {
+        List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].AttributeList);
+        }
+        return list;
+    }
+
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();
+    }
+
+    public List<int> GetFieldLevel()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldLevel());
+        }
+        return list;
     }
 
     public List<int> GetFieldPower()
@@ -172,6 +192,16 @@ public class MyMainCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             list.Add(CardList[i].GetFieldPower());
+        }
+        return list;
+    }
+
+    public List<int> GetFieldSoul()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldSoul());
         }
         return list;
     }

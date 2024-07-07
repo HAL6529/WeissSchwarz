@@ -23,6 +23,21 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     private int FieldPower = 0;
 
     /// <summary>
+    /// フィールド上でのソウル
+    /// </summary>
+    public int FieldSoul = 0;
+
+    /// <summary>
+    /// フィールド上でのレベル
+    /// </summary>
+    public int FieldLevel = 0;
+
+    /// <summary>
+    /// フィールド上での特徴
+    /// </summary>
+    public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
+
+    /// <summary>
     /// 大活躍をもっているか
     /// </summary>
     public bool isGreatPerformance = false;
@@ -57,7 +72,14 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
 
     public void onClick()
     {
-        m_BattleModeGuide.showImage(m_BattleModeCard);
+        // ---ここからカードのガイド用---
+        BattleModeCard t_BattleModeCard = new BattleModeCard();
+        t_BattleModeCard.power = FieldPower;
+        t_BattleModeCard.soul = FieldSoul;
+        t_BattleModeCard.level = FieldLevel;
+
+        m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
+        // ---ここまでカードのガイド用---
     }
 
     public void Rest()
@@ -93,10 +115,20 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         return state;
     }
 
+    public void SetFieldLevel(int level)
+    {
+        FieldLevel = level;
+    }
+
     public void SetFieldPower(int power)
     {
         FieldPower = power;
         PowerText.text = FieldPower.ToString();
+    }
+
+    public void SetFieldSoul(int soul)
+    {
+        FieldSoul = soul;
     }
 
     public void SetIsGreatProcess(bool b)

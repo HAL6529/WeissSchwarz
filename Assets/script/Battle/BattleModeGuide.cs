@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EnumController;
+using ExtendUtil;
 using CardNoToCardInfo;
 
 public class BattleModeGuide : MonoBehaviour
@@ -14,6 +15,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text cost;
     [SerializeField] Text power;
     [SerializeField] Text soulIndex;
+    [SerializeField] Text attribute;
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
 
@@ -30,7 +32,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite stock;
     [SerializeField] Sprite treasure;
     CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
-
+    ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +77,28 @@ public class BattleModeGuide : MonoBehaviour
             power.text = null;
             soulIndex.text = null;
         }
+
+        if (card.type == EnumController.Type.CHARACTER)
+        {
+            if (card.attribute.Count > 0)
+            {
+                for (int i = 0; i < card.attribute.Count; i++)
+                {
+                    attribute.text = "";
+                    attribute.text += "<" + m_ExtendUtil.AttributeConvertToString(card.attribute[i]) + ">";
+                }
+            }
+            else
+            {
+                attribute.text = "<特徴なし>";
+            }
+        }
+        else
+        {
+            attribute.text = "";
+        }
+
+ 
 
         explanation.text = m_CardNoToExplanation.Explanation(card.cardNo);
 
@@ -153,7 +177,65 @@ public class BattleModeGuide : MonoBehaviour
             Trigger2.color = new Color(1, 1, 1, 1);
         }
 
+        level.color = new Color(0, 0, 0, 1);
+        power.color = new Color(0, 0, 0, 1);
+        soulIndex.color = new Color(0, 0, 0, 1);
         // 画面を整える
         Canvas.ForceUpdateCanvases();
+    }
+
+    /// <summary>
+    /// 手札やフィールドでステータスが変わっている場合に利用
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="NowCard">手札やフィールドの現状のカード情報</param>
+    public void showImage(BattleModeCard card, BattleModeCard NowCard)
+    {
+        showImage(card);
+
+        // levelが元々と異なっていた場合
+        if(card.level > NowCard.level)
+        {
+            level.color = new Color(1, 0, 0, 1);
+        }else if(card.level == NowCard.level)
+        {
+            level.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            level.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        // powerが元々と異なっていた場合
+        if (card.power > NowCard.power)
+        {
+            power.color = new Color(1, 0, 0, 1);
+        }
+        else if (card.power == NowCard.power)
+        {
+            power.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            power.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        // soulが元々と異なっていた場合
+        if (card.soul > NowCard.soul)
+        {
+            soulIndex.color = new Color(1, 0, 0, 1);
+        }
+        else if (card.soul == NowCard.soul)
+        {
+            soulIndex.color = new Color(0, 0, 0, 1);
+        }
+        else
+        {
+            soulIndex.color = new Color(0, 140f / 255f, 0, 1);
+        }
+
+        level.text = NowCard.level.ToString();
+        power.text = NowCard.power.ToString();
+        soulIndex.text = NowCard.soul.ToString();
     }
 }

@@ -1190,7 +1190,9 @@ public class GameManager : MonoBehaviour
         // メインのカードの更新
         // パワー、レベル、特徴の計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
-        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldPower(), m_MyMainCardsManager.GetIsGreatPerformance(), isFirstAttacker);
+        m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldLevel(), m_MyMainCardsManager.GetFieldPower(), m_MyMainCardsManager.GetFieldSoul(), m_MyMainCardsManager.GetIsGreatPerformance(), isFirstAttacker);
+        // 特徴の同期
+        m_BattleStrix.SendUpdateMainCardsAttribute(m_MyMainCardsManager.GetFieldAttributeList(), isFirstAttacker);
     }
 
     public void UpdateEnemyDeckCount(int num)
@@ -1235,7 +1237,7 @@ public class GameManager : MonoBehaviour
         return;
     }
 
-    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldPowerList, List<bool> IsGreatProcessList)
+    public void UpdateEnemyMainCards(List<BattleModeCardTemp> list, List<int> FieldLevelList, List<int> FieldPowerList, List<int> FieldSoulList, List<bool> IsGreatProcessList)
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -1248,8 +1250,15 @@ public class GameManager : MonoBehaviour
             enemyFieldList[i] = b;
         }
         m_EnemyMainCardsManager.updateEnemyFieldCards(enemyFieldList);
+        m_EnemyMainCardsManager.SetFieldLevel(FieldLevelList);
         m_EnemyMainCardsManager.SetFieldPower(FieldPowerList);
+        m_EnemyMainCardsManager.SetFieldSoul(FieldSoulList);
         m_EnemyMainCardsManager.SetIsGreatProcessList(IsGreatProcessList);
+    }
+
+    public void UpdateEnemyMainCardsAttribute(List<EnumController.Attribute> list, int place)
+    {
+        m_EnemyMainCardsManager.SetFieldAttribute(list, place);
     }
 
     public void UpdateEnemyMemoryCards(List<BattleModeCardTemp> list)
