@@ -82,11 +82,16 @@ public class BattleModeGuide : MonoBehaviour
         {
             if (card.attribute.Count > 0)
             {
+                string attributeText = "";
                 for (int i = 0; i < card.attribute.Count; i++)
                 {
-                    attribute.text = "";
-                    attribute.text += "<" + m_ExtendUtil.AttributeConvertToString(card.attribute[i]) + ">";
+                    attributeText = attributeText + "<" + m_ExtendUtil.AttributeConvertToString(card.attribute[i]) + ">";
+                    if(i < card.attribute.Count - 1)
+                    {
+                        attributeText = attributeText + ",";
+                    }
                 }
+                attribute.text = attributeText;
             }
             else
             {
