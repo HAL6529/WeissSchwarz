@@ -303,17 +303,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             return;
         }
-        /*//テスト用
-        Debug.Log(m_GameManager.myDeckList.Count);
-        int c = m_GameManager.myDeckList.Count;
-        for (int i = 0; i < c - 1; i++)
-        {
-            m_GameManager.GraveYardList.Add(m_GameManager.myDeckList[0]);
-            m_GameManager.myDeckList.RemoveAt(0);
-        }
-        m_GameManager.myDeckList[0] = m_GameManager.test;
-        m_GameManager.Syncronize();
-        */
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
@@ -327,17 +316,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             return;
         }
-        /*//テスト用
-        Debug.Log(m_GameManager.myDeckList.Count);
-        int c = m_GameManager.myDeckList.Count;
-        for (int i = 0; i < c - 1; i++)
-        {
-            m_GameManager.GraveYardList.Add(m_GameManager.myDeckList[0]);
-            m_GameManager.myDeckList.RemoveAt(0);
-        }
-        m_GameManager.myDeckList[0] = m_GameManager.test;
-        m_GameManager.Syncronize();
-        */
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
@@ -351,17 +329,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             return;
         }
-        /*//テスト用
-        Debug.Log(m_GameManager.myDeckList.Count);
-        int c = m_GameManager.myDeckList.Count;
-        for (int i = 0; i < c - 1; i++)
-        {
-            m_GameManager.GraveYardList.Add(m_GameManager.myDeckList[0]);
-            m_GameManager.myDeckList.RemoveAt(0);
-        }
-        m_GameManager.myDeckList[0] = m_GameManager.test;
-        m_GameManager.Syncronize();
-        */
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
