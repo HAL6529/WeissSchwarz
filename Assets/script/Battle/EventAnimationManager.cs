@@ -10,6 +10,8 @@ public class EventAnimationManager : MonoBehaviour
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] Image m_image;
     [SerializeField] Image m_image2;
     [SerializeField] GameObject m_gameObject;
@@ -18,6 +20,18 @@ public class EventAnimationManager : MonoBehaviour
     private static int NormalAnimationLayerIndex = 0;
 
     private BattleModeCard m_BattleModeCard = null;
+
+    private int place = -1;
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart(BattleModeCard card, int place)
+    {
+        this.place = place;
+        AnimationStart(card);
+    }
 
     /// <summary>
     /// イベントを再生したプレイヤー用
@@ -44,6 +58,12 @@ public class EventAnimationManager : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A07:
                 m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
                 break;
+            case EnumController.CardNo.DC_W01_01T:
+                // 【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
+                m_MyMainCardsManager.CallOnRest(place);
+                m_GameManager.Syncronize();
+                m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
+                break;
             case EnumController.CardNo.LB_W02_16T:
                 if (m_GameManager.myClockList.Count == 0)
                 {
@@ -62,6 +82,8 @@ public class EventAnimationManager : MonoBehaviour
             default:
                 break;
         }
+
+        place = -1;
     }
 
     /// <summary>

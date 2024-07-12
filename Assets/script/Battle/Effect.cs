@@ -89,11 +89,18 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW, card, num);
                 }
                 return;
+            case EnumController.CardNo.DC_W01_01T:
+                if (ConfirmStockForCost(0))
+                {
+                    // 【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T, card, num);
+                }
+                return;
             // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
             case EnumController.CardNo.DC_W01_04T:
                 if (ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_POWER_UP_2000, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T, card, num);
                 }
                 return;
             // [(1)］ このカードを思い出にする。
