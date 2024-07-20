@@ -77,6 +77,7 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         t_BattleModeCard.power = FieldPower;
         t_BattleModeCard.soul = FieldSoul;
         t_BattleModeCard.level = FieldLevel;
+        t_BattleModeCard.attribute = AttributeList;
 
         m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
         // ---ここまでカードのガイド用---

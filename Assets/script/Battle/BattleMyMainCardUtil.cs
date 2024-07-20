@@ -42,6 +42,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public int FieldLevel = 0;
 
     /// <summary>
+    /// ターン終了時まで追加される特徴クラス
+    /// </summary>
+    public AttributeInstance.AttributeUpUntilTurnEnd m_AttributeUpUntilTurnEnd = new AttributeInstance.AttributeUpUntilTurnEnd();
+
+    /// <summary>
     /// フィールド上での特徴
     /// </summary>
     public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
@@ -128,7 +133,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeCard = card;
         if(card != null)
         {
-            AttributeList = card.attribute;
+            AttributeListReset();
             isGreatPerformance = card.isGreatPerformance;
         }
 
@@ -175,6 +180,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         t_BattleModeCard.power = FieldPower;
         t_BattleModeCard.soul = FieldSoul;
         t_BattleModeCard.level = FieldLevel;
+        t_BattleModeCard.attribute = AttributeList;
 
         m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
         // ---ここまでカードのガイド用---
@@ -405,6 +411,33 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
     }
 
+    public void ResetAttributeUpUntilTurnEnd()
+    {
+        m_AttributeUpUntilTurnEnd = new AttributeInstance.AttributeUpUntilTurnEnd();
+    }
+
+    /// <summary>
+    /// フィールド上の特徴の計算
+    /// </summary>
+    public void AttributeUpdate()
+    {
+        if (m_BattleModeCard == null)
+        {
+            AttributeList = new List<EnumController.Attribute>();
+            return;
+        }
+
+        AttributeListReset();
+        for (int i = 0; i < m_AttributeUpUntilTurnEnd.AttributeList.Count; i++)
+        {
+            if (!HaveAttribute(m_AttributeUpUntilTurnEnd.AttributeList[i]))
+            {
+                AttributeList.Add(m_AttributeUpUntilTurnEnd.AttributeList[i]);
+                Debug.Log("added" + m_AttributeUpUntilTurnEnd.AttributeList[i]);
+            }
+        }
+    }
+
     /// <summary>
     /// フィールド上のレベルの計算
     /// </summary>
@@ -548,6 +581,35 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// フィールド上で検索対象の特徴を持っているか調べる
+    /// </summary>
+    /// <param name="list"></param>
+    /// <returns></returns>
+    public bool HaveAttribute(EnumController.Attribute attribute)
+    {
+        for (int r = 0; r < AttributeList.Count; r++)
+        {
+            if (AttributeList[r] == attribute)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void AttributeListReset()
+    {
+        AttributeList = new List<EnumController.Attribute>();
+        for (int i = 0; i < m_BattleModeCard.attribute.Count; i++)
+        {
+            if (!HaveAttribute(m_BattleModeCard.attribute[i]))
+            {
+                AttributeList.Add(m_BattleModeCard.attribute[i]);
+            }
+        }
     }
 
     public BattleModeCard getBattleModeCard()

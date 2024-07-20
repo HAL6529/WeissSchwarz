@@ -184,6 +184,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 break;
@@ -278,6 +281,10 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 2000);
                 m_GameManager.Syncronize();
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 m_EffectSendMemory.SendFieldToMemory(ParamaterNum1);
