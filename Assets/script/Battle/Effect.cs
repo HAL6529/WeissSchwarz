@@ -103,11 +103,19 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T, card, num);
                 }
                 return;
-            // [(1)］ このカードを思い出にする。
+            // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
+            // 【起】［(1)］ このカードを思い出にする。
             case EnumController.CardNo.LB_W02_02T:
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY, card, num);
+                }
+                return;
+            // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
+            case EnumController.CardNo.LB_W02_05T:
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T, card, num);
                 }
                 return;
             default:

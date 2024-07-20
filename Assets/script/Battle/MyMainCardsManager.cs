@@ -132,6 +132,7 @@ public class MyMainCardsManager : MonoBehaviour
             CardList[i].LevelUpdate();
             CardList[i].PowerUpdate();
             CardList[i].SoulUpdate();
+            CardList[i].AttributeUpdate();
         }
     }
 
@@ -241,6 +242,26 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[place].m_PowerUpUntilTurnEnd = paramater;
     }
 
+    public void AddAttributeUpUntilTurnEnd(int place, EnumController.Attribute attribute)
+    {
+        CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(attribute);
+    }
+
+    public AttributeInstance.AttributeUpUntilTurnEnd GetAttributeUpUntilTurnEnd(int place)
+    {
+        return CardList[place].m_AttributeUpUntilTurnEnd;
+    }
+
+    public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)
+    {
+        CardList[place].m_AttributeUpUntilTurnEnd = paramater;
+    }
+
+    public void SetAttributeUpUntilTurnEnd(int place, EnumController.Attribute paramater)
+    {
+        CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(paramater);
+    }
+
     public void ExecuteAttack2(int num, EnumController.Attack status)
     {
         CardList[num].Attack2(status);
@@ -251,6 +272,14 @@ public class MyMainCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].ResetPowerUpUntilTurnEnd();
+        }
+    }
+
+    public void ExecuteResetAttributeUpUntilTurnEnd()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetAttributeUpUntilTurnEnd();
         }
     }
 }

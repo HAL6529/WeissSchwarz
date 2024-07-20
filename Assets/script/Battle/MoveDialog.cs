@@ -60,6 +60,10 @@ public class MoveDialog : MonoBehaviour
             m_MyMainCardsManager.SetPowerUpUntilTurnEnd(selectedPlace, m_MyMainCardsManager.GetPowerUpUntilTurnEnd(place));
             m_MyMainCardsManager.SetPowerUpUntilTurnEnd(place, t_PowerUpUntilTurnEnd);
 
+            AttributeInstance.AttributeUpUntilTurnEnd t_AttributeUpUntilTurnEnd = m_MyMainCardsManager.GetAttributeUpUntilTurnEnd(selectedPlace);
+            m_MyMainCardsManager.SetAttributeUpUntilTurnEnd(selectedPlace, m_MyMainCardsManager.GetAttributeUpUntilTurnEnd(place));
+            m_MyMainCardsManager.SetAttributeUpUntilTurnEnd(place, t_AttributeUpUntilTurnEnd);
+
             m_GameManager.Syncronize();
         }
         OffMainDialog();

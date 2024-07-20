@@ -660,8 +660,11 @@ public class GameManager : MonoBehaviour
 
     public void SwitchTurnUtil()
     {
+        Debug.Log("SwitchTurnUtil");
         // ターン終了時まで上がるパワーをリセット
         m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
+        // ターン終了時まで上がる特徴をリセット
+        m_MyMainCardsManager.ExecuteResetAttributeUpUntilTurnEnd();
         Syncronize();
 
         isTurnPlayer = !isTurnPlayer;

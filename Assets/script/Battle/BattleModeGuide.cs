@@ -242,5 +242,32 @@ public class BattleModeGuide : MonoBehaviour
         level.text = NowCard.level.ToString();
         power.text = NowCard.power.ToString();
         soulIndex.text = NowCard.soul.ToString();
+
+        if (card.type == EnumController.Type.CHARACTER)
+        {
+            if (NowCard.attribute.Count > 0)
+            {
+                string attributeText = "";
+                for (int i = 0; i < NowCard.attribute.Count; i++)
+                {
+                    attributeText = attributeText + "<" + m_ExtendUtil.AttributeConvertToString(NowCard.attribute[i]) + ">";
+                    if (i < NowCard.attribute.Count - 1)
+                    {
+                        attributeText = attributeText + ",";
+                    }
+                }
+                attribute.text = attributeText;
+            }
+            else
+            {
+                attribute.text = "<“Á’¥‚È‚µ>";
+            }
+        }
+        else
+        {
+            attribute.text = "";
+        }
+        // ‰æ–Ê‚ğ®‚¦‚é
+        Canvas.ForceUpdateCanvases();
     }
 }
