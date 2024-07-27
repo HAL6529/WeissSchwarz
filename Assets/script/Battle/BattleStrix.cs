@@ -571,6 +571,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void UpdateMainCardsState(List<EnumController.State> list, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.UpdateEnemyMainCardsState(list);
+        }
+    }
+
+    [StrixRpc]
     public void UpdateMainCardsAttribute(List<EnumController.Attribute> list, int place, bool isFirstAttacker)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
