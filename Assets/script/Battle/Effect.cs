@@ -202,6 +202,13 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A02:
                 m_GameManager.m_DialogManager.CharacterSelectDialog(m_GameManager.myFieldList, place, status);
                 return true;
+            case EnumController.CardNo.LB_W02_03T:
+                /*if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.LB_W02_10T)
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T, card, place);
+                    return true;
+                }*/
+                return false;
             default:
                 return false;
         }

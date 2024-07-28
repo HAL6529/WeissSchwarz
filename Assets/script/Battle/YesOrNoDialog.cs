@@ -184,6 +184,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
                 break;
@@ -275,12 +278,18 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 3000);
+                m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                 m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 2000);
                 m_GameManager.Syncronize();
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard);

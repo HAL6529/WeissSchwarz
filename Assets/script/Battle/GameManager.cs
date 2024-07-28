@@ -1196,6 +1196,14 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldLevel(), m_MyMainCardsManager.GetFieldPower(), m_MyMainCardsManager.GetFieldSoul(), m_MyMainCardsManager.GetIsGreatPerformance(), isFirstAttacker);
         // 特徴の同期
         m_BattleStrix.SendUpdateMainCardsAttribute(m_MyMainCardsManager.GetFieldAttributeList(), isFirstAttacker);
+
+        // ステータスの同期
+        List<EnumController.State> stateList = new List<EnumController.State>();
+        for(int i = 0; i < 5; i++)
+        {
+            stateList.Add(m_MyMainCardsManager.GetState(i));
+        }
+        m_BattleStrix.RpcToAll("UpdateMainCardsState", stateList, isFirstAttacker);
     }
 
     public void UpdateEnemyDeckCount(int num)
@@ -1262,6 +1270,25 @@ public class GameManager : MonoBehaviour
     public void UpdateEnemyMainCardsAttribute(List<EnumController.Attribute> list, int place)
     {
         m_EnemyMainCardsManager.SetFieldAttribute(list, place);
+    }
+
+    public void UpdateEnemyMainCardsState(List<EnumController.State> list)
+    {
+        for(int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == EnumController.State.REST)
+            {
+                m_EnemyMainCardsManager.CallRest(i);
+            }
+            else if (list[i] == EnumController.State.REVERSE)
+            {
+                m_EnemyMainCardsManager.CallReverse(i);
+            }
+            else
+            {
+                m_EnemyMainCardsManager.CallStand(i);
+            }
+        }
     }
 
     public void UpdateEnemyMemoryCards(List<BattleModeCardTemp> list)
