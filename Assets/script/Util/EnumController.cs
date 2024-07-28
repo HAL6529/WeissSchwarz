@@ -263,6 +263,7 @@ namespace EnumController
         COST_CONFIRM_DC_W01_04T,
         COST_CONFIRM_LB_W02_03T,
         COST_CONFIRM_LB_W02_05T,
+        COST_CONFIRM_LB_W02_17T,
         COST_CONFIRM_SEND_MEMORY,
     }
 

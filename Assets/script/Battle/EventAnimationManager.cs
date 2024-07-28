@@ -23,6 +23,14 @@ public class EventAnimationManager : MonoBehaviour
 
     private int place = -1;
 
+    private bool isFromRPC = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+    }
+
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
@@ -31,7 +39,6 @@ public class EventAnimationManager : MonoBehaviour
     {
         this.place = place;
         AnimationStart(card);
-        Debug.Log("AnimationStart");
     }
 
     /// <summary>
@@ -40,12 +47,12 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card)
     {
+        isFromRPC = false;
         m_gameObject.SetActive(true);
 
         m_BattleModeCard = card;
         m_image.sprite = card.sprite;
         m_image2.sprite = card.sprite;
-        animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
@@ -54,6 +61,11 @@ public class EventAnimationManager : MonoBehaviour
     private void AnimationEnd()
     {
         m_gameObject.SetActive(false);
+        if (isFromRPC)
+        {
+            place = -1;
+            return;
+        }
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A07:
@@ -104,11 +116,18 @@ public class EventAnimationManager : MonoBehaviour
                 }
                 m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
                 break;
+            case EnumController.CardNo.LB_W02_17T:
+                //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                m_GameManager.Syncronize();
+                m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
+                break;
             default:
                 break;
         }
 
-        //place = -1;
+        place = -1;
     }
 
     /// <summary>
@@ -118,13 +137,12 @@ public class EventAnimationManager : MonoBehaviour
     public void AnimationStartForRPC(BattleModeCardTemp card)
     {
         BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(card.cardNo);
-
+        isFromRPC = true;
         m_gameObject.SetActive(true);
 
         m_BattleModeCard = b;
         m_image.sprite = b.sprite;
         m_image2.sprite = b.sprite;
-        animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEndForRPC());
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);

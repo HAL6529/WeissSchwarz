@@ -22,6 +22,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_17T;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
@@ -154,6 +155,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_DC_W01_04T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_03T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_05T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_17T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_17T;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
@@ -220,6 +222,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_04T = "次の能力を使用しますか。:" + "【起】［(1)］ そのターン中、このカードのパワーを＋2000。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_03T = "次の能力を使用しますか。:" + "このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_05T = "次の能力を使用しますか。:" + "【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_17T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
