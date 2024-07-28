@@ -262,6 +262,11 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(paramater);
     }
 
+    public bool HaveAttribute(int place, EnumController.Attribute paramater)
+    {
+        return CardList[place].HaveAttribute(paramater);
+    }
+
     public void ExecuteAttack2(int num, EnumController.Attack status)
     {
         CardList[num].Attack2(status);

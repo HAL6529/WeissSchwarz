@@ -51,8 +51,8 @@ public class MainPowerUpDialog : MonoBehaviour
     public void SetBattleMordCard(BattleModeCard card)
     {
         ResetSelectZone();
-
-        for(int i = 0; i < m_GameManager.myFieldList.Count; i++)
+        m_BattleModeCard = card;
+        for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
         {
             if (m_GameManager.myFieldList[i] == null)
             {
@@ -65,8 +65,23 @@ public class MainPowerUpDialog : MonoBehaviour
                 buttons[i].interactable = true;
             }
         }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_17T:
+                for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
+                {
+                    // “®•¨‚Ì“Á’¥‚ðŽ‚Á‚Ä‚¢‚È‚¢ƒLƒƒƒ‰‚ð”ñŠˆ«‚É
+                    if (!m_MyMainCardsManager.HaveAttribute(i, EnumController.Attribute.Animal))
+                    {
+                        buttons[i].interactable = false;
+                    }
+                }
+                break;
+            default: 
+                break;
+        }
         this.gameObject.SetActive(true);
-        m_BattleModeCard = card;
     }
 
     /// <summary>
@@ -100,6 +115,10 @@ public class MainPowerUpDialog : MonoBehaviour
         {
             case EnumController.CardNo.DC_W01_01T:
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1000);
+                m_GameManager.Syncronize();
+                break;
+            case EnumController.CardNo.LB_W02_17T:
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 500);
                 m_GameManager.Syncronize();
                 break;
             default:
