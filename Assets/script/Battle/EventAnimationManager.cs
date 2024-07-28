@@ -31,6 +31,7 @@ public class EventAnimationManager : MonoBehaviour
     {
         this.place = place;
         AnimationStart(card);
+        Debug.Log("AnimationStart");
     }
 
     /// <summary>
@@ -67,15 +68,13 @@ public class EventAnimationManager : MonoBehaviour
             case EnumController.CardNo.LB_W02_03T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、
                 // ストック置場に置き、そのターン中、このカードのパワーを＋3000。
-                m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                /*m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
                 m_GameManager.myDeckList.RemoveAt(0);
-
+                m_GameManager.Syncronize();
                 if (m_GameManager.myDeckList.Count == 0)
                 {
                     m_GameManager.Refresh();
-                }
-
-                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 3000);
+                }*/
                 break;
             case EnumController.CardNo.LB_W02_05T:
                 // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
@@ -109,7 +108,7 @@ public class EventAnimationManager : MonoBehaviour
                 break;
         }
 
-        place = -1;
+        //place = -1;
     }
 
     /// <summary>
