@@ -92,11 +92,21 @@ public class GameManager : MonoBehaviour
     private EnumController.Trigger trigger = EnumController.Trigger.VOID;
 
     /// <summary>
+    /// テストの際に使うトリガー用 BattleModeDeckで書き換える
+    /// </summary>
+    public BattleModeCard testTrigger = null;
+
+    /// <summary>
     /// ダメージを受けた時どれだけショット効果が蓄積されているか
     /// </summary>
-    private List<EnumController.Shot> ReceiveShotList = new List<EnumController.Shot>();
+    public List<EnumController.Shot> ReceiveShotList = new List<EnumController.Shot>();
 
     public List<EnumController.Shot> SendShotList = new List<EnumController.Shot>();
+
+    /// <summary>
+    /// 次に行うActionList
+    /// </summary>
+    public List<Action> ActionList = new List<Action>();
 
     public ExecuteAction m_ExecuteAction = new ExecuteAction();
 
@@ -128,6 +138,14 @@ public class GameManager : MonoBehaviour
         enemyBattleGraveYardUtil.setBattleModeCard(null);
     }
 
+    public void ExecuteActionList()
+    {
+        if(ActionList.Count > 0)
+        {
+            m_DialogManager.SelectActionDialog(ActionList);
+        }
+    }
+
     public void AttackStart()
     {
 
@@ -147,8 +165,7 @@ public class GameManager : MonoBehaviour
 
             if (LevelUpCheck())
             {
-                m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-                m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
+                ActionList.Add(new Action(this, EnumController.Action.ClockAndTwoDraw));
                 return;
             }
 
@@ -227,12 +244,11 @@ public class GameManager : MonoBehaviour
     {
         myHandList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
+        Syncronize();
         if (myDeckList.Count == 0)
         {
             Refresh();
         }
-
-        Syncronize();
     }
 
     public void DrawPhaseStart()
@@ -326,10 +342,9 @@ public class GameManager : MonoBehaviour
 
     public void PowerCheck(int num)
     {
-        Debug.Log("PowerCheck");
+        int myPlace = num;
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
         int enemyPlace = -1;
-        int myPlace = num;
         int enemyPower = -1;
 
         switch (num)
@@ -354,6 +369,8 @@ public class GameManager : MonoBehaviour
             {
                 myPlace = 1;
                 myPower = m_MyMainCardsManager.GetFieldPower(myPlace);
+                Debug.Log("myPlace:" + myPlace);
+                Debug.Log("enemyPlace:" + enemyPlace);
                 if (myPower > enemyPower)
                 {
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
@@ -377,6 +394,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        Debug.Log("myPlace:" + myPlace);
+        Debug.Log("enemyPlace:" + enemyPlace);
         if (myPower > enemyPower)
         {
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
@@ -387,38 +406,24 @@ public class GameManager : MonoBehaviour
         {
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            m_MyMainCardsManager.CallOnReverse(num);
-            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            m_MyMainCardsManager.CallOnReverse(myPlace);
+            m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
             return;
         }
         else
         {
-            m_MyMainCardsManager.CallOnReverse(num);
-            m_BattleStrix.RpcToAll("CallEnemyReverse", num, isTurnPlayer);
+            m_MyMainCardsManager.CallOnReverse(myPlace);
+            m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
             return;
         }
     }
 
     public void PowerCheckForLevelUpDialog(int place)
     {
-        int placeNum = -1;
-        switch (place)
+        if(place > -1)
         {
-            case 0:
-                placeNum = 2;
-                break;
-            case 1:
-                placeNum = 1;
-                break;
-            case 2:
-                placeNum = 0;
-                break;
-            default:
-                placeNum = 0;
-                break;
+            PowerCheck(place);
         }
-
-        PowerCheck(placeNum);
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
     }
 
@@ -582,75 +587,15 @@ public class GameManager : MonoBehaviour
         Shuffle();
         myClockList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
-
         Syncronize();
 
         if (LevelUpCheck())
         {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
-            return;
-        }
-    }
-
-    /// <summary>
-    /// DamageForFrontAttack2ForDamagedから呼ばれる用
-    /// </summary>
-    /// <param name="placeNum"></param>
-    private void Refresh(int placeNum)
-    {
-        for (int i = 0; i < GraveYardList.Count; i++)
-        {
-            myDeckList.Add(GraveYardList[i]);
-        }
-        GraveYardList = new List<BattleModeCard>();
-        Shuffle();
-        myClockList.Add(myDeckList[0]);
-        myDeckList.RemoveAt(0);
-
-        Syncronize();
-
-        if (LevelUpCheck(placeNum))
-        {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            // Refresh後はActionは必要ないと思われる
             return;
         }
 
-        PowerCheck(placeNum);
-
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
-    }
-
-    /// <summary>
-    /// Damage2ForCancel,DamageForFrontAttack2ForCancelから呼び出される用
-    /// </summary>
-    private void RefreshForCancel()
-    {
-        for (int i = 0; i < GraveYardList.Count; i++)
-        {
-            myDeckList.Add(GraveYardList[i]);
-        }
-        GraveYardList = new List<BattleModeCard>();
-        Shuffle();
-        myClockList.Add(myDeckList[0]);
-        myDeckList.RemoveAt(0);
-
-        Syncronize();
-
-        if (LevelUpCheck())
-        {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-            m_DialogManager.SetIsClockAndTwoDrawProcessOfLevelUpDialog();
-            return;
-        }
-
-        if (this.ReceiveShotList.Count > 0)
-        {
-            ReceiveShotList.RemoveAt(0);
-            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
-            return;
-        }
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+        ExecuteActionList();
     }
 
     public void SendEncoreDialogFromRPC()
@@ -714,7 +659,7 @@ public class GameManager : MonoBehaviour
                 SendShotList.Add(EnumController.Shot.SHOT);
                 break;
             case EnumController.Trigger.POOL:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage, num);
                 return;
             default:
                 break;
@@ -725,6 +670,7 @@ public class GameManager : MonoBehaviour
 
     public void onSideAttack(int num)
     {
+        Debug.Log("SideAttack");
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
         int minus = 0;
         switch (num)
@@ -817,43 +763,20 @@ public class GameManager : MonoBehaviour
         isLastTrigger = false;
     }
 
-    public void Damage(int num, EnumController.Damage damage, List<EnumController.Shot> ReceiveShotList)
+    public void DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
     {
-        List<BattleModeCard> temp = new List<BattleModeCard>();
-        this.ReceiveShotList = ReceiveShotList;
-        if (num <= 0)
+        // ここからテスト用
+        for(int m = 0; m < myDeckList.Count - 1; m++)
         {
-            m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
-            return;
+            GraveYardList.Add(myDeckList[m]);
         }
-
-        for (int i = 0; i < num; i++)
-        {
-            temp.Add(myDeckList[0]);
-            if (myDeckList[0].type == EnumController.Type.CLIMAX)
-            {
-                // ダメージアニメーションの再生
-                m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
-                m_DamageAnimationDialog.SetBattleModeCard(temp);
-                return;
-            }
-            myDeckList.RemoveAt(0);
-
-            Syncronize();
-            if (myDeckList.Count == 0)
-            {
-                Refresh();
-            }
-        }
-        // ダメージアニメーションの再生
-        m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
-        m_DamageAnimationDialog.SetBattleModeCard(temp);
-        this.ReceiveShotList = new List<EnumController.Shot>();
-        return;
-    }
-
-    public void DamageForFrontAttack(int damage, int place)
-    {
+        List<BattleModeCard> t = new List<BattleModeCard>();
+        t.Add(myDeckList[myDeckList.Count - 1]);
+        myDeckList = t;
+        Debug.Log("myDeckList.Count:" + myDeckList.Count);
+        Debug.Log("myDeckList[0]:" + myDeckList[0]);
+        Syncronize();
+        // ここまでテスト用
         List<BattleModeCard> temp = new List<BattleModeCard>();
         int placeNum = -1;
         switch (place)
@@ -868,11 +791,11 @@ public class GameManager : MonoBehaviour
                 placeNum = 0;
                 break;
             default:
-                placeNum = 0;
+                placeNum = -1;
                 break;
         }
-
-        if (damage <= 0)
+        Debug.Log("placeNum:" + placeNum);
+        if (damage <= 0 && placeNum > -1)
         {
             PowerCheck(placeNum);
             m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
@@ -886,51 +809,61 @@ public class GameManager : MonoBehaviour
             {
                 // ダメージアニメーションの再生
                 m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
-                m_DamageAnimationDialog.SetBattleModeCard(temp, place);
-                return;
+                if(placeNum == -1)
+                {
+                    // SideAttackまたはDirectAttack用
+                    m_DamageAnimationDialog.SetBattleModeCard(temp, -1);
+                    return;
+                }else
+                {
+                    // FrontAttack用
+                    m_DamageAnimationDialog.SetBattleModeCard(temp, place);
+                    return;
+                }
             }
             myDeckList.RemoveAt(0);
 
             Syncronize();
             if (myDeckList.Count == 0)
             {
-                Refresh();
+                if (GraveYardList.Count == 0)
+                {
+                    // 控室が0枚なら負け扱い
+                    m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
+                    m_WinAndLose.Lose();
+                    return;
+                }
+
+                for (int n = 0; n < GraveYardList.Count; n++)
+                {
+                    myDeckList.Add(GraveYardList[n]);
+                }
+                GraveYardList = new List<BattleModeCard>();
+                Shuffle();
+                Syncronize();
+                Action action = new Action(this, EnumController.Action.DamageRefresh);
+                action.SetParamaterBattleStrix(m_BattleStrix);
+                action.SetParamaterWinAndLose(m_WinAndLose);
+
+                ActionList.Add(action);
             }
         }
         // ダメージアニメーションの再生
         m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
-        m_DamageAnimationDialog.SetBattleModeCard(temp, place);
-        this.ReceiveShotList = new List<EnumController.Shot>();
-        return;
-    }
-
-
-    /// <summary>
-    /// ダメージアニメーションが呼ばれた後呼ばれる処理（ダメージキャンセル処理）
-    /// </summary>
-    /// <param name="tempList"></param>
-    public void Damage2ForCancel(List<BattleModeCard> tempList)
-    {
-        myDeckList.RemoveAt(0);
-        for (int n = 0; n < tempList.Count; n++)
+        if (placeNum == -1)
         {
-            GraveYardList.Add(tempList[n]);
-        }
-        Syncronize();
-        if (myDeckList.Count == 0)
-        {
-            RefreshForCancel();
-        }
-
-        if (this.ReceiveShotList.Count > 0)
-        {
-            Debug.Log("キャンセル処理が呼ばれた");
-            ReceiveShotList.RemoveAt(0);
-            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
+            // SideAttackまたはDirectAttack用
+            m_DamageAnimationDialog.SetBattleModeCard(temp, -1);
+            this.ReceiveShotList = new List<EnumController.Shot>();
             return;
         }
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
-        return;
+        else
+        {
+            // FrontAttack用
+            m_DamageAnimationDialog.SetBattleModeCard(temp, place);
+            this.ReceiveShotList = new List<EnumController.Shot>();
+            return;
+        }
     }
 
     /// <summary>
@@ -953,7 +886,7 @@ public class GameManager : MonoBehaviour
                 placeNum = 0;
                 break;
             default:
-                placeNum = 0;
+                placeNum = -1;
                 break;
         }
 
@@ -964,48 +897,17 @@ public class GameManager : MonoBehaviour
         }
         Syncronize();
 
-        if (myDeckList.Count == 0)
-        {
-            RefreshForCancel();
-        }
-
-        PowerCheck(placeNum);
-        if (this.ReceiveShotList.Count > 0)
-        {
-            Debug.Log("キャンセル処理が呼ばれた");
-            ReceiveShotList.RemoveAt(0);
-            m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
-            return;
-        }
-
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
-    }
-
-    /// <summary>
-    /// ダメージアニメーションが呼ばれた後呼ばれる処理（ダメージを受ける処理）
-    /// </summary>
-    /// <param name="tempList"></param>
-    public void Damage2ForDamaged(List<BattleModeCard> tempList)
-    {
-        for (int n = 0; n < tempList.Count; n++)
-        {
-            myClockList.Add(tempList[n]);
-        }
-        Syncronize();
+        Action action = new Action(this, EnumController.Action.DamageForFrontAttack2ForCancel);
+        action.SetParamaterNum(placeNum);
+        action.SetParamaterBattleStrix(m_BattleStrix);
+        ActionList.Add(action);
 
         if (myDeckList.Count == 0)
         {
             Refresh();
             return;
         }
-
-        if (LevelUpCheck())
-        {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-            return;
-        }
-
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+        ExecuteActionList();
     }
 
     /// <summary>
@@ -1028,10 +930,14 @@ public class GameManager : MonoBehaviour
                 placeNum = 0;
                 break;
             default:
-                placeNum = 0;
+                placeNum = -1;
                 break;
         }
 
+        Action action = new Action(this, EnumController.Action.DamageForFrontAttack2ForDamaged);
+        action.SetParamaterNum(placeNum);
+        action.SetParamaterBattleStrix(m_BattleStrix);
+        ActionList.Add(action);
         for (int n = 0; n < tempList.Count; n++)
         {
             myClockList.Add(tempList[n]);
@@ -1040,19 +946,11 @@ public class GameManager : MonoBehaviour
 
         if (myDeckList.Count == 0)
         {
-            Refresh(placeNum);
+            Refresh();
             return;
         }
 
-        if (LevelUpCheck(placeNum))
-        {
-            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
-            return;
-        }
-
-        PowerCheck(placeNum);
-
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+        ExecuteActionList();
     }
 
     public void Shot(int shotDamageNum, List<EnumController.Shot> ShotList)
@@ -1114,28 +1012,7 @@ public class GameManager : MonoBehaviour
     /// レベルアップする場合true
     /// </summary>
     /// <returns></returns>
-    private bool LevelUpCheck()
-    {
-        if (myClockList.Count < 7)
-        {
-            return false;
-        }
-
-        if(myLevelList.Count < 3)
-        {
-            m_DialogManager.LevelUpDialog(myClockList);
-            return true;
-        }
-        m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
-        m_WinAndLose.Lose();
-        return false;
-    }
-
-    /// <summary>
-    /// レベルアップする場合true
-    /// </summary>
-    /// <returns></returns>
-    private bool LevelUpCheck(int place)
+    public bool LevelUpCheck()
     {
         if (myClockList.Count < 7)
         {
@@ -1144,10 +1021,10 @@ public class GameManager : MonoBehaviour
 
         if (myLevelList.Count < 3)
         {
-            m_DialogManager.LevelUpDialog(myClockList, EnumController.LevelUpDialogParamater.FRONT_ATTACK, place);
+            m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", true);
+            m_DialogManager.LevelUpDialog(myClockList);
             return true;
         }
-
         m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
         m_WinAndLose.Lose();
         return false;
@@ -1199,7 +1076,7 @@ public class GameManager : MonoBehaviour
 
         // ステータスの同期
         List<EnumController.State> stateList = new List<EnumController.State>();
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             stateList.Add(m_MyMainCardsManager.GetState(i));
         }
@@ -1274,7 +1151,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateEnemyMainCardsState(List<EnumController.State> list)
     {
-        for(int i = 0; i < list.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             if (list[i] == EnumController.State.REST)
             {

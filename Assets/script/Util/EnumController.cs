@@ -4,6 +4,16 @@ using UnityEngine;
 
 namespace EnumController
 {
+    public enum Action
+    {
+        VOID,
+        ClockAndTwoDraw,
+        DamageRefresh,
+        DamageForFrontAttack2ForCancel,
+        DamageForFrontAttack2ForDamaged,
+        PowerCheckForLevelUpDialog,
+    }
+
     public enum Attack
     {
         VOID,

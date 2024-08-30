@@ -21,6 +21,12 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
+    [SerializeField] SelectActionDialog m_SelectActionDialog;
+
+    public void SelectActionDialog(List<Action> ActionList)
+    {
+        m_SelectActionDialog.SetDialog(ActionList);
+    }
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
     {
@@ -109,11 +115,6 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.SetBattleModeCard(myClockList, paramater, place);
     }
 
-    public void SetIsClockAndTwoDrawProcessOfLevelUpDialog()
-    {
-        m_LevelUpDialog.isClockAndTwoDrawProcess = true;
-    }
-
     public void PhaseDialog()
     {
         if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
@@ -193,5 +194,6 @@ public class DialogManager : MonoBehaviour
         m_ConfirmSearchOrSulvageCardDialog.OffDialog();
         m_GraveYardDetail.onCloseButton();
         m_MainPowerUpDialog.OffDialog();
+        m_SelectActionDialog.OffDialog();
     }
 }

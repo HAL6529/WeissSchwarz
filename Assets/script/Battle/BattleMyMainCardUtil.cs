@@ -325,6 +325,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+
+        // トリガーのテスト用
+        m_GameManager.myDeckList[0] = m_GameManager.testTrigger;
+
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
     }

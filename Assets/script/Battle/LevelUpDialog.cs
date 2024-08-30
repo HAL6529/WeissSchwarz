@@ -9,8 +9,6 @@ public class LevelUpDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
 
-    public bool isClockAndTwoDrawProcess = false;
-
     private EnumController.LevelUpDialogParamater paramater;
 
     /// <summary>
@@ -33,38 +31,7 @@ public class LevelUpDialog : MonoBehaviour
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
         OffDialog();
-
-        if (isClockAndTwoDrawProcess)
-        {
-            isClockAndTwoDrawProcess = false;
-            m_GameManager.ClockAndTwoDraw2();
-        }
-
-        switch (paramater)
-        {
-            case EnumController.LevelUpDialogParamater.FRONT_ATTACK:
-                int i = -1;
-                switch (place)
-                {
-                    case 0:
-                        i = 2;
-                        break;
-                    case 1:
-                        i = 1;
-                        break;
-                    case 2:
-                        i = 0;
-                        break;
-                    default:
-                        i = 0;
-                        break;
-                }
-                m_GameManager.PowerCheckForLevelUpDialog(i);
-                break;
-            default:
-                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
-                break;
-        }
+        m_GameManager.ExecuteActionList();
     }
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)

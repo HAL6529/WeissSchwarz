@@ -256,6 +256,7 @@ public class YesOrNoDialog : MonoBehaviour
                         m_BattleStrix.RpcToAll("Damage", ParamaterNum1, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
                         break;
                     case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
+                        // ("CallOKDialogForCounter",int damage, int place, m_GameManager.isFirstAttacker,List<EnumController.Shot> ReceiveShotList)
                         m_BattleStrix.RpcToAll("CallOKDialogForCounter", ParamaterNum1, ParamaterNum2, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);
                         break;
                     default:
@@ -330,7 +331,8 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
-                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
+                // DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE:
@@ -346,6 +348,7 @@ public class YesOrNoDialog : MonoBehaviour
                         m_BattleStrix.RpcToAll("Damage", ParamaterNum1, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
                         break;
                     case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
+                        // ("CallOKDialogForCounter",int damage, int place, m_GameManager.isFirstAttacker,List<EnumController.Shot> ReceiveShotList)
                         m_BattleStrix.RpcToAll("CallOKDialogForCounter", ParamaterNum1, ParamaterNum2, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);
                         break;
                     default:
