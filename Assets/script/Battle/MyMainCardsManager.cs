@@ -137,6 +137,31 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// フィールドの特定の特徴を持っているキャラの数を調べる関数(自分は含めない)
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="attributeList"></param>
+    /// <returns></returns>
+    public int GetNumFieldAttribute(int num, List<EnumController.Attribute> attributeList)
+    {
+        if (attributeList == null)
+        {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (CardList[i].HaveAttribute(attributeList) && i != num)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public int GetNumFieldCardNo(List<EnumController.CardNo> list)
     {
         if(list.Count == 0)

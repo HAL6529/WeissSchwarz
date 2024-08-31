@@ -506,6 +506,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
+        // ゆず＆慎の効果
+        // 他の《音楽》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_16T)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Music);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
