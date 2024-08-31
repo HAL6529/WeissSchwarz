@@ -11,6 +11,7 @@ namespace EnumController
         DamageRefresh,
         DamageForFrontAttack2ForCancel,
         DamageForFrontAttack2ForDamaged,
+        EventAnimationManager,
         PowerCheckForLevelUpDialog,
     }
 

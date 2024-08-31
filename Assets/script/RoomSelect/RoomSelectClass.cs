@@ -35,7 +35,8 @@ public class RoomSelectClass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        t_PlayerName.text = SaveData.PlayerName;
+        Name = SaveData.PlayerName;
     }
 
     // Update is called once per frame
@@ -120,6 +121,7 @@ public class RoomSelectClass : MonoBehaviour
         t_Name.text = "";
         t_PlayerName.text = name;
         Name = name;
+        SaveData.PlayerName = Name;
     }
 
 

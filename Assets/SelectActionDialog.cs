@@ -89,38 +89,38 @@ public class SelectActionDialog : MonoBehaviour
 
     public void SetText(EnumController.Action paramater)
     {
+        text1.text = "";
+        text2.text = "";
+        text3.text = "";
         switch (paramater)
         {
             // クロック2ドローした後の処理
             case EnumController.Action.ClockAndTwoDraw:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "ClockAndTwoDraw";
-                text3.text = "";
+                break;
+            case EnumController.Action.EventAnimationManager:
+                text1.text = "このメッセージが表示されるのはおかしい";
+                text2.text = "EventAnimationManager";
                 break;
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "PowerCheckForLevelUpDialog";
-                text3.text = "";
                 break;
             case EnumController.Action.DamageForFrontAttack2ForCancel:
                 text1.text = "このメッセージが表示されるのはおかしい"; ;
                 text2.text = "DamageForFrontAttack2ForCancel";
-                text3.text = "";
                 break;
             case EnumController.Action.DamageForFrontAttack2ForDamaged:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "DamageForFrontAttack2ForDamaged";
-                text3.text = "";
                 break;
             case EnumController.Action.DamageRefresh:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "DamageRefresh";
-                text3.text = "";
                 break;
             default:
-                text1.text = "";
                 text2.text = "エラーメッセージ";
-                text3.text = "";
                 break;
         }
     }

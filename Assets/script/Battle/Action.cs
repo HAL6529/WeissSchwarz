@@ -7,6 +7,7 @@ public class Action : MonoBehaviour
     private EnumController.Action paramater = EnumController.Action.VOID;
 
     private BattleStrix m_BattleStrix;
+    private BattleModeCard m_BattleModeCard;
     private GameManager m_GameManager;
     private WinAndLose m_WinAndLose;
 
@@ -79,6 +80,11 @@ public class Action : MonoBehaviour
                     return;
                 }
                 break;
+            case EnumController.Action.EventAnimationManager:
+                m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                m_GameManager.myHandList.Remove(m_BattleModeCard);
+                m_GameManager.Syncronize();
+                break;
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 m_GameManager.PowerCheckForLevelUpDialog(paramaterNum);
                 break;
@@ -97,6 +103,11 @@ public class Action : MonoBehaviour
     public void SetParamaterBattleStrix(BattleStrix paramater)
     {
         m_BattleStrix = paramater;
+    }
+
+    public void SetParamaterBattleModeCard(BattleModeCard paramater)
+    {
+        m_BattleModeCard = paramater;
     }
 
     public void SetParamaterNum(int num) 

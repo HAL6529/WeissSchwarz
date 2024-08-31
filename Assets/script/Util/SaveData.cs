@@ -5,4 +5,5 @@ using UnityEngine;
 public class SaveData
 {
     public static List<cardInfo> cardInfoList = new List<cardInfo>();
+    public static string PlayerName = "";
 }

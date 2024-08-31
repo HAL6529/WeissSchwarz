@@ -282,7 +282,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
@@ -290,14 +289,9 @@ public class YesOrNoDialog : MonoBehaviour
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 2000);
                 m_GameManager.Syncronize();
                 break;
+            // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
