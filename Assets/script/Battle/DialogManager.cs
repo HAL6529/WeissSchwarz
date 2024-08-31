@@ -110,11 +110,6 @@ public class DialogManager : MonoBehaviour
         m_LevelUpDialog.SetBattleModeCard(myClockList);
     }
 
-    public void LevelUpDialog(List<BattleModeCard> myClockList, EnumController.LevelUpDialogParamater paramater, int place)
-    {
-        m_LevelUpDialog.SetBattleModeCard(myClockList, paramater, place);
-    }
-
     public void PhaseDialog()
     {
         if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)

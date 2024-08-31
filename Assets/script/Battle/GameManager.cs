@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void ExecuteActionList()
     {
-        if(ActionList.Count > 0)
+        if (ActionList.Count > 0)
         {
             m_DialogManager.SelectActionDialog(ActionList);
         }
@@ -585,15 +585,13 @@ public class GameManager : MonoBehaviour
         }
         GraveYardList = new List<BattleModeCard>();
         Shuffle();
-        myClockList.Add(myDeckList[0]);
-        myDeckList.RemoveAt(0);
         Syncronize();
 
-        if (LevelUpCheck())
-        {
-            // Refresh後はActionは必要ないと思われる
-            return;
-        }
+        Action action = new Action(this, EnumController.Action.DamageRefresh);
+        action.SetParamaterBattleStrix(m_BattleStrix);
+        action.SetParamaterWinAndLose(m_WinAndLose);
+
+        ActionList.Add(action);
 
         ExecuteActionList();
     }
@@ -773,8 +771,6 @@ public class GameManager : MonoBehaviour
         List<BattleModeCard> t = new List<BattleModeCard>();
         t.Add(myDeckList[myDeckList.Count - 1]);
         myDeckList = t;
-        Debug.Log("myDeckList.Count:" + myDeckList.Count);
-        Debug.Log("myDeckList[0]:" + myDeckList[0]);
         Syncronize();
         // ここまでテスト用
         List<BattleModeCard> temp = new List<BattleModeCard>();

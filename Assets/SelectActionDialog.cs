@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SelectActionDialog : MonoBehaviour
 {
+    [SerializeField] GameManager m_GameManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] Text text1;
     [SerializeField] Text text2;
@@ -16,7 +17,7 @@ public class SelectActionDialog : MonoBehaviour
 
     public void OKButton()
     {
-        ActionList[displayNum].Execute();
+        ActionList[displayNum].Execute(displayNum);
         OffDialog();
     }
 
@@ -48,35 +49,35 @@ public class SelectActionDialog : MonoBehaviour
         SetText(ActionList[displayNum].GetParamater());
     }
 
-    public void SetDialog(List<Action> ActionList)
+    public void SetDialog(List<Action> actionList)
     {
-        if(ActionList.Count == 0)
+        this.ActionList = actionList;
+        if (ActionList.Count == 0)
         {
             OffDialog();
             return;
         }else if(ActionList.Count == 1)
         {
-            ActionList[0].Execute();
+            ActionList[0].Execute(0);
             OffDialog();
             return;
         }
 
-        this.ActionList = ActionList;
-
-        // レベルアップのアクションがあれば優先的に処理する
-        int havePowerCheckForLevelUpDialogAction = HaveParamater(EnumController.Action.PowerCheckForLevelUpDialog);
-        if (havePowerCheckForLevelUpDialogAction != -1)
+        // レベルアップ処理、リバース処理をリフダメより優先する
+        int haveDamageForFrontAttack2ForDamagedAction = HaveParamater(EnumController.Action.DamageForFrontAttack2ForDamaged);
+        if (haveDamageForFrontAttack2ForDamagedAction != -1)
         {
-            ActionList[havePowerCheckForLevelUpDialogAction].Execute();
+            ActionList[haveDamageForFrontAttack2ForDamagedAction].Execute(haveDamageForFrontAttack2ForDamagedAction);
             OffDialog();
             return;
         }
+
 
         // リフレッシュダメージのアクションがあれば優先的に処理する
         int haveRefreshAction = HaveParamater(EnumController.Action.DamageRefresh);
         if(haveRefreshAction != -1)
         {
-            ActionList[haveRefreshAction].Execute();
+            ActionList[haveRefreshAction].Execute(haveRefreshAction);
             OffDialog();
             return;
         }

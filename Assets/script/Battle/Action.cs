@@ -18,15 +18,19 @@ public class Action : MonoBehaviour
         this.paramater = paramater;
     }
 
-    public void Execute()
+    public void Execute(int num)
     {
+        m_GameManager.ActionList.RemoveAt(num);
+        for (int m = 0; m < m_GameManager.ActionList.Count; m++)
+        {
+            Debug.Log(m_GameManager.ActionList[m].GetParamater());
+        }
         switch (paramater)
         {
             case EnumController.Action.ClockAndTwoDraw:
                 m_GameManager.ClockAndTwoDraw2();
                 break;
             case EnumController.Action.DamageForFrontAttack2ForCancel:
-                Debug.Log("DamageForFrontAttack2ForCancel");
                 if (paramaterNum > -1)
                 {
                     m_GameManager.PowerCheck(paramaterNum);
@@ -36,22 +40,18 @@ public class Action : MonoBehaviour
                 {
                     m_GameManager.ReceiveShotList.RemoveAt(0);
                     m_BattleStrix.RpcToAll("Shot", 1, m_GameManager.ReceiveShotList, m_GameManager.isFirstAttacker);
-                    m_GameManager.ActionList.Remove(this);
                     return;
                 }
 
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
                 break;
             case EnumController.Action.DamageForFrontAttack2ForDamaged:
-                Debug.Log("DamageForFrontAttack2ForDamaged");
-                Debug.Log("paramaterNum:" + paramaterNum);
                 if (m_GameManager.LevelUpCheck())
                 {
                     Debug.Log("Level Up");
                     Action action = new Action(m_GameManager, EnumController.Action.PowerCheckForLevelUpDialog);
                     action.SetParamaterNum(paramaterNum);
                     m_GameManager.ActionList.Add(action);
-                    m_GameManager.ActionList.Remove(this);
                     return;
                 }
 
@@ -75,7 +75,6 @@ public class Action : MonoBehaviour
 
                 if (m_GameManager.LevelUpCheck())
                 {
-                    m_GameManager.ActionList.Remove(this);
                     // RefreshŒã‚ÍAction‚Í•K—v‚È‚¢‚ÆŽv‚í‚ê‚é
                     return;
                 }
@@ -87,7 +86,6 @@ public class Action : MonoBehaviour
                 break;
         }
 
-        m_GameManager.ActionList.Remove(this);
         m_GameManager.ExecuteActionList();
     }
 
