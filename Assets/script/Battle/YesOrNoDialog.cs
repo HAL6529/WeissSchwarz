@@ -282,7 +282,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ParamaterNum1, 3000);
                 m_GameManager.Syncronize();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:

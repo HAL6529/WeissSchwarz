@@ -17,7 +17,7 @@ public class BattleModeDeck : MonoBehaviour
         m_GameManager.myDeckList = myDeckList;
 
         // テストの際に使うトリガー用
-        m_GameManager.testTrigger = m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(EnumController.CardNo.DC_W01_19T);
+        // m_GameManager.testTrigger = m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(EnumController.CardNo.LB_W02_10T);
     }
 
     // Update is called once per frame
