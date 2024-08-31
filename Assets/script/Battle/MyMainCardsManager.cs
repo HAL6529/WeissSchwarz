@@ -35,6 +35,7 @@ public class MyMainCardsManager : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log("CallWhenReverseEnemyCard:"+ Place);
         CardList[Place].WhenReverseEnemyCard();
     }
 
@@ -219,7 +220,11 @@ public class MyMainCardsManager : MonoBehaviour
 
     public bool GetIsGreatPerformance(int place)
     {
-        return CardList[place].isGreatPerformance;
+        if(CardList[place].isGreatPerformance && CardList[place].GetState() != EnumController.State.REVERSE)
+        {
+            return true;
+        }
+        return false;
     }
 
     public int GetFieldSoul(int place)

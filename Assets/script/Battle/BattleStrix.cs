@@ -200,21 +200,6 @@ public class BattleStrix : StrixBehaviour
     /// <summary>
     /// 相手をリバースしたとき呼び出される
     /// </summary>
-    /// <param name="num"></param>
-    /// <param name="isTurnPlayer"></param>
-    [StrixRpc]
-    public void CallEnemyReverse(int num, bool isTurnPlayer)
-    {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
-        {
-            m_EnemyMainCardsManager.CallReverse(num);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(num);
-        }
-    }
-
-    /// <summary>
-    /// 相手をリバースしたとき呼び出される
-    /// </summary>
     /// <param name="place1">攻撃されたキャラの位置</param>
     /// <param name="place2">攻撃したキャラの位置</param>
     /// <param name="isTurnPlayer"></param>
@@ -293,10 +278,9 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void Damage(int num, bool isFirstAttacker, EnumController.Damage damage, List<EnumController.Shot> SendShotList)
     {
-        logText.text = "Damage:" + Convert.ToString(num);
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.Damage(num, damage, SendShotList);
+            m_GameManager.DamageForFrontAttack(num, -1, damage, SendShotList);
         }
     }
 

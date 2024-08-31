@@ -15,6 +15,9 @@ public class BattleModeDeck : MonoBehaviour
     {
         SetDeckList();
         m_GameManager.myDeckList = myDeckList;
+
+        // テストの際に使うトリガー用
+        // m_GameManager.testTrigger = m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(EnumController.CardNo.LB_W02_10T);
     }
 
     // Update is called once per frame
@@ -25,6 +28,10 @@ public class BattleModeDeck : MonoBehaviour
 
     private void SetDeckList()
     {
+        if(SaveData.cardInfoList.Count < 50)
+        {
+            return;
+        }
         for(int i = 0; i < cardNoList.Count; i++)
         {
             myDeckList.Add(m_BattleModeCardList.GetComponent<BattleModeCardList>().ConvertCardNoToBattleModeCard(SaveData.cardInfoList[i].cardNo));

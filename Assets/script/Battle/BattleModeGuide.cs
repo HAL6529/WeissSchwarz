@@ -196,6 +196,10 @@ public class BattleModeGuide : MonoBehaviour
     /// <param name="NowCard">手札やフィールドの現状のカード情報</param>
     public void showImage(BattleModeCard card, BattleModeCard NowCard)
     {
+        if(card == null)
+        {
+            return;
+        }
         showImage(card);
 
         // levelが元々と異なっていた場合

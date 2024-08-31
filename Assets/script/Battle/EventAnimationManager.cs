@@ -15,6 +15,8 @@ public class EventAnimationManager : MonoBehaviour
     [SerializeField] Image m_image;
     [SerializeField] Image m_image2;
     [SerializeField] GameObject m_gameObject;
+    [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] WinAndLose m_WinAndLose;
 
     private static string AnimationName = "EventAnimation";
     private static int NormalAnimationLayerIndex = 0;
@@ -76,6 +78,46 @@ public class EventAnimationManager : MonoBehaviour
                 m_MyMainCardsManager.CallOnRest(place);
                 m_GameManager.Syncronize();
                 m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
+                break;
+            case EnumController.CardNo.DC_W01_03T:
+                // あなたは自分の山札を上から1枚選び、ストック置場に置く。あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                m_GameManager.myDeckList.RemoveAt(0);
+                m_GameManager.Syncronize();
+
+                if (m_GameManager.myDeckList.Count == 0)
+                {
+                    if (m_GameManager.GraveYardList.Count == 0)
+                    {
+                        // 控室が0枚なら負け扱い
+                        m_BattleStrix.RpcToAll("WinAndLose_Win", m_GameManager.isFirstAttacker);
+                        m_WinAndLose.Lose();
+                        return;
+                    }
+
+                    for (int n = 0; n < m_GameManager.GraveYardList.Count; n++)
+                    {
+                        m_GameManager.myDeckList.Add(m_GameManager.GraveYardList[n]);
+                    }
+                    m_GameManager.GraveYardList = new List<BattleModeCard>();
+                    m_GameManager.Shuffle();
+                    m_GameManager.Syncronize();
+                    Action action1 = new Action(m_GameManager, EnumController.Action.DamageRefresh);
+                    action1.SetParamaterBattleStrix(m_BattleStrix);
+                    action1.SetParamaterWinAndLose(m_WinAndLose);
+
+                    m_GameManager.ActionList.Add(action1);
+                }
+                Action action2 = new Action(m_GameManager, EnumController.Action.EventAnimationManager);
+                action2.SetParamaterBattleModeCard(m_BattleModeCard);
+                m_GameManager.ActionList.Add(action2);
+                m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
+                break;
+            case EnumController.CardNo.DC_W01_04T:
+                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
+                m_GameManager.Syncronize();
                 break;
             case EnumController.CardNo.LB_W02_03T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、

@@ -165,7 +165,7 @@ public class OKDialog : MonoBehaviour
                             place = 0;
                             break;
                         default : 
-                            place = 0;
+                            place = -1;
                             break;
                     }
 
@@ -205,12 +205,19 @@ public class OKDialog : MonoBehaviour
                     m_GameManager.Syncronize();
                 }
                 m_MyHandCardsManager.ActiveAllMyHand();
-                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
+                // --‚±‚±‚©‚ç‘åŠˆ–ô—p--
+                if (m_MyMainCardsManager.GetIsGreatPerformance(1))
+                {
+                    m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
+                    break;
+                }
+                // --‚±‚±‚Ü‚Å‘åŠˆ–ô—p--
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
                 break;
             // ParamaterNum1: damage, ParamaterNum2: Place
             case EnumController.OKDialogParamater.Counter_Not_Exist:
                 m_MyHandCardsManager.ActiveAllMyHand();
-                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2);
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
                 break;
             case EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM:
                 if (m_GameManager.DisCardForHandEncore != null)
