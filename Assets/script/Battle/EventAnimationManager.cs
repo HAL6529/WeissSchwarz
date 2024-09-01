@@ -11,6 +11,7 @@ public class EventAnimationManager : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] Image m_image;
     [SerializeField] Image m_image2;
@@ -118,6 +119,25 @@ public class EventAnimationManager : MonoBehaviour
                 m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                 m_GameManager.Syncronize();
+                break;
+            case EnumController.CardNo.DC_W01_16T:
+                int enemyPlace = -1;
+                switch (place)
+                {
+                    case 0:
+                        enemyPlace = 2;
+                        break;
+                    case 1:
+                        enemyPlace = 1;
+                        break;
+                    case 2:
+                        enemyPlace = 0;
+                        break;
+                    default:
+                        break;
+                }
+                m_EnemyMainCardsManager.CallReverse(enemyPlace);
+                m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
                 break;
             case EnumController.CardNo.LB_W02_03T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、

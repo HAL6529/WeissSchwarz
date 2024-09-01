@@ -379,9 +379,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <summary>
     /// 相手をリバースしたときの効果
     /// </summary>
-    public void WhenReverseEnemyCard()
+    public void WhenReverseEnemyCard(int reversedCardPlace)
     {
-        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard);
+        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard, reversedCardPlace);
     }
 
     /// <summary>
@@ -391,6 +391,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+        m_Effect.WhenReverseMyCardEffect(m_BattleModeCard, PlaceNum);
     }
 
     /// <summary>
@@ -504,6 +505,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+        }
+
+        // ゆず＆慎の効果
+        // 他の《音楽》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_16T)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Music);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
         }
 
         if (m_GameManager.MyClimaxCard != null)

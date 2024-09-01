@@ -313,6 +313,16 @@ public class GameManager : MonoBehaviour
         return HAND_LIMIT_NUM;
     }
 
+    public EnemyMainCardsManager GetEnemyMainCardsManager()
+    {
+        return m_EnemyMainCardsManager;
+    }
+
+    public MyMainCardsManager GetMyMainCardsManager()
+    {
+        return m_MyMainCardsManager;
+    }
+
     public void HandOver()
     {
         for (int i = 0; i < HandOverList.Count; i++)
