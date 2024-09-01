@@ -209,7 +209,7 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_EnemyMainCardsManager.CallReverse(place1);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(place2);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place2, place1);
         }
     }
 

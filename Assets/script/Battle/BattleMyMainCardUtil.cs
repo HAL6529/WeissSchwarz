@@ -379,9 +379,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <summary>
     /// ‘Šè‚ğƒŠƒo[ƒX‚µ‚½‚Æ‚«‚ÌŒø‰Ê
     /// </summary>
-    public void WhenReverseEnemyCard()
+    public void WhenReverseEnemyCard(int reversedCardPlace)
     {
-        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard);
+        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard, reversedCardPlace);
     }
 
     /// <summary>
@@ -391,6 +391,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+        m_Effect.WhenReverseMyCardEffect(m_BattleModeCard, PlaceNum);
     }
 
     /// <summary>

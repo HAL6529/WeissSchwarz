@@ -101,6 +101,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     }
 
+    public int GetFieldLevel()
+    {
+        return FieldLevel;
+    }
+
     public int GetFieldPower()
     {
         return FieldPower;

@@ -69,6 +69,11 @@ public class EnemyMainCardsManager : MonoBehaviour
         }
     }
 
+    public int GetFieldLevel(int place)
+    {
+        return CardList[place].GetFieldLevel();
+    }
+
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();

@@ -6,6 +6,8 @@ public class Effect : MonoBehaviour
 {
     private GameManager m_GameManager = null;
     private BattleStrix m_BattleStrix = null;
+    private MyMainCardsManager m_MyMainCardsManager;
+    private EnemyMainCardsManager m_EnemyMainCardsManager;
 
     public Effect(GameManager m_GameManager, BattleStrix m_BattleStrix)
     {
@@ -31,7 +33,7 @@ public class Effect : MonoBehaviour
     /// <summary>
     /// 相手のカードをリバースしたときに発動する効果
     /// </summary>
-    public void WhenReverseEnemyCardEffect(BattleModeCard card)
+    public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace)
     {
         switch (card.cardNo)
         {
@@ -39,6 +41,41 @@ public class Effect : MonoBehaviour
                 if (ConfirmClimaxCombo(EnumController.CardNo.AT_WX02_A08))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    /// <summary>
+    /// 自分がリバースしたときに発動する効果
+    /// </summary>
+    public void WhenReverseMyCardEffect(BattleModeCard card, int place)
+    {
+        this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
+        this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
+        switch (card.cardNo)
+        {
+            case EnumController.CardNo.DC_W01_16T:
+                int enemyPlace = -1;
+                switch (place)
+                {
+                    case 0:
+                        enemyPlace = 2;
+                        break;
+                    case 1:
+                        enemyPlace = 1;
+                        break;
+                    case 2:
+                        enemyPlace = 0;
+                        break;
+                    default:
+                        break;
+                }
+                if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 1 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, place);
                 }
                 return;
             default:

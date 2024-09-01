@@ -18,7 +18,7 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
-    public void CallWhenReverseEnemyCard(int num)
+    public void CallWhenReverseEnemyCard(int num, int reversedCardPlace)
     {
         int Place = -1;
         switch (num)
@@ -36,7 +36,7 @@ public class MyMainCardsManager : MonoBehaviour
                 break;
         }
         Debug.Log("CallWhenReverseEnemyCard:"+ Place);
-        CardList[Place].WhenReverseEnemyCard();
+        CardList[Place].WhenReverseEnemyCard(reversedCardPlace);
     }
 
     public void CallOnStand(int num)
