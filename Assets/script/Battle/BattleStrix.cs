@@ -265,7 +265,7 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
-    [StrixRpc]
+[StrixRpc]
     public void ClockPhase()
     {
         logText.text = "ClockPhase";
@@ -385,6 +385,23 @@ public class BattleStrix : StrixBehaviour
             m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
 
             m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_ClockSulvage();
+        }
+    }
+
+    /// <summary>
+    /// Ç©ÇØíáÇ≈ÉJÅ[ÉhÇâÒé˚Ç∑ÇÈèÍçá
+    /// </summary>
+    [StrixRpc]
+    public void ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
+            m_GameManager.m_ExecuteAction.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
+            m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
+
+            m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T();
         }
     }
 

@@ -151,4 +151,29 @@ public class ExecuteAction
 
         m_GameManager.Syncronize();
     }
+
+    public void ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T()
+    {
+        if (m_GameManager == null || m_BattleModeCardList == null)
+        {
+            return;
+        }
+
+        List<BattleModeCard> graveyardList = new List<BattleModeCard>();
+        List<BattleModeCard> handList = new List<BattleModeCard>();
+        for (int i = 0; i < m_ExecuteActionTemp.graveyardList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.graveyardList[i].cardNo);
+            graveyardList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.handList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.handList[i].cardNo);
+            handList.Add(b);
+        }
+
+        m_GameManager.GraveYardList = graveyardList;
+        m_GameManager.myHandList = handList;
+        m_GameManager.Syncronize();
+    }
 }

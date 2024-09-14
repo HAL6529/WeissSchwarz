@@ -11,6 +11,7 @@ public class ExecuteActionTemp
     public List<BattleModeCardTemp> graveyardList { get; set; }
     public List<BattleModeCardTemp> clockList { get; set; }
     public List<BattleModeCardTemp> handList { get; set; }
+    public BattleModeCardTemp eventCard { get; set; }
     public int intParamater { get; set; }
     public int intParamater2 { get; set; }
     public bool isFirstAttacker { get; set; }

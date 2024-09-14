@@ -246,20 +246,20 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.DC_W01_03T:
                         m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
                         break;
-                    case EnumController.CardNo.DC_W01_12T:
-                        if (ConfirmStockForCost(2))
-                        {
-                            // m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
-                        }
-                        return;
-                    case EnumController.CardNo.LB_W02_16T:
-                        if (ConfirmStockForCost(3))
+                    case EnumController.CardNo.AT_WX02_A05:
+                        if (ConfirmStockForCost(1))
                         {
                             m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
                         }
                         return;
-                    case EnumController.CardNo.AT_WX02_A05:
-                        if (ConfirmStockForCost(1))
+                    case EnumController.CardNo.DC_W01_12T:
+                        if (ConfirmStockForCost(2))
+                        {
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                        }
+                        return;
+                    case EnumController.CardNo.LB_W02_16T:
+                        if (ConfirmStockForCost(3))
                         {
                             m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
                         }
