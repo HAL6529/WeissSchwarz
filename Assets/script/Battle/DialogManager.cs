@@ -22,6 +22,12 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] SelectActionDialog m_SelectActionDialog;
+    [SerializeField] SulvageDialog m_SulvageDialog;
+
+    public void SulvageDialog(BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
+    {
+        m_SulvageDialog.SetBattleModeCard(card, list, type, minSulvageCard, maxSulvageCard);
+    }
 
     public void SelectActionDialog(List<Action> ActionList)
     {
@@ -190,5 +196,6 @@ public class DialogManager : MonoBehaviour
         m_GraveYardDetail.onCloseButton();
         m_MainPowerUpDialog.OffDialog();
         m_SelectActionDialog.OffDialog();
+        m_SulvageDialog.onCloseButton();
     }
 }

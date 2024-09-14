@@ -126,6 +126,7 @@ namespace EnumController
         SULVAGE,
         COMEBACK,
         CLOCK_SULVAGE,
+        DC_W01_12T, // ‚©‚¯’‡
     }
 
     public enum ClimaxType

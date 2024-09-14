@@ -43,6 +43,9 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
             case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
                 text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
                 break;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
+                text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Sulvage;
+                break;
             default:
                 text.text = "無効メッセージ";
                 break;
@@ -83,6 +86,9 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
                 m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_ClockSulvage", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                return;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
+                m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
             default:
                 return;

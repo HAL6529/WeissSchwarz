@@ -28,6 +28,7 @@ public class StringValues
     public string ConfirmSearchOrSulvageCardDialog_Search;
     public string ConfirmSearchOrSulvageCardDialog_Sulvage;
     public string ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
+    public string ConfirmSearchOrSulvageCardDialog_DC_W01_12T;
     public string AT_WX02_A01_Explanation = "";
     public string AT_WX02_A02_Explanation = "【AUTO】 When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.";
     public string AT_WX02_A03_Explanation = "【AUTO】 【CXCOMBO】 When this card's battle opponent becomes 【REVERSE】, if [Memory of a Memory] is in your climax area, you may draw 1 card.";
@@ -161,6 +162,7 @@ public class StringValues
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
                 ConfirmSearchOrSulvageCardDialog_Sulvage = japanese.ConfirmSearchOrSulvageCardDialog_Sulvage;
                 ConfirmSearchOrSulvageCardDialog_Clock_Sulvage = japanese.ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
+                ConfirmSearchOrSulvageCardDialog_DC_W01_12T = japanese.ConfirmSearchOrSulvageCardDialog_DC_W01_12T;
                 DC_W01_01T_Explanation = japanese.DC_W01_01T_Explanation;
                 DC_W01_02T_Explanation = japanese.DC_W01_02T_Explanation;
                 DC_W01_03T_Explanation = japanese.DC_W01_03T_Explanation;
@@ -229,6 +231,7 @@ public class StringValues
         public string ConfirmSearchOrSulvageCardDialog_Search = "相手がカードを山札から加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_Clock_Sulvage = "相手がカードをクロックから加えようとしています";
+        public string ConfirmSearchOrSulvageCardDialog_DC_W01_12T = "相手がカードを控室から加えようとしています";
         public string DC_W01_01T_Explanation = "【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";
         public string DC_W01_02T_Explanation = "【永】 大活躍【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の手札を見る。【自】 このカードがアタックした時、クライマックス置場に「結婚式の歌姫」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string DC_W01_03T_Explanation = "あなたは自分の山札を上から1枚選び、ストック置場に置く。あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。";

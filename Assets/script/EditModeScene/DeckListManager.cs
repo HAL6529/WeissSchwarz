@@ -84,7 +84,7 @@ public class DeckListManager : MonoBehaviour
 
     public void onShowInfo(int index)
     {
-        cardName.text = cardInfoList[index].name;
+        cardName.text = cardInfoList[index].cardName;
         explanation.text = extendUtil.Explanation(cardInfoList[index].cardNo);
         cardInfoImage.sprite = cardInfoList[index].sprite;
         levelIndex.text = cardInfoList[index].level.ToString();

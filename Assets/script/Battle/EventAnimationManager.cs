@@ -120,6 +120,15 @@ public class EventAnimationManager : MonoBehaviour
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                 m_GameManager.Syncronize();
                 break;
+            case EnumController.CardNo.DC_W01_12T:
+                for (int i = 0; i < 2; i++)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                }
+                m_GameManager.Syncronize();
+                m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 2);
+                break;
             case EnumController.CardNo.DC_W01_16T:
                 int enemyPlace = -1;
                 switch (place)
