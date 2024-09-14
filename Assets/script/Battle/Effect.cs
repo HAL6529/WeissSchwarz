@@ -140,6 +140,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T, card, num);
                 }
                 return;
+            // 【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+            case EnumController.CardNo.DC_W01_13T:
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T, card, num);
+                }
+                return;
             // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
             // 【起】［(1)］ このカードを思い出にする。
             case EnumController.CardNo.LB_W02_02T:

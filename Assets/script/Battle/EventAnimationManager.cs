@@ -121,6 +121,7 @@ public class EventAnimationManager : MonoBehaviour
                 m_GameManager.Syncronize();
                 break;
             case EnumController.CardNo.DC_W01_12T:
+                // あなたは自分の控え室のキャラを2枚まで選び、手札に戻す。
                 for (int i = 0; i < 2; i++)
                 {
                     m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
@@ -128,6 +129,17 @@ public class EventAnimationManager : MonoBehaviour
                 }
                 m_GameManager.Syncronize();
                 m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 2);
+                break;
+            case EnumController.CardNo.DC_W01_13T:
+                // 【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                for (int i = 0; i < 2; i++)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                }
+                m_MyMainCardsManager.CallOnRest(place);
+                m_GameManager.Syncronize();
+                m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
                 break;
             case EnumController.CardNo.DC_W01_16T:
                 int enemyPlace = -1;

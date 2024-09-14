@@ -507,6 +507,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
+        // HM - A06型 ミナツの効果
+        // 他の《バナナ》のあなたのキャラがいるなら、このカードのパワーを＋1500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_13T)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Banana);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 1)
+            {
+                FieldPower += 1500;
+            }
+        }
+
         // ゆず＆慎の効果
         // 他の《音楽》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
         if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_16T)
