@@ -33,6 +33,7 @@ public class Effect : MonoBehaviour
     /// <summary>
     /// 相手のカードをリバースしたときに発動する効果
     /// </summary>
+    /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
     public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace)
     {
         switch (card.cardNo)
@@ -42,6 +43,9 @@ public class Effect : MonoBehaviour
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
                 }
+                return;
+            case EnumController.CardNo.DC_W01_10T:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, reversedCardPlace);
                 return;
             default:
                 return;
@@ -55,6 +59,7 @@ public class Effect : MonoBehaviour
     {
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
+        Debug.Log(place);
         switch (card.cardNo)
         {
             case EnumController.CardNo.DC_W01_16T:
@@ -253,6 +258,13 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A02:
                 m_GameManager.m_DialogManager.CharacterSelectDialog(m_GameManager.myFieldList, place, status);
                 return true;
+            /*case EnumController.CardNo.DC_W01_10T:
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, num);
+                    return true;
+                }
+                return false;*/
             case EnumController.CardNo.LB_W02_03T:
                 /*if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.LB_W02_10T)
                 {

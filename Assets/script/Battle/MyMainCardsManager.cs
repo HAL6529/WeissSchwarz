@@ -10,6 +10,55 @@ public class MyMainCardsManager : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
 
+    public void AddAttributeUpUntilTurnEnd(int place, EnumController.Attribute attribute)
+    {
+        CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(attribute);
+    }
+
+    public void AddPowerUpUntilTurnEnd(int num, int power)
+    {
+        CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
+    }
+
+    public void CallNotShowDirectAttackButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowDirectAttackButton();
+        }
+    }
+
+    public void CallNotShowFrontAndSideButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowFrontAndSideButton();
+        }
+    }
+
+    public void CallNotShowMoveButton()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowMoveButton();
+        }
+    }
+
+    public void CallOnRest(int num)
+    {
+        CardList[num].onRest();
+    }
+
+    public void CallOnReverse(int num)
+    {
+        CardList[num].onReverse();
+    }
+
+    public void CallOnStand(int num)
+    {
+        CardList[num].Stand();
+    }
+
     public void CallStand()
     {
         for (int i = 0; i < CardList.Count; i++)
@@ -39,19 +88,36 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[Place].WhenReverseEnemyCard(reversedCardPlace);
     }
 
-    public void CallOnStand(int num)
+    public void ExecuteAttack2(int num, EnumController.Attack status)
     {
-        CardList[num].Stand();
+        CardList[num].Attack2(status);
     }
 
-    public void CallOnReverse(int num)
+    public void ExecuteResetAttributeUpUntilTurnEnd()
     {
-        CardList[num].onReverse();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetAttributeUpUntilTurnEnd();
+        }
     }
 
-    public void CallOnRest(int num)
+    public void ExecuteResetPowerUpUntilTurnEnd()
     {
-        CardList[num].onRest();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetPowerUpUntilTurnEnd();
+        }
+    }
+
+    public void FieldPowerAndLevelAndAttributeAndSoulReset()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].LevelUpdate();
+            CardList[i].PowerUpdate();
+            CardList[i].SoulUpdate();
+            CardList[i].AttributeUpdate();
+        }
     }
 
     /// <summary>
@@ -62,6 +128,16 @@ public class MyMainCardsManager : MonoBehaviour
     public int GetAssistPower(int num)
     {
         return CardList[num].m_Assist.getAssistPower();
+    }
+
+    /// <summary>
+    /// éwíËÇÃèÍèäÇÃÉLÉÉÉâÇÃì¡í•ÇéÊìæÇ∑ÇÈ
+    /// </summary>
+    /// <param name="place"></param>
+    /// <returns></returns>
+    public AttributeInstance.AttributeUpUntilTurnEnd GetAttributeUpUntilTurnEnd(int place)
+    {
+        return CardList[place].m_AttributeUpUntilTurnEnd;
     }
 
     /// <summary>
@@ -92,49 +168,9 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].m_LevelAssist.getAssistPower(FieldLevel);
     }
 
-    public void setBattleModeCard(int num, BattleModeCard card, EnumController.State status)
-    {
-        CardList[num].setBattleModeCard(card, status);
-    }
-
-    public void CallNotShowMoveButton()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowMoveButton();
-        }
-    }
-
-    public void CallNotShowDirectAttackButton()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowDirectAttackButton();
-        }
-    }
-
-    public void CallNotShowFrontAndSideButton()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowFrontAndSideButton();
-        }
-    }
-
     public EnumController.State GetState(int num)
     {
         return CardList[num].GetState();
-    }
-
-    public void FieldPowerAndLevelAndAttributeAndSoulReset()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].LevelUpdate();
-            CardList[i].PowerUpdate();
-            CardList[i].SoulUpdate();
-            CardList[i].AttributeUpdate();
-        }
     }
 
     /// <summary>
@@ -257,29 +293,19 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].GetFieldSoul();
     }
 
-    public void AddPowerUpUntilTurnEnd(int num, int power)
-    {
-        CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
-    }
-
     public PowerInstance.PowerUpUntilTurnEnd GetPowerUpUntilTurnEnd(int place)
     {
         return CardList[place].m_PowerUpUntilTurnEnd;
     }
 
+    public bool HaveAttribute(int place, EnumController.Attribute paramater)
+    {
+        return CardList[place].HaveAttribute(paramater);
+    }
+
     public void SetPowerUpUntilTurnEnd(int place, PowerInstance.PowerUpUntilTurnEnd paramater)
     {
         CardList[place].m_PowerUpUntilTurnEnd = paramater;
-    }
-
-    public void AddAttributeUpUntilTurnEnd(int place, EnumController.Attribute attribute)
-    {
-        CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(attribute);
-    }
-
-    public AttributeInstance.AttributeUpUntilTurnEnd GetAttributeUpUntilTurnEnd(int place)
-    {
-        return CardList[place].m_AttributeUpUntilTurnEnd;
     }
 
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)
@@ -292,29 +318,8 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(paramater);
     }
 
-    public bool HaveAttribute(int place, EnumController.Attribute paramater)
+    public void setBattleModeCard(int num, BattleModeCard card, EnumController.State status)
     {
-        return CardList[place].HaveAttribute(paramater);
-    }
-
-    public void ExecuteAttack2(int num, EnumController.Attack status)
-    {
-        CardList[num].Attack2(status);
-    }
-
-    public void ExecuteResetPowerUpUntilTurnEnd()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].ResetPowerUpUntilTurnEnd();
-        }
-    }
-
-    public void ExecuteResetAttributeUpUntilTurnEnd()
-    {
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            CardList[i].ResetAttributeUpUntilTurnEnd();
-        }
+        CardList[num].setBattleModeCard(card, status);
     }
 }

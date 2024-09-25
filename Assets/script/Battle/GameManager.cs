@@ -404,8 +404,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Debug.Log("myPlace:" + myPlace);
-        Debug.Log("enemyPlace:" + enemyPlace);
         if (myPower > enemyPower)
         {
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
@@ -720,6 +718,32 @@ public class GameManager : MonoBehaviour
         }
         TriggerAfter();
         m_BattleStrix.RpcToAll("Damage", damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
+    }
+
+    /// <summary>
+    /// フィールドの特定の場所のキャラをデッキトップに送る
+    /// </summary>
+    /// <param name="place"></param>
+    public void ToDeckTopFromField(int place)
+    {
+
+        Debug.Log(place);
+        if (myFieldList[place] == null)
+        {
+            return;
+        }
+
+        List<BattleModeCard> tempList = new List<BattleModeCard>();
+        tempList.Add(myFieldList[place]);
+
+        for(int i = 0; i < myDeckList.Count; i++)
+        {
+            tempList.Add(myDeckList[i]);
+        }
+
+        myDeckList = tempList;
+        myFieldList[place] = null;
+        Syncronize();
     }
 
     private int TriggerCheck()

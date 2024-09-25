@@ -184,6 +184,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_13T;
                 break;
@@ -217,6 +220,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.AT_WX02_A03:
                         m_GameManager.Draw();
                         break;
+                    case EnumController.CardNo.DC_W01_10T:
                     case EnumController.CardNo.DC_W01_16T:
                         m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                         m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
