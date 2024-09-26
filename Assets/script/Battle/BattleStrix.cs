@@ -526,6 +526,20 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// フィールドの特定の場所のキャラをデッキトップに送る
+    /// </summary>
+    /// <param name="place"></param>
+    /// <param name="isTurnPlayer"></param>
+    [StrixRpc]
+    public void ToDeckTopFromField(int place, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ToDeckTopFromField(place);
+        }
+    }
+
     [StrixRpc]
     public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {

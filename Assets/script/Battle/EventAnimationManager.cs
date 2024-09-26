@@ -63,6 +63,21 @@ public class EventAnimationManager : MonoBehaviour
 
     private void AnimationEnd()
     {
+        int enemyPlace = -1;
+        switch (place)
+        {
+            case 0:
+                enemyPlace = 2;
+                break;
+            case 1:
+                enemyPlace = 1;
+                break;
+            case 2:
+                enemyPlace = 0;
+                break;
+            default:
+                break;
+        }
         m_gameObject.SetActive(false);
         if (isFromRPC)
         {
@@ -120,6 +135,10 @@ public class EventAnimationManager : MonoBehaviour
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                 m_GameManager.Syncronize();
                 break;
+            case EnumController.CardNo.DC_W01_10T:
+                // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
+                m_BattleStrix.RpcToAll("ToDeckTopFromField", place, m_GameManager.isTurnPlayer);
+                break;
             case EnumController.CardNo.DC_W01_12T:
                 // あなたは自分の控え室のキャラを2枚まで選び、手札に戻す。
                 for (int i = 0; i < 2; i++)
@@ -142,21 +161,6 @@ public class EventAnimationManager : MonoBehaviour
                 m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
                 break;
             case EnumController.CardNo.DC_W01_16T:
-                int enemyPlace = -1;
-                switch (place)
-                {
-                    case 0:
-                        enemyPlace = 2;
-                        break;
-                    case 1:
-                        enemyPlace = 1;
-                        break;
-                    case 2:
-                        enemyPlace = 0;
-                        break;
-                    default:
-                        break;
-                }
                 m_EnemyMainCardsManager.CallReverse(enemyPlace);
                 m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
                 break;
