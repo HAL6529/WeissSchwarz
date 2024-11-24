@@ -310,11 +310,11 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void EncoreDialog(bool isFirstAttacker)
+    public void EncoreDialog(bool isFirstAttacker, EnumController.EncoreDialog p)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
-            m_GameManager.SendEncoreDialogFromRPC();
+            m_GameManager.SendEncoreDialogFromRPC(p);
         }
     }
 

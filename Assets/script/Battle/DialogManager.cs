@@ -81,9 +81,9 @@ public class DialogManager : MonoBehaviour
         m_OKDialog.SwitchActiveOKButton();
     }
 
-    public void OKDialog(EnumController.OKDialogParamater paramater, BattleModeCard card, int ParamaterNum1, bool isReceivedFromRPC)
+    public void OKDialog(EnumController.OKDialogParamater paramater, BattleModeCard card, int ParamaterNum1, EnumController.EncoreDialog p)
     {
-        m_OKDialog.SetParamater(paramater, card, ParamaterNum1, isReceivedFromRPC);
+        m_OKDialog.SetParamater(paramater, card, ParamaterNum1, p);
     }
 
     public void OKDialog(EnumController.OKDialogParamater paramater, int ParamaterNum1, int ParamaterNum2)
@@ -125,9 +125,9 @@ public class DialogManager : MonoBehaviour
         m_PhaseDialog.Open();
     }
 
-    public void EncoreDialog(List<BattleModeCard> list, bool isReceivedFromRPC)
+    public void EncoreDialog(List<BattleModeCard> list, EnumController.EncoreDialog p)
     {
-        m_EncoreDialog.SetBattleModeCard(list, isReceivedFromRPC);
+        m_EncoreDialog.SetBattleModeCard(list, p);
         return;
     }
 
@@ -146,9 +146,9 @@ public class DialogManager : MonoBehaviour
         m_CharacterSelectDialog.Open(list, place, status);
     }
 
-    public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, bool isReceivedFromRPC, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
+    public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, EnumController.EncoreDialog paramater, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
-        m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, isReceivedFromRPC, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
+        m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, paramater, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
     }
 
     public void NotEraseDialog_Open()

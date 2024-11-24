@@ -22,7 +22,7 @@ public class OKDialog : MonoBehaviour
     private int ParamaterNum2;
     private int ParamaterNum3;
 
-    private bool BoolParamater = false;
+    private EnumController.EncoreDialog EncorePhaseDialogParamater = EnumController.EncoreDialog.VOID;
 
     public OKDialog()
     {
@@ -39,7 +39,7 @@ public class OKDialog : MonoBehaviour
         ParamaterNum1 = -1;
         ParamaterNum2 = -1;
         ParamaterNum3 = -1;
-        BoolParamater = false;
+        EncorePhaseDialogParamater = EnumController.EncoreDialog.VOID;
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -48,12 +48,12 @@ public class OKDialog : MonoBehaviour
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
     }
 
-    public void SetParamater(EnumController.OKDialogParamater paramater, BattleModeCard card, int num1, bool isReceivedFromRPC)
+    public void SetParamater(EnumController.OKDialogParamater paramater, BattleModeCard card, int num1, EnumController.EncoreDialog p)
     {
         ParamaterNum1 = num1;
         ParamaterNum2 = -1;
         ParamaterNum3 = -1;
-        BoolParamater = isReceivedFromRPC;
+        EncorePhaseDialogParamater = p;
         m_BattleModeCard = card;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -67,7 +67,7 @@ public class OKDialog : MonoBehaviour
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
         ParamaterNum3 = -1;
-        BoolParamater = false;
+        EncorePhaseDialogParamater = EnumController.EncoreDialog.VOID;
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -81,7 +81,7 @@ public class OKDialog : MonoBehaviour
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
         ParamaterNum3 = num3;
-        BoolParamater = false;
+        EncorePhaseDialogParamater = EnumController.EncoreDialog.VOID;
         m_BattleModeCard = null;
         this.gameObject.SetActive(true);
         m_DialogParamater = paramater;
@@ -234,7 +234,7 @@ public class OKDialog : MonoBehaviour
                 }
                 m_MyHandCardsManager.ActiveAllMyHand();
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, BoolParamater);
+                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, EncorePhaseDialogParamater);
                 break;
             case EnumController.OKDialogParamater.Marigan:
                 m_GameManager.MariganEnd();
