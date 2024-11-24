@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        m_DialogManager.EncoreDialog(myFieldList, false);
+        m_DialogManager.EncoreDialog(myFieldList, EnumController.EncoreDialog.EncorePhase);
         return;
     }
 
@@ -564,11 +564,13 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveReadyOK()
     {
+        Debug.Log("ReceiveReadyOK");
         StandPhaseStart();
     }
 
     public void ReceiveTurnChange()
     {
+        Debug.Log("ReceiveTurnChange");
         if (myHandList.Count > HAND_LIMIT_NUM)
         {
             m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_OVER;
@@ -580,6 +582,7 @@ public class GameManager : MonoBehaviour
 
     private void ReceiveTurnChange2()
     {
+        Debug.Log("ReceiveTurnChange2+");
         DiscardClimaxCard();
         SwitchTurnUtil();
         m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);
@@ -604,9 +607,9 @@ public class GameManager : MonoBehaviour
         ExecuteActionList();
     }
 
-    public void SendEncoreDialogFromRPC()
+    public void SendEncoreDialogFromRPC(EnumController.EncoreDialog p)
     {
-        m_DialogManager.EncoreDialog(myFieldList, true);
+        m_DialogManager.EncoreDialog(myFieldList, p);
     }
 
     public void SwitchTurnUtil()

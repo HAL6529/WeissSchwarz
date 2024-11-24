@@ -20,12 +20,12 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     private int ParamaterNum1 = -1;
 
-    private bool isReceivedFromRPC = false;
+    private EnumController.EncoreDialog paramater = EnumController.EncoreDialog.VOID;
 
-    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, bool isReceivedFromRPC, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
+    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, EnumController.EncoreDialog p, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
         this.m_BattleModeCard = m_BattleModeCard;
-        this.isReceivedFromRPC = isReceivedFromRPC;
+        paramater = p;
         ParamaterNum1 = paramaterNum1;
 
         HandEncoreBtn.interactable = canHandEncore;
@@ -44,7 +44,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
         m_MyHandCardsManager.canCharacterCard();
         this.gameObject.SetActive(false);
         m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_ENCORE;
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1, isReceivedFromRPC);
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1, paramater);
     }
 
     public void onTwoStockEncoreBtn()
@@ -84,7 +84,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     {
         m_MyHandCardsManager.CallNotShowPlayButton();
         this.gameObject.SetActive(false);
-        m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
+        m_DialogManager.EncoreDialog(m_GameManager.myFieldList, paramater);
     }
 
     public void OffDialog()

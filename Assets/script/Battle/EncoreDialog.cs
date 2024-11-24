@@ -14,7 +14,7 @@ public class EncoreDialog : MonoBehaviour
     [SerializeField] Sprite Background;
     [SerializeField] DialogManager m_DialogManager;
 
-    private bool isReceivedFromRPC = false;
+    private EnumController.EncoreDialog paramater= EnumController.EncoreDialog.VOID;
 
     private void Open()
     {
@@ -22,10 +22,10 @@ public class EncoreDialog : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void SetBattleModeCard(List<BattleModeCard> list, bool isReceivedFromRPC)
+    public void SetBattleModeCard(List<BattleModeCard> list, EnumController.EncoreDialog p)
     {
         int count = 0;
-        this.isReceivedFromRPC = isReceivedFromRPC;
+        paramater = p;
         for (int i = 0; i < list.Count; i++)
         {
             if (list[i] == null)
@@ -46,20 +46,24 @@ public class EncoreDialog : MonoBehaviour
         }
         if(count == 0)
         {
-            if (this.isReceivedFromRPC)
+            switch (paramater)
             {
-                m_GameManager.TurnChange();
-                return;
+                case EnumController.EncoreDialog.EncorePhase:
+                    //ターンプレイヤーを先に解決し、非ターンプレイヤーの場合はターンチェンジする
+                    if (m_GameManager.isTurnPlayer)
+                    {
+                        m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker, paramater);
+                    }
+                    else
+                    {
+                        m_GameManager.TurnChange();
+                    }
+                    return;
+                default:
+                    break;
             }
-            m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker);
-            return;
         }
         Open();
-    }
-
-    public void OffDialog()
-    {
-        this.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -75,6 +79,10 @@ public class EncoreDialog : MonoBehaviour
 
         m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
 
+        //--------------------------------------------------------------------------------------
+        //ここに控室にカードが置かれたときに発動する効果を確認する処理を入れるべきだと思われる
+        //--------------------------------------------------------------------------------------
+
         m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
 
@@ -85,11 +93,11 @@ public class EncoreDialog : MonoBehaviour
 
         if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
-            m_DialogManager.EncoreDialog(m_GameManager.myFieldList, isReceivedFromRPC);
+            m_DialogManager.EncoreDialog(m_GameManager.myFieldList, paramater);
         }
         else
         {
-            m_DialogManager.ConfirmEncoreKindsDialog(temp, num, isReceivedFromRPC, haveHandEncore, isStockTwo, isStockThree, haveClockEncore);
+            m_DialogManager.ConfirmEncoreKindsDialog(temp, num, paramater, haveHandEncore, isStockTwo, isStockThree, haveClockEncore);
         }
         return;
     }
@@ -123,5 +131,10 @@ public class EncoreDialog : MonoBehaviour
     private bool isClockEncore(BattleModeCard card)
     {
         return false;
+    }
+
+    public void OffDialog()
+    {
+        this.gameObject.SetActive(false);
     }
 }

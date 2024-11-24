@@ -152,6 +152,12 @@ namespace EnumController
         DAMAGED,
     }
 
+    public enum EncoreDialog
+    {
+        VOID,
+        EncorePhase,
+    }
+
     public enum HandCardUtilStatus
     {
         VOID,
