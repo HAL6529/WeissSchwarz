@@ -175,6 +175,14 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Refresh();
                 }*/
                 break;
+            case EnumController.CardNo.LB_W02_04T:
+                //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
+                for (int i = 0; i < 1; i++)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                }
+                break;
             case EnumController.CardNo.LB_W02_05T:
                 // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
                 m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);

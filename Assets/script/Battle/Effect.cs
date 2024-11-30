@@ -253,10 +253,18 @@ public class Effect : MonoBehaviour
     /// <param name="card"></param>
     public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.Attack status)
     {
+        this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A02:
-                m_GameManager.m_DialogManager.CharacterSelectDialog(m_GameManager.myFieldList, place, status);
+                Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action.SetParamaterAttackStatus(status);
+                action.SetParamaterNum(place);
+
+                m_GameManager.ActionList.Add(action);
+
+                m_GameManager.m_DialogManager.CharacterSelectDialog(card, m_GameManager.myFieldList, place);
                 return true;
             /*case EnumController.CardNo.DC_W01_10T:
                 if (ConfirmStockForCost(1))

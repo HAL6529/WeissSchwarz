@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Jake: Bacon Pancakesのために使われている
+
 public class CharacterSelectDialog : MonoBehaviour
 {
     [SerializeField] List<Image> images = new List<Image>();
@@ -12,16 +14,39 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] Sprite BackImage;
     [SerializeField] GameManager m_GameManager;
     private int place = -1;
-    private int ButtonSelectedNum = -1;
-    private EnumController.Attack status = EnumController.Attack.VOID;
 
-    public void Open(List<BattleModeCard> list, int place, EnumController.Attack status)
+    /// <summary>
+    /// 複数のカードを選ぶ可能性がある場合はtrue,なければfalse
+    /// </summary>
+    private bool isMultiple = false;
+
+    private int ButtonSelectedNum = -1;
+    private List<bool> ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
+    private EnumController.Attack status = EnumController.Attack.VOID;
+    private BattleModeCard m_BattleModeCard = null;
+
+    public void Open(BattleModeCard card, List<BattleModeCard> list, int place)
     {
         m_OKButton.SetActive(false);
         ButtonSelectedNum = -1;
+        ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
         this.place = place;
         this.status = status;
+        m_BattleModeCard = card;
         int cnt = 0;
+
+        // 複数のカードを選ぶ可能性がある場合はここで設定
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A02:
+                isMultiple = false;
+                break;
+            default:
+                isMultiple = false;
+                break;
+        }
+
+
         for (int i = 0; i < images.Count; i++)
         {
             if (list[i] == null)
@@ -44,35 +69,57 @@ public class CharacterSelectDialog : MonoBehaviour
             }
         }
 
-        Debug.Log(cnt);
         // ほかにキャラクターがいなければreturnする
-        if (cnt > 3)
+        switch (m_BattleModeCard.cardNo)
         {
-            m_MyMainCardsManager.ExecuteAttack2(place, status);
-            return;
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
+            case EnumController.CardNo.AT_WX02_A02:
+                if (cnt >= 4)
+                {
+                    m_MyMainCardsManager.ExecuteAttack2(place, status);
+                    return;
+                }
+                else
+                {
+                    this.gameObject.SetActive(true);
+                }
+                break;
+            default:
+                break;
         }
     }
 
     public void ButtonClick(int num)
     {
-        for(int i = 0; i < images.Count; i++)
+        if (isMultiple)
         {
-            images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
+            if (ButtonSelectedNumList[num])
+            {
+                images[num].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
+                ButtonSelectedNumList[num] = false;
+            }
+            else
+            {
+                images[num].color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 145f / 255f);
+                ButtonSelectedNumList[num] = true;
+            }
         }
+        else
+        {
+            for (int i = 0; i < images.Count; i++)
+            {
+                images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
+            }
 
-        if(ButtonSelectedNum == num)
-        {
-            ButtonSelectedNum = -1;
-            m_OKButton.SetActive(false);
-            return;
+            if (ButtonSelectedNum == num)
+            {
+                ButtonSelectedNum = -1;
+                m_OKButton.SetActive(false);
+                return;
+            }
+            ButtonSelectedNum = num;
+            images[num].color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 145f / 255f);
+            m_OKButton.SetActive(true);
         }
-        ButtonSelectedNum = num;
-        images[num].color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 145f / 255f);
-        m_OKButton.SetActive(true);
     }
 
     public void OffDialog()
@@ -91,7 +138,17 @@ public class CharacterSelectDialog : MonoBehaviour
     {
         m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ButtonSelectedNum, 1500);
         m_GameManager.Syncronize();
-        m_MyMainCardsManager.ExecuteAttack2(place, status);
+        m_GameManager.ExecuteActionList();
+        /*switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A02:
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ButtonSelectedNum, 1500);
+                m_GameManager.Syncronize();
+                m_MyMainCardsManager.ExecuteAttack2(place, status);
+                break;
+            default:
+                break;
+        }*/
         OffDialog();
     }
 }
