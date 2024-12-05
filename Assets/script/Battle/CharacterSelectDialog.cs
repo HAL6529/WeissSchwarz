@@ -16,9 +16,14 @@ public class CharacterSelectDialog : MonoBehaviour
     private int place = -1;
 
     /// <summary>
-    /// 複数のカードを選ぶ可能性がある場合はtrue,なければfalse
+    /// 最低選ばないといけない枚数、定義がなければ-1
     /// </summary>
-    private bool isMultiple = false;
+    private int minNum = -1;
+
+    /// <summary>
+    /// 最大選べる枚数、定義がなければ-1
+    /// </summary>
+    private int maxNum = -1;
 
     private int ButtonSelectedNum = -1;
     private List<bool> ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
@@ -35,14 +40,18 @@ public class CharacterSelectDialog : MonoBehaviour
         m_BattleModeCard = card;
         int cnt = 0;
 
-        // 複数のカードを選ぶ可能性がある場合はここで設定
+        // 最低選ばないといけないカードの枚数と最大選べるカードの枚数の定義設定
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A02:
-                isMultiple = false;
+                minNum = 1;
+                maxNum = 1;
+                break;
+            case EnumController.CardNo.LB_W02_04T:
+                minNum = -1;
+                maxNum = 2;
                 break;
             default:
-                isMultiple = false;
                 break;
         }
 
@@ -75,49 +84,47 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A02:
                 if (cnt >= 4)
                 {
-                    m_MyMainCardsManager.ExecuteAttack2(place, status);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    OffDialog();
                     return;
-                }
-                else
-                {
-                    this.gameObject.SetActive(true);
                 }
                 break;
             default:
                 break;
         }
+        this.gameObject.SetActive(true);
     }
 
     public void ButtonClick(int num)
     {
-        if (isMultiple)
+        if (ButtonSelectedNumList[num])
         {
-            if (ButtonSelectedNumList[num])
-            {
-                images[num].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
-                ButtonSelectedNumList[num] = false;
-            }
-            else
-            {
-                images[num].color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 145f / 255f);
-                ButtonSelectedNumList[num] = true;
-            }
+            images[num].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
+            ButtonSelectedNumList[num] = false;
         }
         else
         {
-            for (int i = 0; i < images.Count; i++)
-            {
-                images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
-            }
-
-            if (ButtonSelectedNum == num)
-            {
-                ButtonSelectedNum = -1;
-                m_OKButton.SetActive(false);
-                return;
-            }
-            ButtonSelectedNum = num;
             images[num].color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 145f / 255f);
+            ButtonSelectedNumList[num] = true;
+        }
+
+        //OKボタンをアクティブにするか判定
+        int cnt = 0;
+        for(int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (ButtonSelectedNumList[i])
+            {
+                cnt++;
+            }
+        }
+
+        if(cnt < minNum || maxNum < cnt)
+        {
+            m_OKButton.SetActive(false);
+        }
+        else
+        {
             m_OKButton.SetActive(true);
         }
     }
@@ -136,19 +143,39 @@ public class CharacterSelectDialog : MonoBehaviour
 
     public void OKButton()
     {
-        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ButtonSelectedNum, 1500);
-        m_GameManager.Syncronize();
-        m_GameManager.ExecuteActionList();
-        /*switch (m_BattleModeCard.cardNo)
+        int power = 0;
+        switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A02:
-                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(ButtonSelectedNum, 1500);
-                m_GameManager.Syncronize();
-                m_MyMainCardsManager.ExecuteAttack2(place, status);
+                power = 1500;
+                break;
+            case EnumController.CardNo.LB_W02_04T:
+                power = 1000;
                 break;
             default:
                 break;
-        }*/
+        }
+
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (ButtonSelectedNumList[i])
+            {
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+            }
+        }
+
+        // イベントカードの場合は処理後に控室にカードを追加
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_04T:
+                m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                break;
+            default:
+                break;
+        }
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
         OffDialog();
     }
 }

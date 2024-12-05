@@ -182,6 +182,16 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                 }
+                m_GameManager.myHandList.Remove(m_BattleModeCard);
+                m_GameManager.Syncronize();
+                /*Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action.SetParamaterAttackStatus(status);
+                action.SetParamaterNum(place);
+
+                m_GameManager.ActionList.Add(action);*/
+
+                m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
                 break;
             case EnumController.CardNo.LB_W02_05T:
                 // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
