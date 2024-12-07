@@ -8,6 +8,7 @@ public class Action : MonoBehaviour
 
     private BattleStrix m_BattleStrix;
     private BattleModeCard m_BattleModeCard;
+    private DialogManager m_DialogManager;
     private GameManager m_GameManager;
     private MyMainCardsManager m_MyMainCardsManager;
     private EnumController.Attack m_AttackStatus = EnumController.Attack.VOID;
@@ -86,6 +87,9 @@ public class Action : MonoBehaviour
                     return;
                 }
                 break;
+            case EnumController.Action.EncoreCheck:
+                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, EnumController.EncoreDialog.EncoreCheck);
+                return;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
@@ -117,6 +121,11 @@ public class Action : MonoBehaviour
     public void SetParamaterBattleModeCard(BattleModeCard paramater)
     {
         m_BattleModeCard = paramater;
+    }
+
+    public void SetParamaterDialogManager(DialogManager paramater)
+    {
+        m_DialogManager = paramater;
     }
 
     public void SetParamaterNum(int num) 

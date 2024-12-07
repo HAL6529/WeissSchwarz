@@ -20,6 +20,12 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
     }
 
+    public void ResetPowerUpUntilTurnEnd(int num)
+    {
+        CardList[num].m_PowerUpUntilTurnEnd.ResetUpPower();
+    }
+
+
     public void CallNotShowDirectAttackButton()
     {
         for (int i = 0; i < CardList.Count; i++)

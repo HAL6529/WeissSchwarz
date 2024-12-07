@@ -13,6 +13,8 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] GameObject m_OKButton;
     [SerializeField] Sprite BackImage;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] DialogManager m_DialogManager;
     private int place = -1;
 
     /// <summary>
@@ -51,6 +53,10 @@ public class CharacterSelectDialog : MonoBehaviour
                 minNum = -1;
                 maxNum = 2;
                 break;
+            case EnumController.CardNo.LB_W02_09T:
+                minNum = 1;
+                maxNum = 1;
+                break;
             default:
                 break;
         }
@@ -78,11 +84,22 @@ public class CharacterSelectDialog : MonoBehaviour
             }
         }
 
-        // ほかにキャラクターがいなければreturnする
+
         switch (m_BattleModeCard.cardNo)
         {
+            // ほかにキャラクターがいなければreturnする
             case EnumController.CardNo.AT_WX02_A02:
                 if (cnt >= 4)
+                {
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    OffDialog();
+                    return;
+                }
+                break;
+            // キャラクターがいなければreturnする
+            case EnumController.CardNo.LB_W02_09T:
+                if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
@@ -152,16 +169,48 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_04T:
                 power = 1000;
                 break;
+            case EnumController.CardNo.LB_W02_09T:
+                power = -500;
+                break;
             default:
                 break;
         }
 
         for (int i = 0; i < ButtonSelectedNumList.Count; i++)
         {
-            if (ButtonSelectedNumList[i])
+            switch (m_BattleModeCard.cardNo)
             {
-                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+                case EnumController.CardNo.AT_WX02_A02:
+                case EnumController.CardNo.LB_W02_04T:
+                    // 自分のカードのパワーを操作する
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+                    }
+                    break;
+                case EnumController.CardNo.LB_W02_09T:
+                    // 相手のカードのパワーを操作する
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isFirstAttacker, i, power);
+                    }
+                    break;
+                default:
+                    break;
             }
+
+        }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_09T:
+                Action action = new Action(m_GameManager, EnumController.Action.EncoreCheck);
+                action.SetParamaterDialogManager(m_DialogManager);
+
+                m_GameManager.ActionList.Add(action);
+                break;
+            default:
+                break;
         }
 
         // イベントカードの場合は処理後に控室にカードを追加
