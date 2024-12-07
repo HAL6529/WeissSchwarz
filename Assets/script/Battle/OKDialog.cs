@@ -8,6 +8,7 @@ public class OKDialog : MonoBehaviour
 {
     [SerializeField] Text text;
     [SerializeField] BattleStrix m_BattleStrix;
+    [SerializeField] EventAnimationManager m_EventAnimationManager;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
@@ -190,6 +191,30 @@ public class OKDialog : MonoBehaviour
                             pumpPoint = 3000;
                             cost = 1;
                             break;
+                        case EnumController.CardNo.LB_W02_04T:
+                            /*for (int i = 0; i < 1; i++)
+                            {
+                                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                            }
+                            m_GameManager.myHandList.Remove(m_BattleModeCard);
+                            m_GameManager.Syncronize();*/
+                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
+                            m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+
+                            Action action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
+                            action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                            action.SetParamaterNum(ParamaterNum1);
+                            action.SetParamaterNum2(ParamaterNum2);
+
+                            m_GameManager.ActionList.Add(action);
+
+                            m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+
+                            m_MyHandCardsManager.ActiveAllMyHand();
+                            m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                            this.gameObject.SetActive(false);
+                            return;
                         default:
                             break;
                     }

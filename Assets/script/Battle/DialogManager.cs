@@ -141,9 +141,9 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.SetBattleModeCard(list, paramater, card);
     }
 
-    public void CharacterSelectDialog(List<BattleModeCard> list, int place, EnumController.Attack status)
+    public void CharacterSelectDialog(BattleModeCard card, List<BattleModeCard> list, int place)
     {
-        m_CharacterSelectDialog.Open(list, place, status);
+        m_CharacterSelectDialog.Open(card, list, place);
     }
 
     public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, EnumController.EncoreDialog paramater, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)

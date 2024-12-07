@@ -9,9 +9,11 @@ namespace EnumController
         VOID,
         ClockAndTwoDraw,
         DamageRefresh,
+        DamageForFrontAttack,
         DamageForFrontAttack2ForCancel,
         DamageForFrontAttack2ForDamaged,
         EventAnimationManager,
+        ExecuteAttack2,
         PowerCheckForLevelUpDialog,
     }
 
