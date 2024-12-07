@@ -184,12 +184,6 @@ public class EventAnimationManager : MonoBehaviour
                 }
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.Syncronize();
-                /*Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
-                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
-                action.SetParamaterAttackStatus(status);
-                action.SetParamaterNum(place);
-
-                m_GameManager.ActionList.Add(action);*/
 
                 m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
                 break;

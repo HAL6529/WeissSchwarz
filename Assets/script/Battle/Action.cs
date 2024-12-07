@@ -14,6 +14,7 @@ public class Action : MonoBehaviour
     private WinAndLose m_WinAndLose;
 
     private int paramaterNum = -1;
+    private int paramaterNum2 = -1;
 
     public Action(GameManager m_GameManager, EnumController.Action paramater)
     {
@@ -47,6 +48,9 @@ public class Action : MonoBehaviour
                 }
 
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                break;
+            case EnumController.Action.DamageForFrontAttack:
+                m_GameManager.DamageForFrontAttack(paramaterNum, paramaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
                 break;
             case EnumController.Action.DamageForFrontAttack2ForDamaged:
                 if (m_GameManager.LevelUpCheck())
@@ -118,6 +122,11 @@ public class Action : MonoBehaviour
     public void SetParamaterNum(int num) 
     {
         paramaterNum = num;
+    }
+
+    public void SetParamaterNum2(int num)
+    {
+        paramaterNum2 = num;
     }
 
     public void SetParamaterAttackStatus(EnumController.Attack paramater)
