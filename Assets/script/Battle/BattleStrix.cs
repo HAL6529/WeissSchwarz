@@ -241,6 +241,25 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallExecuteActionList(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ExecuteActionList();
+        }
+    }
+
+    [StrixRpc]
+    public void CallAddPowerUpUntilTurnEnd(bool isTurnPlayer, int place , int power)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, power);
+            m_GameManager.Syncronize();
+        }
+    }
+
+    [StrixRpc]
     public void ChangePhase(EnumController.Turn turn)
     {
         m_GameManager.ChangePhase(turn);

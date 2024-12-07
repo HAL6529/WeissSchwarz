@@ -36,12 +36,29 @@ public class EncoreDialog : MonoBehaviour
             }
 
             images[i].sprite = list[i].sprite;
-            if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
+
+            switch (paramater)
             {
-                buttons[i].interactable = true;
-                count++;
-                continue;
+                case EnumController.EncoreDialog.EncorePhase:
+                    if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
+                    {
+                        buttons[i].interactable = true;
+                        count++;
+                        continue;
+                    }
+                    break;
+                case EnumController.EncoreDialog.EncoreCheck:
+                    if (m_MyMainCardsManager.GetFieldPower(i) <= 0)
+                    {
+                        buttons[i].interactable = true;
+                        count++;
+                        continue;
+                    }
+                    break;
+                default:
+                    break;
             }
+
             buttons[i].interactable = false;
         }
         if(count == 0)
@@ -57,6 +74,17 @@ public class EncoreDialog : MonoBehaviour
                     else
                     {
                         m_GameManager.TurnChange();
+                    }
+                    return;
+                case EnumController.EncoreDialog.EncoreCheck:
+                    //ターンプレイヤーを先に解決し、非ターンプレイヤーの場合はターンチェンジする
+                    if (m_GameManager.isTurnPlayer)
+                    {
+                        m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker, paramater);
+                    }
+                    else
+                    {
+                        m_BattleStrix.RpcToAll("CallExecuteActionList", m_GameManager.isFirstAttacker);
                     }
                     return;
                 default:
@@ -78,7 +106,7 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.myFieldList[num] = null;
 
         m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
-
+        m_MyMainCardsManager.ResetPowerUpUntilTurnEnd(num);
         //--------------------------------------------------------------------------------------
         //ここに控室にカードが置かれたときに発動する効果を確認する処理を入れるべきだと思われる
         //--------------------------------------------------------------------------------------

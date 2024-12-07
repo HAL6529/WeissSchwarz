@@ -118,5 +118,10 @@ namespace PowerInstance
         {
             UpPower += num;
         }
+
+        public void ResetUpPower()
+        {
+            UpPower = 0;
+        }
     }
 }

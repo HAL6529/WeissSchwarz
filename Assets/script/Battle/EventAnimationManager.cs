@@ -200,6 +200,16 @@ public class EventAnimationManager : MonoBehaviour
                 }
                 m_GameManager.Syncronize();
                 break;
+            case EnumController.CardNo.LB_W02_09T:
+                //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
+                for (int i = 0; i < 1; i++)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                }
+                m_GameManager.Syncronize();
+                m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                break;
             case EnumController.CardNo.LB_W02_16T:
                 if (m_GameManager.myClockList.Count == 0)
                 {

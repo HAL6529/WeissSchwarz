@@ -12,6 +12,7 @@ namespace EnumController
         DamageForFrontAttack,
         DamageForFrontAttack2ForCancel,
         DamageForFrontAttack2ForDamaged,
+        EncoreCheck,
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
@@ -158,6 +159,7 @@ namespace EnumController
     {
         VOID,
         EncorePhase,
+        EncoreCheck,
     }
 
     public enum HandCardUtilStatus
@@ -285,6 +287,7 @@ namespace EnumController
         COST_CONFIRM_DC_W01_13T,
         COST_CONFIRM_LB_W02_03T,
         COST_CONFIRM_LB_W02_05T,
+        COST_CONFIRM_LB_W02_09T,
         COST_CONFIRM_LB_W02_17T,
         COST_CONFIRM_SEND_MEMORY,
     }
