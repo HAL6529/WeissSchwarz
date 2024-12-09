@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,15 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] RoomSelectAlertAnimation m_RoomSelectAlertAnimation;
 
+    [SerializeField] CardInfoList m_CardInfoList;
+
     public static string RoomName;
 
     public static string PassPhrase;
 
     public static string Name;
+
+    SaveUtil m_SaveUtil = new SaveUtil();
 
     RoomSelectClass()
     {
@@ -37,6 +42,7 @@ public class RoomSelectClass : MonoBehaviour
     {
         t_PlayerName.text = SaveData.PlayerName;
         Name = SaveData.PlayerName;
+        Load();
     }
 
     // Update is called once per frame
@@ -138,5 +144,37 @@ public class RoomSelectClass : MonoBehaviour
     public static string getName()
     {
         return Name;
+    }
+
+    public void Load()
+    {
+        string DeckName = "default";
+        string filePath = @"./Save";
+
+        List<cardInfo> list = new List<cardInfo>();
+
+        // ディレクトリがなければreturn
+        if (!Directory.Exists(filePath) || !File.Exists(@"./Save/" + DeckName + ".txt"))
+        {
+            return;
+        }
+
+        IEnumerable<string> lines = File.ReadLines(@"./Save/" + DeckName + ".txt");
+
+        // ファイルの行数分ループ
+        foreach (string line in lines)
+        {
+            cardInfo temp = m_CardInfoList.Convert(line);
+            if (temp != null)
+            {
+                list.Add(temp);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        SaveData.cardInfoList = list;
     }
 }
