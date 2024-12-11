@@ -20,6 +20,7 @@ public class Effect : MonoBehaviour
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A10:
+            case EnumController.CardNo.DC_W01_09T:
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, card);

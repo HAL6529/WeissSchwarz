@@ -140,6 +140,7 @@ public class StringValues
     public string LB_W02_19T_CardNo = "LB_W02_19T";
     public string LB_W02_20T_CardNo = "LB_W02_20T";
     public string AT_WX02_A12_NAME = "Marceline: Party Crasher";
+    public string DC_W01_10T_NAME = "ƒƒ{”üt";
 
     public StringValues() 
     {

@@ -531,6 +531,15 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
         }
 
+        // 白河 暦の効果
+        // 【永】 他のあなたのカード名に「美春」を含むキャラすべてに、パワーを＋500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_10T)
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.DC_W01_09T);
+            FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
