@@ -184,6 +184,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_05T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_05T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
                 break;
@@ -301,6 +304,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 起動効果を持つキャラクター
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T:
