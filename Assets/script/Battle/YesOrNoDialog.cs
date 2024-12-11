@@ -168,6 +168,11 @@ public class YesOrNoDialog : MonoBehaviour
                         bondName = stringValues.AT_WX02_A12_NAME;
                         cost = 1;
                         break;
+                    case EnumController.CardNo.DC_W01_09T:
+                        sulvageCardNo = EnumController.CardNo.DC_W01_10T;
+                        bondName = stringValues.DC_W01_10T_NAME;
+                        cost = 1;
+                        break;
                     default:
                         bondName = "";
                         cost = 0;
