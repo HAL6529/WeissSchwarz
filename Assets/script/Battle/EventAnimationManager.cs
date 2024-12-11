@@ -135,6 +135,16 @@ public class EventAnimationManager : MonoBehaviour
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                 m_GameManager.Syncronize();
                 break;
+            case EnumController.CardNo.DC_W01_05T:
+                //【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。
+                for (int i = 0; i < 1; i++)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                }
+                m_GameManager.Syncronize();
+                m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                break;
             case EnumController.CardNo.DC_W01_10T:
                 // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
                 m_BattleStrix.RpcToAll("ToDeckTopFromField", place, m_GameManager.isTurnPlayer);

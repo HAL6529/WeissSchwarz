@@ -49,6 +49,10 @@ public class CharacterSelectDialog : MonoBehaviour
                 minNum = 1;
                 maxNum = 1;
                 break;
+            case EnumController.CardNo.DC_W01_05T:
+                minNum = 1;
+                maxNum = 1;
+                break;
             case EnumController.CardNo.LB_W02_04T:
                 minNum = -1;
                 maxNum = 2;
@@ -81,6 +85,20 @@ public class CharacterSelectDialog : MonoBehaviour
                 {
                     buttons[i].interactable = true;
                 }
+
+                // 前列のカードだけ対象
+                switch (m_BattleModeCard.cardNo)
+                {
+                    case EnumController.CardNo.DC_W01_05T:
+                        if(i >= 3)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -98,6 +116,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 }
                 break;
             // キャラクターがいなければreturnする
+            case EnumController.CardNo.DC_W01_05T:
             case EnumController.CardNo.LB_W02_09T:
                 if (cnt >= 5)
                 {
@@ -172,6 +191,9 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_09T:
                 power = -500;
                 break;
+            case EnumController.CardNo.DC_W01_05T:
+                power = -1000;
+                break;
             default:
                 break;
         }
@@ -188,6 +210,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
                     }
                     break;
+                case EnumController.CardNo.DC_W01_05T:
                 case EnumController.CardNo.LB_W02_09T:
                     // 相手のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
@@ -203,6 +226,7 @@ public class CharacterSelectDialog : MonoBehaviour
 
         switch (m_BattleModeCard.cardNo)
         {
+            case EnumController.CardNo.DC_W01_05T:
             case EnumController.CardNo.LB_W02_09T:
                 Action action = new Action(m_GameManager, EnumController.Action.EncoreCheck);
                 action.SetParamaterDialogManager(m_DialogManager);
