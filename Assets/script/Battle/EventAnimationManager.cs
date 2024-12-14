@@ -177,13 +177,18 @@ public class EventAnimationManager : MonoBehaviour
             case EnumController.CardNo.LB_W02_03T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、
                 // ストック置場に置き、そのターン中、このカードのパワーを＋3000。
-                /*m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
                 m_GameManager.myDeckList.RemoveAt(0);
                 m_GameManager.Syncronize();
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 3000);
                 if (m_GameManager.myDeckList.Count == 0)
                 {
                     m_GameManager.Refresh();
-                }*/
+                }
+                else
+                {
+                    m_GameManager.ExecuteActionList();
+                }
                 break;
             case EnumController.CardNo.LB_W02_04T:
                 //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。

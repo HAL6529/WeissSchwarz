@@ -49,6 +49,11 @@ public class DialogManager : MonoBehaviour
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num);
     }
 
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, EnumController.Attack status)
+    {
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, status);
+    }
+
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int ParamaterNum1, int ParamaterNum2)
     {
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, ParamaterNum1, ParamaterNum2);
