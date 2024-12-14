@@ -27,6 +27,8 @@ public class YesOrNoDialog : MonoBehaviour
 
     private int ParamaterNum3 = -1;
 
+    private EnumController.Attack attackStatus = EnumController.Attack.VOID;
+
     private bool isReceivedFromRPC = false;
 
     private StringValues stringValues = new StringValues();
@@ -52,6 +54,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum2 = -1;
         ParamaterNum3 = -1;
         m_BattleModeCard = null;
+        attackStatus = EnumController.Attack.VOID;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -66,6 +69,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum2 = -1;
         ParamaterNum3 = -1;
         m_BattleModeCard = card;
+        attackStatus = EnumController.Attack.VOID;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -80,6 +84,22 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum2 = -1;
         ParamaterNum3 = -1;
         m_BattleModeCard = card;
+        attackStatus = EnumController.Attack.VOID;
+        sulvageCardNo = EnumController.CardNo.VOID;
+        cost = 0;
+        this.gameObject.SetActive(true);
+        m_YesOrNoDialogParamater = paramater;
+        this.isReceivedFromRPC = false;
+        SetText();
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
+    {
+        ParamaterNum1 = num;
+        ParamaterNum2 = -1;
+        ParamaterNum3 = -1;
+        m_BattleModeCard = card;
+        attackStatus = status;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -94,6 +114,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum2 = num2;
         ParamaterNum3 = -1;
         m_BattleModeCard = card;
+        attackStatus = EnumController.Attack.VOID;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -107,6 +128,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum2 = num2;
         ParamaterNum3 = num3;
         m_BattleModeCard = card;
+        attackStatus = EnumController.Attack.VOID;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -126,6 +148,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum1 = num;
         ParamaterNum2 = -1;
         m_BattleModeCard = card;
+        attackStatus = EnumController.Attack.VOID;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
@@ -301,6 +324,18 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
                 break;
+            // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
+                Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action.SetParamaterAttackStatus(attackStatus);
+                action.SetParamaterNum(ParamaterNum1);
+
+                m_GameManager.ActionList.Add(action);
+
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
@@ -310,7 +345,6 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_05T:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
