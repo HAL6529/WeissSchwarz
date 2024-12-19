@@ -23,7 +23,24 @@ public class CardGuideUtil : MonoBehaviour
         cardName.text = info.cardName;
         explanation.text = extendUtil.Explanation(info.cardNo);
         cardInfoImage.sprite = info.sprite;
-        levelIndex.text = info.level.ToString();
-        costIndex.text = info.cost.ToString();
+
+        if(info.level == -1)
+        {
+            levelIndex.text = "";
+        }
+        else
+        {
+            levelIndex.text = info.level.ToString();
+        }
+
+        if(info.cost == -1)
+        {
+            costIndex.text = "";
+        }
+        else
+        {
+            costIndex.text = info.cost.ToString();
+        }
+
     }
 }
