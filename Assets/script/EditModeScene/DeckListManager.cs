@@ -87,8 +87,23 @@ public class DeckListManager : MonoBehaviour
         cardName.text = cardInfoList[index].cardName;
         explanation.text = extendUtil.Explanation(cardInfoList[index].cardNo);
         cardInfoImage.sprite = cardInfoList[index].sprite;
-        levelIndex.text = cardInfoList[index].level.ToString();
-        costIndex.text = cardInfoList[index].cost.ToString();
+        if (cardInfoList[index].level == -1)
+        {
+            levelIndex.text = "";
+        }
+        else
+        {
+            levelIndex.text = cardInfoList[index].level.ToString();
+        }
+
+        if (cardInfoList[index].cost == -1)
+        {
+            costIndex.text = "";
+        }
+        else
+        {
+            costIndex.text = cardInfoList[index].cost.ToString();
+        }
     }
 
     public void removeCard(int index)
