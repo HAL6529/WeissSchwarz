@@ -23,6 +23,12 @@ public class DialogManager : MonoBehaviour
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] SelectActionDialog m_SelectActionDialog;
     [SerializeField] SulvageDialog m_SulvageDialog;
+    [SerializeField] WaitDialog m_WaitDialog;
+
+    public void CloseWaitDialog()
+    {
+        m_WaitDialog.onClose();
+    }
 
     public void SulvageDialog(BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
     {
@@ -202,5 +208,6 @@ public class DialogManager : MonoBehaviour
         m_MainPowerUpDialog.OffDialog();
         m_SelectActionDialog.OffDialog();
         m_SulvageDialog.onCloseButton();
+        m_WaitDialog.onClose();
     }
 }

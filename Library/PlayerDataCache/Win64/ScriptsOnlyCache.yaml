@@ -83,6 +83,7 @@ ScriptsOnlyBuild:
     - SulvageDialogBtnUtil
     - TriggerCardAnimation
     - TriggerCardAnimationForEnemy
+    - WaitDialog
     - WinAndLose
     - YesOrNoDialog
     - cardInfo
@@ -118,8 +119,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -474,19 +477,22 @@ ScriptsOnlyBuild:
     methodName: onCreateRoomMenuButton
   - assembly: Assembly-CSharp
     fullTypeName: RoomSelectClass
+    methodName: onCreateRoomMenuButton
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomSelectClass
     methodName: onNameOKButton
   - assembly: Assembly-CSharp
     fullTypeName: StrixManagerTest
     methodName: onRandomJoinButton
   - assembly: Assembly-CSharp
     fullTypeName: RoomSelectClass
-    methodName: onCreateDeckButton
-  - assembly: Assembly-CSharp
-    fullTypeName: RoomSelectClass
     methodName: onCreateRoomButton
   - assembly: Assembly-CSharp
     fullTypeName: RoomSelectClass
     methodName: onCloseCreateRoomButton
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomSelectClass
+    methodName: onCreateDeckButton
   - assembly: Assembly-CSharp
     fullTypeName: Menu
     methodName: TransitionToBattleMode
@@ -2272,31 +2278,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6506}
     - Class: 114
-      Script: {instanceID: 6562}
+      Script: {instanceID: 6564}
     - Class: 114
-      Script: {instanceID: 6736}
+      Script: {instanceID: 6738}
     - Class: 114
-      Script: {instanceID: 6768}
+      Script: {instanceID: 6770}
     - Class: 114
-      Script: {instanceID: 6806}
+      Script: {instanceID: 6808}
     - Class: 114
-      Script: {instanceID: 7086}
+      Script: {instanceID: 7088}
     - Class: 114
-      Script: {instanceID: 7214}
+      Script: {instanceID: 7216}
     - Class: 114
-      Script: {instanceID: 7252}
+      Script: {instanceID: 7254}
     - Class: 114
-      Script: {instanceID: 7290}
+      Script: {instanceID: 7292}
     - Class: 114
-      Script: {instanceID: 7352}
+      Script: {instanceID: 7354}
     - Class: 114
-      Script: {instanceID: 7450}
+      Script: {instanceID: 7452}
     - Class: 114
-      Script: {instanceID: 7528}
+      Script: {instanceID: 7530}
     - Class: 114
-      Script: {instanceID: 7544}
+      Script: {instanceID: 7546}
     - Class: 114
-      Script: {instanceID: 7568}
+      Script: {instanceID: 7570}
+    - Class: 114
+      Script: {instanceID: 112364}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2387,17 +2395,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6470}
     - Class: 114
-      Script: {instanceID: 6768}
+      Script: {instanceID: 6770}
     - Class: 114
-      Script: {instanceID: 7086}
+      Script: {instanceID: 7088}
     - Class: 114
-      Script: {instanceID: 7182}
+      Script: {instanceID: 7184}
     - Class: 114
-      Script: {instanceID: 7628}
+      Script: {instanceID: 7630}
     - Class: 114
-      Script: {instanceID: 7642}
+      Script: {instanceID: 7644}
     - Class: 114
-      Script: {instanceID: 7880}
+      Script: {instanceID: 7882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2555,13 +2563,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6470}
     - Class: 114
-      Script: {instanceID: 6964}
+      Script: {instanceID: 6966}
     - Class: 114
-      Script: {instanceID: 7086}
+      Script: {instanceID: 7088}
     - Class: 114
-      Script: {instanceID: 7182}
+      Script: {instanceID: 7184}
     - Class: 114
-      Script: {instanceID: 7880}
+      Script: {instanceID: 7882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2757,7 +2765,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: 93bc18c90c7caae9c3330d62c4f5ca7c
+      Hash: 88fdb45aa1d18773c912b51ef290d857
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -3753,6 +3761,12 @@ ScriptsOnlyBuild:
     className: Phase
   - hash:
       serializedVersion: 2
+      Hash: 6c0d8140be90c40e74ea86c3e3b7b1b0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CreateDeckButton
+  - hash:
+      serializedVersion: 2
       Hash: 4c956f361aec85f40b03f00a6441ffdf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -4075,6 +4089,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoUtil
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WaitDialog
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity

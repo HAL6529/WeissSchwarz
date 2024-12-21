@@ -289,6 +289,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        m_BattleStrix.RpcToAll("CloseWaitDialog");
         if (m_StrixManager.isOwner)
         {
             if (CoinToss())

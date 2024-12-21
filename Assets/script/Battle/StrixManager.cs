@@ -174,6 +174,7 @@ public class StrixManager : MonoBehaviour
                 SceneManager.LoadScene("RoomSelect");
                 break;
             default:
+                Debug.Log(args);
                 break;
         }
     }

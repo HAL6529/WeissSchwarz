@@ -284,7 +284,7 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
-[StrixRpc]
+    [StrixRpc]
     public void ClockPhase()
     {
         logText.text = "ClockPhase";
@@ -292,6 +292,15 @@ public class BattleStrix : StrixBehaviour
         {
             m_GameManager.ClockPhaseStart();
         }
+    }
+
+    /// <summary>
+    /// WaitDialog‚ð•Â‚¶‚é
+    /// </summary>
+    [StrixRpc]
+    public void CloseWaitDialog()
+    {
+        m_DialogManager.CloseWaitDialog();
     }
 
     [StrixRpc]
