@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Text logText;
 
+    [SerializeField] AudioClip DrawSE;
+
     public List<BattleModeCard> myDeckList = new List<BattleModeCard>();
     public List<BattleModeCard> myHandList = new List<BattleModeCard>();
     public List<BattleModeCard> myClockList = new List<BattleModeCard>();
@@ -234,6 +236,7 @@ public class GameManager : MonoBehaviour
 
     public void Draw()
     {
+        GetComponent<AudioSource>().PlayOneShot(DrawSE);
         myHandList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
         Syncronize();
