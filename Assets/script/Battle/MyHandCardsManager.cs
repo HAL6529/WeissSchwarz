@@ -66,24 +66,24 @@ public class MyHandCardsManager : MonoBehaviour
             }
             onlyEleven.SetActive(false);
             rightCard.SetActive(true);
-            rightCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[HAND_DISPLAY_NUM]);
+            rightCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[HAND_DISPLAY_NUM - 1]);
         }
         // カードの枚数が12枚以上で表示カーソルが一番右のとき
-        else if (num > 11 && cursorNum > 0 && cursorNum >= num - HAND_DISPLAY_NUM)
+        else if (num > 11 && cursorNum > 0 && cursorNum > num - HAND_DISPLAY_NUM)
         {
+            cursorNum = num - HAND_DISPLAY_NUM + 1;
             leftCard.SetActive(true);
-            leftCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[num - HAND_DISPLAY_NUM - 1]);
+            leftCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[num - HAND_DISPLAY_NUM]);
             for (int i = 0; i < CardList.Count; i++)
             {
                 CardList[i].SetActive(true);
-                CardList[i].GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[cursorNum + i + 1]);
+                CardList[i].GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[cursorNum + i]);
             }
             onlyEleven.SetActive(false);
             rightCard.SetActive(false);
-            cursorNum = num - HAND_DISPLAY_NUM;
         }
         // カードの枚数が12枚以上で表示カーソルが真ん中のとき
-        else if (num > 11 && cursorNum > 0 && num - HAND_DISPLAY_NUM > cursorNum)
+        else if (num > 11 && cursorNum > 0 && num - HAND_DISPLAY_NUM >= cursorNum)
         {
             leftCard.SetActive(true);
             leftCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[cursorNum - 1]);
@@ -94,7 +94,7 @@ public class MyHandCardsManager : MonoBehaviour
             }
             onlyEleven.SetActive(false);
             rightCard.SetActive(true);
-            rightCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[cursorNum + HAND_DISPLAY_NUM]);
+            rightCard.GetComponent<BattleHandCardUtil>().setBattleModeCard(handList[cursorNum + HAND_DISPLAY_NUM - 1]);
         }
         CallResetSelected();
         onlyEleven.GetComponent<BattleHandCardUtil>().isSelected = false;
@@ -114,6 +114,7 @@ public class MyHandCardsManager : MonoBehaviour
         {
             CardList[i].GetComponent<BattleHandCardUtil>().NotShowPlayButton();
         }
+        onlyEleven.GetComponent<BattleHandCardUtil>().NotShowPlayButton();
     }
 
     public int GetIsSelectedNum()
