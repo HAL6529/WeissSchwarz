@@ -22,6 +22,8 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] CardInfoList m_CardInfoList;
 
+    [SerializeField] AudioClip BtnSE;
+
     public static string RoomName;
 
     public static string PassPhrase;
@@ -53,21 +55,25 @@ public class RoomSelectClass : MonoBehaviour
     
     public void onCreateDeckButton()
     {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
         SceneManager.LoadScene("DeckEdit");
     }
 
     public void onCreateRoomMenuButton()
     {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(true);
     }
 
     public void onCloseCreateRoomButton()
     {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(false);
     }
 
     public void onCreateRoomButton()
     {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
         string roomName = t_RoomName.text;
         string passPhrase = t_PassPhrase.text;
         bool result = false;
@@ -119,6 +125,7 @@ public class RoomSelectClass : MonoBehaviour
 
     public void onNameOKButton()
     {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
         string name = t_Name.text;
         if (name == string.Empty)
         {
