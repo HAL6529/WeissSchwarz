@@ -175,15 +175,6 @@ public class GameManager : MonoBehaviour
     {
         Draw();
         Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
-        Draw();
         Syncronize();
         ClockPhaseEnd();
         return;
