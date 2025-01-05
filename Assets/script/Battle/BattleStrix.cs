@@ -189,6 +189,16 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallAddPowerUpUntilTurnEnd(bool isTurnPlayer, int place, int power)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, power);
+            m_GameManager.Syncronize();
+        }
+    }
+
+    [StrixRpc]
     public void CallEnemyRest(int num, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
@@ -223,6 +233,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallExecuteActionList(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ExecuteActionList();
+        }
+    }
+
+    [StrixRpc]
     public void CallMyReverse(int num, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
@@ -237,25 +256,6 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.CounterCheck(ParamaterNum1, ParamaterNum2, SendShotList);
-        }
-    }
-
-    [StrixRpc]
-    public void CallExecuteActionList(bool isTurnPlayer)
-    {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
-        {
-            m_GameManager.ExecuteActionList();
-        }
-    }
-
-    [StrixRpc]
-    public void CallAddPowerUpUntilTurnEnd(bool isTurnPlayer, int place , int power)
-    {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
-        {
-            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, power);
-            m_GameManager.Syncronize();
         }
     }
 

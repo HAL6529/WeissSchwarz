@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
     public bool isFirstAttacked = false;
+    public bool isEncoreDialogProcess = false;
 
     /// <summary>
     /// 扉アイコンのためのトリガーがデッキ残り1枚でトリガーしたかの判定用
