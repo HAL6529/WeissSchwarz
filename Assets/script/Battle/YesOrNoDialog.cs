@@ -254,6 +254,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.AT_WX02_A03:
                         m_GameManager.Draw();
                         break;
+                    case EnumController.CardNo.DC_W01_07T:
                     case EnumController.CardNo.DC_W01_10T:
                     case EnumController.CardNo.DC_W01_16T:
                         m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
@@ -378,6 +379,9 @@ public class YesOrNoDialog : MonoBehaviour
         this.gameObject.SetActive(false);
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                m_GameManager.ExecuteActionList();
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 // DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
                 m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);

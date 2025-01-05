@@ -17,8 +17,8 @@ public class SelectActionDialog : MonoBehaviour
 
     public void OKButton()
     {
-        ActionList[displayNum].Execute(displayNum);
         OffDialog();
+        ActionList[displayNum].Execute(displayNum);
     }
 
     public void LeftBtn()
@@ -59,7 +59,7 @@ public class SelectActionDialog : MonoBehaviour
         }else if(ActionList.Count == 1)
         {
             ActionList[0].Execute(0);
-            OffDialog();
+            // OffDialog();
             return;
         }
 
@@ -89,6 +89,7 @@ public class SelectActionDialog : MonoBehaviour
 
     public void SetText(EnumController.Action paramater)
     {
+        // 25文字程度で改行すること
         text1.text = "";
         text2.text = "";
         text3.text = "";
@@ -118,6 +119,15 @@ public class SelectActionDialog : MonoBehaviour
             case EnumController.Action.DamageRefresh:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "DamageRefresh";
+                break;
+            case EnumController.Action.DC_W01_07T:
+                text1.text = "【自】 他のバトルしているあなたのキャラが【リバース】した時、";
+                text2.text = "あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";
+                break;
+            case EnumController.Action.DC_W01_16T:
+                text1.text = "【自】 このカードが【リバース】した時、";
+                text2.text = "このカードとバトルしているキャラのレベルが1以下なら、";
+                text3.text = "あなたはそのキャラを【リバース】してよい。";
                 break;
             default:
                 text2.text = "エラーメッセージ";
