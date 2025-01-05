@@ -391,7 +391,17 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
+        m_MyMainCardsManager.ConfirmEffectWhenMyCardReversed(PlaceNum);
         m_Effect.WhenReverseMyCardEffect(m_BattleModeCard, PlaceNum);
+        m_GameManager.ExecuteActionList();
+    }
+
+    /// <summary>
+    /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」の効果を持っていないか確認する
+    /// </summary>
+    public void EffectWhenMyOtherCardReversed()
+    {
+        m_Effect.EffectWhenMyOtherCardReversed(m_BattleModeCard);
     }
 
     /// <summary>

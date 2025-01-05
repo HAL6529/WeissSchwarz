@@ -328,4 +328,19 @@ public class MyMainCardsManager : MonoBehaviour
     {
         CardList[num].setBattleModeCard(card, status);
     }
+
+    /// <summary>
+    /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」の効果を持っているカードが場にないか確認する
+    /// </summary>
+    public void ConfirmEffectWhenMyCardReversed(int PlaceNum)
+    {
+        for(int i = 0; i < CardList.Count; i++)
+        {
+            if(i == PlaceNum)
+            {
+                continue;
+            }
+            CardList[i].EffectWhenMyOtherCardReversed();
+        }
+    }
 }

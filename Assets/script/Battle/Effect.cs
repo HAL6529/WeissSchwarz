@@ -54,15 +54,15 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
-    /// 自分がリバースしたときに発動する効果
+    /// 「【自】 このカードが【リバース】した時」に発動する効果
     /// </summary>
     public void WhenReverseMyCardEffect(BattleModeCard card, int place)
     {
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
-        Debug.Log(place);
         switch (card.cardNo)
         {
+            // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.CardNo.DC_W01_16T:
                 int enemyPlace = -1;
                 switch (place)
@@ -81,7 +81,10 @@ public class Effect : MonoBehaviour
                 }
                 if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 1 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, place);
+                    Action action = new Action(m_GameManager, EnumController.Action.DC_W01_16T);
+                    action.SetParamaterBattleModeCard(card);
+                    action.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action);
                 }
                 return;
             default:
@@ -90,6 +93,29 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
+    /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」に発動する効果
+    /// <summary>
+    public void EffectWhenMyOtherCardReversed(BattleModeCard card)
+    {
+        if(card == null)
+        {
+            return;
+        }
+
+        switch (card.cardNo)
+        {
+            // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
+            case EnumController.CardNo.DC_W01_07T:
+                Action action = new Action(m_GameManager, EnumController.Action.DC_W01_07T);
+                action.SetParamaterBattleModeCard(card);
+                m_GameManager.ActionList.Add(action);
+                return;
+            default:
+                return;
+        }
+    }
+
+    
     /// 効果を発動するために必要なストックを満たしているか
     /// </summary>
     /// <param name="num"></param>

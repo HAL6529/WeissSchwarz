@@ -16,6 +16,8 @@ namespace EnumController
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
+        DC_W01_07T,
+        DC_W01_16T,
     }
 
     public enum Attack

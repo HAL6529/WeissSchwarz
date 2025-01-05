@@ -101,6 +101,12 @@ public class Action : MonoBehaviour
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 m_GameManager.PowerCheckForLevelUpDialog(paramaterNum);
                 break;
+            case EnumController.Action.DC_W01_07T:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
+                return;
+            case EnumController.Action.DC_W01_16T:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
+                return;
             default:
                 break;
         }
