@@ -1,243 +1,481 @@
 ﻿{ "pid": 0, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "BeeDriver" } },
 { "pid": 0, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-2" } },
 { "pid": 0, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
-{ "pid": 0, "tid": 1, "ts": 1736071967396793, "dur": 876389, "ph": "X", "name": "Build ScriptAssembliesAndTypeDB", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071967397848, "dur": 62668, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071967460673, "dur": 802744, "ph": "X", "name": "Run Backend", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071968263428, "dur": 9754, "ph": "X", "name": "Finish", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071968387641, "dur": 1336367, "ph": "X", "name": "Build ScriptAssembliesAndTypeDB", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071968387656, "dur": 20524, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071968408182, "dur": 1306093, "ph": "X", "name": "Run Backend", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071969714276, "dur": 9732, "ph": "X", "name": "Finish", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980403038, "dur": 83034, "ph": "X", "name": "Build Player", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980403198, "dur": 4039, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980407238, "dur": 66129, "ph": "X", "name": "Run Backend", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980473369, "dur": 12702, "ph": "X", "name": "Finish", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980486483, "dur": 18, "ph": "X", "name": "", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995081263, "dur": 767497, "ph": "X", "name": "Build ScriptAssembliesAndTypeDB", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995082177, "dur": 32206, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995114574, "dur": 724425, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995839014, "dur": 9746, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995996808, "dur": 1379977, "ph": "X", "name": "Build ScriptAssembliesAndTypeDB", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076995996824, "dur": 20345, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076996017171, "dur": 1349905, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736076997367078, "dur": 9706, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008183399, "dur": 108804, "ph": "X", "name": "Build Player", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008183553, "dur": 14509, "ph": "X", "name": "WriteBuildProgramData", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008198065, "dur": 82088, "ph": "X", "name": "Run Backend", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008280155, "dur": 12048, "ph": "X", "name": "Finish", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008292696, "dur": 20, "ph": "X", "name": "", "args": {} },
 { "cat":"", "pid":12345, "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
-,{ "pid":12345, "tid":0, "ts":1736071980427496, "dur":1035, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980428540, "dur":116, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980428702, "dur":601, "ph":"X", "name": "BuildQueueInit",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980429324, "dur":333, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980429658, "dur":24563, "ph":"X", "name": "WaitForBuildFinished", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980454222, "dur":337, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980454728, "dur":1276, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
-,{ "pid":12345, "tid":1, "ts":1736071980429191, "dur":472, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1736071980429665, "dur":1919, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1736071980431644, "dur":50, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1736071980431724, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":1, "ts":1736071980431954, "dur":305, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Collections.dll" }}
-,{ "pid":12345, "tid":1, "ts":1736071980431954, "dur":305, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Collections.dll" }}
-,{ "pid":12345, "tid":1, "ts":1736071980435654, "dur":8007, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level3" }}
-,{ "pid":12345, "tid":1, "ts":1736071980443699, "dur":10532, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1736071980429248, "dur":427, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1736071980429675, "dur":1918, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1736071980431593, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
-,{ "pid":12345, "tid":2, "ts":1736071980431729, "dur":77, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":2, "ts":1736071980431919, "dur":164, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.Animation.Runtime.dll" }}
-,{ "pid":12345, "tid":2, "ts":1736071980431918, "dur":165, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.Animation.Runtime.dll" }}
-,{ "pid":12345, "tid":2, "ts":1736071980432121, "dur":200, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Internal.dll" }}
-,{ "pid":12345, "tid":2, "ts":1736071980432120, "dur":202, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Internal.dll" }}
-,{ "pid":12345, "tid":2, "ts":1736071980434140, "dur":9857, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets1.assets" }}
-,{ "pid":12345, "tid":2, "ts":1736071980444032, "dur":10211, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980429216, "dur":452, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980429668, "dur":1945, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980431613, "dur":51, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/2.0/web.config" }}
-,{ "pid":12345, "tid":3, "ts":1736071980431721, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980431965, "dur":131, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Registration.dll" }}
-,{ "pid":12345, "tid":3, "ts":1736071980431964, "dur":133, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Registration.dll" }}
-,{ "pid":12345, "tid":3, "ts":1736071980432097, "dur":104, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980432202, "dur":101, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.PixelPerfect.dll" }}
-,{ "pid":12345, "tid":3, "ts":1736071980432202, "dur":101, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.PixelPerfect.dll" }}
-,{ "pid":12345, "tid":3, "ts":1736071980432515, "dur":100, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":3, "ts":1736071980435382, "dur":9289, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets.resS" }}
-,{ "pid":12345, "tid":3, "ts":1736071980444685, "dur":9548, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1736071980429241, "dur":430, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1736071980429671, "dur":1935, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1736071980431635, "dur":175, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\machine.config" }}
-,{ "pid":12345, "tid":4, "ts":1736071980431608, "dur":203, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
-,{ "pid":12345, "tid":4, "ts":1736071980431812, "dur":91, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":4, "ts":1736071980431907, "dur":188, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Device.dll" }}
-,{ "pid":12345, "tid":4, "ts":1736071980431905, "dur":191, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Device.dll" }}
-,{ "pid":12345, "tid":4, "ts":1736071980432137, "dur":260, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Telemetry.dll" }}
-,{ "pid":12345, "tid":4, "ts":1736071980432137, "dur":260, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Telemetry.dll" }}
-,{ "pid":12345, "tid":4, "ts":1736071980432608, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets" }}
-,{ "pid":12345, "tid":4, "ts":1736071980436233, "dur":8255, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets" }}
-,{ "pid":12345, "tid":4, "ts":1736071980444503, "dur":9736, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1736071980429266, "dur":415, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1736071980429681, "dur":1914, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":5, "ts":1736071980431595, "dur":82, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/settings.map" }}
-,{ "pid":12345, "tid":5, "ts":1736071980431725, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.ServiceModel.Internals.dll" }}
-,{ "pid":12345, "tid":5, "ts":1736071980431920, "dur":294, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Burst.dll" }}
-,{ "pid":12345, "tid":5, "ts":1736071980431920, "dur":294, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Burst.dll" }}
-,{ "pid":12345, "tid":5, "ts":1736071980433682, "dur":10285, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets.resS" }}
-,{ "pid":12345, "tid":5, "ts":1736071980443984, "dur":10262, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1736071980429517, "dur":208, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1736071980429725, "dur":2031, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1736071980431764, "dur":100, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.IO.Compression.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980431756, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.IO.Compression.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980431953, "dur":123, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityForge.AnimCallbacks.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980431952, "dur":125, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityForge.AnimCallbacks.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432102, "dur":88, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Configuration.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432101, "dur":89, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Configuration.dll" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432191, "dur":177, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432614, "dur":108, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\RuntimeInitializeOnLoads.json" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432614, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/RuntimeInitializeOnLoads.json" }}
-,{ "pid":12345, "tid":6, "ts":1736071980432887, "dur":3675, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level0" }}
-,{ "pid":12345, "tid":6, "ts":1736071980436581, "dur":17639, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1736071980429314, "dur":375, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1736071980429689, "dur":1899, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431600, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431591, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431733, "dur":66, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Runtime.Serialization.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431732, "dur":68, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Runtime.Serialization.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431800, "dur":56, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431924, "dur":129, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Analytics.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980431923, "dur":130, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Analytics.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980432101, "dur":496, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Networking.Transport.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980432100, "dur":498, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Networking.Transport.dll" }}
-,{ "pid":12345, "tid":7, "ts":1736071980435924, "dur":8788, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level2" }}
-,{ "pid":12345, "tid":7, "ts":1736071980444725, "dur":9497, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1736071980429332, "dur":361, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1736071980429693, "dur":1896, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1736071980431749, "dur":159, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Numerics.dll" }}
-,{ "pid":12345, "tid":8, "ts":1736071980431741, "dur":169, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Numerics.dll" }}
-,{ "pid":12345, "tid":8, "ts":1736071980431958, "dur":192, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Threading.dll" }}
-,{ "pid":12345, "tid":8, "ts":1736071980431957, "dur":194, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Threading.dll" }}
-,{ "pid":12345, "tid":8, "ts":1736071980432151, "dur":225, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":8, "ts":1736071980432612, "dur":109, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\ScriptingAssemblies.json" }}
-,{ "pid":12345, "tid":8, "ts":1736071980432612, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/ScriptingAssemblies.json" }}
-,{ "pid":12345, "tid":8, "ts":1736071980432892, "dur":3443, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/globalgamemanagers.assets" }}
-,{ "pid":12345, "tid":8, "ts":1736071980436379, "dur":17846, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1736071980429349, "dur":348, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1736071980429697, "dur":1911, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":9, "ts":1736071980431690, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Resources/unity default resources" }}
-,{ "pid":12345, "tid":9, "ts":1736071980431935, "dur":299, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.TextMeshPro.dll" }}
-,{ "pid":12345, "tid":9, "ts":1736071980431934, "dur":301, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.TextMeshPro.dll" }}
-,{ "pid":12345, "tid":9, "ts":1736071980432263, "dur":80, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.WindModule.dll" }}
-,{ "pid":12345, "tid":9, "ts":1736071980432263, "dur":81, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.WindModule.dll" }}
-,{ "pid":12345, "tid":9, "ts":1736071980435145, "dur":3083, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets" }}
-,{ "pid":12345, "tid":9, "ts":1736071980438257, "dur":15961, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1736071980429373, "dur":328, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1736071980429701, "dur":1916, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1736071980431962, "dur":108, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Environments.Internal.dll" }}
-,{ "pid":12345, "tid":10, "ts":1736071980431961, "dur":109, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Environments.Internal.dll" }}
-,{ "pid":12345, "tid":10, "ts":1736071980432094, "dur":84, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.IK.Runtime.dll" }}
-,{ "pid":12345, "tid":10, "ts":1736071980432093, "dur":86, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.IK.Runtime.dll" }}
-,{ "pid":12345, "tid":10, "ts":1736071980432179, "dur":82, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":10, "ts":1736071980432549, "dur":99, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Assets\\StreamingAssets\\UnityServicesProjectConfiguration.json" }}
-,{ "pid":12345, "tid":10, "ts":1736071980432548, "dur":100, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/StreamingAssets/UnityServicesProjectConfiguration.json" }}
-,{ "pid":12345, "tid":10, "ts":1736071980436614, "dur":7887, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level1" }}
-,{ "pid":12345, "tid":10, "ts":1736071980444516, "dur":9713, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1736071980429385, "dur":320, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1736071980429705, "dur":1907, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1736071980431613, "dur":164, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
-,{ "pid":12345, "tid":11, "ts":1736071980431934, "dur":257, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Netcode.Runtime.dll" }}
-,{ "pid":12345, "tid":11, "ts":1736071980431933, "dur":259, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Netcode.Runtime.dll" }}
-,{ "pid":12345, "tid":11, "ts":1736071980432192, "dur":83, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":11, "ts":1736071980433010, "dur":1910, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Resources/unity_builtin_extra" }}
-,{ "pid":12345, "tid":11, "ts":1736071980434963, "dur":8806, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/globalgamemanagers" }}
-,{ "pid":12345, "tid":11, "ts":1736071980443785, "dur":10470, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1736071980429401, "dur":306, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1736071980429707, "dur":1883, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431603, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.5\\web.config" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431592, "dur":65, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/web.config" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431696, "dur":97, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Xml.Linq.dll" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431695, "dur":99, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Xml.Linq.dll" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431928, "dur":494, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Mathematics.dll" }}
-,{ "pid":12345, "tid":12, "ts":1736071980431927, "dur":495, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Mathematics.dll" }}
-,{ "pid":12345, "tid":12, "ts":1736071980434399, "dur":9323, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets" }}
-,{ "pid":12345, "tid":12, "ts":1736071980443740, "dur":10487, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":13, "ts":1736071980429417, "dur":293, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":13, "ts":1736071980429710, "dur":1880, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":13, "ts":1736071980431592, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/settings.map" }}
-,{ "pid":12345, "tid":13, "ts":1736071980431735, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":13, "ts":1736071980431908, "dur":187, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.SpriteShape.Runtime.dll" }}
-,{ "pid":12345, "tid":13, "ts":1736071980431908, "dur":188, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.SpriteShape.Runtime.dll" }}
-,{ "pid":12345, "tid":13, "ts":1736071980432127, "dur":203, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Networking.dll" }}
-,{ "pid":12345, "tid":13, "ts":1736071980432126, "dur":204, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Networking.dll" }}
-,{ "pid":12345, "tid":13, "ts":1736071980434908, "dur":9176, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.resource" }}
-,{ "pid":12345, "tid":13, "ts":1736071980444101, "dur":10140, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":14, "ts":1736071980429439, "dur":275, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":14, "ts":1736071980429714, "dur":1978, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":14, "ts":1736071980431713, "dur":131, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\mscorlib.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980431694, "dur":151, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/mscorlib.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980431846, "dur":73, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":14, "ts":1736071980431921, "dur":200, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Environments.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980431920, "dur":202, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Environments.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980432122, "dur":192, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":14, "ts":1736071980432318, "dur":77, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestTextureModule.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980432317, "dur":79, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980432548, "dur":2532, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\Data\\Plugins\\x86_64\\lib_burst_generated.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980432547, "dur":2534, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Plugins/x86_64/lib_burst_generated.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980435129, "dur":1627, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Plugins/x86_64/lib_burst_generated.dll" }}
-,{ "pid":12345, "tid":14, "ts":1736071980436774, "dur":17445, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":15, "ts":1736071980429465, "dur":251, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":15, "ts":1736071980429716, "dur":2007, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":15, "ts":1736071980431751, "dur":167, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Transactions.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980431725, "dur":194, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Transactions.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980431966, "dur":188, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Netcode.Components.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980431965, "dur":189, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Netcode.Components.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980432154, "dur":74, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":15, "ts":1736071980432229, "dur":179, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980432228, "dur":180, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980432895, "dur":3758, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp.dll" }}
-,{ "pid":12345, "tid":15, "ts":1736071980436701, "dur":17686, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":16, "ts":1736071980429482, "dur":237, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":16, "ts":1736071980429719, "dur":1903, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":16, "ts":1736071980431639, "dur":89, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\2.0\\machine.config" }}
-,{ "pid":12345, "tid":16, "ts":1736071980431623, "dur":106, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/2.0/machine.config" }}
-,{ "pid":12345, "tid":16, "ts":1736071980431949, "dur":191, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Timeline.dll" }}
-,{ "pid":12345, "tid":16, "ts":1736071980431948, "dur":192, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Timeline.dll" }}
-,{ "pid":12345, "tid":16, "ts":1736071980432140, "dur":71, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":16, "ts":1736071980432213, "dur":147, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.InternalAPIEngineBridge.001.dll" }}
-,{ "pid":12345, "tid":16, "ts":1736071980432212, "dur":149, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.InternalAPIEngineBridge.001.dll" }}
-,{ "pid":12345, "tid":16, "ts":1736071980433925, "dur":9350, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets.resS" }}
-,{ "pid":12345, "tid":16, "ts":1736071980443291, "dur":10953, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":17, "ts":1736071980429500, "dur":222, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":17, "ts":1736071980429723, "dur":2030, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":17, "ts":1736071980431763, "dur":67, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Net.Http.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980431755, "dur":76, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Net.Http.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980431917, "dur":237, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Scheduler.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980431916, "dur":239, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Scheduler.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980432155, "dur":77, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":17, "ts":1736071980432233, "dur":104, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Assembly-CSharp-firstpass.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980432233, "dur":104, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp-firstpass.dll" }}
-,{ "pid":12345, "tid":17, "ts":1736071980433246, "dur":2974, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.resource" }}
-,{ "pid":12345, "tid":17, "ts":1736071980436238, "dur":71, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\boot.config" }}
-,{ "pid":12345, "tid":17, "ts":1736071980436237, "dur":73, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/boot.config" }}
-,{ "pid":12345, "tid":17, "ts":1736071980436331, "dur":17892, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":18, "ts":1736071980429286, "dur":399, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":18, "ts":1736071980429686, "dur":1905, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":18, "ts":1736071980431591, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
-,{ "pid":12345, "tid":18, "ts":1736071980431728, "dur":53, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Security.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980431727, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Security.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980431931, "dur":144, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980431930, "dur":146, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980432101, "dur":90, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityForge.AnimCallbacks.Samples.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980432100, "dur":91, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityForge.AnimCallbacks.Samples.dll" }}
-,{ "pid":12345, "tid":18, "ts":1736071980432191, "dur":72, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":18, "ts":1736071980434635, "dur":19530, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets.resS" }}
-,{ "pid":12345, "tid":19, "ts":1736071980429530, "dur":198, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":19, "ts":1736071980429728, "dur":1866, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":19, "ts":1736071980431600, "dur":55, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\web.config" }}
-,{ "pid":12345, "tid":19, "ts":1736071980431594, "dur":62, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/web.config" }}
-,{ "pid":12345, "tid":19, "ts":1736071980431690, "dur":8452, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\WindowsPlayer.exe" }}
-,{ "pid":12345, "tid":19, "ts":1736071980431690, "dur":8453, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz.exe" }}
-,{ "pid":12345, "tid":19, "ts":1736071980440145, "dur":81, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":19, "ts":1736071980440231, "dur":14014, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":20, "ts":1736071980429546, "dur":186, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":20, "ts":1736071980429732, "dur":1860, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431592, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431711, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431774, "dur":52, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.IO.Compression.FileSystem.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431769, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.IO.Compression.FileSystem.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431915, "dur":177, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.Common.Runtime.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980431914, "dur":178, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.Common.Runtime.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980432118, "dur":245, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UI.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980432117, "dur":247, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UI.dll" }}
-,{ "pid":12345, "tid":20, "ts":1736071980433496, "dur":10125, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets" }}
-,{ "pid":12345, "tid":20, "ts":1736071980443642, "dur":10604, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
-,{ "pid":12345, "tid":0, "ts":1736071980456886, "dur":560, "ph":"X", "name": "ProfilerWriteOutput" }
-,{ "pid": 0, "tid": 1, "ts": 1736071980486547, "dur": 286, "ph": "X", "name": "backend_profiler0.traceevents", "args": {} },
-{ "pid": 0, "tid": 1, "ts": 1736071980486472, "dur": 383, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+,{ "pid":12345, "tid":0, "ts":1736077008218738, "dur":970, "ph":"X", "name": "DriverInitData",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008219715, "dur":115, "ph":"X", "name": "RemoveStaleOutputs",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008219885, "dur":573, "ph":"X", "name": "BuildQueueInit",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008220480, "dur":334, "ph":"X", "name": "EnqueueRequestedNodes",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008220815, "dur":31340, "ph":"X", "name": "WaitForBuildFinished", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008252157, "dur":259, "ph":"X", "name": "JoinBuildThread",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":0, "ts":1736077008252581, "dur":1390, "ph":"X", "name": "Tundra",  "args": { "detail":"Write AllBuiltNodes" }}
+,{ "pid":12345, "tid":1, "ts":1736077008220227, "dur":593, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008220822, "dur":1767, "ph":"X", "name": "CheckDagSignatures",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008222789, "dur":65, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223034, "dur":321, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.Animation.Runtime.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223032, "dur":324, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.Animation.Runtime.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223402, "dur":382, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Networking.Transport.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223401, "dur":384, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Networking.Transport.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223785, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223840, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.XRModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223838, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.XRModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223895, "dur":94, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223992, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestTextureModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008223990, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224044, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224112, "dur":56, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UmbraModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224111, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UmbraModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224169, "dur":96, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224267, "dur":78, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.SpriteShapeModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224265, "dur":81, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.SpriteShapeModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224346, "dur":87, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224435, "dur":61, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224433, "dur":64, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.GameCenterModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224497, "dur":72, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224571, "dur":56, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ARModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224569, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ARModule.dll" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224628, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":1, "ts":1736077008224683, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets.resS" }}
+,{ "pid":12345, "tid":1, "ts":1736077008234539, "dur":9752, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets.resS" }}
+,{ "pid":12345, "tid":1, "ts":1736077008244323, "dur":7854, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1736077008220256, "dur":568, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1736077008220825, "dur":1795, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":2, "ts":1736077008222754, "dur":12158, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\WindowsPlayer.exe" }}
+,{ "pid":12345, "tid":2, "ts":1736077008222746, "dur":12167, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz.exe" }}
+,{ "pid":12345, "tid":2, "ts":1736077008234963, "dur":17185, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008220285, "dur":543, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008220828, "dur":2001, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008222834, "dur":90, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.IO.Compression.FileSystem.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008222829, "dur":96, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.IO.Compression.FileSystem.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008222987, "dur":99, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008223089, "dur":971, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Netcode.Runtime.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008223087, "dur":974, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Netcode.Runtime.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224061, "dur":70, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224133, "dur":63, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UIElementsNativeModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224132, "dur":64, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UIElementsNativeModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224197, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224251, "dur":53, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.StreamingModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224249, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.StreamingModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224305, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224364, "dur":52, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.NVIDIAModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224363, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.NVIDIAModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224417, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224477, "dur":50, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.DirectorModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224475, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.DirectorModule.dll" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224528, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224589, "dur":207, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Assets\\StreamingAssets\\UnityServicesProjectConfiguration.json" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224588, "dur":209, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/StreamingAssets/UnityServicesProjectConfiguration.json" }}
+,{ "pid":12345, "tid":3, "ts":1736077008224832, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level1" }}
+,{ "pid":12345, "tid":3, "ts":1736077008233497, "dur":8094, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level1" }}
+,{ "pid":12345, "tid":3, "ts":1736077008241640, "dur":10529, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008220305, "dur":530, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008220835, "dur":1989, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008222835, "dur":81, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.IO.Compression.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008222826, "dur":90, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.IO.Compression.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008222917, "dur":114, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223035, "dur":304, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Environments.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223033, "dur":307, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Environments.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223341, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223401, "dur":210, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.IK.Runtime.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223399, "dur":213, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.IK.Runtime.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223613, "dur":262, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223881, "dur":86, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.VirtualTexturingModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223878, "dur":91, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.VirtualTexturingModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008223969, "dur":80, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224052, "dur":86, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestAudioModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224050, "dur":90, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224140, "dur":78, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224221, "dur":179, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224219, "dur":182, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TLSModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224402, "dur":87, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224492, "dur":93, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.DSPGraphModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224490, "dur":96, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.DSPGraphModule.dll" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224586, "dur":96, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224684, "dur":282, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\RuntimeInitializeOnLoads.json" }}
+,{ "pid":12345, "tid":4, "ts":1736077008224683, "dur":283, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/RuntimeInitializeOnLoads.json" }}
+,{ "pid":12345, "tid":4, "ts":1736077008225790, "dur":8769, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/globalgamemanagers.assets" }}
+,{ "pid":12345, "tid":4, "ts":1736077008234586, "dur":17565, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008220320, "dur":519, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008220839, "dur":1982, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008222830, "dur":91, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Net.Http.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008222822, "dur":99, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Net.Http.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223006, "dur":460, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.SpriteShape.Runtime.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223005, "dur":462, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.SpriteShape.Runtime.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223468, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223529, "dur":383, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Networking.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223527, "dur":386, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Networking.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223913, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223970, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.VRModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008223969, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.VRModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224022, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224078, "dur":59, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityCurlModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224077, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityCurlModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224187, "dur":50, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224186, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TerrainPhysicsModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224238, "dur":79, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224320, "dur":55, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ProfilerModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224318, "dur":58, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ProfilerModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224376, "dur":53, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224431, "dur":68, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224430, "dur":69, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.GridModule.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224500, "dur":80, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224582, "dur":563, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Temp\\StagingArea\\Data\\Plugins\\x86_64\\lib_burst_generated.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008224580, "dur":566, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Plugins/x86_64/lib_burst_generated.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008225353, "dur":5104, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Plugins/x86_64/lib_burst_generated.dll" }}
+,{ "pid":12345, "tid":5, "ts":1736077008230524, "dur":11220, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/globalgamemanagers" }}
+,{ "pid":12345, "tid":5, "ts":1736077008241780, "dur":10383, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008220344, "dur":499, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008220843, "dur":1804, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008222648, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx" }}
+,{ "pid":12345, "tid":6, "ts":1736077008222761, "dur":83, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223013, "dur":357, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.Common.Runtime.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223012, "dur":359, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.Common.Runtime.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223372, "dur":62, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223457, "dur":435, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Configuration.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223434, "dur":459, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Configuration.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008223893, "dur":106, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224003, "dur":83, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224001, "dur":86, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224087, "dur":79, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224170, "dur":110, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224167, "dur":114, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224282, "dur":118, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224404, "dur":84, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224401, "dur":88, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ImageConversionModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224489, "dur":85, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224577, "dur":93, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AIModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224576, "dur":95, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AIModule.dll" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224671, "dur":79, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":6, "ts":1736077008224751, "dur":88, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level2" }}
+,{ "pid":12345, "tid":6, "ts":1736077008232993, "dur":8993, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level2" }}
+,{ "pid":12345, "tid":6, "ts":1736077008242031, "dur":10145, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008220369, "dur":478, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008220847, "dur":1802, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008222650, "dur":426, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223077, "dur":110, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223218, "dur":376, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Environments.Internal.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223190, "dur":406, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Environments.Internal.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223596, "dur":308, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223909, "dur":98, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.VideoModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008223907, "dur":101, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.VideoModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224009, "dur":103, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224116, "dur":141, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UNETModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224113, "dur":145, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UNETModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224259, "dur":80, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224343, "dur":87, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.Physics2DModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224340, "dur":90, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.Physics2DModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224431, "dur":86, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224520, "dur":89, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AudioModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224518, "dur":91, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AudioModule.dll" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224610, "dur":84, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":7, "ts":1736077008224695, "dur":81, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level3" }}
+,{ "pid":12345, "tid":7, "ts":1736077008230253, "dur":11529, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level3" }}
+,{ "pid":12345, "tid":7, "ts":1736077008241812, "dur":10346, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008220383, "dur":468, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008220851, "dur":1961, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008222824, "dur":103, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Runtime.Serialization.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008222814, "dur":114, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Runtime.Serialization.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008223030, "dur":990, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Scheduler.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008223029, "dur":992, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Scheduler.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224022, "dur":127, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224154, "dur":148, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TilemapModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224152, "dur":151, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TilemapModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224304, "dur":103, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224411, "dur":90, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.IMGUIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224409, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.IMGUIModule.dll" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224502, "dur":87, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":8, "ts":1736077008224591, "dur":96, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.resource" }}
+,{ "pid":12345, "tid":8, "ts":1736077008227804, "dur":12750, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.resource" }}
+,{ "pid":12345, "tid":8, "ts":1736077008240627, "dur":11543, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008220405, "dur":448, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008220853, "dur":1956, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008222820, "dur":92, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Security.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008222811, "dur":102, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Security.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223002, "dur":343, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Device.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223002, "dur":344, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Device.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223346, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223408, "dur":214, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityForge.AnimCallbacks.Samples.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223406, "dur":217, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityForge.AnimCallbacks.Samples.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223624, "dur":240, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223867, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.WindModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223865, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.WindModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223920, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223980, "dur":58, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.VFXModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008223978, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.VFXModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224040, "dur":60, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224103, "dur":53, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityConnectModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224101, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityConnectModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224157, "dur":74, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224234, "dur":53, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.SubstanceModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224232, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.SubstanceModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224288, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224356, "dur":53, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.PerformanceReportingModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224355, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.PerformanceReportingModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224410, "dur":84, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224497, "dur":70, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224495, "dur":72, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.CoreModule.dll" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224568, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":9, "ts":1736077008224623, "dur":66, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets" }}
+,{ "pid":12345, "tid":9, "ts":1736077008228835, "dur":23250, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets" }}
+,{ "pid":12345, "tid":9, "ts":1736077008252103, "dur":57, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1736077008220427, "dur":430, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1736077008220857, "dur":1780, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1736077008222638, "dur":406, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223045, "dur":93, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223165, "dur":444, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityForge.AnimCallbacks.dll" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223140, "dur":470, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityForge.AnimCallbacks.dll" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223611, "dur":191, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223806, "dur":577, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":10, "ts":1736077008223804, "dur":580, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":10, "ts":1736077008225313, "dur":5785, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp.dll" }}
+,{ "pid":12345, "tid":10, "ts":1736077008231136, "dur":151, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\boot.config" }}
+,{ "pid":12345, "tid":10, "ts":1736077008231134, "dur":154, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/boot.config" }}
+,{ "pid":12345, "tid":10, "ts":1736077008231328, "dur":20821, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008220451, "dur":409, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008220860, "dur":1778, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008222654, "dur":414, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\web.config" }}
+,{ "pid":12345, "tid":11, "ts":1736077008222639, "dur":430, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/web.config" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223070, "dur":116, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223191, "dur":424, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Threading.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223189, "dur":427, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Threading.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223617, "dur":195, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223816, "dur":248, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Assembly-CSharp-firstpass.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008223814, "dur":252, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Assembly-CSharp-firstpass.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224066, "dur":87, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224156, "dur":58, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224154, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TextRenderingModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224216, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224274, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.SharedInternalsModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224272, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.SharedInternalsModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224329, "dur":60, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224392, "dur":52, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.InputModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224390, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.InputModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224445, "dur":67, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224514, "dur":103, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ClothModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224512, "dur":106, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ClothModule.dll" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224618, "dur":61, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224681, "dur":221, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"Library\\PlayerDataCache\\Win64\\Data\\ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":11, "ts":1736077008224679, "dur":224, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/ScriptingAssemblies.json" }}
+,{ "pid":12345, "tid":11, "ts":1736077008233900, "dur":8291, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/level0" }}
+,{ "pid":12345, "tid":11, "ts":1736077008242211, "dur":9964, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008220468, "dur":395, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008220863, "dur":1954, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008222829, "dur":64, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Numerics.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008222818, "dur":76, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Numerics.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008222996, "dur":59, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\strix-client-csharp-core.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008222995, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/strix-client-csharp-core.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223057, "dur":53, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223112, "dur":636, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223111, "dur":638, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Timeline.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223749, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223818, "dur":91, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223816, "dur":94, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223910, "dur":68, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223981, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestWWWModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008223979, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224033, "dur":68, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224104, "dur":108, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityAnalyticsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224102, "dur":110, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityAnalyticsModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224213, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224270, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.SpriteMaskModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224269, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.SpriteMaskModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224325, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224379, "dur":97, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224378, "dur":99, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.LocalizationModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224478, "dur":56, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224538, "dur":77, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AnimationModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224536, "dur":79, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AnimationModule.dll" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224616, "dur":61, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":12, "ts":1736077008224678, "dur":55, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":12, "ts":1736077008226438, "dur":8077, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets" }}
+,{ "pid":12345, "tid":12, "ts":1736077008234557, "dur":17593, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008220485, "dur":381, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008220867, "dur":1752, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008222629, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\mconfig\\config.xml" }}
+,{ "pid":12345, "tid":13, "ts":1736077008222622, "dur":62, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/mconfig/config.xml" }}
+,{ "pid":12345, "tid":13, "ts":1736077008222783, "dur":68, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008223001, "dur":62, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008223065, "dur":1211, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Burst.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008223064, "dur":1213, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Burst.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224278, "dur":81, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224363, "dur":74, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ParticleSystemModule.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224360, "dur":78, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ParticleSystemModule.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224438, "dur":83, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224524, "dur":95, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AssetBundleModule.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224522, "dur":98, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AssetBundleModule.dll" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224620, "dur":64, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":13, "ts":1736077008224684, "dur":56, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets" }}
+,{ "pid":12345, "tid":13, "ts":1736077008231304, "dur":9631, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/resources.assets" }}
+,{ "pid":12345, "tid":13, "ts":1736077008240968, "dur":11198, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008220502, "dur":368, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008220870, "dur":1773, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008222652, "dur":237, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.0\\machine.config" }}
+,{ "pid":12345, "tid":14, "ts":1736077008222646, "dur":243, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.0/machine.config" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223008, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223070, "dur":369, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Analytics.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223068, "dur":372, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Analytics.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223440, "dur":51, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223494, "dur":219, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Internal.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223492, "dur":222, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Internal.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223757, "dur":256, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Telemetry.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008223755, "dur":259, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Telemetry.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224014, "dur":56, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224073, "dur":84, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityTestProtocolModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224071, "dur":86, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityTestProtocolModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224158, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224219, "dur":63, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224217, "dur":65, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TerrainModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224283, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224384, "dur":57, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224442, "dur":58, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224441, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.GIModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224551, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AccessibilityModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224550, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AccessibilityModule.dll" }}
+,{ "pid":12345, "tid":14, "ts":1736077008224603, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":14, "ts":1736077008232576, "dur":9111, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets1.assets" }}
+,{ "pid":12345, "tid":14, "ts":1736077008241717, "dur":10466, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008220522, "dur":350, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008220872, "dur":1758, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222632, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/machine.config" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222762, "dur":79, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.Transactions.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222761, "dur":80, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.Transactions.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222841, "dur":77, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222983, "dur":205, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\websocket-sharp.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008222983, "dur":207, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/websocket-sharp.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223190, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223247, "dur":361, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Netcode.Components.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223246, "dur":363, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Netcode.Components.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223609, "dur":169, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223782, "dur":266, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.2D.PixelPerfect.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008223780, "dur":270, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.2D.PixelPerfect.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224051, "dur":82, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224136, "dur":54, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224134, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UIElementsModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224192, "dur":81, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224276, "dur":55, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ScreenCaptureModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224274, "dur":57, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ScreenCaptureModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224332, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224392, "dur":52, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.InputLegacyModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224391, "dur":53, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.InputLegacyModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224445, "dur":66, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224513, "dur":64, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ClusterInputModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224512, "dur":66, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ClusterInputModule.dll" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224578, "dur":58, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":15, "ts":1736077008224637, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets" }}
+,{ "pid":12345, "tid":15, "ts":1736077008232143, "dur":9047, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets" }}
+,{ "pid":12345, "tid":15, "ts":1736077008241247, "dur":10906, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008220532, "dur":343, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008220875, "dur":1751, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008222771, "dur":78, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008222900, "dur":117, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Mono.Security.dll" }}
+,{ "pid":12345, "tid":16, "ts":1736077008222900, "dur":118, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Mono.Security.dll" }}
+,{ "pid":12345, "tid":16, "ts":1736077008223024, "dur":55, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008223082, "dur":1436, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Mathematics.dll" }}
+,{ "pid":12345, "tid":16, "ts":1736077008223081, "dur":1438, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Mathematics.dll" }}
+,{ "pid":12345, "tid":16, "ts":1736077008224520, "dur":68, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":16, "ts":1736077008224589, "dur":72, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":16, "ts":1736077008231782, "dur":1241, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Resources/unity_builtin_extra" }}
+,{ "pid":12345, "tid":16, "ts":1736077008233071, "dur":19083, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008220552, "dur":326, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008220879, "dur":1755, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008222793, "dur":69, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008223002, "dur":59, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Newtonsoft.Json.dll" }}
+,{ "pid":12345, "tid":17, "ts":1736077008223001, "dur":61, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Newtonsoft.Json.dll" }}
+,{ "pid":12345, "tid":17, "ts":1736077008223062, "dur":96, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008223161, "dur":1373, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Collections.dll" }}
+,{ "pid":12345, "tid":17, "ts":1736077008223159, "dur":1376, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Collections.dll" }}
+,{ "pid":12345, "tid":17, "ts":1736077008224535, "dur":59, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":17, "ts":1736077008224595, "dur":76, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets.resS" }}
+,{ "pid":12345, "tid":17, "ts":1736077008229310, "dur":17747, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets3.assets.resS" }}
+,{ "pid":12345, "tid":17, "ts":1736077008247080, "dur":5086, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008220568, "dur":314, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008220882, "dur":1740, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008222629, "dur":57, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\4.5\\web.config" }}
+,{ "pid":12345, "tid":18, "ts":1736077008222624, "dur":63, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/4.5/web.config" }}
+,{ "pid":12345, "tid":18, "ts":1736077008222770, "dur":93, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.ServiceModel.Internals.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008222770, "dur":93, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.ServiceModel.Internals.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008222982, "dur":100, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223084, "dur":325, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223083, "dur":327, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223410, "dur":51, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223463, "dur":427, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223462, "dur":429, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UI.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223891, "dur":76, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223970, "dur":98, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.VehiclesModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008223968, "dur":101, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.VehiclesModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224070, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224126, "dur":50, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UIModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224125, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UIModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224228, "dur":61, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224227, "dur":63, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.SubsystemsModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224290, "dur":88, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224381, "dur":57, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224379, "dur":60, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.JSONSerializeModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224439, "dur":71, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224512, "dur":65, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224511, "dur":66, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.ClusterRendererModule.dll" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224578, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":18, "ts":1736077008224632, "dur":59, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets.resS" }}
+,{ "pid":12345, "tid":18, "ts":1736077008230665, "dur":10463, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets2.assets.resS" }}
+,{ "pid":12345, "tid":18, "ts":1736077008241156, "dur":11001, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008220583, "dur":302, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008220886, "dur":1753, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008222771, "dur":79, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\System.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008222756, "dur":94, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/System.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008222850, "dur":75, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008223001, "dur":51, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Collections.LowLevel.ILSupport.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008223000, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008223053, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008223109, "dur":1304, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008223108, "dur":1306, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.TextMeshPro.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008224414, "dur":79, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008224496, "dur":67, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.CrashReportingModule.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008224494, "dur":69, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.CrashReportingModule.dll" }}
+,{ "pid":12345, "tid":19, "ts":1736077008224564, "dur":109, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":19, "ts":1736077008224673, "dur":52, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.resource" }}
+,{ "pid":12345, "tid":19, "ts":1736077008226171, "dur":8369, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.resource" }}
+,{ "pid":12345, "tid":19, "ts":1736077008234575, "dur":17610, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008220598, "dur":291, "ph":"X", "name": "FirstLock",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008220889, "dur":1774, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008222779, "dur":326, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Program Files\\Unity\\Hub\\Editor\\2022.1.14f1\\Editor\\Data\\PlaybackEngines\\WindowsStandaloneSupport\\Variations\\win64_player_nondevelopment_mono\\MonoBleedingEdge\\etc\\mono\\2.0\\web.config" }}
+,{ "pid":12345, "tid":20, "ts":1736077008222689, "dur":418, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/MonoBleedingEdge/etc/mono/2.0/web.config" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223108, "dur":97, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223209, "dur":379, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.Services.Core.Registration.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223207, "dur":383, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.Services.Core.Registration.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223590, "dur":197, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223791, "dur":207, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\Unity.InternalAPIEngineBridge.001.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008223789, "dur":210, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/Unity.InternalAPIEngineBridge.001.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224000, "dur":54, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224056, "dur":63, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.UnityWebRequestAssetBundleModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224055, "dur":65, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224121, "dur":56, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224179, "dur":73, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224178, "dur":75, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224253, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224308, "dur":60, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224306, "dur":62, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224369, "dur":52, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224423, "dur":69, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.HotReloadModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224422, "dur":71, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.HotReloadModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224494, "dur":53, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224549, "dur":61, "ph":"X", "name": "ComputeFileSignatureSha1",  "args": { "detail":"C:\\Users\\matty\\Unity\\WeissSchwarz\\Temp\\StagingArea\\Data\\Managed\\UnityEngine.AndroidJNIModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224548, "dur":63, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/Managed/UnityEngine.AndroidJNIModule.dll" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224611, "dur":63, "ph":"X", "name": "OutputFilesMissingFor",  "args": { "detail":"" }}
+,{ "pid":12345, "tid":20, "ts":1736077008224675, "dur":54, "ph":"X", "name": "CheckInputSignature",  "args": { "detail":"CopyFiles C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":20, "ts":1736077008227268, "dur":24828, "ph":"X", "name": "CopyFiles",  "args": { "detail":"C:/Users/matty/Desktop/WeissSchwarz/WeissSchwarz_Data/sharedassets0.assets.resS" }}
+,{ "pid":12345, "tid":0, "ts":1736077008254879, "dur":963, "ph":"X", "name": "ProfilerWriteOutput" }
+,{ "pid": 0, "tid": 1, "ts": 1736077008292771, "dur": 364, "ph": "X", "name": "backend_profiler0.traceevents", "args": {} },
+{ "pid": 0, "tid": 1, "ts": 1736077008292684, "dur": 476, "ph": "X", "name": "Write chrome-trace events", "args": {} },
