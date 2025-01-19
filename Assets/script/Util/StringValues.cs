@@ -19,6 +19,7 @@ public class StringValues
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_01T;
+    public string YesOrNoDialog_COST_CONFIRM_DC_W01_02T;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_05T;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
@@ -158,6 +159,7 @@ public class StringValues
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_01T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_01T;
+                YesOrNoDialog_COST_CONFIRM_DC_W01_02T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_02T;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_04T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_05T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_05T;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_10T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
@@ -230,6 +232,7 @@ public class StringValues
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_01T = "次の能力を使用しますか。:" + "【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";
+        public string YesOrNoDialog_COST_CONFIRM_DC_W01_02T = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「結婚式の歌姫」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_04T = "次の能力を使用しますか。:" + "【起】［(1)］ そのターン中、このカードのパワーを＋2000。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_05T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_10T = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";

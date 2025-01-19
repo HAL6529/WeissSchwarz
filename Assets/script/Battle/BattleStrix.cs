@@ -182,6 +182,44 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(UpdateEnemyLevelCards), temp, isFirstAttacker);
     }
 
+    private void SendCallGetHandList_2()
+    {
+        List<BattleModeCardTemp> temp = new List<BattleModeCardTemp>();
+        for (int i = 0; i < m_GameManager.myHandList.Count; i++)
+        {
+            if (m_GameManager.myHandList[i] != null)
+            {
+                temp.Add(new BattleModeCardTemp(m_GameManager.myHandList[i]));
+            }
+            else
+            {
+                temp.Add(null);
+            }
+        }
+
+        RpcToAll(nameof(CallGetHandList_2), temp, m_GameManager.isFirstAttacker);
+    }
+
+    [StrixRpc]
+    public void CallGetHandList(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            SendCallGetHandList_2();
+        }
+    }
+
+    [StrixRpc]
+    public void CallGetHandList_2(List<BattleModeCardTemp> list, bool isTurnPlayer)
+    {
+        Debug.Log(m_GameManager.isTurnPlayer);
+        Debug.Log(isTurnPlayer);
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_DialogManager.ConfirmEnemyHandDialog(list);
+        }
+    }
+
     [StrixRpc]
     public void AttackPhase()
     {

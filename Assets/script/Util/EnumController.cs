@@ -16,6 +16,7 @@ namespace EnumController
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
+        DC_W01_02T,
         DC_W01_07T,
         DC_W01_16T,
     }
@@ -284,6 +285,7 @@ namespace EnumController
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,
         COST_CONFIRM_BRAIN_STORM_FOR_DRAW,
         COST_CONFIRM_DC_W01_01T,
+        COST_CONFIRM_DC_W01_02T,
         COST_CONFIRM_DC_W01_04T,
         COST_CONFIRM_DC_W01_05T,
         COST_CONFIRM_DC_W01_10T,

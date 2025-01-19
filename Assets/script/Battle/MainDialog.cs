@@ -7,6 +7,7 @@ public class MainDialog : MonoBehaviour
 {
     [SerializeField] List<GameObject> buttons = new List<GameObject>();
     [SerializeField] List<Image> images = new List<Image>();
+    [SerializeField] EventAnimationManager m_EventAnimationManager;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
@@ -21,6 +22,7 @@ public class MainDialog : MonoBehaviour
     void Start()
     {
         m_Effect = new Effect(m_GameManager, m_BattleStrix);
+        m_Effect.m_EventAnimationManager = m_EventAnimationManager;
     }
 
     public void onClick(int num)
@@ -76,9 +78,12 @@ public class MainDialog : MonoBehaviour
 
         // カードの登場時の効果起動
         m_Effect.BondForHandToFild(m_BattleModeCard);
+        m_Effect.WhenPlaceCardEffect(m_BattleModeCard);
 
         // パワー、レベル、特徴、ソウルの計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+
+        m_GameManager.ExecuteActionList();
     }
 
     public void onCloseButton()

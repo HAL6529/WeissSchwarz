@@ -209,6 +209,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_01T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_02T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_04T;
                 break;
@@ -326,6 +329,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
                 break;
             // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
@@ -380,6 +384,17 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                m_GameManager.ExecuteActionList();
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
+                Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action.SetParamaterAttackStatus(attackStatus);
+                action.SetParamaterNum(ParamaterNum1);
+
+                m_GameManager.ActionList.Add(action);
+
                 m_GameManager.ExecuteActionList();
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:

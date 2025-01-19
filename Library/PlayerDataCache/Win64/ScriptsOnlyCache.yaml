@@ -26,6 +26,7 @@ ScriptsOnlyBuild:
     - ComeBackButtonUtil
     - ComeBackDetail
     - ConfirmEncoreKindsDialog
+    - ConfirmEnemyHandDialog
     - ConfirmSearchOrSulvageCardDialog
     - ConfirmSearchOrSulvageCardDialogsBtnUtil
     - DamageAnimationDialog
@@ -195,6 +196,12 @@ ScriptsOnlyBuild:
     strix-client-csharp-replica:
     - SoftGear.Strix.Client.Replica.Model.Replica
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
@@ -778,6 +785,12 @@ ScriptsOnlyBuild:
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
+  - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
   - assembly: Assembly-CSharp
@@ -1024,6 +1037,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchFilter
     methodName: onTypeFilterChanged
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1038,6 +1054,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
@@ -1063,6 +1082,9 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onCloseButton
   - assembly: Assembly-CSharp
@@ -1080,6 +1102,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetail
     methodName: onCloseButton
@@ -1141,6 +1166,9 @@ ScriptsOnlyBuild:
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: CharacterSelectDialog
     methodName: OKButton
   - assembly: Assembly-CSharp
@@ -1152,6 +1180,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MainDialog
     methodName: onOkClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
@@ -1216,6 +1247,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1227,6 +1261,15 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
@@ -1252,8 +1295,14 @@ ScriptsOnlyBuild:
     fullTypeName: BattleMyMainCardUtil
     methodName: onSideAttack
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
@@ -1263,6 +1312,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
@@ -1311,6 +1366,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -1429,6 +1487,9 @@ ScriptsOnlyBuild:
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
@@ -1486,6 +1547,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1510,8 +1574,14 @@ ScriptsOnlyBuild:
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: PhaseDialog
     methodName: onCloseButton
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: YesOrNoDialog
     methodName: onYesClick
@@ -1537,6 +1607,9 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: ConfirmSearchOrSulvageCardDialogsBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1545,6 +1618,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
@@ -1581,6 +1657,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onClick
@@ -1612,6 +1691,9 @@ ScriptsOnlyBuild:
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: MainPowerUpDialog
     methodName: onOkClick
   - assembly: Assembly-CSharp
@@ -1624,11 +1706,17 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
@@ -1645,6 +1733,12 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleGraveYardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1653,6 +1747,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onOKBtn
   - assembly: Assembly-CSharp
     fullTypeName: SelectActionDialog
     methodName: RightBtn
@@ -1672,6 +1769,9 @@ ScriptsOnlyBuild:
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1684,6 +1784,9 @@ ScriptsOnlyBuild:
     fullTypeName: EncoreDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: CharacterSelectDialog
     methodName: ButtonClick
   - assembly: Assembly-CSharp
@@ -1692,6 +1795,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: CharacterSelectDialog
     methodName: ButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
@@ -1723,6 +1829,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1743,6 +1852,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onMoveButton
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
@@ -1773,6 +1885,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ConfirmEncoreKindsDialog
     methodName: onNotEncoreBtn
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
@@ -1806,6 +1921,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: EncoreDialog
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: EncoreDialog
     methodName: onClick
@@ -1846,8 +1964,14 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onFrontAttack
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
@@ -1879,6 +2003,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1891,6 +2018,9 @@ ScriptsOnlyBuild:
     fullTypeName: MainPowerUpDialog
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1899,6 +2029,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
@@ -1918,6 +2051,9 @@ ScriptsOnlyBuild:
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -1932,6 +2068,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
@@ -1951,6 +2090,9 @@ ScriptsOnlyBuild:
     fullTypeName: SearchButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
   - assembly: Assembly-CSharp
@@ -1968,6 +2110,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: ComeBackButtonUtil
     methodName: onClick
@@ -1993,6 +2138,9 @@ ScriptsOnlyBuild:
     fullTypeName: SelectActionDialog
     methodName: LeftBtn
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
   - assembly: Assembly-CSharp
@@ -2010,6 +2158,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: MainPowerUpDialog
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleHandCardUtil
     methodName: onPlayButton
@@ -2031,6 +2182,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SearchButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: BattleMyMainCardUtil
     methodName: onActButton
@@ -2062,8 +2216,14 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
+  - assembly: Assembly-CSharp
     fullTypeName: BattleClockCardUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -2085,6 +2245,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: DialogManager
     methodName: PhaseDialog
@@ -2112,6 +2275,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ConfirmEnemyHandDialog
+    methodName: onCardBtn
   - assembly: Assembly-CSharp
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
@@ -2174,149 +2340,151 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2788}
     - Class: 114
-      Script: {instanceID: 2878}
+      Script: {instanceID: 2794}
     - Class: 114
-      Script: {instanceID: 2930}
+      Script: {instanceID: 2880}
     - Class: 114
-      Script: {instanceID: 2988}
+      Script: {instanceID: 2932}
     - Class: 114
-      Script: {instanceID: 3000}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 3002}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 3006}
     - Class: 114
-      Script: {instanceID: 3138}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3182}
+      Script: {instanceID: 3140}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3184}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3438}
+      Script: {instanceID: 3340}
     - Class: 114
-      Script: {instanceID: 3446}
+      Script: {instanceID: 3440}
     - Class: 114
-      Script: {instanceID: 3474}
+      Script: {instanceID: 3448}
     - Class: 114
-      Script: {instanceID: 3492}
+      Script: {instanceID: 3476}
     - Class: 114
-      Script: {instanceID: 3502}
+      Script: {instanceID: 3494}
     - Class: 114
-      Script: {instanceID: 3578}
+      Script: {instanceID: 3504}
     - Class: 114
-      Script: {instanceID: 3582}
+      Script: {instanceID: 3580}
     - Class: 114
-      Script: {instanceID: 3718}
+      Script: {instanceID: 3584}
     - Class: 114
-      Script: {instanceID: 3750}
+      Script: {instanceID: 3720}
     - Class: 114
-      Script: {instanceID: 3814}
+      Script: {instanceID: 3752}
     - Class: 114
       Script: {instanceID: 3816}
     - Class: 114
-      Script: {instanceID: 3854}
+      Script: {instanceID: 3818}
     - Class: 114
-      Script: {instanceID: 3920}
+      Script: {instanceID: 3856}
     - Class: 114
-      Script: {instanceID: 3984}
+      Script: {instanceID: 3922}
     - Class: 114
-      Script: {instanceID: 4336}
+      Script: {instanceID: 3986}
     - Class: 114
-      Script: {instanceID: 4348}
+      Script: {instanceID: 4338}
     - Class: 114
-      Script: {instanceID: 4414}
+      Script: {instanceID: 4350}
     - Class: 114
-      Script: {instanceID: 4576}
+      Script: {instanceID: 4416}
     - Class: 114
-      Script: {instanceID: 4616}
+      Script: {instanceID: 4578}
     - Class: 114
-      Script: {instanceID: 4626}
+      Script: {instanceID: 4618}
     - Class: 114
-      Script: {instanceID: 4692}
+      Script: {instanceID: 4628}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4694}
     - Class: 114
-      Script: {instanceID: 4852}
+      Script: {instanceID: 4720}
     - Class: 114
-      Script: {instanceID: 4866}
+      Script: {instanceID: 4854}
     - Class: 114
-      Script: {instanceID: 4934}
+      Script: {instanceID: 4868}
     - Class: 114
-      Script: {instanceID: 5050}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 5076}
+      Script: {instanceID: 5052}
     - Class: 114
-      Script: {instanceID: 5086}
+      Script: {instanceID: 5078}
     - Class: 114
-      Script: {instanceID: 5090}
+      Script: {instanceID: 5088}
     - Class: 114
-      Script: {instanceID: 5120}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5208}
+      Script: {instanceID: 5122}
     - Class: 114
-      Script: {instanceID: 5282}
+      Script: {instanceID: 5210}
     - Class: 114
-      Script: {instanceID: 5478}
+      Script: {instanceID: 5284}
     - Class: 114
-      Script: {instanceID: 5496}
+      Script: {instanceID: 5480}
     - Class: 114
-      Script: {instanceID: 5580}
+      Script: {instanceID: 5498}
     - Class: 114
-      Script: {instanceID: 5606}
+      Script: {instanceID: 5582}
     - Class: 114
-      Script: {instanceID: 5994}
+      Script: {instanceID: 5608}
     - Class: 114
-      Script: {instanceID: 6014}
+      Script: {instanceID: 5996}
     - Class: 114
-      Script: {instanceID: 6028}
+      Script: {instanceID: 6016}
     - Class: 114
-      Script: {instanceID: 6044}
+      Script: {instanceID: 6030}
     - Class: 114
-      Script: {instanceID: 6056}
+      Script: {instanceID: 6046}
     - Class: 114
-      Script: {instanceID: 6086}
+      Script: {instanceID: 6058}
     - Class: 114
-      Script: {instanceID: 6156}
+      Script: {instanceID: 6088}
     - Class: 114
-      Script: {instanceID: 6198}
+      Script: {instanceID: 6158}
     - Class: 114
-      Script: {instanceID: 6402}
+      Script: {instanceID: 6200}
     - Class: 114
-      Script: {instanceID: 6470}
+      Script: {instanceID: 6404}
     - Class: 114
-      Script: {instanceID: 6492}
+      Script: {instanceID: 6472}
     - Class: 114
-      Script: {instanceID: 6506}
+      Script: {instanceID: 6494}
     - Class: 114
-      Script: {instanceID: 6564}
+      Script: {instanceID: 6508}
     - Class: 114
-      Script: {instanceID: 6738}
+      Script: {instanceID: 6566}
     - Class: 114
-      Script: {instanceID: 6770}
+      Script: {instanceID: 6740}
     - Class: 114
-      Script: {instanceID: 6808}
+      Script: {instanceID: 6772}
     - Class: 114
-      Script: {instanceID: 7088}
+      Script: {instanceID: 6810}
     - Class: 114
-      Script: {instanceID: 7216}
+      Script: {instanceID: 7090}
     - Class: 114
-      Script: {instanceID: 7254}
+      Script: {instanceID: 7218}
     - Class: 114
-      Script: {instanceID: 7292}
+      Script: {instanceID: 7256}
     - Class: 114
-      Script: {instanceID: 7354}
+      Script: {instanceID: 7294}
     - Class: 114
-      Script: {instanceID: 7452}
+      Script: {instanceID: 7356}
     - Class: 114
-      Script: {instanceID: 7530}
+      Script: {instanceID: 7454}
     - Class: 114
-      Script: {instanceID: 7546}
+      Script: {instanceID: 7532}
     - Class: 114
-      Script: {instanceID: 7570}
+      Script: {instanceID: 7548}
     - Class: 114
-      Script: {instanceID: 7898}
+      Script: {instanceID: 7572}
+    - Class: 114
+      Script: {instanceID: 7900}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2371,57 +2539,57 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2596}
     - Class: 114
-      Script: {instanceID: 2810}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3070}
+      Script: {instanceID: 3072}
     - Class: 114
-      Script: {instanceID: 3182}
+      Script: {instanceID: 3184}
     - Class: 114
-      Script: {instanceID: 3596}
+      Script: {instanceID: 3598}
     - Class: 114
-      Script: {instanceID: 3750}
+      Script: {instanceID: 3752}
     - Class: 114
-      Script: {instanceID: 3974}
+      Script: {instanceID: 3976}
     - Class: 114
-      Script: {instanceID: 4864}
+      Script: {instanceID: 4866}
     - Class: 114
-      Script: {instanceID: 4934}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 5012}
     - Class: 114
-      Script: {instanceID: 5090}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5454}
+      Script: {instanceID: 5456}
     - Class: 114
-      Script: {instanceID: 5580}
+      Script: {instanceID: 5582}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 5648}
     - Class: 114
-      Script: {instanceID: 5726}
+      Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6044}
+      Script: {instanceID: 6046}
     - Class: 114
-      Script: {instanceID: 6056}
+      Script: {instanceID: 6058}
     - Class: 114
-      Script: {instanceID: 6084}
+      Script: {instanceID: 6086}
     - Class: 114
-      Script: {instanceID: 6278}
+      Script: {instanceID: 6280}
     - Class: 114
-      Script: {instanceID: 6470}
+      Script: {instanceID: 6472}
     - Class: 114
-      Script: {instanceID: 6770}
+      Script: {instanceID: 6772}
     - Class: 114
-      Script: {instanceID: 7088}
+      Script: {instanceID: 7090}
     - Class: 114
-      Script: {instanceID: 7184}
+      Script: {instanceID: 7186}
     - Class: 114
-      Script: {instanceID: 7630}
+      Script: {instanceID: 7632}
     - Class: 114
-      Script: {instanceID: 7644}
+      Script: {instanceID: 7646}
     - Class: 114
-      Script: {instanceID: 7882}
+      Script: {instanceID: 7884}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2462,21 +2630,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2582}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3182}
+      Script: {instanceID: 3184}
     - Class: 114
-      Script: {instanceID: 5010}
+      Script: {instanceID: 5012}
     - Class: 114
-      Script: {instanceID: 5580}
+      Script: {instanceID: 5582}
     - Class: 114
-      Script: {instanceID: 5726}
+      Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6044}
+      Script: {instanceID: 6046}
     - Class: 114
-      Script: {instanceID: 6470}
+      Script: {instanceID: 6472}
     - Class: 114
-      Script: {instanceID: 6486}
+      Script: {instanceID: 6488}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2533,63 +2701,63 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2582}
     - Class: 114
-      Script: {instanceID: 2810}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3182}
+      Script: {instanceID: 3184}
     - Class: 114
-      Script: {instanceID: 3236}
+      Script: {instanceID: 3238}
     - Class: 114
-      Script: {instanceID: 3750}
+      Script: {instanceID: 3752}
     - Class: 114
-      Script: {instanceID: 3888}
+      Script: {instanceID: 3890}
     - Class: 114
-      Script: {instanceID: 3994}
+      Script: {instanceID: 3996}
     - Class: 114
-      Script: {instanceID: 4108}
+      Script: {instanceID: 4110}
     - Class: 114
-      Script: {instanceID: 4260}
+      Script: {instanceID: 4262}
     - Class: 114
-      Script: {instanceID: 4328}
+      Script: {instanceID: 4330}
     - Class: 114
-      Script: {instanceID: 4934}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 5010}
-    - Class: 114
-      Script: {instanceID: 5086}
+      Script: {instanceID: 5012}
     - Class: 114
       Script: {instanceID: 5088}
     - Class: 114
       Script: {instanceID: 5090}
     - Class: 114
-      Script: {instanceID: 5144}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5454}
+      Script: {instanceID: 5146}
     - Class: 114
-      Script: {instanceID: 5580}
+      Script: {instanceID: 5456}
     - Class: 114
-      Script: {instanceID: 5746}
+      Script: {instanceID: 5582}
     - Class: 114
-      Script: {instanceID: 6012}
+      Script: {instanceID: 5748}
     - Class: 114
-      Script: {instanceID: 6044}
+      Script: {instanceID: 6014}
     - Class: 114
-      Script: {instanceID: 6056}
+      Script: {instanceID: 6046}
     - Class: 114
-      Script: {instanceID: 6084}
+      Script: {instanceID: 6058}
     - Class: 114
-      Script: {instanceID: 6278}
+      Script: {instanceID: 6086}
     - Class: 114
-      Script: {instanceID: 6470}
+      Script: {instanceID: 6280}
     - Class: 114
-      Script: {instanceID: 6966}
+      Script: {instanceID: 6472}
     - Class: 114
-      Script: {instanceID: 7088}
+      Script: {instanceID: 6968}
     - Class: 114
-      Script: {instanceID: 7184}
+      Script: {instanceID: 7090}
     - Class: 114
-      Script: {instanceID: 7882}
+      Script: {instanceID: 7186}
+    - Class: 114
+      Script: {instanceID: 7884}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2785,7 +2953,7 @@ ScriptsOnlyBuild:
     className: MLAPI_GUI
   - hash:
       serializedVersion: 2
-      Hash: 88fdb45aa1d18773c912b51ef290d857
+      Hash: 2dac53b0c08b52ee3577abecb6439eb3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DialogManager
@@ -2861,6 +3029,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleStrix
+  - hash:
+      serializedVersion: 2
+      Hash: c8004649df3133967fcb61f6040e16eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ConfirmEnemyHandDialog
   - hash:
       serializedVersion: 2
       Hash: 34fa63a30926bcf55d7323dae76be890
@@ -3745,7 +3919,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 7daf63ee685f5a130c47ec9ca995bd5d
+      Hash: 1caff8117859a17969136496faa96fe3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainDialog
@@ -4057,7 +4231,7 @@ ScriptsOnlyBuild:
     className: VertexZoom
   - hash:
       serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
+      Hash: d168ff6b7129c5478320994883bec748
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Effect

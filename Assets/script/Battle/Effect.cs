@@ -8,6 +8,7 @@ public class Effect : MonoBehaviour
     private BattleStrix m_BattleStrix = null;
     private MyMainCardsManager m_MyMainCardsManager;
     private EnemyMainCardsManager m_EnemyMainCardsManager;
+    public EventAnimationManager m_EventAnimationManager;
 
     public Effect(GameManager m_GameManager, BattleStrix m_BattleStrix)
     {
@@ -28,6 +29,27 @@ public class Effect : MonoBehaviour
                 return;
             default:
                 return;
+        }
+    }
+
+    public void WhenPlaceCardEffect(BattleModeCard m_BattleModeCard)
+    {
+        if (m_BattleModeCard == null)
+        {
+            return;
+        }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.DC_W01_02T:
+                Action action_DC_W01_02T = new Action(m_GameManager, EnumController.Action.DC_W01_02T);
+                action_DC_W01_02T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_DC_W01_02T.SetParamaterBattleStrix(m_BattleStrix);
+                action_DC_W01_02T.SetParamaterBattleModeCard(m_BattleModeCard);
+                m_GameManager.ActionList.Add(action_DC_W01_02T);
+                break;
+            default:
+                break;
         }
     }
 
@@ -307,6 +329,19 @@ public class Effect : MonoBehaviour
 
                 m_GameManager.m_DialogManager.CharacterSelectDialog(card, m_GameManager.myFieldList, place);
                 return true;
+            case EnumController.CardNo.DC_W01_02T:
+                // 【自】 このカードがアタックした時、クライマックス置場に「結婚式の歌姫」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.DC_W01_06T)
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T, card, place, status);
+                    return true;
+                }
+                return false;
             /*case EnumController.CardNo.DC_W01_10T:
                 if (ConfirmStockForCost(1))
                 {
@@ -315,7 +350,8 @@ public class Effect : MonoBehaviour
                 }
                 return false;*/
             case EnumController.CardNo.LB_W02_03T:
-                if(m_GameManager.MyClimaxCard == null)
+                // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
+                if (m_GameManager.MyClimaxCard == null)
                 {
                     return false;
                 }
