@@ -17,6 +17,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] NotEraseDialog m_NotEraseDialog;
     [SerializeField] ConfirmEncoreKindsDialog m_ConfirmEncoreKindsDialog;
     [SerializeField] ConfirmSearchOrSulvageCardDialog m_ConfirmSearchOrSulvageCardDialog;
+    [SerializeField] ConfirmEnemyHandDialog m_ConfirmEnemyHandDialog;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
@@ -189,6 +190,17 @@ public class DialogManager : MonoBehaviour
         m_ConfirmSearchOrSulvageCardDialog.SetBattleModeCard(tempList, paramater, m_ExecuteActionTemp);
     }
 
+    public void ConfirmEnemyHandDialog(List<BattleModeCardTemp> list)
+    {
+        List<BattleModeCard> enemyHandList = new List<BattleModeCard>();
+        for (int i = 0; i < list.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(list[i].cardNo);
+            enemyHandList.Add(b);
+        }
+        m_ConfirmEnemyHandDialog.SetBattleModeCardList(enemyHandList);
+    }
+
     public void CloseAllDialog()
     {
         m_YesOrNoDialog.OffDialog();
@@ -209,5 +221,6 @@ public class DialogManager : MonoBehaviour
         m_SelectActionDialog.OffDialog();
         m_SulvageDialog.onCloseButton();
         m_WaitDialog.onClose();
+        m_ConfirmEnemyHandDialog.OffDialog();
     }
 }

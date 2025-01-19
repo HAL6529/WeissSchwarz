@@ -12,6 +12,7 @@ public class Action : MonoBehaviour
     private GameManager m_GameManager;
     private MyMainCardsManager m_MyMainCardsManager;
     private EnumController.Attack m_AttackStatus = EnumController.Attack.VOID;
+    private EventAnimationManager m_EventAnimationManager;
     private WinAndLose m_WinAndLose;
 
     private int paramaterNum = -1;
@@ -101,6 +102,10 @@ public class Action : MonoBehaviour
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 m_GameManager.PowerCheckForLevelUpDialog(paramaterNum);
                 break;
+            case EnumController.Action.DC_W01_02T:
+                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                return;
             case EnumController.Action.DC_W01_07T:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
@@ -147,6 +152,11 @@ public class Action : MonoBehaviour
     public void SetParamaterAttackStatus(EnumController.Attack paramater)
     {
         m_AttackStatus = paramater;
+    }
+
+    public void SetParamaterEventAnimationManager(EventAnimationManager paramaterr)
+    {
+       m_EventAnimationManager = paramaterr;
     }
 
     public void SetParamaterMyMainCardsManager(MyMainCardsManager paramater)
