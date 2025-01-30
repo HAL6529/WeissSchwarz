@@ -64,11 +64,21 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A03:
                 if (ConfirmClimaxCombo(EnumController.CardNo.AT_WX02_A08))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
+                    Action action_AT_WX02_A08 = new Action(m_GameManager, EnumController.Action.AT_WX02_A08);
+                    action_AT_WX02_A08.SetParamaterBattleModeCard(card);
+
+                    m_GameManager.ActionList.Add(action_AT_WX02_A08);
+
+                    //m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card);
                 }
                 return;
             case EnumController.CardNo.DC_W01_10T:
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, reversedCardPlace);
+                Action action_DC_W01_10T = new Action(m_GameManager, EnumController.Action.DC_W01_10T);
+                action_DC_W01_10T.SetParamaterBattleModeCard(card);
+                action_DC_W01_10T.SetParamaterNum(reversedCardPlace);
+
+                m_GameManager.ActionList.Add(action_DC_W01_10T);
+                //m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, reversedCardPlace);
                 return;
             default:
                 return;
