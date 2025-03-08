@@ -297,6 +297,29 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// m_GameManagerのisExecuteActionListを変更するメソッド
+    /// </summary>
+    /// <param name="paramater"></param>
+    [StrixRpc]
+    public void ChangeIsExecuteActionList(bool paramater)
+    {
+        m_GameManager.isExecuteActionList = paramater;
+    }
+
+    /// <summary>
+    /// 相手をリバースさせた時に発動する効果を呼ぶメソッド
+    /// </summary>
+    /// <param name="paramater"></param>
+    [StrixRpc]
+    public void CallWhenReverseEnemyCard(int place1, int place2, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place2, place1);
+        }
+    }
+    
     [StrixRpc]
     public void ChangePhase(EnumController.Turn turn)
     {
@@ -468,6 +491,15 @@ public class BattleStrix : StrixBehaviour
             m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
 
             m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T();
+        }
+    }
+
+    [StrixRpc]
+    public void ExecuteActionList(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ExecuteActionList();
         }
     }
 

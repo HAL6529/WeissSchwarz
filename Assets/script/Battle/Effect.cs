@@ -59,6 +59,7 @@ public class Effect : MonoBehaviour
     /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
     public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace)
     {
+        Debug.Log("call");
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A03:

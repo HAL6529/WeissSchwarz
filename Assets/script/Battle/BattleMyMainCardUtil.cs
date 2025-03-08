@@ -393,7 +393,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
         m_MyMainCardsManager.ConfirmEffectWhenMyCardReversed(PlaceNum);
         m_Effect.WhenReverseMyCardEffect(m_BattleModeCard, PlaceNum);
-        // m_GameManager.ExecuteActionList();
     }
 
     /// <summary>
