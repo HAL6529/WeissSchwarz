@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SelectActionDialog : MonoBehaviour
 {
+    [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] Text text1;

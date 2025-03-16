@@ -298,16 +298,6 @@ public class BattleStrix : StrixBehaviour
     }
 
     /// <summary>
-    /// m_GameManagerのisExecuteActionListを変更するメソッド
-    /// </summary>
-    /// <param name="paramater"></param>
-    [StrixRpc]
-    public void ChangeIsExecuteActionList(bool paramater)
-    {
-        m_GameManager.isExecuteActionList = paramater;
-    }
-
-    /// <summary>
     /// 相手をリバースさせた時に発動する効果を呼ぶメソッド
     /// </summary>
     /// <param name="paramater"></param>

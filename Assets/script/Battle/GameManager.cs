@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
     public bool isAttackProcess = false;
     public bool isFirstAttacked = false;
     public bool isEncoreDialogProcess = false;
-    public bool isExecuteActionList = false;
 
     /// <summary>
     /// 扉アイコンのためのトリガーがデッキ残り1枚でトリガーしたかの判定用
@@ -276,18 +275,11 @@ public class GameManager : MonoBehaviour
 
     public void ExecuteActionList()
     {
-        if (isExecuteActionList)
-        {
-            m_BattleStrix.RpcToAll("ChangeIsExecuteActionList", false);
-            return;
-        }
-
         if (ActionList.Count > 0)
         {
             m_DialogManager.SelectActionDialog(ActionList);
             return;
         }
-        isExecuteActionList = true;
         m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
     }
 
@@ -401,8 +393,6 @@ public class GameManager : MonoBehaviour
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, num);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-                    m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
-                    Debug.Log(ActionList.Count);
                     return;
                 }
                 else if (myPower == enemyPower)
@@ -411,14 +401,12 @@ public class GameManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnReverse(myPlace);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
                     m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
-                    m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
                     return;
                 }
                 else
                 {
                     m_MyMainCardsManager.CallOnReverse(myPlace);
                     m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
-                    m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
                     return;
                 }
             }
@@ -429,7 +417,6 @@ public class GameManager : MonoBehaviour
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, num);
             m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
             return;
         }
         else if (myPower == enemyPower)
@@ -438,14 +425,12 @@ public class GameManager : MonoBehaviour
             m_MyMainCardsManager.CallOnReverse(myPlace);
             m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
             m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
-            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
             return;
         }
         else
         {
             m_MyMainCardsManager.CallOnReverse(myPlace);
             m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
-            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
             return;
         }
     }
