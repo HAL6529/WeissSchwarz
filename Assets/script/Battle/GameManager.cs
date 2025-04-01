@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     public bool isFirstAttacked = false;
     public bool isEncoreDialogProcess = false;
 
+    public bool executeActionList = false;
+
     /// <summary>
     /// 扉アイコンのためのトリガーがデッキ残り1枚でトリガーしたかの判定用
     /// </summary>
@@ -280,7 +282,16 @@ public class GameManager : MonoBehaviour
             m_DialogManager.SelectActionDialog(ActionList);
             return;
         }
-        m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
+
+        if (executeActionList)
+        {
+            m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+            return;
+        }
+        else
+        {
+            m_BattleStrix.RpcToAll("ExecuteActionListForLast", isTurnPlayer);
+        }
     }
 
     public void FirstDraw()
@@ -357,7 +368,7 @@ public class GameManager : MonoBehaviour
         Syncronize();
     }
 
-    public void PowerCheck(int num)
+    public void PowerCheck(int num, EnumController.PowerCheck paramater)
     {
         int myPlace = num;
         int myPower = m_MyMainCardsManager.GetFieldPower(num);
@@ -390,23 +401,23 @@ public class GameManager : MonoBehaviour
                 Debug.Log("enemyPlace:" + enemyPlace);
                 if (myPower > enemyPower)
                 {
+                    Debug.Log("MyPowerIsBiggerThanEnemyPower");
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
-                    m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, num);
-                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+                    m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace);
+                    m_BattleStrix.RpcToAll("MyPowerIsBiggerThanEnemyPower", enemyPlace, paramater, isTurnPlayer);
                     return;
                 }
                 else if (myPower == enemyPower)
                 {
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_MyMainCardsManager.CallOnReverse(myPlace);
-                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-                    m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+                    m_BattleStrix.RpcToAll("MyPowerEqualEnemyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
                     return;
                 }
                 else
                 {
                     m_MyMainCardsManager.CallOnReverse(myPlace);
-                    m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+                    m_BattleStrix.RpcToAll("EnemyPowerIsBiggerThanMyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
                     return;
                 }
             }
@@ -414,24 +425,55 @@ public class GameManager : MonoBehaviour
 
         if (myPower > enemyPower)
         {
+            Debug.Log("MyPowerIsBiggerThanEnemyPower");
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, num);
-            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace);
+            m_BattleStrix.RpcToAll("MyPowerIsBiggerThanEnemyPower", enemyPlace, paramater, isTurnPlayer);
             return;
         }
         else if (myPower == enemyPower)
         {
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_MyMainCardsManager.CallOnReverse(myPlace);
-            m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, isTurnPlayer);
-            m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+            m_BattleStrix.RpcToAll("MyPowerEqualEnemyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
             return;
         }
         else
         {
             m_MyMainCardsManager.CallOnReverse(myPlace);
-            m_BattleStrix.RpcToAll("CallEnemyReverseForGreatPerformance", myPlace, num, isTurnPlayer);
+            m_BattleStrix.RpcToAll("EnemyPowerIsBiggerThanMyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
             return;
+        }
+    }
+
+    public void PowerCheck2(EnumController.PowerCheck paramater)
+    {
+        Debug.Log("PowerCheck2");
+        switch (paramater)
+        {
+            case EnumController.PowerCheck.DamageForFrontAttack:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                break;
+            case EnumController.PowerCheck.DamageForFrontAttack2ForCancel:
+                if (ReceiveShotList.Count > 0)
+                {
+                    ReceiveShotList.RemoveAt(0);
+                    m_BattleStrix.RpcToAll("Shot", 1, ReceiveShotList, isFirstAttacker);
+                    return;
+                }
+
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+                m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
+                break;
+            case EnumController.PowerCheck.DamageForFrontAttack2ForDamaged:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+                m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
+                break;
+            case EnumController.PowerCheck.PowerCheckForLevelUpDialog:
+                m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+                break;
         }
     }
 
@@ -439,7 +481,8 @@ public class GameManager : MonoBehaviour
     {
         if(place > -1)
         {
-            PowerCheck(place);
+            PowerCheck(place, EnumController.PowerCheck.PowerCheckForLevelUpDialog);
+            return;
         }
         m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
     }
@@ -841,8 +884,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("placeNum:" + placeNum);
         if (damage <= 0 && placeNum > -1)
         {
-            PowerCheck(placeNum);
-            m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+            PowerCheck(placeNum, EnumController.PowerCheck.DamageForFrontAttack);
             return;
         }
 

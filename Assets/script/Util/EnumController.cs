@@ -214,6 +214,14 @@ namespace EnumController
         Counter_Confirm_Use_Card,
     }
 
+    public enum PowerCheck
+    {
+        DamageForFrontAttack,
+        DamageForFrontAttack2ForCancel,
+        DamageForFrontAttack2ForDamaged,
+        PowerCheckForLevelUpDialog,
+    }
+
     public enum SearchDialogParamater
     {
         VOID,
