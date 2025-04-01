@@ -245,22 +245,6 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
-    /// <summary>
-    /// 相手をリバースしたとき呼び出される
-    /// </summary>
-    /// <param name="place1">攻撃されたキャラの位置</param>
-    /// <param name="place2">攻撃したキャラの位置</param>
-    /// <param name="isTurnPlayer"></param>
-    [StrixRpc]
-    public void CallEnemyReverseForGreatPerformance(int place1, int place2, bool isTurnPlayer)
-    {
-        if (m_GameManager.isTurnPlayer != isTurnPlayer)
-        {
-            m_EnemyMainCardsManager.CallReverse(place1);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(place2, place1);
-        }
-    }
-
     [StrixRpc]
     public void CallEnemyStand(int num, bool isTurnPlayer)
     {
@@ -297,6 +281,48 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    [StrixRpc]
+    public void MyPowerIsBiggerThanEnemyPower(int num, EnumController.PowerCheck paramater, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.CallOnReverse(num);
+            RpcToAll(nameof(CallPowerCheck2), paramater, m_GameManager.isTurnPlayer);
+        }
+    }
+
+    [StrixRpc]
+    public void MyPowerEqualEnemyPower(int place1, int place2, int place3, EnumController.PowerCheck paramater, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.CallOnReverse(place3);
+            m_EnemyMainCardsManager.CallReverse(place1);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1);
+            RpcToAll(nameof(CallPowerCheck2), paramater, m_GameManager.isTurnPlayer);
+        }
+    }
+
+    [StrixRpc]
+    public void EnemyPowerIsBiggerThanMyPower(int place1, int place2, int place3, EnumController.PowerCheck paramater, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_EnemyMainCardsManager.CallReverse(place1);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1);
+            RpcToAll(nameof(CallPowerCheck2), paramater, m_GameManager.isTurnPlayer);
+        }
+    }
+
+    [StrixRpc]
+    public void CallPowerCheck2(EnumController.PowerCheck paramater, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.PowerCheck2(paramater);
+        }
+    }
+    
     [StrixRpc]
     public void ChangePhase(EnumController.Turn turn)
     {
@@ -469,6 +495,33 @@ public class BattleStrix : StrixBehaviour
 
             m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T();
         }
+    }
+
+    [StrixRpc]
+    public void ExecuteActionList(bool isTurnPlayer)
+    {
+        Debug.Log("ExecuteActionList");
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ExecuteActionList();
+        }
+    }
+
+    [StrixRpc]
+    public void ExecuteActionListForLast(bool isTurnPlayer)
+    {
+        Debug.Log("ExecuteActionList");
+        m_GameManager.executeActionList = true;
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ExecuteActionList();
+        }
+    }
+
+    [StrixRpc]
+    public void ChanggeExecuteActionList(bool paramater)
+    {
+        m_GameManager.executeActionList = paramater;
     }
 
     [StrixRpc]

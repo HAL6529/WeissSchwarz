@@ -73,25 +73,14 @@ public class MyMainCardsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 相手をリバースしたときに発動する効果
+    /// </summary>
+    /// <param name="num">自分のカードの場所</param>
+    /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
     public void CallWhenReverseEnemyCard(int num, int reversedCardPlace)
     {
-        int Place = -1;
-        switch (num)
-        {
-            case 0:
-                Place = 2;
-                break;
-            case 1:
-                Place = 1;
-                break;
-            case 2:
-                Place = 0;
-                break;
-            default:
-                break;
-        }
-        Debug.Log("CallWhenReverseEnemyCard:"+ Place);
-        CardList[Place].WhenReverseEnemyCard(reversedCardPlace);
+        CardList[num].WhenReverseEnemyCard(reversedCardPlace);
     }
 
     public void ExecuteAttack2(int num, EnumController.Attack status)

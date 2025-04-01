@@ -16,8 +16,10 @@ namespace EnumController
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
+        AT_WX02_A08,
         DC_W01_02T,
         DC_W01_07T,
+        DC_W01_10T,
         DC_W01_16T,
     }
 
@@ -210,6 +212,14 @@ namespace EnumController
         HAND_ENCORE_SELECT_DISCARD_CONFIRM,
         Counter_Not_Exist,
         Counter_Confirm_Use_Card,
+    }
+
+    public enum PowerCheck
+    {
+        DamageForFrontAttack,
+        DamageForFrontAttack2ForCancel,
+        DamageForFrontAttack2ForDamaged,
+        PowerCheckForLevelUpDialog,
     }
 
     public enum SearchDialogParamater

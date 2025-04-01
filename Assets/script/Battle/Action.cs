@@ -39,7 +39,8 @@ public class Action : MonoBehaviour
             case EnumController.Action.DamageForFrontAttack2ForCancel:
                 if (paramaterNum > -1)
                 {
-                    m_GameManager.PowerCheck(paramaterNum);
+                    m_GameManager.PowerCheck(paramaterNum, EnumController.PowerCheck.DamageForFrontAttack2ForCancel);
+                    return;
                 }
 
                 if (m_GameManager.ReceiveShotList.Count > 0)
@@ -66,7 +67,8 @@ public class Action : MonoBehaviour
 
                 if (paramaterNum > -1)
                 {
-                    m_GameManager.PowerCheck(paramaterNum);
+                    m_GameManager.PowerCheck(paramaterNum, EnumController.PowerCheck.DamageForFrontAttack2ForDamaged);
+                    return;
                 }
 
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
@@ -102,11 +104,18 @@ public class Action : MonoBehaviour
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 m_GameManager.PowerCheckForLevelUpDialog(paramaterNum);
                 break;
+            case EnumController.Action.AT_WX02_A08:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
+                return;
             case EnumController.Action.DC_W01_02T:
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.DC_W01_07T:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
+                return;
+            case EnumController.Action.DC_W01_10T:
+                Debug.Log(paramaterNum);
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
             case EnumController.Action.DC_W01_16T:
