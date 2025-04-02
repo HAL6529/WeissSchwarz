@@ -285,6 +285,13 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
                     break;
+                case EnumController.CardNo.LB_W02_19T:
+                    // 【自】［(1)］ このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    m_GameManager.Syncronize();
+                    m_GameManager.Draw();
+                    break;
                 default:
                     break;
             }
@@ -299,7 +306,8 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
-        } 
+        }
+        m_GameManager.ExecuteActionList();
     }
 
     /// <summary>

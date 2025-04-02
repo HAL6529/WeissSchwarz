@@ -292,24 +292,24 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
-    public void MyPowerEqualEnemyPower(int place1, int place2, int place3, EnumController.PowerCheck paramater, bool isTurnPlayer)
+    public void MyPowerEqualEnemyPower(int place1, int place2, int place3, int level, EnumController.PowerCheck paramater, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_MyMainCardsManager.CallOnReverse(place3);
             m_EnemyMainCardsManager.CallReverse(place1);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1, level);
             RpcToAll(nameof(CallPowerCheck2), paramater, m_GameManager.isTurnPlayer);
         }
     }
 
     [StrixRpc]
-    public void EnemyPowerIsBiggerThanMyPower(int place1, int place2, int place3, EnumController.PowerCheck paramater, bool isTurnPlayer)
+    public void EnemyPowerIsBiggerThanMyPower(int place1, int place2, int place3, int level, EnumController.PowerCheck paramater, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_EnemyMainCardsManager.CallReverse(place1);
-            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1);
+            m_MyMainCardsManager.CallWhenReverseEnemyCard(place3, place1, level);
             RpcToAll(nameof(CallPowerCheck2), paramater, m_GameManager.isTurnPlayer);
         }
     }
