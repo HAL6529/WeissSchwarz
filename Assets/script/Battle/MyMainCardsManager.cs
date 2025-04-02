@@ -78,9 +78,10 @@ public class MyMainCardsManager : MonoBehaviour
     /// </summary>
     /// <param name="num">自分のカードの場所</param>
     /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
-    public void CallWhenReverseEnemyCard(int num, int reversedCardPlace)
+    /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>
+    public void CallWhenReverseEnemyCard(int num, int reversedCardPlace, int reversedCardLevel)
     {
-        CardList[num].WhenReverseEnemyCard(reversedCardPlace);
+        CardList[num].WhenReverseEnemyCard(reversedCardPlace, reversedCardLevel);
     }
 
     public void ExecuteAttack2(int num, EnumController.Attack status)
@@ -232,6 +233,11 @@ public class MyMainCardsManager : MonoBehaviour
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();
+    }
+
+    public int GetFieldLevel(int place)
+    {
+        return CardList[place].GetFieldLevel();
     }
 
     public List<int> GetFieldLevel()

@@ -379,9 +379,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <summary>
     /// ‘Šè‚ğƒŠƒo[ƒX‚µ‚½‚Æ‚«‚ÌŒø‰Ê
     /// </summary>
-    public void WhenReverseEnemyCard(int reversedCardPlace)
+    public void WhenReverseEnemyCard(int reversedCardPlace, int reversedCardLevel)
     {
-        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard, reversedCardPlace);
+        m_Effect.WhenReverseEnemyCardEffect(m_BattleModeCard, reversedCardPlace, reversedCardLevel);
     }
 
     /// <summary>

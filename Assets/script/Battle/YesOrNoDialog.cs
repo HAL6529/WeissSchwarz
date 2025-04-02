@@ -260,6 +260,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.DC_W01_07T:
                     case EnumController.CardNo.DC_W01_10T:
                     case EnumController.CardNo.DC_W01_16T:
+                    case EnumController.CardNo.LB_W02_19T:
                         m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                         m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                         break;

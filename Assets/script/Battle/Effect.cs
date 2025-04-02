@@ -57,10 +57,12 @@ public class Effect : MonoBehaviour
     /// 相手のカードをリバースしたときに発動する効果
     /// </summary>
     /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
-    public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace)
+    /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>
+    public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace, int reversedCardLevel)
     {
         Debug.Log("WhenReverseEnemyCardEffect" + card.name);
         Debug.Log("WhenReverseEnemyCardEffect" + reversedCardPlace);
+        Debug.Log("WhenReverseEnemyCardEffect" + reversedCardLevel);
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A03:
@@ -81,6 +83,14 @@ public class Effect : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action_DC_W01_10T);
                 //m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, reversedCardPlace);
+                return;
+            case EnumController.CardNo.LB_W02_19T:
+                if(reversedCardLevel > 1)
+                {
+                    Action action_LB_W02_19T = new Action(m_GameManager, EnumController.Action.LB_W02_19T);
+                    action_LB_W02_19T.SetParamaterBattleModeCard(card);
+                    m_GameManager.ActionList.Add(action_LB_W02_19T);
+                }
                 return;
             default:
                 return;

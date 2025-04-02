@@ -121,6 +121,9 @@ public class Action : MonoBehaviour
             case EnumController.Action.DC_W01_16T:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
+            case EnumController.Action.LB_W02_19T:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
+                return;
             default:
                 break;
         }
