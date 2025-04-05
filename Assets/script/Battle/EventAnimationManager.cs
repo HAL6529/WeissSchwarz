@@ -120,13 +120,13 @@ public class EventAnimationManager : MonoBehaviour
             {
                 case EnumController.CardNo.AT_WX02_A07:
                     m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_01T:
                     // 【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_03T:
                     // あなたは自分の山札を上から1枚選び、ストック置場に置く。あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
@@ -160,13 +160,14 @@ public class EventAnimationManager : MonoBehaviour
                     action2.SetParamaterBattleModeCard(m_BattleModeCard);
                     m_GameManager.ActionList.Add(action2);
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_04T:
                     m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
-                    break;
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.DC_W01_05T:
                     //【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。
                     for (int i = 0; i < 1; i++)
@@ -176,15 +177,16 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     m_GameManager.Syncronize();
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_07T:
                     // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_10T:
                     // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
                     m_BattleStrix.RpcToAll("ToDeckTopFromField", place, m_GameManager.isTurnPlayer);
-                    break;
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.DC_W01_12T:
                     // あなたは自分の控え室のキャラを2枚まで選び、手札に戻す。
                     for (int i = 0; i < 2; i++)
@@ -194,7 +196,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     m_GameManager.Syncronize();
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 2);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_13T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     for (int i = 0; i < 2; i++)
@@ -205,11 +207,23 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
-                    break;
+                    return;
                 case EnumController.CardNo.DC_W01_16T:
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
                     m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.DC_W01_18T:
+                    // あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
+                    for (int i = 0; i < 1; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
                     break;
                 case EnumController.CardNo.DC_W01_02T:
                 case EnumController.CardNo.LB_W02_03T:
@@ -226,8 +240,9 @@ public class EventAnimationManager : MonoBehaviour
                     else
                     {
                         m_GameManager.ExecuteActionList();
+                        return;
                     }
-                    break;
+                    return;
                 case EnumController.CardNo.LB_W02_04T:
                     //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
                     for (int i = 0; i < 1; i++)
@@ -252,7 +267,8 @@ public class EventAnimationManager : MonoBehaviour
                         }
                     }
                     m_GameManager.Syncronize();
-                    break;
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_09T:
                     //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
                     for (int i = 0; i < 1; i++)
@@ -262,7 +278,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     m_GameManager.Syncronize();
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
-                    break;
+                    return;
                 case EnumController.CardNo.LB_W02_16T:
                     if (m_GameManager.myClockList.Count == 0)
                     {
@@ -274,24 +290,26 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myMemoryList.Add(m_BattleModeCard);
                         m_GameManager.myHandList.Remove(m_BattleModeCard);
                         m_GameManager.Syncronize();
+                        m_GameManager.ExecuteActionList();
                         return;
                     }
                     m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
-                    break;
+                    return;
                 case EnumController.CardNo.LB_W02_17T:
                     //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
                     m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     m_GameManager.Syncronize();
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
-                    break;
+                    return;
                 case EnumController.CardNo.LB_W02_19T:
                     // 【自】［(1)］ このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
                     m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     m_GameManager.Syncronize();
                     m_GameManager.Draw();
-                    break;
+                    m_GameManager.ExecuteActionList();
+                    return;
                 default:
                     break;
             }
@@ -307,7 +325,6 @@ public class EventAnimationManager : MonoBehaviour
                     break;
             }
         }
-        m_GameManager.ExecuteActionList();
     }
 
     /// <summary>

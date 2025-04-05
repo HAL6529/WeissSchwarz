@@ -807,6 +807,24 @@ public class GameManager : MonoBehaviour
         Syncronize();
     }
 
+
+    /// <summary>
+    /// フィールドの特定の場所のキャラを控室に送る
+    /// </summary>
+    /// <param name="place"></param>
+    public void ToGraveYardFromField(int place)
+    {
+        Debug.Log("ToGraveYardFromField" + place);
+        if (myFieldList[place] == null)
+        {
+            return;
+        }
+        GraveYardList.Add(myFieldList[place]);
+        myFieldList[place] = null;
+        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
+        Syncronize();
+    }
+
     private int TriggerCheck()
     {
         isLastTrigger = false;

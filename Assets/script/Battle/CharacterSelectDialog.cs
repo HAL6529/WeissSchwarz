@@ -10,6 +10,7 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] List<Image> images = new List<Image>();
     [SerializeField] List<Button> buttons = new List<Button>();
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] GameObject m_OKButton;
     [SerializeField] Sprite BackImage;
     [SerializeField] GameManager m_GameManager;
@@ -46,10 +47,9 @@ public class CharacterSelectDialog : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A02:
-                minNum = 1;
-                maxNum = 1;
-                break;
             case EnumController.CardNo.DC_W01_05T:
+            case EnumController.CardNo.DC_W01_18T:
+            case EnumController.CardNo.LB_W02_09T:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -60,10 +60,6 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_04T:
                 minNum = -1;
                 maxNum = 2;
-                break;
-            case EnumController.CardNo.LB_W02_09T:
-                minNum = 1;
-                maxNum = 1;
                 break;
             default:
                 break;
@@ -90,11 +86,19 @@ public class CharacterSelectDialog : MonoBehaviour
                     buttons[i].interactable = true;
                 }
 
-                // 前列のカードだけ対象
                 switch (m_BattleModeCard.cardNo)
                 {
+                    // 前列のカードだけ対象
                     case EnumController.CardNo.DC_W01_05T:
                         if(i >= 3)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
+                    // レベル1以下のキャラのみ対象
+                    case EnumController.CardNo.DC_W01_18T:
+                        if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
                         {
                             buttons[i].interactable = false;
                             cnt++;
@@ -122,6 +126,7 @@ public class CharacterSelectDialog : MonoBehaviour
             // キャラクターがいなければreturnする
             case EnumController.CardNo.DC_W01_05T:
             case EnumController.CardNo.DC_W01_07T:
+            case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_09T:
                 if (cnt >= 5)
                 {
@@ -222,7 +227,14 @@ public class CharacterSelectDialog : MonoBehaviour
                     // 相手のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {
-                        m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isFirstAttacker, i, power);
+                        m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, power);
+                    }
+                    break;
+                case EnumController.CardNo.DC_W01_18T:
+                    // 相手のカードを控室に送る
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
                     }
                     break;
                 default:
@@ -247,6 +259,7 @@ public class CharacterSelectDialog : MonoBehaviour
         // イベントカードの場合は処理後に控室にカードを追加
         switch (m_BattleModeCard.cardNo)
         {
+            case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 break;

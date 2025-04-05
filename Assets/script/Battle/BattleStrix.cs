@@ -659,6 +659,20 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// フィールドの特定の場所のキャラを控室に送る
+    /// </summary>
+    /// <param name="place"></param>
+    /// <param name="isTurnPlayer"></param>
+    [StrixRpc]
+    public void ToGraveYardFromField(int place, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ToGraveYardFromField(place);
+        }
+    }
+
     [StrixRpc]
     public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
