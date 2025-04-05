@@ -279,6 +279,24 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
                     return;
+                case EnumController.CardNo.LB_W02_14T:
+                    // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                    for (int i = 0; i < 2; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+
+                    if (m_GameManager.myClockList.Count == 0)
+                    {
+                        return;
+                    }
+                    m_GameManager.GraveYardList.Add(m_GameManager.myClockList[m_GameManager.myClockList.Count - 1]);
+                    m_GameManager.myClockList.RemoveAt(m_GameManager.myClockList.Count - 1);
+                    m_GameManager.Syncronize();
+                    return;
                 case EnumController.CardNo.LB_W02_16T:
                     if (m_GameManager.myClockList.Count == 0)
                     {

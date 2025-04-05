@@ -253,6 +253,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_14T:
+                // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T, card, num);
+                }
+                return;
             //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
             case EnumController.CardNo.LB_W02_17T:
                 if (ConfirmStockForCost(1))
