@@ -70,6 +70,7 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card)
     {
+        Debug.Log("AnimationStart_2");
         isFromRPC = false;
         m_gameObject.SetActive(true);
         effectNum = 1;
@@ -93,7 +94,7 @@ public class EventAnimationManager : MonoBehaviour
             return;
         }
         Execute();
-        effectNum = 0;
+        // effectNum = 0;
         place = -1;
     }
 
@@ -279,6 +280,24 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
                     return;
+                case EnumController.CardNo.LB_W02_14T:
+                    // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                    for (int i = 0; i < 2; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+
+                    if (m_GameManager.myClockList.Count == 0)
+                    {
+                        return;
+                    }
+                    m_GameManager.GraveYardList.Add(m_GameManager.myClockList[m_GameManager.myClockList.Count - 1]);
+                    m_GameManager.myClockList.RemoveAt(m_GameManager.myClockList.Count - 1);
+                    m_GameManager.Syncronize();
+                    return;
                 case EnumController.CardNo.LB_W02_16T:
                     if (m_GameManager.myClockList.Count == 0)
                     {
@@ -321,6 +340,22 @@ public class EventAnimationManager : MonoBehaviour
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の手札を見る。
                     m_BattleStrix.RpcToAll("CallGetHandList", m_GameManager.isTurnPlayer);
                     break;
+                case EnumController.CardNo.LB_W02_14T:
+                    Debug.Log("EventAnimationManager:LB_W02_14T");
+                    // 【自】 あなたがレベルアップした時、あなたは自分の山札を上から1枚選び、ストック置場に置く。
+                    m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                    m_GameManager.myDeckList.RemoveAt(0);
+                    m_GameManager.Syncronize();
+                    if (m_GameManager.myDeckList.Count == 0)
+                    {
+                        m_GameManager.Refresh();
+                    }
+                    else
+                    {
+                        m_GameManager.ExecuteActionList();
+                        return;
+                    }
+                    return;
                 default:
                     break;
             }

@@ -366,6 +366,10 @@ public class GameManager : MonoBehaviour
             myClockList.RemoveAt(0);
         }
         Syncronize();
+
+        Debug.Log("LevelUp");
+        m_MyMainCardsManager.CallLevelUp();
+        // ExecuteActionListはLevelUpDialogクラスで実行されるため不要
     }
 
     public void PowerCheck(int num, EnumController.PowerCheck paramater)

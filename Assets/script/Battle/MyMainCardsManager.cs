@@ -84,6 +84,17 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].WhenReverseEnemyCard(reversedCardPlace, reversedCardLevel);
     }
 
+    /// <summary>
+    /// 自分がレベルアップしたときに発動する効果
+    /// </summary>
+    public void CallLevelUp()
+    {
+        for(int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].WhenLevelUp();
+        }
+    }
+
     public void ExecuteAttack2(int num, EnumController.Attack status)
     {
         CardList[num].Attack2(status);

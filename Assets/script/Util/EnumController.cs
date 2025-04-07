@@ -21,6 +21,7 @@ namespace EnumController
         DC_W01_07T,
         DC_W01_10T,
         DC_W01_16T,
+        LB_W02_14T,
         LB_W02_19T,
     }
 
@@ -304,6 +305,7 @@ namespace EnumController
         COST_CONFIRM_LB_W02_03T,
         COST_CONFIRM_LB_W02_05T,
         COST_CONFIRM_LB_W02_09T,
+        COST_CONFIRM_LB_W02_14T,
         COST_CONFIRM_LB_W02_17T,
         COST_CONFIRM_SEND_MEMORY,
     }

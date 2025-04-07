@@ -32,6 +32,32 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 「【自】 あなたがレベルアップした時」の効果
+    /// </summary>
+    /// <param name="m_BattleModeCard"></param>
+    public void WhenLevelUp(BattleModeCard m_BattleModeCard)
+    {
+        if (m_BattleModeCard == null)
+        {
+            return;
+        }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_14T:
+                Debug.Log(m_BattleModeCard.name);
+                Action action_LB_W02_14T = new Action(m_GameManager, EnumController.Action.LB_W02_14T);
+                action_LB_W02_14T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_LB_W02_14T.SetParamaterBattleStrix(m_BattleStrix);
+                action_LB_W02_14T.SetParamaterBattleModeCard(m_BattleModeCard);
+                m_GameManager.ActionList.Add(action_LB_W02_14T);
+                break;
+            default:
+                break;
+        }
+    }
+
     public void WhenPlaceCardEffect(BattleModeCard m_BattleModeCard)
     {
         if (m_BattleModeCard == null)
@@ -251,6 +277,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T, card, num);
+                }
+                return;
+            case EnumController.CardNo.LB_W02_14T:
+                // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T, card, num);
                 }
                 return;
             //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。

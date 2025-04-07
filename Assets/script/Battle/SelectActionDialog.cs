@@ -52,6 +52,7 @@ public class SelectActionDialog : MonoBehaviour
 
     public void SetDialog(List<Action> actionList)
     {
+        Debug.Log("ActionList.Count:" + ActionList.Count);
         this.ActionList = actionList;
         if (ActionList.Count == 0)
         {
@@ -80,6 +81,24 @@ public class SelectActionDialog : MonoBehaviour
         {
             ActionList[haveRefreshAction].Execute(haveRefreshAction);
             OffDialog();
+            return;
+        }
+
+        // レベルアップのアクションがあれば優先的に処理する
+        int havePowerCheckForLevelUpDialog = HaveParamater(EnumController.Action.PowerCheckForLevelUpDialog);
+        if (havePowerCheckForLevelUpDialog != -1)
+        {
+            ActionList[havePowerCheckForLevelUpDialog].Execute(havePowerCheckForLevelUpDialog);
+            // OffDialog();
+            return;
+        }
+
+        // クロック2ドローした後のアクションがあれば優先的に処理する
+        int haveClockAndTwoDraw = HaveParamater(EnumController.Action.ClockAndTwoDraw);
+        if (haveClockAndTwoDraw != -1)
+        {
+            ActionList[haveClockAndTwoDraw].Execute(haveClockAndTwoDraw);
+            // OffDialog();
             return;
         }
 
@@ -130,6 +149,10 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "このカードとバトルしているキャラのレベルが1以下なら、";
                 text3.text = "あなたはそのキャラを【リバース】してよい。";
                 break;
+            case EnumController.Action.LB_W02_14T:
+                text1.text = "【【自】 あなたがレベルアップした時、";
+                text2.text = "あなたは自分の山札を上から1枚選び、ストック置場に置く。";
+                break;
             default:
                 text2.text = "エラーメッセージ";
                 break;
@@ -138,6 +161,7 @@ public class SelectActionDialog : MonoBehaviour
 
     public void OffDialog()
     {
+        Debug.Log("SelectActionDialog:OffDialog");
         this.gameObject.SetActive(false);
     }
 

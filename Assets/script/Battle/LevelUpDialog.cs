@@ -31,6 +31,7 @@ public class LevelUpDialog : MonoBehaviour
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
         OffDialog();
+        Debug.Log("onOKButton:ExecuteActionList");
         m_GameManager.ExecuteActionList();
     }
 
