@@ -34,6 +34,7 @@ public class Action : MonoBehaviour
         switch (paramater)
         {
             case EnumController.Action.ClockAndTwoDraw:
+                Debug.Log("Action:ClockAndTwoDraw");
                 m_GameManager.ClockAndTwoDraw2();
                 break;
             case EnumController.Action.DamageForFrontAttack2ForCancel:
@@ -121,13 +122,18 @@ public class Action : MonoBehaviour
             case EnumController.Action.DC_W01_16T:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
+            case EnumController.Action.LB_W02_14T:
+                Debug.Log("Action:LB_W02_14T");
+                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                return;
             case EnumController.Action.LB_W02_19T:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
                 return;
             default:
                 break;
         }
-
+        Debug.Log("Action:ExecuteActionList");
         m_GameManager.ExecuteActionList();
     }
 

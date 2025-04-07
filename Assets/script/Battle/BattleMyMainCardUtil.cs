@@ -9,6 +9,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] EventAnimationManager m_EventAnimationManager;
     [SerializeField] GameObject ActButton;
     [SerializeField] GameObject MoveButton;
     [SerializeField] GameObject ActButton_Beside;
@@ -105,6 +106,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         changeSprite();
         m_Effect = new Effect(m_GameManager, m_BattleStrix);
+        m_Effect.m_EventAnimationManager = m_EventAnimationManager;
         m_CheckHaveActAvility = new CheckHaveActAvility();
     }
 
@@ -374,6 +376,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    /// <summary>
+    /// 「【自】 あなたがレベルアップした時」の効果
+    /// </summary>
+    public void WhenLevelUp()
+    {
+        m_Effect.WhenLevelUp(m_BattleModeCard);
     }
 
     /// <summary>
