@@ -224,6 +224,12 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_DC_W01_13T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_02T_1;
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_02T_2;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
                 break;
@@ -349,6 +355,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
@@ -359,6 +366,10 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
+                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
