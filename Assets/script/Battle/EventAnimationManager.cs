@@ -226,6 +226,19 @@ public class EventAnimationManager : MonoBehaviour
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
                     break;
+                case EnumController.CardNo.LB_W02_02T:
+                    // 【起】［(1)］ このカードを思い出にする。
+                    for (int i = 0; i < 1; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.myMemoryList.Add(m_GameManager.myFieldList[place]);
+                    m_GameManager.myFieldList[place] = null;
+                    m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.DC_W01_02T:
                 case EnumController.CardNo.LB_W02_03T:
                     // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、
@@ -339,6 +352,16 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_02T:
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の手札を見る。
                     m_BattleStrix.RpcToAll("CallGetHandList", m_GameManager.isTurnPlayer);
+                    break;
+                case EnumController.CardNo.LB_W02_02T:
+                    // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
+                    for (int i = 0; i < 1; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.Syncronize();
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
                     break;
                 case EnumController.CardNo.LB_W02_14T:
                     Debug.Log("EventAnimationManager:LB_W02_14T");

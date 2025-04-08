@@ -260,9 +260,24 @@ public class Effect : MonoBehaviour
             // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
             // 【起】［(1)］ このカードを思い出にする。
             case EnumController.CardNo.LB_W02_02T:
+                List<SelectActEffectDialogContent> LB_W02_02T_List = new List<SelectActEffectDialogContent>();
                 if (ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY, card, num);
+                    // effect1: 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
+                    SelectActEffectDialogContent m_effect1 = new SelectActEffectDialogContent(m_GameManager, card, 0);
+                    LB_W02_02T_List.Add(m_effect1);
+
+                    // effect2:【起】［(1)］ このカードを思い出にする。
+                    SelectActEffectDialogContent m_effect2 = new SelectActEffectDialogContent(m_GameManager, card, 1);
+                    m_effect2.SetParamaterNum1(num);
+                    LB_W02_02T_List.Add(m_effect2);
+
+                    // m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY, card, num);
+                }
+
+                if(LB_W02_02T_List.Count > 0)
+                {
+                    m_GameManager.m_DialogManager.SelectActEffectDialog(LB_W02_02T_List);
                 }
                 return;
             // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。

@@ -23,7 +23,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] SelectActionDialog m_SelectActionDialog;
-    [SerializeField] SulvageDialog m_SulvageDialog;
+    [SerializeField] SelectActEffectDialog m_SelectActEffectDialog;
+   [SerializeField] SulvageDialog m_SulvageDialog;
     [SerializeField] WaitDialog m_WaitDialog;
 
     public void CloseWaitDialog()
@@ -39,6 +40,11 @@ public class DialogManager : MonoBehaviour
     public void SelectActionDialog(List<Action> ActionList)
     {
         m_SelectActionDialog.SetDialog(ActionList);
+    }
+
+    public void SelectActEffectDialog(List<SelectActEffectDialogContent> m_SelectActEffectDialogContentList)
+    {
+        m_SelectActEffectDialog.SetContent(m_SelectActEffectDialogContentList);
     }
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater)
@@ -219,6 +225,7 @@ public class DialogManager : MonoBehaviour
         m_GraveYardDetail.onCloseButton();
         m_MainPowerUpDialog.OffDialog();
         m_SelectActionDialog.OffDialog();
+        m_SelectActEffectDialog.OffDialog();
         m_SulvageDialog.onCloseButton();
         m_WaitDialog.onClose();
         m_ConfirmEnemyHandDialog.OffDialog();

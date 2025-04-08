@@ -24,6 +24,8 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_05T;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_13T;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_02T_1;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_02T_2;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_09T;
@@ -165,6 +167,8 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_DC_W01_05T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_05T;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_10T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_10T;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_13T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_13T;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_02T_1 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_02T_1;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_02T_2 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_02T_2;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_03T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_03T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_05T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_05T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_09T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_09T;
@@ -239,6 +243,8 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_05T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_10T = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_DC_W01_13T = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_02T_1 = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_02T_2 = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_03T = "次の能力を使用しますか。:" + "このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_05T = "次の能力を使用しますか。:" + "【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_09T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。";
