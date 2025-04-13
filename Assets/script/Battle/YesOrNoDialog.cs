@@ -351,6 +351,18 @@ public class YesOrNoDialog : MonoBehaviour
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
+            // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
+                Action action2 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                action2.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action2.SetParamaterAttackStatus(attackStatus);
+                action2.SetParamaterNum(ParamaterNum1);
+
+                m_GameManager.ActionList.Add(action2);
+
+                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
@@ -403,6 +415,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.ExecuteActionList();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);

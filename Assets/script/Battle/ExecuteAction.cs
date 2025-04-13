@@ -175,5 +175,6 @@ public class ExecuteAction
         m_GameManager.GraveYardList = graveyardList;
         m_GameManager.myHandList = handList;
         m_GameManager.Syncronize();
+        m_GameManager.ExecuteActionList();
     }
 }

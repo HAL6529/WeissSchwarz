@@ -353,6 +353,17 @@ public class EventAnimationManager : MonoBehaviour
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の手札を見る。
                     m_BattleStrix.RpcToAll("CallGetHandList", m_GameManager.isTurnPlayer);
                     break;
+                case EnumController.CardNo.DC_W01_10T:
+                    // 【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、
+                    // あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                    for (int i = 0; i < 1; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.Syncronize();
+                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
+                    break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                     for (int i = 0; i < 1; i++)
