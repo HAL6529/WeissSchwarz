@@ -413,13 +413,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
-            /*case EnumController.CardNo.DC_W01_10T:
-                if (ConfirmStockForCost(1))
+            case EnumController.CardNo.DC_W01_10T:
+                // 【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, num);
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.DC_W01_19T && ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, place, status);
                     return true;
                 }
-                return false;*/
+                return false;
             case EnumController.CardNo.LB_W02_03T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
                 if (m_GameManager.MyClimaxCard == null)
