@@ -396,6 +396,7 @@ public class GameManager : MonoBehaviour
         }
         enemyPower = m_EnemyMainCardsManager.GetFieldPower(enemyPlace);
         enemyLevel = m_EnemyMainCardsManager.GetFieldLevel(enemyPlace);
+        int myLevel = m_MyMainCardsManager.GetFieldLevel(myPlace);
         // ‘ŠŽè‚Ì’†‰›˜g‚É‘åŠˆ–ô‚ÌƒLƒƒƒ‰‚ª‚¢‚éê‡
         if (m_MyMainCardsManager.GetIsGreatPerformance(1))
         {
@@ -418,18 +419,17 @@ public class GameManager : MonoBehaviour
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_MyMainCardsManager.CallOnReverse(myPlace);
                     m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace, enemyLevel);
-                    m_BattleStrix.RpcToAll("MyPowerEqualEnemyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
+                    m_BattleStrix.RpcToAll("MyPowerEqualEnemyPower", myPlace, num, enemyPlace, myLevel, paramater, isTurnPlayer);
                     return;
                 }
                 else
                 {
                     m_MyMainCardsManager.CallOnReverse(myPlace);
-                    m_BattleStrix.RpcToAll("EnemyPowerIsBiggerThanMyPower", myPlace, num, enemyPlace, paramater, isTurnPlayer);
+                    m_BattleStrix.RpcToAll("EnemyPowerIsBiggerThanMyPower", myPlace, num, enemyPlace, myLevel, paramater, isTurnPlayer);
                     return;
                 }
             }
         }
-        int myLevel = m_MyMainCardsManager.GetFieldLevel(myPlace);
 
         if (myPower > enemyPower)
         {
