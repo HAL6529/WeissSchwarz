@@ -197,7 +197,7 @@ public class BattleStrix : StrixBehaviour
             }
         }
 
-        RpcToAll(nameof(CallGetHandList_2), temp, m_GameManager.isFirstAttacker);
+        RpcToAll(nameof(CallGetHandList_2), temp, m_GameManager.isTurnPlayer);
     }
 
     [StrixRpc]

@@ -433,7 +433,7 @@ public class GameManager : MonoBehaviour
 
         if (myPower > enemyPower)
         {
-            Debug.Log("MyPowerIsBiggerThanEnemyPower");
+            Debug.Log("MyPowerIsBiggeThanEnemyPower");
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace, enemyLevel);
             m_BattleStrix.RpcToAll("MyPowerIsBiggerThanEnemyPower", enemyPlace, paramater, isTurnPlayer);
