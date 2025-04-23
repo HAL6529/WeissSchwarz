@@ -215,4 +215,14 @@ public class StrixManager : MonoBehaviour
     {
         m_WinAndLose.Win();
     }
+
+    public void onExit()
+    {
+        strixNetwork.DeleteRoom(
+                            roomId: strixNetwork.room.GetPrimaryKey(),
+                            handler: deleteRoomResult => Debug.Log("Room deleted: " + (strixNetwork.room == null)),
+                            failureHandler: deleteRoomError => Debug.LogError("Could not delete room. Reason: " + deleteRoomError.cause)
+                        );
+        // strixNetwork.roomSession.Disconnect();
+    }
 }
