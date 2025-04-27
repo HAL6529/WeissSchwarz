@@ -240,7 +240,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
 
             // 中央の枠に大活躍のキャラがいないかチェック
-            if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+            if (m_EnemyMainCardsManager.GetIsGreatProcessList(1) && m_EnemyMainCardsManager.GetState(1) != EnumController.State.REVERSE)
             {
                 FrontAttackButton.SetActive(true);
                 SideAttackButton.SetActive(false);
