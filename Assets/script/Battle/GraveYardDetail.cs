@@ -7,15 +7,15 @@ public class GraveYardDetail : MonoBehaviour
 {
     [SerializeField] List<GraveYardDetailButtonUtil> BtnList = new List<GraveYardDetailButtonUtil>();
     [SerializeField] List<BattleGraveYardUtil> BattleGraveYardUtilList = new List<BattleGraveYardUtil>();
+    [SerializeField] GameObject GraveyardDetailObject;
 
     public void onCloseButton()
     {
-        this.gameObject.SetActive(false);
+        GraveyardDetailObject.SetActive(false);
     }
 
     public void UpdateList(List<BattleModeCard> list)
     {
-        this.gameObject.SetActive(true);
         for (int i = 0; i < BtnList.Count; i++)
         {
             if(i < list.Count)

@@ -15,6 +15,7 @@ public class BattleGraveYardUtil : MonoBehaviour
     [SerializeField] Text GraveYardCount;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
     [SerializeField] PhaseDialog m_PhaseDialog;
+    [SerializeField] GameObject GraveyardDetailObject;
     public BattleGraveYardUtil m_BattleGraveYardUtil;
 
     public void setBattleModeCard(BattleModeCard card)
@@ -79,6 +80,7 @@ public class BattleGraveYardUtil : MonoBehaviour
     // Ç±Ç±Ç©ÇÁçTé∫è⁄ç◊ï\é¶É{É^Éì
     public void onClickShowMyGraveYardButton()
     {
+        GraveyardDetailObject.SetActive(true);
         m_GraveYardDetail.UpdateList(m_GameManager.GraveYardList);
         isActiveShowGraveYardBtn = false;
         ShowButton.SetActive(false);
@@ -86,6 +88,7 @@ public class BattleGraveYardUtil : MonoBehaviour
 
     public void onClickShowEnemyGraveYardButton()
     {
+        GraveyardDetailObject.SetActive(true);
         m_GraveYardDetail.UpdateList(m_GameManager.enemyGraveYardList);
         isActiveShowGraveYardBtn = false;
         ShowButton.SetActive(false);
