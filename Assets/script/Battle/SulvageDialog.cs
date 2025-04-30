@@ -42,6 +42,7 @@ public class SulvageDialog : MonoBehaviour
         // âÒé˚Ç∑ÇÈÉJÅ[ÉhÇ™Ç»Ç¢èÍçá
         if (tempList.Count == 0)
         {
+            m_GameManager.ExecuteActionList();
             return;
         }
         this.gameObject.SetActive(true);
@@ -112,7 +113,11 @@ public class SulvageDialog : MonoBehaviour
     public void onOkDialog()
     {
         this.gameObject.SetActive(false);
-        List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
+        Action action = new Action(m_GameManager, EnumController.Action.SulvageDialog);
+        action.SetParamaterBattleModeCardList(BattleModeCardList);
+        m_GameManager.ActionList.Add(action);
+
+        /*List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
         List<BattleModeCard> handListTemp = m_GameManager.myHandList;
         List<BattleModeCard> sulvageListTemp = new List<BattleModeCard>();
         sulvageListTemp = BattleModeCardList;
@@ -138,13 +143,14 @@ public class SulvageDialog : MonoBehaviour
 
         ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
         m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
-        m_ExecuteActionTemp.handList = m_handListTemp;
+        m_ExecuteActionTemp.handList = m_handListTemp;*/
 
-        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(sulvageListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(BattleModeCardList, EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T, null, m_GameManager.isFirstAttacker);
     }
 
     public void onCloseButton()
     {
+        m_GameManager.ExecuteActionList();
         this.gameObject.SetActive(false);
         return;
     }
