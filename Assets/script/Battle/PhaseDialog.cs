@@ -100,7 +100,7 @@ public class PhaseDialog : MonoBehaviour
 
     public void onEncoreButton()
     {
-        m_GameManager.SendEncorePhase();
+        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_SEND_ENCORE_PHASE);
         this.gameObject.SetActive(false);
     }
 

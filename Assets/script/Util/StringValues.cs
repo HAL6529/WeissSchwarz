@@ -16,6 +16,7 @@ public class StringValues
     public string HandOverDialog;
     public string YesOrNoDialog_CONFIRM_USE_COUNTER;
     public string YesOrNoDialog_CONFIRM_POOL_TRIGGER;
+    public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
     public string YesOrNoDialog_CLIMAX_PHASE;
     public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
     public string YesOrNoDialog_COST_CONFIRM_DC_W01_01T;
@@ -159,6 +160,7 @@ public class StringValues
                 HandOverDialog = japanese.HandOverDialog;
                 YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 YesOrNoDialog_CONFIRM_POOL_TRIGGER = japanese.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
+                YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = japanese.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
                 YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = japanese.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
                 YesOrNoDialog_COST_CONFIRM_DC_W01_01T = japanese.YesOrNoDialog_COST_CONFIRM_DC_W01_01T;
@@ -252,6 +254,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_17T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
+        public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = "アンコールフェイズへ移行しますか";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
         public string ConfirmSearchOrSulvageCardDialog_Search = "相手がカードを山札から加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";

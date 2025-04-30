@@ -176,6 +176,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT:
                 str = stringValues.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
                 break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_SEND_ENCORE_PHASE:
+                str = stringValues.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
+                break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
                 break;
@@ -321,6 +324,9 @@ public class YesOrNoDialog : MonoBehaviour
                     default:
                         break;
                 }
+                break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_SEND_ENCORE_PHASE:
+                m_GameManager.SendEncorePhase();
                 break;
             case EnumController.YesOrNoDialogParamater.CLIMAX_PHASE:
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
