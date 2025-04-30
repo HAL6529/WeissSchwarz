@@ -88,7 +88,7 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_ClockSulvage", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
-                m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+                m_BattleStrix.RpcToAll("ExecuteActionList", m_GameManager.isTurnPlayer);
                 return;
             default:
                 return;

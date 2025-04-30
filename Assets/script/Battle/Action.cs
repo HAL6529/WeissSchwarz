@@ -8,6 +8,7 @@ public class Action : MonoBehaviour
 
     private BattleStrix m_BattleStrix;
     private BattleModeCard m_BattleModeCard;
+    private List<BattleModeCard> m_BattleModeCardList = new List<BattleModeCard>();
     private DialogManager m_DialogManager;
     private GameManager m_GameManager;
     private MyMainCardsManager m_MyMainCardsManager;
@@ -105,6 +106,14 @@ public class Action : MonoBehaviour
             case EnumController.Action.PowerCheckForLevelUpDialog:
                 m_GameManager.PowerCheckForLevelUpDialog(paramaterNum);
                 break;
+            case EnumController.Action.SulvageDialog:
+                for(int i = 0; i < m_BattleModeCardList.Count; i++)
+                {
+                    m_GameManager.GraveYardList.Remove(m_BattleModeCardList[i]);
+                    m_GameManager.myHandList.Add(m_BattleModeCardList[i]);
+                }
+                m_GameManager.Syncronize();
+                break;
             case EnumController.Action.AT_WX02_A08:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
                 return;
@@ -150,6 +159,11 @@ public class Action : MonoBehaviour
     public void SetParamaterBattleModeCard(BattleModeCard paramater)
     {
         m_BattleModeCard = paramater;
+    }
+
+    public void SetParamaterBattleModeCardList(List<BattleModeCard> paramater)
+    {
+        m_BattleModeCardList = paramater;
     }
 
     public void SetParamaterDialogManager(DialogManager paramater)

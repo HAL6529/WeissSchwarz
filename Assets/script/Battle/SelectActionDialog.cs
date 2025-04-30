@@ -102,6 +102,14 @@ public class SelectActionDialog : MonoBehaviour
             return;
         }
 
+        // SulvageDialogのアクションがあれば優先的に処理する
+        int haveSulvageDialog = HaveParamater(EnumController.Action.SulvageDialog);
+        if (haveSulvageDialog != -1)
+        {
+            ActionList[haveSulvageDialog].Execute(haveSulvageDialog);
+            return;
+        }
+
         displayNum = 0;
         SetText(ActionList[displayNum].GetParamater());
         this.gameObject.SetActive(true);
@@ -139,6 +147,10 @@ public class SelectActionDialog : MonoBehaviour
             case EnumController.Action.DamageRefresh:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "DamageRefresh";
+                break;
+            case EnumController.Action.SulvageDialog:
+                text1.text = "このメッセージが表示されるのはおかしい";
+                text2.text = "SulvageDialog";
                 break;
             case EnumController.Action.DC_W01_07T:
                 text1.text = "【自】 他のバトルしているあなたのキャラが【リバース】した時、";

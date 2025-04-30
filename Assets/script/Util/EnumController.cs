@@ -16,6 +16,7 @@ namespace EnumController
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
+        SulvageDialog,
         AT_WX02_A08,
         DC_W01_02T,
         DC_W01_07T,
