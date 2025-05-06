@@ -50,90 +50,32 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater)
     {
-        ParamaterNum1 = -1;
-        ParamaterNum2 = -1;
-        ParamaterNum3 = -1;
-        m_BattleModeCard = null;
-        attackStatus = EnumController.Attack.VOID;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        this.isReceivedFromRPC = false;
-        SetText();
+        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID, false);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card)
     {
-        ParamaterNum1 = -1;
-        ParamaterNum2 = -1;
-        ParamaterNum3 = -1;
-        m_BattleModeCard = card;
-        attackStatus = EnumController.Attack.VOID;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        this.isReceivedFromRPC = false;
-        SetText();
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, false);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
-        ParamaterNum1 = num;
-        ParamaterNum2 = -1;
-        ParamaterNum3 = -1;
-        m_BattleModeCard = card;
-        attackStatus = EnumController.Attack.VOID;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        this.isReceivedFromRPC = false;
-        SetText();
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, false);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
     {
-        ParamaterNum1 = num;
-        ParamaterNum2 = -1;
-        ParamaterNum3 = -1;
-        m_BattleModeCard = card;
-        attackStatus = status;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        this.isReceivedFromRPC = false;
-        SetText();
+        SetParamater(paramater, card, num, -1, -1, status, false);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
     {
-        ParamaterNum1 = num1;
-        ParamaterNum2 = num2;
-        ParamaterNum3 = -1;
-        m_BattleModeCard = card;
-        attackStatus = EnumController.Attack.VOID;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        SetText();
+        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID, false);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
     {
-        ParamaterNum1 = num1;
-        ParamaterNum2 = num2;
-        ParamaterNum3 = num3;
-        m_BattleModeCard = card;
-        attackStatus = EnumController.Attack.VOID;
-        sulvageCardNo = EnumController.CardNo.VOID;
-        cost = 0;
-        this.gameObject.SetActive(true);
-        m_YesOrNoDialogParamater = paramater;
-        SetText();
+        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID, false);
     }
 
     /// <summary>
@@ -145,16 +87,23 @@ public class YesOrNoDialog : MonoBehaviour
     /// <param name="isReceivedFromRPC"></param>
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, bool isReceivedFromRPC)
     {
-        ParamaterNum1 = num;
-        ParamaterNum2 = -1;
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, isReceivedFromRPC);
+    }
+
+    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status, bool isReceivedFromRPC)
+    {
+        ParamaterNum1 = num1;
+        ParamaterNum2 = num2;
+        ParamaterNum3 = num3;
         m_BattleModeCard = card;
-        attackStatus = EnumController.Attack.VOID;
+        attackStatus = status;
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
         m_YesOrNoDialogParamater = paramater;
         this.isReceivedFromRPC = isReceivedFromRPC;
         SetText();
+        WaitDialog();
     }
 
     private void SetText()
@@ -257,6 +206,18 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
         }
         text.text = str;
+    }
+    
+    private void WaitDialog()
+    {
+        switch (m_YesOrNoDialogParamater)
+        {
+            case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
+                m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
+                break;
+            default:
+                break;
+        }
     }
 
     public void onYesClick()
@@ -434,6 +395,7 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 // DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
+                m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                 m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
