@@ -189,6 +189,7 @@ namespace EnumController
         VOID,
         CANCEL,
         DAMAGED,
+        DAMAGE_ZERO,
     }
 
     public enum EncoreDialog
