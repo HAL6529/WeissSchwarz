@@ -99,14 +99,12 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -121,8 +119,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -500,6 +500,12 @@ ScriptsOnlyBuild:
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
+  - assembly: Assembly-CSharp
     fullTypeName: RoomSelectClass
     methodName: onExitButton
   - assembly: Assembly-CSharp
@@ -529,6 +535,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Menu
     methodName: TransitionToEditMode
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
@@ -3135,7 +3147,7 @@ ScriptsOnlyBuild:
     className: CardTest
   - hash:
       serializedVersion: 2
-      Hash: 0ad881c19d3e4d9030da0d56cc2fe437
+      Hash: ae3b266943739df900f8972ab19372ad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleDeckCardUtil
@@ -3735,7 +3747,7 @@ ScriptsOnlyBuild:
     className: StrixVehicleMovementSynchronizer
   - hash:
       serializedVersion: 2
-      Hash: 6dc2bf28220a7e3234b39f3bc1aead2e
+      Hash: 55365f8cdb67778afb4a2cdc234ff4c5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleModeCardList
@@ -4173,7 +4185,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 3c0221a209804228a9579694d52f6676
+      Hash: 39d20964d647accfcf5816a757c97ed0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CardInfoList
