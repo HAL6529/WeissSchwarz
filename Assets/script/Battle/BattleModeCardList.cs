@@ -7,6 +7,7 @@ public class BattleModeCardList : MonoBehaviour
     public List<BattleModeCard> AdventureTimeList = new List<BattleModeCard>();
     public List<BattleModeCard> DC_2008TrialDeck = new List<BattleModeCard>();
     public List<BattleModeCard> LittleBusters_2008TrialDeck = new List<BattleModeCard>();
+    public List<BattleModeCard> Persona3_2008TrialDeck = new List<BattleModeCard>();
 
     public BattleModeCard ConvertCardNoToBattleModeCard(EnumController.CardNo num)
     {
@@ -118,6 +119,46 @@ public class BattleModeCardList : MonoBehaviour
                 return LittleBusters_2008TrialDeck[18];
             case EnumController.CardNo.LB_W02_20T:
                 return LittleBusters_2008TrialDeck[19];
+            case EnumController.CardNo.P3_S01_01T:
+                return Persona3_2008TrialDeck[0];
+            case EnumController.CardNo.P3_S01_02T:
+                return Persona3_2008TrialDeck[1];
+            case EnumController.CardNo.P3_S01_03T:
+                return Persona3_2008TrialDeck[2];
+            case EnumController.CardNo.P3_S01_04T:
+                return Persona3_2008TrialDeck[3];
+            case EnumController.CardNo.P3_S01_05T:
+                return Persona3_2008TrialDeck[4];
+            case EnumController.CardNo.P3_S01_06T:
+                return Persona3_2008TrialDeck[5];
+            case EnumController.CardNo.P3_S01_07T:
+                return Persona3_2008TrialDeck[6];
+            case EnumController.CardNo.P3_S01_08T:
+                return Persona3_2008TrialDeck[7];
+            case EnumController.CardNo.P3_S01_09T:
+                return Persona3_2008TrialDeck[8];
+            case EnumController.CardNo.P3_S01_10T:
+                return Persona3_2008TrialDeck[9];
+            case EnumController.CardNo.P3_S01_11T:
+                return Persona3_2008TrialDeck[10];
+            case EnumController.CardNo.P3_S01_12T:
+                return Persona3_2008TrialDeck[11];
+            case EnumController.CardNo.P3_S01_13T:
+                return Persona3_2008TrialDeck[12];
+            case EnumController.CardNo.P3_S01_14T:
+                return Persona3_2008TrialDeck[13];
+            case EnumController.CardNo.P3_S01_15T:
+                return Persona3_2008TrialDeck[14];
+            case EnumController.CardNo.P3_S01_16T:
+                return Persona3_2008TrialDeck[15];
+            case EnumController.CardNo.P3_S01_17T:
+                return Persona3_2008TrialDeck[16];
+            case EnumController.CardNo.P3_S01_18T:
+                return Persona3_2008TrialDeck[17];
+            case EnumController.CardNo.P3_S01_19T:
+                return Persona3_2008TrialDeck[18];
+            case EnumController.CardNo.P3_S01_20T:
+                return Persona3_2008TrialDeck[19];
             default:
                 return null;
         }

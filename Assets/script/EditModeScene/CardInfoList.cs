@@ -7,6 +7,7 @@ public class CardInfoList : MonoBehaviour
     [SerializeField] List<cardInfo> AT_WX02_A_CardInfo_list = new List<cardInfo>();
     [SerializeField] List<cardInfo> DC_W01_T_CardInfo_list = new List<cardInfo>();
     [SerializeField] List<cardInfo> LB_W02_T_CardInfo_list = new List<cardInfo>();
+    [SerializeField] List<cardInfo> P3_S01_T_CardInfo_list = new List<cardInfo>();
 
     public cardInfo Convert(string cardNo)
     {
@@ -118,6 +119,46 @@ public class CardInfoList : MonoBehaviour
                 return LB_W02_T_CardInfo_list[18];
             case "LB_W02_20T":
                 return LB_W02_T_CardInfo_list[19];
+            case "P3_S01_01T":
+                return P3_S01_T_CardInfo_list[0];
+            case "P3_S01_02T":
+                return P3_S01_T_CardInfo_list[1];
+            case "P3_S01_03T":
+                return P3_S01_T_CardInfo_list[2];
+            case "P3_S01_04T":
+                return P3_S01_T_CardInfo_list[3];
+            case "P3_S01_05T":
+                return P3_S01_T_CardInfo_list[4];
+            case "P3_S01_06T":
+                return P3_S01_T_CardInfo_list[5];
+            case "P3_S01_07T":
+                return P3_S01_T_CardInfo_list[6];
+            case "P3_S01_08T":
+                return P3_S01_T_CardInfo_list[7];
+            case "P3_S01_09T":
+                return P3_S01_T_CardInfo_list[8];
+            case "P3_S01_10T":
+                return P3_S01_T_CardInfo_list[9];
+            case "P3_S01_11T":
+                return P3_S01_T_CardInfo_list[10];
+            case "P3_S01_12T":
+                return P3_S01_T_CardInfo_list[11];
+            case "P3_S01_13T":
+                return P3_S01_T_CardInfo_list[12];
+            case "P3_S01_14T":
+                return P3_S01_T_CardInfo_list[13];
+            case "P3_S01_15T":
+                return P3_S01_T_CardInfo_list[14];
+            case "P3_S01_16T":
+                return P3_S01_T_CardInfo_list[15];
+            case "P3_S01_17T":
+                return P3_S01_T_CardInfo_list[16];
+            case "P3_S01_18T":
+                return P3_S01_T_CardInfo_list[17];
+            case "P3_S01_19T":
+                return P3_S01_T_CardInfo_list[18];
+            case "P3_S01_20T":
+                return P3_S01_T_CardInfo_list[19];
             default:
                 return null;
         }

@@ -60,6 +60,14 @@ namespace EnumController
         JapaneseClothes,
         Pajamas,
         FairyTale,
+        Fan,
+        God,
+        Ramen,
+        SchoolBag,
+        StudentCouncil,
+        TVMailOrder,
+        Weapon,
+        Will,
     }
 
     public enum CardColor
@@ -128,6 +136,26 @@ namespace EnumController
         LB_W02_18T,
         LB_W02_19T,
         LB_W02_20T,
+        P3_S01_01T,
+        P3_S01_02T,
+        P3_S01_03T,
+        P3_S01_04T,
+        P3_S01_05T,
+        P3_S01_06T,
+        P3_S01_07T,
+        P3_S01_08T,
+        P3_S01_09T,
+        P3_S01_10T,
+        P3_S01_11T,
+        P3_S01_12T,
+        P3_S01_13T,
+        P3_S01_14T,
+        P3_S01_15T,
+        P3_S01_16T,
+        P3_S01_17T,
+        P3_S01_18T,
+        P3_S01_19T,
+        P3_S01_20T,
     }
 
     public enum ConfirmSearchOrSulvageCardDialog
