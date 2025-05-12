@@ -26,8 +26,8 @@ public class BattleDeckCardUtil : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator1.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName1, () => Animation1End());
-        animator2.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName2, () => Animation2End());
+        /*animator1.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName1, () => Animation1End());
+        animator2.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName2, () => Animation2End());*/
     }
 
     public void ChangeFrontAndBack(bool isFront)
