@@ -25,6 +25,8 @@ public class DamageAnimationDialog : MonoBehaviour
         tempList = list;
         if (list.Count == 0)
         {
+            m_DamageAnimation = EnumController.DamageAnimation.DAMAGE_ZERO;
+            NextAction();
             return;
         }
 
@@ -113,6 +115,7 @@ public class DamageAnimationDialog : MonoBehaviour
             case EnumController.DamageAnimation.CANCEL:
                 m_GameManager.DamageForFrontAttack2ForCancel(tempList, place);
                 return;
+            case EnumController.DamageAnimation.DAMAGE_ZERO:
             case EnumController.DamageAnimation.DAMAGED:
                 m_GameManager.DamageForFrontAttack2ForDamaged(tempList, place);
                 return;
