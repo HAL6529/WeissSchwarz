@@ -330,6 +330,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A11:
             case EnumController.CardNo.LB_W02_05T:
             case EnumController.CardNo.LB_W02_17T:
+            case EnumController.CardNo.P3_S01_02T:
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);
