@@ -119,6 +119,46 @@ namespace CardNoToCardInfo
                     return stringValues.LB_W02_19T_Explanation;
                 case EnumController.CardNo.LB_W02_20T:
                     return stringValues.LB_W02_20T_Explanation;
+                case EnumController.CardNo.P3_S01_01T:
+                    return stringValues.P3_S01_01T_Explanation;
+                case EnumController.CardNo.P3_S01_02T:
+                    return stringValues.P3_S01_02T_Explanation;
+                case EnumController.CardNo.P3_S01_03T:
+                    return stringValues.P3_S01_03T_Explanation;
+                case EnumController.CardNo.P3_S01_04T:
+                    return stringValues.P3_S01_04T_Explanation;
+                case EnumController.CardNo.P3_S01_05T:
+                    return stringValues.P3_S01_05T_Explanation;
+                case EnumController.CardNo.P3_S01_06T:
+                    return stringValues.P3_S01_06T_Explanation;
+                case EnumController.CardNo.P3_S01_07T:
+                    return stringValues.P3_S01_07T_Explanation;
+                case EnumController.CardNo.P3_S01_08T:
+                    return stringValues.P3_S01_08T_Explanation;
+                case EnumController.CardNo.P3_S01_09T:
+                    return stringValues.P3_S01_09T_Explanation;
+                case EnumController.CardNo.P3_S01_10T:
+                    return stringValues.P3_S01_10T_Explanation;
+                case EnumController.CardNo.P3_S01_11T:
+                    return stringValues.P3_S01_11T_Explanation;
+                case EnumController.CardNo.P3_S01_12T:
+                    return stringValues.P3_S01_12T_Explanation;
+                case EnumController.CardNo.P3_S01_13T:
+                    return stringValues.P3_S01_13T_Explanation;
+                case EnumController.CardNo.P3_S01_14T:
+                    return stringValues.P3_S01_14T_Explanation;
+                case EnumController.CardNo.P3_S01_15T:
+                    return stringValues.P3_S01_15T_Explanation;
+                case EnumController.CardNo.P3_S01_16T:
+                    return stringValues.P3_S01_16T_Explanation;
+                case EnumController.CardNo.P3_S01_17T:
+                    return stringValues.P3_S01_17T_Explanation;
+                case EnumController.CardNo.P3_S01_18T:
+                    return stringValues.P3_S01_18T_Explanation;
+                case EnumController.CardNo.P3_S01_19T:
+                    return stringValues.P3_S01_19T_Explanation;
+                case EnumController.CardNo.P3_S01_20T:
+                    return stringValues.P3_S01_20T_Explanation;
                 default:
                     return "";
             }
