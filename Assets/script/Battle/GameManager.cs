@@ -516,6 +516,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         m_MyMainCardsManager.CallStand();
+        m_BattleStrix.RpcToAll("CallExecuteSyncronize", isTurnPlayer);
         m_BattleStrix.RpcToAll("ChangePhase", EnumController.Turn.Draw);
         m_BattleStrix.RpcToAll("DrawPhase");
     }

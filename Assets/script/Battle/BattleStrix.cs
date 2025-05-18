@@ -264,6 +264,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallExecuteSyncronize(bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.Syncronize();
+        }
+    }
+
+    [StrixRpc]
     public void CallMyReverse(int num, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)

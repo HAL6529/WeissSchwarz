@@ -559,6 +559,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
+        // 	舞子の効果
+        // 【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋500。
+        if (m_GameManager.isTurnPlayer)
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.P3_S01_09T);
+            FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+            if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_09T)
+            {
+                // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
+                FieldPower = FieldPower - 500;
+            }
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
