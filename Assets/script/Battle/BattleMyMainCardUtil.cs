@@ -559,8 +559,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
-        // 	舞子の効果
-        // 【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋500。
+        // 舞子の効果
+        //【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋500。
         if (m_GameManager.isTurnPlayer)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
@@ -571,6 +571,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - 500;
             }
+        }
+        // 美鶴＆ペンテシレアの効果
+        // 【永】 相手のターン中、このカードのパワーを＋1000。
+        if (!m_GameManager.isTurnPlayer && m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_15T)
+        {
+            FieldPower += 1000;
         }
 
         if (m_GameManager.MyClimaxCard != null)
