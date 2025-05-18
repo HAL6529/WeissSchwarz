@@ -180,6 +180,7 @@ public class OKDialog : MonoBehaviour
                     switch (m_BattleModeCard.cardNo)
                     {
                         case EnumController.CardNo.LB_W02_07T:
+                        case EnumController.CardNo.P3_S01_03T:
                             pumpPoint = 2000;
                             cost = 1;
                             break;
