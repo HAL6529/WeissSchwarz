@@ -15,6 +15,13 @@ public class DeckListManager : MonoBehaviour
     [SerializeField] Text explanation;
     [SerializeField] Text levelIndex;
     [SerializeField] Text costIndex;
+    [SerializeField] Text powerIndex;
+    [SerializeField] Text Attribute1;
+    [SerializeField] Text Attribute2;
+    [SerializeField] Text Attribute3;
+    [SerializeField] GameObject cardInfoImageObject;
+
+    RectTransform m_RectTransform;
 
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
 
@@ -24,6 +31,7 @@ public class DeckListManager : MonoBehaviour
         this.cardInfoList = SaveData.cardInfoList;
         sortDeckList();
         updateDeckList();
+        m_RectTransform = cardInfoImageObject.GetComponent<RectTransform>();
     }
 
     /// <summary>
@@ -87,6 +95,15 @@ public class DeckListManager : MonoBehaviour
         cardName.text = cardInfoList[index].cardName;
         explanation.text = extendUtil.Explanation(cardInfoList[index].cardNo);
         cardInfoImage.sprite = cardInfoList[index].sprite;
+
+        if (cardInfoList[index].type == EnumController.Type.CLIMAX)
+        {
+            m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
+        }
+        else
+        {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
+        }
         if (cardInfoList[index].level == -1)
         {
             levelIndex.text = "";
@@ -103,6 +120,42 @@ public class DeckListManager : MonoBehaviour
         else
         {
             costIndex.text = cardInfoList[index].cost.ToString();
+        }
+
+        if (cardInfoList[index].power == -1)
+        {
+            powerIndex.text = "";
+        }
+        else
+        {
+            powerIndex.text = cardInfoList[index].power.ToString();
+        }
+
+        if (cardInfoList[index].attributeOne == EnumController.Attribute.VOID)
+        {
+            Attribute1.text = "";
+        }
+        else
+        {
+            Attribute1.text = "<" + extendUtil.AttributeConvertToString(cardInfoList[index].attributeOne) + ">";
+        }
+
+        if (cardInfoList[index].attributeTwo == EnumController.Attribute.VOID)
+        {
+            Attribute2.text = "";
+        }
+        else
+        {
+            Attribute2.text = "<" + extendUtil.AttributeConvertToString(cardInfoList[index].attributeTwo) + ">";
+        }
+
+        if (cardInfoList[index].attributeThree == EnumController.Attribute.VOID)
+        {
+            Attribute3.text = "";
+        }
+        else
+        {
+            Attribute3.text = "<" + extendUtil.AttributeConvertToString(cardInfoList[index].attributeThree) + ">";
         }
     }
 

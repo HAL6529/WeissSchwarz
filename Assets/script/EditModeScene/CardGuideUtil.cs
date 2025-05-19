@@ -15,11 +15,15 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Text Attribute1;
     [SerializeField] Text Attribute2;
     [SerializeField] Text Attribute3;
+    [SerializeField] GameObject cardInfoImageObject;
+
+    RectTransform m_RectTransform;
 
     void Start()
     {
         // âÊñ ÇêÆÇ¶ÇÈ
         Canvas.ForceUpdateCanvases();
+        m_RectTransform = cardInfoImageObject.GetComponent<RectTransform>();
     }
 
     public void onShowInfo(cardInfo info)
@@ -28,7 +32,16 @@ public class CardGuideUtil : MonoBehaviour
         explanation.text = extendUtil.Explanation(info.cardNo);
         cardInfoImage.sprite = info.sprite;
 
-        if(info.level == -1)
+        if(info.type == EnumController.Type.CLIMAX)
+        {
+            m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
+        }
+        else
+        {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
+        }
+
+        if (info.level == -1)
         {
             levelIndex.text = "";
         }
