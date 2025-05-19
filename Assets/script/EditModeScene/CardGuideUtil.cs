@@ -11,6 +11,10 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Text explanation;
     [SerializeField] Text levelIndex;
     [SerializeField] Text costIndex;
+    [SerializeField] Text powerIndex;
+    [SerializeField] Text Attribute1;
+    [SerializeField] Text Attribute2;
+    [SerializeField] Text Attribute3;
 
     void Start()
     {
@@ -42,5 +46,40 @@ public class CardGuideUtil : MonoBehaviour
             costIndex.text = info.cost.ToString();
         }
 
+        if(info.power == -1)
+        {
+            powerIndex.text = "";
+        }
+        else
+        {
+            powerIndex.text = info.power.ToString();
+        }
+
+        if (info.attributeOne == EnumController.Attribute.VOID)
+        {
+            Attribute1.text = "";
+        }
+        else
+        {
+            Attribute1.text = "<" + extendUtil.AttributeConvertToString(info.attributeOne) + ">";
+        }
+
+        if (info.attributeTwo == EnumController.Attribute.VOID)
+        {
+            Attribute2.text = "";
+        }
+        else
+        {
+            Attribute2.text = "<" + extendUtil.AttributeConvertToString(info.attributeTwo) + ">";
+        }
+
+        if (info.attributeThree == EnumController.Attribute.VOID)
+        {
+            Attribute3.text = "";
+        }
+        else
+        {
+            Attribute3.text = "<" + extendUtil.AttributeConvertToString(info.attributeThree) + ">";
+        }
     }
 }
