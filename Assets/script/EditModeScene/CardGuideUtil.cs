@@ -11,11 +11,19 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Text explanation;
     [SerializeField] Text levelIndex;
     [SerializeField] Text costIndex;
+    [SerializeField] Text powerIndex;
+    [SerializeField] Text Attribute1;
+    [SerializeField] Text Attribute2;
+    [SerializeField] Text Attribute3;
+    [SerializeField] GameObject cardInfoImageObject;
+
+    RectTransform m_RectTransform;
 
     void Start()
     {
         // âÊñ ÇêÆÇ¶ÇÈ
         Canvas.ForceUpdateCanvases();
+        m_RectTransform = cardInfoImageObject.GetComponent<RectTransform>();
     }
 
     public void onShowInfo(cardInfo info)
@@ -24,7 +32,16 @@ public class CardGuideUtil : MonoBehaviour
         explanation.text = extendUtil.Explanation(info.cardNo);
         cardInfoImage.sprite = info.sprite;
 
-        if(info.level == -1)
+        if(info.type == EnumController.Type.CLIMAX)
+        {
+            m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
+        }
+        else
+        {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
+        }
+
+        if (info.level == -1)
         {
             levelIndex.text = "";
         }
@@ -42,5 +59,40 @@ public class CardGuideUtil : MonoBehaviour
             costIndex.text = info.cost.ToString();
         }
 
+        if(info.power == -1)
+        {
+            powerIndex.text = "";
+        }
+        else
+        {
+            powerIndex.text = info.power.ToString();
+        }
+
+        if (info.attributeOne == EnumController.Attribute.VOID)
+        {
+            Attribute1.text = "";
+        }
+        else
+        {
+            Attribute1.text = "<" + extendUtil.AttributeConvertToString(info.attributeOne) + ">";
+        }
+
+        if (info.attributeTwo == EnumController.Attribute.VOID)
+        {
+            Attribute2.text = "";
+        }
+        else
+        {
+            Attribute2.text = "<" + extendUtil.AttributeConvertToString(info.attributeTwo) + ">";
+        }
+
+        if (info.attributeThree == EnumController.Attribute.VOID)
+        {
+            Attribute3.text = "";
+        }
+        else
+        {
+            Attribute3.text = "<" + extendUtil.AttributeConvertToString(info.attributeThree) + ">";
+        }
     }
 }

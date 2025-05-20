@@ -39,6 +39,10 @@ public class LoadButton : MonoBehaviour
 
         m_DeckListManager.cardInfoList = list;
         m_DeckListManager.sortDeckList();
+        if (m_DeckListManager.isLevelSort)
+        {
+            m_DeckListManager.LevelSortDeckList();
+        }
         m_DeckListManager.updateDeckList();
         // Debug.Log(File.ReadAllText(@"./Save/" + DeckName + ".txt"));
     }
