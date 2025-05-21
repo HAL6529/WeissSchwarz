@@ -20,11 +20,20 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
     }
 
+    public void AddSoulUpUntilTurnEnd(int num, int soul)
+    {
+        CardList[num].m_SoulUpUntilTurnEnd.AddUpSoul(soul);
+    }
+
     public void ResetPowerUpUntilTurnEnd(int num)
     {
         CardList[num].m_PowerUpUntilTurnEnd.ResetUpPower();
     }
 
+    public void ResetSoulUpUntilTurnEnd(int num)
+    {
+        CardList[num].m_SoulUpUntilTurnEnd.ResetUpSoul();
+    }
 
     public void CallNotShowDirectAttackButton()
     {
@@ -113,6 +122,14 @@ public class MyMainCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].ResetPowerUpUntilTurnEnd();
+        }
+    }
+
+    public void ExecuteResetSoulUpUntilTurnEnd()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetSoulUpUntilTurnEnd();
         }
     }
 
@@ -310,6 +327,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].m_PowerUpUntilTurnEnd;
     }
 
+    public SoulInstance.SoulUpUntilTurnEnd GetSoulUpUntilTurnEnd(int place)
+    {
+        return CardList[place].m_SoulUpUntilTurnEnd;
+    }
+
     public bool HaveAttribute(int place, EnumController.Attribute paramater)
     {
         return CardList[place].HaveAttribute(paramater);
@@ -318,6 +340,11 @@ public class MyMainCardsManager : MonoBehaviour
     public void SetPowerUpUntilTurnEnd(int place, PowerInstance.PowerUpUntilTurnEnd paramater)
     {
         CardList[place].m_PowerUpUntilTurnEnd = paramater;
+    }
+
+    public void SetSoulUpUntilTurnEnd(int place, SoulInstance.SoulUpUntilTurnEnd paramater)
+    {
+        CardList[place].m_SoulUpUntilTurnEnd = paramater;
     }
 
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)

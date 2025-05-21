@@ -675,13 +675,17 @@ public class GameManager : MonoBehaviour
         m_DialogManager.EncoreDialog(myFieldList, p);
     }
 
+    /// <summary>
+    /// ターンが切り替わる際に発生するメソッド
+    /// </summary>
     public void SwitchTurnUtil()
     {
-        Debug.Log("SwitchTurnUtil");
         // ターン終了時まで上がるパワーをリセット
         m_MyMainCardsManager.ExecuteResetPowerUpUntilTurnEnd();
         // ターン終了時まで上がる特徴をリセット
         m_MyMainCardsManager.ExecuteResetAttributeUpUntilTurnEnd();
+        // ターン終了時まで上がるソウルをリセット
+        m_MyMainCardsManager.ExecuteResetSoulUpUntilTurnEnd();
         Syncronize();
 
         isTurnPlayer = !isTurnPlayer;

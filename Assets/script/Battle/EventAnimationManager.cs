@@ -345,6 +345,17 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.P3_S01_07T:
+                    //【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
+                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                default:
+                    break;
+            }
         }else if(effectNum == 1)
         {
             switch (m_BattleModeCard.cardNo)

@@ -165,6 +165,10 @@ public class SelectActionDialog : MonoBehaviour
                 text1.text = "【【自】 あなたがレベルアップした時、";
                 text2.text = "あなたは自分の山札を上から1枚選び、ストック置場に置く。";
                 break;
+            case EnumController.Action.P3_S01_07T:
+                text1.text = "【自】 このカードがプレイされて舞台に置かれた時、";
+                text2.text = "そのターン中、このカードのパワーを＋1500。";
+                break;
             default:
                 text2.text = "エラーメッセージ";
                 break;
