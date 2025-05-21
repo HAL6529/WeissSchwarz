@@ -109,6 +109,7 @@ public class EncoreDialog : MonoBehaviour
 
         m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
         m_MyMainCardsManager.ResetPowerUpUntilTurnEnd(num);
+        m_MyMainCardsManager.ResetSoulUpUntilTurnEnd(num);
         //--------------------------------------------------------------------------------------
         //ここに控室にカードが置かれたときに発動する効果を確認する処理を入れるべきだと思われる
         //--------------------------------------------------------------------------------------
@@ -152,6 +153,7 @@ public class EncoreDialog : MonoBehaviour
         {
             case EnumController.CardNo.AT_WX02_A04:
             case EnumController.CardNo.LB_W02_03T:
+            case EnumController.CardNo.P3_S01_07T:
             case EnumController.CardNo.P3_S01_15T:
                 return true;
             default:

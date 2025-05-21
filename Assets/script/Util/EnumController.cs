@@ -24,6 +24,7 @@ namespace EnumController
         DC_W01_16T,
         LB_W02_14T,
         LB_W02_19T,
+        P3_S01_07T,
     }
 
     public enum Attack

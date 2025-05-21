@@ -78,7 +78,7 @@ public class MainDialog : MonoBehaviour
 
         // カードの登場時の効果起動
         m_Effect.BondForHandToFild(m_BattleModeCard);
-        m_Effect.WhenPlaceCardEffect(m_BattleModeCard);
+        m_Effect.WhenPlaceCardEffect(m_BattleModeCard, place);
 
         // パワー、レベル、特徴、ソウルの計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();

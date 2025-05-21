@@ -97,6 +97,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public PowerInstance.PowerUpUntilTurnEnd m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
 
     /// <summary>
+    /// ターン終了時までアップするソウルクラス
+    /// </summary>
+    public SoulInstance.SoulUpUntilTurnEnd m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+
+    /// <summary>
     /// クライマックスUtil
     /// </summary>
     private ClimaxUtil m_ClimaxUtil = new ClimaxUtil();
@@ -440,6 +445,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_AttributeUpUntilTurnEnd = new AttributeInstance.AttributeUpUntilTurnEnd();
     }
 
+    public void ResetSoulUpUntilTurnEnd()
+    {
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+    }
+
     /// <summary>
     /// フィールド上の特徴の計算
     /// </summary>
@@ -603,6 +613,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         FieldSoul = m_BattleModeCard.soul;
+        FieldSoul += m_SoulUpUntilTurnEnd.GetUpSoul();
 
         if (m_GameManager.MyClimaxCard != null)
         {

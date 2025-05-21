@@ -58,13 +58,14 @@ public class Effect : MonoBehaviour
         }
     }
 
-    public void WhenPlaceCardEffect(BattleModeCard m_BattleModeCard)
+    public void WhenPlaceCardEffect(BattleModeCard m_BattleModeCard, int place)
     {
         if (m_BattleModeCard == null)
         {
             return;
         }
 
+        this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.DC_W01_02T:
@@ -74,6 +75,15 @@ public class Effect : MonoBehaviour
                 action_DC_W01_02T.SetParamaterBattleModeCard(m_BattleModeCard);
                 m_GameManager.ActionList.Add(action_DC_W01_02T);
                 break;
+            case EnumController.CardNo.P3_S01_07T:
+                Action action_P3_S01_07T = new Action(m_GameManager, EnumController.Action.P3_S01_07T);
+                action_P3_S01_07T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_07T.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_07T.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_07T.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_07T.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_07T);
+                return;
             default:
                 break;
         }
