@@ -346,6 +346,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_04T, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_11T:
+                //【起】［(1)］ そのターン中、このカードのソウルを＋1。
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2, card, num);
+                }
+                return;
             default:
                 return;
         }
@@ -487,7 +494,19 @@ public class Effect : MonoBehaviour
 
                 if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.P3_S01_13T)
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_13T, card, place, status);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_11T:
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.P3_S01_14T)
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1, card, place, status);
                     return true;
                 }
                 return false;
