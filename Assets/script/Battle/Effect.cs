@@ -87,6 +87,15 @@ public class Effect : MonoBehaviour
                 action_P3_S01_01T.SetParamaterNum(place);
                 m_GameManager.ActionList.Add(action_P3_S01_01T);
                 return;
+            case EnumController.CardNo.P3_S01_04T:
+                Action action_P3_S01_04T = new Action(m_GameManager, EnumController.Action.P3_S01_04T);
+                action_P3_S01_04T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_04T.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_04T.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_04T.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_04T.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_04T);
+                return;
             case EnumController.CardNo.P3_S01_07T:
                 Action action_P3_S01_07T = new Action(m_GameManager, EnumController.Action.P3_S01_07T);
                 action_P3_S01_07T.SetParamaterEventAnimationManager(m_EventAnimationManager);
@@ -328,6 +337,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T, card, num);
+                }
+                return;
+            case EnumController.CardNo.P3_S01_04T:
+                // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_04T, card, num);
                 }
                 return;
             default:

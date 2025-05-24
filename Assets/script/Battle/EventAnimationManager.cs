@@ -50,6 +50,16 @@ public class EventAnimationManager : MonoBehaviour
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
+    public void AnimationStart_2(BattleModeCard card, int place)
+    {
+        this.place = place;
+        AnimationStart_2(card);
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card)
     {
         isFromRPC = false;
@@ -353,6 +363,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.P3_S01_04T:
+                    // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、
+                    // そのターン中、パワーを＋2000し、ソウルを＋1。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_07T:
                     //【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1500);
@@ -411,6 +426,16 @@ public class EventAnimationManager : MonoBehaviour
                     // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、
                     // あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    break;
+                case EnumController.CardNo.P3_S01_04T:
+                    // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                    for (int i = 0; i < 2; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.ToHandFromField(place);
                     break;
                 default:
                     break;

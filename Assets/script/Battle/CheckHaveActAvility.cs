@@ -27,11 +27,14 @@ public class CheckHaveActAvility
             case EnumController.CardNo.LB_W02_05T:
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.LB_W02_17T:
+            case EnumController.CardNo.P3_S01_11T:
                 return 1;
             case EnumController.CardNo.DC_W01_07T:
                 return 3;
             case EnumController.CardNo.DC_W01_13T:
             case EnumController.CardNo.LB_W02_14T:
+            case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_16T:
                 if (state == EnumController.State.STAND)
                 {
                     return 2;
