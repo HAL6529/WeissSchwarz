@@ -108,9 +108,6 @@ public class Effect : MonoBehaviour
     /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>
     public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace, int reversedCardLevel)
     {
-        Debug.Log("WhenReverseEnemyCardEffect" + card.name);
-        Debug.Log("WhenReverseEnemyCardEffect" + reversedCardPlace);
-        Debug.Log("WhenReverseEnemyCardEffect" + reversedCardLevel);
         switch (card.cardNo)
         {
             case EnumController.CardNo.AT_WX02_A03:
