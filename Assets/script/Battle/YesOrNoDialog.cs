@@ -197,6 +197,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_17T;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_13T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_13T;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 break;
@@ -321,6 +324,7 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_13T:
                 Action action2 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action2.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action2.SetParamaterAttackStatus(attackStatus);

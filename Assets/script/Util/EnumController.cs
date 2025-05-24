@@ -24,6 +24,7 @@ namespace EnumController
         DC_W01_16T,
         LB_W02_14T,
         LB_W02_19T,
+        P3_S01_01T,
         P3_S01_07T,
     }
 
@@ -341,6 +342,7 @@ namespace EnumController
         COST_CONFIRM_LB_W02_09T,
         COST_CONFIRM_LB_W02_14T,
         COST_CONFIRM_LB_W02_17T,
+        COST_CONFIRM_P3_S01_13T,
         COST_CONFIRM_SEND_MEMORY,
     }
 

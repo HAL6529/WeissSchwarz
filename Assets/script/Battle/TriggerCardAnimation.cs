@@ -12,6 +12,7 @@ public class TriggerCardAnimation : MonoBehaviour
     [SerializeField] Sprite back;
     private EnumController.Attack paramater;
     private int PlaceNum;
+    private int enemyLevel;
 
     private void Start()
     {
@@ -19,11 +20,12 @@ public class TriggerCardAnimation : MonoBehaviour
         m_Animator.AddClipCallback(0, "TriggerCheck", 1.1f, () => AnimationEnd());
     }
 
-    public void Play(EnumController.Attack paramater, int PlaceNum)
+    public void Play(EnumController.Attack paramater, int PlaceNum, int enemyLevel)
     {
         m_Image.sprite = back;
         this.paramater = paramater;
         this.PlaceNum = PlaceNum;
+        this.enemyLevel = enemyLevel;
         this.gameObject.SetActive(true);
         m_GameManager.isTriggerAnimation = true;
         m_Animator.Play("TriggerCheck", 0, 0.0f);
@@ -48,7 +50,7 @@ public class TriggerCardAnimation : MonoBehaviour
                 m_GameManager.onFrontAttack(PlaceNum);
                 return;
             case EnumController.Attack.SIDE_ATTACK:
-                m_GameManager.onSideAttack(PlaceNum);
+                m_GameManager.onSideAttack(PlaceNum, enemyLevel);
                 return;
         }
     }

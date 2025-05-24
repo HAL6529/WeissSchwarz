@@ -347,9 +347,15 @@ public class EventAnimationManager : MonoBehaviour
             }
             switch (m_BattleModeCard.cardNo)
             {
+                case EnumController.CardNo.P3_S01_01T:
+                    // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
+                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_07T:
                     //【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
-                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1500);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
@@ -401,6 +407,11 @@ public class EventAnimationManager : MonoBehaviour
                         return;
                     }
                     return;
+                case EnumController.CardNo.P3_S01_01T:
+                    // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、
+                    // あなたは相手のキャラを1枚選び、手札に戻してよい。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    break;
                 default:
                     break;
             }

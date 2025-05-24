@@ -75,6 +75,15 @@ public class Effect : MonoBehaviour
                 action_DC_W01_02T.SetParamaterBattleModeCard(m_BattleModeCard);
                 m_GameManager.ActionList.Add(action_DC_W01_02T);
                 break;
+            case EnumController.CardNo.P3_S01_01T:
+                Action action_P3_S01_01T = new Action(m_GameManager, EnumController.Action.P3_S01_01T);
+                action_P3_S01_01T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_01T.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_01T.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_01T.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_01T.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_01T);
+                return;
             case EnumController.CardNo.P3_S01_07T:
                 Action action_P3_S01_07T = new Action(m_GameManager, EnumController.Action.P3_S01_07T);
                 action_P3_S01_07T.SetParamaterEventAnimationManager(m_EventAnimationManager);
@@ -138,7 +147,10 @@ public class Effect : MonoBehaviour
     /// </summary>
     public void WhenReverseMyCardEffect(BattleModeCard card, int place)
     {
-        Debug.Log("WhenReverseMyCardEffect" + card.name);
+        if (card == null)
+        {
+            return;
+        }
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
         switch (card.cardNo)
@@ -447,6 +459,19 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.LB_W02_10T)
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_01T:
+                // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.P3_S01_13T)
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_13T, card, place, status);
                     return true;
                 }
                 return false;
