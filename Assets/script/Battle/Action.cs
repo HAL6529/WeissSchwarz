@@ -143,6 +143,7 @@ public class Action : MonoBehaviour
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
             case EnumController.Action.P3_S01_01T:
+            case EnumController.Action.P3_S01_04T:
             case EnumController.Action.P3_S01_07T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
