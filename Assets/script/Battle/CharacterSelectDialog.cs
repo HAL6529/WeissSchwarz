@@ -55,6 +55,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 maxNum = 1;
                 break;
             case EnumController.CardNo.DC_W01_07T:
+            case EnumController.CardNo.P3_S01_01T:
                 minNum = 0;
                 maxNum = 1;
                 break;
@@ -130,6 +131,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_02T:
             case EnumController.CardNo.LB_W02_09T:
+            case EnumController.CardNo.P3_S01_01T:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -239,6 +241,13 @@ public class CharacterSelectDialog : MonoBehaviour
                     if (ButtonSelectedNumList[i])
                     {
                         m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
+                    }
+                    break;
+                case EnumController.CardNo.P3_S01_01T:
+                    // 相手のカードをバウンスする
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
                     }
                     break;
                 default:

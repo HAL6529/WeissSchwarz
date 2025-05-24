@@ -744,26 +744,11 @@ public class GameManager : MonoBehaviour
         m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, num, isFirstAttacker, SendShotList);
     }
 
-    public void onSideAttack(int num)
+    public void onSideAttack(int num, int enemyLevel)
     {
         Debug.Log("SideAttack");
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
-        int minus = 0;
-        switch (num)
-        {
-            case 0:
-                minus = enemyFieldList[2].level;
-                break;
-            case 1:
-                minus = enemyFieldList[1].level;
-                break;
-            case 2:
-                minus = enemyFieldList[0].level;
-                break;
-            default:
-                minus = 0;
-                break;
-        }
+        int minus = enemyLevel;
         damage = damage - minus;
         damage = damage + TriggerCheck();
 
@@ -817,7 +802,6 @@ public class GameManager : MonoBehaviour
         Syncronize();
     }
 
-
     /// <summary>
     /// フィールドの特定の場所のキャラを控室に送る
     /// </summary>
@@ -830,6 +814,22 @@ public class GameManager : MonoBehaviour
             return;
         }
         GraveYardList.Add(myFieldList[place]);
+        myFieldList[place] = null;
+        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
+        Syncronize();
+    }
+
+    /// <summary>
+    /// フィールドの特定の場所のキャラを手札に戻す
+    /// </summary>
+    /// <param name="place"></param>
+    public void ToHandFromField(int place)
+    {
+        if (myFieldList[place] == null)
+        {
+            return;
+        }
+        myHandList.Add(myFieldList[place]);
         myFieldList[place] = null;
         m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
         Syncronize();

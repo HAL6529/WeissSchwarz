@@ -320,7 +320,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-        m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum, GetEnemyLevel());
     }
 
     public void onFrontAttack()
@@ -337,7 +337,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         // m_GameManager.myDeckList[0] = m_GameManager.testTrigger;
 
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-        m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum, GetEnemyLevel());
     }
 
     public void onSideAttack()
@@ -350,7 +350,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-        m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+        m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum, GetEnemyLevel());
     }
 
     public void Attack2(EnumController.Attack status)
@@ -362,24 +362,46 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-                m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum);
+                m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum, GetEnemyLevel());
                 break;
             case EnumController.Attack.FRONT_ATTACK:
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-                m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum);
+                m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum, GetEnemyLevel());
                 break;
             case EnumController.Attack.SIDE_ATTACK:
                 m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
                 onRest();
                 m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
                 m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
-                m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum);
+                m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum, GetEnemyLevel());
                 break;
             default:
                 break;
+        }
+    }
+
+    private int GetEnemyLevel()
+    {
+        if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+        {
+            return m_EnemyMainCardsManager.GetFieldLevel(1);
+        }
+        else
+        {
+            switch (PlaceNum)
+            {
+                case 0:
+                    return m_EnemyMainCardsManager.GetFieldLevel(2);
+                case 1:
+                    return m_EnemyMainCardsManager.GetFieldLevel(1);
+                case 2:
+                    return m_EnemyMainCardsManager.GetFieldLevel(0);
+                default:
+                    return 0;
+            }
         }
     }
 

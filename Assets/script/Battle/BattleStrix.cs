@@ -682,6 +682,20 @@ public class BattleStrix : StrixBehaviour
         }
     }
 
+    /// <summary>
+    /// フィールドの特定の場所のキャラを手札に戻す
+    /// </summary>
+    /// <param name="place"></param>
+    /// <param name="isTurnPlayer"></param>
+    [StrixRpc]
+    public void ToHandFromField(int place, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ToHandFromField(place);
+        }
+    }
+
     [StrixRpc]
     public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
