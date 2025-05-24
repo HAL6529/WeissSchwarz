@@ -32,8 +32,10 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_09T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_14T;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_17T;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_01T;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_04T;
-    public string YesOrNoDialog_COST_CONFIRM_P3_S01_13T;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
@@ -218,8 +220,10 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_LB_W02_09T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_09T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_14T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_14T;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_17T = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_17T;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_01T = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_01T;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_04T = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_04T;
-                YesOrNoDialog_COST_CONFIRM_P3_S01_13T = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_13T;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
@@ -316,8 +320,10 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_09T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_14T = "次の能力を使用しますか。:" + "【起】［(2)］このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_17T = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_01T = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_04T = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。";
-        public string YesOrNoDialog_COST_CONFIRM_P3_S01_13T = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = "次の能力を使用しますか。:" + "【起】［(1)］ そのターン中、このカードのソウルを＋1。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
         public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = "アンコールフェイズへ移行しますか";

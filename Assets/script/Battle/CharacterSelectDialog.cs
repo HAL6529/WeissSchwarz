@@ -57,6 +57,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
             case EnumController.CardNo.DC_W01_07T:
             case EnumController.CardNo.P3_S01_01T:
+            case EnumController.CardNo.P3_S01_11T:
                 minNum = 0;
                 maxNum = 1;
                 break;
@@ -134,6 +135,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.P3_S01_01T:
             case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_11T:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -249,6 +251,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     }
                     break;
                 case EnumController.CardNo.P3_S01_01T:
+                case EnumController.CardNo.P3_S01_11T:
                     // 相手のカードをバウンスする
                     if (ButtonSelectedNumList[i])
                     {
