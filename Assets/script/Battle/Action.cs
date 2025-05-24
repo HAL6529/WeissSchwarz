@@ -34,6 +34,9 @@ public class Action : MonoBehaviour
         }
         switch (paramater)
         {
+            case EnumController.Action.Bond:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, m_BattleModeCard);
+                break;
             case EnumController.Action.ClockAndTwoDraw:
                 Debug.Log("Action:ClockAndTwoDraw");
                 m_GameManager.ClockAndTwoDraw2();

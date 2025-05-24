@@ -311,27 +311,26 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             m_GameManager.isFirstAttacked = true;
         }
-
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.DIRECT_ATTACK))
         {
             return;
         }
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.DIRECT_ATTACK, PlaceNum, GetEnemyLevel());
     }
 
     public void onFrontAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.FRONT_ATTACK))
         {
             return;
         }
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
 
         // トリガーのテスト用(BattleModeDeckでトリガーするカードを設定)
         // m_GameManager.myDeckList[0] = m_GameManager.testTrigger;
@@ -342,13 +341,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     public void onSideAttack()
     {
+        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
+        onRest();
+        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.SIDE_ATTACK))
         {
             return;
         }
-        m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
-        onRest();
-        m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.SIDE_ATTACK, PlaceNum, GetEnemyLevel());
     }

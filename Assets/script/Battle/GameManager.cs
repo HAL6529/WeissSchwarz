@@ -694,8 +694,10 @@ public class GameManager : MonoBehaviour
 
     public void onDirectAttack(int num)
     {
-        int damage = m_MyMainCardsManager.GetFieldSoul(num) + 1;
-        damage = damage + TriggerCheck();
+        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(num, TriggerCheck() + 1);
+        Syncronize();
+        Debug.Log(m_MyMainCardsManager.GetFieldSoul(num));
+        int damage = m_MyMainCardsManager.GetFieldSoul(num);
         this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
@@ -720,8 +722,9 @@ public class GameManager : MonoBehaviour
 
     public void onFrontAttack(int num)
     {
+        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(num, TriggerCheck());
+        Syncronize();
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
-        damage = damage + TriggerCheck();
         this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
         {
@@ -746,11 +749,11 @@ public class GameManager : MonoBehaviour
 
     public void onSideAttack(int num, int enemyLevel)
     {
-        Debug.Log("SideAttack");
+        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(num, TriggerCheck());
+        Syncronize();
         int damage = m_MyMainCardsManager.GetFieldSoul(num);
         int minus = enemyLevel;
         damage = damage - minus;
-        damage = damage + TriggerCheck();
 
         this.SendShotList = new List<EnumController.Shot>();
         switch (trigger)
