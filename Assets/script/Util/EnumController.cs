@@ -7,6 +7,7 @@ namespace EnumController
     public enum Action
     {
         VOID,
+        Bond,
         ClockAndTwoDraw,
         DamageRefresh,
         DamageForFrontAttack,

@@ -24,7 +24,10 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.DC_W01_09T:
                 if (ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, card);
+                    Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);
+                    action_Bond.SetParamaterBattleModeCard(card);
+                    m_GameManager.ActionList.Add(action_Bond);
+                    break;
                 }
                 return;
             default:
