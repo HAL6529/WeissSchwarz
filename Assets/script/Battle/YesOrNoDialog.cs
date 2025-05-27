@@ -7,6 +7,8 @@ using EnumController;
 public class YesOrNoDialog : MonoBehaviour
 {
     [SerializeField] Text text;
+    [SerializeField] GameObject cardObject;
+    [SerializeField] Image cardObjectImage;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
@@ -100,6 +102,7 @@ public class YesOrNoDialog : MonoBehaviour
         sulvageCardNo = EnumController.CardNo.VOID;
         cost = 0;
         this.gameObject.SetActive(true);
+        cardObject.SetActive(false);
         m_YesOrNoDialogParamater = paramater;
         this.isReceivedFromRPC = isReceivedFromRPC;
         SetText();
@@ -127,6 +130,11 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_SEND_ENCORE_PHASE:
                 str = stringValues.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
+                break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
+                str = stringValues.YesOrNoDialog_CONFIRM_CONTROL_DECKTOP;
+                cardObject.SetActive(true);
+                cardObjectImage.sprite = m_GameManager.myDeckList[0].sprite;
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
@@ -208,6 +216,9 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_16;
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
@@ -357,6 +368,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
@@ -374,6 +386,13 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
                 m_EffectSendMemory.SendFieldToMemory(ParamaterNum1);
+                break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
+                BattleModeCard tmp = m_GameManager.myDeckList[0];
+                m_GameManager.myDeckList.RemoveAt(0);
+                m_GameManager.myDeckList.Add(tmp);
+                m_GameManager.Syncronize();
+                m_GameManager.ExecuteActionList();
                 break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
@@ -400,6 +419,9 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                m_GameManager.ExecuteActionList();
+                break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
                 m_GameManager.ExecuteActionList();
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:

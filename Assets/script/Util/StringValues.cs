@@ -14,6 +14,7 @@ public class StringValues
     public string OKDialog_Counter_Confirm_Use_Card;
     public string OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
     public string HandOverDialog;
+    public string YesOrNoDialog_CONFIRM_CONTROL_DECKTOP;
     public string YesOrNoDialog_CONFIRM_USE_COUNTER;
     public string YesOrNoDialog_CONFIRM_POOL_TRIGGER;
     public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
@@ -36,6 +37,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_04T;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_16;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
@@ -202,6 +204,7 @@ public class StringValues
                 OKDialog_Counter_Confirm_Use_Card = japanese.OKDialog_Counter_Confirm_Use_Card;
                 OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM = japanese.OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM;
                 HandOverDialog = japanese.HandOverDialog;
+                YesOrNoDialog_CONFIRM_CONTROL_DECKTOP = japanese.YesOrNoDialog_CONFIRM_CONTROL_DECKTOP;
                 YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 YesOrNoDialog_CONFIRM_POOL_TRIGGER = japanese.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
                 YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = japanese.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
@@ -224,6 +227,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_P3_S01_04T = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_04T;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_16 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_16;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
@@ -304,6 +308,7 @@ public class StringValues
         public string OKDialog_Counter_Confirm_Use_Card = "使用するカードを選択してください";
         public string OKDialog_HAND_ENCORE_SELECT_DISCARD_CONFIRM = "手札アンコールをします。捨てるカードを選んでください。";
         public string HandOverDialog = "手札が7枚になるように捨ててください";
+        public string YesOrNoDialog_CONFIRM_CONTROL_DECKTOP = "山札の上のカードを山札の下に置きますか。";
         public string YesOrNoDialog_CONFIRM_USE_COUNTER = "手札の助太刀カードを使用しますか";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";
@@ -324,6 +329,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_04T = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_1 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = "次の能力を使用しますか。:" + "【起】［(1)］ そのターン中、このカードのソウルを＋1。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_16 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは1枚引く。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
         public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = "アンコールフェイズへ移行しますか";

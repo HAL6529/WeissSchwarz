@@ -135,7 +135,7 @@ public class Action : MonoBehaviour
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
             case EnumController.Action.LB_W02_14T:
-                Debug.Log("Action:LB_W02_14T");
+            case EnumController.Action.P3_S01_16T:
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;

@@ -363,6 +363,22 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
+    /// </summary>
+    public void ConfirmEffectWhenMyCardPut(int PlaceNum)
+    {
+
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (i == PlaceNum)
+            {
+                continue;
+            }
+            CardList[i].EffectWhenMyOtherCardPut(PlaceNum);
+        }
+    }
+
+    /// <summary>
     /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」の効果を持っているカードが場にないか確認する
     /// </summary>
     public void ConfirmEffectWhenMyCardReversed(int PlaceNum)

@@ -83,6 +83,9 @@ public class MainDialog : MonoBehaviour
         // パワー、レベル、特徴、ソウルの計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
 
+        // 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
+        m_MyMainCardsManager.ConfirmEffectWhenMyCardPut(place);
+
         m_GameManager.ExecuteActionList();
     }
 

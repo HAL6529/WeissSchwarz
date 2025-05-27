@@ -378,6 +378,17 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
                     return;
+                case EnumController.CardNo.P3_S01_16T:
+                    // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
+                    for (int i = 0; i < 2; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+                    m_GameManager.Draw();
+                    break;
                 default:
                     break;
             }
@@ -451,6 +462,10 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
+                    break;
+                case EnumController.CardNo.P3_S01_16T:
+                    // 【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
+                    m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP, m_BattleModeCard);
                     break;
                 default:
                     break;

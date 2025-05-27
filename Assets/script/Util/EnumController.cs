@@ -28,6 +28,7 @@ namespace EnumController
         P3_S01_01T,
         P3_S01_04T,
         P3_S01_07T,
+        P3_S01_16T,
     }
 
     public enum Attack
@@ -321,6 +322,7 @@ namespace EnumController
         VOID,
         CONFIRM_USE_COUNTER,
         CONFIRM_CARD_EFFECT,
+        CONFIRM_CONTROL_DECKTOP,
         CONFIRM_POOL_TRIGGER_FRONT,
         CONFIRM_POOL_TRIGGER_SIDE,
         CONFIRM_POOL_TRIGGER_DIRECT,
@@ -348,6 +350,7 @@ namespace EnumController
         COST_CONFIRM_P3_S01_04T,
         COST_CONFIRM_P3_S01_11T_1,
         COST_CONFIRM_P3_S01_11T_2,
+        COST_CONFIRM_P3_S01_16T,
         COST_CONFIRM_SEND_MEMORY,
     }
 
