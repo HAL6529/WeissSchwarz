@@ -217,6 +217,37 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果
+    /// </summary>
+    /// <param name="effectCard">効果を発動するカード</param>
+    /// <param name="placeNum">プレイされたカードの位置</param>
+    public void EffectWhenMyOtherCardPut(BattleModeCard effectCard, int placeNum)
+    {
+        if (effectCard == null)
+        {
+            return;
+        }
+        this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
+        switch (effectCard.cardNo)
+        {
+            case EnumController.CardNo.P3_S01_16T:
+                //【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
+                if(m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil))
+                {
+                    Action action = new Action(m_GameManager, EnumController.Action.P3_S01_16T);
+                    action.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action.SetParamaterBattleStrix(m_BattleStrix);
+                    action.SetParamaterBattleModeCard(effectCard);
+                    m_GameManager.ActionList.Add(action);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
     
     /// 効果を発動するために必要なストックを満たしているか
     /// </summary>
@@ -351,6 +382,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2, card, num);
+                }
+                return;
+            case EnumController.CardNo.P3_S01_16T:
+                // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T, card, num);
                 }
                 return;
             default:

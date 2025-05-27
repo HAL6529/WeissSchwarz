@@ -121,8 +121,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -590,6 +592,12 @@ ScriptsOnlyBuild:
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
+  - assembly: Assembly-CSharp
     fullTypeName: RoomSelectClass
     methodName: onExitButton
   - assembly: Assembly-CSharp
@@ -619,6 +627,12 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: Menu
     methodName: TransitionToEditMode
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
@@ -3972,7 +3986,7 @@ ScriptsOnlyBuild:
     className: CardInfoManager
   - hash:
       serializedVersion: 2
-      Hash: 11019b3356e6d1a3fd67845a43e5dc4e
+      Hash: d3b4fdc49c78df037ce43cb726799cfc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: YesOrNoDialog
