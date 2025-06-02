@@ -734,4 +734,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
     {
         return m_BattleModeCard;
     }
+
+    /// <summary>
+    /// フィールドから控室に置かれる時に呼ばれる
+    /// </summary>
+    public void PutGraveYardFromField()
+    {
+        m_GameManager.myFieldList[PlaceNum] = null;
+        m_GameManager.GraveYardList.Add(m_BattleModeCard);
+        m_GameManager.Syncronize();
+
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        setBattleModeCard(null, EnumController.State.STAND);
+    }
 }

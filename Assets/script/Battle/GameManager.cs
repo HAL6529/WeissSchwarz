@@ -811,15 +811,11 @@ public class GameManager : MonoBehaviour
     /// <param name="place"></param>
     public void ToGraveYardFromField(int place)
     {
-        Debug.Log("ToGraveYardFromField" + place);
         if (myFieldList[place] == null)
         {
             return;
         }
-        GraveYardList.Add(myFieldList[place]);
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutGraveYardFromField(place);
     }
 
     /// <summary>

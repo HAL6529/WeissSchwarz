@@ -107,9 +107,7 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
         m_GameManager.myFieldList[num] = null;
 
-        m_MyMainCardsManager.setBattleModeCard(num, null, EnumController.State.STAND);
-        m_MyMainCardsManager.ResetPowerUpUntilTurnEnd(num);
-        m_MyMainCardsManager.ResetSoulUpUntilTurnEnd(num);
+        m_MyMainCardsManager.CallPutGraveYardFromField(num);
         //--------------------------------------------------------------------------------------
         //ここに控室にカードが置かれたときに発動する効果を確認する処理を入れるべきだと思われる
         //--------------------------------------------------------------------------------------

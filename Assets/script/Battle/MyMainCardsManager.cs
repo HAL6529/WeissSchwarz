@@ -74,6 +74,14 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].Stand();
     }
 
+    /// <summary>
+    /// フィールドから控室に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutGraveYardFromField(int place)
+    {
+        CardList[place].PutGraveYardFromField();
+    }
+
     public void CallStand()
     {
         for (int i = 0; i < CardList.Count; i++)
