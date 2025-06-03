@@ -99,6 +99,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドから手札に戻す時に呼ばれる
+    /// </summary>
+    public void CallPutHandFromField(int place)
+    {
+        CardList[place].PutHandFromField();
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void CallPutGraveYardFromField(int place)

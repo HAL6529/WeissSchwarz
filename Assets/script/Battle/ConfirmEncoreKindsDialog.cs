@@ -39,7 +39,6 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     public void onHandEncoreBtn()
     {
-        Debug.Log("onHandEncoreBtn");
         m_MyHandCardsManager.CallNotShowPlayButton();
         m_MyHandCardsManager.canCharacterCard();
         this.gameObject.SetActive(false);
@@ -59,14 +58,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
             m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
             m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
         }
-        m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-        m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
-        m_MyMainCardsManager.CallOnStand(ParamaterNum1);
-
-        m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
-
-        m_GameManager.Syncronize();
-
+        m_MyMainCardsManager.CallPutFieldFromGraveYard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
         Close();
     }
 

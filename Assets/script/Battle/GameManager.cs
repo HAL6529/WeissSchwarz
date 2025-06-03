@@ -814,10 +814,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        myHandList.Add(myFieldList[place]);
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutHandFromField(place);
     }
 
     private int TriggerCheck()
