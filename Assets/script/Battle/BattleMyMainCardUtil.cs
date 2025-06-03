@@ -785,6 +785,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_GameManager.myHandList.Remove(card);
         setBattleModeCard(card, state);
         m_GameManager.Syncronize();
+
+        // カードの登場時の効果起動
+        m_Effect.BondForHandToFild(m_BattleModeCard);
+        m_Effect.WhenPlaceCardEffect(m_BattleModeCard, PlaceNum);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+
+        // 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
+        m_MyMainCardsManager.ConfirmEffectWhenMyCardPut(PlaceNum);
     }
 
     /// <summary>
