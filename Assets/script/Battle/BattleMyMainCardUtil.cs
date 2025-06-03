@@ -748,4 +748,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
     }
+
+    /// <summary>
+    /// フィールドから思い出に置かれる時に呼ばれる
+    /// </summary>
+    public void PutMemoryFromField()
+    {
+        m_GameManager.myMemoryList.Add(m_GameManager.myFieldList[PlaceNum]);
+        m_GameManager.myFieldList[PlaceNum] = null;
+        m_GameManager.Syncronize();
+
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        setBattleModeCard(null, EnumController.State.STAND);
+    }
 }

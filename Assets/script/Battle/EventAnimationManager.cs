@@ -243,10 +243,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
-                    m_GameManager.myMemoryList.Add(m_GameManager.myFieldList[place]);
-                    m_GameManager.myFieldList[place] = null;
-                    m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-                    m_GameManager.Syncronize();
+                    m_MyMainCardsManager.CallPutMemoryFromField(place);
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.DC_W01_02T:

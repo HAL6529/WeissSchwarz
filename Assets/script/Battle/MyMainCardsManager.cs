@@ -75,6 +75,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドから思い出に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutMemoryFromField(int place)
+    {
+        CardList[place].PutMemoryFromField();
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void CallPutGraveYardFromField(int place)
