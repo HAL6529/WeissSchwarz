@@ -740,6 +740,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void PutFieldFromGraveYard(BattleModeCard card, EnumController.State state)
     {
+        if (m_GameManager.myFieldList[PlaceNum] != null)
+        {
+            m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[PlaceNum]);
+        }
         m_GameManager.GraveYardList.Remove(card);
         m_GameManager.myFieldList[PlaceNum] = card;
         m_GameManager.Syncronize();
