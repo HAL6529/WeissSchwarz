@@ -43,6 +43,21 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public int FieldLevel = 0;
 
     /// <summary>
+    /// フィールド上で手札アンコールを持っているか
+    /// </summary>
+    public bool HandEncore = false;
+    
+    /// <summary>
+    /// フィールド上で2ストックアンコールを持っているか
+    /// </summary>
+    public bool TwoStockEncore = false;
+
+    /// <summary>
+    /// フィールド上でクロックアンコールを持っているか
+    /// </summary>
+    public bool ClockEncore = false;
+
+    /// <summary>
     /// ターン終了時まで追加される特徴クラス
     /// </summary>
     public AttributeInstance.AttributeUpUntilTurnEnd m_AttributeUpUntilTurnEnd = new AttributeInstance.AttributeUpUntilTurnEnd();
@@ -793,6 +808,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         // パワー、レベル、特徴、ソウルの計算
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
 
+        // 手札アンコールの付与
+        HandEncore = isHandEncore();
+
+        // クロックアンコールの付与
+        ClockEncore = isClockEncore();
+
         // 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
         m_MyMainCardsManager.ConfirmEffectWhenMyCardPut(PlaceNum);
     }
@@ -837,5 +858,36 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
+    }
+
+    /// <summary>
+    /// 手札アンコールを持っているカードか調べる
+    /// </summary>
+    /// <returns></returns>
+    private bool isHandEncore()
+    {
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A04:
+            case EnumController.CardNo.LB_W02_03T:
+            case EnumController.CardNo.P3_S01_07T:
+            case EnumController.CardNo.P3_S01_15T:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /// <summary>
+    /// クロックアンコールを持っているか調べる
+    /// </summary>
+    /// <returns></returns>
+    private bool isClockEncore()
+    {
+        switch (m_BattleModeCard.cardNo)
+        {
+            default:
+                return false;
+        }
     }
 }

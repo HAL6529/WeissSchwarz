@@ -105,18 +105,15 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.isEncoreDialogProcess = false;
         BattleModeCard temp = m_GameManager.myFieldList[num];
 
+        bool isStockThree = isExistStockThree();
+        bool isStockTwo = isExistStockTwo();
+        bool haveHandEncore = isHandEncore(num);
+        bool haveClockEncore = isClockEncore(temp);
+
         m_MyMainCardsManager.CallPutGraveYardFromField(num);
-        //--------------------------------------------------------------------------------------
-        //ここに控室にカードが置かれたときに発動する効果を確認する処理を入れるべきだと思われる
-        //--------------------------------------------------------------------------------------
 
         m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
-
-        bool isStockThree = isExistStockThree();
-        bool isStockTwo = isExistStockTwo();
-        bool haveHandEncore = isHandEncore(temp);
-        bool haveClockEncore = isClockEncore(temp);
 
         if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
@@ -143,18 +140,13 @@ public class EncoreDialog : MonoBehaviour
         return false;
     }
 
-    private bool isHandEncore(BattleModeCard card)
+    private bool isHandEncore(int place)
     {
-        switch (card.cardNo)
+        if(m_MyMainCardsManager.isHandEncore(place) && m_GameManager.myHandList.Count > 0)
         {
-            case EnumController.CardNo.AT_WX02_A04:
-            case EnumController.CardNo.LB_W02_03T:
-            case EnumController.CardNo.P3_S01_07T:
-            case EnumController.CardNo.P3_S01_15T:
-                return true;
-            default:
-                return false;
+            return true;
         }
+        return false;
     }
 
     private bool isClockEncore(BattleModeCard card)
