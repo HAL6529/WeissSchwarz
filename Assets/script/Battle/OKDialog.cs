@@ -252,11 +252,7 @@ public class OKDialog : MonoBehaviour
                     m_GameManager.GraveYardList.Add(m_GameManager.DisCardForHandEncore);
                     m_GameManager.DisCardForHandEncore = null;
 
-                    m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-                    m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
-                    m_MyMainCardsManager.CallOnStand(ParamaterNum1);
-                    m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
-                    m_GameManager.Syncronize();
+                    m_MyMainCardsManager.CallPutFieldFromGraveYard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
                 }
                 m_MyHandCardsManager.ActiveAllMyHand();
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;

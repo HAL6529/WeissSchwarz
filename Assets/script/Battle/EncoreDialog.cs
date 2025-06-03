@@ -104,8 +104,6 @@ public class EncoreDialog : MonoBehaviour
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.isEncoreDialogProcess = false;
         BattleModeCard temp = m_GameManager.myFieldList[num];
-        m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[num]);
-        m_GameManager.myFieldList[num] = null;
 
         m_MyMainCardsManager.CallPutGraveYardFromField(num);
         //--------------------------------------------------------------------------------------

@@ -75,6 +75,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 控室から舞台に置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutFieldFromGraveYard(int place, BattleModeCard card, EnumController.State state)
+    {
+        CardList[place].PutFieldFromGraveYard(card, state);
+    }
+
+    /// <summary>
     /// フィールドから思い出に置かれる時に呼ばれる
     /// </summary>
     public void CallPutMemoryFromField(int place)

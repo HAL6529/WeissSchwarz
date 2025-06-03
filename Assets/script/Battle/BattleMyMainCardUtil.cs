@@ -736,6 +736,17 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 控室から舞台に置かれるときに呼ばれる
+    /// </summary>
+    public void PutFieldFromGraveYard(BattleModeCard card, EnumController.State state)
+    {
+        m_GameManager.GraveYardList.Remove(card);
+        m_GameManager.myFieldList[PlaceNum] = card;
+        m_GameManager.Syncronize();
+        setBattleModeCard(card, state);
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void PutGraveYardFromField()
