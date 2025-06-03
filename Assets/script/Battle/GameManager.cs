@@ -784,25 +784,11 @@ public class GameManager : MonoBehaviour
     /// <param name="place"></param>
     public void ToDeckTopFromField(int place)
     {
-
-        Debug.Log(place);
         if (myFieldList[place] == null)
         {
             return;
         }
-
-        List<BattleModeCard> tempList = new List<BattleModeCard>();
-        tempList.Add(myFieldList[place]);
-
-        for(int i = 0; i < myDeckList.Count; i++)
-        {
-            tempList.Add(myDeckList[i]);
-        }
-
-        myDeckList = tempList;
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutDeckTopFromField(place);
     }
 
     /// <summary>

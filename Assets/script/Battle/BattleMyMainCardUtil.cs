@@ -736,6 +736,28 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドからデッキトップに置かれるときに呼ばれる
+    /// </summary>
+    public void PutDeckTopFromField()
+    {
+        List<BattleModeCard> tempList = new List<BattleModeCard>();
+        tempList.Add(m_BattleModeCard);
+
+        for (int i = 0; i < m_GameManager.myDeckList.Count; i++)
+        {
+            tempList.Add(m_GameManager.myDeckList[i]);
+        }
+
+        m_GameManager.myDeckList = tempList;
+        m_GameManager.myFieldList[PlaceNum] = null;
+        m_GameManager.Syncronize();
+
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        setBattleModeCard(null, EnumController.State.STAND);
+    }
+
+    /// <summary>
     /// 控室から舞台に置かれるときに呼ばれる
     /// </summary>
     public void PutFieldFromGraveYard(BattleModeCard card, EnumController.State state)

@@ -75,6 +75,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドからデッキトップに置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutDeckTopFromField(int num)
+    {
+        CardList[num].PutDeckTopFromField();
+    }
+
+    /// <summary>
     /// 控室から舞台に置かれるときに呼ばれる
     /// </summary>
     public void CallPutFieldFromGraveYard(int place, BattleModeCard card, EnumController.State state)
