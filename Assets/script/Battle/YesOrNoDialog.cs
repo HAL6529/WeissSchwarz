@@ -16,7 +16,6 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
     [SerializeField] EffectBrainStormForDraw m_EffectBrainStormForDraw;
-    [SerializeField] EffectSendMemory m_EffectSendMemory;
     [SerializeField] EventAnimationManager m_EventAnimationManager;
 
     private BattleModeCard m_BattleModeCard = null;
@@ -220,9 +219,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_16;
                 break;
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
-                str = stringValues.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
-                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
@@ -383,9 +379,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_SEND_MEMORY:
-                m_EffectSendMemory.SendFieldToMemory(ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
                 BattleModeCard tmp = m_GameManager.myDeckList[0];

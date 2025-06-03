@@ -351,7 +351,6 @@ namespace EnumController
         COST_CONFIRM_P3_S01_11T_1,
         COST_CONFIRM_P3_S01_11T_2,
         COST_CONFIRM_P3_S01_16T,
-        COST_CONFIRM_SEND_MEMORY,
     }
 
 
