@@ -91,6 +91,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 手札から舞台に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutFieldFromHand(int place, BattleModeCard card, EnumController.State state)
+    {
+        CardList[place].PutFieldFromHand(card, state);
+    }
+
+    /// <summary>
     /// フィールドから思い出に置かれる時に呼ばれる
     /// </summary>
     public void CallPutMemoryFromField(int place)

@@ -773,6 +773,21 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 手札から舞台に置かれる時に呼ばれる
+    /// </summary>
+    public void PutFieldFromHand(BattleModeCard card, EnumController.State state)
+    {
+        if (m_GameManager.myFieldList[PlaceNum] != null)
+        {
+            m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[PlaceNum]);
+        }
+        m_GameManager.myFieldList[PlaceNum] = card;
+        m_GameManager.myHandList.Remove(card);
+        setBattleModeCard(card, state);
+        m_GameManager.Syncronize();
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void PutGraveYardFromField()

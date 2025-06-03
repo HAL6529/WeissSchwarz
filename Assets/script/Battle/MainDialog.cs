@@ -62,16 +62,7 @@ public class MainDialog : MonoBehaviour
                 m_GameManager.GraveYardList.Add(temp);
                 m_GameManager.myStockList.Remove(temp);
             }
-
-            if (m_GameManager.myFieldList[place] != null)
-            {
-                m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[place]);
-            }
-            m_GameManager.myFieldList[place] = m_BattleModeCard;
-            m_GameManager.myHandList.Remove(m_BattleModeCard);
-            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, EnumController.State.STAND);
-
-            m_GameManager.Syncronize();
+            m_MyMainCardsManager.CallPutFieldFromHand(place, m_BattleModeCard, EnumController.State.STAND);
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
