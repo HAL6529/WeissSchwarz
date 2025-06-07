@@ -15,6 +15,9 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Text Attribute1;
     [SerializeField] Text Attribute2;
     [SerializeField] Text Attribute3;
+    [SerializeField] GameObject Attribute1Obj;
+    [SerializeField] GameObject Attribute2Obj;
+    [SerializeField] GameObject Attribute3Obj;
     [SerializeField] GameObject cardInfoImageObject;
 
     RectTransform m_RectTransform;
@@ -71,28 +74,34 @@ public class CardGuideUtil : MonoBehaviour
         if (info.attributeOne == EnumController.Attribute.VOID)
         {
             Attribute1.text = "";
+            Attribute1Obj.SetActive(false);
         }
         else
         {
-            Attribute1.text = "<" + extendUtil.AttributeConvertToString(info.attributeOne) + ">";
+            Attribute1.text = extendUtil.AttributeConvertToString(info.attributeOne);
+            Attribute1Obj.SetActive(true);
         }
 
         if (info.attributeTwo == EnumController.Attribute.VOID)
         {
             Attribute2.text = "";
+            Attribute2Obj.SetActive(false);
         }
         else
         {
-            Attribute2.text = "<" + extendUtil.AttributeConvertToString(info.attributeTwo) + ">";
+            Attribute2.text = extendUtil.AttributeConvertToString(info.attributeTwo);
+            Attribute2Obj.SetActive(true);
         }
 
         if (info.attributeThree == EnumController.Attribute.VOID)
         {
             Attribute3.text = "";
+            Attribute3Obj.SetActive(false);
         }
         else
         {
-            Attribute3.text = "<" + extendUtil.AttributeConvertToString(info.attributeThree) + ">";
+            Attribute3.text = extendUtil.AttributeConvertToString(info.attributeThree);
+            Attribute3Obj.SetActive(true);
         }
     }
 }
