@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        m_DialogManager.EncoreDialog(myFieldList, EnumController.EncoreDialog.EncorePhase);
+        m_DialogManager.EncoreDialog(myFieldList);
         return;
     }
 
@@ -670,9 +670,9 @@ public class GameManager : MonoBehaviour
         ExecuteActionList();
     }
 
-    public void SendEncoreDialogFromRPC(EnumController.EncoreDialog p)
+    public void SendEncoreDialogFromRPC()
     {
-        m_DialogManager.EncoreDialog(myFieldList, p);
+        m_DialogManager.EncoreDialog(myFieldList);
     }
 
     /// <summary>

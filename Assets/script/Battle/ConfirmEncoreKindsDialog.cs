@@ -9,6 +9,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] BattleStrix m_BattleStrix;
 
     [SerializeField] Button HandEncoreBtn;
     [SerializeField] Button TwoStockEncoreBtn;
@@ -20,12 +21,10 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     private int ParamaterNum1 = -1;
 
-    private EnumController.EncoreDialog paramater = EnumController.EncoreDialog.VOID;
-
-    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, EnumController.EncoreDialog p, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
+    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
         this.m_BattleModeCard = m_BattleModeCard;
-        paramater = p;
         ParamaterNum1 = paramaterNum1;
 
         HandEncoreBtn.interactable = canHandEncore;
@@ -43,7 +42,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
         m_MyHandCardsManager.canCharacterCard();
         this.gameObject.SetActive(false);
         m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_ENCORE;
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1, paramater);
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1);
     }
 
     public void onTwoStockEncoreBtn()
@@ -76,7 +75,8 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     {
         m_MyHandCardsManager.CallNotShowPlayButton();
         this.gameObject.SetActive(false);
-        m_DialogManager.EncoreDialog(m_GameManager.myFieldList, paramater);
+        m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
     }
 
     public void OffDialog()

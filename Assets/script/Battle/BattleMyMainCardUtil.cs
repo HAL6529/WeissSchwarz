@@ -783,8 +783,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         m_GameManager.GraveYardList.Remove(card);
         m_GameManager.myFieldList[PlaceNum] = card;
-        m_GameManager.Syncronize();
         setBattleModeCard(card, state);
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
