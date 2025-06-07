@@ -96,7 +96,7 @@ public class Action : MonoBehaviour
                 }
                 break;
             case EnumController.Action.EncoreCheck:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList, EnumController.EncoreDialog.EncoreCheck);
+                m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
                 return;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);

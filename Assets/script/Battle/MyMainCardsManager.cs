@@ -74,6 +74,54 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].Stand();
     }
 
+    /// <summary>
+    /// フィールドからデッキトップに置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutDeckTopFromField(int num)
+    {
+        CardList[num].PutDeckTopFromField();
+    }
+
+    /// <summary>
+    /// 控室から舞台に置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutFieldFromGraveYard(int place, BattleModeCard card, EnumController.State state)
+    {
+        CardList[place].PutFieldFromGraveYard(card, state);
+    }
+
+    /// <summary>
+    /// 手札から舞台に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutFieldFromHand(int place, BattleModeCard card, EnumController.State state)
+    {
+        CardList[place].PutFieldFromHand(card, state);
+    }
+
+    /// <summary>
+    /// フィールドから思い出に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutMemoryFromField(int place)
+    {
+        CardList[place].PutMemoryFromField();
+    }
+
+    /// <summary>
+    /// フィールドから手札に戻す時に呼ばれる
+    /// </summary>
+    public void CallPutHandFromField(int place)
+    {
+        CardList[place].PutHandFromField();
+    }
+
+    /// <summary>
+    /// フィールドから控室に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutGraveYardFromField(int place)
+    {
+        CardList[place].PutGraveYardFromField();
+    }
+
     public void CallStand()
     {
         for (int i = 0; i < CardList.Count; i++)
@@ -220,6 +268,31 @@ public class MyMainCardsManager : MonoBehaviour
         }
 
         return count;
+    }
+
+    /// <summary>
+    /// フィールド上で手札アンコールを持っているか
+    /// </summary>
+    /// <returns></returns>
+    public bool isHandEncore(int num)
+    {
+        return CardList[num].HandEncore;
+    }
+
+    /// <summary>
+    /// フィールド上で2ストックアンコールを持っているか
+    /// </summary>
+    public bool isTwoStockEncore(int num)
+    {
+        return CardList[num].TwoStockEncore;
+    }
+
+    /// <summary>
+    /// フィールド上でクロックアンコールを持っているか
+    /// </summary>
+    public bool isClockEncore(int num)
+    {
+        return CardList[num].ClockEncore;
     }
 
     public int GetNumFieldCardNo(List<EnumController.CardNo> list)

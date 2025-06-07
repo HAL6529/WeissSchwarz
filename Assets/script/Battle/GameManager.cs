@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        m_DialogManager.EncoreDialog(myFieldList, EnumController.EncoreDialog.EncorePhase);
+        m_DialogManager.EncoreDialog(myFieldList);
         return;
     }
 
@@ -670,9 +670,9 @@ public class GameManager : MonoBehaviour
         ExecuteActionList();
     }
 
-    public void SendEncoreDialogFromRPC(EnumController.EncoreDialog p)
+    public void SendEncoreDialogFromRPC()
     {
-        m_DialogManager.EncoreDialog(myFieldList, p);
+        m_DialogManager.EncoreDialog(myFieldList);
     }
 
     /// <summary>
@@ -784,25 +784,11 @@ public class GameManager : MonoBehaviour
     /// <param name="place"></param>
     public void ToDeckTopFromField(int place)
     {
-
-        Debug.Log(place);
         if (myFieldList[place] == null)
         {
             return;
         }
-
-        List<BattleModeCard> tempList = new List<BattleModeCard>();
-        tempList.Add(myFieldList[place]);
-
-        for(int i = 0; i < myDeckList.Count; i++)
-        {
-            tempList.Add(myDeckList[i]);
-        }
-
-        myDeckList = tempList;
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutDeckTopFromField(place);
     }
 
     /// <summary>
@@ -811,15 +797,11 @@ public class GameManager : MonoBehaviour
     /// <param name="place"></param>
     public void ToGraveYardFromField(int place)
     {
-        Debug.Log("ToGraveYardFromField" + place);
         if (myFieldList[place] == null)
         {
             return;
         }
-        GraveYardList.Add(myFieldList[place]);
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutGraveYardFromField(place);
     }
 
     /// <summary>
@@ -832,10 +814,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        myHandList.Add(myFieldList[place]);
-        myFieldList[place] = null;
-        m_MyMainCardsManager.setBattleModeCard(place, null, EnumController.State.STAND);
-        Syncronize();
+        m_MyMainCardsManager.CallPutHandFromField(place);
     }
 
     private int TriggerCheck()

@@ -9,6 +9,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] BattleStrix m_BattleStrix;
 
     [SerializeField] Button HandEncoreBtn;
     [SerializeField] Button TwoStockEncoreBtn;
@@ -20,12 +21,10 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     private int ParamaterNum1 = -1;
 
-    private EnumController.EncoreDialog paramater = EnumController.EncoreDialog.VOID;
-
-    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, EnumController.EncoreDialog p, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
+    public void Active(BattleModeCard m_BattleModeCard, int paramaterNum1, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
+        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
         this.m_BattleModeCard = m_BattleModeCard;
-        paramater = p;
         ParamaterNum1 = paramaterNum1;
 
         HandEncoreBtn.interactable = canHandEncore;
@@ -39,12 +38,11 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
 
     public void onHandEncoreBtn()
     {
-        Debug.Log("onHandEncoreBtn");
         m_MyHandCardsManager.CallNotShowPlayButton();
         m_MyHandCardsManager.canCharacterCard();
         this.gameObject.SetActive(false);
         m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_ENCORE;
-        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1, paramater);
+        m_DialogManager.OKDialog(EnumController.OKDialogParamater.HAND_ENCORE_SELECT_DISCARD_CONFIRM, m_BattleModeCard, ParamaterNum1);
     }
 
     public void onTwoStockEncoreBtn()
@@ -59,14 +57,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
             m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
             m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
         }
-        m_GameManager.GraveYardList.Remove(m_BattleModeCard);
-        m_GameManager.myFieldList[ParamaterNum1] = m_BattleModeCard;
-        m_MyMainCardsManager.CallOnStand(ParamaterNum1);
-
-        m_MyMainCardsManager.setBattleModeCard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
-
-        m_GameManager.Syncronize();
-
+        m_MyMainCardsManager.CallPutFieldFromGraveYard(ParamaterNum1, m_BattleModeCard, EnumController.State.REST);
         Close();
     }
 
@@ -84,7 +75,8 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     {
         m_MyHandCardsManager.CallNotShowPlayButton();
         this.gameObject.SetActive(false);
-        m_DialogManager.EncoreDialog(m_GameManager.myFieldList, paramater);
+        m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
     }
 
     public void OffDialog()

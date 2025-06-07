@@ -62,29 +62,10 @@ public class MainDialog : MonoBehaviour
                 m_GameManager.GraveYardList.Add(temp);
                 m_GameManager.myStockList.Remove(temp);
             }
-
-            if (m_GameManager.myFieldList[place] != null)
-            {
-                m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[place]);
-            }
-            m_GameManager.myFieldList[place] = m_BattleModeCard;
-            m_GameManager.myHandList.Remove(m_BattleModeCard);
-            m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, EnumController.State.STAND);
-
-            m_GameManager.Syncronize();
+            m_MyMainCardsManager.CallPutFieldFromHand(place, m_BattleModeCard, EnumController.State.STAND);
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
-
-        // カードの登場時の効果起動
-        m_Effect.BondForHandToFild(m_BattleModeCard);
-        m_Effect.WhenPlaceCardEffect(m_BattleModeCard, place);
-
-        // パワー、レベル、特徴、ソウルの計算
-        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
-
-        // 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
-        m_MyMainCardsManager.ConfirmEffectWhenMyCardPut(place);
 
         m_GameManager.ExecuteActionList();
     }
