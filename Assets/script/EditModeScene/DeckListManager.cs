@@ -25,6 +25,7 @@ public class DeckListManager : MonoBehaviour
     [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject cardInfoImageObject;
     [SerializeField] Image LevelSortBtnImage;
+    [SerializeField] CardGuideUtil m_CardGuideUtil;
 
     RectTransform m_RectTransform;
 
@@ -170,79 +171,7 @@ public class DeckListManager : MonoBehaviour
 
     public void onShowInfo(int index)
     {
-        cardName.text = cardInfoList[index].cardName;
-        explanation.text = extendUtil.Explanation(cardInfoList[index].cardNo);
-        cardInfoImage.sprite = cardInfoList[index].sprite;
-
-        if (cardInfoList[index].type == EnumController.Type.CLIMAX)
-        {
-            m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
-        }
-        else
-        {
-            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
-        }
-        if (cardInfoList[index].level == -1)
-        {
-            levelIndex.text = "";
-        }
-        else
-        {
-            levelIndex.text = cardInfoList[index].level.ToString();
-        }
-
-        if (cardInfoList[index].cost == -1)
-        {
-            costIndex.text = "";
-        }
-        else
-        {
-            costIndex.text = cardInfoList[index].cost.ToString();
-        }
-
-        if (cardInfoList[index].power == -1)
-        {
-            powerIndex.text = "";
-            PowerObj.SetActive(false);
-        }
-        else
-        {
-            powerIndex.text = cardInfoList[index].power.ToString();
-            PowerObj.SetActive(true);
-        }
-
-        if (cardInfoList[index].attributeOne == EnumController.Attribute.VOID)
-        {
-            Attribute1.text = "";
-            Attribute1Obj.SetActive(false);
-        }
-        else
-        {
-            Attribute1.text = extendUtil.AttributeConvertToString(cardInfoList[index].attributeOne);
-            Attribute1Obj.SetActive(true);
-        }
-
-        if (cardInfoList[index].attributeTwo == EnumController.Attribute.VOID)
-        {
-            Attribute2.text = "";
-            Attribute2Obj.SetActive(false);
-        }
-        else
-        {
-            Attribute2.text = extendUtil.AttributeConvertToString(cardInfoList[index].attributeTwo);
-            Attribute2Obj.SetActive(true);
-        }
-
-        if (cardInfoList[index].attributeThree == EnumController.Attribute.VOID)
-        {
-            Attribute3.text = "";
-            Attribute3Obj.SetActive(false);
-        }
-        else
-        {
-            Attribute3.text = extendUtil.AttributeConvertToString(cardInfoList[index].attributeThree);
-            Attribute3Obj.SetActive(true);
-        }
+        m_CardGuideUtil.onShowInfo(cardInfoList[index]);
     }
 
     public void removeCard(int index)
