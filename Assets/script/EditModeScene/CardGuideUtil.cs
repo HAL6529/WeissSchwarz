@@ -21,6 +21,7 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject cardInfoImageObject;
     [SerializeField] GameObject LevelObj;
+    [SerializeField] GameObject CostObj;
     [SerializeField] Image LevelImage;
     [SerializeField] Sprite lv_b;
     [SerializeField] Sprite lv_g;
@@ -64,10 +65,12 @@ public class CardGuideUtil : MonoBehaviour
         if(info.cost == -1)
         {
             costIndex.text = "";
+            CostObj.SetActive(false);
         }
         else
         {
             costIndex.text = info.cost.ToString();
+            CostObj.SetActive(true);
         }
 
         if(info.power == -1)
