@@ -18,6 +18,7 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject Attribute1Obj;
     [SerializeField] GameObject Attribute2Obj;
     [SerializeField] GameObject Attribute3Obj;
+    [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject cardInfoImageObject;
 
     RectTransform m_RectTransform;
@@ -65,10 +66,12 @@ public class CardGuideUtil : MonoBehaviour
         if(info.power == -1)
         {
             powerIndex.text = "";
+            PowerObj.SetActive(false);
         }
         else
         {
             powerIndex.text = info.power.ToString();
+            PowerObj.SetActive(true);
         }
 
         if (info.attributeOne == EnumController.Attribute.VOID)
