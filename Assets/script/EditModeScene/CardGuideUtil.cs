@@ -22,6 +22,16 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject cardInfoImageObject;
     [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject CostObj;
+    [SerializeField] GameObject TriggerObj;
+    [SerializeField] GameObject TriggerImageObj;
+    [SerializeField] GameObject TriggerImageObj2;
+    [SerializeField] Image trigger_image1;
+    [SerializeField] Image trigger_image2;
+    [SerializeField] GameObject TriggerObj2;
+    [SerializeField] GameObject TriggerImageObj3;
+    [SerializeField] GameObject TriggerImageObj4;
+    [SerializeField] Image trigger_image3;
+    [SerializeField] Image trigger_image4;
     [SerializeField] Image NameImage;
     [SerializeField] Image LevelImage;
     [SerializeField] Sprite name_b;
@@ -33,6 +43,9 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Sprite lv_r;
     [SerializeField] Sprite lv_y;
     [SerializeField] Sprite lv_gray;
+    [SerializeField] Sprite comeback;
+    [SerializeField] Sprite soul;
+    [SerializeField] Sprite pool;
 
     RectTransform m_RectTransform;
 
@@ -52,10 +65,14 @@ public class CardGuideUtil : MonoBehaviour
         if(info.type == EnumController.Type.CLIMAX)
         {
             m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
+            TriggerObj.SetActive(false);
+            TriggerObj2.SetActive(true);
         }
         else
         {
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
+            TriggerObj.SetActive(true);
+            TriggerObj2.SetActive(false);
         }
 
         if (info.level == -1)
@@ -167,6 +184,52 @@ public class CardGuideUtil : MonoBehaviour
                 break;
             case EnumController.CardColor.YELLOW:
                 NameImage.sprite = name_y;
+                break;
+            default:
+                break;
+        }
+
+        switch (info.trigger)
+        {
+            case EnumController.Trigger.NONE:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(false);
+                TriggerImageObj4.SetActive(false);
+                trigger_image1.sprite = null;
+                trigger_image2.sprite = null;
+                break;
+            case EnumController.Trigger.COMEBACK:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(false);
+                trigger_image3.sprite = comeback;
+                trigger_image4.sprite = null;
+                break;
+            case EnumController.Trigger.SOUL:
+                TriggerImageObj.SetActive(true);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(false);
+                TriggerImageObj4.SetActive(false);
+                trigger_image1.sprite = soul;
+                trigger_image2.sprite = null;
+                break;
+            case EnumController.Trigger.POOL:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(false);
+                trigger_image3.sprite = pool;
+                trigger_image4.sprite = null;
+                break;
+            case EnumController.Trigger.DOUBLE_SOUL:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(true);
+                trigger_image3.sprite = soul;
+                trigger_image4.sprite = soul;
                 break;
             default:
                 break;
