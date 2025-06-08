@@ -46,6 +46,7 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Sprite comeback;
     [SerializeField] Sprite soul;
     [SerializeField] Sprite pool;
+    [SerializeField] Image PanelImage;
 
     RectTransform m_RectTransform;
 
@@ -175,17 +176,22 @@ public class CardGuideUtil : MonoBehaviour
         {
             case EnumController.CardColor.BLUE:
                 NameImage.sprite = name_b;
+                PanelImage.color = new Color(0f / 255f, 130f / 255f, 255f / 255f, 255f / 255f);
                 break;
             case EnumController.CardColor.GREEN:
                 NameImage.sprite = name_g;
+                PanelImage.color = new Color(0f / 255f, 190f / 255f, 0f / 255f, 255f / 255f);
                 break;
             case EnumController.CardColor.RED:
                 NameImage.sprite = name_r;
+                PanelImage.color = new Color(255f / 255f, 105f / 255f, 105f / 255f, 255f / 255f);
                 break;
             case EnumController.CardColor.YELLOW:
                 NameImage.sprite = name_y;
+                PanelImage.color = new Color(255f / 255f, 255f / 255f, 0f / 255f, 255f / 255f);
                 break;
             default:
+                PanelImage.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
                 break;
         }
 
