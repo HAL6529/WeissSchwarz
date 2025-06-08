@@ -9,6 +9,7 @@ public class BattleHandCardUtil : MonoBehaviour
     private BattleModeCard m_BattleModeCard = null;
 
     public bool isSelected = false;
+    public int num;
 
     private bool isMainSelected = false;
     [SerializeField] GameManager m_GameManager;
