@@ -22,7 +22,12 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject cardInfoImageObject;
     [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject CostObj;
+    [SerializeField] Image NameImage;
     [SerializeField] Image LevelImage;
+    [SerializeField] Sprite name_b;
+    [SerializeField] Sprite name_g;
+    [SerializeField] Sprite name_r;
+    [SerializeField] Sprite name_y;
     [SerializeField] Sprite lv_b;
     [SerializeField] Sprite lv_g;
     [SerializeField] Sprite lv_r;
@@ -147,6 +152,24 @@ public class CardGuideUtil : MonoBehaviour
                     break;
             }
             LevelObj.SetActive(true);
+        }
+
+        switch (info.color)
+        {
+            case EnumController.CardColor.BLUE:
+                NameImage.sprite = name_b;
+                break;
+            case EnumController.CardColor.GREEN:
+                NameImage.sprite = name_g;
+                break;
+            case EnumController.CardColor.RED:
+                NameImage.sprite = name_r;
+                break;
+            case EnumController.CardColor.YELLOW:
+                NameImage.sprite = name_y;
+                break;
+            default:
+                break;
         }
     }
 }
