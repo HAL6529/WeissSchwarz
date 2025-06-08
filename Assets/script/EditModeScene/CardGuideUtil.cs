@@ -20,6 +20,13 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject Attribute3Obj;
     [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject cardInfoImageObject;
+    [SerializeField] GameObject LevelObj;
+    [SerializeField] Image LevelImage;
+    [SerializeField] Sprite lv_b;
+    [SerializeField] Sprite lv_g;
+    [SerializeField] Sprite lv_r;
+    [SerializeField] Sprite lv_y;
+    [SerializeField] Sprite lv_gray;
 
     RectTransform m_RectTransform;
 
@@ -105,6 +112,38 @@ public class CardGuideUtil : MonoBehaviour
         {
             Attribute3.text = extendUtil.AttributeConvertToString(info.attributeThree);
             Attribute3Obj.SetActive(true);
+        }
+
+        if (info.level == 0)
+        {
+            LevelImage.sprite = lv_gray;
+            LevelObj.SetActive(true);
+        }
+        else if(info.level == -1)
+        {
+            LevelObj.SetActive(false);
+        }
+        else
+        {
+            switch (info.color)
+            {
+                case EnumController.CardColor.BLUE:
+                    LevelImage.sprite = lv_b;
+                    break;
+                case EnumController.CardColor.GREEN:
+                    LevelImage.sprite = lv_g;
+                    break;
+                case EnumController.CardColor.RED:
+                    LevelImage.sprite = lv_r;
+                    break;
+                case EnumController.CardColor.YELLOW:
+                    LevelImage.sprite = lv_y;
+                    break;
+                default:
+                    LevelImage.sprite = lv_gray;
+                    break;
+            }
+            LevelObj.SetActive(true);
         }
     }
 }
