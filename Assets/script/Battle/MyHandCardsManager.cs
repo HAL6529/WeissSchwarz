@@ -8,6 +8,7 @@ public class MyHandCardsManager : MonoBehaviour
 {
     public GameObject leftCard;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] HandOverDialog m_HandOverDialog;
     public List<GameObject> CardList = new List<GameObject>();
     [SerializeField] List<Button> buttons = new List<Button>();
     private List<BattleModeCard> handList = new List<BattleModeCard>();
@@ -105,6 +106,14 @@ public class MyHandCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].GetComponent<BattleHandCardUtil>().ResetSelected();
+        }
+    }
+
+    public void CallResetSelected2()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].GetComponent<BattleHandCardUtil>().ResetSelected(m_HandOverDialog.HandOverBoolList[cursorNum + i]);
         }
     }
 

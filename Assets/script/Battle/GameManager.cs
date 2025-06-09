@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public List<BattleModeCard> enemyFieldList = new List<BattleModeCard> { null, null, null, null, null };
 
     public List<BattleModeCard> myMariganList = new List<BattleModeCard>();
-    public List<BattleModeCard> HandOverList = new List<BattleModeCard>();
 
     public BattleModeCard MyClimaxCard = null;
     public BattleModeCard EnemyClimaxCard = null;
@@ -341,21 +340,6 @@ public class GameManager : MonoBehaviour
         return m_MyMainCardsManager;
     }
 
-    public void HandOver()
-    {
-        for (int i = 0; i < HandOverList.Count; i++)
-        {
-            myHandList.Remove(HandOverList[i]);
-            GraveYardList.Add(HandOverList[i]);
-        }
-        HandOverList = new List<BattleModeCard>();
-        Syncronize();
-
-        m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
-
-        ReceiveTurnChange2();
-    }
-
     public void LevelUp(int num)
     {
         myLevelList.Add(myClockList[num]);
@@ -643,9 +627,8 @@ public class GameManager : MonoBehaviour
         ReceiveTurnChange2();
     }
 
-    private void ReceiveTurnChange2()
+    public void ReceiveTurnChange2()
     {
-        Debug.Log("ReceiveTurnChange2+");
         DiscardClimaxCard();
         SwitchTurnUtil();
         m_BattleStrix.RpcToAll("SendReceiveReadyOK", isFirstAttacker);

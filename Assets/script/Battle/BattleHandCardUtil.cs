@@ -22,6 +22,7 @@ public class BattleHandCardUtil : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] NotEraseDialog m_NotEraseDialog;
+    [SerializeField] HandOverDialog m_HandOverDialog;
 
     public void setBattleModeCard(BattleModeCard card)
     {
@@ -132,17 +133,31 @@ public class BattleHandCardUtil : MonoBehaviour
     {
         if (isSelected)
         {
-            m_GameManager.HandOverList.Remove(m_BattleModeCard);
+            m_HandOverDialog.HandOverBoolList[num + m_MyHandCardsManager.cursorNum] = false;
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
         }
         else
         {
-            m_GameManager.HandOverList.Add(m_BattleModeCard);
+            m_HandOverDialog.HandOverBoolList[num + m_MyHandCardsManager.cursorNum] = true;
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
         }
         m_DialogManager.HandOverDialog(EnumController.HandOverDialogParamater.Confirm);
+    }
+
+    public void ResetSelected(bool b)
+    {
+        if (b)
+        {
+            isSelected = true;
+            image.color = new Color(1, 1, 1, 125f / 255f);
+        }
+        else
+        {
+            isSelected = false;
+            image.color = new Color(1, 1, 1, 255 / 255);
+        }
     }
 
     private void MariganClick()
@@ -289,6 +304,11 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyHandCardsManager.cursorNum++;
         m_GameManager.Syncronize();
+
+        if(m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.HAND_OVER && m_GameManager.phase == EnumController.Turn.Encore)
+        {
+            m_MyHandCardsManager.CallResetSelected2();
+        }
     }
 
     // leftCard‚ªƒNƒŠƒbƒN‚³‚ê‚½‚Æ‚«
@@ -300,6 +320,11 @@ public class BattleHandCardUtil : MonoBehaviour
         }
         m_MyHandCardsManager.cursorNum--;
         m_GameManager.Syncronize();
+
+        if (m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.HAND_OVER && m_GameManager.phase == EnumController.Turn.Encore)
+        {
+            m_MyHandCardsManager.CallResetSelected2();
+        }
     }
 
     private bool ConfirmStockForCost(int num)
