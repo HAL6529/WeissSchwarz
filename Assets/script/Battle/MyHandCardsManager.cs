@@ -115,6 +115,16 @@ public class MyHandCardsManager : MonoBehaviour
         {
             CardList[i].GetComponent<BattleHandCardUtil>().ResetSelected(m_HandOverDialog.HandOverBoolList[cursorNum + i]);
         }
+
+        if(cursorNum > 0)
+        {
+            leftCard.GetComponent<BattleHandCardUtil>().ResetSelected(m_HandOverDialog.HandOverBoolList[cursorNum - 1]);
+        }
+
+        if(handList.Count - HAND_DISPLAY_NUM >= cursorNum)
+        {
+            rightCard.GetComponent<BattleHandCardUtil>().ResetSelected(m_HandOverDialog.HandOverBoolList[cursorNum + HAND_DISPLAY_NUM - 1]);
+        }
     }
 
     public void CallNotShowPlayButton()
