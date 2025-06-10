@@ -18,6 +18,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text attribute;
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
+    [SerializeField] GameObject PowerObj;
 
     [SerializeField] RectTransform m_RectTransformForText1;
 
@@ -62,6 +63,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = card.level.ToString();
             power.text = card.power.ToString();
             soulIndex.text = card.soul.ToString();
+            PowerObj.SetActive(true);
         }
         else if(card.type == EnumController.Type.EVENT)
         {
@@ -69,6 +71,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = card.level.ToString();
             power.text = null;
             soulIndex.text = null;
+            PowerObj.SetActive(false);
         }
         else
         {
@@ -76,6 +79,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = null;
             power.text = null;
             soulIndex.text = null;
+            PowerObj.SetActive(false);
         }
 
         if (card.type == EnumController.Type.CHARACTER)
@@ -183,7 +187,7 @@ public class BattleModeGuide : MonoBehaviour
         }
 
         level.color = new Color(0, 0, 0, 1);
-        power.color = new Color(0, 0, 0, 1);
+        power.color = new Color(1, 1, 1, 1);
         soulIndex.color = new Color(0, 0, 0, 1);
         // âÊñ ÇêÆÇ¶ÇÈ
         Canvas.ForceUpdateCanvases();
@@ -218,15 +222,15 @@ public class BattleModeGuide : MonoBehaviour
         // powerÇ™å≥ÅXÇ∆àŸÇ»Ç¡ÇƒÇ¢ÇΩèÍçá
         if (card.power > NowCard.power)
         {
-            power.color = new Color(1, 0, 0, 1);
+            power.color = new Color(1, 70f / 255f, 70f / 255f, 1);
         }
         else if (card.power == NowCard.power)
         {
-            power.color = new Color(0, 0, 0, 1);
+            power.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            power.color = new Color(0, 140f / 255f, 0, 1);
+            power.color = new Color(110f / 255f, 230f / 255f, 110f / 255f, 1);
         }
 
         // soulÇ™å≥ÅXÇ∆àŸÇ»Ç¡ÇƒÇ¢ÇΩèÍçá
