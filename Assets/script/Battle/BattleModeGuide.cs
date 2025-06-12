@@ -16,6 +16,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text power;
     [SerializeField] Text soulIndex;
     [SerializeField] Text attribute;
+    [SerializeField] Image Name;
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
     [SerializeField] GameObject PowerObj;
@@ -32,6 +33,10 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite soul;
     [SerializeField] Sprite stock;
     [SerializeField] Sprite treasure;
+    [SerializeField] Sprite name_b;
+    [SerializeField] Sprite name_g;
+    [SerializeField] Sprite name_r;
+    [SerializeField] Sprite name_y;
     CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
     ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
@@ -168,7 +173,26 @@ public class BattleModeGuide : MonoBehaviour
                 break;
         }
 
-        if(Trigger1.sprite == null)
+        switch (card.color)
+        {
+            case EnumController.CardColor.BLUE:
+                Name.sprite = name_b;
+                break;
+            case EnumController.CardColor.GREEN:
+                Name.sprite = name_g;
+                break;
+            case EnumController.CardColor.RED:
+                Name.sprite = name_r;
+                break;
+            case EnumController.CardColor.YELLOW:
+                Name.sprite = name_y;
+                break;
+            default:
+                Name.sprite = null;
+                break;
+        }
+
+        if (Trigger1.sprite == null)
         {
             Trigger1.color = new Color(1, 1, 1, 0);
         }
