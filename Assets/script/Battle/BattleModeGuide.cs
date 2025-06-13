@@ -17,8 +17,10 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text soulIndex;
     [SerializeField] Text attribute;
     [SerializeField] Image Name;
+    [SerializeField] Image Lv;
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
+    [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject PowerObj;
 
     [SerializeField] RectTransform m_RectTransformForText1;
@@ -37,6 +39,10 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite name_g;
     [SerializeField] Sprite name_r;
     [SerializeField] Sprite name_y;
+    [SerializeField] Sprite lv_b;
+    [SerializeField] Sprite lv_g;
+    [SerializeField] Sprite lv_r;
+    [SerializeField] Sprite lv_y;
     CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
     ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
@@ -68,6 +74,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = card.level.ToString();
             power.text = card.power.ToString();
             soulIndex.text = card.soul.ToString();
+            LevelObj.SetActive(true);
             PowerObj.SetActive(true);
         }
         else if(card.type == EnumController.Type.EVENT)
@@ -76,6 +83,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = card.level.ToString();
             power.text = null;
             soulIndex.text = null;
+            LevelObj.SetActive(true);
             PowerObj.SetActive(false);
         }
         else
@@ -84,6 +92,7 @@ public class BattleModeGuide : MonoBehaviour
             level.text = null;
             power.text = null;
             soulIndex.text = null;
+            LevelObj.SetActive(false);
             PowerObj.SetActive(false);
         }
 
@@ -177,15 +186,19 @@ public class BattleModeGuide : MonoBehaviour
         {
             case EnumController.CardColor.BLUE:
                 Name.sprite = name_b;
+                Lv.sprite = lv_b;
                 break;
             case EnumController.CardColor.GREEN:
                 Name.sprite = name_g;
+                Lv.sprite = lv_g;
                 break;
             case EnumController.CardColor.RED:
                 Name.sprite = name_r;
+                Lv.sprite = lv_r;
                 break;
             case EnumController.CardColor.YELLOW:
                 Name.sprite = name_y;
+                Lv.sprite = lv_y;
                 break;
             default:
                 Name.sprite = null;
@@ -210,7 +223,7 @@ public class BattleModeGuide : MonoBehaviour
             Trigger2.color = new Color(1, 1, 1, 1);
         }
 
-        level.color = new Color(0, 0, 0, 1);
+        level.color = new Color(1, 1, 1, 1);
         power.color = new Color(1, 1, 1, 1);
         soulIndex.color = new Color(0, 0, 0, 1);
         // âÊñ ÇêÆÇ¶ÇÈ
@@ -233,14 +246,15 @@ public class BattleModeGuide : MonoBehaviour
         // levelÇ™å≥ÅXÇ∆àŸÇ»Ç¡ÇƒÇ¢ÇΩèÍçá
         if(card.level > NowCard.level)
         {
-            level.color = new Color(1, 0, 0, 1);
-        }else if(card.level == NowCard.level)
+            level.color = new Color(1, 70f / 255f, 70f / 255f, 1);
+        }
+        else if(card.level == NowCard.level)
         {
-            level.color = new Color(0, 0, 0, 1);
+            level.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            level.color = new Color(0, 140f / 255f, 0, 1);
+            level.color = new Color(110f / 255f, 230f / 255f, 110f / 255f, 1);
         }
 
         // powerÇ™å≥ÅXÇ∆àŸÇ»Ç¡ÇƒÇ¢ÇΩèÍçá
