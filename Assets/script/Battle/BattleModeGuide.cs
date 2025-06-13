@@ -21,6 +21,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Image Trigger1;
     [SerializeField] Image Trigger2;
     [SerializeField] GameObject LevelObj;
+    [SerializeField] GameObject CostObj;
     [SerializeField] GameObject PowerObj;
 
     [SerializeField] RectTransform m_RectTransformForText1;
@@ -75,6 +76,7 @@ public class BattleModeGuide : MonoBehaviour
             power.text = card.power.ToString();
             soulIndex.text = card.soul.ToString();
             LevelObj.SetActive(true);
+            CostObj.SetActive(true);
             PowerObj.SetActive(true);
         }
         else if(card.type == EnumController.Type.EVENT)
@@ -84,6 +86,7 @@ public class BattleModeGuide : MonoBehaviour
             power.text = null;
             soulIndex.text = null;
             LevelObj.SetActive(true);
+            CostObj.SetActive(true);
             PowerObj.SetActive(false);
         }
         else
@@ -93,6 +96,7 @@ public class BattleModeGuide : MonoBehaviour
             power.text = null;
             soulIndex.text = null;
             LevelObj.SetActive(false);
+            CostObj.SetActive(false);
             PowerObj.SetActive(false);
         }
 
