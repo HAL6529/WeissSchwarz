@@ -15,7 +15,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Text cost;
     [SerializeField] Text power;
     [SerializeField] Text soulIndex;
-    [SerializeField] Text attribute;
+    [SerializeField] List<Text> attributeList;
     [SerializeField] Image Name;
     [SerializeField] Image Lv;
     [SerializeField] Image Trigger1;
@@ -23,6 +23,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject CostObj;
     [SerializeField] GameObject PowerObj;
+    [SerializeField] List<GameObject> AttributeObj;
 
     [SerializeField] RectTransform m_RectTransformForText1;
 
@@ -69,7 +70,17 @@ public class BattleModeGuide : MonoBehaviour
         image.sprite = card.sprite;
         name.text = card.name;
 
-        if(card.type == EnumController.Type.CHARACTER)
+        for(int i = 0; i < attributeList.Count; i++)
+        {
+            attributeList[i].text = "";
+        }
+
+        for (int i = 0; i < AttributeObj.Count; i++)
+        {
+            AttributeObj[i].SetActive(false);
+        }
+
+        if (card.type == EnumController.Type.CHARACTER)
         {
             cost.text = card.cost.ToString();
             level.text = card.level.ToString();
@@ -104,25 +115,22 @@ public class BattleModeGuide : MonoBehaviour
         {
             if (card.attribute.Count > 0)
             {
-                string attributeText = "";
                 for (int i = 0; i < card.attribute.Count; i++)
                 {
-                    attributeText = attributeText + "<" + m_ExtendUtil.AttributeConvertToString(card.attribute[i]) + ">";
-                    if(i < card.attribute.Count - 1)
-                    {
-                        attributeText = attributeText + ",";
-                    }
+                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(card.attribute[i]);
+                    AttributeObj[i].SetActive(true);
                 }
-                attribute.text = attributeText;
             }
             else
             {
-                attribute.text = "<ì¡í•Ç»Çµ>";
+                attributeList[0].text = "ì¡í•Ç»Çµ";
+                AttributeObj[0].SetActive(true);
             }
         }
         else
         {
-            attribute.text = "";
+            attributeList[0].text = "";
+            AttributeObj[0].SetActive(false);
         }
 
  
@@ -297,25 +305,22 @@ public class BattleModeGuide : MonoBehaviour
         {
             if (NowCard.attribute.Count > 0)
             {
-                string attributeText = "";
                 for (int i = 0; i < NowCard.attribute.Count; i++)
                 {
-                    attributeText = attributeText + "<" + m_ExtendUtil.AttributeConvertToString(NowCard.attribute[i]) + ">";
-                    if (i < NowCard.attribute.Count - 1)
-                    {
-                        attributeText = attributeText + ",";
-                    }
+                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(NowCard.attribute[i]);
+                    AttributeObj[i].SetActive(true);
                 }
-                attribute.text = attributeText;
             }
             else
             {
-                attribute.text = "<ì¡í•Ç»Çµ>";
+                attributeList[0].text = "ì¡í•Ç»Çµ";
+                AttributeObj[0].SetActive(true);
             }
         }
         else
         {
-            attribute.text = "";
+            attributeList[0].text = "";
+            AttributeObj[0].SetActive(false);
         }
         // âÊñ ÇêÆÇ¶ÇÈ
         Canvas.ForceUpdateCanvases();
