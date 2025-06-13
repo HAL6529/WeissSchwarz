@@ -23,9 +23,8 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject CostObj;
     [SerializeField] GameObject PowerObj;
+    [SerializeField] GameObject SoulObj;
     [SerializeField] List<GameObject> AttributeObj;
-
-    [SerializeField] RectTransform m_RectTransformForText1;
 
     [SerializeField] Sprite bounce;
     [SerializeField] Sprite choice;
@@ -45,6 +44,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite lv_g;
     [SerializeField] Sprite lv_r;
     [SerializeField] Sprite lv_y;
+    [SerializeField] RectTransform m_RectTransform;
     CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
     ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
@@ -82,6 +82,7 @@ public class BattleModeGuide : MonoBehaviour
 
         if (card.type == EnumController.Type.CHARACTER)
         {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
             cost.text = card.cost.ToString();
             level.text = card.level.ToString();
             power.text = card.power.ToString();
@@ -89,9 +90,11 @@ public class BattleModeGuide : MonoBehaviour
             LevelObj.SetActive(true);
             CostObj.SetActive(true);
             PowerObj.SetActive(true);
+            SoulObj.SetActive(true);
         }
         else if(card.type == EnumController.Type.EVENT)
         {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
             cost.text = card.cost.ToString();
             level.text = card.level.ToString();
             power.text = null;
@@ -99,9 +102,11 @@ public class BattleModeGuide : MonoBehaviour
             LevelObj.SetActive(true);
             CostObj.SetActive(true);
             PowerObj.SetActive(false);
+            SoulObj.SetActive(false);
         }
         else
         {
+            m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
             cost.text = null;
             level.text = null;
             power.text = null;
@@ -109,6 +114,7 @@ public class BattleModeGuide : MonoBehaviour
             LevelObj.SetActive(false);
             CostObj.SetActive(false);
             PowerObj.SetActive(false);
+            SoulObj.SetActive(false);
         }
 
         if (card.type == EnumController.Type.CHARACTER)
