@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Jake: Bacon Pancakes‚Ì‚½‚ß‚ÉŽg‚í‚ê‚Ä‚¢‚é
-
 public class CharacterSelectDialog : MonoBehaviour
 {
     [SerializeField] List<Image> images = new List<Image>();
