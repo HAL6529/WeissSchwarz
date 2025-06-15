@@ -77,18 +77,6 @@ public class DialogManager : MonoBehaviour
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, ParamaterNum1, ParamaterNum2, ParamaterNum3);
     }
 
-    /// <summary>
-    /// アンコールダイアログ用
-    /// </summary>
-    /// <param name="paramater"></param>
-    /// <param name="m_BattleModeCard"></param>
-    /// <param name="num"></param>
-    /// <param name="isReceivedFromRPC"></param>
-    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, bool isReceivedFromRPC)
-    {
-        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, isReceivedFromRPC);
-    }
-
     public void OKDialog(EnumController.OKDialogParamater paramater)
     {
         m_OKDialog.SetParamater(paramater);

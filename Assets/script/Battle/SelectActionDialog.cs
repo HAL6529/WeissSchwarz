@@ -156,6 +156,10 @@ public class SelectActionDialog : MonoBehaviour
                 text1.text = "【自】 他のバトルしているあなたのキャラが【リバース】した時、";
                 text2.text = "あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";
                 break;
+            case EnumController.Action.DC_W01_10T:
+                text1.text = "【【自】 このカードとバトルしているキャラが【リバース】した時、";
+                text2.text = "あなたはそのキャラを山札の上に置いてよい。";
+                break;
             case EnumController.Action.DC_W01_16T:
                 text1.text = "【自】 このカードが【リバース】した時、";
                 text2.text = "このカードとバトルしているキャラのレベルが1以下なら、";
