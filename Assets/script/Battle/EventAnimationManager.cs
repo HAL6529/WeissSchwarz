@@ -187,11 +187,11 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
                     m_GameManager.Syncronize();
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.DC_W01_07T:
                     // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.DC_W01_10T:
                     // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
@@ -233,7 +233,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     m_GameManager.Syncronize();
 
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ このカードを思い出にする。
@@ -272,7 +272,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     m_GameManager.Syncronize();
 
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_05T:
                     // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
@@ -296,7 +296,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
                     m_GameManager.Syncronize();
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.LB_W02_14T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
@@ -361,7 +361,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_04T:
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、
                     // そのターン中、パワーを＋2000し、ソウルを＋1。
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.P3_S01_07T:
                     //【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
@@ -371,7 +371,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_11T:
                     //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.P3_S01_12T:
                     // 【カウンター】 あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000し、ソウルを＋1。
@@ -381,7 +381,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
                     m_GameManager.Syncronize();
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.P3_S01_16T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
@@ -424,7 +424,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
                     m_GameManager.Syncronize();
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_14T:
                     Debug.Log("EventAnimationManager:LB_W02_14T");
@@ -445,7 +445,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_01T:
                     // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、
                     // あなたは相手のキャラを1枚選び、手札に戻してよい。
-                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     break;
                 case EnumController.CardNo.P3_S01_04T:
                     // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。

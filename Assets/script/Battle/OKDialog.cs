@@ -180,7 +180,7 @@ public class OKDialog : MonoBehaviour
 
                             m_GameManager.ActionList.Add(action);
 
-                            m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
+                            m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
 
                             m_MyHandCardsManager.ActiveAllMyHand();
                             m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
