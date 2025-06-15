@@ -30,8 +30,6 @@ public class YesOrNoDialog : MonoBehaviour
 
     private EnumController.Attack attackStatus = EnumController.Attack.VOID;
 
-    private bool isReceivedFromRPC = false;
-
     private StringValues stringValues = new StringValues();
 
     /// <summary>
@@ -51,47 +49,35 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater)
     {
-        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID, false);
+        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card)
     {
-        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, false);
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
-        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, false);
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
     {
-        SetParamater(paramater, card, num, -1, -1, status, false);
+        SetParamater(paramater, card, num, -1, -1, status);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
     {
-        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID, false);
+        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
     {
-        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID, false);
+        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID);
     }
 
-    /// <summary>
-    /// アンコールダイアログ用
-    /// </summary>
-    /// <param name="paramater"></param>
-    /// <param name="m_BattleModeCard"></param>
-    /// <param name="num"></param>
-    /// <param name="isReceivedFromRPC"></param>
-    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, bool isReceivedFromRPC)
-    {
-        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, isReceivedFromRPC);
-    }
-
-    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status, bool isReceivedFromRPC)
+    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status)
     {
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
@@ -103,7 +89,6 @@ public class YesOrNoDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         cardObject.SetActive(false);
         m_YesOrNoDialogParamater = paramater;
-        this.isReceivedFromRPC = isReceivedFromRPC;
         SetText();
         WaitDialog();
     }
@@ -233,6 +218,19 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
+                break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                switch (m_BattleModeCard.cardNo)
+                {
+                    case EnumController.CardNo.DC_W01_07T:
+                    case EnumController.CardNo.DC_W01_10T:
+                    case EnumController.CardNo.DC_W01_16T:
+                    case EnumController.CardNo.LB_W02_19T:
+                        m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;
@@ -412,6 +410,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+                m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                 m_GameManager.ExecuteActionList();
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:

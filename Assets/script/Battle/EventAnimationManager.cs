@@ -196,6 +196,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_10T:
                     // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
                     m_BattleStrix.RpcToAll("ToDeckTopFromField", place, m_GameManager.isTurnPlayer);
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.DC_W01_12T:
@@ -222,6 +223,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_16T:
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.DC_W01_18T:
@@ -345,6 +347,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     m_GameManager.Syncronize();
                     m_GameManager.Draw();
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
                     return;
                 default:
