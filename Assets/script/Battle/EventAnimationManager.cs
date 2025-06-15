@@ -231,7 +231,6 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
                     m_GameManager.Syncronize();
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
@@ -271,7 +270,6 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
                         m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
                     }
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
                     m_GameManager.Syncronize();
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
@@ -374,6 +372,16 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_11T:
                     //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.enemyFieldList, -1);
+                    return;
+                case EnumController.CardNo.P3_S01_12T:
+                    // 【カウンター】 あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000し、ソウルを＋1。
+                    for (int i = 0; i < 2; i++)
+                    {
+                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    }
+                    m_GameManager.Syncronize();
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, m_GameManager.myFieldList, -1);
                     return;
                 case EnumController.CardNo.P3_S01_16T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。

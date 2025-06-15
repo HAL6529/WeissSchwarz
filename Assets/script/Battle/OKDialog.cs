@@ -167,14 +167,9 @@ public class OKDialog : MonoBehaviour
                             pumpPoint = 3000;
                             cost = 1;
                             break;
+                        // イベントカードの使用の場合
                         case EnumController.CardNo.LB_W02_04T:
-                            /*for (int i = 0; i < 1; i++)
-                            {
-                                m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                                m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                            }
-                            m_GameManager.myHandList.Remove(m_BattleModeCard);
-                            m_GameManager.Syncronize();*/
+                        case EnumController.CardNo.P3_S01_12T:
                             m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
