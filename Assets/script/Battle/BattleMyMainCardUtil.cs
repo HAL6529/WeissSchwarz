@@ -798,6 +798,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         m_GameManager.myFieldList[PlaceNum] = card;
         m_GameManager.myHandList.Remove(card);
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         setBattleModeCard(card, state);
         m_GameManager.Syncronize();
 

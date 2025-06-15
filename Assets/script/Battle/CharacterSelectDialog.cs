@@ -52,6 +52,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_02T:
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_12T:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -136,6 +137,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_01T:
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_11T:
+            case EnumController.CardNo.P3_S01_12T:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -200,6 +202,9 @@ public class CharacterSelectDialog : MonoBehaviour
         int power = 0;
         switch (m_BattleModeCard.cardNo)
         {
+            case EnumController.CardNo.P3_S01_12T:
+                power = 3000;
+                break;
             case EnumController.CardNo.P3_S01_04T:
                 power = 2000;
                 break;
@@ -223,6 +228,10 @@ public class CharacterSelectDialog : MonoBehaviour
 
         for (int i = 0; i < ButtonSelectedNumList.Count; i++)
         {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
             switch (m_BattleModeCard.cardNo)
             {
                 case EnumController.CardNo.AT_WX02_A02:
@@ -259,6 +268,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     }
                     break;
                 case EnumController.CardNo.P3_S01_04T:
+                case EnumController.CardNo.P3_S01_12T:
                     // 自分のカードのパワーとソウルを操作する
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
@@ -288,6 +298,8 @@ public class CharacterSelectDialog : MonoBehaviour
         {
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
+            case EnumController.CardNo.P3_S01_12T:
+                m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 break;
             default:
