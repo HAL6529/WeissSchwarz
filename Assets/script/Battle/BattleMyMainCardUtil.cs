@@ -790,14 +790,15 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <summary>
     /// ŽèŽD‚©‚ç•‘‘ä‚É’u‚©‚ê‚éŽž‚ÉŒÄ‚Î‚ê‚é
     /// </summary>
-    public void PutFieldFromHand(BattleModeCard card, EnumController.State state)
+    public void PutFieldFromHand(int num, EnumController.State state)
     {
+        BattleModeCard card = m_GameManager.myHandList[num];
         if (m_GameManager.myFieldList[PlaceNum] != null)
         {
             m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[PlaceNum]);
         }
         m_GameManager.myFieldList[PlaceNum] = card;
-        m_GameManager.myHandList.Remove(card);
+        m_GameManager.myHandList.RemoveAt(num);
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         setBattleModeCard(card, state);

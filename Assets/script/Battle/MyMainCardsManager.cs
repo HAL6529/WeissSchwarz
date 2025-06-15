@@ -93,9 +93,9 @@ public class MyMainCardsManager : MonoBehaviour
     /// <summary>
     /// ŽèŽD‚©‚ç•‘‘ä‚É’u‚©‚ê‚éŽž‚ÉŒÄ‚Î‚ê‚é
     /// </summary>
-    public void CallPutFieldFromHand(int place, BattleModeCard card, EnumController.State state)
+    public void CallPutFieldFromHand(int place, int num, EnumController.State state)
     {
-        CardList[place].PutFieldFromHand(card, state);
+        CardList[place].PutFieldFromHand(num, state);
     }
 
     /// <summary>
