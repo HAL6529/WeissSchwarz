@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Jake: Bacon Pancakes‚Ì‚½‚ß‚ÉŽg‚í‚ê‚Ä‚¢‚é
-
 public class CharacterSelectDialog : MonoBehaviour
 {
     [SerializeField] List<Image> images = new List<Image>();
@@ -16,6 +14,7 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] RectTransform m_RectTransform;
     private int place = -1;
 
     /// <summary>
@@ -33,8 +32,19 @@ public class CharacterSelectDialog : MonoBehaviour
     private EnumController.Attack status = EnumController.Attack.VOID;
     private BattleModeCard m_BattleModeCard = null;
 
-    public void Open(BattleModeCard card, List<BattleModeCard> list, int place)
+    public void Open(BattleModeCard card, bool isMine, int place)
     {
+        List<BattleModeCard> list = new List<BattleModeCard>();
+        if (isMine)
+        {
+            list = m_GameManager.myFieldList;
+            m_RectTransform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            list = m_GameManager.enemyFieldList;
+            m_RectTransform.rotation = Quaternion.Euler(0, 0, 180.0f);
+        }
         m_OKButton.SetActive(false);
         ButtonSelectedNum = -1;
         ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };

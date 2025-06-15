@@ -482,7 +482,7 @@ public class Effect : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action);
 
-                m_GameManager.m_DialogManager.CharacterSelectDialog(card, m_GameManager.myFieldList, place);
+                m_GameManager.m_DialogManager.CharacterSelectDialog(card, true, place);
                 return true;
             case EnumController.CardNo.DC_W01_02T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「結婚式の歌姫」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
