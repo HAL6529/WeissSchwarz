@@ -112,9 +112,9 @@ public class DialogManager : MonoBehaviour
         m_MoveDialog.Open(place, card);
     }
 
-    public void MainDialog(BattleModeCard card)
+    public void MainDialog(BattleModeCard card, int HandNum)
     {
-        m_MainDialog.SetBattleMordCard(card);
+        m_MainDialog.SetBattleMordCard(card, HandNum);
     }
 
     public void LevelUpDialog(List<BattleModeCard> myClockList)

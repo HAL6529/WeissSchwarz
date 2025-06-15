@@ -195,7 +195,6 @@ public class SelectActionDialog : MonoBehaviour
 
     public void OffDialog()
     {
-        Debug.Log("SelectActionDialog:OffDialog");
         this.gameObject.SetActive(false);
     }
 

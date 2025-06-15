@@ -315,7 +315,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
-                m_DialogManager.MainDialog(m_BattleModeCard);
+                m_DialogManager.MainDialog(m_BattleModeCard, ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
                 m_EffectBondForHandToField.BondForCost(sulvageCardNo, cost);

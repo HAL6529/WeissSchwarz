@@ -16,6 +16,7 @@ public class MainDialog : MonoBehaviour
 
     private List<bool> isSelected = new List<bool>{false, false, false, false, false };
     private int place = -1;
+    private int HandNum = -1;
     private BattleModeCard m_BattleModeCard = null;
     public Effect m_Effect;
 
@@ -62,7 +63,7 @@ public class MainDialog : MonoBehaviour
                 m_GameManager.GraveYardList.Add(temp);
                 m_GameManager.myStockList.Remove(temp);
             }
-            m_MyMainCardsManager.CallPutFieldFromHand(place, m_BattleModeCard, EnumController.State.STAND);
+            m_MyMainCardsManager.CallPutFieldFromHand(place, HandNum, EnumController.State.STAND);
         }
         m_MyHandCardsManager.CallNotShowPlayButton();
         OffMainDialog();
@@ -77,11 +78,12 @@ public class MainDialog : MonoBehaviour
         m_MyMainCardsManager.CallNotShowMoveButton();
     }
 
-    public void SetBattleMordCard(BattleModeCard card)
+    public void SetBattleMordCard(BattleModeCard card, int HandNum)
     {
         ResetSelectZone();
         this.gameObject.SetActive(true);
         m_BattleModeCard = card;
+        this.HandNum = HandNum;
     }
 
     /// <summary>
@@ -102,5 +104,6 @@ public class MainDialog : MonoBehaviour
         OKButton.SetActive(false);
         isSelected = new List<bool> { false, false, false, false, false };
         place = -1;
+        HandNum = -1;
     }
 }

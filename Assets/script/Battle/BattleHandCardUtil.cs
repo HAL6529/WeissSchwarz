@@ -254,7 +254,7 @@ public class BattleHandCardUtil : MonoBehaviour
         switch (m_BattleModeCard.type)
         {
             case EnumController.Type.CHARACTER:
-                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard);
+                m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard, num);
                 return;
             case EnumController.Type.EVENT:
                 switch (m_BattleModeCard.cardNo)
