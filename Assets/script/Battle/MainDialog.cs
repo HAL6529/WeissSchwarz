@@ -84,6 +84,19 @@ public class MainDialog : MonoBehaviour
         this.gameObject.SetActive(true);
         m_BattleModeCard = card;
         this.HandNum = HandNum;
+
+        for(int i = 0; i < images.Count; i++)
+        {
+            if(m_GameManager.myFieldList[i] == null)
+            {
+                images[i].sprite = null;
+            }
+            else
+            {
+                images[i].sprite = m_GameManager.myFieldList[i].sprite;
+            }
+            
+        }
     }
 
     /// <summary>
