@@ -43,6 +43,10 @@ public class LoadButton : MonoBehaviour
         {
             m_DeckListManager.LevelSortDeckList();
         }
+        if (m_DeckListManager.isColorSort)
+        {
+            m_DeckListManager.ColorSortDeckList();
+        }
         m_DeckListManager.updateDeckList();
         // Debug.Log(File.ReadAllText(@"./Save/" + DeckName + ".txt"));
     }

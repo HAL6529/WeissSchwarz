@@ -22,9 +22,9 @@ public class DeckListManager : MonoBehaviour
     [SerializeField] GameObject Attribute1Obj;
     [SerializeField] GameObject Attribute2Obj;
     [SerializeField] GameObject Attribute3Obj;
-    [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject cardInfoImageObject;
     [SerializeField] Image LevelSortBtnImage;
+    [SerializeField] Image ColorSortBtnImage;
     [SerializeField] CardGuideUtil m_CardGuideUtil;
 
     RectTransform m_RectTransform;
@@ -32,6 +32,7 @@ public class DeckListManager : MonoBehaviour
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
 
     public bool isLevelSort = false;
+    public bool isColorSort = false;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +69,10 @@ public class DeckListManager : MonoBehaviour
         {
             LevelSortDeckList();
         }
+        if (isColorSort)
+        {
+            ColorSortDeckList();
+        }
         updateDeckList();
     }
 
@@ -100,6 +105,72 @@ public class DeckListManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ColorSortDeckList()
+    {
+        List<cardInfo> BlueList = new List<cardInfo>();
+        List<cardInfo> GreenList = new List<cardInfo>();
+        List<cardInfo> RedList = new List<cardInfo>();
+        List<cardInfo> YellowList = new List<cardInfo>();
+        List<cardInfo> PurpleList = new List<cardInfo>();
+        for (int i = 0; i < cardInfoList.Count; i++)
+        {
+            switch (cardInfoList[i].color)
+            {
+                case EnumController.CardColor.BLUE:
+                    BlueList.Add(cardInfoList[i]);
+                    break;
+                case EnumController.CardColor.GREEN:
+                    GreenList.Add(cardInfoList[i]);
+                    break;
+                case EnumController.CardColor.RED:
+                    RedList.Add(cardInfoList[i]);
+                    break;
+                case EnumController.CardColor.YELLOW:
+                    YellowList.Add(cardInfoList[i]);
+                    break;
+                default:
+                    PurpleList.Add(cardInfoList[i]);
+                    break;
+            }
+        }
+        cardInfoList = new List<cardInfo>();
+
+        for (int i = 0; i < BlueList.Count; i++)
+        {
+            cardInfoList.Add(BlueList[i]);
+        }
+        for (int i = 0; i < GreenList.Count; i++)
+        {
+            cardInfoList.Add(GreenList[i]);
+        }
+        for (int i = 0; i < RedList.Count; i++)
+        {
+            cardInfoList.Add(RedList[i]);
+        }
+        for (int i = 0; i < YellowList.Count; i++)
+        {
+            cardInfoList.Add(YellowList[i]);
+        }
+        for (int i = 0; i < PurpleList.Count; i++)
+        {
+            cardInfoList.Add(PurpleList[i]);
+        }
+    }
+
+    public void ColorSortBtn()
+    {
+        if (isColorSort)
+        {
+            isColorSort = false;
+            ColorSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 150f / 255f);
+            return;
+        }
+        isColorSort = true;
+        ColorSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        ColorSortDeckList();
+        updateDeckList();
     }
 
     public void LevelSortDeckList()
@@ -181,6 +252,10 @@ public class DeckListManager : MonoBehaviour
         if (isLevelSort)
         {
             LevelSortDeckList();
+        }
+        if (isColorSort)
+        {
+            ColorSortDeckList();
         }
         updateDeckList();
     }
