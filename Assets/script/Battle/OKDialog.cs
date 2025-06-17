@@ -154,19 +154,24 @@ public class OKDialog : MonoBehaviour
 
                     switch (m_BattleModeCard.cardNo)
                     {
+                        case EnumController.CardNo.AT_WX02_A05:
+                        case EnumController.CardNo.DC_W01_17T:
                         case EnumController.CardNo.LB_W02_07T:
                         case EnumController.CardNo.P3_S01_03T:
-                            pumpPoint = 2000;
-                            cost = 1;
-                            break;
-                        case EnumController.CardNo.AT_WX02_A05:
-                            pumpPoint = 2500;
-                            cost = 1;
-                            break;
-                        case EnumController.CardNo.DC_W01_17T:
-                            pumpPoint = 3000;
-                            cost = 1;
-                            break;
+                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
+                            m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+
+                            Action conter_action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
+                            conter_action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                            conter_action.SetParamaterNum(ParamaterNum1);
+                            conter_action.SetParamaterNum2(ParamaterNum2);
+
+                            m_GameManager.ActionList.Add(conter_action);
+
+                            m_MyHandCardsManager.ActiveAllMyHand();
+                            m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                            this.gameObject.SetActive(false);
+                            return;
                         // イベントカードの使用の場合
                         case EnumController.CardNo.LB_W02_04T:
                         case EnumController.CardNo.P3_S01_12T:
@@ -189,7 +194,7 @@ public class OKDialog : MonoBehaviour
                         default:
                             break;
                     }
-                    for(int i = 0; i < cost; i++)
+                    /*for(int i = 0; i < cost; i++)
                     {
                         BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
                         m_GameManager.GraveYardList.Add(t);
@@ -198,9 +203,9 @@ public class OKDialog : MonoBehaviour
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.Remove(m_BattleModeCard);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
-                    m_GameManager.Syncronize();
+                    m_GameManager.Syncronize();*/
                 }
-                m_MyHandCardsManager.ActiveAllMyHand();
+                /*m_MyHandCardsManager.ActiveAllMyHand();
                 // --ここから大活躍用--
                 if (m_MyMainCardsManager.GetIsGreatPerformance(1))
                 {
@@ -208,7 +213,7 @@ public class OKDialog : MonoBehaviour
                     break;
                 }
                 // --ここまで大活躍用--
-                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
+                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);*/
                 break;
             // ParamaterNum1: damage, ParamaterNum2: Place
             case EnumController.OKDialogParamater.Counter_Not_Exist:

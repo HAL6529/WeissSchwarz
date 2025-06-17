@@ -80,7 +80,6 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card)
     {
-        Debug.Log("AnimationStart_2");
         isFromRPC = false;
         m_gameObject.SetActive(true);
         effectNum = 1;
@@ -398,6 +397,60 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Draw();
                     break;
                 default:
+                    break;
+            }
+            int pumpPoint = 0;
+            int cost = 0;
+            // Counter—p
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.LB_W02_07T:
+                case EnumController.CardNo.P3_S01_03T:
+                    pumpPoint = 2000;
+                    cost = 1;
+                    for (int i = 0; i < cost; i++)
+                    {
+                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
+                        m_GameManager.GraveYardList.Add(t);
+                        m_GameManager.myStockList.Remove(t);
+                    }
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.AT_WX02_A05:
+                    pumpPoint = 2500;
+                    cost = 1;
+                    for (int i = 0; i < cost; i++)
+                    {
+                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
+                        m_GameManager.GraveYardList.Add(t);
+                        m_GameManager.myStockList.Remove(t);
+                    }
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.DC_W01_17T:
+                    pumpPoint = 3000;
+                    cost = 1;
+                    for (int i = 0; i < cost; i++)
+                    {
+                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
+                        m_GameManager.GraveYardList.Add(t);
+                        m_GameManager.myStockList.Remove(t);
+                    }
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                default: 
                     break;
             }
         }else if(effectNum == 1)
