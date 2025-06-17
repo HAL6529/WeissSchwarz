@@ -196,4 +196,10 @@ public class DeckListManager : MonoBehaviour
 
         return list;
     }
+
+    public void Reset()
+    {
+        cardInfoList = new List<cardInfo>();
+        updateDeckList();
+    }
 }
