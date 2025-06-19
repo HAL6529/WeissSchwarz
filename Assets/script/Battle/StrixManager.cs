@@ -51,6 +51,11 @@ public class StrixManager : MonoBehaviour
     public string Name;
 
     /// <summary>
+    /// Version
+    /// </summary>
+    public double Version = 0.0001;
+
+    /// <summary>
     /// コンストラクタ
     /// </summary>
     public StrixManager()
@@ -66,17 +71,16 @@ public class StrixManager : MonoBehaviour
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
         Name = RoomSelectClass.getName();
-
+        RoomMemberProperties m_RoomMemberProperties = new RoomMemberProperties { name = Name };
         if (roomName == string.Empty || SaveData.cardInfoList.Count != 50)
         {
             SceneManager.LoadScene("RoomSelect");
             return;
         }
-
         IConditionBuilder builder;
         builder = ConditionBuilder.Builder().Field("name").EqualTo(roomName);
         builder.And().Field("password").EqualTo(passPhrase);
-
+        builder.And().Field("key1").EqualTo(Version);
         strixNetwork.applicationId = applicationId;
         strixNetwork.ConnectMasterServer(host, port,
             connectEventHandler: _ => {
@@ -90,7 +94,6 @@ public class StrixManager : MonoBehaviour
                                    var foundRooms = searchResults.roomInfoCollection;
                                    if(foundRooms.Count == 0)
                                    {
-                                       Debug.Log("Success");
                                        isOwner = true;
                                        strixNetwork.CreateRoom(
                                            new RoomProperties
@@ -98,21 +101,13 @@ public class StrixManager : MonoBehaviour
                                                name = roomName,
                                                password = passPhrase,
                                                capacity = 2,
-                                           },
-                                           new RoomMemberProperties
-                                           {
-                                               name = Name
-                                           },
-                                           handler: __ =>
-                                           {
-                                               Debug.Log("RoomCreated");
-                                           },
-                                           failureHandler: createRoomError => Debug.LogError("Could not create room.Reason: " + createRoomError.cause)
-                                       );
+                                               key1 = Version,
+                                           }, m_RoomMemberProperties,
+                                           handler: __ => {},
+                                           failureHandler: createRoomError => { });
                                        return;
                                    }
                                    RoomInfo roomInfo = foundRooms.First();
-                                   Debug.Log(roomInfo.host);
                                    RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs()
                                    {
                                        host = roomInfo.host,
@@ -120,20 +115,14 @@ public class StrixManager : MonoBehaviour
                                        protocol = roomInfo.protocol,
                                        roomId = roomInfo.roomId,
                                        password = passPhrase,
-                                       memberProperties = new RoomMemberProperties
-                                       {
-                                           name = Name
-                                       }
+                                       memberProperties = m_RoomMemberProperties,
                                    };
                                    strixNetwork.JoinRoom(
                                         m_RoomJoinArgs,
                                         OnRoomJoin, 
                                         OnRoomJoinFailed
                                    );
-                                   // m_BattleStrix.RpcToAll("SetGameStartBtn");
-                               },
-                               failureHandler: searchError => Debug.LogError("aa")
-                               );
+                               }, failureHandler: searchError => { });
             }, OnConnectFailedCallback);
     }
 
@@ -159,12 +148,11 @@ public class StrixManager : MonoBehaviour
 
     private void OnRoomJoin(RoomJoinEventArgs args)
     {
-        Debug.Log("succcess");
+
     }
 
     private void OnRoomJoinFailed(FailureEventArgs args)
     {
-        Debug.Log(args);
         var errorCodeException = args.cause as ErrorCodeException;
 
         switch (errorCodeException.errorCode)
@@ -204,6 +192,7 @@ public class StrixManager : MonoBehaviour
                 name = roomName,
                 password = passPhrase,
                 capacity = 2,
+                key1 = Version,
                 isJoinable = false,
             }
             , handler: __ =>{}
