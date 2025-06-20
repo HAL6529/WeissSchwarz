@@ -8,6 +8,7 @@ public class BattleModeCardList : MonoBehaviour
     public List<BattleModeCard> DC_2008TrialDeck = new List<BattleModeCard>();
     public List<BattleModeCard> LittleBusters_2008TrialDeck = new List<BattleModeCard>();
     public List<BattleModeCard> Persona3_2008TrialDeck = new List<BattleModeCard>();
+    public List<BattleModeCard> Persona3 = new List<BattleModeCard>();
 
     public BattleModeCard ConvertCardNoToBattleModeCard(EnumController.CardNo num)
     {
