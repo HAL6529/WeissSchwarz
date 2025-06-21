@@ -8,6 +8,7 @@ public class CardInfoList : MonoBehaviour
     [SerializeField] List<cardInfo> DC_W01_T_CardInfo_list = new List<cardInfo>();
     [SerializeField] List<cardInfo> LB_W02_T_CardInfo_list = new List<cardInfo>();
     [SerializeField] List<cardInfo> P3_S01_T_CardInfo_list = new List<cardInfo>();
+    [SerializeField] List<cardInfo> P3_S01_CardInfo_list = new List<cardInfo>();
 
     public cardInfo Convert(string cardNo)
     {

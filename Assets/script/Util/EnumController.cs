@@ -42,37 +42,49 @@ namespace EnumController
     public enum Attribute
     {
         VOID,
-        NONE,
+        NONE, // 特徴なし
         Ooo,
         Hero,
         Royality,
         Vampire,
-        Animal,
-        Book,
-        Shadow,
-        ShrineMaiden,
-        Sports,
-        Sweets,
-        Magic,
-        Music,
-        Marble,
-        Parasol,
-        Comics,
-        Glasses,
-        Teacher,
-        Banana,
-        Mecha,
-        JapaneseClothes,
-        Pajamas,
-        FairyTale,
-        Fan,
-        God,
-        Ramen,
-        SchoolBag,
-        StudentCouncil,
-        TVMailOrder,
-        Weapon,
-        Will,
+        Animal, // 動物
+        Book, // 本
+        Shadow, // 影
+        ShrineMaiden, // 巫女
+        Sports, // スポーツ
+        Sweets, // お菓子
+        Magic, // 魔法
+        Music, // 音楽
+        Marble, // ビー玉
+        Parasol,　// 日傘
+        Comics, // 漫画
+        Glasses, // メガネ
+        Teacher, // 先生
+        Banana, // バナナ
+        Mecha, // メカ
+        JapaneseClothes, // 和服
+        Pajamas, // パジャマ
+        FairyTale, // 童話
+        Fan, // 扇子
+        God, // 神
+        Ramen, // ラーメン
+        SchoolBag, // ランドセル
+        StudentCouncil, // 生徒会
+        TVMailOrder, // テレビ通販
+        Weapon, // 武器
+        Will, // 遺言
+        Death, // 死
+        Illness, // 病気
+        Swimsuit, // 水着
+        Twins, // 双子
+        Bullying, // いじめ
+        Manager, // マネージャー
+        OnlineGame, //ネトゲ
+        Alcohol, // 酒
+        Gourmet, // グルメ
+        Zen, // 禅
+        Devil, // 悪魔
+        Gag, // だじゃれ
     }
 
     public enum CardColor
@@ -161,6 +173,106 @@ namespace EnumController
         P3_S01_18T,
         P3_S01_19T,
         P3_S01_20T,
+        P3_S01_001,
+        P3_S01_002,
+        P3_S01_003,
+        P3_S01_004,
+        P3_S01_005,
+        P3_S01_006,
+        P3_S01_007,
+        P3_S01_008,
+        P3_S01_009,
+        P3_S01_010,
+        P3_S01_011,
+        P3_S01_012,
+        P3_S01_013,
+        P3_S01_014,
+        P3_S01_015,
+        P3_S01_016,
+        P3_S01_017,
+        P3_S01_018,
+        P3_S01_019,
+        P3_S01_020,
+        P3_S01_021,
+        P3_S01_022,
+        P3_S01_023,
+        P3_S01_024,
+        P3_S01_025,
+        P3_S01_026,
+        P3_S01_027,
+        P3_S01_028,
+        P3_S01_029,
+        P3_S01_030,
+        P3_S01_031,
+        P3_S01_032,
+        P3_S01_033,
+        P3_S01_034,
+        P3_S01_035,
+        P3_S01_036,
+        P3_S01_037,
+        P3_S01_038,
+        P3_S01_039,
+        P3_S01_040,
+        P3_S01_041,
+        P3_S01_042,
+        P3_S01_043,
+        P3_S01_044,
+        P3_S01_045,
+        P3_S01_046,
+        P3_S01_047,
+        P3_S01_048,
+        P3_S01_049,
+        P3_S01_050,
+        P3_S01_051,
+        P3_S01_052,
+        P3_S01_053,
+        P3_S01_054,
+        P3_S01_055,
+        P3_S01_056,
+        P3_S01_057,
+        P3_S01_058,
+        P3_S01_059,
+        P3_S01_060,
+        P3_S01_061,
+        P3_S01_062,
+        P3_S01_063,
+        P3_S01_064,
+        P3_S01_065,
+        P3_S01_066,
+        P3_S01_067,
+        P3_S01_068,
+        P3_S01_069,
+        P3_S01_070,
+        P3_S01_071,
+        P3_S01_072,
+        P3_S01_073,
+        P3_S01_074,
+        P3_S01_075,
+        P3_S01_076,
+        P3_S01_077,
+        P3_S01_078,
+        P3_S01_079,
+        P3_S01_080,
+        P3_S01_081,
+        P3_S01_082,
+        P3_S01_083,
+        P3_S01_084,
+        P3_S01_085,
+        P3_S01_086,
+        P3_S01_087,
+        P3_S01_088,
+        P3_S01_089,
+        P3_S01_090,
+        P3_S01_091,
+        P3_S01_092,
+        P3_S01_093,
+        P3_S01_094,
+        P3_S01_095,
+        P3_S01_096,
+        P3_S01_097,
+        P3_S01_098,
+        P3_S01_099,
+        P3_S01_100,
     }
 
     public enum ConfirmSearchOrSulvageCardDialog

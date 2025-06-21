@@ -8,6 +8,7 @@ public class BattleModeCardList : MonoBehaviour
     public List<BattleModeCard> DC_2008TrialDeck = new List<BattleModeCard>();
     public List<BattleModeCard> LittleBusters_2008TrialDeck = new List<BattleModeCard>();
     public List<BattleModeCard> Persona3_2008TrialDeck = new List<BattleModeCard>();
+    public List<BattleModeCard> Persona3 = new List<BattleModeCard>();
 
     public BattleModeCard ConvertCardNoToBattleModeCard(EnumController.CardNo num)
     {
@@ -159,6 +160,216 @@ public class BattleModeCardList : MonoBehaviour
                 return Persona3_2008TrialDeck[18];
             case EnumController.CardNo.P3_S01_20T:
                 return Persona3_2008TrialDeck[19];
+            default:
+                break;
+        }
+        switch (num)
+        {
+            case EnumController.CardNo.P3_S01_001:
+                return Persona3[0];
+            case EnumController.CardNo.P3_S01_002:
+                return Persona3[1];
+            case EnumController.CardNo.P3_S01_003:
+                return Persona3[2];
+            case EnumController.CardNo.P3_S01_004:
+                return Persona3[3];
+            case EnumController.CardNo.P3_S01_005:
+                return Persona3[4];
+            case EnumController.CardNo.P3_S01_006:
+                return Persona3[5];
+            case EnumController.CardNo.P3_S01_007:
+                return Persona3[6];
+            case EnumController.CardNo.P3_S01_008:
+                return Persona3[7];
+            case EnumController.CardNo.P3_S01_009:
+                return Persona3[8];
+            case EnumController.CardNo.P3_S01_010:
+                return Persona3[9];
+            case EnumController.CardNo.P3_S01_011:
+                return Persona3[10];
+            case EnumController.CardNo.P3_S01_012:
+                return Persona3[11];
+            case EnumController.CardNo.P3_S01_013:
+                return Persona3[12];
+            case EnumController.CardNo.P3_S01_014:
+                return Persona3[13];
+            case EnumController.CardNo.P3_S01_015:
+                return Persona3[14];
+            case EnumController.CardNo.P3_S01_016:
+                return Persona3[15];
+            case EnumController.CardNo.P3_S01_017:
+                return Persona3[16];
+            case EnumController.CardNo.P3_S01_018:
+                return Persona3[17];
+            case EnumController.CardNo.P3_S01_019:
+                return Persona3[18];
+            case EnumController.CardNo.P3_S01_020:
+                return Persona3[19];
+            case EnumController.CardNo.P3_S01_021:
+                return Persona3[20];
+            case EnumController.CardNo.P3_S01_022:
+                return Persona3[21];
+            case EnumController.CardNo.P3_S01_023:
+                return Persona3[22];
+            case EnumController.CardNo.P3_S01_024:
+                return Persona3[23];
+            case EnumController.CardNo.P3_S01_025:
+                return Persona3[24];
+            case EnumController.CardNo.P3_S01_026:
+                return Persona3[25];
+            case EnumController.CardNo.P3_S01_027:
+                return Persona3[26];
+            case EnumController.CardNo.P3_S01_028:
+                return Persona3[27];
+            case EnumController.CardNo.P3_S01_029:
+                return Persona3[28];
+            case EnumController.CardNo.P3_S01_030:
+                return Persona3[29];
+            case EnumController.CardNo.P3_S01_031:
+                return Persona3[30];
+            case EnumController.CardNo.P3_S01_032:
+                return Persona3[31];
+            case EnumController.CardNo.P3_S01_033:
+                return Persona3[32];
+            case EnumController.CardNo.P3_S01_034:
+                return Persona3[33];
+            case EnumController.CardNo.P3_S01_035:
+                return Persona3[34];
+            case EnumController.CardNo.P3_S01_036:
+                return Persona3[35];
+            case EnumController.CardNo.P3_S01_037:
+                return Persona3[36];
+            case EnumController.CardNo.P3_S01_038:
+                return Persona3[37];
+            case EnumController.CardNo.P3_S01_039:
+                return Persona3[38];
+            case EnumController.CardNo.P3_S01_040:
+                return Persona3[39];
+            case EnumController.CardNo.P3_S01_041:
+                return Persona3[40];
+            case EnumController.CardNo.P3_S01_042:
+                return Persona3[41];
+            case EnumController.CardNo.P3_S01_043:
+                return Persona3[42];
+            case EnumController.CardNo.P3_S01_044:
+                return Persona3[43];
+            case EnumController.CardNo.P3_S01_045:
+                return Persona3[44];
+            case EnumController.CardNo.P3_S01_046:
+                return Persona3[45];
+            case EnumController.CardNo.P3_S01_047:
+                return Persona3[46];
+            case EnumController.CardNo.P3_S01_048:
+                return Persona3[47];
+            case EnumController.CardNo.P3_S01_049:
+                return Persona3[48];
+            case EnumController.CardNo.P3_S01_050:
+                return Persona3[49];
+            case EnumController.CardNo.P3_S01_051:
+                return Persona3[50];
+            case EnumController.CardNo.P3_S01_052:
+                return Persona3[51];
+            case EnumController.CardNo.P3_S01_053:
+                return Persona3[52];
+            case EnumController.CardNo.P3_S01_054:
+                return Persona3[53];
+            case EnumController.CardNo.P3_S01_055:
+                return Persona3[54];
+            case EnumController.CardNo.P3_S01_056:
+                return Persona3[55];
+            case EnumController.CardNo.P3_S01_057:
+                return Persona3[56];
+            case EnumController.CardNo.P3_S01_058:
+                return Persona3[57];
+            case EnumController.CardNo.P3_S01_059:
+                return Persona3[58];
+            case EnumController.CardNo.P3_S01_060:
+                return Persona3[59];
+            case EnumController.CardNo.P3_S01_061:
+                return Persona3[60];
+            case EnumController.CardNo.P3_S01_062:
+                return Persona3[61];
+            case EnumController.CardNo.P3_S01_063:
+                return Persona3[62];
+            case EnumController.CardNo.P3_S01_064:
+                return Persona3[63];
+            case EnumController.CardNo.P3_S01_065:
+                return Persona3[64];
+            case EnumController.CardNo.P3_S01_066:
+                return Persona3[65];
+            case EnumController.CardNo.P3_S01_067:
+                return Persona3[66];
+            case EnumController.CardNo.P3_S01_068:
+                return Persona3[67];
+            case EnumController.CardNo.P3_S01_069:
+                return Persona3[68];
+            case EnumController.CardNo.P3_S01_070:
+                return Persona3[69];
+            default: 
+                break;
+        }
+        switch (num)
+        {
+            case EnumController.CardNo.P3_S01_071:
+                return Persona3[70];
+            case EnumController.CardNo.P3_S01_072:
+                return Persona3[71];
+            case EnumController.CardNo.P3_S01_073:
+                return Persona3[72];
+            case EnumController.CardNo.P3_S01_074:
+                return Persona3[73];
+            case EnumController.CardNo.P3_S01_075:
+                return Persona3[74];
+            case EnumController.CardNo.P3_S01_076:
+                return Persona3[75];
+            case EnumController.CardNo.P3_S01_077:
+                return Persona3[76];
+            case EnumController.CardNo.P3_S01_078:
+                return Persona3[77];
+            case EnumController.CardNo.P3_S01_079:
+                return Persona3[78];
+            case EnumController.CardNo.P3_S01_080:
+                return Persona3[79];
+            case EnumController.CardNo.P3_S01_081:
+                return Persona3[80];
+            case EnumController.CardNo.P3_S01_082:
+                return Persona3[81];
+            case EnumController.CardNo.P3_S01_083:
+                return Persona3[82];
+            case EnumController.CardNo.P3_S01_084:
+                return Persona3[83];
+            case EnumController.CardNo.P3_S01_085:
+                return Persona3[84];
+            case EnumController.CardNo.P3_S01_086:
+                return Persona3[85];
+            case EnumController.CardNo.P3_S01_087:
+                return Persona3[86];
+            case EnumController.CardNo.P3_S01_088:
+                return Persona3[87];
+            case EnumController.CardNo.P3_S01_089:
+                return Persona3[88];
+            case EnumController.CardNo.P3_S01_090:
+                return Persona3[89];
+            case EnumController.CardNo.P3_S01_091:
+                return Persona3[90];
+            case EnumController.CardNo.P3_S01_092:
+                return Persona3[91];
+            case EnumController.CardNo.P3_S01_093:
+                return Persona3[92];
+            case EnumController.CardNo.P3_S01_094:
+                return Persona3[93];
+            case EnumController.CardNo.P3_S01_095:
+                return Persona3[94];
+            case EnumController.CardNo.P3_S01_096:
+                return Persona3[95];
+            case EnumController.CardNo.P3_S01_097:
+                return Persona3[96];
+            case EnumController.CardNo.P3_S01_098:
+                return Persona3[97];
+            case EnumController.CardNo.P3_S01_099:
+                return Persona3[98];
+            case EnumController.CardNo.P3_S01_100:
+                return Persona3[99];
             default:
                 return null;
         }
