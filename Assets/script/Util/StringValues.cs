@@ -300,16 +300,6 @@ public class StringValues
     public string P3_S01_008_CardNo = "P3_S01_008";
     public string P3_S01_009_CardNo = "P3_S01_009";
     public string P3_S01_010_CardNo = "P3_S01_010";
-    public string P3_S01_001_CardNo = "P3_S01_001";
-    public string P3_S01_002_CardNo = "P3_S01_002";
-    public string P3_S01_003_CardNo = "P3_S01_003";
-    public string P3_S01_004_CardNo = "P3_S01_004";
-    public string P3_S01_005_CardNo = "P3_S01_005";
-    public string P3_S01_006_CardNo = "P3_S01_006";
-    public string P3_S01_007_CardNo = "P3_S01_007";
-    public string P3_S01_008_CardNo = "P3_S01_008";
-    public string P3_S01_009_CardNo = "P3_S01_009";
-    public string P3_S01_010_CardNo = "P3_S01_010";
     public string P3_S01_011_CardNo = "P3_S01_011";
     public string P3_S01_012_CardNo = "P3_S01_012";
     public string P3_S01_013_CardNo = "P3_S01_013";
