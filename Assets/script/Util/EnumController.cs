@@ -78,6 +78,8 @@ namespace EnumController
         Swimsuit, // 水着
         Twins, // 双子
         Bullying, // いじめ
+        Manager, // マネージャー
+        OnlineGame, //ネトゲ
     }
 
     public enum CardColor
