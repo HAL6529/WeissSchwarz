@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using EnumController;
 using ExtendUtil;
-using CardNoToCardInfo;
 
 public class BattleModeGuide : MonoBehaviour
 {
@@ -45,7 +44,6 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Sprite lv_r;
     [SerializeField] Sprite lv_y;
     [SerializeField] RectTransform m_RectTransform;
-    CardNoToExplanation m_CardNoToExplanation = new CardNoToExplanation();
     ExtendUtil.ExtendUtil m_ExtendUtil = new ExtendUtil.ExtendUtil();
 
     // Start is called before the first frame update
@@ -141,7 +139,7 @@ public class BattleModeGuide : MonoBehaviour
 
  
 
-        explanation.text = m_CardNoToExplanation.Explanation(card.cardNo);
+        explanation.text = m_ExtendUtil.Explanation(card.cardNo);
 
         switch (card.trigger)
         {
