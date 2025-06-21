@@ -387,6 +387,26 @@ namespace ExtendUtil
                     return "テレビ通販";
                 case EnumController.Attribute.Will:
                     return "遺言";
+                case EnumController.Attribute.Death:
+                    return "死";
+                case EnumController.Attribute.Illness:
+                    return "病気";
+                case EnumController.Attribute.Swimsuit:
+                    return "水着";
+                case EnumController.Attribute.Twins:
+                    return "双子";
+                case EnumController.Attribute.Bullying:
+                    return "いじめ";
+                case EnumController.Attribute.Manager:
+                    return "マネージャー";
+                case EnumController.Attribute.OnlineGame:
+                    return "ネトゲ";
+                case EnumController.Attribute.Alcohol:
+                    return "酒";
+                case EnumController.Attribute.Gourmet:
+                    return "グルメ";
+                case EnumController.Attribute.Zen:
+                    return "禅";
                 default:
                     break;
             }
