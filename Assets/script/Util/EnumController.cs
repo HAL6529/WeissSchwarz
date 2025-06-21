@@ -83,6 +83,8 @@ namespace EnumController
         Alcohol, // ğ
         Gourmet, // ƒOƒ‹ƒ
         Zen, // ‘T
+        Devil, // ˆ«–‚
+        Gag, // ‚¾‚¶‚á‚ê
     }
 
     public enum CardColor
