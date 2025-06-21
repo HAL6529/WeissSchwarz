@@ -80,6 +80,9 @@ namespace EnumController
         Bullying, // いじめ
         Manager, // マネージャー
         OnlineGame, //ネトゲ
+        Alcohol, // 酒
+        Gourmet, // グルメ
+        Zen, // 禅
     }
 
     public enum CardColor
