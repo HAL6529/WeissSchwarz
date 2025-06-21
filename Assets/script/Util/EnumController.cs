@@ -76,6 +76,7 @@ namespace EnumController
         Death, // €
         Illness, // •a‹C
         Swimsuit, // …’…
+        Twins, // ‘oq
     }
 
     public enum CardColor
