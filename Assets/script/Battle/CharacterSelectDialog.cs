@@ -27,9 +27,7 @@ public class CharacterSelectDialog : MonoBehaviour
     /// </summary>
     private int maxNum = -1;
 
-    private int ButtonSelectedNum = -1;
     private List<bool> ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
-    private EnumController.Attack status = EnumController.Attack.VOID;
     private BattleModeCard m_BattleModeCard = null;
 
     public void Open(BattleModeCard card, bool isMine, int place)
@@ -46,10 +44,8 @@ public class CharacterSelectDialog : MonoBehaviour
             m_RectTransform.rotation = Quaternion.Euler(0, 0, 180.0f);
         }
         m_OKButton.SetActive(false);
-        ButtonSelectedNum = -1;
         ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
         this.place = place;
-        this.status = status;
         m_BattleModeCard = card;
         int cnt = 0;
 
@@ -202,9 +198,7 @@ public class CharacterSelectDialog : MonoBehaviour
         {
             images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
         }
-        status = EnumController.Attack.VOID;
         place = -1;
-        ButtonSelectedNum = -1;
     }
 
     public void OKButton()

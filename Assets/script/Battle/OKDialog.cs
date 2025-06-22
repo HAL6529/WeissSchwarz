@@ -124,8 +124,6 @@ public class OKDialog : MonoBehaviour
             // ParamaterNum1: damage, ParamaterNum2: Place
             case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
                 int place = 0;
-                int pumpPoint = 0;
-                int cost = 0;
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
                 if (m_BattleModeCard != null)
                 {
