@@ -15,6 +15,7 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] RectTransform m_RectTransform;
+    [SerializeField] List<RectTransform> RectTransformList = new List<RectTransform>();
     private int place = -1;
 
     /// <summary>
@@ -37,11 +38,41 @@ public class CharacterSelectDialog : MonoBehaviour
         {
             list = m_GameManager.myFieldList;
             m_RectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            for (int i = 0; i < RectTransformList.Count; i++)
+            {
+                if (m_MyMainCardsManager.GetState(i) == EnumController.State.STAND)
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (m_MyMainCardsManager.GetState(i) == EnumController.State.REST)
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 90.0f);
+                }
+                else
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 180.0f);
+                }
+            }
         }
         else
         {
             list = m_GameManager.enemyFieldList;
             m_RectTransform.rotation = Quaternion.Euler(0, 0, 180.0f);
+            for (int i = 0; i < RectTransformList.Count; i++)
+            {
+                if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.STAND)
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.REST)
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 90.0f);
+                }
+                else
+                {
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 180.0f);
+                }
+            }
         }
         m_OKButton.SetActive(false);
         ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
