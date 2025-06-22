@@ -16,6 +16,7 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] RectTransform m_RectTransform;
     [SerializeField] List<RectTransform> RectTransformList = new List<RectTransform>();
+    [SerializeField] GameObject Dialog_Hide;
     private int place = -1;
 
     /// <summary>
@@ -33,6 +34,7 @@ public class CharacterSelectDialog : MonoBehaviour
 
     public void Open(BattleModeCard card, bool isMine, int place)
     {
+        m_GameManager.isCharacterSelectDialogProcess = true;
         List<BattleModeCard> list = new List<BattleModeCard>();
         if (isMine)
         {
@@ -62,7 +64,7 @@ public class CharacterSelectDialog : MonoBehaviour
             {
                 if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.STAND)
                 {
-                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 0);
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 180.0f);
                 }
                 else if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.REST)
                 {
@@ -70,7 +72,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 }
                 else
                 {
-                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 180.0f);
+                    RectTransformList[i].rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
         }
@@ -230,6 +232,7 @@ public class CharacterSelectDialog : MonoBehaviour
             images[i].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);
         }
         place = -1;
+        m_GameManager.isCharacterSelectDialogProcess = false;
     }
 
     public void OKButton()
@@ -353,5 +356,11 @@ public class CharacterSelectDialog : MonoBehaviour
 
         m_GameManager.ExecuteActionList();
         OffDialog();
+    }
+
+    public void onMinimumBtn()
+    {
+        this.gameObject.SetActive(false);
+        Dialog_Hide.SetActive(true);
     }
 }
