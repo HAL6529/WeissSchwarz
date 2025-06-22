@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class LoadButton : MonoBehaviour
 {
-    [SerializeField] CardInfoList m_CardInfoList;
+    [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] DeckListManager m_DeckListManager;
     private string DeckName = "default";
     private static string filePath = @"./Save";
 
     public void onClick()
     {
-        List<cardInfo> list = new List<cardInfo>();
+        List<BattleModeCard> list = new List<BattleModeCard>();
 
         // ディレクトリがなければreturn
         if (!Directory.Exists(filePath) || !File.Exists(@"./Save/" + DeckName + ".txt"))
@@ -26,7 +26,7 @@ public class LoadButton : MonoBehaviour
         // ファイルの行数分ループ
         foreach (string line in lines)
         {
-            cardInfo temp = m_CardInfoList.Convert(line);
+            BattleModeCard temp = m_BattleModeCardList.ConvertStringToCardNo(line);
             if (temp != null)
             {
                 list.Add(temp);

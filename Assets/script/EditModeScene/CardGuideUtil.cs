@@ -57,9 +57,9 @@ public class CardGuideUtil : MonoBehaviour
         m_RectTransform = cardInfoImageObject.GetComponent<RectTransform>();
     }
 
-    public void onShowInfo(cardInfo info)
+    public void onShowInfo(BattleModeCard info)
     {
-        cardName.text = info.cardName;
+        cardName.text = info.name;
         explanation.text = extendUtil.Explanation(info.cardNo);
         cardInfoImage.sprite = info.sprite;
 
@@ -68,84 +68,74 @@ public class CardGuideUtil : MonoBehaviour
             m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
             TriggerObj.SetActive(false);
             TriggerObj2.SetActive(true);
+            levelIndex.text = "";
+            costIndex.text = "";
+            CostObj.SetActive(false);
+            powerIndex.text = "";
+            PowerObj.SetActive(false);
+        }
+        else if(info.type == EnumController.Type.EVENT)
+        {
+            m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
+            TriggerObj.SetActive(true);
+            TriggerObj2.SetActive(false);
+            levelIndex.text = info.level.ToString();
+            costIndex.text = info.cost.ToString();
+            CostObj.SetActive(true);
+            powerIndex.text = "";
+            PowerObj.SetActive(false);
         }
         else
         {
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
             TriggerObj.SetActive(true);
             TriggerObj2.SetActive(false);
-        }
-
-        if (info.level == -1)
-        {
-            levelIndex.text = "";
-        }
-        else
-        {
             levelIndex.text = info.level.ToString();
-        }
-
-        if(info.cost == -1)
-        {
-            costIndex.text = "";
-            CostObj.SetActive(false);
-        }
-        else
-        {
             costIndex.text = info.cost.ToString();
             CostObj.SetActive(true);
-        }
-
-        if(info.power == -1)
-        {
-            powerIndex.text = "";
-            PowerObj.SetActive(false);
-        }
-        else
-        {
             powerIndex.text = info.power.ToString();
             PowerObj.SetActive(true);
         }
 
-        if (info.attributeOne == EnumController.Attribute.VOID)
+        if (info.attribute.Count == 0 || info.attribute[0] == EnumController.Attribute.VOID)
         {
             Attribute1.text = "";
             Attribute1Obj.SetActive(false);
         }
         else
         {
-            Attribute1.text = extendUtil.AttributeConvertToString(info.attributeOne);
+            Attribute1.text = extendUtil.AttributeConvertToString(info.attribute[0]);
             Attribute1Obj.SetActive(true);
         }
 
-        if (info.attributeTwo == EnumController.Attribute.VOID)
+        if (info.attribute.Count <= 1 || info.attribute[1] == EnumController.Attribute.VOID)
         {
             Attribute2.text = "";
             Attribute2Obj.SetActive(false);
         }
         else
         {
-            Attribute2.text = extendUtil.AttributeConvertToString(info.attributeTwo);
+            Attribute2.text = extendUtil.AttributeConvertToString(info.attribute[1]);
             Attribute2Obj.SetActive(true);
         }
 
-        if (info.attributeThree == EnumController.Attribute.VOID)
+        if (info.attribute.Count <= 2 || info.attribute[2] == EnumController.Attribute.VOID)
         {
             Attribute3.text = "";
             Attribute3Obj.SetActive(false);
         }
         else
         {
-            Attribute3.text = extendUtil.AttributeConvertToString(info.attributeThree);
+            Attribute3.text = extendUtil.AttributeConvertToString(info.attribute[2]);
             Attribute3Obj.SetActive(true);
         }
 
-        if (info.level == 0)
+        if (info.level == 0 && info.type != EnumController.Type.CLIMAX)
         {
             LevelImage.sprite = lv_gray;
             LevelObj.SetActive(true);
         }
-        else if(info.level == -1)
+        else if(info.type == EnumController.Type.CLIMAX)
         {
             LevelObj.SetActive(false);
         }

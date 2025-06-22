@@ -52,7 +52,6 @@ public class SelectActionDialog : MonoBehaviour
 
     public void SetDialog(List<Action> actionList)
     {
-        Debug.Log("ActionList.Count:" + ActionList.Count);
         this.ActionList = actionList;
         if (ActionList.Count == 0)
         {

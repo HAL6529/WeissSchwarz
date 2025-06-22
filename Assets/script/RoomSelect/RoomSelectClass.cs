@@ -20,7 +20,7 @@ public class RoomSelectClass : MonoBehaviour
 
     [SerializeField] RoomSelectAlertAnimation m_RoomSelectAlertAnimation;
 
-    [SerializeField] CardInfoList m_CardInfoList;
+    [SerializeField] BattleModeCardList m_BattleModeCardList;
 
     [SerializeField] AudioClip BtnSE;
 
@@ -158,7 +158,7 @@ public class RoomSelectClass : MonoBehaviour
         string DeckName = "default";
         string filePath = @"./Save";
 
-        List<cardInfo> list = new List<cardInfo>();
+        List<BattleModeCard> list = new List<BattleModeCard>();
 
         // ディレクトリがなければreturn
         if (!Directory.Exists(filePath) || !File.Exists(@"./Save/" + DeckName + ".txt"))
@@ -171,7 +171,7 @@ public class RoomSelectClass : MonoBehaviour
         // ファイルの行数分ループ
         foreach (string line in lines)
         {
-            cardInfo temp = m_CardInfoList.Convert(line);
+            BattleModeCard temp = m_BattleModeCardList.ConvertStringToCardNo(line);
             if (temp != null)
             {
                 list.Add(temp);

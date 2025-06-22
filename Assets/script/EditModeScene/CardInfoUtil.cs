@@ -7,9 +7,9 @@ using EnumController;
 public class CardInfoUtil : MonoBehaviour
 {
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
-    private cardInfo info;
     [SerializeField] CardGuideUtil m_CardGuideUtil;
     [SerializeField] filterDialog m_filterDialog;
+    [SerializeField] BattleModeCard m_BattleModeCard;
 
     // デッキリストのGameObject
     [SerializeField] GameObject deckList;
@@ -28,21 +28,14 @@ public class CardInfoUtil : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        info = GetComponent<cardInfo>();
-        cardName = info.cardName;
+        cardName = m_BattleModeCard.name;
         ChangeLayoutColor();
         ChangeText();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void ChangeLayoutColor()
     {
-        switch (info.color)
+        switch (m_BattleModeCard.color)
         {
             case EnumController.CardColor.RED:
                 image.color = new Color(255f / 255f, 105f / 255f, 105f / 255f, 255f / 255f);
@@ -67,7 +60,7 @@ public class CardInfoUtil : MonoBehaviour
 
     void ChangeText()
     {
-        cardNoText.text = extendUtil.CardNoConvertToString(info.cardNo);
+        cardNoText.text = extendUtil.CardNoConvertToString(m_BattleModeCard.cardNo);
 
         if (cardName != null)
         {
@@ -77,17 +70,42 @@ public class CardInfoUtil : MonoBehaviour
         {
             cardNameText.text = "";
         }
-        attributeOneText.text = extendUtil.AttributeConvertToString(info.attributeOne);
-        attributeTwoText.text = extendUtil.AttributeConvertToString(info.attributeTwo);
-        attributeThreeText.text = extendUtil.AttributeConvertToString(info.attributeThree);
-        levelText.text = info.level.ToString();
-        costText.text = info.cost.ToString();
+
+        if(m_BattleModeCard.attribute.Count > 0)
+        {
+            attributeOneText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[0]);
+        }
+        else
+        {
+            attributeOneText.text = "";
+        }
+
+        if (m_BattleModeCard.attribute.Count > 1)
+        {
+            attributeTwoText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[1]);
+        }
+        else
+        {
+            attributeTwoText.text = "";
+        }
+
+        if (m_BattleModeCard.attribute.Count > 2)
+        {
+            attributeThreeText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[2]);
+        }
+        else
+        {
+            attributeThreeText.text = "";
+        }
+        
+        levelText.text = m_BattleModeCard.level.ToString();
+        costText.text = m_BattleModeCard.cost.ToString();
     }
 
     public void onAddListButton()
     {
         m_filterDialog.closeFilter();
-        deckList.GetComponent<DeckListManager>().addCard(info);
+        deckList.GetComponent<DeckListManager>().addCard(m_BattleModeCard);
     }
 
     public void isHitForKeyword(string[] searchWordArray, SearchFilter filter)
@@ -121,12 +139,12 @@ public class CardInfoUtil : MonoBehaviour
 
     public void onSearchCardListImageButton()
     {
-        m_CardGuideUtil.onShowInfo(info);
+        m_CardGuideUtil.onShowInfo(m_BattleModeCard);
     }
 
     private bool isSearchLevel(SearchFilter filter)
     {
-        switch (info.level)
+        switch (m_BattleModeCard.level)
         {
             case 0:
                 if (!filter.isLevelZero)
@@ -164,7 +182,7 @@ public class CardInfoUtil : MonoBehaviour
 
     private bool isSearchColor(SearchFilter filter)
     {
-        switch (info.color)
+        switch (m_BattleModeCard.color)
         {
             case EnumController.CardColor.RED:
                 if (!filter.isColorRed)
@@ -209,7 +227,7 @@ public class CardInfoUtil : MonoBehaviour
 
     private bool isSearchType(SearchFilter filter)
     {
-        switch (info.type)
+        switch (m_BattleModeCard.type)
         {
             case EnumController.Type.CHARACTER:
                 if (!filter.isTypeCharacter)

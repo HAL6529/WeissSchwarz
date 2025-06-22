@@ -8,7 +8,7 @@ using System.Linq;
 public class DeckListManager : MonoBehaviour
 {
     public List<DeckListPanelUtil> panels;
-    public List<cardInfo> cardInfoList = new List<cardInfo>();
+    public List<BattleModeCard> cardInfoList = new List<BattleModeCard>();
 
     [SerializeField] Text cardName;
     [SerializeField] Image cardInfoImage;
@@ -47,7 +47,7 @@ public class DeckListManager : MonoBehaviour
     /// デッキ編集リストにカード情報を加える関数
     /// </summary>
     /// <param name="info">cardInfo型　カード情報</param>
-    public void addCard(cardInfo info)
+    public void addCard(BattleModeCard info)
     {
         if (cardInfoList.Count >= 64)
         {
@@ -56,12 +56,9 @@ public class DeckListManager : MonoBehaviour
 
         // 同名カードが4枚以上の場合処理は行わない。
         int index = cardInfoList.Count(obj => obj.cardNo == info.cardNo);
-        if (info.limit == EnumController.Limit.NORMAL)
+        if (index > 3)
         {
-            if(index > 3)
-            {
-                return;
-            }
+            return;
         }
         cardInfoList.Add(info);
         sortDeckList();
@@ -99,7 +96,7 @@ public class DeckListManager : MonoBehaviour
             {
                 if ((int)cardInfoList[i].cardNo > (int)cardInfoList[k].cardNo)
                 {
-                    cardInfo temp = cardInfoList[i];
+                    BattleModeCard temp = cardInfoList[i];
                     cardInfoList[i] = cardInfoList[k];
                     cardInfoList[k] = temp;
                 }
@@ -109,11 +106,11 @@ public class DeckListManager : MonoBehaviour
 
     public void ColorSortDeckList()
     {
-        List<cardInfo> BlueList = new List<cardInfo>();
-        List<cardInfo> GreenList = new List<cardInfo>();
-        List<cardInfo> RedList = new List<cardInfo>();
-        List<cardInfo> YellowList = new List<cardInfo>();
-        List<cardInfo> PurpleList = new List<cardInfo>();
+        List<BattleModeCard> BlueList = new List<BattleModeCard>();
+        List<BattleModeCard> GreenList = new List<BattleModeCard>();
+        List<BattleModeCard> RedList = new List<BattleModeCard>();
+        List<BattleModeCard> YellowList = new List<BattleModeCard>();
+        List<BattleModeCard> PurpleList = new List<BattleModeCard>();
         for (int i = 0; i < cardInfoList.Count; i++)
         {
             switch (cardInfoList[i].color)
@@ -135,7 +132,7 @@ public class DeckListManager : MonoBehaviour
                     break;
             }
         }
-        cardInfoList = new List<cardInfo>();
+        cardInfoList = new List<BattleModeCard>();
 
         for (int i = 0; i < BlueList.Count; i++)
         {
@@ -175,12 +172,12 @@ public class DeckListManager : MonoBehaviour
 
     public void LevelSortDeckList()
     {
-        List<cardInfo> Level0List = new List<cardInfo>();
-        List<cardInfo> Level1List = new List<cardInfo>();
-        List<cardInfo> Level2List = new List<cardInfo>();
-        List<cardInfo> Level3List = new List<cardInfo>();
-        List<cardInfo> ClimaxList = new List<cardInfo>();
-        List<cardInfo> EventList = new List<cardInfo>();
+        List<BattleModeCard> Level0List = new List<BattleModeCard>();
+        List<BattleModeCard> Level1List = new List<BattleModeCard>();
+        List<BattleModeCard> Level2List = new List<BattleModeCard>();
+        List<BattleModeCard> Level3List = new List<BattleModeCard>();
+        List<BattleModeCard> ClimaxList = new List<BattleModeCard>();
+        List<BattleModeCard> EventList = new List<BattleModeCard>();
         for (int i = 0; i < cardInfoList.Count; i++)
         {
             switch (cardInfoList[i].level)
@@ -202,7 +199,7 @@ public class DeckListManager : MonoBehaviour
                     break;
             }
         }
-        cardInfoList = new List<cardInfo>();
+        cardInfoList = new List<BattleModeCard>();
 
         for(int i = 0; i < Level0List.Count; i++)
         {
@@ -274,7 +271,7 @@ public class DeckListManager : MonoBehaviour
 
     public void Reset()
     {
-        cardInfoList = new List<cardInfo>();
+        cardInfoList = new List<BattleModeCard>();
         updateDeckList();
     }
 }
