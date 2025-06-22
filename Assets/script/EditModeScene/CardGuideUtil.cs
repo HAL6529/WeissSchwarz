@@ -25,6 +25,7 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] GameObject TriggerObj;
     [SerializeField] GameObject TriggerImageObj;
     [SerializeField] GameObject TriggerImageObj2;
+    [SerializeField] Image CounterImage;
     [SerializeField] Image trigger_image1;
     [SerializeField] Image trigger_image2;
     [SerializeField] GameObject TriggerObj2;
@@ -62,8 +63,16 @@ public class CardGuideUtil : MonoBehaviour
         cardName.text = info.name;
         explanation.text = extendUtil.Explanation(info.cardNo);
         cardInfoImage.sprite = info.sprite;
+        if (info.isCounter)
+        {
+            CounterImage.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            CounterImage.color = new Color(1, 1, 1, 0);
+        }
 
-        if(info.type == EnumController.Type.CLIMAX)
+        if (info.type == EnumController.Type.CLIMAX)
         {
             m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
             TriggerObj.SetActive(false);
