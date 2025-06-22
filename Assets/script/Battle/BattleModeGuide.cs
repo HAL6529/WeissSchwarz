@@ -21,6 +21,7 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] Image Trigger2;
     [SerializeField] GameObject LevelObj;
     [SerializeField] GameObject CostObj;
+    [SerializeField] GameObject CounterObj;
     [SerializeField] GameObject PowerObj;
     [SerializeField] GameObject SoulObj;
     [SerializeField] List<GameObject> AttributeObj;
@@ -113,6 +114,15 @@ public class BattleModeGuide : MonoBehaviour
             CostObj.SetActive(false);
             PowerObj.SetActive(false);
             SoulObj.SetActive(false);
+        }
+
+        if (card.isCounter)
+        {
+            CounterObj.SetActive(true);
+        }
+        else
+        {
+            CounterObj.SetActive(false);
         }
 
         if (card.type == EnumController.Type.CHARACTER)
