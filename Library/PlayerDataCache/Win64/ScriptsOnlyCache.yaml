@@ -30,6 +30,7 @@ ScriptsOnlyBuild:
     - DamageCardAnimation
     - DeckListManager
     - DeckListPanelUtil
+    - DialogHide
     - DialogManager
     - DummyDeckAnimation
     - DummyEffectCardAnimation
@@ -112,8 +113,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -1591,6 +1594,9 @@ ScriptsOnlyBuild:
     fullTypeName: LevelUpButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: CharacterSelectDialog
+    methodName: onMinimumBtn
+  - assembly: Assembly-CSharp
     fullTypeName: SulvageDialogBtnUtil
     methodName: onClick
   - assembly: Assembly-CSharp
@@ -2245,6 +2251,9 @@ ScriptsOnlyBuild:
     fullTypeName: GraveYardDetailButtonUtil
     methodName: onClick
   - assembly: Assembly-CSharp
+    fullTypeName: DialogHide
+    methodName: onMaximumBtn
+  - assembly: Assembly-CSharp
     fullTypeName: MoveDialog
     methodName: onCloseButton
   - assembly: Assembly-CSharp
@@ -2755,7 +2764,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7878}
     - Class: 114
-      Script: {instanceID: 145338}
+      Script: {instanceID: 31292}
+    - Class: 114
+      Script: {instanceID: 86190}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -3698,7 +3709,7 @@ ScriptsOnlyBuild:
     className: TextConsoleSimulator
   - hash:
       serializedVersion: 2
-      Hash: 13e7ea9004092433e1b8a69dd1a6666b
+      Hash: a72942a0d0bb3e478e9d58d9cf80b5c9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -3752,7 +3763,7 @@ ScriptsOnlyBuild:
     className: TMP_TextEventCheck
   - hash:
       serializedVersion: 2
-      Hash: 3f573373f669c68fecc6633d0cf1560d
+      Hash: 929ae2357aedb7daa9f8dcd10371fdbd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterSelectDialog
@@ -4482,6 +4493,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WaitDialog
+  - hash:
+      serializedVersion: 2
+      Hash: 7dedd19d44aa9c3020f7bbfe4d3d4c05
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DialogHide
   platform: 19
   scenePathNames:
   - Assets/Scenes/RoomSelect.unity

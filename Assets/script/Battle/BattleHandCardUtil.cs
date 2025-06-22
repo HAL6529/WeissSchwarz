@@ -61,6 +61,11 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
+        if (m_GameManager.isCharacterSelectDialogProcess)
+        {
+            return;
+        }
+
         if (m_GameManager.m_HandCardUtilStatus == EnumController.HandCardUtilStatus.HAND_ENCORE && m_GameManager.phase == EnumController.Turn.Encore)
         {
             HandEncoreClick();
