@@ -9,17 +9,10 @@ public class LevelUpDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
 
-    private EnumController.LevelUpDialogParamater paramater;
-
     /// <summary>
     /// レベル置き場にカードのnum
     /// </summary>
     public int num = -1;
-
-    /// <summary>
-    /// フロントアタックされたときの場所パラメータ
-    /// </summary>
-    private int place = -1;
 
     public void onOKButton()
     {
@@ -37,8 +30,6 @@ public class LevelUpDialog : MonoBehaviour
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)
     {
-        this.paramater = EnumController.LevelUpDialogParamater.VOID;
-        this.place = -1;
         num = -1;
         this.gameObject.SetActive(true);
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
