@@ -26,9 +26,9 @@ public class BattleModeGuide : MonoBehaviour
     [SerializeField] GameObject SoulObj;
     [SerializeField] List<GameObject> AttributeObj;
 
+    [SerializeField] Sprite book;
     [SerializeField] Sprite bounce;
     [SerializeField] Sprite choice;
-    [SerializeField] Sprite draw;
     [SerializeField] Sprite gate;
     [SerializeField] Sprite comeback;
     [SerializeField] Sprite standby;
@@ -162,7 +162,7 @@ public class BattleModeGuide : MonoBehaviour
                 Trigger2.sprite = standby;
                 break;
             case EnumController.Trigger.BOOK:
-                Trigger1.sprite = draw;
+                Trigger1.sprite = book;
                 Trigger2.sprite = null;
                 break;
             case EnumController.Trigger.GATE:

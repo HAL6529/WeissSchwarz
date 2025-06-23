@@ -77,6 +77,7 @@ public class DamageAnimationDialog : MonoBehaviour
         tempList = list;
         if (list.Count == 0)
         {
+            m_GameManager.isDamageAnimation = false;
             return;
         }
 

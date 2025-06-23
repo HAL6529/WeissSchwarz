@@ -44,6 +44,8 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Sprite lv_r;
     [SerializeField] Sprite lv_y;
     [SerializeField] Sprite lv_gray;
+    [SerializeField] Sprite book;
+    [SerializeField] Sprite bounce;
     [SerializeField] Sprite comeback;
     [SerializeField] Sprite soul;
     [SerializeField] Sprite pool;
@@ -203,6 +205,22 @@ public class CardGuideUtil : MonoBehaviour
                 TriggerImageObj4.SetActive(false);
                 trigger_image1.sprite = null;
                 trigger_image2.sprite = null;
+                break;
+            case EnumController.Trigger.BOOK:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(false);
+                trigger_image3.sprite = book;
+                trigger_image4.sprite = null;
+                break;
+            case EnumController.Trigger.BOUNCE:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(true);
+                trigger_image3.sprite = soul;
+                trigger_image4.sprite = bounce;
                 break;
             case EnumController.Trigger.COMEBACK:
                 TriggerImageObj.SetActive(false);
