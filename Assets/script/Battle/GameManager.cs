@@ -697,6 +697,9 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, null, damage);
                 return;
+            case EnumController.Trigger.BOOK:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT, null, damage);
+                return;
             default:
                 break;
         }
@@ -723,6 +726,9 @@ public class GameManager : MonoBehaviour
                 break;
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage, num);
+                return;
+            case EnumController.Trigger.BOOK:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT, null, damage);
                 return;
             default:
                 break;
@@ -754,6 +760,9 @@ public class GameManager : MonoBehaviour
                 break;
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE, null, damage);
+                return;
+            case EnumController.Trigger.BOOK:
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_SIDE, null, damage);
                 return;
             default:
                 break;

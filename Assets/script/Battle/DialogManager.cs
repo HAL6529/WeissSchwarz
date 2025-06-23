@@ -124,7 +124,7 @@ public class DialogManager : MonoBehaviour
 
     public void PhaseDialog()
     {
-        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess || m_GameManager.isEncoreDialogProcess)
+        if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess || m_GameManager.isEncoreDialogProcess || m_GameManager.isDamageAnimation)
         {
             return;
         }
