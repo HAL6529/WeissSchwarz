@@ -219,6 +219,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
                     return;
+                case EnumController.CardNo.P3_S01_058:
                 case EnumController.CardNo.DC_W01_16T:
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);

@@ -166,6 +166,7 @@ public class Effect : MonoBehaviour
         {
             // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.CardNo.DC_W01_16T:
+            case EnumController.CardNo.P3_S01_058:
                 int enemyPlace = -1;
                 switch (place)
                 {
