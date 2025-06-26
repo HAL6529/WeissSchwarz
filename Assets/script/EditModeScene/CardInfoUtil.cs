@@ -8,7 +8,6 @@ public class CardInfoUtil : MonoBehaviour
 {
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     [SerializeField] CardGuideUtil m_CardGuideUtil;
-    [SerializeField] filterDialog m_filterDialog;
     [SerializeField] BattleModeCard m_BattleModeCard;
 
     // デッキリストのGameObject
@@ -104,7 +103,6 @@ public class CardInfoUtil : MonoBehaviour
 
     public void onAddListButton()
     {
-        m_filterDialog.closeFilter();
         deckList.GetComponent<DeckListManager>().addCard(m_BattleModeCard);
     }
 
