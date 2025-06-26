@@ -26,6 +26,8 @@ public class EventAnimationManager : MonoBehaviour
 
     private int place = -1;
 
+    private int handNum = -1;
+
     private int effectNum = 0;
 
     private bool isFromRPC = false;
@@ -34,6 +36,16 @@ public class EventAnimationManager : MonoBehaviour
     void Start()
     {
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStartForCounter(BattleModeCard card, int place, int handNum)
+    {
+        this.handNum = handNum;
+        AnimationStart(card, place);
     }
 
     /// <summary>
@@ -417,7 +429,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.Remove(t);
                     }
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
@@ -432,7 +444,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.Remove(t);
                     }
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
@@ -447,7 +459,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.myStockList.Remove(t);
                     }
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();

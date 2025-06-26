@@ -187,14 +187,16 @@ public class BattleHandCardUtil : MonoBehaviour
         {
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
-            m_DialogManager.OKDialog(null);
+            m_DialogManager.OKDialog_SetBattleModeCard(m_BattleModeCard);
+            m_DialogManager.OKDialog_SetParamaterNum3(num);
         }
         else
         {
             m_MyHandCardsManager.CallResetSelected();
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
-            m_DialogManager.OKDialog(m_BattleModeCard);
+            m_DialogManager.OKDialog_SetBattleModeCard(m_BattleModeCard);
+            m_DialogManager.OKDialog_SetParamaterNum3(num);
         }
     }
 
@@ -204,14 +206,14 @@ public class BattleHandCardUtil : MonoBehaviour
         {
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
-            m_DialogManager.OKDialog(null);
+            m_DialogManager.OKDialog_SetBattleModeCard(null);
         }
         else
         {
             m_MyHandCardsManager.CallResetSelected();
             isSelected = true;
             image.color = new Color(1, 1, 1, 125f / 255f);
-            m_DialogManager.OKDialog(m_BattleModeCard);
+            m_DialogManager.OKDialog_SetBattleModeCard(m_BattleModeCard);
         }
     }
 
