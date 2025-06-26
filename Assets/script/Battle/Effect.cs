@@ -79,6 +79,8 @@ public class Effect : MonoBehaviour
                 m_GameManager.ActionList.Add(action_DC_W01_02T);
                 break;
             case EnumController.CardNo.P3_S01_01T:
+            case EnumController.CardNo.P3_S01_005:
+                // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
                 Action action_P3_S01_01T = new Action(m_GameManager, EnumController.Action.P3_S01_01T);
                 action_P3_S01_01T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_01T.SetParamaterBattleStrix(m_BattleStrix);
@@ -497,7 +499,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.DC_W01_06T)
+                if (m_GameManager.MyClimaxCard.name == "結婚式の歌姫")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T, card, place, status);
                     return true;
@@ -510,7 +512,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.DC_W01_19T && ConfirmStockForCost(1))
+                if (m_GameManager.MyClimaxCard.name == "美春のオルゴール" && ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, place, status);
                     return true;
@@ -523,20 +525,21 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.LB_W02_10T)
+                if (m_GameManager.MyClimaxCard.name == "そよ風のハミング")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T, card, place, status);
                     return true;
                 }
                 return false;
             case EnumController.CardNo.P3_S01_01T:
+            case EnumController.CardNo.P3_S01_005:
                 // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
                 if (m_GameManager.MyClimaxCard == null)
                 {
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.P3_S01_13T)
+                if (m_GameManager.MyClimaxCard.name == "復讐の終わり")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T, card, place, status);
                     return true;
@@ -548,7 +551,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.cardNo == EnumController.CardNo.P3_S01_14T)
+                if (m_GameManager.MyClimaxCard.name == "最後の選択")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1, card, place, status);
                     return true;

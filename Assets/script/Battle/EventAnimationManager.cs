@@ -368,6 +368,7 @@ public class EventAnimationManager : MonoBehaviour
             switch (m_BattleModeCard.cardNo)
             {
                 case EnumController.CardNo.P3_S01_01T:
+                case EnumController.CardNo.P3_S01_005:
                     // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
                     m_GameManager.Syncronize();
@@ -513,6 +514,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     return;
                 case EnumController.CardNo.P3_S01_01T:
+                case EnumController.CardNo.P3_S01_005:
                     // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、
                     // あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
