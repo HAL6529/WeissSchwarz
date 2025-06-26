@@ -102,9 +102,14 @@ public class DialogManager : MonoBehaviour
         m_OKDialog.SetParamater(paramater, ParamaterNum1, ParamaterNum2, ParamaterNum3);
     }
 
-    public void OKDialog(BattleModeCard card)
+    public void OKDialog_SetBattleModeCard(BattleModeCard card)
     {
         m_OKDialog.SetBattleModeCard(card);
+    }
+
+    public void OKDialog_SetParamaterNum3(int num)
+    {
+        m_OKDialog.SetParamaterNum3(num);
     }
 
     public void MoveDialog(int place,  BattleModeCard card)

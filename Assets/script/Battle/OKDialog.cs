@@ -33,6 +33,11 @@ public class OKDialog : MonoBehaviour
         m_BattleModeCard = card;
     }
 
+    public void SetParamaterNum3(int num)
+    {
+        ParamaterNum3 = num;
+    }
+
     public void SetParamater(EnumController.OKDialogParamater paramater)
     {
         SetParamater(paramater, null, -1, -1, -1);
@@ -121,7 +126,7 @@ public class OKDialog : MonoBehaviour
     {
         switch (m_DialogParamater)
         {
-            // ParamaterNum1: damage, ParamaterNum2: Place
+            // ParamaterNum1: damage, ParamaterNum2: Place, ParamaterNum3: handNum
             case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
                 int place = 0;
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
@@ -157,7 +162,7 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.LB_W02_07T:
                         case EnumController.CardNo.P3_S01_03T:
                         case EnumController.CardNo.P3_S01_009:
-                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
+                            m_EventAnimationManager.AnimationStartForCounter(m_BattleModeCard, place, ParamaterNum3);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
                             Action conter_action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
