@@ -62,14 +62,15 @@ public class DeckListManager : MonoBehaviour
         }
         cardInfoList.Add(info);
         sortDeckList();
-        if (isLevelSort)
-        {
-            LevelSortDeckList();
-        }
         if (isColorSort)
         {
             ColorSortDeckList();
         }
+        if (isLevelSort)
+        {
+            LevelSortDeckList();
+        }
+
         updateDeckList();
     }
 
@@ -162,11 +163,23 @@ public class DeckListManager : MonoBehaviour
         {
             isColorSort = false;
             ColorSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 150f / 255f);
-            return;
         }
-        isColorSort = true;
-        ColorSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
-        ColorSortDeckList();
+        else
+        {
+            isColorSort = true;
+            ColorSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        }
+
+        sortDeckList();
+        if (isColorSort)
+        {
+            ColorSortDeckList();
+        }
+        if (isLevelSort)
+        {
+            LevelSortDeckList();
+        }
+
         updateDeckList();
     }
 
@@ -180,6 +193,11 @@ public class DeckListManager : MonoBehaviour
         List<BattleModeCard> EventList = new List<BattleModeCard>();
         for (int i = 0; i < cardInfoList.Count; i++)
         {
+            if(cardInfoList[i].type == EnumController.Type.CLIMAX)
+            {
+                ClimaxList.Add(cardInfoList[i]);
+                continue;
+            }
             switch (cardInfoList[i].level)
             {
                 case 0:
@@ -229,11 +247,23 @@ public class DeckListManager : MonoBehaviour
         {
             isLevelSort = false;
             LevelSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 150f / 255f);
-            return;
         }
-        isLevelSort = true;
-        LevelSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
-        LevelSortDeckList();
+        else
+        {
+            isLevelSort = true;
+            LevelSortBtnImage.color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+        }
+
+        sortDeckList();
+        if (isColorSort)
+        {
+            ColorSortDeckList();
+        }
+        if (isLevelSort)
+        {
+            LevelSortDeckList();
+        }
+
         updateDeckList();
     }
 
@@ -246,14 +276,15 @@ public class DeckListManager : MonoBehaviour
     {
         cardInfoList.RemoveAt(index);
         sortDeckList();
-        if (isLevelSort)
-        {
-            LevelSortDeckList();
-        }
         if (isColorSort)
         {
             ColorSortDeckList();
         }
+        if (isLevelSort)
+        {
+            LevelSortDeckList();
+        }
+
         updateDeckList();
     }
 
