@@ -92,6 +92,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_010:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -179,6 +180,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_11T:
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_005:
+            case EnumController.CardNo.P3_S01_010:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -246,6 +248,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 power = 3000;
                 break;
             case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_010:
                 power = 2000;
                 break;
             case EnumController.CardNo.AT_WX02_A02:
@@ -310,6 +313,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     break;
                 case EnumController.CardNo.P3_S01_04T:
                 case EnumController.CardNo.P3_S01_12T:
+                case EnumController.CardNo.P3_S01_010:
                     // 自分のカードのパワーとソウルを操作する
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);

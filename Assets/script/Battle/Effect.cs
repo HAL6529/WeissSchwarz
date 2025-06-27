@@ -90,6 +90,8 @@ public class Effect : MonoBehaviour
                 m_GameManager.ActionList.Add(action_P3_S01_01T);
                 return;
             case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_010:
+                // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋2000し、ソウルを＋1。
                 Action action_P3_S01_04T = new Action(m_GameManager, EnumController.Action.P3_S01_04T);
                 action_P3_S01_04T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_04T.SetParamaterBattleStrix(m_BattleStrix);
@@ -374,6 +376,7 @@ public class Effect : MonoBehaviour
                 }
                 return;
             case EnumController.CardNo.P3_S01_04T:
+            case EnumController.CardNo.P3_S01_010:
                 // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
                 if (ConfirmStockForCost(2))
                 {
