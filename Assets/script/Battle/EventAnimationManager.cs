@@ -381,6 +381,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.P3_S01_07T:
+                case EnumController.CardNo.P3_S01_012:
                     //【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1500);
                     m_GameManager.Syncronize();

@@ -101,6 +101,8 @@ public class Effect : MonoBehaviour
                 m_GameManager.ActionList.Add(action_P3_S01_04T);
                 return;
             case EnumController.CardNo.P3_S01_07T:
+            case EnumController.CardNo.P3_S01_012:
+                // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのパワーを＋1500。
                 Action action_P3_S01_07T = new Action(m_GameManager, EnumController.Action.P3_S01_07T);
                 action_P3_S01_07T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_07T.SetParamaterBattleStrix(m_BattleStrix);
