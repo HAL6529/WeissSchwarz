@@ -375,6 +375,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_04T:
+                case EnumController.CardNo.P3_S01_010:
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、
                     // そのターン中、パワーを＋2000し、ソウルを＋1。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
@@ -520,6 +521,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     break;
                 case EnumController.CardNo.P3_S01_04T:
+                case EnumController.CardNo.P3_S01_010:
                     // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
                     for (int i = 0; i < 2; i++)
                     {
