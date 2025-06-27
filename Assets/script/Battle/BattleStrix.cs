@@ -26,6 +26,7 @@ public class BattleStrix : StrixBehaviour
     [SerializeField] WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     [SerializeField] EventAnimationManager m_EventAnimationManager;
+    [SerializeField] SEmanager m_SEmanager;
 
     List<BattleModeCard> tempList = new List<BattleModeCard>();
 
@@ -212,8 +213,6 @@ public class BattleStrix : StrixBehaviour
     [StrixRpc]
     public void CallGetHandList_2(List<BattleModeCardTemp> list, bool isTurnPlayer)
     {
-        Debug.Log(m_GameManager.isTurnPlayer);
-        Debug.Log(isTurnPlayer);
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_DialogManager.ConfirmEnemyHandDialog(list);
@@ -593,6 +592,36 @@ public class BattleStrix : StrixBehaviour
         {
             m_TriggerCardAnimationForEnemy.Play(card);
         }
+    }
+
+    [StrixRpc]
+    public void SEManager_AttackSE_Play()
+    {
+        m_SEmanager.AttackSE_Play();
+    }
+
+    [StrixRpc]
+    public void SEManager_DrawSE_Play()
+    {
+        m_SEmanager.DrawSE_Play();
+    }
+
+    [StrixRpc]
+    public void SEManager_EffectSE_Play()
+    {
+        m_SEmanager.EffectSE_Play();
+    }
+
+    [StrixRpc]
+    public void SEManager_LevelUpSE_Play()
+    {
+        m_SEmanager.LevelUpSE_Play();
+    }
+
+    [StrixRpc]
+    public void SEManager_PlaySE_Play()
+    {
+        m_SEmanager.PlaySE_Play();
     }
 
     [StrixRpc]

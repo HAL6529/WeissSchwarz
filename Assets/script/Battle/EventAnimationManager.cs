@@ -84,6 +84,7 @@ public class EventAnimationManager : MonoBehaviour
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
+        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
     }
 
     /// <summary>
@@ -102,6 +103,7 @@ public class EventAnimationManager : MonoBehaviour
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
+        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
     }
 
     private void AnimationEnd()
