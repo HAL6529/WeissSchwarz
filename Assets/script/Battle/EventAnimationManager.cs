@@ -422,6 +422,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.LB_W02_07T:
                 case EnumController.CardNo.P3_S01_03T:
                 case EnumController.CardNo.P3_S01_009:
+                case EnumController.CardNo.P3_S01_033:
                     pumpPoint = 2000;
                     cost = 1;
                     for (int i = 0; i < cost; i++)
@@ -452,6 +453,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.DC_W01_17T:
+                case EnumController.CardNo.P3_S01_067:
                     pumpPoint = 3000;
                     cost = 1;
                     for (int i = 0; i < cost; i++)
