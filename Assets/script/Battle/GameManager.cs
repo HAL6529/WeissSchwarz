@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Text logText;
 
-    [SerializeField] AudioClip DrawSE;
-
     public List<BattleModeCard> myDeckList = new List<BattleModeCard>();
     public List<BattleModeCard> myHandList = new List<BattleModeCard>();
     public List<BattleModeCard> myClockList = new List<BattleModeCard>();
@@ -114,8 +112,6 @@ public class GameManager : MonoBehaviour
     public List<Action> ActionList = new List<Action>();
 
     public ExecuteAction m_ExecuteAction = new ExecuteAction();
-
-    [SerializeField] Text testPhaseText;
 
     // Start is called before the first frame update
     void Start()
@@ -239,7 +235,7 @@ public class GameManager : MonoBehaviour
 
     public void Draw()
     {
-        GetComponent<AudioSource>().PlayOneShot(DrawSE);
+        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
         myHandList.Add(myDeckList[0]);
         myDeckList.RemoveAt(0);
         Syncronize();
@@ -296,6 +292,7 @@ public class GameManager : MonoBehaviour
 
     public void FirstDraw()
     {
+        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
         for (int i = 0; i < 5; i++)
         {
             myHandList.Add(myDeckList[0]);
@@ -581,6 +578,11 @@ public class GameManager : MonoBehaviour
     public void MariganEnd()
     {
         int num = myMariganList.Count;
+
+        if (num > 0)
+        {
+            m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
+        }
         for (int i = 0; i < num; i++)
         {
             myHandList.Remove(myMariganList[i]);

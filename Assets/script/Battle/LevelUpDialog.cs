@@ -21,6 +21,7 @@ public class LevelUpDialog : MonoBehaviour
             return;
         }
         m_GameManager.LevelUp(num);
+        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
         OffDialog();
@@ -33,6 +34,7 @@ public class LevelUpDialog : MonoBehaviour
         num = -1;
         this.gameObject.SetActive(true);
         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
+        m_BattleStrix.RpcToAll("SEManager_LevelUpSE_Play");
         for (int i = 0; i < buttons.Count; i++)
         {
             if(i > myLevelList.Count - 1)

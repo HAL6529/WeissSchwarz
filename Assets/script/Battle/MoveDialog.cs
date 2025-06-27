@@ -46,6 +46,8 @@ public class MoveDialog : MonoBehaviour
 
         if (m_BattleModeCard != null)
         {
+            m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
+
             BattleModeCard temp = m_GameManager.myFieldList[place];
             m_GameManager.myFieldList[place] = m_BattleModeCard;
             m_GameManager.myFieldList[selectedPlace] = temp;

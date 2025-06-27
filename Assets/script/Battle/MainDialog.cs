@@ -57,7 +57,8 @@ public class MainDialog : MonoBehaviour
         }
         if (m_BattleModeCard != null)
         {
-            for(int i = 0; i < m_BattleModeCard.cost; i++)
+            m_BattleStrix.RpcToAll("SEManager_PlaySE_Play");
+            for (int i = 0; i < m_BattleModeCard.cost; i++)
             {
                 BattleModeCard temp = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
                 m_GameManager.GraveYardList.Add(temp);

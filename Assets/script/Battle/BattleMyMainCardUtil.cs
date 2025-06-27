@@ -329,6 +329,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("SEManager_AttackSE_Play");
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.DIRECT_ATTACK))
         {
             return;
@@ -342,6 +343,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("SEManager_AttackSE_Play");
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.FRONT_ATTACK))
         {
             return;
@@ -359,6 +361,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleStrix.RpcToAll("SetIsAttackProcess", true);
         onRest();
         m_BattleStrix.RpcToAll("CallEnemyRest", PlaceNum, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("SEManager_AttackSE_Play");
         if (m_Effect.CheckWhenAttack(m_BattleModeCard, PlaceNum, EnumController.Attack.SIDE_ATTACK))
         {
             return;
