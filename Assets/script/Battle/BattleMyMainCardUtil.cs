@@ -207,7 +207,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
         // ---ここまでカードのガイド用---
 
-        m_DialogManager.CloseAllDialog();
+        m_DialogManager.CloseAllDialog2();
 
         if (m_GameManager.isLevelUpProcess || m_GameManager.isAttackProcess)
         {
