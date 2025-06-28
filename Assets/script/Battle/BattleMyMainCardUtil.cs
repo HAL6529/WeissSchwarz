@@ -623,8 +623,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.P3_S01_09T);
+            cardNoList.Add(EnumController.CardNo.P3_S01_015);
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-            if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_09T)
+            if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_09T || m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_015)
             {
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - 500;
