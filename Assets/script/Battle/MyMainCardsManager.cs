@@ -279,6 +279,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].HandEncore;
     }
 
+    public void SetHandEncore(int num, bool b)
+    {
+        CardList[num].HandEncore = b;
+    }
+
     /// <summary>
     /// フィールド上で2ストックアンコールを持っているか
     /// </summary>
@@ -287,12 +292,22 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].TwoStockEncore;
     }
 
+    public void SetTwoStockEncore(int num, bool b)
+    {
+        CardList[num].TwoStockEncore = b;
+    }
+
     /// <summary>
     /// フィールド上でクロックアンコールを持っているか
     /// </summary>
     public bool isClockEncore(int num)
     {
         return CardList[num].ClockEncore;
+    }
+
+    public void SetClockEncore(int num, bool b)
+    {
+        CardList[num].ClockEncore = b;
     }
 
     public int GetNumFieldCardNo(List<EnumController.CardNo> list)

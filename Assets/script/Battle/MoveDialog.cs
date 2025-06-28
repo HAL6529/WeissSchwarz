@@ -58,6 +58,18 @@ public class MoveDialog : MonoBehaviour
             m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, selectedPlaceStatus);
             m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, placeStatus);
 
+            bool isHandEncore = m_MyMainCardsManager.isHandEncore(selectedPlace);
+            m_MyMainCardsManager.SetHandEncore(selectedPlace, m_MyMainCardsManager.isHandEncore(place));
+            m_MyMainCardsManager.SetHandEncore(place, isHandEncore);
+
+            bool TwoStockEncore = m_MyMainCardsManager.isTwoStockEncore(selectedPlace);
+            m_MyMainCardsManager.SetTwoStockEncore(selectedPlace, m_MyMainCardsManager.isTwoStockEncore(place));
+            m_MyMainCardsManager.SetTwoStockEncore(place, TwoStockEncore);
+
+            bool ClockEncore = m_MyMainCardsManager.isClockEncore(selectedPlace);
+            m_MyMainCardsManager.SetClockEncore(selectedPlace, m_MyMainCardsManager.isClockEncore(place));
+            m_MyMainCardsManager.SetClockEncore(place, ClockEncore);
+
             PowerInstance.PowerUpUntilTurnEnd t_PowerUpUntilTurnEnd = m_MyMainCardsManager.GetPowerUpUntilTurnEnd(selectedPlace);
             m_MyMainCardsManager.SetPowerUpUntilTurnEnd(selectedPlace, m_MyMainCardsManager.GetPowerUpUntilTurnEnd(place));
             m_MyMainCardsManager.SetPowerUpUntilTurnEnd(place, t_PowerUpUntilTurnEnd);

@@ -223,4 +223,28 @@ public class DialogManager : MonoBehaviour
         m_WaitDialog.onClose();
         m_ConfirmEnemyHandDialog.OffDialog();
     }
+
+    public void CloseAllDialog2()
+    {
+        // m_YesOrNoDialog.OffDialog();
+        // m_OKDialog.OffDialog();
+        m_MainDialog.OffMainDialog();
+        m_MoveDialog.OffMainDialog();
+        // m_LevelUpDialog.OffDialog();
+        m_PhaseDialog.OffDialog();
+        // m_EncoreDialog.OffDialog();
+        // m_HandOverDialog.OffDialog();
+        // m_SearchDialog.OffDialog();
+        // m_CharacterSelectDialog.OffDialog();
+        // m_ConfirmEncoreKindsDialog.OffDialog();
+        // m_NotEraseDialog.OffDialog();
+        // m_ConfirmSearchOrSulvageCardDialog.OffDialog();
+        // m_GraveYardDetail.onCloseButton();
+        // m_MainPowerUpDialog.OffDialog();
+        // m_SelectActionDialog.OffDialog();
+        // m_SelectActEffectDialog.OffDialog();
+        // m_SulvageDialog.onCloseButton();
+        // m_WaitDialog.onClose();
+        // m_ConfirmEnemyHandDialog.OffDialog();
+    }
 }
