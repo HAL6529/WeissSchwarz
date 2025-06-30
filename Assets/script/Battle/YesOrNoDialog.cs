@@ -348,7 +348,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard);
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard, -1, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:

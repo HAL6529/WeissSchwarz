@@ -51,6 +51,11 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 break;
         }
 
+        if(list.Count == 0)
+        {
+            text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Sulvage_NONE;
+        }
+
         for(int i = 0; i < ConfirmSearchOrSulvageCardDialogsBtnUtilList.Count; i++)
         {
             if(i < list.Count)

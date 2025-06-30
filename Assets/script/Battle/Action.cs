@@ -28,17 +28,12 @@ public class Action : MonoBehaviour
     public void Execute(int num)
     {
         m_GameManager.ActionList.RemoveAt(num);
-        for (int m = 0; m < m_GameManager.ActionList.Count; m++)
-        {
-            Debug.Log(m_GameManager.ActionList[m].GetParamater());
-        }
         switch (paramater)
         {
             case EnumController.Action.Bond:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, m_BattleModeCard);
                 break;
             case EnumController.Action.ClockAndTwoDraw:
-                Debug.Log("Action:ClockAndTwoDraw");
                 m_GameManager.ClockAndTwoDraw2();
                 break;
             case EnumController.Action.DamageForFrontAttack2ForCancel:
@@ -63,7 +58,6 @@ public class Action : MonoBehaviour
             case EnumController.Action.DamageForFrontAttack2ForDamaged:
                 if (m_GameManager.LevelUpCheck())
                 {
-                    Debug.Log("Level Up");
                     Action action = new Action(m_GameManager, EnumController.Action.PowerCheckForLevelUpDialog);
                     action.SetParamaterNum(paramaterNum);
                     m_GameManager.ActionList.Add(action);
@@ -115,6 +109,12 @@ public class Action : MonoBehaviour
                     m_GameManager.GraveYardList.Remove(m_BattleModeCardList[i]);
                     m_GameManager.myHandList.Add(m_BattleModeCardList[i]);
                 }
+
+                if(paramaterNum > -1)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myHandList[paramaterNum]);
+                    m_GameManager.myHandList.RemoveAt(paramaterNum);
+                }
                 m_GameManager.Syncronize();
                 break;
             case EnumController.Action.AT_WX02_A08:
@@ -150,7 +150,6 @@ public class Action : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log("Action:ExecuteActionList");
         m_GameManager.ExecuteActionList();
     }
 

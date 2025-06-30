@@ -42,7 +42,7 @@ public class EventAnimationManager : MonoBehaviour
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
-    public void AnimationStartForCounter(BattleModeCard card, int place, int handNum)
+    public void AnimationStart(BattleModeCard card, int place, int handNum)
     {
         this.handNum = handNum;
         AnimationStart(card, place);
@@ -186,20 +186,14 @@ public class EventAnimationManager : MonoBehaviour
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
                     return;
                 case EnumController.CardNo.DC_W01_04T:
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.DC_W01_05T:
                     //【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.DC_W01_07T:
@@ -214,21 +208,12 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_12T:
                     // あなたは自分の控え室のキャラを2枚まで選び、手札に戻す。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
-                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 2);
+                    PayCost(2);
+                    m_DialogManager.SulvageDialog(handNum, m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 2);
                     return;
                 case EnumController.CardNo.DC_W01_13T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
@@ -242,22 +227,12 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_18T:
                     // あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
-
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ このカードを思い出にする。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(1);
                     m_MyMainCardsManager.CallPutMemoryFromField(place);
                     m_GameManager.ExecuteActionList();
                     return;
@@ -281,19 +256,12 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_04T:
                     //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
-
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_05T:
                     // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+                    PayCost(1);
                     for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
                     {
                         if (m_GameManager.myFieldList[i] != null)
@@ -306,21 +274,12 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_09T:
                     //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.LB_W02_14T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
 
@@ -335,11 +294,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.LB_W02_16T:
                     if (m_GameManager.myClockList.Count == 0)
                     {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                            m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                        }
+                        PayCost(3);
                         m_GameManager.myMemoryList.Add(m_BattleModeCard);
                         m_GameManager.myHandList.Remove(m_BattleModeCard);
                         m_GameManager.Syncronize();
@@ -350,16 +305,12 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_17T:
                     //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
                     return;
                 case EnumController.CardNo.LB_W02_19T:
                     // 【自】［(1)］ このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
-                    m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                    m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_GameManager.Draw();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
@@ -395,25 +346,21 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_12T:
                     // 【カウンター】 あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000し、ソウルを＋1。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
+                    PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.P3_S01_16T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_GameManager.Draw();
                     break;
+                case EnumController.CardNo.P3_S01_068:
+                    // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                    PayCost(1);
+                    m_DialogManager.SulvageDialog(handNum, m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
+                    return;
                 default:
                     break;
             }
@@ -427,13 +374,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_009:
                 case EnumController.CardNo.P3_S01_033:
                     pumpPoint = 2000;
-                    cost = 1;
-                    for (int i = 0; i < cost; i++)
-                    {
-                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
-                        m_GameManager.GraveYardList.Add(t);
-                        m_GameManager.myStockList.Remove(t);
-                    }
+                    PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
@@ -442,13 +383,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.AT_WX02_A05:
                     pumpPoint = 2500;
-                    cost = 1;
-                    for (int i = 0; i < cost; i++)
-                    {
-                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
-                        m_GameManager.GraveYardList.Add(t);
-                        m_GameManager.myStockList.Remove(t);
-                    }
+                    PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
@@ -458,13 +393,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_17T:
                 case EnumController.CardNo.P3_S01_067:
                     pumpPoint = 3000;
-                    cost = 1;
-                    for (int i = 0; i < cost; i++)
-                    {
-                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
-                        m_GameManager.GraveYardList.Add(t);
-                        m_GameManager.myStockList.Remove(t);
-                    }
+                    PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
@@ -485,22 +414,12 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_10T:
                     // 【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、
                     // あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
-                    m_GameManager.Syncronize();
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_14T:
@@ -528,21 +447,13 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_04T:
                 case EnumController.CardNo.P3_S01_010:
                     // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
-                    for (int i = 0; i < 2; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.ToHandFromField(place);
                     break;
                 case EnumController.CardNo.P3_S01_11T:
                     // 【起】［(1)］ そのターン中、このカードのソウルを＋1。
-                    for (int i = 0; i < 1; i++)
-                    {
-                        m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-                        m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-                    }
+                    PayCost(1);
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
@@ -578,5 +489,15 @@ public class EventAnimationManager : MonoBehaviour
     private void AnimationEndForRPC()
     {
         m_gameObject.SetActive(false);
+    }
+
+    private void PayCost(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
+            m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
+        }
+        m_GameManager.Syncronize();
     }
 }
