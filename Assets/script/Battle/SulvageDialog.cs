@@ -11,6 +11,7 @@ public class SulvageDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] EventAnimationManager m_EventAnimationManager;
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
 
     private List<BattleModeCard> BattleModeCardList = new List<BattleModeCard>();
 
@@ -30,6 +31,7 @@ public class SulvageDialog : MonoBehaviour
     public void SetBattleModeCard(int num, BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
     {
         handNum = num;
+        m_MyHandCardsManager.onSelected(num);
         SetBattleModeCard(card, list, type, minSulvageCard, maxSulvageCard);
     }
 

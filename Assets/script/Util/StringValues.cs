@@ -43,6 +43,7 @@ public class StringValues
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
     public string ConfirmSearchOrSulvageCardDialog_Sulvage;
+    public string ConfirmSearchOrSulvageCardDialog_Sulvage_NONE;
     public string ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
     public string ConfirmSearchOrSulvageCardDialog_DC_W01_12T;
     public string AT_WX02_A01_Explanation = "";
@@ -434,6 +435,7 @@ public class StringValues
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
                 ConfirmSearchOrSulvageCardDialog_Sulvage = japanese.ConfirmSearchOrSulvageCardDialog_Sulvage;
+                ConfirmSearchOrSulvageCardDialog_Sulvage_NONE = japanese.ConfirmSearchOrSulvageCardDialog_Sulvage_NONE;
                 ConfirmSearchOrSulvageCardDialog_Clock_Sulvage = japanese.ConfirmSearchOrSulvageCardDialog_Clock_Sulvage;
                 ConfirmSearchOrSulvageCardDialog_DC_W01_12T = japanese.ConfirmSearchOrSulvageCardDialog_DC_W01_12T;
                 DC_W01_01T_Explanation = japanese.DC_W01_01T_Explanation;
@@ -639,6 +641,7 @@ public class StringValues
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
         public string ConfirmSearchOrSulvageCardDialog_Search = "相手がカードを山札から加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_Sulvage = "相手がカードを控室から加えようとしています";
+        public string ConfirmSearchOrSulvageCardDialog_Sulvage_NONE = "相手が手札に加えるカードはありません。";
         public string ConfirmSearchOrSulvageCardDialog_Clock_Sulvage = "相手がカードをクロックから加えようとしています";
         public string ConfirmSearchOrSulvageCardDialog_DC_W01_12T = "相手がカードを控室から加えようとしています";
         public string DC_W01_01T_Explanation = "【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";

@@ -15,6 +15,7 @@ public class MyHandCardsManager : MonoBehaviour
     public GameObject onlyEleven;
     public GameObject rightCard;
     public int cursorNum = 0;
+    [SerializeField] List<BattleHandCardUtil> m_BattleHandCardUtilList = new List<BattleHandCardUtil>();
 
     private static int HAND_DISPLAY_NUM = 11;
     
@@ -204,5 +205,10 @@ public class MyHandCardsManager : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
+    }
+
+    public void onSelected(int num)
+    {
+        m_BattleHandCardUtilList[num].ResetSelected(true);
     }
 }
