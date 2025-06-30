@@ -32,6 +32,11 @@ public class DialogManager : MonoBehaviour
         m_WaitDialog.onClose();
     }
 
+    public void SulvageDialog(int handNum, BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
+    {
+        m_SulvageDialog.SetBattleModeCard(handNum, card, list, type, minSulvageCard, maxSulvageCard);
+    }
+
     public void SulvageDialog(BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
     {
         m_SulvageDialog.SetBattleModeCard(card, list, type, minSulvageCard, maxSulvageCard);

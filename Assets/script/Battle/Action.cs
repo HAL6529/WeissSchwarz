@@ -115,6 +115,12 @@ public class Action : MonoBehaviour
                     m_GameManager.GraveYardList.Remove(m_BattleModeCardList[i]);
                     m_GameManager.myHandList.Add(m_BattleModeCardList[i]);
                 }
+
+                if(paramaterNum > -1)
+                {
+                    m_GameManager.GraveYardList.Add(m_GameManager.myHandList[paramaterNum]);
+                    m_GameManager.myHandList.RemoveAt(paramaterNum);
+                }
                 m_GameManager.Syncronize();
                 break;
             case EnumController.Action.AT_WX02_A08:
@@ -150,7 +156,6 @@ public class Action : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log("Action:ExecuteActionList");
         m_GameManager.ExecuteActionList();
     }
 

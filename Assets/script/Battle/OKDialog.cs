@@ -164,7 +164,7 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_009:
                         case EnumController.CardNo.P3_S01_033:
                         case EnumController.CardNo.P3_S01_067:
-                            m_EventAnimationManager.AnimationStartForCounter(m_BattleModeCard, place, ParamaterNum3);
+                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place, ParamaterNum3);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
                             Action conter_action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);

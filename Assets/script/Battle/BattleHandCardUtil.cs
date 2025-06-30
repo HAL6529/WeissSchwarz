@@ -267,27 +267,28 @@ public class BattleHandCardUtil : MonoBehaviour
                 switch (m_BattleModeCard.cardNo)
                 {
                     case EnumController.CardNo.DC_W01_03T:
-                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
                         break;
                     case EnumController.CardNo.AT_WX02_A05:
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.LB_W02_04T:
+                    case EnumController.CardNo.P3_S01_068:
                         if (ConfirmStockForCost(1))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
                         }
                         return;
                     case EnumController.CardNo.DC_W01_12T:
                     case EnumController.CardNo.P3_S01_12T:
                         if (ConfirmStockForCost(2))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
                         }
                         return;
                     case EnumController.CardNo.LB_W02_16T:
                         if (ConfirmStockForCost(3))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
                         }
                         return;
                     default:

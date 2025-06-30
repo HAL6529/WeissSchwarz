@@ -25,6 +25,14 @@ public class SulvageDialog : MonoBehaviour
     /// </summary>
     private int maxSulvageCard = 0;
 
+    private int handNum = -1;
+
+    public void SetBattleModeCard(int num, BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
+    {
+        handNum = num;
+        SetBattleModeCard(card, list, type, minSulvageCard, maxSulvageCard);
+    }
+
     public void SetBattleModeCard(BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
     {
         m_BattleModeCardForEvent = card;
@@ -115,43 +123,23 @@ public class SulvageDialog : MonoBehaviour
         this.gameObject.SetActive(false);
         Action action = new Action(m_GameManager, EnumController.Action.SulvageDialog);
         action.SetParamaterBattleModeCardList(BattleModeCardList);
+
+        if(handNum > -1)
+        {
+            action.SetParamaterNum(handNum);
+        }
+
         m_GameManager.ActionList.Add(action);
 
-        /*List<BattleModeCard> graveyardTemp = m_GameManager.GraveYardList;
-        List<BattleModeCard> handListTemp = m_GameManager.myHandList;
-        List<BattleModeCard> sulvageListTemp = new List<BattleModeCard>();
-        sulvageListTemp = BattleModeCardList;
-
-        for (int i = 0;i < sulvageListTemp.Count; i++)
-        {
-            graveyardTemp.Remove(sulvageListTemp[i]);
-            handListTemp.Add(sulvageListTemp[i]);
-        }
-        handListTemp.Remove(m_BattleModeCardForEvent);
-        graveyardTemp.Add(m_BattleModeCardForEvent);
-
-        List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
-        for (int i = 0; i < graveyardTemp.Count; i++)
-        {
-            m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
-        }
-        for (int i = 0; i < handListTemp.Count; i++)
-        {
-            m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
-        }
-
-        ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
-        m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
-        m_ExecuteActionTemp.handList = m_handListTemp;*/
-
         m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(BattleModeCardList, EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T, null, m_GameManager.isFirstAttacker);
+        handNum = -1;
     }
 
     public void onCloseButton()
     {
         m_GameManager.ExecuteActionList();
         this.gameObject.SetActive(false);
+        handNum = -1;
         return;
     }
 }
