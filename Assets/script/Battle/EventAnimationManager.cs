@@ -361,6 +361,13 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.SulvageDialog(handNum, m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
                     return;
+                case EnumController.CardNo.P3_S01_093:
+                    // Ç†Ç»ÇΩÇÕ1ñáà¯Ç≠ÅB
+                    m_GameManager.Draw();
+                    m_GameManager.myHandList.RemoveAt(handNum);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    return;
                 default:
                     break;
             }
