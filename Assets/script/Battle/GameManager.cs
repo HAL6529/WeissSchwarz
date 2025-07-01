@@ -439,7 +439,6 @@ public class GameManager : MonoBehaviour
 
     public void PowerCheck2(EnumController.PowerCheck paramater)
     {
-        Debug.Log("PowerCheck2");
         switch (paramater)
         {
             case EnumController.PowerCheck.DamageForFrontAttack:

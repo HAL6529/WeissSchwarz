@@ -387,6 +387,7 @@ public class Effect : MonoBehaviour
                 }
                 return;
             case EnumController.CardNo.P3_S01_11T:
+            case EnumController.CardNo.P3_S01_017:
                 //【起】［(1)］ そのターン中、このカードのソウルを＋1。
                 if (ConfirmStockForCost(1))
                 {
@@ -553,6 +554,7 @@ public class Effect : MonoBehaviour
                 }
                 return false;
             case EnumController.CardNo.P3_S01_11T:
+            case EnumController.CardNo.P3_S01_017:
                 if (m_GameManager.MyClimaxCard == null)
                 {
                     return false;

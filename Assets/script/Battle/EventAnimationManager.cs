@@ -341,6 +341,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_11T:
+                case EnumController.CardNo.P3_S01_017:
                     //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
@@ -460,6 +461,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ToHandFromField(place);
                     break;
                 case EnumController.CardNo.P3_S01_11T:
+                case EnumController.CardNo.P3_S01_017:
                     // 【起】［(1)］ そのターン中、このカードのソウルを＋1。
                     PayCost(1);
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
