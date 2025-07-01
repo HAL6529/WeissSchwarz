@@ -93,12 +93,14 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -112,8 +114,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -2560,8 +2564,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7798}
     - Class: 114
       Script: {instanceID: 7882}
-    - Class: 114
-      Script: {instanceID: 31358}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2946,7 +2948,7 @@ ScriptsOnlyBuild:
     className: BattleHandCardUtil
   - hash:
       serializedVersion: 2
-      Hash: 8affca3b33e0f1dc26c9c89f939c6077
+      Hash: 67f6c3910e26adc8ff6956ea6e30cd0e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyStockCardsManager
@@ -3324,7 +3326,7 @@ ScriptsOnlyBuild:
     className: EnvMapAnimator
   - hash:
       serializedVersion: 2
-      Hash: 8affca3b33e0f1dc26c9c89f939c6077
+      Hash: 67f6c3910e26adc8ff6956ea6e30cd0e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MyStockCardsManager
