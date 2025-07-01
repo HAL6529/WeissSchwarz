@@ -61,11 +61,19 @@ public class MyMainCardsManager : MonoBehaviour
 
     public void CallOnRest(int num)
     {
+        if (CardList[num].getBattleModeCard() == null)
+        {
+            return;
+        }
         CardList[num].onRest();
     }
 
     public void CallOnReverse(int num)
     {
+        if(CardList[num].getBattleModeCard() == null)
+        {
+            return;
+        }
         CardList[num].onReverse();
     }
 
