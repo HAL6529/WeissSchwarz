@@ -25,14 +25,63 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].m_SoulUpUntilTurnEnd.AddUpSoul(soul);
     }
 
-    public void ResetPowerUpUntilTurnEnd(int num)
+    /// <summary>
+    /// 自分がレベルアップしたときに発動する効果
+    /// </summary>
+    public void CallLevelUp()
     {
-        CardList[num].m_PowerUpUntilTurnEnd.ResetUpPower();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].WhenLevelUp();
+        }
     }
 
-    public void ResetSoulUpUntilTurnEnd(int num)
+    /// <summary>
+    /// フィールドからデッキトップに置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutDeckTopFromField(int num)
     {
-        CardList[num].m_SoulUpUntilTurnEnd.ResetUpSoul();
+        CardList[num].PutDeckTopFromField();
+    }
+
+    /// <summary>
+    /// 控室から舞台に置かれるときに呼ばれる
+    /// </summary>
+    public void CallPutFieldFromGraveYard(int place, BattleModeCard card, EnumController.State state)
+    {
+        CardList[place].PutFieldFromGraveYard(card, state);
+    }
+
+    /// <summary>
+    /// 手札から舞台に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutFieldFromHand(int place, int num, EnumController.State state)
+    {
+        CardList[place].PutFieldFromHand(num, state);
+    }
+
+    /// <summary>
+    /// フィールドから控室に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutGraveYardFromField(int place)
+    {
+        CardList[place].PutGraveYardFromField();
+    }
+
+    /// <summary>
+    /// フィールドから手札に戻す時に呼ばれる
+    /// </summary>
+    public void CallPutHandFromField(int place)
+    {
+        CardList[place].PutHandFromField();
+    }
+
+    /// <summary>
+    /// フィールドから思い出に置かれる時に呼ばれる
+    /// </summary>
+    public void CallPutMemoryFromField(int place)
+    {
+        CardList[place].PutMemoryFromField();
     }
 
     public void CallNotShowDirectAttackButton()
@@ -70,7 +119,7 @@ public class MyMainCardsManager : MonoBehaviour
 
     public void CallOnReverse(int num)
     {
-        if(CardList[num].getBattleModeCard() == null)
+        if (CardList[num].getBattleModeCard() == null)
         {
             return;
         }
@@ -80,54 +129,6 @@ public class MyMainCardsManager : MonoBehaviour
     public void CallOnStand(int num)
     {
         CardList[num].Stand();
-    }
-
-    /// <summary>
-    /// フィールドからデッキトップに置かれるときに呼ばれる
-    /// </summary>
-    public void CallPutDeckTopFromField(int num)
-    {
-        CardList[num].PutDeckTopFromField();
-    }
-
-    /// <summary>
-    /// 控室から舞台に置かれるときに呼ばれる
-    /// </summary>
-    public void CallPutFieldFromGraveYard(int place, BattleModeCard card, EnumController.State state)
-    {
-        CardList[place].PutFieldFromGraveYard(card, state);
-    }
-
-    /// <summary>
-    /// 手札から舞台に置かれる時に呼ばれる
-    /// </summary>
-    public void CallPutFieldFromHand(int place, int num, EnumController.State state)
-    {
-        CardList[place].PutFieldFromHand(num, state);
-    }
-
-    /// <summary>
-    /// フィールドから思い出に置かれる時に呼ばれる
-    /// </summary>
-    public void CallPutMemoryFromField(int place)
-    {
-        CardList[place].PutMemoryFromField();
-    }
-
-    /// <summary>
-    /// フィールドから手札に戻す時に呼ばれる
-    /// </summary>
-    public void CallPutHandFromField(int place)
-    {
-        CardList[place].PutHandFromField();
-    }
-
-    /// <summary>
-    /// フィールドから控室に置かれる時に呼ばれる
-    /// </summary>
-    public void CallPutGraveYardFromField(int place)
-    {
-        CardList[place].PutGraveYardFromField();
     }
 
     public void CallStand()
@@ -150,13 +151,33 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 自分がレベルアップしたときに発動する効果
+    /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
     /// </summary>
-    public void CallLevelUp()
+    public void ConfirmEffectWhenMyCardPut(int PlaceNum)
     {
-        for(int i = 0; i < CardList.Count; i++)
+
+        for (int i = 0; i < CardList.Count; i++)
         {
-            CardList[i].WhenLevelUp();
+            if (i == PlaceNum)
+            {
+                continue;
+            }
+            CardList[i].EffectWhenMyOtherCardPut(PlaceNum);
+        }
+    }
+
+    /// <summary>
+    /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」の効果を持っているカードが場にないか確認する
+    /// </summary>
+    public void ConfirmEffectWhenMyCardReversed(int PlaceNum)
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (i == PlaceNum)
+            {
+                continue;
+            }
+            CardList[i].EffectWhenMyOtherCardReversed();
         }
     }
 
@@ -220,13 +241,68 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].m_AttributeUpUntilTurnEnd;
     }
 
+    public List<List<EnumController.Attribute>> GetFieldAttributeList()
+    {
+        List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].AttributeList);
+        }
+        return list;
+    }
+
+    public int GetFieldLevel(int place)
+    {
+        return CardList[place].GetFieldLevel();
+    }
+
+    public List<int> GetFieldLevel()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldLevel());
+        }
+        return list;
+    }
+
+    public int GetFieldPower(int place)
+    {
+        return CardList[place].GetFieldPower();
+    }
+
+    public List<int> GetFieldPower()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldPower());
+        }
+        return list;
+    }
+
+    public List<int> GetFieldSoul()
+    {
+        List<int> list = new List<int>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].GetFieldSoul());
+        }
+        return list;
+    }
+
+    public int GetFieldSoul(int place)
+    {
+        return CardList[place].GetFieldSoul();
+    }
+
     /// <summary>
     /// ガウル効果の計算用
     /// </summary>
     /// <returns></returns>
     public int GetGaulPower(int num, List<EnumController.Attribute> attributeList)
     {
-        if(attributeList == null)
+        if (attributeList == null)
         {
             return 0;
         }
@@ -243,14 +319,28 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].m_Gaul.GetAssistPower(count);
     }
 
+    public List<bool> GetIsGreatPerformance()
+    {
+        List<bool> list = new List<bool>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].isGreatPerformance);
+        }
+        return list;
+    }
+
+    public bool GetIsGreatPerformance(int place)
+    {
+        if (CardList[place].isGreatPerformance && CardList[place].GetState() != EnumController.State.REVERSE)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public int GetLevelAssistPower(int num, int FieldLevel)
     {
         return CardList[num].m_LevelAssist.getAssistPower(FieldLevel);
-    }
-
-    public EnumController.State GetState(int num)
-    {
-        return CardList[num].GetState();
     }
 
     /// <summary>
@@ -278,59 +368,19 @@ public class MyMainCardsManager : MonoBehaviour
         return count;
     }
 
-    /// <summary>
-    /// フィールド上で手札アンコールを持っているか
-    /// </summary>
-    /// <returns></returns>
-    public bool isHandEncore(int num)
-    {
-        return CardList[num].HandEncore;
-    }
-
-    public void SetHandEncore(int num, bool b)
-    {
-        CardList[num].HandEncore = b;
-    }
-
-    /// <summary>
-    /// フィールド上で2ストックアンコールを持っているか
-    /// </summary>
-    public bool isTwoStockEncore(int num)
-    {
-        return CardList[num].TwoStockEncore;
-    }
-
-    public void SetTwoStockEncore(int num, bool b)
-    {
-        CardList[num].TwoStockEncore = b;
-    }
-
-    /// <summary>
-    /// フィールド上でクロックアンコールを持っているか
-    /// </summary>
-    public bool isClockEncore(int num)
-    {
-        return CardList[num].ClockEncore;
-    }
-
-    public void SetClockEncore(int num, bool b)
-    {
-        CardList[num].ClockEncore = b;
-    }
-
     public int GetNumFieldCardNo(List<EnumController.CardNo> list)
     {
-        if(list.Count == 0)
+        if (list.Count == 0)
         {
             return 0;
         }
         int num = 0;
-        for(int i = 0; i < CardList.Count; i++)
+        for (int i = 0; i < CardList.Count; i++)
         {
-            for(int n = 0; n < list.Count; n++)
+            for (int n = 0; n < list.Count; n++)
             {
                 BattleModeCard temp = CardList[i].getBattleModeCard();
-                if(temp == null)
+                if (temp == null)
                 {
                     continue;
                 }
@@ -344,80 +394,6 @@ public class MyMainCardsManager : MonoBehaviour
         return num;
     }
 
-    public List<List<EnumController.Attribute>> GetFieldAttributeList()
-    {
-        List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            list.Add(CardList[i].AttributeList);
-        }
-        return list;
-    }
-
-    public int GetFieldPower(int place)
-    {
-        return CardList[place].GetFieldPower();
-    }
-
-    public int GetFieldLevel(int place)
-    {
-        return CardList[place].GetFieldLevel();
-    }
-
-    public List<int> GetFieldLevel()
-    {
-        List<int> list = new List<int>();
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            list.Add(CardList[i].GetFieldLevel());
-        }
-        return list;
-    }
-
-    public List<int> GetFieldPower()
-    {
-        List<int> list = new List<int>();
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            list.Add(CardList[i].GetFieldPower());
-        }
-        return list;
-    }
-
-    public List<int> GetFieldSoul()
-    {
-        List<int> list = new List<int>();
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            list.Add(CardList[i].GetFieldSoul());
-        }
-        return list;
-    }
-
-    public List<bool> GetIsGreatPerformance()
-    {
-        List<bool> list = new List<bool>();
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            list.Add(CardList[i].isGreatPerformance);
-        }
-        return list;
-    }
-
-    public bool GetIsGreatPerformance(int place)
-    {
-        if(CardList[place].isGreatPerformance && CardList[place].GetState() != EnumController.State.REVERSE)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public int GetFieldSoul(int place)
-    {
-        return CardList[place].GetFieldSoul();
-    }
-
     public PowerInstance.PowerUpUntilTurnEnd GetPowerUpUntilTurnEnd(int place)
     {
         return CardList[place].m_PowerUpUntilTurnEnd;
@@ -428,19 +404,49 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].m_SoulUpUntilTurnEnd;
     }
 
+    public EnumController.State GetState(int num)
+    {
+        return CardList[num].GetState();
+    }
+
     public bool HaveAttribute(int place, EnumController.Attribute paramater)
     {
         return CardList[place].HaveAttribute(paramater);
     }
 
-    public void SetPowerUpUntilTurnEnd(int place, PowerInstance.PowerUpUntilTurnEnd paramater)
+    /// <summary>
+    /// フィールド上でクロックアンコールを持っているか
+    /// </summary>
+    public bool isClockEncore(int num)
     {
-        CardList[place].m_PowerUpUntilTurnEnd = paramater;
+        return CardList[num].ClockEncore;
     }
 
-    public void SetSoulUpUntilTurnEnd(int place, SoulInstance.SoulUpUntilTurnEnd paramater)
+    /// <summary>
+    /// フィールド上で手札アンコールを持っているか
+    /// </summary>
+    /// <returns></returns>
+    public bool isHandEncore(int num)
     {
-        CardList[place].m_SoulUpUntilTurnEnd = paramater;
+        return CardList[num].HandEncore;
+    }
+
+    /// <summary>
+    /// フィールド上で2ストックアンコールを持っているか
+    /// </summary>
+    public bool isTwoStockEncore(int num)
+    {
+        return CardList[num].TwoStockEncore;
+    }
+
+    public void ResetPowerUpUntilTurnEnd(int num)
+    {
+        CardList[num].m_PowerUpUntilTurnEnd.ResetUpPower();
+    }
+
+    public void ResetSoulUpUntilTurnEnd(int num)
+    {
+        CardList[num].m_SoulUpUntilTurnEnd.ResetUpSoul();
     }
 
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)
@@ -458,34 +464,28 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].setBattleModeCard(card, status);
     }
 
-    /// <summary>
-    /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
-    /// </summary>
-    public void ConfirmEffectWhenMyCardPut(int PlaceNum)
+    public void SetClockEncore(int num, bool b)
     {
-
-        for (int i = 0; i < CardList.Count; i++)
-        {
-            if (i == PlaceNum)
-            {
-                continue;
-            }
-            CardList[i].EffectWhenMyOtherCardPut(PlaceNum);
-        }
+        CardList[num].ClockEncore = b;
     }
 
-    /// <summary>
-    /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」の効果を持っているカードが場にないか確認する
-    /// </summary>
-    public void ConfirmEffectWhenMyCardReversed(int PlaceNum)
+    public void SetHandEncore(int num, bool b)
     {
-        for(int i = 0; i < CardList.Count; i++)
-        {
-            if(i == PlaceNum)
-            {
-                continue;
-            }
-            CardList[i].EffectWhenMyOtherCardReversed();
-        }
+        CardList[num].HandEncore = b;
+    }
+
+    public void SetPowerUpUntilTurnEnd(int place, PowerInstance.PowerUpUntilTurnEnd paramater)
+    {
+        CardList[place].m_PowerUpUntilTurnEnd = paramater;
+    }
+
+    public void SetSoulUpUntilTurnEnd(int place, SoulInstance.SoulUpUntilTurnEnd paramater)
+    {
+        CardList[place].m_SoulUpUntilTurnEnd = paramater;
+    }
+
+    public void SetTwoStockEncore(int num, bool b)
+    {
+        CardList[num].TwoStockEncore = b;
     }
 }
