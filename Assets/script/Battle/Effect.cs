@@ -239,8 +239,9 @@ public class Effect : MonoBehaviour
         switch (effectCard.cardNo)
         {
             case EnumController.CardNo.P3_S01_16T:
+            case EnumController.CardNo.P3_S01_087:
                 //【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
-                if(m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil))
+                if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil))
                 {
                     Action action = new Action(m_GameManager, EnumController.Action.P3_S01_16T);
                     action.SetParamaterEventAnimationManager(m_EventAnimationManager);
@@ -393,6 +394,7 @@ public class Effect : MonoBehaviour
                 }
                 return;
             case EnumController.CardNo.P3_S01_16T:
+            case EnumController.CardNo.P3_S01_087:
                 // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
                 if (ConfirmStockForCost(2))
                 {
