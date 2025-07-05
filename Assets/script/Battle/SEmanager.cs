@@ -9,6 +9,7 @@ public class SEmanager : MonoBehaviour
     [SerializeField] AudioClip DrawSE;
     [SerializeField] AudioClip LevelUpSE;
     [SerializeField] AudioClip PlaySE;
+    [SerializeField] AudioClip ShuffleSE;
     [SerializeField] AudioSource m_AudioSource;
 
     public void AttackSE_Play()
@@ -34,5 +35,10 @@ public class SEmanager : MonoBehaviour
     public void PlaySE_Play()
     {
         m_AudioSource.PlayOneShot(PlaySE);
+    }
+
+    public void ShuffleSE_Play()
+    {
+        m_AudioSource.PlayOneShot(ShuffleSE);
     }
 }
