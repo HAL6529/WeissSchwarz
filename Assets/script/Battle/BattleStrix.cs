@@ -17,6 +17,7 @@ public class BattleStrix : StrixBehaviour
 {
     [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleDeckCardUtil m_EnemyBattleDeckCardUtil;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
@@ -622,6 +623,16 @@ public class BattleStrix : StrixBehaviour
     public void SEManager_PlaySE_Play()
     {
         m_SEmanager.PlaySE_Play();
+    }
+
+    [StrixRpc]
+    public void SendBattleDeckCardUtilAnimationStart(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker == isFirstAttacker)
+        {
+            return;
+        }
+        m_EnemyBattleDeckCardUtil.AnimationStart_RPC();
     }
 
     [StrixRpc]

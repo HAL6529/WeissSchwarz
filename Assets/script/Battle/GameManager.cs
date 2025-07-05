@@ -480,6 +480,7 @@ public class GameManager : MonoBehaviour
     public void Shuffle()
     {
         myBattleDeckCardUtil.AnimationStart();
+        m_BattleStrix.RpcToAll("SendBattleDeckCardUtilAnimationStart", isFirstAttacker);
         for (int i = myDeckList.Count - 1; i > 0; i--)
         {
             int r = Random.Range(0, i + 1);
@@ -860,17 +861,6 @@ public class GameManager : MonoBehaviour
 
     public void DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
     {
-        // ここからテスト用
-        // リフレッシュ後の機能を確認するテスト
-        /*for(int m = 0; m < myDeckList.Count - 1; m++)
-        {
-            GraveYardList.Add(myDeckList[m]);
-        }
-        List<BattleModeCard> t = new List<BattleModeCard>();
-        t.Add(myDeckList[myDeckList.Count - 1]);
-        myDeckList = t;
-        Syncronize();*/
-        // ここまでテスト用
         List<BattleModeCard> temp = new List<BattleModeCard>();
         int placeNum = -1;
         switch (place)

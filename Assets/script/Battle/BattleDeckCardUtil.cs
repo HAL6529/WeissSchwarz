@@ -57,8 +57,24 @@ public class BattleDeckCardUtil : MonoBehaviour
     }
     public void AnimationEnd()
     {
-        Debug.Log("AnimationEnd");
         Deck.SetActive(true);
+        DummyDeck.SetActive(false);
+    }
+
+    public void AnimationStart_RPC()
+    {
+        m_SEmanager.ShuffleSE_Play();
+        DummyDeck.SetActive(true);
+        if (!firstFlg)
+        {
+            animator.speed = 2;
+            animator.AddClipCallback(0, AnimationName, 1.19f, () => AnimationEnd_RPC());
+            firstFlg = true;
+        }
+    }
+
+    public void AnimationEnd_RPC()
+    {
         DummyDeck.SetActive(false);
     }
 }
