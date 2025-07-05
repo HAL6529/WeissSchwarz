@@ -174,7 +174,25 @@ public class GameManager : MonoBehaviour
 
     public void ClockAndTwoDraw2()
     {
+        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
+        myHandList.Add(myDeckList[0]);
+        myDeckList.RemoveAt(0);
+        Syncronize();
+        if (myDeckList.Count == 0)
+        {
+            ActionList.Add(new Action(this, EnumController.Action.ClockAndTwoDraw2));
+            Refresh();
+            return;
+        }
+
         Draw();
+        Syncronize();
+        ClockPhaseEnd();
+        return;
+    }
+
+    public void ClockAndTwoDraw3()
+    {
         Draw();
         Syncronize();
         ClockPhaseEnd();
