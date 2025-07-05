@@ -9,6 +9,7 @@ namespace EnumController
         VOID,
         Bond,
         ClockAndTwoDraw,
+        ClockAndTwoDraw2,
         DamageRefresh,
         DamageForFrontAttack,
         DamageForFrontAttack2ForCancel,

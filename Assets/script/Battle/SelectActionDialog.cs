@@ -92,6 +92,15 @@ public class SelectActionDialog : MonoBehaviour
             return;
         }
 
+        // クロック2ドローの途中のアクションがあれば優先的に処理する
+        int haveClockAndTwoDraw2 = HaveParamater(EnumController.Action.ClockAndTwoDraw2);
+        if (haveClockAndTwoDraw2 != -1)
+        {
+            ActionList[haveClockAndTwoDraw2].Execute(haveClockAndTwoDraw2);
+            // OffDialog();
+            return;
+        }
+
         // クロック2ドローした後のアクションがあれば優先的に処理する
         int haveClockAndTwoDraw = HaveParamater(EnumController.Action.ClockAndTwoDraw);
         if (haveClockAndTwoDraw != -1)

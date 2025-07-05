@@ -36,6 +36,9 @@ public class Action : MonoBehaviour
             case EnumController.Action.ClockAndTwoDraw:
                 m_GameManager.ClockAndTwoDraw2();
                 break;
+            case EnumController.Action.ClockAndTwoDraw2:
+                m_GameManager.ClockAndTwoDraw3();
+                break;
             case EnumController.Action.DamageForFrontAttack2ForCancel:
                 if (paramaterNum > -1)
                 {
