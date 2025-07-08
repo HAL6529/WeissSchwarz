@@ -112,6 +112,11 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT:
                 str = stringValues.YesOrNoDialog_CONFIRM_BOOK_TRIGGER;
                 break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
+                str = stringValues.YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER;
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT:
@@ -302,6 +307,21 @@ public class YesOrNoDialog : MonoBehaviour
                         break;
                 }
                 break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
+                m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                m_GameManager.myDeckList.RemoveAt(0);
+                m_GameManager.Syncronize();
+
+                if (m_GameManager.myDeckList.Count == 0)
+                {
+                    m_GameManager.Refresh();
+                }
+                m_GameManager.Syncronize();
+                m_EventAnimationManager.AnimationStartForBounceTrigger(m_BattleModeCard, ParamaterNum1, ParamaterNum2, m_YesOrNoDialogParamater);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT:
@@ -473,6 +493,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_SIDE:
             case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE:
             case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT:
@@ -481,14 +504,17 @@ public class YesOrNoDialog : MonoBehaviour
                 switch (m_YesOrNoDialogParamater)
                 {
                     case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT:
+                    case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
                     case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT:
                         m_BattleStrix.RpcToAll("Damage", ParamaterNum1, m_GameManager.isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, m_GameManager.SendShotList);
                         break;
                     case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_SIDE:
+                    case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
                     case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE:
                         m_BattleStrix.RpcToAll("Damage", ParamaterNum1, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
                         break;
                     case EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT:
+                    case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
                     case EnumController.YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT:
                         // ("CallOKDialogForCounter",int damage, int place, m_GameManager.isFirstAttacker,List<EnumController.Shot> ReceiveShotList)
                         m_BattleStrix.RpcToAll("CallOKDialogForCounter", ParamaterNum1, ParamaterNum2, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);

@@ -6,8 +6,6 @@ using EnumController;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] Text logText;
-
     public List<BattleModeCard> myDeckList = new List<BattleModeCard>();
     public List<BattleModeCard> myHandList = new List<BattleModeCard>();
     public List<BattleModeCard> myClockList = new List<BattleModeCard>();
@@ -713,6 +711,16 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
                 break;
+            case EnumController.Trigger.BOUNCE:
+                for(int i = 0; i < enemyFieldList.Count; i++)
+                {
+                    if (enemyFieldList[i] != null)
+                    {
+                        m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT, myDeckList[0], damage, num);
+                        return;
+                    }
+                }
+                break;
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, null, damage);
                 return;
@@ -742,6 +750,16 @@ public class GameManager : MonoBehaviour
                 return;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
+                break;
+            case EnumController.Trigger.BOUNCE:
+                for (int i = 0; i < enemyFieldList.Count; i++)
+                {
+                    if (enemyFieldList[i] != null)
+                    {
+                        m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT, myDeckList[0], damage, num);
+                        return;
+                    }
+                }
                 break;
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage, num);
@@ -775,6 +793,16 @@ public class GameManager : MonoBehaviour
                 break;
             case EnumController.Trigger.SHOT:
                 SendShotList.Add(EnumController.Shot.SHOT);
+                break;
+            case EnumController.Trigger.BOUNCE:
+                for (int i = 0; i < enemyFieldList.Count; i++)
+                {
+                    if (enemyFieldList[i] != null)
+                    {
+                        m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE, myDeckList[0], damage, num);
+                        return;
+                    }
+                }
                 break;
             case EnumController.Trigger.POOL:
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_SIDE, null, damage);
@@ -896,7 +924,6 @@ public class GameManager : MonoBehaviour
                 placeNum = -1;
                 break;
         }
-        Debug.Log("placeNum:" + placeNum);
         if (damage <= 0 && placeNum > -1)
         {
             PowerCheck(placeNum, EnumController.PowerCheck.DamageForFrontAttack);

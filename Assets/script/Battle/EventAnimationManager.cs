@@ -32,10 +32,37 @@ public class EventAnimationManager : MonoBehaviour
 
     private bool isFromRPC = false;
 
+    private EnumController.YesOrNoDialogParamater paramater;
+
+    private int damage = -1;
+
     // Start is called before the first frame update
     void Start()
     {
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+    }
+
+    /// <summary>
+    /// バウンストリガー用
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="paramater"></param>
+    public void AnimationStartForBounceTrigger(BattleModeCard card, int damage, int place, EnumController.YesOrNoDialogParamater paramater)
+    {
+        this.paramater = paramater;
+        this.place = place;
+        this.damage = damage;
+        isFromRPC = false;
+        m_gameObject.SetActive(true);
+        effectNum = 1;
+
+        m_BattleModeCard = card;
+        m_image.sprite = card.sprite;
+        m_image2.sprite = card.sprite;
+        // アニメーション再生を再生するためにspeedを1にする
+        animator.speed = 1;
+        animator.Play(AnimationName, 0, 0);
+        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
     }
 
     /// <summary>
@@ -113,16 +140,24 @@ public class EventAnimationManager : MonoBehaviour
         if (isFromRPC)
         {
             place = -1;
+            damage = -1;
             effectNum = 0;
             return;
         }
         Execute();
         // effectNum = 0;
         place = -1;
+        damage = -1;
     }
 
     private void Execute()
     {
+        if(paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT)
+        {
+            m_DialogManager.CharacterSelectDialog(damage, place, paramater);
+            return;
+        }
+
         int enemyPlace = -1;
         switch (place)
         {

@@ -162,6 +162,11 @@ public class DialogManager : MonoBehaviour
         m_CharacterSelectDialog.Open(card, isMine, place);
     }
 
+    public void CharacterSelectDialog(int damage, int place, EnumController.YesOrNoDialogParamater paramater)
+    {
+        m_CharacterSelectDialog.Open(damage, place, paramater);
+    }
+
     public void ConfirmEncoreKindsDialog(BattleModeCard m_BattleModeCard, int paramaterNum1, bool canHandEncore, bool canTwoStcockEncore, bool canThreeStocEncore, bool canClockEncore)
     {
         m_ConfirmEncoreKindsDialog.Active(m_BattleModeCard, paramaterNum1, canHandEncore, canTwoStcockEncore, canThreeStocEncore, canClockEncore);
