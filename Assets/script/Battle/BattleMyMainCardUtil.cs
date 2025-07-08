@@ -348,10 +348,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             return;
         }
-
-        // トリガーのテスト用(BattleModeDeckでトリガーするカードを設定)
-        // m_GameManager.myDeckList[0] = m_GameManager.testTrigger;
-
         m_BattleStrix.CallPlayEnemyTriggerAnimation(m_GameManager.myDeckList[0], m_GameManager.isTurnPlayer);
         m_TriggerCardAnimation.Play(EnumController.Attack.FRONT_ATTACK, PlaceNum, GetEnemyLevel());
     }

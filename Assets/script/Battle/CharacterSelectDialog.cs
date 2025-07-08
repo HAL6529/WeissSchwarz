@@ -31,9 +31,88 @@ public class CharacterSelectDialog : MonoBehaviour
 
     private List<bool> ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
     private BattleModeCard m_BattleModeCard = null;
+    
+    private EnumController.YesOrNoDialogParamater m_YesOrNoDialogParamater;
+    private int damage;
+
+    /// <summary>
+    /// バウンストリガー用
+    /// </summary>
+    /// <param name="isMine"></param>
+    /// <param name="paramater"></param>
+    public void Open(int damage, int place, EnumController.YesOrNoDialogParamater paramater)
+    {
+        m_YesOrNoDialogParamater = paramater;
+        m_GameManager.isCharacterSelectDialogProcess = true;
+        List<BattleModeCard> list = new List<BattleModeCard>();
+        list = m_GameManager.enemyFieldList;
+        m_RectTransform.rotation = Quaternion.Euler(0, 0, 180.0f);
+        for (int i = 0; i < RectTransformList.Count; i++)
+        {
+            if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.STAND)
+            {
+                RectTransformList[i].rotation = Quaternion.Euler(0, 0, 180.0f);
+            }
+            else if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.REST)
+            {
+                RectTransformList[i].rotation = Quaternion.Euler(0, 0, 90.0f);
+            }
+            else
+            {
+                RectTransformList[i].rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+        m_OKButton.SetActive(false);
+        ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
+        this.place = place;
+        this.damage = damage;
+        m_BattleModeCard = null;
+        int cnt = 0;
+        minNum = 0;
+        maxNum = 1;
+
+        for (int i = 0; i < images.Count; i++)
+        {
+            if (list[i] == null)
+            {
+                images[i].sprite = BackImage;
+                cnt++;
+                buttons[i].interactable = false;
+            }
+            else
+            {
+                images[i].sprite = list[i].sprite;
+                buttons[i].interactable = true;
+            }
+        }
+        if (cnt >= 5)
+        {
+            m_GameManager.Syncronize();
+
+            switch (m_YesOrNoDialogParamater)
+            {
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
+                    m_BattleStrix.RpcToAll("Damage", damage, m_GameManager.isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
+                    m_BattleStrix.RpcToAll("Damage", damage, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
+                    // ("CallOKDialogForCounter",int damage, int place, m_GameManager.isFirstAttacker,List<EnumController.Shot> ReceiveShotList)
+                    m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);
+                    break;
+                default:
+                    break;
+            }
+            OffDialog();
+            return;
+        }
+        this.gameObject.SetActive(true);
+    }
 
     public void Open(BattleModeCard card, bool isMine, int place)
     {
+        m_YesOrNoDialogParamater = EnumController.YesOrNoDialogParamater.VOID;
         m_GameManager.isCharacterSelectDialogProcess = true;
         List<BattleModeCard> list = new List<BattleModeCard>();
         if (isMine)
@@ -243,6 +322,36 @@ public class CharacterSelectDialog : MonoBehaviour
 
     public void OKButton()
     {
+        if (m_YesOrNoDialogParamater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT || m_YesOrNoDialogParamater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE || m_YesOrNoDialogParamater == EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT)
+        {
+            for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+            {
+                if (ButtonSelectedNumList[i])
+                {
+                    // 相手のカードをバウンスする
+                    m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
+                }
+            }
+            m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+            m_GameManager.Syncronize();
+            switch (m_YesOrNoDialogParamater)
+            {
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_DIRECT:
+                    m_BattleStrix.RpcToAll("Damage", damage, m_GameManager.isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_SIDE:
+                    m_BattleStrix.RpcToAll("Damage", damage, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_BOUNCE_TRIGGER_FRONT:
+                    // ("CallOKDialogForCounter",int damage, int place, m_GameManager.isFirstAttacker,List<EnumController.Shot> ReceiveShotList)
+                    m_BattleStrix.RpcToAll("CallOKDialogForCounter", damage, place, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);
+                    break;
+                default:
+                    break;
+            }
+            OffDialog();
+            return;
+        }
         int power = 0;
         switch (m_BattleModeCard.cardNo)
         {
