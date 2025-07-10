@@ -396,6 +396,7 @@ public class StringValues
     public string P3_S01_100_CardNo = "P3_S01_100";
     public string AT_WX02_A12_NAME = "Marceline: Party Crasher";
     public string DC_W01_10T_NAME = "ロボ美春";
+    public string P3_S01_017_NAME = "主人公＆タナトス";
 
     public StringValues() 
     {

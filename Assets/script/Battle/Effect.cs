@@ -22,6 +22,7 @@ public class Effect : MonoBehaviour
         {
             case EnumController.CardNo.AT_WX02_A10:
             case EnumController.CardNo.DC_W01_09T:
+            case EnumController.CardNo.P3_S01_003:
                 if (ConfirmStockForCost(1))
                 {
                     Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);

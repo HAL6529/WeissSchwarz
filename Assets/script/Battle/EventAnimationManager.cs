@@ -11,6 +11,7 @@ public class EventAnimationManager : MonoBehaviour
     [SerializeField] DialogManager m_DialogManager;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
+    [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] Image m_image;
@@ -36,10 +37,34 @@ public class EventAnimationManager : MonoBehaviour
 
     private int damage = -1;
 
+    private string sulvageCardName = "";
+
+    private int cost = -1;
+
     // Start is called before the first frame update
     void Start()
     {
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
+    }
+
+    /// <summary>
+    /// 絆用
+    /// </summary>
+    public void AnimationStartForBond(BattleModeCard card, string sulvageCardName, int cost)
+    {
+        this.sulvageCardName = sulvageCardName;
+        this.cost = cost;
+        isFromRPC = false;
+        m_gameObject.SetActive(true);
+        effectNum = 0;
+
+        m_BattleModeCard = card;
+        m_image.sprite = card.sprite;
+        m_image2.sprite = card.sprite;
+        // アニメーション再生を再生するためにspeedを1にする
+        animator.speed = 1;
+        animator.Play(AnimationName, 0, 0);
+        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
     }
 
     /// <summary>
@@ -156,6 +181,17 @@ public class EventAnimationManager : MonoBehaviour
         {
             m_DialogManager.CharacterSelectDialog(damage, place, paramater);
             return;
+        }
+        // 絆
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.AT_WX02_A10:
+            case EnumController.CardNo.DC_W01_09T:
+            case EnumController.CardNo.P3_S01_003:
+                m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
+                return;
+            default: 
+                break;
         }
 
         int enemyPlace = -1;
