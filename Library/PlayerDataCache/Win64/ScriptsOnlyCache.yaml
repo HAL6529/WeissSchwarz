@@ -114,8 +114,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -230,6 +232,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
@@ -518,6 +523,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
@@ -4212,7 +4220,7 @@ ScriptsOnlyBuild:
     className: SpriteLibrarySourceAsset
   - hash:
       serializedVersion: 2
-      Hash: 0e4a6a8d7b89c177e36a2e5ec24413ae
+      Hash: 6e8cd048ec0dbacf25ef64deeeef53e2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EventAnimationManager

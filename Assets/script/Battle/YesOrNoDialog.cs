@@ -38,9 +38,9 @@ public class YesOrNoDialog : MonoBehaviour
     private int cost = 0;
 
     /// <summary>
-    /// 絆効果で回収するカードのナンバー
+    /// 絆効果で回収するカードの名前
     /// </summary>
-    private EnumController.CardNo sulvageCardNo = EnumController.CardNo.VOID;
+    private string sulvageCardName = "";
 
     public YesOrNoDialog()
     {
@@ -84,7 +84,7 @@ public class YesOrNoDialog : MonoBehaviour
         ParamaterNum3 = num3;
         m_BattleModeCard = card;
         attackStatus = status;
-        sulvageCardNo = EnumController.CardNo.VOID;
+        sulvageCardName = "";
         cost = 0;
         this.gameObject.SetActive(true);
         cardObject.SetActive(false);
@@ -137,25 +137,26 @@ public class YesOrNoDialog : MonoBehaviour
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.cost);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                string bondName = "";
                 switch (m_BattleModeCard.cardNo)
                 {
                     case EnumController.CardNo.AT_WX02_A10:
-                        sulvageCardNo = EnumController.CardNo.AT_WX02_A12;
-                        bondName = stringValues.AT_WX02_A12_NAME;
+                        sulvageCardName = stringValues.AT_WX02_A12_NAME;
                         cost = 1;
                         break;
                     case EnumController.CardNo.DC_W01_09T:
-                        sulvageCardNo = EnumController.CardNo.DC_W01_10T;
-                        bondName = stringValues.DC_W01_10T_NAME;
+                        sulvageCardName = stringValues.DC_W01_10T_NAME;
+                        cost = 1;
+                        break;
+                    case EnumController.CardNo.P3_S01_003:
+                        sulvageCardName = stringValues.P3_S01_017_NAME;
                         cost = 1;
                         break;
                     default:
-                        bondName = "";
+                        sulvageCardName = "";
                         cost = 0;
                         break;
                 }
-                str = stringValues.YesOrNoDialog_COST_CONFIRM_BOND_FOR_HAND_TO_FIELD(bondName, cost);
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_BOND_FOR_HAND_TO_FIELD(sulvageCardName, cost);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW;
@@ -375,7 +376,8 @@ public class YesOrNoDialog : MonoBehaviour
                 m_DialogManager.MainDialog(m_BattleModeCard, ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                m_EffectBondForHandToField.BondForCost(sulvageCardNo, cost);
+                m_EventAnimationManager.AnimationStartForBond(m_BattleModeCard, sulvageCardName, cost);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);

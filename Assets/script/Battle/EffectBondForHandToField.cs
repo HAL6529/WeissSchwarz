@@ -8,7 +8,7 @@ public class EffectBondForHandToField : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
 
 
-    public void BondForCost(EnumController.CardNo sulvageCardNo, int num)
+    public void BondForCost(string sulvageCardName, int num)
     {
         for(int i = 0; i < num; i++)
         {
@@ -16,14 +16,14 @@ public class EffectBondForHandToField : MonoBehaviour
             m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
         }
         m_GameManager.Syncronize();
-        CheckExistSulvageCard(sulvageCardNo);
+        CheckExistSulvageCard(sulvageCardName);
     }
 
-    private void CheckExistSulvageCard(EnumController.CardNo sulvageCardNo)
+    private void CheckExistSulvageCard(string sulvageCardName)
     {
         for (int i = 0; i < m_GameManager.GraveYardList.Count; i++)
         {
-            if(m_GameManager.GraveYardList[i].cardNo == sulvageCardNo)
+            if (m_GameManager.GraveYardList[i].name == sulvageCardName)
             {
                 BattleModeCard card = m_GameManager.GraveYardList[i];
                 m_GameManager.GraveYardList.RemoveAt(i);
