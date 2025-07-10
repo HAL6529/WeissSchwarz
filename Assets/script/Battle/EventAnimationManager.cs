@@ -398,6 +398,13 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.P3_S01_028:
+                    // 【起】［(2)］ そのターン中、このカードのパワーを＋5000。
+                    PayCost(2);
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 5000);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_04T:
                 case EnumController.CardNo.P3_S01_010:
                     // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、

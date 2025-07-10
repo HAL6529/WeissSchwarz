@@ -403,6 +403,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_028:
+                // 【起】［(2)］ そのターン中、このカードのパワーを＋5000。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num);
+                }
+                return;
             default:
                 return;
         }
