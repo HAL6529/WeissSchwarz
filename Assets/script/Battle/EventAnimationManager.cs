@@ -431,6 +431,31 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_020:
+                    // あなたは自分と相手のキャラすべてを、手札に戻す。
+                    PayCost(6);
+                    for(int i = 0; i < m_GameManager.myFieldList.Count; i++)
+                    {
+                        if (m_GameManager.myFieldList[i] != null)
+                        {
+                            m_MyMainCardsManager.CallPutHandFromField(i);
+                        }
+
+                    }
+
+                    for (int i = 0; i < m_GameManager.enemyFieldList.Count; i++)
+                    {
+                        if (m_GameManager.enemyFieldList[i] != null)
+                        {
+                            m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
+                        }
+
+                    }
+
+                    m_GameManager.myHandList.RemoveAt(handNum);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    return;
                 case EnumController.CardNo.P3_S01_12T:
                     // 【カウンター】 あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000し、ソウルを＋1。
                     PayCost(2);
