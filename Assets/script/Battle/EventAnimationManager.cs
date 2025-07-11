@@ -391,6 +391,10 @@ public class EventAnimationManager : MonoBehaviour
             }
             switch (m_BattleModeCard.cardNo)
             {
+                case EnumController.CardNo.P3_S01_001:
+                    //【自】 このカードがプレイされて舞台に置かれた時、あなたはレベル1以上の自分のキャラを1枚選び、そのターン中、ソウルを＋1。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_01T:
                 case EnumController.CardNo.P3_S01_005:
                     // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
