@@ -122,6 +122,16 @@ public class Effect : MonoBehaviour
                 action_P3_S01_001.SetParamaterNum(place);
                 m_GameManager.ActionList.Add(action_P3_S01_001);
                 return;
+            case EnumController.CardNo.P3_S01_026:
+                // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
+                Action action_P3_S01_026 = new Action(m_GameManager, EnumController.Action.P3_S01_026);
+                action_P3_S01_026.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_026.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_026.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_026.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_026.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_026);
+                return;
             default:
                 break;
         }

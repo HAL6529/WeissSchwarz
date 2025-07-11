@@ -200,6 +200,11 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたはレベル1以上の自分のキャラを1枚選び";
                 text3.text = "そのターン中、ソウルを＋1。";
                 break;
+            case EnumController.Action.P3_S01_026:
+                text1.text = "【自】 このカードがプレイされて舞台に置かれた時";
+                text2.text = "あなたは自分のキャラを1枚選び";
+                text3.text = "そのターン中、パワーを＋1000。";
+                break;
             default:
                 text2.text = "エラーメッセージ";
                 break;
