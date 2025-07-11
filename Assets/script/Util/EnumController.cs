@@ -31,6 +31,7 @@ namespace EnumController
         P3_S01_07T,
         P3_S01_16T,
         P3_S01_001,
+        P3_S01_026,
     }
 
     public enum Attack
