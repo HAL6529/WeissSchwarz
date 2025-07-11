@@ -171,6 +171,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_010:
                 minNum = 1;
                 maxNum = 1;
@@ -230,6 +231,14 @@ public class CharacterSelectDialog : MonoBehaviour
                             cnt++;
                         }
                         break;
+                    // レベル1以上のキャラのみ対象
+                    case EnumController.CardNo.P3_S01_001:
+                        if (m_MyMainCardsManager.GetFieldLevel(i) < 1)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -259,6 +268,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_11T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_005:
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_017:
@@ -429,6 +439,11 @@ public class CharacterSelectDialog : MonoBehaviour
                     // 自分のカードのパワーとソウルを操作する
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+                    m_GameManager.Syncronize();
+                    break;
+                case EnumController.CardNo.P3_S01_001:
+                    // 自分のカードのソウルを操作する
+                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_GameManager.Syncronize();
                     break;
                 default:

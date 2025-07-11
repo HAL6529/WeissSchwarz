@@ -112,6 +112,16 @@ public class Effect : MonoBehaviour
                 action_P3_S01_07T.SetParamaterNum(place);
                 m_GameManager.ActionList.Add(action_P3_S01_07T);
                 return;
+            case EnumController.CardNo.P3_S01_001:
+                // 【自】 このカードがプレイされて舞台に置かれた時、あなたはレベル1以上の自分のキャラを1枚選び、そのターン中、ソウルを＋1。
+                Action action_P3_S01_001 = new Action(m_GameManager, EnumController.Action.P3_S01_001);
+                action_P3_S01_001.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_001.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_001.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_001.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_001.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_001);
+                return;
             default:
                 break;
         }
