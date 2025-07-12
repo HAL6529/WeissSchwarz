@@ -132,6 +132,19 @@ public class Effect : MonoBehaviour
                 action_P3_S01_026.SetParamaterNum(place);
                 m_GameManager.ActionList.Add(action_P3_S01_026);
                 return;
+            case EnumController.CardNo.P3_S01_088:
+                //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
+                if (ConfirmStockForCost(2))
+                {
+                    Action action_P3_S01_088 = new Action(m_GameManager, EnumController.Action.P3_S01_088);
+                    action_P3_S01_088.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_088.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_088.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_P3_S01_088.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_088.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action_P3_S01_088);
+                }
+                return;
             default:
                 break;
         }

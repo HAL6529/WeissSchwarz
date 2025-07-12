@@ -205,6 +205,11 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたは自分のキャラを1枚選び";
                 text3.text = "そのターン中、パワーを＋1000。";
                 break;
+            case EnumController.Action.P3_S01_088:
+                text1.text = "【自】［(2)］ このカードがプレイされて舞台に置かれた時";
+                text2.text = "あなたはコストを払ってよい。そうしたら、";
+                text3.text = "あなたは自分のクロックを上から1枚選び、控え室に置く。";
+                break;
             default:
                 text2.text = "エラーメッセージ";
                 break;

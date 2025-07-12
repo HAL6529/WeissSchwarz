@@ -630,13 +630,11 @@ public class GameManager : MonoBehaviour
 
     public void ReceiveReadyOK()
     {
-        Debug.Log("ReceiveReadyOK");
         StandPhaseStart();
     }
 
     public void ReceiveTurnChange()
     {
-        Debug.Log("ReceiveTurnChange");
         if (myHandList.Count > HAND_LIMIT_NUM)
         {
             m_HandCardUtilStatus = EnumController.HandCardUtilStatus.HAND_OVER;
