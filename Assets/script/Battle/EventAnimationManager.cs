@@ -469,6 +469,20 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.Draw();
                     break;
+                case EnumController.CardNo.P3_S01_052:
+                    //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「辰巳東交番」を1枚選び、手札に戻す。
+                    PayCost(1);
+                    for(int i = 0; i < m_GameManager.GraveYardList.Count; i++)
+                    {
+                        if (m_GameManager.GraveYardList[i].name == "辰巳東交番")
+                        {
+                            m_GameManager.myHandList.Add(m_GameManager.GraveYardList[i]);
+                            m_GameManager.GraveYardList.RemoveAt(i);
+                            m_GameManager.Syncronize();
+                            return;
+                        }
+                    }
+                    return;
                 case EnumController.CardNo.P3_S01_068:
                     // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     PayCost(1);
@@ -560,7 +574,6 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_14T:
-                    Debug.Log("EventAnimationManager:LB_W02_14T");
                     // 【自】 あなたがレベルアップした時、あなたは自分の山札を上から1枚選び、ストック置場に置く。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
                     m_GameManager.myDeckList.RemoveAt(0);
@@ -595,6 +608,12 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
+                    break;
+                case EnumController.CardNo.P3_S01_052:
+                    // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
+                    PayCost(3);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                     break;
                 case EnumController.CardNo.P3_S01_16T:
                 case EnumController.CardNo.P3_S01_087:

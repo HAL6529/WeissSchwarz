@@ -132,6 +132,19 @@ public class Effect : MonoBehaviour
                 action_P3_S01_026.SetParamaterNum(place);
                 m_GameManager.ActionList.Add(action_P3_S01_026);
                 return;
+            case EnumController.CardNo.P3_S01_052:
+                // 【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「辰巳東交番」を1枚選び、手札に戻す。
+                if (ConfirmStockForCost(1))
+                {
+                    Action action_P3_S01_052 = new Action(m_GameManager, EnumController.Action.P3_S01_052);
+                    action_P3_S01_052.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_052.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_052.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_P3_S01_052.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_052.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action_P3_S01_052);
+                }
+                return;
             case EnumController.CardNo.P3_S01_088:
                 //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
@@ -441,6 +454,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(2))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num);
+                }
+                return;
+            case EnumController.CardNo.P3_S01_052:
+                // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
+                if (ConfirmStockForCost(3))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num);
                 }
                 return;
             default:
