@@ -174,6 +174,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_069:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -224,6 +225,14 @@ public class CharacterSelectDialog : MonoBehaviour
                             cnt++;
                         }
                         break;
+                    // レベル2以下のキャラかつ前列のカードのみ対象
+                    case EnumController.CardNo.P3_S01_069:
+                        if (m_EnemyMainCardsManager.GetFieldLevel(i) > 2 || i >= 3)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
                     // レベル1以下のキャラのみ対象
                     case EnumController.CardNo.DC_W01_18T:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
@@ -262,13 +271,11 @@ public class CharacterSelectDialog : MonoBehaviour
             // キャラクターがいなければreturnする
             case EnumController.CardNo.DC_W01_05T:
             case EnumController.CardNo.DC_W01_07T:
-            case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_02T:
             case EnumController.CardNo.LB_W02_09T:
             case EnumController.CardNo.P3_S01_01T:
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_11T:
-            case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_005:
             case EnumController.CardNo.P3_S01_010:
@@ -276,6 +283,22 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_026:
                 if (cnt >= 5)
                 {
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    OffDialog();
+                    return;
+                }
+                break;
+            case EnumController.CardNo.DC_W01_18T:
+            case EnumController.CardNo.LB_W02_04T:
+            case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_069:
+                if (cnt >= 5)
+                {
+                    // イベントカードの場合は処理後に控室にカードを追加
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     OffDialog();
@@ -421,6 +444,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     }
                     break;
                 case EnumController.CardNo.DC_W01_18T:
+                case EnumController.CardNo.P3_S01_069:
                     // 相手のカードを控室に送る
                     if (ButtonSelectedNumList[i])
                     {
@@ -475,6 +499,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_069:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 break;
