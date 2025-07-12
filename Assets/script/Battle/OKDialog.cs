@@ -130,6 +130,12 @@ public class OKDialog : MonoBehaviour
             case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
                 int place = 0;
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
+
+                Action action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
+                action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action.SetParamaterNum(ParamaterNum1);
+                action.SetParamaterNum2(ParamaterNum2);
+                m_GameManager.ActionList.Add(action);
                 if (m_BattleModeCard != null)
                 {
                     switch (ParamaterNum2)
@@ -164,15 +170,9 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_009:
                         case EnumController.CardNo.P3_S01_033:
                         case EnumController.CardNo.P3_S01_067:
+                        case EnumController.CardNo.P3_S01_091:
                             m_EventAnimationManager.AnimationStart(m_BattleModeCard, place, ParamaterNum3);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-
-                            Action conter_action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
-                            conter_action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
-                            conter_action.SetParamaterNum(ParamaterNum1);
-                            conter_action.SetParamaterNum2(ParamaterNum2);
-
-                            m_GameManager.ActionList.Add(conter_action);
 
                             m_MyHandCardsManager.ActiveAllMyHand();
                             m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
@@ -184,13 +184,6 @@ public class OKDialog : MonoBehaviour
                             m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
-                            Action action = new Action(m_GameManager, EnumController.Action.DamageForFrontAttack);
-                            action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
-                            action.SetParamaterNum(ParamaterNum1);
-                            action.SetParamaterNum2(ParamaterNum2);
-
-                            m_GameManager.ActionList.Add(action);
-
                             m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
 
                             m_MyHandCardsManager.ActiveAllMyHand();
@@ -200,27 +193,13 @@ public class OKDialog : MonoBehaviour
                         default:
                             break;
                     }
-                    /*for(int i = 0; i < cost; i++)
-                    {
-                        BattleModeCard t = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
-                        m_GameManager.GraveYardList.Add(t);
-                        m_GameManager.myStockList.Remove(t);
-                    }
-                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
-                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
-                    m_GameManager.Syncronize();*/
                 }
-                /*m_MyHandCardsManager.ActiveAllMyHand();
-                // --‚±‚±‚©‚ç‘åŠˆ–ô—p--
-                if (m_MyMainCardsManager.GetIsGreatPerformance(1))
-                {
-                    m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);
-                    break;
-                }
-                // --‚±‚±‚Ü‚Å‘åŠˆ–ô—p--
-                m_GameManager.DamageForFrontAttack(ParamaterNum1, ParamaterNum2, EnumController.Damage.FRONT_ATTACK, m_GameManager.SendShotList);*/
-                break;
+
+                m_GameManager.ExecuteActionList();
+                m_MyHandCardsManager.ActiveAllMyHand();
+                m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                this.gameObject.SetActive(false);
+                return;
             // ParamaterNum1: damage, ParamaterNum2: Place
             case EnumController.OKDialogParamater.Counter_Not_Exist:
                 m_MyHandCardsManager.ActiveAllMyHand();

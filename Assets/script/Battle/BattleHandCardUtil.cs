@@ -187,7 +187,7 @@ public class BattleHandCardUtil : MonoBehaviour
         {
             isSelected = false;
             image.color = new Color(1, 1, 1, 255 / 255);
-            m_DialogManager.OKDialog_SetBattleModeCard(m_BattleModeCard);
+            m_DialogManager.OKDialog_SetBattleModeCard(null);
             m_DialogManager.OKDialog_SetParamaterNum3(num);
         }
         else

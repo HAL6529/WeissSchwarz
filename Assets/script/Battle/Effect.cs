@@ -463,6 +463,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_091:
+                // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091, card, num);
+                }
+                return;
             default:
                 return;
         }

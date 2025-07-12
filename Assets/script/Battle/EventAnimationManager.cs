@@ -536,6 +536,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_03T:
                 case EnumController.CardNo.P3_S01_009:
                 case EnumController.CardNo.P3_S01_033:
+                case EnumController.CardNo.P3_S01_091:
                     pumpPoint = 2000;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -626,12 +627,18 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(3);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
-                    break;
                 case EnumController.CardNo.P3_S01_16T:
                 case EnumController.CardNo.P3_S01_087:
                     // 【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
                     m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP, m_BattleModeCard);
                     break;
+                case EnumController.CardNo.P3_S01_091:
+                    // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_MyMainCardsManager.CallPutHandFromField(place);
+                    m_GameManager.Syncronize();
+                    return;
                 default:
                     break;
             }
