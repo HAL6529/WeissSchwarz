@@ -174,6 +174,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_069:
                 minNum = 1;
                 maxNum = 1;
@@ -219,7 +220,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 {
                     // 前列のカードだけ対象
                     case EnumController.CardNo.DC_W01_05T:
-                        if(i >= 3)
+                        if (i >= 3)
                         {
                             buttons[i].interactable = false;
                             cnt++;
@@ -228,6 +229,14 @@ public class CharacterSelectDialog : MonoBehaviour
                     // レベル2以下のキャラかつ前列のカードのみ対象
                     case EnumController.CardNo.P3_S01_069:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 2 || i >= 3)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
+                    // レベル1以下のキャラかつ前列のカードのみ対象
+                    case EnumController.CardNo.P3_S01_052:
+                        if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1 || i >= 3)
                         {
                             buttons[i].interactable = false;
                             cnt++;
@@ -281,6 +290,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_017:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_052:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -444,6 +454,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     }
                     break;
                 case EnumController.CardNo.DC_W01_18T:
+                case EnumController.CardNo.P3_S01_052:
                 case EnumController.CardNo.P3_S01_069:
                     // 相手のカードを控室に送る
                     if (ButtonSelectedNumList[i])
