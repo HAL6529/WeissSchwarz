@@ -828,6 +828,10 @@ namespace ExtendUtil
                     return "ƒOƒ‹ƒ";
                 case EnumController.Attribute.Zen:
                     return "‘T";
+                case EnumController.Attribute.Devil:
+                    return "ˆ«–‚";
+                case EnumController.Attribute.Gag:
+                    return "‚¾‚¶‚á‚ê";
                 default:
                     break;
             }
