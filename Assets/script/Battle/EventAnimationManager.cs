@@ -474,6 +474,11 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.SulvageDialog(handNum, m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
                     return;
+                case EnumController.CardNo.P3_S01_069:
+                    // あなたはレベル2以下の相手の前列のキャラを1枚選び、控え室に置く。
+                    PayCost(1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_093:
                     // あなたは1枚引く。
                     m_GameManager.Draw();
