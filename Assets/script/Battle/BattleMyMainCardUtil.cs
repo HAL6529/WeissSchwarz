@@ -646,6 +646,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
         }
 
+        // アイギスの効果
+        // 【永】 あなたのレベル置場のカード1枚につき、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_029)
+        {
+            FieldPower += m_GameManager.myLevelList.Count * 1000;
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
@@ -889,6 +896,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_15T:
             case EnumController.CardNo.P3_S01_012:
             case EnumController.CardNo.P3_S01_027:
+            case EnumController.CardNo.P3_S01_029:
                 return true;
             default:
                 return false;
