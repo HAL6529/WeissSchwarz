@@ -178,6 +178,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_094:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -307,6 +308,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_094:
                 if (cnt >= 5)
                 {
                     // イベントカードの場合は処理後に控室にカードを追加
@@ -498,6 +500,13 @@ public class CharacterSelectDialog : MonoBehaviour
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_GameManager.Syncronize();
                     break;
+                case EnumController.CardNo.P3_S01_094:
+                    //相手のカードをレストする
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("CallMyRest", i, m_GameManager.isTurnPlayer);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -526,6 +535,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_094:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 break;
