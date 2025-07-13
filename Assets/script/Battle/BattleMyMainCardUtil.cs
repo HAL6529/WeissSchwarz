@@ -634,6 +634,18 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000;
         }
 
+        // アイギス＆パラディオンの効果
+        //【永】 他の《メカ》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_027)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Mecha);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
@@ -876,6 +888,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_07T:
             case EnumController.CardNo.P3_S01_15T:
             case EnumController.CardNo.P3_S01_012:
+            case EnumController.CardNo.P3_S01_027:
                 return true;
             default:
                 return false;
