@@ -517,6 +517,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
                     return;
+                case EnumController.CardNo.P3_S01_094:
+                    //【カウンター】 あなたは相手のキャラを1枚選び、【レスト】する。
+                    PayCost(4);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_095:
                     // あなたは自分のクロックすべてを、手札に戻す。このカードを思い出にする。
                     PayCost(8);

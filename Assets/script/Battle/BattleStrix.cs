@@ -283,6 +283,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallMyRest(int num, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.CallOnRest(num);
+        }
+    }
+
+    [StrixRpc]
     public void CallMyReverse(int num, bool isTurnPlayer)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
