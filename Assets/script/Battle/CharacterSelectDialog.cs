@@ -173,6 +173,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_010:
+            case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_052:
@@ -303,6 +304,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
                 if (cnt >= 5)
@@ -456,6 +458,13 @@ public class CharacterSelectDialog : MonoBehaviour
                         m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, power);
                     }
                     break;
+                case EnumController.CardNo.P3_S01_018:
+                    // 相手のカードのレベルを操作する
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("CallAddLevelUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, -1);
+                    }
+                    break;
                 case EnumController.CardNo.DC_W01_18T:
                 case EnumController.CardNo.P3_S01_052:
                 case EnumController.CardNo.P3_S01_069:
@@ -514,6 +523,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);

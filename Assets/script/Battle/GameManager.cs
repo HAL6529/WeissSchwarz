@@ -695,6 +695,8 @@ public class GameManager : MonoBehaviour
         m_MyMainCardsManager.ExecuteResetAttributeUpUntilTurnEnd();
         // ターン終了時まで上がるソウルをリセット
         m_MyMainCardsManager.ExecuteResetSoulUpUntilTurnEnd();
+        // ターン終了時まで上がるレベルをリセット
+        m_MyMainCardsManager.ExecuteResetLevelUpUntilTurnEnd();
         Syncronize();
 
         isTurnPlayer = !isTurnPlayer;
@@ -783,7 +785,12 @@ public class GameManager : MonoBehaviour
 
     public void onSideAttack(int num, int enemyLevel)
     {
-        int minus = enemyLevel * (-1);
+        int EnemyLevel = 0;
+        if(enemyLevel > 0)
+        {
+            EnemyLevel = enemyLevel;
+        }
+        int minus = EnemyLevel * (-1);
         m_MyMainCardsManager.AddSoulUpUntilTurnEnd(num, minus);
         m_MyMainCardsManager.AddSoulUpUntilTurnEnd(num, TriggerCheck());
         Syncronize();

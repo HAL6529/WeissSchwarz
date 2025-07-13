@@ -227,6 +227,16 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallAddLevelUpUntilTurnEnd(bool isTurnPlayer, int place, int level)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_MyMainCardsManager.AddLevelUpUntilTurnEnd(place, level);
+            m_GameManager.Syncronize();
+        }
+    }
+
+    [StrixRpc]
     public void CallAddPowerUpUntilTurnEnd(bool isTurnPlayer, int place, int power)
     {
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
