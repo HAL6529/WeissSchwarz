@@ -402,11 +402,8 @@ public class GameManager : MonoBehaviour
             {
                 myPlace = 1;
                 myPower = m_MyMainCardsManager.GetFieldPower(myPlace);
-                Debug.Log("myPlace:" + myPlace);
-                Debug.Log("enemyPlace:" + enemyPlace);
                 if (myPower > enemyPower)
                 {
-                    Debug.Log("MyPowerIsBiggerThanEnemyPower");
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace, enemyLevel);
                     m_BattleStrix.RpcToAll("MyPowerIsBiggerThanEnemyPower", enemyPlace, paramater, isTurnPlayer);
@@ -431,7 +428,6 @@ public class GameManager : MonoBehaviour
 
         if (myPower > enemyPower)
         {
-            Debug.Log("MyPowerIsBiggeThanEnemyPower");
             m_EnemyMainCardsManager.CallReverse(enemyPlace);
             m_MyMainCardsManager.CallWhenReverseEnemyCard(myPlace, enemyPlace, enemyLevel);
             m_BattleStrix.RpcToAll("MyPowerIsBiggerThanEnemyPower", enemyPlace, paramater, isTurnPlayer);
@@ -925,6 +921,13 @@ public class GameManager : MonoBehaviour
         if (damage <= 0 && placeNum > -1)
         {
             PowerCheck(placeNum, EnumController.PowerCheck.DamageForFrontAttack);
+            return;
+        }
+        else if (damage <= 0)
+        {
+            m_BattleStrix.RpcToAll("SetIsAttackProcess", false);
+            m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
             return;
         }
 
