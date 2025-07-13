@@ -219,12 +219,25 @@ public class GameManager : MonoBehaviour
     public void CounterCheck(int damage, int place, List<EnumController.Shot> ReceiveShotList)
     {
         this.ReceiveShotList = ReceiveShotList;
+        BattleModeCard temp;
         for (int i = 0; i < myHandList.Count; i++)
         {
-            if (myHandList[i].isCounter && myStockList.Count >= myHandList[i].cost && myLevelList.Count >= myHandList[i].level)
+            temp = myHandList[i];
+            if(temp.type == EnumController.Type.CHARACTER)
             {
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
-                return;
+                if (temp.isCounter && myStockList.Count >= temp.cost && myLevelList.Count >= temp.level)
+                {
+                    m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
+                    return;
+                }
+            }
+            else if(temp.type == EnumController.Type.EVENT)
+            {
+                if (temp.isCounter && myStockList.Count >= temp.cost && myLevelList.Count >= temp.level && ColorCheck(temp.color))
+                {
+                    m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
+                    return;
+                }
             }
         }
         m_DialogManager.OKDialog(EnumController.OKDialogParamater.Counter_Not_Exist, damage, place);

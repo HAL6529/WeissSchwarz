@@ -173,6 +173,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_001:
             case EnumController.CardNo.P3_S01_010:
+            case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_069:
@@ -302,6 +303,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
                 if (cnt >= 5)
                 {
@@ -401,6 +403,7 @@ public class CharacterSelectDialog : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_022:
                 power = 3000;
                 break;
             case EnumController.CardNo.P3_S01_04T:
@@ -475,6 +478,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.P3_S01_04T:
                 case EnumController.CardNo.P3_S01_12T:
                 case EnumController.CardNo.P3_S01_010:
+                case EnumController.CardNo.P3_S01_022:
                     // 自分のカードのパワーとソウルを操作する
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
@@ -510,6 +514,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_12T:
+            case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_069:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);

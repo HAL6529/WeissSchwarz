@@ -457,6 +457,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     return;
                 case EnumController.CardNo.P3_S01_12T:
+                case EnumController.CardNo.P3_S01_022:
                     // 【カウンター】 あなたは自分のキャラを1枚選び、そのターン中、パワーを＋3000し、ソウルを＋1。
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
