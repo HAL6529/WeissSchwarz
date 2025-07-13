@@ -273,6 +273,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.AT_WX02_A05:
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.LB_W02_04T:
+                    case EnumController.CardNo.P3_S01_018:
                     case EnumController.CardNo.P3_S01_068:
                     case EnumController.CardNo.P3_S01_069:
                         if (ConfirmStockForCost(1))

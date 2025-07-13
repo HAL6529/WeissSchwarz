@@ -15,6 +15,11 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[place].m_AttributeUpUntilTurnEnd.AddAttribute(attribute);
     }
 
+    public void AddLevelUpUntilTurnEnd(int num, int level)
+    {
+        CardList[num].m_LevelUpUntilTurnEnd.AddUpLevel(level);
+    }
+
     public void AddPowerUpUntilTurnEnd(int num, int power)
     {
         CardList[num].m_PowerUpUntilTurnEnd.AddUpPower(power);
@@ -191,6 +196,14 @@ public class MyMainCardsManager : MonoBehaviour
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].ResetAttributeUpUntilTurnEnd();
+        }
+    }
+
+    public void ExecuteResetLevelUpUntilTurnEnd()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].ResetLevelUpUntilTurnEnd();
         }
     }
 
@@ -437,16 +450,6 @@ public class MyMainCardsManager : MonoBehaviour
     public bool isTwoStockEncore(int num)
     {
         return CardList[num].TwoStockEncore;
-    }
-
-    public void ResetPowerUpUntilTurnEnd(int num)
-    {
-        CardList[num].m_PowerUpUntilTurnEnd.ResetUpPower();
-    }
-
-    public void ResetSoulUpUntilTurnEnd(int num)
-    {
-        CardList[num].m_SoulUpUntilTurnEnd.ResetUpSoul();
     }
 
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)

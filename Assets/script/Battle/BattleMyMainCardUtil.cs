@@ -107,6 +107,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public PowerInstance.LevelAssist m_LevelAssist = new PowerInstance.LevelAssist(0);
 
     /// <summary>
+    /// ターン終了時までアップするレベルクラス
+    /// </summary>
+    public LevelInstance.LevelUpUntilTurnEnd m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
+
+    /// <summary>
     /// ターン終了時までアップするパワークラス
     /// </summary>
     public PowerInstance.PowerUpUntilTurnEnd m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
@@ -479,6 +484,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_BattleModeCard = null;
     }
 
+    public void ResetLevelUpUntilTurnEnd()
+    {
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
+    }
+
     public void ResetPowerUpUntilTurnEnd()
     {
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
@@ -528,6 +538,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         FieldLevel = m_BattleModeCard.level;
+        FieldLevel += m_LevelUpUntilTurnEnd.GetUpLevel();
     }
 
     /// <summary>
@@ -788,6 +799,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
     }
 
@@ -820,6 +832,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_GameManager.myHandList.RemoveAt(num);
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(card, state);
         m_GameManager.Syncronize();
 
@@ -851,6 +864,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
     }
 
@@ -865,6 +879,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
     }
 
@@ -879,6 +894,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
     }
 
