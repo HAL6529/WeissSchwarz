@@ -395,6 +395,21 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】 このカードがプレイされて舞台に置かれた時、あなたはレベル1以上の自分のキャラを1枚選び、そのターン中、ソウルを＋1。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
+                case EnumController.CardNo.P3_S01_002:
+                    //【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_MyMainCardsManager.CallPutMemoryFromField(place);
+
+                    for(int i = 0; i < m_GameManager.myHandList.Count; i++)
+                    {
+                        if (m_GameManager.myHandList[i].name == "主人公＆タナトス")
+                        {
+                            m_MyMainCardsManager.CallPutFieldFromHandForEffect(place, i, EnumController.State.STAND);
+                            return;
+                        }
+                    }
+                    return;
                 case EnumController.CardNo.P3_S01_01T:
                 case EnumController.CardNo.P3_S01_005:
                     // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。

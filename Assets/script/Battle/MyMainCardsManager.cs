@@ -66,6 +66,14 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 「あなたは自分の手札の「XXXXXXXX」を１枚選び、このカードがいた枠に置く。」の効果
+    /// </summary>
+    public void CallPutFieldFromHandForEffect(int place, int num, EnumController.State state)
+    {
+        CardList[place].PutFieldFromHandForEffect(num, state);
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void CallPutGraveYardFromField(int place)
