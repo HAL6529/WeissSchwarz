@@ -425,6 +425,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_002:
+                // 【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002, card, num);
+                }
+                return;
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_010:
                 // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。

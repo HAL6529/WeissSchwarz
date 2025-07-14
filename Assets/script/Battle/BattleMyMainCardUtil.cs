@@ -854,6 +854,34 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 「あなたは自分の手札の「XXXXXXXX」を１枚選び、このカードがいた枠に置く。」の効果
+    /// </summary>
+    public void PutFieldFromHandForEffect(int num, EnumController.State state)
+    {
+        BattleModeCard card = m_GameManager.myHandList[num];
+        if (m_GameManager.myFieldList[PlaceNum] != null)
+        {
+            m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[PlaceNum]);
+        }
+        m_GameManager.myFieldList[PlaceNum] = card;
+        m_GameManager.myHandList.RemoveAt(num);
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
+        setBattleModeCard(card, state);
+        m_GameManager.Syncronize();
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+
+        // 手札アンコールの付与
+        HandEncore = isHandEncore();
+
+        // クロックアンコールの付与
+        ClockEncore = isClockEncore();
+    }
+
+    /// <summary>
     /// フィールドから控室に置かれる時に呼ばれる
     /// </summary>
     public void PutGraveYardFromField()
@@ -910,6 +938,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.LB_W02_03T:
             case EnumController.CardNo.P3_S01_07T:
             case EnumController.CardNo.P3_S01_15T:
+            case EnumController.CardNo.P3_S01_002:
             case EnumController.CardNo.P3_S01_012:
             case EnumController.CardNo.P3_S01_027:
             case EnumController.CardNo.P3_S01_029:
