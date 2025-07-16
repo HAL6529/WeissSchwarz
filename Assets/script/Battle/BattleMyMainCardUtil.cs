@@ -664,6 +664,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_GameManager.myLevelList.Count * 1000;
         }
 
+        // 風花＆ユノの効果
+        // 【永】 アラーム このカードがクロックの１番上にあるなら、緑のあなたのキャラすべてに、パワーを＋1000。
+        if(m_GameManager.myClockList.Count > 0 && m_BattleModeCard.color == EnumController.CardColor.GREEN && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_030)
+        {
+            FieldPower += 1000;
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
