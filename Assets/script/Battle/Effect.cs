@@ -641,6 +641,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
+            case EnumController.CardNo.P3_S01_030:
+                // 【自】 このカードがアタックした時、クライマックス置場に「切れない絆」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "切れない絆")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030, card, place, status);
+                    return true;
+                }
+                return false;
             default:
                 return false;
         }
