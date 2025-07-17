@@ -92,6 +92,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public PowerInstance.Assist m_Assist = new PowerInstance.Assist(0);
 
     /// <summary>
+    /// アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援クラス
+    /// </summary>
+    public PowerInstance.AssistForHaveEncore m_AssistForHaveEncore = new PowerInstance.AssistForHaveEncore(0);
+
+    /// <summary>
     /// 全体パワーアップクラス
     /// </summary>
     public PowerInstance.AllAssist m_AllAssist = new PowerInstance.AllAssist(0, null);
@@ -166,6 +171,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 応援のカードなら能力付与
         m_Assist = m_Effect.CheckEffectForAssist(m_BattleModeCard);
+        // アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援効果を持つカードなら能力付与
+        m_AssistForHaveEncore = m_Effect.CheckEffectForAssistForHaveEncore(m_BattleModeCard);
         // ガウルのカードなら能力付与
         m_Gaul = m_Effect.CheckEffectForGaul(m_BattleModeCard);
         // レベル応援のカードなら能力付与
@@ -580,6 +587,23 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
             // レベル応援を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
+        }
+
+        if(HandEncore && PlaceNum == 0)
+        {
+            // アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援の効果を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetAssistForHaveEncorePower(3);
+        }
+        else if(HandEncore && PlaceNum == 1)
+        {
+            // アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援の効果を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetAssistForHaveEncorePower(3);
+            FieldPower += m_MyMainCardsManager.GetAssistForHaveEncorePower(4);
+        }
+        else if (HandEncore && PlaceNum == 2)
+        {
+            // アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援の効果を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetAssistForHaveEncorePower(4);
         }
 
         // "女王猫”佐々美の効果
