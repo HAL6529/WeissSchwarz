@@ -286,6 +286,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.P3_S01_020:
                     case EnumController.CardNo.P3_S01_052:
                     case EnumController.CardNo.P3_S01_058:
+                    case EnumController.CardNo.P3_S01_060:
                     case EnumController.CardNo.P3_S01_088:
                     case EnumController.CardNo.P3_S01_095:
                         m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);

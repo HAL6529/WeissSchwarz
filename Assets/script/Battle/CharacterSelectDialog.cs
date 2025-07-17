@@ -177,6 +177,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_052:
+            case EnumController.CardNo.P3_S01_060:
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_094:
                 minNum = 1;
@@ -247,6 +248,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         break;
                     // レベル1以下のキャラのみ対象
                     case EnumController.CardNo.DC_W01_18T:
+                    case EnumController.CardNo.P3_S01_060:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
                         {
                             buttons[i].interactable = false;
@@ -294,6 +296,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_017:
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_052:
+            case EnumController.CardNo.P3_S01_060:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -469,6 +472,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     break;
                 case EnumController.CardNo.DC_W01_18T:
                 case EnumController.CardNo.P3_S01_052:
+                case EnumController.CardNo.P3_S01_060:
                 case EnumController.CardNo.P3_S01_069:
                     // 相手のカードを控室に送る
                     if (ButtonSelectedNumList[i])

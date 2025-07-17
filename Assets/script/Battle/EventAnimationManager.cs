@@ -505,6 +505,11 @@ public class EventAnimationManager : MonoBehaviour
                         }
                     }
                     return;
+                case EnumController.CardNo.P3_S01_060:
+                    //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
+                    PayCost(1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_068:
                     // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     PayCost(1);

@@ -146,6 +146,19 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_P3_S01_052);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_060:
+                // 【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
+                if (ConfirmStockForCost(1))
+                {
+                    Action action_P3_S01_060 = new Action(m_GameManager, EnumController.Action.P3_S01_060);
+                    action_P3_S01_060.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_060.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_060.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_P3_S01_060.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_060.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action_P3_S01_060);
+                }
+                return;
             case EnumController.CardNo.P3_S01_088:
                 //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
