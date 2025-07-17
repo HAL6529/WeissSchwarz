@@ -188,6 +188,7 @@ public class EventAnimationManager : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A10:
             case EnumController.CardNo.DC_W01_09T:
             case EnumController.CardNo.P3_S01_003:
+            case EnumController.CardNo.P3_S01_032:
                 m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
                 return;
             default: 
