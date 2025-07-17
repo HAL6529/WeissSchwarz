@@ -521,7 +521,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
             if (!HaveAttribute(m_AttributeUpUntilTurnEnd.AttributeList[i]))
             {
                 AttributeList.Add(m_AttributeUpUntilTurnEnd.AttributeList[i]);
-                Debug.Log("added" + m_AttributeUpUntilTurnEnd.AttributeList[i]);
             }
         }
     }
@@ -808,6 +807,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
@@ -822,6 +825,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_GameManager.GraveYardList.Remove(card);
         m_GameManager.myFieldList[PlaceNum] = card;
         setBattleModeCard(card, state);
+        m_GameManager.Syncronize();
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
         m_GameManager.Syncronize();
     }
 
@@ -858,6 +865,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
         m_MyMainCardsManager.ConfirmEffectWhenMyCardPut(PlaceNum);
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
@@ -886,6 +894,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // クロックアンコールの付与
         ClockEncore = isClockEncore();
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
@@ -901,6 +910,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
@@ -916,6 +929,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
@@ -931,6 +948,10 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
         m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
         setBattleModeCard(null, EnumController.State.STAND);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+        m_GameManager.Syncronize();
     }
 
     /// <summary>
