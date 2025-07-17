@@ -526,6 +526,27 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
+    /// アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援の効果を持っているか調べる
+    /// </summary>
+    /// <param name="card">BattleModeCard</param>
+    /// <returns></returns>
+    public PowerInstance.AssistForHaveEncore CheckEffectForAssistForHaveEncore(BattleModeCard card)
+    {
+        if (card == null)
+        {
+            return new PowerInstance.AssistForHaveEncore(0);
+        }
+        switch (card.cardNo)
+        {
+            // 1000応援
+            case EnumController.CardNo.P3_S01_041:
+                return new PowerInstance.AssistForHaveEncore(1000);
+            default:
+                return new PowerInstance.AssistForHaveEncore(0);
+        }
+    }
+
+    /// <summary>
     /// ガウルの効果を持っているか調べる
     /// </summary>
     /// <param name="card"></param>

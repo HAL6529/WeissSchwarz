@@ -24,6 +24,26 @@ namespace PowerInstance
         }
     }
 
+    public class AssistForHaveEncore
+    {
+        private int AssistPower = 0;
+
+        public AssistForHaveEncore(int num)
+        {
+            AssistPower = num;
+        }
+
+        public int getAssistPower()
+        {
+            return AssistPower;
+        }
+
+        public void Reset()
+        {
+            AssistPower = 0;
+        }
+    }
+
     public class AllAssist
     {
         private List<EnumController.Attribute> AttributeList;

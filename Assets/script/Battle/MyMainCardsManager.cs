@@ -253,6 +253,16 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援の計算用
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    public int GetAssistForHaveEncorePower(int num)
+    {
+        return CardList[num].m_AssistForHaveEncore.getAssistPower();
+    }
+
+    /// <summary>
     /// 指定の場所のキャラの特徴を取得する
     /// </summary>
     /// <param name="place"></param>
