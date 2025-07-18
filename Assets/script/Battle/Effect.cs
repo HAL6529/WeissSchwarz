@@ -477,6 +477,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_031:
+                // 【起】［(3)］ あなたは相手の前列のキャラすべてに、そのターン中、パワーを－1500。
+                if (ConfirmStockForCost(3))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_031_2, card, num);
+                }
+                return;
             case EnumController.CardNo.P3_S01_052:
                 // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
                 if (ConfirmStockForCost(3))
@@ -686,6 +693,19 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "切れない絆")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_031:
+                // 【自】 このカードがアタックした時、クライマックス置場に「機械の乙女」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "機械の乙女")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_031_1, card, place, status);
                     return true;
                 }
                 return false;

@@ -311,6 +311,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_02T:
                 case EnumController.CardNo.LB_W02_03T:
                 case EnumController.CardNo.P3_S01_030:
+                case EnumController.CardNo.P3_S01_031:
                     // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、
                     // ストック置場に置き、そのターン中、このカードのパワーを＋3000。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
@@ -654,6 +655,22 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     break;
+                case EnumController.CardNo.P3_S01_031:
+                    //【起】［(3)］ あなたは相手の前列のキャラすべてに、そのターン中、パワーを－1500。
+                    PayCost(3);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (m_GameManager.enemyFieldList[i] != null)
+                        {
+                            m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, -1500);
+                        }
+                    }
+                    Action action = new Action(m_GameManager, EnumController.Action.EncoreCheck);
+                    action.SetParamaterDialogManager(m_DialogManager);
+                    m_GameManager.ActionList.Add(action);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_052:
                     // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
                     PayCost(3);
