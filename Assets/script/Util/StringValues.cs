@@ -42,6 +42,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_16T;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_02;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_04;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_28;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_30;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_52;
@@ -442,6 +443,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_16T = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_16T;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_02 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_02;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_04 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_04;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_28 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_28;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_30 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_30;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_52 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_52;
@@ -650,6 +652,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_11T_2 = "次の能力を使用しますか。:" + "【起】［(1)］ そのターン中、このカードのソウルを＋1。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_16T = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは1枚引く。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_02 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_04 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「露天風呂」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_28 = "次の能力を使用しますか。:" + "【起】［(2)］ そのターン中、このカードのパワーを＋5000。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_30 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「切れない絆」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_52 = "次の能力を使用しますか。:" + "【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。";
