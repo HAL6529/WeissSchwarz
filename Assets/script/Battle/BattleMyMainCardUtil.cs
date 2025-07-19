@@ -720,6 +720,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         FieldSoul = m_BattleModeCard.soul;
         FieldSoul += m_SoulUpUntilTurnEnd.GetUpSoul();
 
+        // 望月 綾時の効果
+        //【永】 アラーム このカードがクロックの１番上にあり、あなたのレベルが1以下なら、黄のあなたのキャラすべてに、ソウルを＋1。
+        if (m_GameManager.myClockList.Count > 0 
+            && m_BattleModeCard.color == EnumController.CardColor.YELLOW 
+            && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_004
+            && m_GameManager.myLevelList.Count < 2)
+        {
+            FieldSoul += 1;
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック

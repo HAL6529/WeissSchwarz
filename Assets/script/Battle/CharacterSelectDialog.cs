@@ -186,6 +186,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_07T:
             case EnumController.CardNo.P3_S01_01T:
             case EnumController.CardNo.P3_S01_11T:
+            case EnumController.CardNo.P3_S01_004:
             case EnumController.CardNo.P3_S01_005:
             case EnumController.CardNo.P3_S01_017:
                 minNum = 0;
@@ -291,6 +292,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_11T:
             case EnumController.CardNo.P3_S01_001:
+            case EnumController.CardNo.P3_S01_004:
             case EnumController.CardNo.P3_S01_005:
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_017:
@@ -482,6 +484,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     break;
                 case EnumController.CardNo.P3_S01_01T:
                 case EnumController.CardNo.P3_S01_11T:
+                case EnumController.CardNo.P3_S01_004:
                 case EnumController.CardNo.P3_S01_005:
                 case EnumController.CardNo.P3_S01_017:
                     // 相手のカードをバウンスする

@@ -222,6 +222,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_02;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_04;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_28;
                 break;
@@ -410,6 +413,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
@@ -507,6 +511,10 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(attackStatus);

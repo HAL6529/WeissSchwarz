@@ -52,6 +52,7 @@ public class EventAnimationManager : MonoBehaviour
     /// </summary>
     public void AnimationStartForBond(BattleModeCard card, string sulvageCardName, int cost)
     {
+        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
         this.sulvageCardName = sulvageCardName;
         this.cost = cost;
         isFromRPC = false;
@@ -126,6 +127,7 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card)
     {
+        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
         isFromRPC = false;
         m_gameObject.SetActive(true);
         effectNum = 0;
@@ -145,6 +147,7 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card)
     {
+        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
         isFromRPC = false;
         m_gameObject.SetActive(true);
         effectNum = 1;
@@ -411,6 +414,10 @@ public class EventAnimationManager : MonoBehaviour
                             return;
                         }
                     }
+                    return;
+                case EnumController.CardNo.P3_S01_004:
+                    //【自】 このカードがアタックした時、クライマックス置場に「露天風呂」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.P3_S01_01T:
                 case EnumController.CardNo.P3_S01_005:

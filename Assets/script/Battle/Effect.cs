@@ -649,6 +649,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
+            case EnumController.CardNo.P3_S01_004:
+                // 【自】 このカードがアタックした時、クライマックス置場に「露天風呂」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "露天風呂")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004, card, place, status);
+                    return true;
+                }
+                return false;
             case EnumController.CardNo.P3_S01_01T:
             case EnumController.CardNo.P3_S01_005:
                 // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
