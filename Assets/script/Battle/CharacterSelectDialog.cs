@@ -193,6 +193,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 maxNum = 1;
                 break;
             case EnumController.CardNo.LB_W02_04T:
+            case EnumController.CardNo.P3_S01_045:
                 minNum = -1;
                 maxNum = 2;
                 break;
@@ -225,6 +226,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 {
                     // 前列のカードだけ対象
                     case EnumController.CardNo.DC_W01_05T:
+                    case EnumController.CardNo.P3_S01_045:
                         if (i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -312,6 +314,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
+            case EnumController.CardNo.P3_S01_045:
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_094:
                 if (cnt >= 5)
@@ -432,6 +435,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 power = -500;
                 break;
             case EnumController.CardNo.DC_W01_05T:
+            case EnumController.CardNo.P3_S01_045:
                 power = -1000;
                 break;
             default:
@@ -459,6 +463,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     break;
                 case EnumController.CardNo.DC_W01_05T:
                 case EnumController.CardNo.LB_W02_09T:
+                case EnumController.CardNo.P3_S01_045:
                     // 相手のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {
@@ -524,6 +529,7 @@ public class CharacterSelectDialog : MonoBehaviour
         {
             case EnumController.CardNo.DC_W01_05T:
             case EnumController.CardNo.LB_W02_09T:
+            case EnumController.CardNo.P3_S01_045:
                 Action action = new Action(m_GameManager, EnumController.Action.EncoreCheck);
                 action.SetParamaterDialogManager(m_DialogManager);
 
@@ -541,6 +547,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
+            case EnumController.CardNo.P3_S01_045:
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_094:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
