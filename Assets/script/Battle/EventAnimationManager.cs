@@ -498,6 +498,10 @@ public class EventAnimationManager : MonoBehaviour
                     // あなたは相手のキャラを1枚選び、そのターン中、レベルを－1。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_045:
+                    // あなたは相手の前列のキャラを2枚まで選び、そのターン中、パワーを－1000。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_052:
                     //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「辰巳東交番」を1枚選び、手札に戻す。
                     PayCost(1);

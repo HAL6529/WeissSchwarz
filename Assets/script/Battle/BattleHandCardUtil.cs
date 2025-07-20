@@ -267,6 +267,7 @@ public class BattleHandCardUtil : MonoBehaviour
                 switch (m_BattleModeCard.cardNo)
                 {
                     case EnumController.CardNo.DC_W01_03T:
+                    case EnumController.CardNo.P3_S01_045:
                     case EnumController.CardNo.P3_S01_093:
                         m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
                         break;
