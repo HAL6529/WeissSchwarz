@@ -260,6 +260,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.DC_W01_16T:
                     case EnumController.CardNo.LB_W02_19T:
                     case EnumController.CardNo.P3_S01_058:
+                    case EnumController.CardNo.P3_S01_076:
                         m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
                         break;
                     default:
@@ -290,6 +291,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.P3_S01_052:
                     case EnumController.CardNo.P3_S01_058:
                     case EnumController.CardNo.P3_S01_060:
+                    case EnumController.CardNo.P3_S01_076:
                     case EnumController.CardNo.P3_S01_088:
                     case EnumController.CardNo.P3_S01_095:
                         m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);

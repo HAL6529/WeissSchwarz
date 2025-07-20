@@ -461,9 +461,9 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
     /// <param name="placeNum">プレイされたカードの位置</param>
     /// </summary>
-    public void EffectWhenMyOtherCardPut(int placeNum)
+    public void EffectWhenMyOtherCardPut(int placeNum, int effectCardPlaceNum)
     {
-        m_Effect.EffectWhenMyOtherCardPut(m_BattleModeCard, placeNum);
+        m_Effect.EffectWhenMyOtherCardPut(m_BattleModeCard, placeNum, effectCardPlaceNum);
     }
 
     /// <summary>
