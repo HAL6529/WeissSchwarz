@@ -531,6 +531,15 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_076:
+                    //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                    PayCost(1);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+                    m_GameManager.Draw();
+                    m_GameManager.ExecuteActionList();
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    return;
                 case EnumController.CardNo.P3_S01_088:
                     //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                     PayCost(2);

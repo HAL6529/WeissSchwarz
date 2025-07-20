@@ -290,7 +290,8 @@ public class Effect : MonoBehaviour
     /// </summary>
     /// <param name="effectCard">効果を発動するカード</param>
     /// <param name="placeNum">プレイされたカードの位置</param>
-    public void EffectWhenMyOtherCardPut(BattleModeCard effectCard, int placeNum)
+    /// <param name="effectCardPlaceNum">効果を発動するカードの位置</param>
+    public void EffectWhenMyOtherCardPut(BattleModeCard effectCard, int placeNum, int effectCardPlaceNum)
     {
         if (effectCard == null)
         {
@@ -299,6 +300,19 @@ public class Effect : MonoBehaviour
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (effectCard.cardNo)
         {
+            case EnumController.CardNo.P3_S01_076:
+                //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil) && ConfirmStockForCost(1))
+                {
+                    Action action = new Action(m_GameManager, EnumController.Action.P3_S01_076);
+                    action.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action.SetParamaterBattleStrix(m_BattleStrix);
+                    action.SetParamaterBattleModeCard(effectCard);
+                    action.SetParamaterNum(effectCardPlaceNum);
+                    m_GameManager.ActionList.Add(action);
+                    return;
+                }
+                return;
             case EnumController.CardNo.P3_S01_16T:
             case EnumController.CardNo.P3_S01_087:
                 //【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
@@ -540,6 +554,7 @@ public class Effect : MonoBehaviour
         {
             // 1000応援
             case EnumController.CardNo.P3_S01_041:
+            case EnumController.CardNo.P3_S01_076:
                 return new PowerInstance.AssistForHaveEncore(1000);
             default:
                 return new PowerInstance.AssistForHaveEncore(0);

@@ -34,6 +34,7 @@ namespace EnumController
         P3_S01_026,
         P3_S01_052,
         P3_S01_060,
+        P3_S01_076,
         P3_S01_088,
     }
 

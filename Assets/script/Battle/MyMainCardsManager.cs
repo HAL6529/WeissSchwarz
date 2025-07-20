@@ -175,7 +175,7 @@ public class MyMainCardsManager : MonoBehaviour
             {
                 continue;
             }
-            CardList[i].EffectWhenMyOtherCardPut(PlaceNum);
+            CardList[i].EffectWhenMyOtherCardPut(PlaceNum, i);
         }
     }
 
