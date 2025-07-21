@@ -108,15 +108,23 @@ public class SearchDialog : MonoBehaviour
                 handListTemp = m_GameManager.myHandList;
                 searchListTemp.Add(clockListTemp[num]);
 
-                for(int i = 0; i < 3; i++)
+                switch (card.cardNo)
                 {
-                    graveyardTemp.Add(stockListTemp[stockListTemp.Count - 1]);
-                    stockListTemp.RemoveAt(stockListTemp.Count - 1);
+                    case EnumController.CardNo.LB_W02_16T:
+                        // あなたは自分のクロックを1枚選び、手札に戻す。このカードを思い出にする。
+                        handListTemp.Remove(card);
+                        memoryListTemp.Add(card);
+                        handListTemp.Add(clockListTemp[num]);
+                        clockListTemp.Remove(clockListTemp[num]);
+                        break;
+                    case EnumController.CardNo.P3_S01_081:
+                        //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
+                        handListTemp.Add(clockListTemp[num]);
+                        clockListTemp.Remove(clockListTemp[num]);
+                        break;
+                    default:
+                        break;
                 }
-                handListTemp.Remove(card);
-                memoryListTemp.Add(card);
-                handListTemp.Add(clockListTemp[num]);
-                clockListTemp.Remove(clockListTemp[num]);
 
                 for (int i = 0; i < memoryListTemp.Count; i++)
                 {
