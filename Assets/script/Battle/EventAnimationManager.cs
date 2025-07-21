@@ -500,6 +500,23 @@ public class EventAnimationManager : MonoBehaviour
                     // あなたは相手のキャラを1枚選び、そのターン中、レベルを－1。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_040:
+                    //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                    m_GameManager.myDeckList.RemoveAt(0);
+                    m_GameManager.Syncronize();
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    if (m_GameManager.myDeckList.Count == 0)
+                    {
+                        m_GameManager.Refresh();
+                    }
+                    else
+                    {
+                        m_GameManager.ExecuteActionList();
+                        return;
+                    }
+                    return;
                 case EnumController.CardNo.P3_S01_045:
                     // あなたは相手の前列のキャラを2枚まで選び、そのターン中、パワーを－1000。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);

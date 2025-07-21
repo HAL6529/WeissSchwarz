@@ -205,6 +205,11 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたは自分のキャラを1枚選び";
                 text3.text = "そのターン中、パワーを＋1000。";
                 break;
+            case EnumController.Action.P3_S01_040:
+                text1.text = "【自】［このカードを【レスト】する］他の《スポーツ》のあなたのキャラが ";
+                text2.text = "プレイされて舞台に置かれた時あなたはコストを払ってよい。そうしたら、";
+                text3.text = "あなたは自分の山札の上から1枚を、ストック置場に置く。";
+                break;
             case EnumController.Action.P3_S01_076:
                 text1.text = "【自】［(1) このカードを【レスト】する］ ";
                 text2.text = "他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時";
