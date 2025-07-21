@@ -234,6 +234,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_52;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_91;
                 break;
@@ -443,6 +446,7 @@ public class YesOrNoDialog : MonoBehaviour
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_04T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091:
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
@@ -517,6 +521,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(attackStatus);

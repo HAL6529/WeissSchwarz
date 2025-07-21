@@ -368,9 +368,10 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     return;
                 case EnumController.CardNo.LB_W02_16T:
+                    // あなたは自分のクロックを1枚選び、手札に戻す。このカードを思い出にする。
+                    PayCost(3);
                     if (m_GameManager.myClockList.Count == 0)
                     {
-                        PayCost(3);
                         m_GameManager.myMemoryList.Add(m_BattleModeCard);
                         m_GameManager.myHandList.Remove(m_BattleModeCard);
                         m_GameManager.Syncronize();
@@ -540,6 +541,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
+                case EnumController.CardNo.P3_S01_081:
+                    //【自】 このカードがアタックした時、クライマックス置場に「父の遺志」があるなら、あなたは1枚引く。
+                    m_GameManager.Draw();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_088:
                     //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                     PayCost(2);
@@ -678,6 +684,16 @@ public class EventAnimationManager : MonoBehaviour
                     // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
                     PayCost(3);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
+                case EnumController.CardNo.P3_S01_081:
+                    //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
+                    PayCost(4);
+                    if (m_GameManager.myClockList.Count == 0)
+                    {
+                        m_GameManager.ExecuteActionList();
+                        return;
+                    }
+                    m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
                     return;
                 case EnumController.CardNo.P3_S01_16T:
                 case EnumController.CardNo.P3_S01_087:

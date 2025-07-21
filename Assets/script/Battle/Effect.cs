@@ -498,6 +498,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_081:
+                // 【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
+                if (ConfirmStockForCost(4))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081, card, num);
+                }
+                return;
             case EnumController.CardNo.P3_S01_091:
                 // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
                 if (ConfirmStockForCost(2))
@@ -714,6 +721,26 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "切れない絆")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_081:
+                //【自】 このカードがアタックした時、クライマックス置場に「父の遺志」があるなら、あなたは1枚引く。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "父の遺志")
+                {
+                    Action action_P3_S01_081 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                    action_P3_S01_081.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_081.SetParamaterAttackStatus(status);
+                    action_P3_S01_081.SetParamaterNum(place);
+
+                    m_GameManager.ActionList.Add(action_P3_S01_081);
+                    m_EventAnimationManager.AnimationStart(card, place);
+                    m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                     return true;
                 }
                 return false;
