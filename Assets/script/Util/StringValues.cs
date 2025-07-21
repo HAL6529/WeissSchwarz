@@ -405,6 +405,7 @@ public class StringValues
     public string DC_W01_10T_NAME = "ロボ美春";
     public string P3_S01_017_NAME = "主人公＆タナトス";
     public string P3_S01_030_NAME = "風花＆ユノ";
+    public string P3_S01_081_NAME = "ゆかり＆イシス";
 
     public StringValues() 
     {
