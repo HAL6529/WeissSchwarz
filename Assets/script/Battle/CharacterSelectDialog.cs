@@ -179,6 +179,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_060:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
                 minNum = 1;
                 maxNum = 1;
@@ -252,6 +253,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     // レベル1以下のキャラのみ対象
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.P3_S01_060:
+                    case EnumController.CardNo.P3_S01_072:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
                         {
                             buttons[i].interactable = false;
@@ -316,6 +318,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_045:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
                 if (cnt >= 5)
                 {
@@ -477,6 +480,13 @@ public class CharacterSelectDialog : MonoBehaviour
                         m_BattleStrix.RpcToAll("CallAddLevelUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, -1);
                     }
                     break;
+                case EnumController.CardNo.P3_S01_072:
+                    // 相手のカードを山札の上に置く
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("ToDeckTopFromField", i, m_GameManager.isTurnPlayer);
+                    }
+                    break;
                 case EnumController.CardNo.DC_W01_18T:
                 case EnumController.CardNo.P3_S01_052:
                 case EnumController.CardNo.P3_S01_060:
@@ -549,6 +559,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_045:
             case EnumController.CardNo.P3_S01_069:
+            case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
