@@ -533,6 +533,11 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_072:
+                    //あなたはレベル1以下の相手のキャラを1枚選び、山札の上に置く。
+                    PayCost(2);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.P3_S01_076:
                     //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
                     PayCost(1);

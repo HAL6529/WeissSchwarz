@@ -285,6 +285,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.DC_W01_12T:
                     case EnumController.CardNo.P3_S01_12T:
                     case EnumController.CardNo.P3_S01_022:
+                    case EnumController.CardNo.P3_S01_072:
                         if (ConfirmStockForCost(2))
                         {
                             m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
