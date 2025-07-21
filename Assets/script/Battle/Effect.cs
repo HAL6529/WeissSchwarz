@@ -301,6 +301,19 @@ public class Effect : MonoBehaviour
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (effectCard.cardNo)
         {
+            case EnumController.CardNo.P3_S01_040:
+                //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
+                if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.Sports) && m_MyMainCardsManager.GetState(effectCardPlaceNum) == EnumController.State.STAND)
+                {
+                    Action action = new Action(m_GameManager, EnumController.Action.P3_S01_040);
+                    action.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action.SetParamaterBattleStrix(m_BattleStrix);
+                    action.SetParamaterBattleModeCard(effectCard);
+                    action.SetParamaterNum(effectCardPlaceNum);
+                    m_GameManager.ActionList.Add(action);
+                    return;
+                }
+                return;
             case EnumController.CardNo.P3_S01_076:
                 //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
                 if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil) && ConfirmStockForCost(1))

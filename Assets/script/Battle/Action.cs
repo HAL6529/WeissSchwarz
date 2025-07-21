@@ -136,6 +136,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.DC_W01_10T:
             case EnumController.Action.DC_W01_16T:
             case EnumController.Action.LB_W02_19T:
+            case EnumController.Action.P3_S01_040:
             case EnumController.Action.P3_S01_052:
             case EnumController.Action.P3_S01_060:
             case EnumController.Action.P3_S01_076:
