@@ -663,7 +663,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
         // 美鶴＆ペンテシレアの効果
         // 【永】 相手のターン中、このカードのパワーを＋1000。
-        if (!m_GameManager.isTurnPlayer && m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_15T)
+        if (!m_GameManager.isTurnPlayer && (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_15T || m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_078))
         {
             FieldPower += 1000;
         }
@@ -1004,6 +1004,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_012:
             case EnumController.CardNo.P3_S01_027:
             case EnumController.CardNo.P3_S01_029:
+            case EnumController.CardNo.P3_S01_078:
                 return true;
             default:
                 return false;
