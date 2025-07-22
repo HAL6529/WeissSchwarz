@@ -176,6 +176,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_047:
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_060:
             case EnumController.CardNo.P3_S01_069:
@@ -317,6 +318,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_045:
+            case EnumController.CardNo.P3_S01_047:
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
@@ -427,6 +429,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
             case EnumController.CardNo.AT_WX02_A02:
             case EnumController.CardNo.LB_W02_02T:
+            case EnumController.CardNo.P3_S01_047:
                 power = 1500;
                 break;
             case EnumController.CardNo.DC_W01_07T:
@@ -458,6 +461,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.LB_W02_02T:
                 case EnumController.CardNo.LB_W02_04T:
                 case EnumController.CardNo.P3_S01_026:
+                case EnumController.CardNo.P3_S01_047:
                     // 自分のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {
@@ -558,6 +562,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_018:
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_045:
+            case EnumController.CardNo.P3_S01_047:
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
