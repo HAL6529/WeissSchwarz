@@ -719,6 +719,12 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(3);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_055:
+                    //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_081:
                     //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
                     PayCost(4);
