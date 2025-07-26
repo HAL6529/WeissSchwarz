@@ -542,6 +542,10 @@ public class EventAnimationManager : MonoBehaviour
                         }
                     }
                     return;
+                case EnumController.CardNo.P3_S01_055:
+                    //【自】 このカードがアタックした時、クライマックス置場に「ありがとう」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
+                    return;
                 case EnumController.CardNo.P3_S01_060:
                     //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
                     PayCost(1);
@@ -714,6 +718,12 @@ public class EventAnimationManager : MonoBehaviour
                     // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
                     PayCost(3);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
+                case EnumController.CardNo.P3_S01_055:
+                    //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_081:
                     //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。

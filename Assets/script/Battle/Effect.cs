@@ -266,7 +266,7 @@ public class Effect : MonoBehaviour
     /// <summary>
     /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」に発動する効果
     /// <summary>
-    public void EffectWhenMyOtherCardReversed(BattleModeCard card)
+    public void EffectWhenMyOtherCardReversed(BattleModeCard card, int place)
     {
         if(card == null)
         {
@@ -275,11 +275,20 @@ public class Effect : MonoBehaviour
 
         switch (card.cardNo)
         {
+            //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
+            case EnumController.CardNo.P3_S01_055:
+                Action action_P3_S01_055 = new Action(m_GameManager, EnumController.Action.P3_S01_055);
+                action_P3_S01_055.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_055.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_055.SetParamaterBattleModeCard(card);
+                action_P3_S01_055.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_055);
+                return;
             // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
             case EnumController.CardNo.DC_W01_07T:
-                Action action = new Action(m_GameManager, EnumController.Action.DC_W01_07T);
-                action.SetParamaterBattleModeCard(card);
-                m_GameManager.ActionList.Add(action);
+                Action action_DC_W01_07T = new Action(m_GameManager, EnumController.Action.DC_W01_07T);
+                action_DC_W01_07T.SetParamaterBattleModeCard(card);
+                m_GameManager.ActionList.Add(action_DC_W01_07T);
                 return;
             default:
                 return;
@@ -735,6 +744,19 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "切れない絆")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_055:
+                //【自】 このカードがアタックした時、クライマックス置場に「ありがとう」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "ありがとう")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055, card, place, status);
                     return true;
                 }
                 return false;

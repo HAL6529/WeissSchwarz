@@ -471,7 +471,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void EffectWhenMyOtherCardReversed()
     {
-        m_Effect.EffectWhenMyOtherCardReversed(m_BattleModeCard);
+        m_Effect.EffectWhenMyOtherCardReversed(m_BattleModeCard, PlaceNum);
     }
 
     /// <summary>
