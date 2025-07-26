@@ -238,6 +238,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_52;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_55;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
                 break;
@@ -429,6 +432,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(attackStatus);
@@ -530,6 +534,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
