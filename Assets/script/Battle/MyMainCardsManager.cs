@@ -455,6 +455,15 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドのキャラがそのカード名か調べる
+    /// </summary>
+    /// <returns></returns>
+    public bool isFieldName(int num, string t)
+    {
+        return CardList[num].isFieldName(t);
+    }
+
+    /// <summary>
     /// フィールド上でクロックアンコールを持っているか
     /// </summary>
     public bool isClockEncore(int num)
