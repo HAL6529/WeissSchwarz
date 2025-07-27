@@ -1004,6 +1004,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_012:
             case EnumController.CardNo.P3_S01_027:
             case EnumController.CardNo.P3_S01_029:
+            case EnumController.CardNo.P3_S01_056:
             case EnumController.CardNo.P3_S01_078:
                 return true;
             default:
