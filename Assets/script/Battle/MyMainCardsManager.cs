@@ -446,6 +446,15 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 特定の文字列を含むか調べる
+    /// </summary>
+    /// <returns></returns>
+    public bool isContainFieldName(int num, string t)
+    {
+        return CardList[num].isContainFieldName(t);
+    }
+
+    /// <summary>
     /// フィールド上でクロックアンコールを持っているか
     /// </summary>
     public bool isClockEncore(int num)

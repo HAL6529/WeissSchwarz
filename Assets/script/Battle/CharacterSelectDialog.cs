@@ -177,6 +177,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_022:
             case EnumController.CardNo.P3_S01_026:
             case EnumController.CardNo.P3_S01_047:
+            case EnumController.CardNo.P3_S01_051:
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_060:
             case EnumController.CardNo.P3_S01_069:
@@ -269,6 +270,14 @@ public class CharacterSelectDialog : MonoBehaviour
                             cnt++;
                         }
                         break;
+                    // 順平を含むキャラのみ対象
+                    case EnumController.CardNo.P3_S01_051:
+                        if (!m_MyMainCardsManager.isContainFieldName(i, "順平"))
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -302,6 +311,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_010:
             case EnumController.CardNo.P3_S01_017:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_051:
             case EnumController.CardNo.P3_S01_052:
             case EnumController.CardNo.P3_S01_060:
                 if (cnt >= 5)
@@ -435,6 +445,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.DC_W01_07T:
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_026:
+            case EnumController.CardNo.P3_S01_051:
                 power = 1000;
                 break;
             case EnumController.CardNo.LB_W02_09T:
@@ -462,6 +473,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.LB_W02_04T:
                 case EnumController.CardNo.P3_S01_026:
                 case EnumController.CardNo.P3_S01_047:
+                case EnumController.CardNo.P3_S01_051:
                     // 自分のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {

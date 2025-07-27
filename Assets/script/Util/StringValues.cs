@@ -45,6 +45,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_04;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_28;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_30;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_51;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_52;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_55;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_56;
@@ -407,6 +408,7 @@ public class StringValues
     public string DC_W01_10T_NAME = "ロボ美春";
     public string P3_S01_017_NAME = "主人公＆タナトス";
     public string P3_S01_030_NAME = "風花＆ユノ";
+    public string P3_S01_055_NAME = "順平＆トリスメギストス";
     public string P3_S01_081_NAME = "ゆかり＆イシス";
 
     public StringValues() 
@@ -450,6 +452,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_P3_S01_04 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_04;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_28 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_28;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_30 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_30;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_51 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_51;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_52 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_52;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_55 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_55;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_56 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_56;
@@ -662,6 +665,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_04 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「露天風呂」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_28 = "次の能力を使用しますか。:" + "【起】［(2)］ そのターン中、このカードのパワーを＋5000。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_30 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「切れない絆」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_51 = "次の能力を使用しますか。:" + "【起】［(1)］ あなたは自分のカード名に「順平」を含むキャラを１枚選び、そのターン中、パワーを＋1000。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_52 = "次の能力を使用しますか。:" + "【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_55 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「ありがとう」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_56 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「友への誓い」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";

@@ -155,6 +155,10 @@ public class YesOrNoDialog : MonoBehaviour
                         sulvageCardName = stringValues.P3_S01_030_NAME;
                         cost = 1;
                         break;
+                    case EnumController.CardNo.P3_S01_051:
+                        sulvageCardName = stringValues.P3_S01_055_NAME;
+                        cost = 1;
+                        break;
                     case EnumController.CardNo.P3_S01_082:
                         sulvageCardName = stringValues.P3_S01_081_NAME;
                         cost = 1;
@@ -234,6 +238,9 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_30;
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_051:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_51;
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_52;
@@ -477,6 +484,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_051:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;

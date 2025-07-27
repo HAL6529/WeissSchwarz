@@ -989,6 +989,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 特定の文字列を含むか調べる
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    public bool isContainFieldName(string t)
+    {
+        if(m_BattleModeCard == null)
+        {
+            return false;
+        }
+        return m_BattleModeCard.name.Contains(t);
+    }
+
+    /// <summary>
     /// 手札アンコールを持っているカードか調べる
     /// </summary>
     /// <returns></returns>
