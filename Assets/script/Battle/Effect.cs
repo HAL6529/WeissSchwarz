@@ -760,6 +760,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
+            case EnumController.CardNo.P3_S01_056:
+                // 【自】 このカードがアタックした時、クライマックス置場に「友への誓い」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "友への誓い")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056, card, place, status);
+                    return true;
+                }
+                return false;
             case EnumController.CardNo.P3_S01_081:
                 //【自】 このカードがアタックした時、クライマックス置場に「父の遺志」があるなら、あなたは1枚引く。
                 if (m_GameManager.MyClimaxCard == null)
