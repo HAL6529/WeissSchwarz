@@ -702,6 +702,21 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 FieldPower += 1000;
             }
         }
+
+        // 順平&ヘルメスの効果
+        // 【永】 他のあなたの「チドリ」がいるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_059)
+        {
+            for (int i = 0; i < m_MyMainCardsManager.CardList.Count; i++) 
+            {
+                if(m_MyMainCardsManager.isFieldName(i, "チドリ"))
+                {
+                    FieldPower += 1000;
+                    break;
+                }
+            }
+        }
+
         Power.SetActive(true);
         PowerText.text = FieldPower.ToString();
     }
@@ -1003,6 +1018,24 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドのキャラがそのカード名か調べる
+    /// </summary>
+    /// <returns></returns>
+    public bool isFieldName(string t)
+    {
+        if (m_BattleModeCard == null)
+        {
+            return false;
+        }
+
+        if (m_BattleModeCard.name == t)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// 手札アンコールを持っているカードか調べる
     /// </summary>
     /// <returns></returns>
@@ -1019,6 +1052,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_027:
             case EnumController.CardNo.P3_S01_029:
             case EnumController.CardNo.P3_S01_056:
+            case EnumController.CardNo.P3_S01_059:
             case EnumController.CardNo.P3_S01_078:
                 return true;
             default:
