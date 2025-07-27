@@ -52,7 +52,7 @@ public class EventAnimationManager : MonoBehaviour
     /// </summary>
     public void AnimationStartForBond(BattleModeCard card, string sulvageCardName, int cost)
     {
-        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
+        this.paramater = EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD;
         this.sulvageCardName = sulvageCardName;
         this.cost = cost;
         isFromRPC = false;
@@ -186,18 +186,23 @@ public class EventAnimationManager : MonoBehaviour
             return;
         }
         // 絆
-        switch (m_BattleModeCard.cardNo)
+        if(paramater == EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD)
         {
-            case EnumController.CardNo.AT_WX02_A10:
-            case EnumController.CardNo.DC_W01_09T:
-            case EnumController.CardNo.P3_S01_003:
-            case EnumController.CardNo.P3_S01_032:
-            case EnumController.CardNo.P3_S01_082:
-                m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
-                return;
-            default: 
-                break;
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.AT_WX02_A10:
+                case EnumController.CardNo.DC_W01_09T:
+                case EnumController.CardNo.P3_S01_003:
+                case EnumController.CardNo.P3_S01_032:
+                case EnumController.CardNo.P3_S01_051:
+                case EnumController.CardNo.P3_S01_082:
+                    m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
+                    return;
+                default:
+                    break;
+            }
         }
+
 
         int enemyPlace = -1;
         switch (place)
@@ -526,6 +531,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
                     m_GameManager.myDeckList.RemoveAt(0);
                     m_GameManager.Syncronize();
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
+                case EnumController.CardNo.P3_S01_051:
+                    //【起】［(1)］ あなたは自分のカード名に「順平」を含むキャラを１枚選び、そのターン中、パワーを＋1000。
+                    PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 case EnumController.CardNo.P3_S01_052:
