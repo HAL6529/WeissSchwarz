@@ -919,6 +919,58 @@ public class GameManager : MonoBehaviour
         isLastTrigger = false;
     }
 
+    public void Damage(int damage, int handNum)
+    {
+        if(damage <= 0)
+        {
+            m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
+            return;
+        }
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+
+        for (int i = 0; i < damage; i++)
+        {
+            temp.Add(myDeckList[0]);
+            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            {
+                // ダメージアニメーションの再生
+                m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
+                m_DamageAnimationDialog.SetBattleModeCardForEffect(temp, handNum);
+                return;
+            }
+            myDeckList.RemoveAt(0);
+            Syncronize();
+            if (myDeckList.Count == 0)
+            {
+                if (GraveYardList.Count == 0)
+                {
+                    // 控室が0枚なら負け扱い
+                    m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
+                    m_WinAndLose.Lose();
+                    return;
+                }
+
+                for (int n = 0; n < GraveYardList.Count; n++)
+                {
+                    myDeckList.Add(GraveYardList[n]);
+                }
+                GraveYardList = new List<BattleModeCard>();
+                Shuffle();
+                Syncronize();
+                Action action = new Action(this, EnumController.Action.DamageRefresh);
+                action.SetParamaterBattleStrix(m_BattleStrix);
+                action.SetParamaterWinAndLose(m_WinAndLose);
+
+                ActionList.Add(action);
+            }
+        }
+        // ダメージアニメーションの再生
+        m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
+        m_DamageAnimationDialog.SetBattleModeCardForEffect(temp, handNum);
+        return;
+    }
+
     public void DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();

@@ -316,6 +316,8 @@ namespace EnumController
         CANCEL,
         DAMAGED,
         DAMAGE_ZERO,
+        EFFECT,
+        EFFECT_CANCEL,
     }
 
     public enum EncoreDialog

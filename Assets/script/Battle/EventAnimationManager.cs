@@ -578,6 +578,11 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_071:
+                    // あなたは相手に1ダメージを与える。
+                    PayCost(1);
+                    m_BattleStrix.RpcToAll("CallDamage",1 ,handNum ,m_GameManager.isFirstAttacker);
+                    return;
                 case EnumController.CardNo.P3_S01_072:
                     //あなたはレベル1以下の相手のキャラを1枚選び、山札の上に置く。
                     PayCost(2);

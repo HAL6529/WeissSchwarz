@@ -7,6 +7,7 @@ public class DamageAnimationDialog : MonoBehaviour
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] List<DamageCardAnimation> DamageCardAnimationList = new List<DamageCardAnimation>();
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] BattleStrix m_BattleStrix;
 
     private EnumController.DamageAnimation m_DamageAnimation = EnumController.DamageAnimation.VOID;
 
@@ -17,11 +18,52 @@ public class DamageAnimationDialog : MonoBehaviour
 
     private int place = -1;
 
+    private int handNum = -1;
+
+    public void SetBattleModeCardForEffect(List<BattleModeCard> list, int handNum)
+    {
+        m_GameManager.isDamageAnimation = true;
+        m_DamageAnimation = EnumController.DamageAnimation.EFFECT;
+        this.handNum = handNum;
+        this.place = place;
+        tempList = list;
+
+        if (list.Count == 0)
+        {
+            NextAction();
+            return;
+        }
+
+        this.gameObject.SetActive(true);
+
+        if (list[list.Count - 1].type == EnumController.Type.CLIMAX)
+        {
+            m_DamageAnimation = EnumController.DamageAnimation.EFFECT_CANCEL;
+        }
+
+        for (int i = 0; i < DamageCardAnimationList.Count; i++)
+        {
+            if (i < list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], false);
+            }
+            else if (i == list.Count - 1)
+            {
+                DamageCardAnimationList[i].AnimationStart(i, list[i], true);
+            }
+            else
+            {
+                DamageCardAnimationList[i].NotAnimation();
+            }
+        }
+    }
+
     public void SetBattleModeCard(List<BattleModeCard> list, int place)
     {
         m_GameManager.isDamageAnimation = true;
         m_DamageAnimation = EnumController.DamageAnimation.VOID;
         this.place = place;
+        this.handNum = -1;
         tempList = list;
         if (list.Count == 0)
         {
@@ -74,6 +116,7 @@ public class DamageAnimationDialog : MonoBehaviour
         m_GameManager.isDamageAnimation = true;
         m_DamageAnimation = EnumController.DamageAnimation.VOID;
         place = -1;
+        this.handNum = -1;
         tempList = list;
         if (list.Count == 0)
         {
@@ -120,8 +163,58 @@ public class DamageAnimationDialog : MonoBehaviour
             case EnumController.DamageAnimation.DAMAGED:
                 m_GameManager.DamageForFrontAttack2ForDamaged(tempList, place);
                 return;
+            case EnumController.DamageAnimation.EFFECT:
+                EFFECT();
+                return;
+            case EnumController.DamageAnimation.EFFECT_CANCEL:
+                EFFECT_CANCEL();
+                return;
             default:
                 return;
         }
+    }
+
+    private void EFFECT()
+    {
+        for (int n = 0; n < tempList.Count; n++)
+        {
+            m_GameManager.myClockList.Add(tempList[n]);
+        }
+        m_GameManager.Syncronize();
+        m_BattleStrix.RpcToAll("RemoveHand", handNum, m_GameManager.isFirstAttacker);
+
+        if (m_GameManager.LevelUpCheck())
+        {
+            return;
+        }
+
+        if (m_GameManager.myDeckList.Count == 0)
+        {
+            m_GameManager.Refresh();
+            return;
+        }
+        m_GameManager.ExecuteActionList();
+    }
+
+    private void EFFECT_CANCEL()
+    {
+        for (int n = 0; n < tempList.Count; n++)
+        {
+            m_GameManager.GraveYardList.Add(tempList[n]);
+        }
+        m_GameManager.Syncronize();
+        m_BattleStrix.RpcToAll("RemoveHand", handNum, m_GameManager.isFirstAttacker);
+
+        if (m_GameManager.LevelUpCheck())
+        {
+            return;
+        }
+
+        if (m_GameManager.myDeckList.Count == 0)
+        {
+            m_GameManager.Refresh();
+            return;
+        }
+        m_GameManager.ExecuteActionList();
     }
 }
