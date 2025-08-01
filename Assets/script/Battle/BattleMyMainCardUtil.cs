@@ -705,16 +705,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 順平&ヘルメスの効果
         // 【永】 他のあなたの「チドリ」がいるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_059)
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_059 && m_MyMainCardsManager.isFieldName("チドリ"))
         {
-            for (int i = 0; i < m_MyMainCardsManager.CardList.Count; i++) 
-            {
-                if(m_MyMainCardsManager.isFieldName(i, "チドリ"))
-                {
-                    FieldPower += 1000;
-                    break;
-                }
-            }
+            FieldPower += 1000;
+        }
+
+        // メティスの効果
+        //【永】 他のあなたのカード名に「アイギス」を含むキャラがいるなら、このカードのパワーを＋1500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_034 && m_MyMainCardsManager.isContainFieldName("アイギス"))
+        {
+            FieldPower += 1500;
         }
 
         Power.SetActive(true);

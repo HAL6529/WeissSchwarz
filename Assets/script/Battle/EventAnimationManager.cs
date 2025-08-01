@@ -505,6 +505,12 @@ public class EventAnimationManager : MonoBehaviour
                     // あなたは相手のキャラを1枚選び、そのターン中、レベルを－1。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_034:
+                    // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
+                    PayCost(1);
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
+                    m_GameManager.Syncronize();
+                    return;
                 case EnumController.CardNo.P3_S01_040:
                     //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
                     m_MyMainCardsManager.CallOnRest(place);

@@ -515,6 +515,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_034:
+                // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
+                if (ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_034, card, num);
+                }
+                return;
             case EnumController.CardNo.P3_S01_051:
                 //【起】［(1)］ あなたは自分のカード名に「順平」を含むキャラを１枚選び、そのターン中、パワーを＋1000。
                 if (ConfirmStockForCost(1))
