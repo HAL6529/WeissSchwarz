@@ -396,6 +396,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void CallDamage(int damage, int handNum, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.Damage(damage, handNum);
+        }
+    }
+
+    [StrixRpc]
     public void Damage(int num, bool isFirstAttacker, EnumController.Damage damage, List<EnumController.Shot> SendShotList)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
@@ -611,6 +620,18 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isTurnPlayer != isTurnPlayer)
         {
             m_TriggerCardAnimationForEnemy.Play(card);
+        }
+    }
+
+    [StrixRpc]
+    public void RemoveHand(int handNum, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            BattleModeCard card = m_GameManager.myHandList[handNum];
+            m_GameManager.myHandList.RemoveAt(handNum);
+            m_GameManager.GraveYardList.Add(card);
+            m_GameManager.Syncronize();
         }
     }
 
