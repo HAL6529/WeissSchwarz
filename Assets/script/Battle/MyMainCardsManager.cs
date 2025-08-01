@@ -446,12 +446,44 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 特定のカード名をもつカードがフィールドに存在するか確認する
+    /// </summary>
+    /// <returns></returns>
+    public bool isContainFieldName(string t)
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            if (CardList[i].isContainFieldName(t))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// 特定の文字列を含むか調べる
     /// </summary>
     /// <returns></returns>
     public bool isContainFieldName(int num, string t)
     {
         return CardList[num].isContainFieldName(t);
+    }
+
+    /// <summary>
+    /// 特定のキャラ名のカードがフィールドに存在するか確認する
+    /// </summary>
+    /// <returns></returns>
+    public bool isFieldName(string t)
+    {
+        for(int i = 0; i < CardList.Count; i++)
+        {
+            if (CardList[i].isFieldName(t))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// <summary>
