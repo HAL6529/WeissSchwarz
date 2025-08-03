@@ -17,6 +17,7 @@ public class YesOrNoDialog : MonoBehaviour
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
     [SerializeField] EffectBrainStormForDraw m_EffectBrainStormForDraw;
     [SerializeField] EventAnimationManager m_EventAnimationManager;
+    [SerializeField] BattleModeCard P3_S01_062;
 
     private BattleModeCard m_BattleModeCard = null;
 
@@ -254,6 +255,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_56;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_62;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
                 break;
@@ -272,6 +276,7 @@ public class YesOrNoDialog : MonoBehaviour
     {
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
                 break;
@@ -505,6 +510,10 @@ public class YesOrNoDialog : MonoBehaviour
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
+                m_EventAnimationManager.AnimationStart(P3_S01_062, ParamaterNum1);
+                m_BattleStrix.EventAnimation(P3_S01_062, m_GameManager.isFirstAttacker);
+                break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
                 BattleModeCard tmp = m_GameManager.myDeckList[0];
                 m_GameManager.myDeckList.RemoveAt(0);
@@ -536,6 +545,7 @@ public class YesOrNoDialog : MonoBehaviour
         this.gameObject.SetActive(false);
         switch (m_YesOrNoDialogParamater)
         {
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
                 m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                 m_GameManager.ExecuteActionList();
