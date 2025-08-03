@@ -77,6 +77,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public bool isGreatPerformance = false;
 
+    /// <summary>
+    /// タカヤの効果を持っているか
+    /// 【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。
+    /// </summary>
+    public bool Takaya = false;
+
     private bool isMoveButton = false;
 
     public Effect m_Effect;
@@ -454,7 +460,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         state = EnumController.State.REVERSE;
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 180.0f);
         m_MyMainCardsManager.ConfirmEffectWhenMyCardReversed(PlaceNum);
-        m_Effect.WhenReverseMyCardEffect(m_BattleModeCard, PlaceNum);
+        BattleMyMainCardAvility m_BattleMyMainCardAvility = new BattleMyMainCardAvility(
+            m_BattleModeCard, PlaceNum, FieldPower, FieldSoul,
+            FieldLevel, HandEncore, TwoStockEncore, ClockEncore, m_AttributeUpUntilTurnEnd,
+            AttributeList, state, isGreatPerformance, Takaya, m_Assist, m_AssistForHaveEncore,
+            m_AllAssist, m_Gaul, m_LevelAssist, m_LevelUpUntilTurnEnd, m_PowerUpUntilTurnEnd, m_SoulUpUntilTurnEnd);
+        m_Effect.WhenReverseMyCardEffect(m_BattleMyMainCardAvility);
     }
 
     /// <summary>
@@ -471,7 +482,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void EffectWhenMyOtherCardReversed()
     {
-        m_Effect.EffectWhenMyOtherCardReversed(m_BattleModeCard, PlaceNum);
+        EnumController.State m_state = state;
+        BattleMyMainCardAvility m_BattleMyMainCardAvility = new BattleMyMainCardAvility(
+            m_BattleModeCard, PlaceNum, FieldPower, FieldSoul,
+            FieldLevel, HandEncore, TwoStockEncore, ClockEncore, m_AttributeUpUntilTurnEnd,
+            AttributeList, m_state, isGreatPerformance, Takaya, m_Assist, m_AssistForHaveEncore,
+            m_AllAssist, m_Gaul, m_LevelAssist, m_LevelUpUntilTurnEnd, m_PowerUpUntilTurnEnd, m_SoulUpUntilTurnEnd);
+        m_Effect.EffectWhenMyOtherCardReversed(m_BattleMyMainCardAvility);
     }
 
     /// <summary>
@@ -757,6 +774,24 @@ public class BattleMyMainCardUtil : MonoBehaviour
             {
                 FieldSoul += 2;
             }
+        }
+    }
+
+    /// <summary>
+    /// タカヤの効果を反映
+    /// 【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。
+    /// </summary>
+    public void TakayaEffectUpdate()
+    {
+        Takaya = false;
+        if(m_BattleModeCard == null || m_GameManager.myClockList.Count == 0)
+        {
+            return;
+        }
+
+        if (m_BattleModeCard.color == EnumController.CardColor.RED && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_062)
+        {
+            Takaya = true;
         }
     }
 

@@ -568,6 +568,13 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_062:
+                    // 【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。
+                    PayCost(1);
+                    m_MyMainCardsManager.CallPutHandFromField(place);
+                    m_GameManager.ExecuteActionList();
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    return;
                 case EnumController.CardNo.P3_S01_068:
                     // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     PayCost(1);

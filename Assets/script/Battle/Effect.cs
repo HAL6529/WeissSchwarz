@@ -223,21 +223,33 @@ public class Effect : MonoBehaviour
     /// <summary>
     /// 「【自】 このカードが【リバース】した時」に発動する効果
     /// </summary>
-    public void WhenReverseMyCardEffect(BattleModeCard card, int place)
+    public void WhenReverseMyCardEffect(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if (card == null)
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
         {
             return;
         }
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
-        switch (card.cardNo)
+
+
+        if (m_BattleMyMainCardAvility.Takaya)
+        {
+            Action action_P3_S01_062 = new Action(m_GameManager, EnumController.Action.P3_S01_062);
+            action_P3_S01_062.SetParamaterEventAnimationManager(m_EventAnimationManager);
+            action_P3_S01_062.SetParamaterBattleStrix(m_BattleStrix);
+            action_P3_S01_062.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+            action_P3_S01_062.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+            m_GameManager.ActionList.Add(action_P3_S01_062);
+        }
+
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
         {
             // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.CardNo.DC_W01_16T:
             case EnumController.CardNo.P3_S01_058:
                 int enemyPlace = -1;
-                switch (place)
+                switch (m_BattleMyMainCardAvility.PlaceNum)
                 {
                     case 0:
                         enemyPlace = 2;
@@ -254,8 +266,8 @@ public class Effect : MonoBehaviour
                 if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 1 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
                 {
                     Action action = new Action(m_GameManager, EnumController.Action.DC_W01_16T);
-                    action.SetParamaterBattleModeCard(card);
-                    action.SetParamaterNum(place);
+                    action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                    action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
                     m_GameManager.ActionList.Add(action);
                 }
                 return;
@@ -267,28 +279,28 @@ public class Effect : MonoBehaviour
     /// <summary>
     /// 「【自】 他のバトルしているあなたのキャラが【リバース】した時」に発動する効果
     /// <summary>
-    public void EffectWhenMyOtherCardReversed(BattleModeCard card, int place)
+    public void EffectWhenMyOtherCardReversed(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if(card == null)
+        if(m_BattleMyMainCardAvility.m_BattleModeCard == null)
         {
             return;
         }
 
-        switch (card.cardNo)
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
         {
             //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
             case EnumController.CardNo.P3_S01_055:
                 Action action_P3_S01_055 = new Action(m_GameManager, EnumController.Action.P3_S01_055);
                 action_P3_S01_055.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_055.SetParamaterBattleStrix(m_BattleStrix);
-                action_P3_S01_055.SetParamaterBattleModeCard(card);
-                action_P3_S01_055.SetParamaterNum(place);
+                action_P3_S01_055.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                action_P3_S01_055.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
                 m_GameManager.ActionList.Add(action_P3_S01_055);
                 return;
             // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
             case EnumController.CardNo.DC_W01_07T:
                 Action action_DC_W01_07T = new Action(m_GameManager, EnumController.Action.DC_W01_07T);
-                action_DC_W01_07T.SetParamaterBattleModeCard(card);
+                action_DC_W01_07T.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                 m_GameManager.ActionList.Add(action_DC_W01_07T);
                 return;
             default:

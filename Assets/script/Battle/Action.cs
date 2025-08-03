@@ -155,6 +155,9 @@ public class Action : MonoBehaviour
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
+            case EnumController.Action.P3_S01_062:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062, m_BattleModeCard, paramaterNum);
+                return;
             default:
                 break;
         }

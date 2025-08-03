@@ -653,7 +653,7 @@ public class BattleModeCardList : MonoBehaviour
             case "P3_S01_061":
                 return Persona3[60];
             case "P3_S01_062":
-                return Persona3[60];
+                return Persona3[61];
             case "P3_S01_063":
                 return Persona3[62];
             case "P3_S01_064":

@@ -239,6 +239,7 @@ public class MyMainCardsManager : MonoBehaviour
             CardList[i].PowerUpdate();
             CardList[i].SoulUpdate();
             CardList[i].AttributeUpdate();
+            CardList[i].TakayaEffectUpdate();
         }
     }
 

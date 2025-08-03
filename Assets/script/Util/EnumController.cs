@@ -36,6 +36,7 @@ namespace EnumController
         P3_S01_052,
         P3_S01_055,
         P3_S01_060,
+        P3_S01_062,
         P3_S01_076,
         P3_S01_088,
     }
@@ -489,6 +490,7 @@ namespace EnumController
         COST_CONFIRM_P3_S01_052,
         COST_CONFIRM_P3_S01_055,
         COST_CONFIRM_P3_S01_056,
+        COST_CONFIRM_P3_S01_062,
         COST_CONFIRM_P3_S01_081,
         COST_CONFIRM_P3_S01_091,
     }
