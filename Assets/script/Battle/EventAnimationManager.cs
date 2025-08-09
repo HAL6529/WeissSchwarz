@@ -224,7 +224,7 @@ public class EventAnimationManager : MonoBehaviour
             switch (m_BattleModeCard.cardNo)
             {
                 case EnumController.CardNo.AT_WX02_A07:
-                    m_DialogManager.SearchDialog(m_GameManager.myDeckList, EnumController.SearchDialogParamater.Search, m_BattleModeCard);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.AT_WX02_A07, handNum);
                     return;
                 case EnumController.CardNo.DC_W01_01T:
                     // 【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
@@ -384,7 +384,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.ExecuteActionList();
                         return;
                     }
-                    m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_16T, handNum);
                     return;
                 case EnumController.CardNo.LB_W02_17T:
                     //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
@@ -649,7 +649,6 @@ public class EventAnimationManager : MonoBehaviour
                     break;
             }
             int pumpPoint = 0;
-            int cost = 0;
             // Counter用
             switch (m_BattleModeCard.cardNo)
             {
@@ -762,7 +761,7 @@ public class EventAnimationManager : MonoBehaviour
                         m_GameManager.ExecuteActionList();
                         return;
                     }
-                    m_DialogManager.SearchDialog(m_GameManager.myClockList, EnumController.SearchDialogParamater.ClockSulvage, m_BattleModeCard);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.P3_S01_081);
                     return;
                 case EnumController.CardNo.P3_S01_16T:
                 case EnumController.CardNo.P3_S01_087:
