@@ -12,59 +12,188 @@ public class SearchDialog : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] Text text;
+    [SerializeField] Button OKButton;
 
     public bool isClockAndTwoDrawProcess = false;
 
-    public int num = -1;
+    /// <summary>
+    /// サーチorサルベージするカードの最低枚数
+    /// </summary>
+    public int SulvageMinNum = -1;
+
+    /// <summary>
+    /// サーチorサルベージするカードの最大枚数
+    /// </summary>
+    public int SulvageMaxNum = -1;
+
+    /// <summary>
+    /// イベントカードを使用する場合手札の何枚目を消費するか
+    /// </summary>
+    private int handNum = -1;
 
     private EnumController.SearchDialogParamater paramater = EnumController.SearchDialogParamater.VOID;
-    private BattleModeCard card = null;
 
     private StringValues stringValues = new StringValues();
 
-    public void SetBattleModeCard(List<BattleModeCard> list, EnumController.SearchDialogParamater paramater, BattleModeCard card)
+    private EnumController.ConfirmSearchOrSulvageCardDialog ConfirmSearchOrSulvageCardDialogParamater;
+
+    private enum Mode
     {
-        num = -1;
+        VOID,
+        My_Clock_Sulvage,
+        My_Deck_Search,
+    }
+
+    /// <summary>
+    /// クロック回収かデッキサーチか
+    /// </summary>
+    private Mode m_Mode = Mode.VOID;
+
+    private class SearchButtonUtilParamater
+    {
+        public BattleModeCard m_BattleModeCard;
+        public bool isEnable = false;
+
+        public SearchButtonUtilParamater(BattleModeCard m_BattleModeCard, bool isEnable)
+        {
+            this.m_BattleModeCard = m_BattleModeCard;
+            this.isEnable = isEnable;
+        }
+    }
+
+    private List<SearchButtonUtilParamater> SearchButtonUtilParamaterList = new List<SearchButtonUtilParamater>();
+
+    public void SetBattleModeCard(EnumController.SearchDialogParamater paramater, int handNum)
+    {
+        this.handNum = handNum;
+        SetBattleModeCard(paramater);
+    }
+
+    public void SetBattleModeCard(EnumController.SearchDialogParamater paramater)
+    {
         this.paramater = paramater;
         this.gameObject.SetActive(true);
-        this.card = card;
+        OKButton.interactable = false;
+        m_Mode = Mode.VOID;
         text.text = stringValues.SearchDialog_SearchMessage;
+        m_GameManager.isSearchDialogProcess = true;
         switch (paramater)
         {
-            case EnumController.SearchDialogParamater.ClockSulvage:
-                for (int i = 0; i < buttons.Count; i++)
-                {
-                    if (i > list.Count - 1)
-                    {
-                        buttons[i].SetBattleModeCard(null, false);
-                    }
-                    else
-                    {
-                        buttons[i].SetBattleModeCard(list[i], true);
-                    }
-                }
+            case EnumController.SearchDialogParamater.AT_WX02_A07:
+                m_Mode = Mode.My_Deck_Search;
+                break;
+            case EnumController.SearchDialogParamater.LB_W02_16T:
+            case EnumController.SearchDialogParamater.P3_S01_081:
+                m_Mode = Mode.My_Clock_Sulvage;
                 break;
             default:
-                for (int i = 0; i < buttons.Count; i++)
+                break;
+        }
+
+        // サーチorサルベージするカードの枚数
+        switch (paramater)
+        {
+            case EnumController.SearchDialogParamater.LB_W02_16T:
+            case EnumController.SearchDialogParamater.P3_S01_081:
+                SulvageMaxNum = 1;
+                SulvageMinNum = 1;
+                break;
+            case EnumController.SearchDialogParamater.AT_WX02_A07:
+                SulvageMaxNum = 1;
+                SulvageMinNum = 0;
+                break;
+            default:
+                SulvageMaxNum = -1;
+                SulvageMinNum = -1;
+                break;
+        }
+
+        SearchButtonUtilParamaterList = new List<SearchButtonUtilParamater>();
+        int cnt = 0;
+        switch (m_Mode)
+        {
+            case Mode.My_Clock_Sulvage:
+                for(int i = 0; i < m_GameManager.myClockList.Count; i++)
                 {
-                    if (i > list.Count - 1)
+                    SearchButtonUtilParamaterList.Add(new SearchButtonUtilParamater(m_GameManager.myClockList[i], true));
+                    cnt++;
+                }
+                break;
+            case Mode.My_Deck_Search:
+                for (int i = 0; i < m_GameManager.myDeckList.Count; i++)
+                {
+                    SearchButtonUtilParamaterList.Add(new SearchButtonUtilParamater(m_GameManager.myDeckList[i], true));
+                    cnt++;
+                }
+                break;
+            default : 
+                break;
+        }
+
+        switch (paramater)
+        {
+            case EnumController.SearchDialogParamater.AT_WX02_A07:
+                // Search your deck for up to 1 《Ooo》 character, reveal it to your opponent, put it into your hand, and shuffle your deck.
+                List<EnumController.Attribute> list = new List<EnumController.Attribute>();
+                list.Add(EnumController.Attribute.Ooo);
+                for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
+                {
+                    BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
+                    if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
                     {
-                        buttons[i].SetBattleModeCard(null, false);
-                    }
-                    else
-                    {
-                        if (list[i].type == EnumController.Type.CHARACTER)
-                        {
-                            buttons[i].SetBattleModeCard(list[i], true);
-                        }
-                        else
-                        {
-                            buttons[i].SetBattleModeCard(list[i], false);
-                        }
+                        SearchButtonUtilParamaterList[i].isEnable = false;
+                        cnt--;
                     }
                 }
                 break;
+            case EnumController.SearchDialogParamater.LB_W02_16T:
+            case EnumController.SearchDialogParamater.P3_S01_081:
+                //あなたは自分のクロックを1枚選び、手札に戻す。
+                break;
+            default:
+                break;
         }
+
+        if(cnt <= SulvageMinNum)
+        {
+            m_GameManager.isSearchDialogProcess = false;
+            this.gameObject.SetActive(false);
+            return;
+        }
+
+        for(int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].OffSelected();
+            if (i < SearchButtonUtilParamaterList.Count)
+            {
+                buttons[i].SetBattleModeCard(SearchButtonUtilParamaterList[i].m_BattleModeCard, SearchButtonUtilParamaterList[i].isEnable);
+            }
+            else
+            {
+                buttons[i].SetBattleModeCard(null, false);
+            }
+        }
+    }
+
+    /// <summary>
+    /// BattleModeCardが特定の特徴を持っているか
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="attribute"></param>
+    /// <returns></returns>
+    private bool HaveAttribute(BattleModeCard card, List<EnumController.Attribute> attribute)
+    {
+        for(int i = 0; i < card.attribute.Count; i++)
+        {
+            for(int n = 0; n < attribute.Count; n++)
+            {
+                if (card.attribute[i] == attribute[n])
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void CallOffSelected()
@@ -72,6 +201,27 @@ public class SearchDialog : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].OffSelected();
+        }
+    }
+
+    public void SwitchOKButton()
+    {
+        int cnt = 0;
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (buttons[i].isSelected)
+            {
+                cnt++;
+            }
+        }
+
+        if(cnt <= SulvageMaxNum && cnt >= SulvageMinNum)
+        {
+            OKButton.interactable = true;
+        }
+        else
+        {
+            OKButton.interactable = false;
         }
     }
 
@@ -94,123 +244,108 @@ public class SearchDialog : MonoBehaviour
 
         ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
 
+        deckListTemp = m_GameManager.myDeckList;
+        memoryListTemp = m_GameManager.myMemoryList;
+        stockListTemp = m_GameManager.myStockList;
+        graveyardTemp = m_GameManager.GraveYardList;
+        clockListTemp = m_GameManager.myClockList;
+        handListTemp = m_GameManager.myHandList;
+
+        BattleModeCard t;
         switch (paramater)
         {
-            case EnumController.SearchDialogParamater.ClockSulvage:
-                if (num < 0)
-                {
-                    return;
-                }
-                memoryListTemp = m_GameManager.myMemoryList;
-                stockListTemp = m_GameManager.myStockList;
-                graveyardTemp = m_GameManager.GraveYardList;
-                clockListTemp = m_GameManager.myClockList;
-                handListTemp = m_GameManager.myHandList;
-                searchListTemp.Add(clockListTemp[num]);
-
-                switch (card.cardNo)
-                {
-                    case EnumController.CardNo.LB_W02_16T:
-                        // あなたは自分のクロックを1枚選び、手札に戻す。このカードを思い出にする。
-                        handListTemp.Remove(card);
-                        memoryListTemp.Add(card);
-                        handListTemp.Add(clockListTemp[num]);
-                        clockListTemp.Remove(clockListTemp[num]);
-                        break;
-                    case EnumController.CardNo.P3_S01_081:
-                        //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
-                        handListTemp.Add(clockListTemp[num]);
-                        clockListTemp.Remove(clockListTemp[num]);
-                        break;
-                    default:
-                        break;
-                }
-
-                for (int i = 0; i < memoryListTemp.Count; i++)
-                {
-                    m_memoryListTemp.Add(new BattleModeCardTemp(memoryListTemp[i]));
-                }
-                for (int i = 0; i < stockListTemp.Count; i++)
-                {
-                    m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
-                }
-                for (int i = 0; i < graveyardTemp.Count; i++)
-                {
-                    m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
-                }
-                for (int i = 0; i < clockListTemp.Count; i++)
-                {
-                    m_clockListTemp.Add(new BattleModeCardTemp(clockListTemp[i]));
-                }
-                for (int i = 0; i < handListTemp.Count; i++)
-                {
-                    m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
-                }
-
-                m_ExecuteActionTemp.memoryList = m_memoryListTemp;
-                m_ExecuteActionTemp.stockList = m_stockListTemp;
-                m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
-                m_ExecuteActionTemp.memoryList = m_memoryListTemp;
-                m_ExecuteActionTemp.clockList = m_clockListTemp;
-                m_ExecuteActionTemp.handList = m_handListTemp;
-                m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
-
-                m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
-                OffDialog();
+            case EnumController.SearchDialogParamater.AT_WX02_A07:
+                // Search your deck for up to 1 《Ooo》 character, reveal it to your opponent, put it into your hand, and shuffle your deck.
+                t = handListTemp[handNum];
+                handListTemp.RemoveAt(handNum);
+                graveyardTemp.Add(t);
                 break;
-            case EnumController.SearchDialogParamater.Search:
-                if(num < 0)
-                {
-                    return;
-                }
-
-                deckListTemp = m_GameManager.myDeckList;
-                stockListTemp = m_GameManager.myStockList;
-                graveyardTemp = m_GameManager.GraveYardList;
-                handListTemp = m_GameManager.myHandList;
-                searchListTemp.Add(deckListTemp[num]);
-
-                graveyardTemp.Add(stockListTemp[stockListTemp.Count - 1]);
-                stockListTemp.RemoveAt(stockListTemp.Count - 1);
-                handListTemp.Remove(card);
-                graveyardTemp.Add(card);
-                handListTemp.Add(deckListTemp[num]);
-                deckListTemp.Remove(deckListTemp[num]);
-
-                for (int i = 0; i < deckListTemp.Count; i++)
-                {
-                    m_deckListTemp.Add(new BattleModeCardTemp(deckListTemp[i]));
-                }
-                for (int i = 0; i < stockListTemp.Count; i++)
-                {
-                    m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
-                }
-                for (int i = 0; i < graveyardTemp.Count; i++)
-                {
-                    m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
-                }
-                for (int i = 0; i < handListTemp.Count; i++)
-                {
-                    m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
-                }
-
-                m_ExecuteActionTemp.deckList = m_deckListTemp;
-                m_ExecuteActionTemp.stockList = m_stockListTemp;
-                m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
-                m_ExecuteActionTemp.handList = m_handListTemp;
-                m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
-
-                m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
-
-                OffDialog(); 
+            case EnumController.SearchDialogParamater.LB_W02_16T:
+                // あなたは自分のクロックを1枚選び、手札に戻す。このカードを思い出にする。
+                t = handListTemp[handNum];
+                handListTemp.RemoveAt(handNum);
+                memoryListTemp.Add(t);
+                break;
+            case EnumController.SearchDialogParamater.P3_S01_081:
                 break;
             default:
                 break;
         }
+
+        ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.VOID;
+        switch (m_Mode)
+        {
+            case Mode.My_Clock_Sulvage:
+                ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE;
+                for (int i = 0; i < buttons.Count; i++)
+                {
+                    if (buttons[i].isSelected)
+                    {
+                        searchListTemp.Add(buttons[i].m_BattleModeCard);
+                        handListTemp.Add(clockListTemp[i]);
+                        clockListTemp.RemoveAt(i);
+                    }
+                }
+                break;
+            case Mode.My_Deck_Search:
+                ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH;
+                for (int i = 0; i < buttons.Count; i++)
+                {
+                    if (buttons[i].isSelected)
+                    {
+                        searchListTemp.Add(buttons[i].m_BattleModeCard);
+                        handListTemp.Add(deckListTemp[i]);
+                        deckListTemp.RemoveAt(i);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 0; i < deckListTemp.Count; i++)
+        {
+            m_deckListTemp.Add(new BattleModeCardTemp(deckListTemp[i]));
+        }
+        for (int i = 0; i < memoryListTemp.Count; i++)
+        {
+            m_memoryListTemp.Add(new BattleModeCardTemp(memoryListTemp[i]));
+        }
+        for (int i = 0; i < stockListTemp.Count; i++)
+        {
+            m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
+        }
+        for (int i = 0; i < graveyardTemp.Count; i++)
+        {
+            m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
+        }
+        for (int i = 0; i < clockListTemp.Count; i++)
+        {
+            m_clockListTemp.Add(new BattleModeCardTemp(clockListTemp[i]));
+        }
+        for (int i = 0; i < handListTemp.Count; i++)
+        {
+            m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
+        }
+
+        m_ExecuteActionTemp.deckList = m_deckListTemp;
+        m_ExecuteActionTemp.memoryList = m_memoryListTemp;
+        m_ExecuteActionTemp.stockList = m_stockListTemp;
+        m_ExecuteActionTemp.graveyardList = m_graveyardTemp;
+        m_ExecuteActionTemp.memoryList = m_memoryListTemp;
+        m_ExecuteActionTemp.clockList = m_clockListTemp;
+        m_ExecuteActionTemp.handList = m_handListTemp;
+        m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
+
+        m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(searchListTemp, ConfirmSearchOrSulvageCardDialogParamater, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
+
+        OffDialog();
     }
 
     public void OffDialog()
     {
+        m_GameManager.isSearchDialogProcess = false;
+        this.handNum = -1;
         this.gameObject.SetActive(false);
     }
 }

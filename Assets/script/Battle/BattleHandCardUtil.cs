@@ -220,8 +220,14 @@ public class BattleHandCardUtil : MonoBehaviour
     private void MainClick()
     {
         bool temp = isMainSelected;
-        m_DialogManager.CloseAllDialog();
+        m_DialogManager.CloseAllDialog2();
         m_MyHandCardsManager.CallNotShowPlayButton();
+
+        // SelectDialog‚ª•\Ž¦‚³‚ê‚Ä‚¢‚é‚©
+        if (m_GameManager.isSearchDialogProcess)
+        {
+            return;
+        }
 
         if(m_GameManager.myLevelList.Count < m_BattleModeCard.level)
         {

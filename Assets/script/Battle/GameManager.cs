@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public bool isFirstAttacked = false;
     public bool isEncoreDialogProcess = false;
     public bool isCharacterSelectDialogProcess = false;
+    public bool isSearchDialogProcess = false;
 
     public bool executeActionList = false;
 

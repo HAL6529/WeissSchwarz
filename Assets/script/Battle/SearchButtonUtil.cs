@@ -10,8 +10,8 @@ public class SearchButtonUtil : MonoBehaviour
     [SerializeField] SearchDialog m_SearchDialog;
     [SerializeField] int num;
 
-    private BattleModeCard m_BattleModeCard = null;
-    private bool isSelected = false;
+    public BattleModeCard m_BattleModeCard = null;
+    public bool isSelected = false;
 
     public void SetBattleModeCard(BattleModeCard card, bool IsInteractable)
     {
@@ -48,16 +48,14 @@ public class SearchButtonUtil : MonoBehaviour
     {
         if (isSelected)
         {
-            m_SearchDialog.CallOffSelected();
-            m_SearchDialog.num = -1;
+            OffSelected();
         }
         else
         {
-            m_SearchDialog.CallOffSelected();
             isSelected = true;
             image.color = new Color(145f / 255f, 145f / 255f, 145f / 255f, 255 / 255);
-            m_SearchDialog.num = num;
         }
+        m_SearchDialog.SwitchOKButton();
     }
 
     public void OffSelected()

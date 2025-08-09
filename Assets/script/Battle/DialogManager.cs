@@ -152,9 +152,14 @@ public class DialogManager : MonoBehaviour
         m_HandOverDialog.SetParamater(paramater);
     }
 
-    public void SearchDialog(List<BattleModeCard> list, EnumController.SearchDialogParamater paramater, BattleModeCard card)
+    public void SearchDialog(EnumController.SearchDialogParamater paramater, int handNum)
     {
-        m_SearchDialog.SetBattleModeCard(list, paramater, card);
+        m_SearchDialog.SetBattleModeCard(paramater, handNum);
+    }
+
+    public void SearchDialog(EnumController.SearchDialogParamater paramater)
+    {
+        m_SearchDialog.SetBattleModeCard(paramater);
     }
 
     public void CharacterSelectDialog(BattleModeCard card, bool isMine, int place)

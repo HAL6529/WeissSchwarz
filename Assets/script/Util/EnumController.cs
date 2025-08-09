@@ -386,9 +386,9 @@ namespace EnumController
     public enum SearchDialogParamater
     {
         VOID,
-        ClockSulvage,
-        Search,
-        Sulvage,
+        AT_WX02_A07,
+        LB_W02_16T,
+        P3_S01_081,
     }
 
     public enum Shot

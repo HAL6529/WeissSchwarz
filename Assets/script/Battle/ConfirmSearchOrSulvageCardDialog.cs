@@ -81,6 +81,7 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         switch (paramater)
         {
+            case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
             case EnumController.ConfirmSearchOrSulvageCardDialog.SEARCH:
                 m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
@@ -88,9 +89,6 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.COMEBACK:
                 m_BattleStrix.RpcToAll("ExecuteAction_ComeBackActionAfterConfirmDialog", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
-                return;
-            case EnumController.ConfirmSearchOrSulvageCardDialog.CLOCK_SULVAGE:
-                m_BattleStrix.RpcToAll("ExecuteAction_SearchAfterConfirmDialog_ClockSulvage", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
                 m_BattleStrix.RpcToAll("ExecuteActionList", m_GameManager.isTurnPlayer);
