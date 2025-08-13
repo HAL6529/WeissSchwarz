@@ -416,7 +416,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
     private int GetEnemyLevel()
     {
-        if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+        if (m_EnemyMainCardsManager.GetIsGreatProcessList(1) && m_EnemyMainCardsManager.GetState(1) == EnumController.State.STAND)
         {
             return m_EnemyMainCardsManager.GetFieldLevel(1);
         }

@@ -388,6 +388,7 @@ namespace EnumController
         VOID,
         AT_WX02_A07,
         LB_W02_16T,
+        P3_S01_077,
         P3_S01_081,
     }
 
@@ -491,6 +492,7 @@ namespace EnumController
         COST_CONFIRM_P3_S01_055,
         COST_CONFIRM_P3_S01_056,
         COST_CONFIRM_P3_S01_062,
+        COST_CONFIRM_P3_S01_077,
         COST_CONFIRM_P3_S01_081,
         COST_CONFIRM_P3_S01_091,
     }

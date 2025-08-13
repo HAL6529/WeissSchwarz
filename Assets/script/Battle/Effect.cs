@@ -548,6 +548,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_077:
+                // 【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                if (ConfirmStockForCost(4))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_077, card, num);
+                }
+                return;
             case EnumController.CardNo.P3_S01_081:
                 // 【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
                 if (ConfirmStockForCost(4))
@@ -797,6 +804,26 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "友への誓い")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_077:
+                //【自】 このカードがアタックした時、クライマックス置場に「最強なる者」があるなら、あなたは1枚引く。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "最強なる者")
+                {
+                    Action action_P3_S01_077 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                    action_P3_S01_077.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_077.SetParamaterAttackStatus(status);
+                    action_P3_S01_077.SetParamaterNum(place);
+
+                    m_GameManager.ActionList.Add(action_P3_S01_077);
+                    m_EventAnimationManager.AnimationStart(card, place);
+                    m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                     return true;
                 }
                 return false;
