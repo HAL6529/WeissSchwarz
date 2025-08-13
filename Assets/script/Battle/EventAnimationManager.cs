@@ -604,7 +604,9 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
+                case EnumController.CardNo.P3_S01_077:
                 case EnumController.CardNo.P3_S01_081:
+                    //【自】 このカードがアタックした時、クライマックス置場に「最強なる者」があるなら、あなたは1枚引く。
                     //【自】 このカードがアタックした時、クライマックス置場に「父の遺志」があるなら、あなたは1枚引く。
                     m_GameManager.Draw();
                     m_GameManager.ExecuteActionList();
@@ -620,6 +622,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.GraveYardList.Add(m_GameManager.myClockList[cnt - 1]);
                     m_GameManager.myClockList.RemoveAt(cnt - 1);
                     m_GameManager.Syncronize();
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
                 case EnumController.CardNo.P3_S01_093:
                     // あなたは1枚引く。
@@ -752,6 +755,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.P3_S01_077:
+                    //【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    PayCost(4);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.P3_S01_077);
                     return;
                 case EnumController.CardNo.P3_S01_081:
                     //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。

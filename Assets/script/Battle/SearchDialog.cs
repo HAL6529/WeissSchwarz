@@ -80,6 +80,7 @@ public class SearchDialog : MonoBehaviour
         switch (paramater)
         {
             case EnumController.SearchDialogParamater.AT_WX02_A07:
+            case EnumController.SearchDialogParamater.P3_S01_077:
                 m_Mode = Mode.My_Deck_Search;
                 break;
             case EnumController.SearchDialogParamater.LB_W02_16T:
@@ -99,6 +100,7 @@ public class SearchDialog : MonoBehaviour
                 SulvageMinNum = 1;
                 break;
             case EnumController.SearchDialogParamater.AT_WX02_A07:
+            case EnumController.SearchDialogParamater.P3_S01_077:
                 SulvageMaxNum = 1;
                 SulvageMinNum = 0;
                 break;
@@ -140,6 +142,18 @@ public class SearchDialog : MonoBehaviour
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
                     if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    {
+                        SearchButtonUtilParamaterList[i].isEnable = false;
+                        cnt--;
+                    }
+                }
+                break;
+            case EnumController.SearchDialogParamater.P3_S01_077:
+                //【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
+                {
+                    BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
+                    if (temp.type != EnumController.Type.EVENT)
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -266,6 +280,7 @@ public class SearchDialog : MonoBehaviour
                 handListTemp.RemoveAt(handNum);
                 memoryListTemp.Add(t);
                 break;
+            case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.P3_S01_081:
                 break;
             default:

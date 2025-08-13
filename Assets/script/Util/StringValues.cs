@@ -51,6 +51,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_55;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_56;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_62;
+    public string YesOrNoDialog_COST_CONFIRM_P3_S01_77;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_81;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_91;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
@@ -460,6 +461,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_P3_S01_55 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_55;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_56 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_56;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_62 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_62;
+                YesOrNoDialog_COST_CONFIRM_P3_S01_77 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_77;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_81 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_91 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_91;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
@@ -675,6 +677,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_55 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「ありがとう」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_56 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「友への誓い」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_62 = "次の能力を使用しますか。:" + "【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。";
+        public string YesOrNoDialog_COST_CONFIRM_P3_S01_77 = "次の能力を使用しますか。:" + "【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_81 = "次の能力を使用しますか。:" + "【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_91 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
