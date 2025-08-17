@@ -528,6 +528,36 @@ public class EventAnimationManager : MonoBehaviour
                         return;
                     }
                     return;
+                case EnumController.CardNo.P3_S01_043:
+                    //【カウンター】 あなたは自分のキャラすべてに、そのターン中、パワーを＋1000。そうする時、相手の前列のキャラすべてが【レスト】しているなら、かわりにパワーを＋3000。
+                    PayCost(3);
+                    int count = 0;
+                    int power = 1000;
+                    for(int i = 0; i < 2; i++)
+                    {
+                        if (m_EnemyMainCardsManager.GetState(i) == EnumController.State.STAND || m_GameManager.enemyFieldList[i] == null)
+                        {
+                            count++;
+                        }
+                    }
+
+                    if (count >= 3)
+                    {
+                        power = 3000;
+                    }
+
+                    for(int i = 0; i < m_GameManager.myFieldList.Count; i++)
+                    {
+                        if (m_GameManager.myFieldList[i] != null)
+                        {
+                            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+                        }
+                    }
+                    m_GameManager.GraveYardList.Add(m_GameManager.myHandList[handNum]);
+                    m_GameManager.myHandList.RemoveAt(handNum);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_045:
                     // あなたは相手の前列のキャラを2枚まで選び、そのターン中、パワーを－1000。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
