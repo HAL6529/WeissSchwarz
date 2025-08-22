@@ -21,15 +21,21 @@ public class DialogManager : MonoBehaviour
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
+    [SerializeField] GraveyardSelectDialog m_GraveyardSelectDialog;
     [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] SelectActionDialog m_SelectActionDialog;
     [SerializeField] SelectActEffectDialog m_SelectActEffectDialog;
-   [SerializeField] SulvageDialog m_SulvageDialog;
+    [SerializeField] SulvageDialog m_SulvageDialog;
     [SerializeField] WaitDialog m_WaitDialog;
 
     public void CloseWaitDialog()
     {
         m_WaitDialog.onClose();
+    }
+
+    public void GraveyardSelectDialog(BattleModeCard m_BattleModeCard)
+    {
+        m_GraveyardSelectDialog.SetParamater(m_BattleModeCard);
     }
 
     public void SulvageDialog(int handNum, BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
@@ -231,6 +237,7 @@ public class DialogManager : MonoBehaviour
         // m_NotEraseDialog.OffDialog();
         m_ConfirmSearchOrSulvageCardDialog.OffDialog();
         m_GraveYardDetail.onCloseButton();
+        m_GraveyardSelectDialog.OffDialog();
         m_MainPowerUpDialog.OffDialog();
         m_SelectActionDialog.OffDialog();
         m_SelectActEffectDialog.OffDialog();
@@ -255,6 +262,7 @@ public class DialogManager : MonoBehaviour
         // m_NotEraseDialog.OffDialog();
         // m_ConfirmSearchOrSulvageCardDialog.OffDialog();
         // m_GraveYardDetail.onCloseButton();
+        // m_GraveyardSelectDialog.OffDialog();
         // m_MainPowerUpDialog.OffDialog();
         // m_SelectActionDialog.OffDialog();
         // m_SelectActEffectDialog.OffDialog();
