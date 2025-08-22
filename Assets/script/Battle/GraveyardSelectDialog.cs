@@ -36,6 +36,7 @@ public class GraveyardSelectDialog : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.P3_S01_057:
+            case EnumController.CardNo.P3_S01_061:
                 mode = Mode.GraveYardSelect_Enemy;
                 maxNum = 1;
                 minNum = 0;
@@ -160,6 +161,22 @@ public class GraveyardSelectDialog : MonoBehaviour
                     }
                 }
                 ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_057;
+                break;
+            case EnumController.CardNo.P3_S01_061:
+                memoryListTemp = m_GameManager.enemyMemoryList;
+                stockListTemp = m_GameManager.enemyStockList;
+                graveyardTemp = m_GameManager.enemyGraveYardList;
+                clockListTemp = m_GameManager.enemyClockList;
+                handListTemp = m_GameManager.enemyHandList;
+                for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
+                {
+                    if (m_GraveyardSelectDialogBtnUtilList[i].isSelected)
+                    {
+                        tempList.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
+                        graveyardTemp.RemoveAt(i);
+                    }
+                }
+                ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_061;
                 break;
             default:
                 break;

@@ -183,6 +183,19 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_P3_S01_060);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_061:
+                //【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の控え室のカードを1枚選び、山札の上に置いてよい。
+                if(m_GameManager.enemyGraveYardList.Count > 0)
+                {
+                    Action action_P3_S01_061 = new Action(m_GameManager, EnumController.Action.P3_S01_061);
+                    action_P3_S01_061.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_061.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_061.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_P3_S01_061.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_061.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action_P3_S01_061);
+                }
+                return;
             case EnumController.CardNo.P3_S01_088:
                 //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
@@ -849,6 +862,26 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "友への誓い")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.P3_S01_061:
+                //【自】 このカードがアタックした時、クライマックス置場に「ニュクス・アバター」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.GraveYardList.Count > 0 && m_GameManager.MyClimaxCard.name == "ニュクス・アバター")
+                {
+                    Action action_P3_S01_061 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                    action_P3_S01_061.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_061.SetParamaterAttackStatus(status);
+                    action_P3_S01_061.SetParamaterNum(place);
+
+                    m_GameManager.ActionList.Add(action_P3_S01_061);
+                    m_EventAnimationManager.AnimationStart_2(card, place);
+                    m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                     return true;
                 }
                 return false;
