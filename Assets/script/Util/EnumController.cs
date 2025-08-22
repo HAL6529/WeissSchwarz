@@ -35,6 +35,8 @@ namespace EnumController
         P3_S01_040,
         P3_S01_052,
         P3_S01_055,
+        P3_S01_057_1,
+        P3_S01_057_2,
         P3_S01_060,
         P3_S01_062,
         P3_S01_076,
@@ -292,6 +294,7 @@ namespace EnumController
         SULVAGE,
         COMEBACK,
         CLOCK_SULVAGE,
+        P3_S01_057, // çrä_ ê^éüòY
         DC_W01_12T, // Ç©ÇØíá
     }
 

@@ -65,6 +65,11 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 「【自】 このカードがプレイされて舞台に置かれた時」の効果
+    /// </summary>
+    /// <param name="m_BattleModeCard"></param>
+    /// <param name="place"></param>
     public void WhenPlaceCardEffect(BattleModeCard m_BattleModeCard, int place)
     {
         if (m_BattleModeCard == null)
@@ -146,6 +151,23 @@ public class Effect : MonoBehaviour
                     action_P3_S01_052.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                     action_P3_S01_052.SetParamaterNum(place);
                     m_GameManager.ActionList.Add(action_P3_S01_052);
+                }
+                return;
+            case EnumController.CardNo.P3_S01_057:
+                //【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の控え室のイベントを1枚選び、思い出にしてよい。
+                for(int i = 0; i < m_GameManager.enemyGraveYardList.Count; i++)
+                {
+                    if (m_GameManager.enemyGraveYardList[i].type == EnumController.Type.EVENT)
+                    {
+                        Action action_P3_S01_057_1 = new Action(m_GameManager, EnumController.Action.P3_S01_057_1);
+                        action_P3_S01_057_1.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                        action_P3_S01_057_1.SetParamaterBattleStrix(m_BattleStrix);
+                        action_P3_S01_057_1.SetParamaterBattleModeCard(m_BattleModeCard);
+                        action_P3_S01_057_1.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                        action_P3_S01_057_1.SetParamaterNum(place);
+                        m_GameManager.ActionList.Add(action_P3_S01_057_1);
+                        return;
+                    }
                 }
                 return;
             case EnumController.CardNo.P3_S01_060:
@@ -242,13 +264,12 @@ public class Effect : MonoBehaviour
             action_P3_S01_062.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
             m_GameManager.ActionList.Add(action_P3_S01_062);
         }
-
+        int enemyPlace = -1;
         switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
         {
             // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.CardNo.DC_W01_16T:
             case EnumController.CardNo.P3_S01_058:
-                int enemyPlace = -1;
                 switch (m_BattleMyMainCardAvility.PlaceNum)
                 {
                     case 0:
@@ -266,6 +287,30 @@ public class Effect : MonoBehaviour
                 if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 1 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
                 {
                     Action action = new Action(m_GameManager, EnumController.Action.DC_W01_16T);
+                    action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                    action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+                    m_GameManager.ActionList.Add(action);
+                }
+                return;
+            //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
+            case EnumController.CardNo.P3_S01_057:
+                switch (m_BattleMyMainCardAvility.PlaceNum)
+                {
+                    case 0:
+                        enemyPlace = 2;
+                        break;
+                    case 1:
+                        enemyPlace = 1;
+                        break;
+                    case 2:
+                        enemyPlace = 0;
+                        break;
+                    default:
+                        break;
+                }
+                if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 0 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
+                {
+                    Action action = new Action(m_GameManager, EnumController.Action.P3_S01_057_2);
                     action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                     action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
                     m_GameManager.ActionList.Add(action);

@@ -11,6 +11,11 @@ public class ExecuteActionTemp
     public List<BattleModeCardTemp> graveyardList { get; set; }
     public List<BattleModeCardTemp> clockList { get; set; }
     public List<BattleModeCardTemp> handList { get; set; }
+    public List<BattleModeCardTemp> enemy_memoryList { get; set; }
+    public List<BattleModeCardTemp> enemy_stockList { get; set; }
+    public List<BattleModeCardTemp> enemy_graveyardList { get; set; }
+    public List<BattleModeCardTemp> enemy_clockList { get; set; }
+    public List<BattleModeCardTemp> enemy_handList { get; set; }
     public BattleModeCardTemp eventCard { get; set; }
     public int intParamater { get; set; }
     public int intParamater2 { get; set; }

@@ -593,6 +593,10 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】 このカードがアタックした時、クライマックス置場に「ありがとう」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
                     return;
+                case EnumController.CardNo.P3_S01_057:
+                    //【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の控え室のイベントを1枚選び、思い出にしてよい。
+                    m_DialogManager.GraveyardSelectDialog(m_BattleModeCard);
+                    return;
                 case EnumController.CardNo.P3_S01_060:
                     //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
                     PayCost(1);
@@ -784,6 +788,13 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.P3_S01_057:
+                    //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
+                    m_EnemyMainCardsManager.CallReverse(enemyPlace);
+                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_077:
