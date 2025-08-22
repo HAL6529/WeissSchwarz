@@ -38,6 +38,7 @@ namespace EnumController
         P3_S01_057_1,
         P3_S01_057_2,
         P3_S01_060,
+        P3_S01_061,
         P3_S01_062,
         P3_S01_076,
         P3_S01_088,
@@ -295,6 +296,7 @@ namespace EnumController
         COMEBACK,
         CLOCK_SULVAGE,
         P3_S01_057, // 荒垣 真次郎
+        P3_S01_061, // タカヤ＆ヒュプノス
         DC_W01_12T, // かけ仲
     }
 

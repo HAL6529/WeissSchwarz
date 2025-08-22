@@ -602,6 +602,10 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.P3_S01_061:
+                    // 【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の控え室のカードを1枚選び、山札の上に置いてよい。
+                    m_DialogManager.GraveyardSelectDialog(m_BattleModeCard);
+                    return;
                 case EnumController.CardNo.P3_S01_062:
                     // 【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。
                     PayCost(1);
@@ -736,7 +740,7 @@ public class EventAnimationManager : MonoBehaviour
                     // 【自】［(1)］ このカードがアタックした時、クライマックス置場に「美春のオルゴール」があるなら、
                     // あなたはコストを払ってよい。そうしたら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     PayCost(1);
-                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
+                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
@@ -796,6 +800,10 @@ public class EventAnimationManager : MonoBehaviour
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     m_GameManager.ExecuteActionList();
+                    return;
+                case EnumController.CardNo.P3_S01_061:
+                    //【自】 このカードがアタックした時、クライマックス置場に「ニュクス・アバター」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
                     return;
                 case EnumController.CardNo.P3_S01_077:
                     //【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
