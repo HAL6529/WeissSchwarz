@@ -252,7 +252,6 @@ public class GraveyardSelectDialog : MonoBehaviour
                         m_graveyardTemp.RemoveAt(i);
                     }
                 }
-                Debug.Log(place);
                 m_deckListTemp.Add(m_myFieldListTemp[place]);
                 m_myFieldListTemp[place] = null;
                 ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_080;

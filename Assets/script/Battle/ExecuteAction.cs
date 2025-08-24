@@ -160,10 +160,6 @@ public class ExecuteAction
         List<BattleModeCard> memoryList = new List<BattleModeCard>();
         List<BattleModeCard> clockList = new List<BattleModeCard>();
         List<BattleModeCard> myFieldList = new List<BattleModeCard>();
-        if(m_ExecuteActionTemp == null)
-        {
-            Debug.Log("aa");
-        }
 
         for (int i = 0; i < m_ExecuteActionTemp.myFieldListTemp.Count; i++)
         {
