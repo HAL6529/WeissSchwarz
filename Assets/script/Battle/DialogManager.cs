@@ -38,6 +38,11 @@ public class DialogManager : MonoBehaviour
         m_GraveyardSelectDialog.SetParamater(m_BattleModeCard);
     }
 
+    public void GraveyardSelectDialog(BattleModeCard m_BattleModeCard, int place)
+    {
+        m_GraveyardSelectDialog.SetParamater(m_BattleModeCard, place);
+    }
+
     public void SulvageDialog(int handNum, BattleModeCard card, List<BattleModeCard> list, EnumController.Type type, int minSulvageCard, int maxSulvageCard)
     {
         m_SulvageDialog.SetBattleModeCard(handNum, card, list, type, minSulvageCard, maxSulvageCard);

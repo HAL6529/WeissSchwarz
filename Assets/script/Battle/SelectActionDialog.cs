@@ -215,6 +215,16 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時";
                 text3.text = "あなたはコストを払ってよい。そうしたら、あなたは1枚引く。";
                 break;
+            case EnumController.Action.P3_S01_080_1:
+                text1.text = "【自】 このカードがプレイされて舞台に置かれた時、";
+                text2.text = "あなたは1枚引いてよい。";
+                text3.text = "";
+                break;
+            case EnumController.Action.P3_S01_080_2:
+                text1.text = "【自】［(1)］ このカードがプレイされて舞台に置かれた時";
+                text2.text = "、あなたはコストを払ってよい。そうしたら、";
+                text3.text = "あなたは自分の控え室の「ベルベットルーム」を1枚選び、手札に戻す。";
+                break;
             case EnumController.Action.P3_S01_088:
                 text1.text = "【自】［(2)］ このカードがプレイされて舞台に置かれた時";
                 text2.text = "あなたはコストを払ってよい。そうしたら、";

@@ -41,6 +41,8 @@ namespace EnumController
         P3_S01_061,
         P3_S01_062,
         P3_S01_076,
+        P3_S01_080_1,
+        P3_S01_080_2,
         P3_S01_088,
     }
 
@@ -297,6 +299,7 @@ namespace EnumController
         CLOCK_SULVAGE,
         P3_S01_057, // 荒垣 真次郎
         P3_S01_061, // タカヤ＆ヒュプノス
+        P3_S01_080, // イゴール
         DC_W01_12T, // かけ仲
     }
 
@@ -498,6 +501,7 @@ namespace EnumController
         COST_CONFIRM_P3_S01_056,
         COST_CONFIRM_P3_S01_062,
         COST_CONFIRM_P3_S01_077,
+        COST_CONFIRM_P3_S01_080,
         COST_CONFIRM_P3_S01_081,
         COST_CONFIRM_P3_S01_091,
     }
