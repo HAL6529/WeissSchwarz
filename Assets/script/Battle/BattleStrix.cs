@@ -467,6 +467,23 @@ public class BattleStrix : StrixBehaviour
     }
 
     /// <summary>
+    /// 【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
+    /// </summary>
+    [StrixRpc]
+    public void ExecuteAction_P3_S01_080(ExecuteActionTemp m_ExecuteActionTemp, bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_GameManager.m_ExecuteAction = new ExecuteAction(m_ExecuteActionTemp);
+            m_GameManager.m_ExecuteAction.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_GameManager.m_ExecuteAction.m_GameManager = m_GameManager;
+            m_GameManager.m_ExecuteAction.m_BattleModeCardList = m_GameManager.m_BattleModeCardList;
+
+            m_GameManager.m_ExecuteAction.ExecuteAction_SearchAfterConfirmDialog_P3_S01_080();
+        }
+    }
+
+    /// <summary>
     /// カムバックアイコンが捲れた後確認ダイアログでOKボタンが押された後の処理
     /// </summary>
     [StrixRpc]

@@ -145,4 +145,84 @@ public class ExecuteAction
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
     }
+
+    public void ExecuteAction_SearchAfterConfirmDialog_P3_S01_080()
+    {
+        if (m_GameManager == null || m_BattleModeCardList == null)
+        {
+            return;
+        }
+
+        List<BattleModeCard> deckList = new List<BattleModeCard>();
+        List<BattleModeCard> stockList = new List<BattleModeCard>();
+        List<BattleModeCard> graveyardList = new List<BattleModeCard>();
+        List<BattleModeCard> handList = new List<BattleModeCard>();
+        List<BattleModeCard> memoryList = new List<BattleModeCard>();
+        List<BattleModeCard> clockList = new List<BattleModeCard>();
+        List<BattleModeCard> myFieldList = new List<BattleModeCard>();
+        if(m_ExecuteActionTemp == null)
+        {
+            Debug.Log("aa");
+        }
+
+        for (int i = 0; i < m_ExecuteActionTemp.myFieldListTemp.Count; i++)
+        {
+            if(m_ExecuteActionTemp.myFieldListTemp[i] == null)
+            {
+                continue;
+            }
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.myFieldListTemp[i].cardNo);
+            myFieldList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.deckList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.deckList[i].cardNo);
+            deckList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.stockList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.stockList[i].cardNo);
+            stockList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.graveyardList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.graveyardList[i].cardNo);
+            graveyardList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.handList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.handList[i].cardNo);
+            handList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.memoryList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.memoryList[i].cardNo);
+            memoryList.Add(b);
+        }
+        for (int i = 0; i < m_ExecuteActionTemp.clockList.Count; i++)
+        {
+            BattleModeCard b = m_BattleModeCardList.ConvertCardNoToBattleModeCard(m_ExecuteActionTemp.clockList[i].cardNo);
+            clockList.Add(b);
+        }
+
+        m_GameManager.myFieldList = myFieldList;
+        m_GameManager.myDeckList = deckList;
+        m_GameManager.myStockList = stockList;
+        m_GameManager.GraveYardList = graveyardList;
+        m_GameManager.myHandList = handList;
+        m_GameManager.myMemoryList = memoryList;
+        m_GameManager.myClockList = clockList;
+
+        m_GameManager.Syncronize();
+
+        if (m_GameManager.myDeckList.Count == 0)
+        {
+            m_GameManager.Refresh();
+        }
+        m_GameManager.Shuffle();
+        m_GameManager.Draw();
+
+        m_GameManager.Syncronize();
+        m_GameManager.ExecuteActionList();
+    }
 }

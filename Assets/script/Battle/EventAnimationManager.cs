@@ -125,6 +125,16 @@ public class EventAnimationManager : MonoBehaviour
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
+    public void AnimationStart_3(BattleModeCard card, int place)
+    {
+        this.place = place;
+        AnimationStart_3(card);
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card)
     {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
@@ -151,6 +161,26 @@ public class EventAnimationManager : MonoBehaviour
         isFromRPC = false;
         m_gameObject.SetActive(true);
         effectNum = 1;
+
+        m_BattleModeCard = card;
+        m_image.sprite = card.sprite;
+        m_image2.sprite = card.sprite;
+        // アニメーション再生を再生するためにspeedを1にする
+        animator.speed = 1;
+        animator.Play(AnimationName, 0, 0);
+        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart_3(BattleModeCard card)
+    {
+        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
+        isFromRPC = false;
+        m_gameObject.SetActive(true);
+        effectNum = 2;
 
         m_BattleModeCard = card;
         m_image.sprite = card.sprite;
@@ -584,6 +614,7 @@ public class EventAnimationManager : MonoBehaviour
                             m_GameManager.myHandList.Add(m_GameManager.GraveYardList[i]);
                             m_GameManager.GraveYardList.RemoveAt(i);
                             m_GameManager.Syncronize();
+                            m_GameManager.ExecuteActionList();
                             return;
                         }
                     }
@@ -641,6 +672,12 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Draw();
                     m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    return;
+                case EnumController.CardNo.P3_S01_080:
+                    //【自】 このカードがプレイされて舞台に置かれた時、あなたは1枚引いてよい。
+                    m_GameManager.Draw();
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_077:
                 case EnumController.CardNo.P3_S01_081:
@@ -810,6 +847,22 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(4);
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.P3_S01_077);
                     return;
+                case EnumController.CardNo.P3_S01_080:
+                    //【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「ベルベットルーム」を1枚選び、手札に戻す。
+                    PayCost(1);
+                    for (int i = 0; i < m_GameManager.GraveYardList.Count; i++)
+                    {
+                        if (m_GameManager.GraveYardList[i].name == "ベルベットルーム")
+                        {
+                            m_GameManager.myHandList.Add(m_GameManager.GraveYardList[i]);
+                            m_GameManager.GraveYardList.RemoveAt(i);
+                            m_GameManager.Syncronize();
+                            m_GameManager.ExecuteActionList();
+                            return;
+                        }
+                    }
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.P3_S01_081:
                     //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
                     PayCost(4);
@@ -831,6 +884,27 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnRest(place);
                     m_MyMainCardsManager.CallPutHandFromField(place);
                     m_GameManager.Syncronize();
+                    return;
+                default:
+                    break;
+            }
+        }
+        else if (effectNum == 2)
+        {
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.P3_S01_080:
+                    //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    for(int i = 0; i < m_GameManager.myDeckList.Count; i++)
+                    {
+                        if (m_GameManager.myDeckList[i].type != EnumController.Type.CLIMAX)
+                        {
+                            m_DialogManager.GraveyardSelectDialog(m_BattleModeCard, place);
+                            return;
+                        }
+                    }
                     return;
                 default:
                     break;

@@ -1271,6 +1271,7 @@ public class GameManager : MonoBehaviour
 
         // メインのカードの更新
         // パワー、レベル、特徴の計算
+        m_MyMainCardsManager.NullCheck();
         m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
         m_BattleStrix.SendUpdateMainCards(myFieldList, m_MyMainCardsManager.GetFieldLevel(), m_MyMainCardsManager.GetFieldPower(), m_MyMainCardsManager.GetFieldSoul(), m_MyMainCardsManager.GetIsGreatPerformance(), isFirstAttacker);
         // 特徴の同期

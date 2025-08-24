@@ -52,6 +52,8 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
             case EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_061:
                 text.text = stringValues.ConfirmSearchOrSulvageCardDialog_GraveyardToDeckTop;
                 break;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_080:
+                break;
             case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
                 text.text = stringValues.ConfirmSearchOrSulvageCardDialog_Sulvage;
                 break;
@@ -109,6 +111,9 @@ public class ConfirmSearchOrSulvageCardDialog : MonoBehaviour
                 return;
             case EnumController.ConfirmSearchOrSulvageCardDialog.DC_W01_12T:
                 m_BattleStrix.RpcToAll("ExecuteActionList", m_GameManager.isTurnPlayer);
+                return;
+            case EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_080:
+                m_BattleStrix.RpcToAll("ExecuteAction_P3_S01_080", m_ExecuteActionTemp, m_GameManager.isFirstAttacker);
                 return;
             default:
                 return;

@@ -28,11 +28,19 @@ public class GraveyardSelectDialog : MonoBehaviour
 
     private int minNum = -1;
 
+    private int place = -1;
+
     private BattleModeCard m_BattleModeCard;
 
     public void SetParamater(BattleModeCard m_BattleModeCard)
     {
+        SetParamater(m_BattleModeCard, -1);
+    }
+
+    public void SetParamater(BattleModeCard m_BattleModeCard, int place)
+    {
         this.m_BattleModeCard = m_BattleModeCard;
+        this.place = place;
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.P3_S01_057:
@@ -40,6 +48,11 @@ public class GraveyardSelectDialog : MonoBehaviour
                 mode = Mode.GraveYardSelect_Enemy;
                 maxNum = 1;
                 minNum = 0;
+                break;
+            case EnumController.CardNo.P3_S01_080:
+                mode = Mode.GraveYardSelect_Mine;
+                maxNum = 1;
+                minNum = 1;
                 break;
             default:
                 mode = Mode.VOID;
@@ -51,6 +64,19 @@ public class GraveyardSelectDialog : MonoBehaviour
         switch (mode)
         {
             case Mode.GraveYardSelect_Mine:
+                for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
+                {
+                    if (i < m_GameManager.GraveYardList.Count)
+                    {
+                        m_GraveyardSelectDialogBtnUtilList[i].SetBattleModeCard(m_GameManager.GraveYardList[i]);
+                    }
+                    else
+                    {
+                        m_GraveyardSelectDialogBtnUtilList[i].SetBattleModeCard(null);
+                    }
+
+                }
+                break;
             case Mode.GraveYardSelect_Enemy:
                 for(int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
                 {
@@ -93,6 +119,24 @@ public class GraveyardSelectDialog : MonoBehaviour
                     }
                 }
                 break;
+            case EnumController.CardNo.P3_S01_080:
+                for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
+                {
+                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard == null)
+                    {
+                        continue;
+                    }
+
+                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard.type != EnumController.Type.CLIMAX)
+                    {
+                        m_GraveyardSelectDialogBtnUtilList[i].button.interactable = true;
+                    }
+                    else
+                    {
+                        m_GraveyardSelectDialogBtnUtilList[i].button.interactable = false;
+                    }
+                }
+                break;
             default:
                 break;
         }
@@ -123,20 +167,32 @@ public class GraveyardSelectDialog : MonoBehaviour
 
     public void onOKBtn()
     {
-        List<BattleModeCard> deckListTemp = new List<BattleModeCard>();
-        List<BattleModeCard> memoryListTemp = new List<BattleModeCard>();
-        List<BattleModeCard> stockListTemp = new List<BattleModeCard>();
-        List<BattleModeCard> graveyardTemp = new List<BattleModeCard>();
-        List<BattleModeCard> clockListTemp = new List<BattleModeCard>();
-        List<BattleModeCard> handListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_deckListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_memoryListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_stockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_graveyardTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_clockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_handListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> m_myFieldListTemp = new List<BattleModeCard> { null, null, null, null, null };
+        List<BattleModeCard> e_memoryListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> e_stockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> e_graveyardTemp = new List<BattleModeCard>();
+        List<BattleModeCard> e_clockListTemp = new List<BattleModeCard>();
+        List<BattleModeCard> e_handListTemp = new List<BattleModeCard>();
         List<BattleModeCard> tempList = new List<BattleModeCard>();
 
-        List<BattleModeCardTemp> m_deckListTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_memoryListTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_stockListTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_graveyardTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_clockListTemp = new List<BattleModeCardTemp>();
-        List<BattleModeCardTemp> m_handListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_deckListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_memoryListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_stockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_graveyardTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_clockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_handListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> mt_myFieldListTemp = new List<BattleModeCardTemp> { null, null, null, null, null };
+        List<BattleModeCardTemp> et_memoryListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> et_stockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> et_graveyardTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> et_clockListTemp = new List<BattleModeCardTemp>();
+        List<BattleModeCardTemp> et_handListTemp = new List<BattleModeCardTemp>();
 
         ExecuteActionTemp m_ExecuteActionTemp = new ExecuteActionTemp();
 
@@ -145,70 +201,127 @@ public class GraveyardSelectDialog : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.P3_S01_057:
-                memoryListTemp = m_GameManager.enemyMemoryList;
-                stockListTemp = m_GameManager.enemyStockList;
-                graveyardTemp = m_GameManager.enemyGraveYardList;
-                clockListTemp = m_GameManager.enemyClockList;
-                handListTemp = m_GameManager.enemyHandList;
+                e_memoryListTemp = m_GameManager.enemyMemoryList;
+                e_stockListTemp = m_GameManager.enemyStockList;
+                e_graveyardTemp = m_GameManager.enemyGraveYardList;
+                e_clockListTemp = m_GameManager.enemyClockList;
+                e_handListTemp = m_GameManager.enemyHandList;
 
                 for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
                 {
                     if (m_GraveyardSelectDialogBtnUtilList[i].isSelected)
                     {
                         tempList.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
-                        memoryListTemp.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
-                        graveyardTemp.RemoveAt(i);
+                        e_memoryListTemp.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
+                        e_graveyardTemp.RemoveAt(i);
                     }
                 }
                 ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_057;
                 break;
             case EnumController.CardNo.P3_S01_061:
-                memoryListTemp = m_GameManager.enemyMemoryList;
-                stockListTemp = m_GameManager.enemyStockList;
-                graveyardTemp = m_GameManager.enemyGraveYardList;
-                clockListTemp = m_GameManager.enemyClockList;
-                handListTemp = m_GameManager.enemyHandList;
+                e_memoryListTemp = m_GameManager.enemyMemoryList;
+                e_stockListTemp = m_GameManager.enemyStockList;
+                e_graveyardTemp = m_GameManager.enemyGraveYardList;
+                e_clockListTemp = m_GameManager.enemyClockList;
+                e_handListTemp = m_GameManager.enemyHandList;
                 for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
                 {
                     if (m_GraveyardSelectDialogBtnUtilList[i].isSelected)
                     {
                         tempList.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
-                        graveyardTemp.RemoveAt(i);
+                        e_graveyardTemp.RemoveAt(i);
                     }
                 }
                 ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_061;
+                break;
+            case EnumController.CardNo.P3_S01_080:
+                m_deckListTemp = m_GameManager.myDeckList;
+                m_memoryListTemp = m_GameManager.myMemoryList;
+                m_stockListTemp = m_GameManager.myStockList;
+                m_graveyardTemp = m_GameManager.GraveYardList;
+                m_clockListTemp = m_GameManager.myClockList;
+                m_handListTemp = m_GameManager.myHandList;
+                m_myFieldListTemp = m_GameManager.myFieldList;
+
+                for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
+                {
+                    if (m_GraveyardSelectDialogBtnUtilList[i].isSelected)
+                    {
+                        tempList.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
+                        m_deckListTemp.Add(m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard);
+                        m_graveyardTemp.RemoveAt(i);
+                    }
+                }
+                Debug.Log(place);
+                m_deckListTemp.Add(m_myFieldListTemp[place]);
+                m_myFieldListTemp[place] = null;
+                ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.P3_S01_080;
                 break;
             default:
                 break;
         }
 
-        for (int i = 0; i < memoryListTemp.Count; i++)
+        for (int i = 0; i < m_myFieldListTemp.Count; i++)
         {
-            m_memoryListTemp.Add(new BattleModeCardTemp(memoryListTemp[i]));
+            mt_myFieldListTemp[i] = new BattleModeCardTemp(m_myFieldListTemp[i]);
         }
-        for (int i = 0; i < stockListTemp.Count; i++)
+        for (int i = 0; i < m_deckListTemp.Count; i++)
         {
-            m_stockListTemp.Add(new BattleModeCardTemp(stockListTemp[i]));
+            mt_deckListTemp.Add(new BattleModeCardTemp(m_deckListTemp[i]));
         }
-        for (int i = 0; i < graveyardTemp.Count; i++)
+        for (int i = 0; i < m_memoryListTemp.Count; i++)
         {
-            m_graveyardTemp.Add(new BattleModeCardTemp(graveyardTemp[i]));
+            mt_memoryListTemp.Add(new BattleModeCardTemp(m_memoryListTemp[i]));
         }
-        for (int i = 0; i < clockListTemp.Count; i++)
+        for (int i = 0; i < m_stockListTemp.Count; i++)
         {
-            m_clockListTemp.Add(new BattleModeCardTemp(clockListTemp[i]));
+            mt_stockListTemp.Add(new BattleModeCardTemp(m_stockListTemp[i]));
         }
-        for (int i = 0; i < handListTemp.Count; i++)
+        for (int i = 0; i < m_graveyardTemp.Count; i++)
         {
-            m_handListTemp.Add(new BattleModeCardTemp(handListTemp[i]));
+            mt_graveyardTemp.Add(new BattleModeCardTemp(m_graveyardTemp[i]));
+        }
+        for (int i = 0; i < m_clockListTemp.Count; i++)
+        {
+            mt_clockListTemp.Add(new BattleModeCardTemp(m_clockListTemp[i]));
+        }
+        for (int i = 0; i < m_handListTemp.Count; i++)
+        {
+            mt_handListTemp.Add(new BattleModeCardTemp(m_handListTemp[i]));
+        }
+        for (int i = 0; i < e_memoryListTemp.Count; i++)
+        {
+            mt_memoryListTemp.Add(new BattleModeCardTemp(e_memoryListTemp[i]));
+        }
+        for (int i = 0; i < e_stockListTemp.Count; i++)
+        {
+            mt_stockListTemp.Add(new BattleModeCardTemp(e_stockListTemp[i]));
+        }
+        for (int i = 0; i < e_graveyardTemp.Count; i++)
+        {
+            mt_graveyardTemp.Add(new BattleModeCardTemp(e_graveyardTemp[i]));
+        }
+        for (int i = 0; i < e_clockListTemp.Count; i++)
+        {
+            mt_clockListTemp.Add(new BattleModeCardTemp(e_clockListTemp[i]));
+        }
+        for (int i = 0; i < e_handListTemp.Count; i++)
+        {
+            mt_handListTemp.Add(new BattleModeCardTemp(e_handListTemp[i]));
         }
 
-        m_ExecuteActionTemp.enemy_memoryList = m_memoryListTemp;
-        m_ExecuteActionTemp.enemy_stockList = m_stockListTemp;
-        m_ExecuteActionTemp.enemy_graveyardList = m_graveyardTemp;
-        m_ExecuteActionTemp.enemy_memoryList = m_memoryListTemp;
-        m_ExecuteActionTemp.enemy_clockList = m_clockListTemp;
-        m_ExecuteActionTemp.enemy_handList = m_handListTemp;
+        m_ExecuteActionTemp.deckList = mt_deckListTemp;
+        m_ExecuteActionTemp.memoryList = mt_memoryListTemp;
+        m_ExecuteActionTemp.stockList = mt_stockListTemp;
+        m_ExecuteActionTemp.graveyardList = mt_graveyardTemp;
+        m_ExecuteActionTemp.clockList = mt_clockListTemp;
+        m_ExecuteActionTemp.handList = mt_handListTemp;
+        m_ExecuteActionTemp.myFieldListTemp = mt_myFieldListTemp;
+        m_ExecuteActionTemp.enemy_memoryList = et_memoryListTemp;
+        m_ExecuteActionTemp.enemy_stockList = et_stockListTemp;
+        m_ExecuteActionTemp.enemy_graveyardList = et_graveyardTemp;
+        m_ExecuteActionTemp.enemy_clockList = et_clockListTemp;
+        m_ExecuteActionTemp.enemy_handList = et_handListTemp;
         m_ExecuteActionTemp.isFirstAttacker = m_GameManager.isFirstAttacker;
 
         m_BattleStrix.SendConfirmSearchOrSulvageCardDialog(tempList, ConfirmSearchOrSulvageCardDialogParamater, m_ExecuteActionTemp, m_GameManager.isFirstAttacker);

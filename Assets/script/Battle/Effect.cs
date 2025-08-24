@@ -196,6 +196,27 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_P3_S01_061);
                 }
                 return;
+            case EnumController.CardNo.P3_S01_080:
+                //【自】 このカードがプレイされて舞台に置かれた時、あなたは1枚引いてよい。
+                Action action_P3_S01_080_1 = new Action(m_GameManager, EnumController.Action.P3_S01_080_1);
+                action_P3_S01_080_1.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_080_1.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_080_1.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_080_1.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_080_1.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_080_1);
+                // 【自】［(1)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「ベルベットルーム」を1枚選び、手札に戻す。
+                if (ConfirmStockForCost(1))
+                {
+                    Action action_P3_S01_080_2 = new Action(m_GameManager, EnumController.Action.P3_S01_080_2);
+                    action_P3_S01_080_2.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_080_2.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_080_2.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_P3_S01_080_2.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_P3_S01_080_2.SetParamaterNum(place);
+                    m_GameManager.ActionList.Add(action_P3_S01_080_2);
+                }
+                return;
             case EnumController.CardNo.P3_S01_088:
                 //【自】［(2)］ このカードがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
@@ -611,6 +632,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(4))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_077, card, num);
+                }
+                return;
+            case EnumController.CardNo.P3_S01_080:
+                //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080, card, num);
                 }
                 return;
             case EnumController.CardNo.P3_S01_081:

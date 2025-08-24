@@ -521,6 +521,23 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[num].TwoStockEncore;
     }
 
+    public void NullCheck()
+    {
+        for(int i = 0; i < m_GameManager.myFieldList.Count; i++)
+        {
+            if (m_GameManager.myFieldList[i] == null)
+            {
+                CardList[i].m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+                CardList[i].m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+                CardList[i].m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
+                CardList[i].setBattleModeCard(null, EnumController.State.STAND);
+
+                // パワー、レベル、特徴、ソウルの計算
+                FieldPowerAndLevelAndAttributeAndSoulReset();
+            }
+        }
+    }
+
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)
     {
         CardList[place].m_AttributeUpUntilTurnEnd = paramater;

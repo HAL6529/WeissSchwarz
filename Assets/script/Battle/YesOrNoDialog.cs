@@ -261,6 +261,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_077:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_77;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_80;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
                 break;
@@ -337,7 +340,8 @@ public class YesOrNoDialog : MonoBehaviour
                         m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                         break;
                     case EnumController.CardNo.P3_S01_057:
-                        if(ParamaterNum2 == 1)
+                    case EnumController.CardNo.P3_S01_080:
+                        if (ParamaterNum2 == 1)
                         {
                             m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
@@ -493,6 +497,11 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.ActionList.Add(action2);
 
                 m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
+            // 起動効果を持つキャラクター
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
+                m_EventAnimationManager.AnimationStart_3(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 起動効果を持つキャラクター
