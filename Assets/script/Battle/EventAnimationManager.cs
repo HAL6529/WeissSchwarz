@@ -644,6 +644,10 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
+                case EnumController.CardNo.P3_S01_065:
+                    //【自】 このカードがプレイされて舞台に置かれた時、あなたはすべてのプレイヤーに、1ダメージを与える。
+                    m_GameManager.Damage_EachPlayer(1);
+                    return;
                 case EnumController.CardNo.P3_S01_068:
                     // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     PayCost(1);
@@ -841,6 +845,23 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_061:
                     //【自】 このカードがアタックした時、クライマックス置場に「ニュクス・アバター」があるなら、あなたは自分の控え室のキャラを1枚選び、手札に戻す。
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
+                    return;
+                case EnumController.CardNo.P3_S01_065:
+                    //【自】［(1)］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「順平＆トリスメギストス」を1枚選び、手札に戻す。
+                    PayCost(1);
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    for (int i = 0; i < m_GameManager.GraveYardList.Count; i++)
+                    {
+                        if (m_GameManager.GraveYardList[i].name == "順平＆トリスメギストス")
+                        {
+                            m_GameManager.myHandList.Add(m_GameManager.GraveYardList[i]);
+                            m_GameManager.GraveYardList.RemoveAt(i);
+                            m_GameManager.Syncronize();
+                            m_GameManager.ExecuteActionList();
+                            return;
+                        }
+                    }
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_077:
                     //【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。

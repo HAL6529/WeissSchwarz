@@ -210,6 +210,16 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "プレイされて舞台に置かれた時あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分の山札の上から1枚を、ストック置場に置く。";
                 break;
+            case EnumController.Action.P3_S01_065_1:
+                text1.text = "【自】 このカードがプレイされて舞台に置かれた時、 ";
+                text2.text = "あなたはすべてのプレイヤーに、1ダメージを与える。";
+                text3.text = "";
+                break;
+            case EnumController.Action.P3_S01_065_2:
+                text1.text = "【自】［(1)］ このカードが舞台から控え室に置かれた時、";
+                text2.text = "あなたはコストを払ってよい。そうしたら、 ";
+                text3.text = "あなたは自分の控え室の「順平＆トリスメギストス」を1枚選び、手札に戻す。";
+                break;
             case EnumController.Action.P3_S01_076:
                 text1.text = "【自】［(1) このカードを【レスト】する］ ";
                 text2.text = "他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時";

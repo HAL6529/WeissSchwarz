@@ -628,6 +628,10 @@ public class BattleStrix : StrixBehaviour
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
+            if(handNum < 0)
+            {
+                return;
+            }
             BattleModeCard card = m_GameManager.myHandList[handNum];
             m_GameManager.myHandList.RemoveAt(handNum);
             m_GameManager.GraveYardList.Add(card);

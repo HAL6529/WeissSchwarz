@@ -65,6 +65,32 @@ public class Effect : MonoBehaviour
         }
     }
 
+    public void PutGraveYardFromField(BattleMyMainCardAvility m_BattleMyMainCardAvility)
+    {
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
+        {
+            return;
+        }
+
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
+        {
+            //【自】［(1)］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「順平＆トリスメギストス」を1枚選び、手札に戻す。
+            case EnumController.CardNo.P3_S01_065:
+                if (ConfirmStockForCost(1))
+                {
+                    Action action_P3_S01_065 = new Action(m_GameManager, EnumController.Action.P3_S01_065_2);
+                    action_P3_S01_065.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_P3_S01_065.SetParamaterBattleStrix(m_BattleStrix);
+                    action_P3_S01_065.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                    action_P3_S01_065.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+                    m_GameManager.ActionList.Add(action_P3_S01_065);
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
     /// <summary>
     /// 「【自】 このカードがプレイされて舞台に置かれた時」の効果
     /// </summary>
@@ -195,6 +221,16 @@ public class Effect : MonoBehaviour
                     action_P3_S01_061.SetParamaterNum(place);
                     m_GameManager.ActionList.Add(action_P3_S01_061);
                 }
+                return;
+            case EnumController.CardNo.P3_S01_065:
+                //【自】 このカードがプレイされて舞台に置かれた時、あなたはすべてのプレイヤーに、1ダメージを与える。
+                Action action_P3_S01_065 = new Action(m_GameManager, EnumController.Action.P3_S01_065_1);
+                action_P3_S01_065.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_P3_S01_065.SetParamaterBattleStrix(m_BattleStrix);
+                action_P3_S01_065.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_P3_S01_065.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_P3_S01_065.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_P3_S01_065);
                 return;
             case EnumController.CardNo.P3_S01_080:
                 //【自】 このカードがプレイされて舞台に置かれた時、あなたは1枚引いてよい。

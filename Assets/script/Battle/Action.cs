@@ -154,6 +154,7 @@ public class Action : MonoBehaviour
                 return;
             case EnumController.Action.P3_S01_057_2:
             case EnumController.Action.P3_S01_080_2:
+            case EnumController.Action.P3_S01_065_2:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum, 2);
                 return;
             case EnumController.Action.P3_S01_01T:
@@ -161,11 +162,15 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_07T:
             case EnumController.Action.P3_S01_001:
             case EnumController.Action.P3_S01_026:
+            case EnumController.Action.P3_S01_065_1:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.P3_S01_062:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062, m_BattleModeCard, paramaterNum);
+                return;
+            case EnumController.Action.P3_S01_065_Damage:
+                m_BattleStrix.RpcToAll("CallDamage", 1, -1, m_GameManager.isFirstAttacker);
                 return;
             default:
                 break;

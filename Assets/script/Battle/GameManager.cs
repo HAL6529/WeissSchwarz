@@ -972,6 +972,76 @@ public class GameManager : MonoBehaviour
         return;
     }
 
+    public void Damage_EachPlayer(int damage)
+    {
+        if (damage <= 0)
+        {
+            m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+            m_BattleStrix.RpcToAll("ExecuteActionList", isTurnPlayer);
+            return;
+        }
+        List<BattleModeCard> temp = new List<BattleModeCard>();
+
+        for (int i = 0; i < damage; i++)
+        {
+            temp.Add(myDeckList[0]);
+            myDeckList.RemoveAt(0);
+            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            {
+                for(int n = 0; n < temp.Count; n++)
+                {
+                    GraveYardList.Add(temp[n]);
+                }
+                Syncronize();
+                m_BattleStrix.RpcToAll("CallDamage", damage, -1, isFirstAttacker);
+                return;
+            }
+            if (myDeckList.Count == 0)
+            {
+                if (GraveYardList.Count == 0)
+                {
+                    // TŽº‚ª0–‡‚È‚ç•‰‚¯ˆµ‚¢
+                    m_BattleStrix.RpcToAll("WinAndLose_Win", isFirstAttacker);
+                    m_WinAndLose.Lose();
+                    return;
+                }
+                for (int n = 0; n < GraveYardList.Count; n++)
+                {
+                    myDeckList.Add(GraveYardList[n]);
+                }
+                GraveYardList = new List<BattleModeCard>();
+                Shuffle();
+                Syncronize();
+                Action action = new Action(this, EnumController.Action.DamageRefresh);
+                action.SetParamaterBattleStrix(m_BattleStrix);
+                action.SetParamaterWinAndLose(m_WinAndLose);
+
+                ActionList.Add(action);
+            }
+        }
+        for (int i = 0; i < temp.Count; i++)
+        {
+            myClockList.Add(temp[i]);
+        }
+        Syncronize();
+        if (LevelUpCheck())
+        {
+            Action action_P3_S01_065_damage = new Action(this, EnumController.Action.P3_S01_065_Damage);
+            action_P3_S01_065_damage.SetParamaterBattleStrix(m_BattleStrix);
+            ActionList.Add(action_P3_S01_065_damage);
+            return;
+        }
+
+        if (myDeckList.Count == 0)
+        {
+            Refresh();
+            return;
+        }
+
+        m_BattleStrix.RpcToAll("CallDamage", damage, -1, isFirstAttacker);
+        return;
+    }
+
     public void DamageForFrontAttack(int damage, int place, EnumController.Damage damageParamater, List<EnumController.Shot> ReceiveShotList)
     {
         List<BattleModeCard> temp = new List<BattleModeCard>();
