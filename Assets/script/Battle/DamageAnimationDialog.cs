@@ -20,6 +20,11 @@ public class DamageAnimationDialog : MonoBehaviour
 
     private int handNum = -1;
 
+    public void SetBattleModeCard_EachPlayer(List<BattleModeCard> list, int handNum)
+    {
+
+    }
+
     public void SetBattleModeCardForEffect(List<BattleModeCard> list, int handNum)
     {
         m_GameManager.isDamageAnimation = true;

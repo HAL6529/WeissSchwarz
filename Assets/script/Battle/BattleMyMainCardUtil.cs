@@ -924,7 +924,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         BattleModeCard card = m_GameManager.myHandList[num];
         if (m_GameManager.myFieldList[PlaceNum] != null)
         {
-            m_GameManager.GraveYardList.Add(m_GameManager.myFieldList[PlaceNum]);
+            m_MyMainCardsManager.CallPutGraveYardFromField(PlaceNum);
         }
         m_GameManager.myFieldList[PlaceNum] = card;
         m_GameManager.myHandList.RemoveAt(num);
@@ -986,6 +986,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void PutGraveYardFromField()
     {
+        BattleMyMainCardAvility m_BattleMyMainCardAvility = new BattleMyMainCardAvility(
+            m_BattleModeCard, PlaceNum, FieldPower, FieldSoul,
+            FieldLevel, HandEncore, TwoStockEncore, ClockEncore, m_AttributeUpUntilTurnEnd,
+            AttributeList, state, isGreatPerformance, Takaya, m_Assist, m_AssistForHaveEncore,
+            m_AllAssist, m_Gaul, m_LevelAssist, m_LevelUpUntilTurnEnd, m_PowerUpUntilTurnEnd, m_SoulUpUntilTurnEnd);
+        m_Effect.PutGraveYardFromField(m_BattleMyMainCardAvility);
+
         m_GameManager.myFieldList[PlaceNum] = null;
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
         m_GameManager.Syncronize();
