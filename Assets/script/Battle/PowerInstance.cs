@@ -61,6 +61,11 @@ namespace PowerInstance
             return AssistPower;
         }
 
+        public List<EnumController.Attribute> getAttributeList()
+        {
+            return AttributeList;
+        }
+
         public void Reset()
         {
             AttributeList = new List<EnumController.Attribute>();

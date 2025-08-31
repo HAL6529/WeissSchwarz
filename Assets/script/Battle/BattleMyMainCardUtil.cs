@@ -175,6 +175,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
             isGreatPerformance = card.isGreatPerformance;
         }
 
+        //全体応援のカードなら能力付与
+        m_AllAssist = m_Effect.CheckEffectForAllAssist(m_BattleModeCard);
         // 応援のカードなら能力付与
         m_Assist = m_Effect.CheckEffectForAssist(m_BattleModeCard);
         // アンコール ［手札のキャラを1枚控え室に置く］を持つキャラへの応援効果を持つカードなら能力付与
@@ -604,6 +606,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += m_MyMainCardsManager.GetAssistPower(4);
             // レベル応援を受けられるかチェック
             FieldPower += m_MyMainCardsManager.GetLevelAssistPower(4, FieldLevel);
+        }
+
+        for(int i = 0; i < m_MyMainCardsManager.CardList.Count; i++)
+        {
+            if(i == PlaceNum)
+            {
+                continue;
+            }
+            //全体応援の効果を受けられるかチェック
+            FieldPower += m_MyMainCardsManager.GetAllAssist(i, AttributeList);
         }
 
         if(HandEncore && PlaceNum == 0)
@@ -1096,6 +1108,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_056:
             case EnumController.CardNo.P3_S01_059:
             case EnumController.CardNo.P3_S01_078:
+            case EnumController.CardNo.P3_S01_084:
                 return true;
             default:
                 return false;

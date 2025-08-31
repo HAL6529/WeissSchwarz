@@ -748,6 +748,29 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
+    /// ‘S‘Ì‰‰‡‚ÌŒø‰Ê‚ğ‚Á‚Ä‚¢‚é‚©’²‚×‚é
+    /// </summary>
+    /// <param name="card"></param>
+    /// <returns></returns>
+    public PowerInstance.AllAssist CheckEffectForAllAssist(BattleModeCard card)
+    {
+        List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
+        if (card == null)
+        {
+            return new PowerInstance.AllAssist(0, AttributeList);
+        }
+
+        switch (card.cardNo)
+        {
+            case EnumController.CardNo.P3_S01_084:
+                AttributeList.Add(EnumController.Attribute.StudentCouncil);
+                return new PowerInstance.AllAssist(500, AttributeList);
+            default:
+                return new PowerInstance.AllAssist(0, AttributeList);
+        }
+    }
+
+    /// <summary>
     /// ƒKƒEƒ‹‚ÌŒø‰Ê‚ğ‚Á‚Ä‚¢‚é‚©’²‚×‚é
     /// </summary>
     /// <param name="card"></param>

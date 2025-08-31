@@ -244,6 +244,28 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 全体応援の計算用
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="attribute"></param>
+    /// <returns></returns>
+    public int GetAllAssist(int num, List<EnumController.Attribute> attribute)
+    {
+        List<EnumController.Attribute> list = CardList[num].m_AllAssist.getAttributeList();
+        for (int i = 0; i < attribute.Count; i++)
+        {
+            for(int n = 0; n < list.Count; n++)
+            {
+                if (attribute[i] == list[n])
+                {
+                    return CardList[num].m_AllAssist.getAssistPower();
+                }
+            }
+        }
+        return 0;
+    }
+
+    /// <summary>
     /// 応援の計算用
     /// </summary>
     /// <param name="num"></param>
