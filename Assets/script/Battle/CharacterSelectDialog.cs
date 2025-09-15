@@ -551,20 +551,6 @@ public class CharacterSelectDialog : MonoBehaviour
 
         }
 
-        switch (m_BattleModeCard.cardNo)
-        {
-            case EnumController.CardNo.DC_W01_05T:
-            case EnumController.CardNo.LB_W02_09T:
-            case EnumController.CardNo.P3_S01_045:
-                Action action = new Action(m_GameManager, EnumController.Action.EncoreCheck);
-                action.SetParamaterDialogManager(m_DialogManager);
-
-                m_GameManager.ActionList.Add(action);
-                break;
-            default:
-                break;
-        }
-
         // イベントカードの場合は処理後に控室にカードを追加
         switch (m_BattleModeCard.cardNo)
         {

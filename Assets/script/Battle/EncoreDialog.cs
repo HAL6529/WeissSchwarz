@@ -52,47 +52,50 @@ public class EncoreDialog : MonoBehaviour
             return;
         }
 
-        if (m_GameManager.phase != EnumController.Turn.Encore)
+        // エンドフェーズの処理
+        if (m_GameManager.isEndPhase)
         {
-            //ターンプレイヤーを先に解決し、非ターンプレイヤーの場合はターンチェンジする
-            if (m_GameManager.isTurnPlayer)
+            count = 0;
+            for (int i = 0; i < list.Count; i++)
             {
-                m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker);
+                if (list[i] == null)
+                {
+                    images[i].sprite = Background;
+                    buttons[i].interactable = false;
+                    continue;
+                }
+
+                images[i].sprite = list[i].sprite;
+
+                if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
+                {
+                    buttons[i].interactable = true;
+                    count++;
+                    continue;
+                }
+
+                buttons[i].interactable = false;
             }
-            else
+
+            // パワー0のキャラがいてる場合それを先に解決
+            if (count > 0)
             {
-                m_BattleStrix.RpcToAll("CallExecuteActionList", m_GameManager.isFirstAttacker);
+                Open();
+                return;
             }
-            return;
+
+            Action TurnChange = new Action(m_GameManager, EnumController.Action.TurnChange);
+            TurnChange.SetParamaterBattleStrix(m_BattleStrix);
+            m_GameManager.ActionList.Add(TurnChange);
         }
 
-        // リバースしてるキャラのアンコール処理
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
-            {
-                buttons[i].interactable = true;
-                count++;
-                continue;
-            }
+        m_GameManager.ExecuteActionList();
+    }
 
-            buttons[i].interactable = false;
-        }
-
-        if(count == 0)
-        {
-            //ターンプレイヤーを先に解決し、非ターンプレイヤーの場合はターンチェンジする
-            if (m_GameManager.isTurnPlayer)
-            {
-                m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker);
-            }
-            else
-            {
-                m_GameManager.TurnChange();
-            }
-            return;
-        }
-        Open();
+    public void SetBattleModeCardForEndPhase(List<BattleModeCard> list)
+    {
+        m_GameManager.isEndPhase = true;
+        SetBattleModeCard(list);
     }
 
     /// <summary>
@@ -117,7 +120,14 @@ public class EncoreDialog : MonoBehaviour
 
         if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
-            m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+            if (m_GameManager.isEndPhase)
+            {
+                Debug.Log("a");
+                Action TurnChange = new Action(m_GameManager, EnumController.Action.TurnChange);
+                TurnChange.SetParamaterBattleStrix(m_BattleStrix);
+                m_GameManager.ActionList.Add(TurnChange);
+            }
+            m_GameManager.ExecuteActionList();
         }
         else
         {

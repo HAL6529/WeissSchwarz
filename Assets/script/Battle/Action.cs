@@ -92,9 +92,6 @@ public class Action : MonoBehaviour
                     return;
                 }
                 break;
-            case EnumController.Action.EncoreCheck:
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
-                return;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
@@ -120,6 +117,17 @@ public class Action : MonoBehaviour
                 }
                 m_GameManager.Syncronize();
                 break;
+            case EnumController.Action.TurnChange:
+                //ターンプレイヤーを先に解決し、非ターンプレイヤーの場合はターンチェンジする
+                if (m_GameManager.isTurnPlayer)
+                {
+                    m_BattleStrix.RpcToAll("EncoreDialog", m_GameManager.isFirstAttacker);
+                }
+                else
+                {
+                    m_GameManager.TurnChange();
+                }
+                return;
             case EnumController.Action.AT_WX02_A08:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
                 return;

@@ -218,7 +218,7 @@ public class OKDialog : MonoBehaviour
                 }
                 m_MyHandCardsManager.ActiveAllMyHand();
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
-                m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+                m_GameManager.ExecuteActionList();
                 break;
             case EnumController.OKDialogParamater.Marigan:
                 m_GameManager.MariganEnd();

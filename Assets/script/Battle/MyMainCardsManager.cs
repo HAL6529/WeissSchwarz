@@ -295,6 +295,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].m_AttributeUpUntilTurnEnd;
     }
 
+    public BattleModeCard GetBattleModeCard(int place)
+    {
+        return CardList[place].getBattleModeCard();
+    }
+
     public List<List<EnumController.Attribute>> GetFieldAttributeList()
     {
         List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
