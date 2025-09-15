@@ -158,6 +158,12 @@ public class DialogManager : MonoBehaviour
         return;
     }
 
+    public void EncoreDialogForEndPhase(List<BattleModeCard> list)
+    {
+        m_EncoreDialog.SetBattleModeCardForEndPhase(list);
+        return;
+    }
+
     public void HandOverDialog(EnumController.HandOverDialogParamater paramater)
     {
         m_HandOverDialog.SetParamater(paramater);

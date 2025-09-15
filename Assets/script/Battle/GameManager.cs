@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public bool isAttackProcess = false;
     public bool isFirstAttacked = false;
     public bool isEncoreDialogProcess = false;
+    public bool isEndPhase = false;
     public bool isCharacterSelectDialogProcess = false;
     public bool isSearchDialogProcess = false;
 
@@ -297,12 +298,23 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        m_DialogManager.EncoreDialog(myFieldList);
+        m_DialogManager.EncoreDialogForEndPhase(myFieldList);
         return;
     }
 
     public void ExecuteActionList()
     {
+        //パワー0のキャラが存在する場合はアンコールダイアログを呼び出す
+        for (int i = 0; i < myFieldList.Count; i++)
+        {
+            if (m_MyMainCardsManager.GetFieldPower(i) <= 0 && m_MyMainCardsManager.GetBattleModeCard(i) != null)
+            {
+                m_DialogManager.EncoreDialog(myFieldList);
+                return;
+            }
+        }
+        isEndPhase = false;
+
         if (ActionList.Count > 0)
         {
             m_DialogManager.SelectActionDialog(ActionList);
@@ -682,7 +694,7 @@ public class GameManager : MonoBehaviour
 
     public void SendEncoreDialogFromRPC()
     {
-        m_DialogManager.EncoreDialog(myFieldList);
+        m_DialogManager.EncoreDialogForEndPhase(myFieldList);
     }
 
     /// <summary>

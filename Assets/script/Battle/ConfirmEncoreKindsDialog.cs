@@ -75,7 +75,7 @@ public class ConfirmEncoreKindsDialog : MonoBehaviour
     {
         m_MyHandCardsManager.CallNotShowPlayButton();
         this.gameObject.SetActive(false);
-        m_DialogManager.EncoreDialog(m_GameManager.myFieldList);
+        m_GameManager.ExecuteActionList();
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
     }
 

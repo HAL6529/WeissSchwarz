@@ -8,6 +8,7 @@ public class SelectActionDialog : MonoBehaviour
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] Text text1;
     [SerializeField] Text text2;
     [SerializeField] Text text3;
@@ -53,6 +54,7 @@ public class SelectActionDialog : MonoBehaviour
     public void SetDialog(List<Action> actionList)
     {
         this.ActionList = actionList;
+
         if (ActionList.Count == 0)
         {
             OffDialog();
@@ -239,6 +241,9 @@ public class SelectActionDialog : MonoBehaviour
                 text1.text = "【自】［(2)］ このカードがプレイされて舞台に置かれた時";
                 text2.text = "あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分のクロックを上から1枚選び、控え室に置く。";
+                break;
+            case EnumController.Action.TurnChange:
+                RightBtn();
                 break;
             default:
                 text2.text = "エラーメッセージ";
