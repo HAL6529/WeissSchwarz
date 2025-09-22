@@ -95,10 +95,9 @@ public class EventAnimationManager : MonoBehaviour
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card, int place, int handNum)
+    public void AnimationStart(BattleModeCard card)
     {
-        this.handNum = handNum;
-        AnimationStart(card, place);
+        AnimationStart(card, -1, -1, 0);
     }
 
     /// <summary>
@@ -107,48 +106,18 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card, int place)
     {
-        this.place = place;
-        AnimationStart(card);
+
+        AnimationStart(card, place, -1, 0);
     }
 
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
-    public void AnimationStart_2(BattleModeCard card, int place)
+    public void AnimationStart(BattleModeCard card, int place, int handNum)
     {
-        this.place = place;
-        AnimationStart_2(card);
-    }
 
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart_3(BattleModeCard card, int place)
-    {
-        this.place = place;
-        AnimationStart_3(card);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card)
-    {
-        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
-        isFromRPC = false;
-        m_gameObject.SetActive(true);
-        effectNum = 0;
-
-        m_BattleModeCard = card;
-        m_image.sprite = card.sprite;
-        m_image2.sprite = card.sprite;
-        // アニメーション再生を再生するためにspeedを1にする
-        animator.speed = 1;
-        animator.Play(AnimationName, 0, 0);
-        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
+        AnimationStart(card, place, handNum, 0);
     }
 
     /// <summary>
@@ -157,18 +126,25 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card)
     {
-        this.paramater = EnumController.YesOrNoDialogParamater.VOID;
-        isFromRPC = false;
-        m_gameObject.SetActive(true);
-        effectNum = 1;
+        AnimationStart(card, -1, -1, 1);
+    }
 
-        m_BattleModeCard = card;
-        m_image.sprite = card.sprite;
-        m_image2.sprite = card.sprite;
-        // アニメーション再生を再生するためにspeedを1にする
-        animator.speed = 1;
-        animator.Play(AnimationName, 0, 0);
-        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart_2(BattleModeCard card, int place)
+    {
+        AnimationStart(card, place, -1, 1);
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart_2(BattleModeCard card, int place, int handNum)
+    {
+        AnimationStart(card, place, handNum, 1);
     }
 
     /// <summary>
@@ -177,10 +153,30 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_3(BattleModeCard card)
     {
+        AnimationStart(card, -1, -1, 2);
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart_3(BattleModeCard card, int place)
+    {
+        AnimationStart(card, place, -1, 2);
+    }
+
+    /// <summary>
+    /// イベントを再生したプレイヤー用
+    /// </summary>
+    /// <param name="card"></param>
+    public void AnimationStart(BattleModeCard card, int place, int handNum, int effectNum)
+    {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
+        this.place = place;
+        this.handNum = handNum;
+        this.effectNum = effectNum;
         isFromRPC = false;
         m_gameObject.SetActive(true);
-        effectNum = 2;
 
         m_BattleModeCard = card;
         m_image.sprite = card.sprite;
