@@ -744,10 +744,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case EnumController.Trigger.POOL:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, myDeckList[0], damage, num);
                 return;
             case EnumController.Trigger.BOOK:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT, myDeckList[0], damage, num);
                 return;
             default:
                 break;
