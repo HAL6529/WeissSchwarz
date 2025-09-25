@@ -9,6 +9,7 @@ public class EventAnimationManager : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] BattleModeCardList m_BattleModeCardList;
     [SerializeField] DialogManager m_DialogManager;
+    [SerializeField] ComeBackDetail m_ComeBackDetail;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] EffectBondForHandToField m_EffectBondForHandToField;
@@ -246,7 +247,9 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
+            return;
         }
+
         if(paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_SIDE || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT)
         {
             m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
@@ -275,7 +278,26 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
+            return;
         }
+
+        if(paramater == EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_FRONT || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_SIDE || paramater == EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_DIRECT)
+        {
+            switch (paramater)
+            {
+                case EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_FRONT:
+                    m_ComeBackDetail.SetBattleModeCard(m_GameManager.GraveYardList, damage, place, m_GameManager.isFirstAttacker, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_SIDE:
+                    m_ComeBackDetail.SetBattleModeCard(m_GameManager.GraveYardList, damage, m_GameManager.isFirstAttacker, EnumController.Damage.SIDE_ATTACK, m_GameManager.SendShotList);
+                    break;
+                case EnumController.YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_DIRECT: 
+                    m_ComeBackDetail.SetBattleModeCard(m_GameManager.GraveYardList, damage, m_GameManager.isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, m_GameManager.SendShotList);
+                    break;
+            }
+            return;
+        }
+
         // „J
         if(paramater == EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD)
         {

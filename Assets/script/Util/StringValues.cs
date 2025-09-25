@@ -19,6 +19,7 @@ public class StringValues
     public string YesOrNoDialog_CONFIRM_USE_COUNTER;
     public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER;
     public string YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER;
+    public string YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER;
     public string YesOrNoDialog_CONFIRM_POOL_TRIGGER;
     public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
     public string YesOrNoDialog_CLIMAX_PHASE;
@@ -632,6 +633,7 @@ public class StringValues
                 YesOrNoDialog_CONFIRM_USE_COUNTER = japanese.YesOrNoDialog_CONFIRM_USE_COUNTER;
                 YesOrNoDialog_CONFIRM_BOOK_TRIGGER = japanese.YesOrNoDialog_CONFIRM_BOOK_TRIGGER;
                 YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER = japanese.YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER;
+                YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER = japanese.YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER;
                 YesOrNoDialog_CONFIRM_POOL_TRIGGER = japanese.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
                 YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = japanese.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
@@ -990,6 +992,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER = "ドローアイコンがトリガーしました。ドローしますか。";
         public string YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER = "バウンスアイコンがトリガーされました。相手のカードをバウンスしますか";
+        public string YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER = "カムバックアイコンがトリガーしました。控室からカードを戻しますか";
         public string YesOrNoDialog_CONFIRM_POOL_TRIGGER = "プールアイコンがトリガーしました。デッキトップをストックに置きますか。";
         public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = "アンコールフェイズへ移行しますか";
         public string SearchDialog_SearchMessage = "手札に加えるカードを選択してください";
