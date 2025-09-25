@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] WinAndLose m_WinAndLose;
-    [SerializeField] ComeBackDetail m_ComeBackDetail;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
@@ -727,7 +726,7 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.COMEBACK:
                 if (!isLastTrigger)
                 {
-                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.DIRECT_ATTACK, SendShotList);
+                    m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_DIRECT, myDeckList[0], damage, num);
                 }
                 return;
             case EnumController.Trigger.SHOT:
@@ -744,10 +743,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case EnumController.Trigger.POOL:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_DIRECT, myDeckList[0], damage, num);
                 return;
             case EnumController.Trigger.BOOK:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_DIRECT, myDeckList[0], damage, num);
                 return;
             default:
                 break;
@@ -767,7 +766,7 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.COMEBACK:
                 if (!isLastTrigger)
                 {
-                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, num, isFirstAttacker, SendShotList);
+                    m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_FRONT, myDeckList[0], damage, num);
                 }
                 return;
             case EnumController.Trigger.SHOT:
@@ -787,7 +786,7 @@ public class GameManager : MonoBehaviour
                 m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_POOL_TRIGGER_FRONT, null, damage, num);
                 return;
             case EnumController.Trigger.BOOK:
-                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT, null, damage);
+                m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_BOOK_TRIGGER_FRONT, null, damage, num);
                 return;
             default:
                 break;
@@ -814,7 +813,7 @@ public class GameManager : MonoBehaviour
             case EnumController.Trigger.COMEBACK:
                 if (!isLastTrigger)
                 {
-                    m_ComeBackDetail.SetBattleModeCard(GraveYardList, damage, isFirstAttacker, EnumController.Damage.SIDE_ATTACK, SendShotList);
+                    m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_COMEBACK_TRIGGER_SIDE, myDeckList[0], damage, num);
                     return;
                 }
                 break;
