@@ -312,6 +312,19 @@ public class GameManager : MonoBehaviour
                 return;
             }
         }
+
+        if (isEndPhase)
+        {
+            for (int i = 0; i < myFieldList.Count; i++)
+            {
+                if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
+                {
+                    m_DialogManager.EncoreDialog(myFieldList);
+                    return;
+                }
+            }
+        }
+
         isEndPhase = false;
 
         if (ActionList.Count > 0)

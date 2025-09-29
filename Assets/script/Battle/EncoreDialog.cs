@@ -118,15 +118,17 @@ public class EncoreDialog : MonoBehaviour
         m_GameManager.Syncronize();
         this.gameObject.SetActive(false);
 
+        int cnt = HaveParamater(EnumController.Action.TurnChange);
+
+        if (m_GameManager.isEndPhase && cnt < 0)
+        {
+            Action TurnChange = new Action(m_GameManager, EnumController.Action.TurnChange);
+            TurnChange.SetParamaterBattleStrix(m_BattleStrix);
+            m_GameManager.ActionList.Add(TurnChange);
+        }
+
         if (isStockThree == false && isStockTwo == false && haveHandEncore == false && haveClockEncore == false)
         {
-            if (m_GameManager.isEndPhase)
-            {
-                Debug.Log("a");
-                Action TurnChange = new Action(m_GameManager, EnumController.Action.TurnChange);
-                TurnChange.SetParamaterBattleStrix(m_BattleStrix);
-                m_GameManager.ActionList.Add(TurnChange);
-            }
             m_GameManager.ExecuteActionList();
         }
         else
@@ -167,5 +169,17 @@ public class EncoreDialog : MonoBehaviour
     public void OffDialog()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private int HaveParamater(EnumController.Action paramater)
+    {
+        for (int i = 0; i < m_GameManager.ActionList.Count; i++)
+        {
+            if (m_GameManager.ActionList[i].GetParamater() == paramater)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
