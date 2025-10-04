@@ -9,6 +9,7 @@ public class MyMainCardsManager : MonoBehaviour
     public List<BattleMyMainCardUtil> CardList = new List<BattleMyMainCardUtil>();
     [SerializeField] BattleStrix m_BattleStrix;
     [SerializeField] GameManager m_GameManager;
+    [SerializeField] GraveYardDetail m_GraveYardDetail;
 
     public void AddAttributeUpUntilTurnEnd(int place, EnumController.Attribute attribute)
     {
@@ -119,6 +120,11 @@ public class MyMainCardsManager : MonoBehaviour
         {
             CardList[i].GetComponent<BattleMyMainCardUtil>().NotShowMoveButton();
         }
+    }
+
+    public void CallOffShowGraveYardButton()
+    {
+        m_GraveYardDetail.OffShowGraveYardButton();
     }
 
     public void CallOnRest(int num)

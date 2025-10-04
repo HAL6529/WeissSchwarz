@@ -213,9 +213,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         bool temp = isMoveButton;
         m_MyHandCardsManager.CallResetSelected();
         m_MyHandCardsManager.CallNotShowPlayButton();
+        m_MyHandCardsManager.OffShowMemoryButton();
         m_MyMainCardsManager.CallNotShowMoveButton();
         m_MyMainCardsManager.CallNotShowDirectAttackButton();
         m_MyMainCardsManager.CallNotShowFrontAndSideButton();
+        m_MyMainCardsManager.CallOffShowGraveYardButton();
 
         // ---ここからカードのガイド用---
         BattleModeCard t_BattleModeCard = new BattleModeCard();

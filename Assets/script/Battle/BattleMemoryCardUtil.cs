@@ -10,9 +10,13 @@ public class BattleMemoryCardUtil : MonoBehaviour
 
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] BattleGraveYardUtil my_BattleGraveYardUtil;
+    [SerializeField] BattleGraveYardUtil enemy_BattleGraveYardUtil;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GameObject ShowButton;
+    [SerializeField] MyHandCardsManager m_MyHandCardsManager;
+    [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] Text MemoryCount;
 
     public void setBattleModeCard(BattleModeCard card)
@@ -54,6 +58,13 @@ public class BattleMemoryCardUtil : MonoBehaviour
             return;
         }
         m_BattleModeGuide.showImage(m_BattleModeCard);
+        // 手札のプレイボタンを非表示にする
+        m_MyHandCardsManager.CallNotShowPlayButton();
+        // フィールドのムーヴボタンを非表示にする
+        m_MyMainCardsManager.CallNotShowMoveButton();
+        // 控室詳細ボタンを非表示にする
+        my_BattleGraveYardUtil.OffBtn();
+        enemy_BattleGraveYardUtil.OffBtn();
 
         if (isActiveShowMemoryBtn)
         {
@@ -76,5 +87,11 @@ public class BattleMemoryCardUtil : MonoBehaviour
     private void SetMemoryCount(int num)
     {
         MemoryCount.text = num.ToString();
+    }
+
+    public void OffBtn()
+    {
+        isActiveShowMemoryBtn = false;
+        ShowButton.SetActive(false);
     }
 }
