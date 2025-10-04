@@ -48,6 +48,7 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
         m_MyMainCardsManager.CallNotShowMoveButton();
+        m_MyHandCardsManager.OffShowMemoryButton();
         m_BattleModeGuide.showImage(m_BattleModeCard);
         m_GraveYardDetail.OffShowGraveYardButton();
 

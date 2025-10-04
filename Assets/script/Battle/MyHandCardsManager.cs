@@ -16,6 +16,8 @@ public class MyHandCardsManager : MonoBehaviour
     public GameObject rightCard;
     public int cursorNum = 0;
     [SerializeField] List<BattleHandCardUtil> m_BattleHandCardUtilList = new List<BattleHandCardUtil>();
+    public BattleMemoryCardUtil my_BattleMemoryCardUtil;
+    public BattleEnemyMemoryCardUtil enemy_BattleMemoryCardUtil;
 
     private static int HAND_DISPLAY_NUM = 11;
     
@@ -210,5 +212,11 @@ public class MyHandCardsManager : MonoBehaviour
     public void onSelected(int num)
     {
         m_BattleHandCardUtilList[num].ResetSelected(true);
+    }
+
+    public void OffShowMemoryButton()
+    {
+        my_BattleMemoryCardUtil.OffBtn();
+        enemy_BattleMemoryCardUtil.OffBtn();
     }
 }

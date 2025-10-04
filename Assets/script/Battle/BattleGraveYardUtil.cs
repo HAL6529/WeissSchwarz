@@ -9,6 +9,8 @@ public class BattleGraveYardUtil : MonoBehaviour
     private BattleModeCard m_BattleModeCard = null;
     [SerializeField] Image image;
     [SerializeField] BattleModeGuide m_BattleModeGuide;
+    [SerializeField] BattleMemoryCardUtil my_BattleMemoryCardUtil;
+    [SerializeField] BattleEnemyMemoryCardUtil enemy_BattleMemoryCardUtil;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GameObject ShowButton;
@@ -58,6 +60,9 @@ public class BattleGraveYardUtil : MonoBehaviour
         }
         m_BattleModeGuide.showImage(m_BattleModeCard);
 
+        // 思い出詳細ボタンを非表示にする
+        my_BattleMemoryCardUtil.OffBtn();
+        enemy_BattleMemoryCardUtil.OffBtn();
         // 自分フィールドのデッキの控室詳細ボタンを押した場合は相手フィールドの控室詳細ボタンを非表示にする
         // 相手フィールドのデッキの控室詳細ボタンを押した場合は自分フィールドの控室詳細ボタンを非表示にする
         m_BattleGraveYardUtil.OffBtn();
