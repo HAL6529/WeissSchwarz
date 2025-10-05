@@ -504,6 +504,7 @@ namespace EnumController
         LB_W02_16T,
         P3_S01_077,
         P3_S01_081,
+        LB_W02_001,
     }
 
     public enum Shot
@@ -613,6 +614,7 @@ namespace EnumController
         COST_CONFIRM_P3_S01_080,
         COST_CONFIRM_P3_S01_081,
         COST_CONFIRM_P3_S01_091,
+        COST_CONFIRM_LB_W02_001,
     }
 
 

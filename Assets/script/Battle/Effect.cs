@@ -691,6 +691,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_001:
+                // 【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001, card, num);
+                }
+                return;
             default:
                 return;
         }
@@ -719,6 +726,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_063:
             case EnumController.CardNo.P3_S01_076:
             case EnumController.CardNo.P3_S01_083:
+            case EnumController.CardNo.LB_W02_001:
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);

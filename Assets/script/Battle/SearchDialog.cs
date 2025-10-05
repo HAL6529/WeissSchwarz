@@ -81,6 +81,7 @@ public class SearchDialog : MonoBehaviour
         {
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
+            case EnumController.SearchDialogParamater.LB_W02_001:
                 m_Mode = Mode.My_Deck_Search;
                 break;
             case EnumController.SearchDialogParamater.LB_W02_16T:
@@ -101,6 +102,7 @@ public class SearchDialog : MonoBehaviour
                 break;
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
+            case EnumController.SearchDialogParamater.LB_W02_001:
                 SulvageMaxNum = 1;
                 SulvageMinNum = 0;
                 break;
@@ -131,12 +133,11 @@ public class SearchDialog : MonoBehaviour
             default : 
                 break;
         }
-
+        List<EnumController.Attribute> list = new List<EnumController.Attribute>();
         switch (paramater)
         {
             case EnumController.SearchDialogParamater.AT_WX02_A07:
                 // Search your deck for up to 1 《Ooo》 character, reveal it to your opponent, put it into your hand, and shuffle your deck.
-                List<EnumController.Attribute> list = new List<EnumController.Attribute>();
                 list.Add(EnumController.Attribute.Ooo);
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
@@ -163,6 +164,19 @@ public class SearchDialog : MonoBehaviour
             case EnumController.SearchDialogParamater.LB_W02_16T:
             case EnumController.SearchDialogParamater.P3_S01_081:
                 //あなたは自分のクロックを1枚選び、手札に戻す。
+                break;
+            case EnumController.SearchDialogParamater.LB_W02_001:
+                //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                list.Add(EnumController.Attribute.Sports);
+                for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
+                {
+                    BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
+                    if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    {
+                        SearchButtonUtilParamaterList[i].isEnable = false;
+                        cnt--;
+                    }
+                }
                 break;
             default:
                 break;
@@ -282,6 +296,7 @@ public class SearchDialog : MonoBehaviour
                 break;
             case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.P3_S01_081:
+            case EnumController.SearchDialogParamater.LB_W02_001:
                 break;
             default:
                 break;
