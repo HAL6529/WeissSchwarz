@@ -813,6 +813,17 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.LB_W02_001:
+                    //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_001, handNum);
+                    return;
+                default:
+                    break;
+            }
             int pumpPoint = 0;
             // Counter用
             switch (m_BattleModeCard.cardNo)
