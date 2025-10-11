@@ -821,6 +821,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnRest(place);
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_001, handNum);
                     return;
+                case EnumController.CardNo.LB_W02_004:
+                    //【自】［(1)］ このカードがアタックした時、クライマックス置場に「リーダーの帰還」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。
+                    PayCost(1);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 default:
                     break;
             }
