@@ -26,6 +26,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_032:
             case EnumController.CardNo.P3_S01_051:
             case EnumController.CardNo.P3_S01_082:
+            case EnumController.CardNo.LB_W02_002:
                 if (ConfirmStockForCost(1))
                 {
                     Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);
@@ -1017,6 +1018,32 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_P3_S01_081);
                     m_EventAnimationManager.AnimationStart(card, place);
                     m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_002:
+                //【自】［(1)］ このカードがアタックした時、クライマックス置場に「鈴と共にある日々」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "鈴と共にある日々" && ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_002, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_004:
+                //【自】［(1)］ このカードがアタックした時、クライマックス置場に「リーダーの帰還」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "リーダーの帰還" && ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004, card, place, status);
                     return true;
                 }
                 return false;
