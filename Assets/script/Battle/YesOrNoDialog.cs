@@ -169,6 +169,10 @@ public class YesOrNoDialog : MonoBehaviour
                         sulvageCardName = stringValues.P3_S01_081_NAME;
                         cost = 1;
                         break;
+                    case EnumController.CardNo.LB_W02_002:
+                        sulvageCardName = stringValues.LB_W02_004_NAME;
+                        cost = 1;
+                        break;
                     default:
                         sulvageCardName = "";
                         cost = 0;
@@ -277,6 +281,9 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_001;
+                break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_002:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_002;
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_004;
@@ -438,6 +445,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_002:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
@@ -557,6 +565,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_002:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);

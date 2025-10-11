@@ -57,6 +57,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_81;
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_91;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_001;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_002;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_004;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
@@ -619,6 +620,7 @@ public class StringValues
     public string P3_S01_030_NAME = "風花＆ユノ";
     public string P3_S01_055_NAME = "順平＆トリスメギストス";
     public string P3_S01_081_NAME = "ゆかり＆イシス";
+    public string LB_W02_004_NAME = "“リーダー”恭介";
 
     public StringValues() 
     {
@@ -673,6 +675,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_P3_S01_81 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_81;
                 YesOrNoDialog_COST_CONFIRM_P3_S01_91 = japanese.YesOrNoDialog_COST_CONFIRM_P3_S01_91;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_001 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_001;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_002 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_002;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_004 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_004;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
@@ -994,6 +997,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_81 = "次の能力を使用しますか。:" + "【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_P3_S01_91 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_001 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_002 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「鈴と共にある日々」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_004 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「リーダーの帰還」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER = "ドローアイコンがトリガーしました。ドローしますか。";
