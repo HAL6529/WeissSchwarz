@@ -531,8 +531,7 @@ public class GameManager : MonoBehaviour
     public void Shuffle()
     {
         m_ShuffleDeckAnimationController.AnimationStart();
-        // myBattleDeckCardUtil.AnimationStart();
-        // m_BattleStrix.RpcToAll("SendBattleDeckCardUtilAnimationStart", isFirstAttacker);
+        m_BattleStrix.RpcToAll("SendBattleDeckCardUtilAnimationStart", isFirstAttacker);
         for (int i = myDeckList.Count - 1; i > 0; i--)
         {
             int r = Random.Range(0, i + 1);
