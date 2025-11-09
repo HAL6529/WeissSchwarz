@@ -17,7 +17,7 @@ public class BattleStrix : StrixBehaviour
 {
     [SerializeField] Text logText;
     [SerializeField] GameManager m_GameManager;
-    [SerializeField] BattleDeckCardUtil m_EnemyBattleDeckCardUtil;
+    [SerializeField] ShuffleDeckAnimationController m_ShuffleDeckAnimationController;
     [SerializeField] StrixManager m_StrixManager;
     [SerializeField] MyMainCardsManager m_MyMainCardsManager;
     [SerializeField] EnemyMainCardsManager m_EnemyMainCardsManager;
@@ -676,7 +676,7 @@ public class BattleStrix : StrixBehaviour
         {
             return;
         }
-        m_EnemyBattleDeckCardUtil.AnimationStart_RPC();
+        m_ShuffleDeckAnimationController.AnimationStart();
     }
 
     [StrixRpc]
