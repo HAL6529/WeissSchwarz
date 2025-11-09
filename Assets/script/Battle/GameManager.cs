@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleEnemyMemoryCardUtil enemyBattleMemoryCardUtil;
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
+    [SerializeField] ShuffleDeckAnimationController m_ShuffleDeckAnimationController;
     [SerializeField] WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
@@ -529,8 +530,9 @@ public class GameManager : MonoBehaviour
 
     public void Shuffle()
     {
-        myBattleDeckCardUtil.AnimationStart();
-        m_BattleStrix.RpcToAll("SendBattleDeckCardUtilAnimationStart", isFirstAttacker);
+        m_ShuffleDeckAnimationController.AnimationStart();
+        // myBattleDeckCardUtil.AnimationStart();
+        // m_BattleStrix.RpcToAll("SendBattleDeckCardUtilAnimationStart", isFirstAttacker);
         for (int i = myDeckList.Count - 1; i > 0; i--)
         {
             int r = Random.Range(0, i + 1);
