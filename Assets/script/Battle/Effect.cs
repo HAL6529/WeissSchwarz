@@ -607,6 +607,7 @@ public class Effect : MonoBehaviour
                 return;
             // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
             case EnumController.CardNo.LB_W02_05T:
+            case EnumController.CardNo.LB_W02_037:
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T, card, num);
@@ -756,6 +757,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_076:
             case EnumController.CardNo.P3_S01_083:
             case EnumController.CardNo.LB_W02_001:
+            case EnumController.CardNo.LB_W02_037:
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);

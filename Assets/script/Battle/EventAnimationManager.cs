@@ -464,6 +464,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_05T:
+                case EnumController.CardNo.LB_W02_037:
                     // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
