@@ -615,6 +615,7 @@ public class Effect : MonoBehaviour
                 return;
             // 【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
             case EnumController.CardNo.LB_W02_09T:
+            case EnumController.CardNo.LB_W02_042:
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T, card, num);

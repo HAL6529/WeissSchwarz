@@ -479,6 +479,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.LB_W02_09T:
+                case EnumController.CardNo.LB_W02_042:
                     //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
