@@ -118,6 +118,7 @@ public class ExecuteAction
         }
 
         m_GameManager.Syncronize();
+        m_GameManager.ExecuteActionList();
     }
 
     public void ExecuteAction_SearchAfterConfirmDialog_DC_W01_12T()

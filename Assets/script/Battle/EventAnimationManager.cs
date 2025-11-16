@@ -338,10 +338,12 @@ public class EventAnimationManager : MonoBehaviour
             switch (m_BattleModeCard.cardNo)
             {
                 case EnumController.CardNo.AT_WX02_A07:
+                    // Search your deck for up to 1 《Ooo》 character, reveal it to your opponent, put it into your hand, and shuffle your deck.
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.AT_WX02_A07, handNum);
                     return;
                 case EnumController.CardNo.DC_W01_01T:
                     // 【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
+                    EffectWhenAct(m_BattleModeCard);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
@@ -381,6 +383,8 @@ public class EventAnimationManager : MonoBehaviour
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
                     return;
                 case EnumController.CardNo.DC_W01_04T:
+                    //【起】［(1)］ そのターン中、このカードのパワーを＋2000。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
@@ -388,6 +392,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_05T:
                     //【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
@@ -408,6 +413,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_13T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分の控え室のキャラを1枚選び、手札に戻す。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
@@ -415,6 +421,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_16T:
                 case EnumController.CardNo.P3_S01_058:
+                    // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
                     m_EnemyMainCardsManager.CallReverse(enemyPlace);
                     m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
@@ -427,6 +434,7 @@ public class EventAnimationManager : MonoBehaviour
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ このカードを思い出にする。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_MyMainCardsManager.CallPutMemoryFromField(place);
                     m_GameManager.ExecuteActionList();
@@ -457,6 +465,7 @@ public class EventAnimationManager : MonoBehaviour
                     break;
                 case EnumController.CardNo.LB_W02_05T:
                     // 【起】［(1)］ 他のあなたのキャラすべてに、そのターン中、《動物》を与える。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
                     {
@@ -470,11 +479,13 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_09T:
                     //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.LB_W02_14T:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
@@ -523,6 +534,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_002:
                     //【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_MyMainCardsManager.CallPutMemoryFromField(place);
@@ -553,6 +565,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_028:
                     // 【起】［(2)］ そのターン中、このカードのパワーを＋5000。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 5000);
                     m_GameManager.Syncronize();
@@ -610,6 +623,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_16T:
                 case EnumController.CardNo.P3_S01_087:
                     // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
@@ -621,6 +635,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_034:
                     // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
@@ -685,6 +700,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_051:
                     //【起】［(1)］ あなたは自分のカード名に「順平」を含むキャラを１枚選び、そのターン中、パワーを＋1000。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
@@ -818,6 +834,7 @@ public class EventAnimationManager : MonoBehaviour
             {
                 case EnumController.CardNo.LB_W02_001:
                     //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_001, handNum);
@@ -828,6 +845,10 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】［(1)］ このカードがアタックした時、クライマックス置場に「リーダーの帰還」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
+                case EnumController.CardNo.LB_W02_003:
+                    //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
                 default:
                     break;
@@ -841,6 +862,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_009:
                 case EnumController.CardNo.P3_S01_033:
                 case EnumController.CardNo.P3_S01_091:
+                    EffectWhenAct(m_BattleModeCard);
                     pumpPoint = 2000;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -850,6 +872,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.AT_WX02_A05:
+                    EffectWhenAct(m_BattleModeCard);
                     pumpPoint = 2500;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -860,6 +883,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.DC_W01_17T:
                 case EnumController.CardNo.P3_S01_067:
+                    EffectWhenAct(m_BattleModeCard);
                     pumpPoint = 3000;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -887,6 +911,7 @@ public class EventAnimationManager : MonoBehaviour
                     break;
                 case EnumController.CardNo.LB_W02_02T:
                     // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
@@ -914,6 +939,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_04T:
                 case EnumController.CardNo.P3_S01_010:
                     // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.ToHandFromField(place);
@@ -921,6 +947,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_11T:
                 case EnumController.CardNo.P3_S01_017:
                     // 【起】［(1)］ そのターン中、このカードのソウルを＋1。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_MyMainCardsManager.AddSoulUpUntilTurnEnd(place, 1);
                     m_GameManager.Syncronize();
@@ -928,6 +955,7 @@ public class EventAnimationManager : MonoBehaviour
                     break;
                 case EnumController.CardNo.P3_S01_052:
                     // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(3);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
@@ -967,6 +995,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_077:
                     //【起】［(4)］ あなたは自分の山札を見てイベントを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(4);
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.P3_S01_077);
                     return;
@@ -988,6 +1017,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.P3_S01_081:
                     //【起】［(4)］ あなたは自分のクロックを1枚選び、手札に戻す。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(4);
                     if (m_GameManager.myClockList.Count == 0)
                     {
@@ -1003,6 +1033,7 @@ public class EventAnimationManager : MonoBehaviour
                     break;
                 case EnumController.CardNo.P3_S01_091:
                     // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_MyMainCardsManager.CallPutHandFromField(place);
@@ -1018,6 +1049,7 @@ public class EventAnimationManager : MonoBehaviour
             {
                 case EnumController.CardNo.P3_S01_080:
                     //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     for(int i = 0; i < m_GameManager.myDeckList.Count; i++)
@@ -1066,5 +1098,18 @@ public class EventAnimationManager : MonoBehaviour
             m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
         }
         m_GameManager.Syncronize();
+    }
+
+    /// <summary>
+    /// あなたが【起】を使った時の効果のためのメソッド
+    /// </summary>
+    private void EffectWhenAct(BattleModeCard card)
+    {
+        Action action = new Action(m_GameManager, EnumController.Action.EffectWhenAct);
+        action.SetParamaterEventAnimationManager(this);
+        action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+        action.SetParamaterBattleStrix(m_BattleStrix);
+        action.SetParamaterBattleModeCard(card);
+        m_GameManager.ActionList.Add(action);
     }
 }

@@ -92,6 +92,10 @@ public class Action : MonoBehaviour
                     return;
                 }
                 break;
+            // 「あなたが【起】を使った時、」の効果のチェック
+            case EnumController.Action.EffectWhenAct:
+                m_MyMainCardsManager.ConfirmEffectWhenAct();
+                break;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
@@ -171,6 +175,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_001:
             case EnumController.Action.P3_S01_026:
             case EnumController.Action.P3_S01_065_1:
+            case EnumController.Action.LB_W02_003:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;

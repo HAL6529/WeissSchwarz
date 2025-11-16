@@ -83,6 +83,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public bool Takaya = false;
 
+    /// <summary>
+    /// 1ターンにつきX回しか使えない効果のカウント
+    /// </summary>
+    public int ActEffectCount = 0;
+
     private bool isMoveButton = false;
 
     public Effect m_Effect;
@@ -175,6 +180,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
             isGreatPerformance = card.isGreatPerformance;
         }
 
+        //1ターンにつきX回しか使えない。効果のリセット
+        ActEffectCount = 0;
         //全体応援のカードなら能力付与
         m_AllAssist = m_Effect.CheckEffectForAllAssist(m_BattleModeCard);
         // 応援のカードなら能力付与
@@ -438,6 +445,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
                     return 0;
             }
         }
+    }
+
+    /// <summary>
+    /// 「あなたが【起】を使った時、」の効果
+    /// </summary>
+    public void WhenAct()
+    {
+        m_Effect.WhenAct(m_BattleModeCard, PlaceNum);
     }
 
     /// <summary>
