@@ -709,11 +709,39 @@ public class BattleMyMainCardUtil : MonoBehaviour
                 FieldPower = FieldPower - 500;
             }
         }
+
+        //“ナース服”小毬の効果
+        //【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋X。Xはそのキャラのレベル＊500に等しい。
+        if (m_GameManager.isTurnPlayer)
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.LB_W02_005);
+            int power = FieldLevel * 500;
+            FieldPower += power * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+            if (cardNoList.Contains(m_BattleModeCard.cardNo))
+            {
+                // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
+                FieldPower = FieldPower - power;
+            }
+        }
+
         // 美鶴＆ペンテシレアの効果
         // 【永】 相手のターン中、このカードのパワーを＋1000。
         if (!m_GameManager.isTurnPlayer && (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_15T || m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_078))
         {
             FieldPower += 1000;
+        }
+
+        // “ナース服”小毬の効果
+        //【永】 他の《お菓子》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_005)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Sweets);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
         }
 
         // アイギス＆パラディオンの効果
