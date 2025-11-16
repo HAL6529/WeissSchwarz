@@ -169,12 +169,29 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[num].WhenReverseEnemyCard(reversedCardPlace, reversedCardLevel);
     }
 
+    public int CheckActEffectCount(int place)
+    {
+        return CardList[place].ActEffectCount;
+    }
+
+    /// <summary>
+    ///  「あなたが【起】を使った時、」に発動する効果を持っているカードが場にないか確認する
+    /// </summary>
+    /// <param name="PlaceNum"></param>
+    public void ConfirmEffectWhenAct()
+    {
+        Debug.Log("ConfirmEffectWhenAct");
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].WhenAct();
+        }
+    }
+
     /// <summary>
     /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
     /// </summary>
     public void ConfirmEffectWhenMyCardPut(int PlaceNum)
     {
-
         for (int i = 0; i < CardList.Count; i++)
         {
             if (i == PlaceNum)
@@ -569,6 +586,11 @@ public class MyMainCardsManager : MonoBehaviour
                 FieldPowerAndLevelAndAttributeAndSoulReset();
             }
         }
+    }
+
+    public void SetActEffectCount(int place, int cnt)
+    {
+        CardList[place].ActEffectCount = cnt;
     }
 
     public void SetAttributeUpUntilTurnEnd(int place, AttributeInstance.AttributeUpUntilTurnEnd paramater)

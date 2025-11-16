@@ -41,6 +41,35 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
+    /// 「あなたが【起】を使った時、」の効果
+    /// </summary>
+    public void WhenAct(BattleModeCard m_BattleModeCard, int placeNum)
+    {
+        if (m_BattleModeCard == null)
+        {
+            return;
+        }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_003:
+                //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                if(m_MyMainCardsManager.CheckActEffectCount(placeNum) < 2)
+                {
+                    Action action_LB_W02_003 = new Action(m_GameManager, EnumController.Action.LB_W02_003);
+                    action_LB_W02_003.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_LB_W02_003.SetParamaterBattleStrix(m_BattleStrix);
+                    action_LB_W02_003.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_LB_W02_003.SetParamaterNum(placeNum);
+                    m_GameManager.ActionList.Add(action_LB_W02_003);
+                }
+                return;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
     /// 「【自】 あなたがレベルアップした時」の効果
     /// </summary>
     /// <param name="m_BattleModeCard"></param>
@@ -54,7 +83,6 @@ public class Effect : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.LB_W02_14T:
-                Debug.Log(m_BattleModeCard.name);
                 Action action_LB_W02_14T = new Action(m_GameManager, EnumController.Action.LB_W02_14T);
                 action_LB_W02_14T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_LB_W02_14T.SetParamaterBattleStrix(m_BattleStrix);
@@ -273,7 +301,7 @@ public class Effect : MonoBehaviour
     }
 
     /// <summary>
-    /// 相手のカードをリバースしたときに発動する効果
+    /// 【自】相手のカードをリバースしたときに発動する効果
     /// </summary>
     /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
     /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>

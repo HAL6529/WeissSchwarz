@@ -94,6 +94,15 @@ public class SelectActionDialog : MonoBehaviour
             return;
         }
 
+        // 【起】を使った時の効果があれば優先的に処理する
+        int EffectWhenAct = HaveParamater(EnumController.Action.EffectWhenAct);
+        if (EffectWhenAct != -1)
+        {
+            ActionList[EffectWhenAct].Execute(EffectWhenAct);
+            OffDialog();
+            return;
+        }
+
         // クロック2ドローの途中のアクションがあれば優先的に処理する
         int haveClockAndTwoDraw2 = HaveParamater(EnumController.Action.ClockAndTwoDraw2);
         if (haveClockAndTwoDraw2 != -1)
@@ -137,6 +146,10 @@ public class SelectActionDialog : MonoBehaviour
             case EnumController.Action.ClockAndTwoDraw:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "ClockAndTwoDraw";
+                break;
+            case EnumController.Action.EffectWhenAct:
+                text1.text = "このメッセージが表示されるのはおかしい";
+                text2.text = "EffectWhenAct";
                 break;
             case EnumController.Action.EventAnimationManager:
                 text1.text = "このメッセージが表示されるのはおかしい";

@@ -116,10 +116,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -265,14 +263,20 @@ ScriptsOnlyBuild:
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
   - assembly: Assembly-CSharp
-    fullTypeName: DeckListPanelUtil
-    methodName: onButton
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: DeckListPanelUtil
+    methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
@@ -3012,7 +3016,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7892}
     - Class: 114
-      Script: {instanceID: 32154}
+      Script: {instanceID: 32174}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -3757,7 +3761,7 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
-      Hash: 3822b4dae1de84cfcdaf2914584b8b11
+      Hash: 6e61eb5ff34f14bf06c2815139441a34
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleMyMainCardUtil

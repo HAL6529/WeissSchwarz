@@ -83,6 +83,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public bool Takaya = false;
 
+    /// <summary>
+    /// 1ターンにつきX回しか使えない効果のカウント
+    /// </summary>
+    public int ActEffectCount = 0;
+
     private bool isMoveButton = false;
 
     public Effect m_Effect;
@@ -175,6 +180,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
             isGreatPerformance = card.isGreatPerformance;
         }
 
+        //1ターンにつきX回しか使えない。効果のリセット
+        ActEffectCount = 0;
         //全体応援のカードなら能力付与
         m_AllAssist = m_Effect.CheckEffectForAllAssist(m_BattleModeCard);
         // 応援のカードなら能力付与
@@ -441,6 +448,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 「あなたが【起】を使った時、」の効果
+    /// </summary>
+    public void WhenAct()
+    {
+        m_Effect.WhenAct(m_BattleModeCard, PlaceNum);
+    }
+
+    /// <summary>
     /// 「【自】 あなたがレベルアップした時」の効果
     /// </summary>
     public void WhenLevelUp()
@@ -679,14 +694,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         // 舞子の効果
+        // “気高き子猫”鈴の効果
         //【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋500。
         if (m_GameManager.isTurnPlayer)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.P3_S01_09T);
             cardNoList.Add(EnumController.CardNo.P3_S01_015);
+            cardNoList.Add(EnumController.CardNo.LB_W02_003);
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-            if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_09T || m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_015)
+            if (cardNoList.Contains(m_BattleModeCard.cardNo))
             {
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - 500;
