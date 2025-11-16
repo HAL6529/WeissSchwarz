@@ -826,6 +826,9 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A12:
                 AttributeList.Add(EnumController.Attribute.Ooo);
                 return new PowerInstance.Gaul(500, AttributeList);
+            case EnumController.CardNo.LB_W02_026:
+                AttributeList.Add(EnumController.Attribute.Animal);
+                return new PowerInstance.Gaul(500, AttributeList);
             default:
                 return new PowerInstance.Gaul();
         }

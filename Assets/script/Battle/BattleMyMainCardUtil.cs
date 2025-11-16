@@ -770,14 +770,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000;
         }
 
-        //“猫まみれ”鈴の効果
-        //【永】 他のあなたの《動物》のキャラ1枚につき、このカードのパワーを＋500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_026)
+        //“着ぐるみ”クドの効果
+        //【永】 あなたのストックが5枚以上なら、このカードのパワーを＋1500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_027)
         {
-            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
-            attributeList.Add(EnumController.Attribute.Animal);
-            
-            FieldPower += 500 * m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList);
+            if(m_GameManager.myStockList.Count >= 5)
+            {
+                FieldPower += 1500;
+            }
         }
 
         if (m_GameManager.MyClimaxCard != null)
@@ -1167,6 +1167,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             case EnumController.CardNo.P3_S01_078:
             case EnumController.CardNo.P3_S01_084:
             case EnumController.CardNo.LB_W02_004:
+            case EnumController.CardNo.LB_W02_027:
                 return true;
             default:
                 return false;
