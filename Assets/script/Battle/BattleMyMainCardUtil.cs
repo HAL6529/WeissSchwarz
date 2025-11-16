@@ -684,6 +684,30 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
         }
 
+        // “ナース服”小毬の効果
+        //【永】 他の《お菓子》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_005)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Sweets);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
+        }
+
+        // アイギス＆パラディオンの効果
+        //【永】 他の《メカ》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_027)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Mecha);
+            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
+            {
+                FieldPower += 1000;
+            }
+        }
+
         // 白河 暦の効果
         // 【永】 他のあなたのカード名に「美春」を含むキャラすべてに、パワーを＋500。
         if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_10T)
@@ -732,30 +756,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000;
         }
 
-        // “ナース服”小毬の効果
-        //【永】 他の《お菓子》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_005)
-        {
-            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
-            attributeList.Add(EnumController.Attribute.Sweets);
-            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
-            {
-                FieldPower += 1000;
-            }
-        }
-
-        // アイギス＆パラディオンの効果
-        //【永】 他の《メカ》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_027)
-        {
-            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
-            attributeList.Add(EnumController.Attribute.Mecha);
-            if (m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList) >= 2)
-            {
-                FieldPower += 1000;
-            }
-        }
-
         // アイギスの効果
         // 【永】 あなたのレベル置場のカード1枚につき、このカードのパワーを＋1000。
         if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_029)
@@ -768,6 +768,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
         if(m_GameManager.myClockList.Count > 0 && m_BattleModeCard.color == EnumController.CardColor.GREEN && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_030)
         {
             FieldPower += 1000;
+        }
+
+        //“猫まみれ”鈴の効果
+        //【永】 他のあなたの《動物》のキャラ1枚につき、このカードのパワーを＋500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_026)
+        {
+            List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
+            attributeList.Add(EnumController.Attribute.Animal);
+            
+            FieldPower += 500 * m_MyMainCardsManager.GetNumFieldAttribute(PlaceNum, attributeList);
         }
 
         if (m_GameManager.MyClimaxCard != null)
