@@ -658,6 +658,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
+            cardNoList.Add(EnumController.CardNo.LB_W02_040);
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
