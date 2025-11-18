@@ -864,6 +864,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_009:
                 case EnumController.CardNo.P3_S01_033:
                 case EnumController.CardNo.P3_S01_091:
+                case EnumController.CardNo.LB_W02_040:
                     EffectWhenAct(m_BattleModeCard);
                     pumpPoint = 2000;
                     PayCost(1);
