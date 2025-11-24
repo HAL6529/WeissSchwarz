@@ -180,7 +180,6 @@ public class MyMainCardsManager : MonoBehaviour
     /// <param name="PlaceNum"></param>
     public void ConfirmEffectWhenAct()
     {
-        Debug.Log("ConfirmEffectWhenAct");
         for (int i = 0; i < CardList.Count; i++)
         {
             CardList[i].WhenAct();

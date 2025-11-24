@@ -64,6 +64,18 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_LB_W02_003);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_062:
+                //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。
+                if (m_MyMainCardsManager.CheckActEffectCount(placeNum) < 2)
+                {
+                    Action action_LB_W02_062 = new Action(m_GameManager, EnumController.Action.LB_W02_062);
+                    action_LB_W02_062.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_LB_W02_062.SetParamaterBattleStrix(m_BattleStrix);
+                    action_LB_W02_062.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_LB_W02_062.SetParamaterNum(placeNum);
+                    m_GameManager.ActionList.Add(action_LB_W02_062);
+                }
+                return;
             default:
                 break;
         }

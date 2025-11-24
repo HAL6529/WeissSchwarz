@@ -201,7 +201,7 @@ public class EventAnimationManager : MonoBehaviour
         }
         Execute();
         // effectNum = 0;
-        place = -1;
+        // place = -1;
         damage = -1;
     }
 
@@ -317,7 +317,7 @@ public class EventAnimationManager : MonoBehaviour
             }
         }
 
-
+        int CheckActEffectCount = 0;
         int enemyPlace = -1;
         switch (place)
         {
@@ -850,7 +850,19 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_003:
                     //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                    CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(place) + 1;
+                    m_MyMainCardsManager.SetActEffectCount(place, CheckActEffectCount);
+
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
+                case EnumController.CardNo.LB_W02_062:
+                    //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。
+                    CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(place) + 1;
+                    m_MyMainCardsManager.SetActEffectCount(place, CheckActEffectCount);
+
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1500);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 default:
                     break;
