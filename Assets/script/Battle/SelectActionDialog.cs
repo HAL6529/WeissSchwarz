@@ -255,6 +255,16 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分のクロックを上から1枚選び、控え室に置く。";
                 break;
+            case EnumController.Action.LB_W02_003:
+                text1.text = "【自】 この能力は、1ターンにつき2回しか使えない。";
+                text2.text = "あなたが【起】を使った時、あなたは自分のキャラを1枚選び";
+                text3.text = "そのターン中、パワーを＋500。";
+                break;
+            case EnumController.Action.LB_W02_062:
+                text1.text = "【自】 この能力は、1ターンにつき2回しか使えない。";
+                text2.text = "あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。";
+                text3.text = "";
+                break;
             case EnumController.Action.TurnChange:
                 RightBtn();
                 break;

@@ -116,10 +116,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -300,6 +298,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
@@ -744,6 +745,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
@@ -3054,7 +3058,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7892}
     - Class: 114
-      Script: {instanceID: 242568}
+      Script: {instanceID: 193678}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

@@ -55,12 +55,14 @@ public class MoveDialog : MonoBehaviour
             EnumController.State placeStatus = m_MyMainCardsManager.GetState(place);
             EnumController.State selectedPlaceStatus = m_MyMainCardsManager.GetState(selectedPlace);
 
+            int ActEffectCountForSelectedPlace = m_MyMainCardsManager.CheckActEffectCount(selectedPlace);
+            int ActEffectCountForPlace = m_MyMainCardsManager.CheckActEffectCount(place);
+
             m_MyMainCardsManager.setBattleModeCard(place, m_BattleModeCard, selectedPlaceStatus);
             m_MyMainCardsManager.setBattleModeCard(selectedPlace, temp, placeStatus);
 
-            int ActEffectCount = m_MyMainCardsManager.CheckActEffectCount(selectedPlace);
-            m_MyMainCardsManager.SetActEffectCount(selectedPlace, m_MyMainCardsManager.CheckActEffectCount(place));
-            m_MyMainCardsManager.SetActEffectCount(place, ActEffectCount);
+            m_MyMainCardsManager.SetActEffectCount(selectedPlace, ActEffectCountForPlace);
+            m_MyMainCardsManager.SetActEffectCount(place, ActEffectCountForSelectedPlace);
 
             bool isHandEncore = m_MyMainCardsManager.isHandEncore(selectedPlace);
             m_MyMainCardsManager.SetHandEncore(selectedPlace, m_MyMainCardsManager.isHandEncore(place));
