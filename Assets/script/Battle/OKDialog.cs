@@ -184,6 +184,7 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_12T:
                         case EnumController.CardNo.P3_S01_022:
                         case EnumController.CardNo.P3_S01_094:
+                        case EnumController.CardNo.LB_W02_044:
                             m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 

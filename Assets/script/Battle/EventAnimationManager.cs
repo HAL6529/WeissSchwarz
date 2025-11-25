@@ -459,6 +459,7 @@ public class EventAnimationManager : MonoBehaviour
                     }
                     return;
                 case EnumController.CardNo.LB_W02_04T:
+                case EnumController.CardNo.LB_W02_044:
                     //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
                     PayCost(1);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
