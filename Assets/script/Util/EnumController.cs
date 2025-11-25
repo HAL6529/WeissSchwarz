@@ -49,6 +49,7 @@ namespace EnumController
         P3_S01_080_2,
         P3_S01_088,
         LB_W02_003,
+        LB_W02_031,
         LB_W02_062,
     }
 

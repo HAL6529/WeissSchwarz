@@ -856,6 +856,21 @@ public class EventAnimationManager : MonoBehaviour
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
+                case EnumController.CardNo.LB_W02_031:
+                    //【自】 このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたは自分の山札の上から1枚を、ストック置場に置いてよい。
+                    m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                    m_GameManager.myDeckList.RemoveAt(0);
+                    m_GameManager.Syncronize();
+                    if (m_GameManager.myDeckList.Count == 0)
+                    {
+                        m_GameManager.Refresh();
+                    }
+                    else
+                    {
+                        m_GameManager.ExecuteActionList();
+                        return;
+                    }
+                    return;
                 case EnumController.CardNo.LB_W02_062:
                     //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。
                     CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(place) + 1;

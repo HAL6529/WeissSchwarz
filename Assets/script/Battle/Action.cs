@@ -158,6 +158,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_061:
             case EnumController.Action.P3_S01_076:
             case EnumController.Action.P3_S01_088:
+            case EnumController.Action.LB_W02_031:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
             case EnumController.Action.P3_S01_057_1:
