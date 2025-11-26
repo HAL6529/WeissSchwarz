@@ -1103,6 +1103,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
+            case EnumController.CardNo.LB_W02_031:
+                //
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "‚½‚Á‚½ˆê‚Â‚ÌŽæ‚è•¿" )
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031, card, place, status);
+                    return true;
+                }
+                return false;
             default:
                 return false;
         }
