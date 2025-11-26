@@ -442,6 +442,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_02T:
                 case EnumController.CardNo.LB_W02_03T:
                 case EnumController.CardNo.P3_S01_030:
+                case EnumController.CardNo.LB_W02_031:
                     // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、
                     // ストック置場に置き、そのターン中、このカードのパワーを＋3000。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
@@ -855,6 +856,21 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.SetActEffectCount(place, CheckActEffectCount);
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
+                case EnumController.CardNo.LB_W02_031:
+                    //【自】 このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたは自分の山札の上から1枚を、ストック置場に置いてよい。
+                    m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
+                    m_GameManager.myDeckList.RemoveAt(0);
+                    m_GameManager.Syncronize();
+                    if (m_GameManager.myDeckList.Count == 0)
+                    {
+                        m_GameManager.Refresh();
+                    }
+                    else
+                    {
+                        m_GameManager.ExecuteActionList();
+                        return;
+                    }
                     return;
                 case EnumController.CardNo.LB_W02_062:
                     //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。

@@ -341,11 +341,21 @@ public class Effect : MonoBehaviour
                 //m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, card, reversedCardPlace);
                 return;
             case EnumController.CardNo.LB_W02_19T:
-                if(reversedCardLevel > 1)
+                //【自】［(1)］ このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                if (reversedCardLevel > 1)
                 {
                     Action action_LB_W02_19T = new Action(m_GameManager, EnumController.Action.LB_W02_19T);
                     action_LB_W02_19T.SetParamaterBattleModeCard(card);
                     m_GameManager.ActionList.Add(action_LB_W02_19T);
+                }
+                return;
+            case EnumController.CardNo.LB_W02_031:
+                //【自】 このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたは自分の山札の上から1枚を、ストック置場に置いてよい。
+                if (reversedCardLevel > 1)
+                {
+                    Action action_LB_W02_031 = new Action(m_GameManager, EnumController.Action.LB_W02_031);
+                    action_LB_W02_031.SetParamaterBattleModeCard(card);
+                    m_GameManager.ActionList.Add(action_LB_W02_031);
                 }
                 return;
             default:
@@ -1090,6 +1100,19 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "リーダーの帰還" && ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_031:
+                //
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "たった一つの取り柄" )
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031, card, place, status);
                     return true;
                 }
                 return false;
