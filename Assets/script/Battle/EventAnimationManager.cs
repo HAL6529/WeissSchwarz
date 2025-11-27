@@ -433,6 +433,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     // 【起】［(1)］ このカードを思い出にする。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
@@ -942,6 +943,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
                     break;
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(1);

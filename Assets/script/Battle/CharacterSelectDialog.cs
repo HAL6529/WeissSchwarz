@@ -187,6 +187,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_042:
+            case EnumController.CardNo.LB_W02_033:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -322,6 +323,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_042:
+            case EnumController.CardNo.LB_W02_033:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -449,6 +451,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.AT_WX02_A02:
             case EnumController.CardNo.LB_W02_02T:
             case EnumController.CardNo.P3_S01_047:
+            case EnumController.CardNo.LB_W02_033:
                 power = 1500;
                 break;
             case EnumController.CardNo.DC_W01_07T:
@@ -490,6 +493,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.P3_S01_051:
                 case EnumController.CardNo.LB_W02_003:
                 case EnumController.CardNo.LB_W02_044:
+                case EnumController.CardNo.LB_W02_033:
                     // 自分のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {
