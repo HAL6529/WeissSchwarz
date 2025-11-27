@@ -29,6 +29,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
             {
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1, m_BattleModeCard);
                     break;
                 default:
@@ -40,6 +41,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
             {
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2, m_BattleModeCard, paramaterNum1);
                     break;
                 default:
@@ -67,6 +69,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
             {
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     text1 = "【起】［(1)］ あなたは自分のキャラを1枚選び、";
                     text2 = "そのターン中、パワーを＋1500。";
                     break;
@@ -80,6 +83,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
             {
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:
+                case EnumController.CardNo.LB_W02_033:
                     text1 = "【起】［(1)］ このカードを思い出にする。";
                     break;
                 default:

@@ -607,6 +607,7 @@ public class Effect : MonoBehaviour
             // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
             // 【起】［(1)］ このカードを思い出にする。
             case EnumController.CardNo.LB_W02_02T:
+            case EnumController.CardNo.LB_W02_033:
                 List<SelectActEffectDialogContent> LB_W02_02T_List = new List<SelectActEffectDialogContent>();
                 if (ConfirmStockForCost(1))
                 {
