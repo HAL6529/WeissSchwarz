@@ -927,6 +927,7 @@ public class Effect : MonoBehaviour
                 }
                 return false;
             case EnumController.CardNo.LB_W02_03T:
+            case EnumController.CardNo.LB_W02_036:
                 // 【自】 このカードがアタックした時、クライマックス置場に「そよ風のハミング」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
                 if (m_GameManager.MyClimaxCard == null)
                 {
