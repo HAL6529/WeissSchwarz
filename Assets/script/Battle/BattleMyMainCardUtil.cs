@@ -654,11 +654,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // "—‰¤”Lh²X”ü‚ÌŒø‰Ê
         //y‰iz ‘¼‚Ì‚ ‚È‚½‚ÌugÅ‹­‚Ì’j™hŒªŒáv‚·‚×‚Ä‚ÉAƒpƒ[‚ğ{1000B
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_09T || m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_042)
+        if (m_BattleModeCard.name == "gÅ‹­‚Ì’j™hŒªŒá")
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
             cardNoList.Add(EnumController.CardNo.LB_W02_040);
+            FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+        }
+
+        //	—ˆƒ–’J —BŒÎ‚ÌŒø‰Ê
+        //y‰iz ‘¼‚Ì‚ ‚È‚½‚ÌuO} —t—¯‰Àv‚·‚×‚Ä‚ÉAƒpƒ[‚ğ{1000B
+        if (m_BattleModeCard.name == "O} —t—¯‰À")
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.LB_W02_007);
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 

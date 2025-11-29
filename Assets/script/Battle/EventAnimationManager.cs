@@ -859,6 +859,11 @@ public class EventAnimationManager : MonoBehaviour
 
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
+                case EnumController.CardNo.LB_W02_007:
+                    //【起】［(2)］ あなたはレベル0以下の相手のキャラを1枚選び、手札に戻す。
+                    PayCost(2);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_031:
                     //【自】 このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたは自分の山札の上から1枚を、ストック置場に置いてよい。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
