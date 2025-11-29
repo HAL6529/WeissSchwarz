@@ -864,6 +864,11 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.LB_W02_018:
+                    //※イベント
+                    //あなたはレベル0以下の相手の前列のキャラを1枚選び、手札に戻す。このカードをストック置場に置く。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_022:
                     //※イベント
                     //あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋2000。
