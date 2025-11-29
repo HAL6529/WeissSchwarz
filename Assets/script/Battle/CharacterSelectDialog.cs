@@ -187,8 +187,9 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_007:
-            case EnumController.CardNo.LB_W02_042:
+            case EnumController.CardNo.LB_W02_018:
             case EnumController.CardNo.LB_W02_033:
+            case EnumController.CardNo.LB_W02_042:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -255,6 +256,14 @@ public class CharacterSelectDialog : MonoBehaviour
                     // レベル1以下のキャラかつ前列のカードのみ対象
                     case EnumController.CardNo.P3_S01_052:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1 || i >= 3)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
+                    // レベル0以下のキャラかつ前列のカードのみ対象
+                    case EnumController.CardNo.LB_W02_018:
+                        if (m_EnemyMainCardsManager.GetFieldLevel(i) > 0 || i >= 3)
                         {
                             buttons[i].interactable = false;
                             cnt++;
@@ -360,6 +369,20 @@ public class CharacterSelectDialog : MonoBehaviour
                     // イベントカードの場合は処理後に控室にカードを追加
                     m_GameManager.myHandList.Remove(m_BattleModeCard);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
+
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    OffDialog();
+                    return;
+                }
+                break;
+            //このカードをストック置場に置く。
+            case EnumController.CardNo.LB_W02_018:
+                if (cnt >= 5)
+                {
+                    // イベントカードの場合は処理後に控室にカードを追加
+                    m_GameManager.myHandList.Remove(m_BattleModeCard);
+                    m_GameManager.myStockList.Add(m_BattleModeCard);
 
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
@@ -556,6 +579,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.LB_W02_002:
                 case EnumController.CardNo.LB_W02_004:
                 case EnumController.CardNo.LB_W02_007:
+                case EnumController.CardNo.LB_W02_018:
                     // 相手のカードをバウンスする
                     if (ButtonSelectedNumList[i])
                     {
@@ -606,6 +630,11 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_044:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                break;
+            //このカードをストック置場に置く。
+            case EnumController.CardNo.LB_W02_018:
+                m_GameManager.myHandList.Remove(m_BattleModeCard);
+                m_GameManager.myStockList.Add(m_BattleModeCard);
                 break;
             default:
                 break;
