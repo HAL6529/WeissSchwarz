@@ -186,6 +186,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_002:
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
+            case EnumController.CardNo.LB_W02_007:
             case EnumController.CardNo.LB_W02_042:
             case EnumController.CardNo.LB_W02_033:
                 minNum = 1;
@@ -268,6 +269,14 @@ public class CharacterSelectDialog : MonoBehaviour
                             cnt++;
                         }
                         break;
+                    // レベル0以下のキャラのみ対象
+                    case EnumController.CardNo.LB_W02_007:
+                        if (m_EnemyMainCardsManager.GetFieldLevel(i) > 0)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
                     // レベル1以上のキャラのみ対象
                     case EnumController.CardNo.P3_S01_001:
                         if (m_MyMainCardsManager.GetFieldLevel(i) < 1)
@@ -322,6 +331,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_060:
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
+            case EnumController.CardNo.LB_W02_007:
             case EnumController.CardNo.LB_W02_042:
             case EnumController.CardNo.LB_W02_033:
                 if (cnt >= 5)
@@ -541,6 +551,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.P3_S01_017:
                 case EnumController.CardNo.LB_W02_002:
                 case EnumController.CardNo.LB_W02_004:
+                case EnumController.CardNo.LB_W02_007:
                     // 相手のカードをバウンスする
                     if (ButtonSelectedNumList[i])
                     {

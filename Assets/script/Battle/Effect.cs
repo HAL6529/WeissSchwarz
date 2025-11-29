@@ -752,6 +752,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_007:
+                //【起】［(2)］ あなたはレベル0以下の相手のキャラを1枚選び、手札に戻す。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num);
+                }
+                return;
             default:
                 return;
         }

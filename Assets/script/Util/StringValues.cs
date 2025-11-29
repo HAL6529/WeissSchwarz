@@ -58,6 +58,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_P3_S01_91;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_001;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_002;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_007;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_004;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_031;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
@@ -678,6 +679,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_LB_W02_001 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_001;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_002 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_002;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_004 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_004;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_007 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_007;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_031 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_031;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
@@ -1001,6 +1003,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_001 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_002 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「鈴と共にある日々」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_004 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「リーダーの帰還」があるなら、あなたはコストを払ってよい。そうしたら、あなたは相手のキャラを１枚選び、手札に戻す。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_007 = "次の能力を使用しますか。:" + "【起】［(2)］ あなたはレベル0以下の相手のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_031 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「たった一つの取り柄」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER = "ドローアイコンがトリガーしました。ドローしますか。";
