@@ -864,6 +864,11 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.LB_W02_022:
+                    //※イベント
+                    //あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋2000。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_031:
                     //【自】 このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたは自分の山札の上から1枚を、ストック置場に置いてよい。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);

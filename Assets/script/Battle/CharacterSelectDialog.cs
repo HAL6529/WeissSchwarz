@@ -203,6 +203,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
             case EnumController.CardNo.LB_W02_04T:
             case EnumController.CardNo.P3_S01_045:
+            case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
                 minNum = -1;
                 maxNum = 2;
@@ -352,6 +353,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
+            case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
                 if (cnt >= 5)
                 {
@@ -456,6 +458,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
             case EnumController.CardNo.P3_S01_04T:
             case EnumController.CardNo.P3_S01_010:
+            case EnumController.CardNo.LB_W02_022:
                 power = 2000;
                 break;
             case EnumController.CardNo.AT_WX02_A02:
@@ -502,8 +505,9 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.P3_S01_047:
                 case EnumController.CardNo.P3_S01_051:
                 case EnumController.CardNo.LB_W02_003:
-                case EnumController.CardNo.LB_W02_044:
+                case EnumController.CardNo.LB_W02_022:
                 case EnumController.CardNo.LB_W02_033:
+                case EnumController.CardNo.LB_W02_044:
                     // 自分のカードのパワーを操作する
                     if (ButtonSelectedNumList[i])
                     {
@@ -598,6 +602,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
+            case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
