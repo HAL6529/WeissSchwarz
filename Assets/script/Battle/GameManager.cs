@@ -896,6 +896,19 @@ public class GameManager : MonoBehaviour
         m_MyMainCardsManager.CallPutHandFromField(place);
     }
 
+    /// <summary>
+    /// フィールドの特定の場所のキャラをストックに戻す
+    /// </summary>
+    /// <param name="place"></param>
+    public void ToStockFromField(int place)
+    {
+        if (myFieldList[place] == null)
+        {
+            return;
+        }
+        m_MyMainCardsManager.CallPutStockFromField(place);
+    }
+
     private int TriggerCheck()
     {
         isLastTrigger = false;

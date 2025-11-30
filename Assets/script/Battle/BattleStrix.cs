@@ -781,6 +781,15 @@ public class BattleStrix : StrixBehaviour
     }
 
     [StrixRpc]
+    public void ToStockFromField(int place, bool isTurnPlayer)
+    {
+        if (m_GameManager.isTurnPlayer != isTurnPlayer)
+        {
+            m_GameManager.ToStockFromField(place);
+        }
+    }
+
+    [StrixRpc]
     public void UpdateEnemyClock(List<BattleModeCardTemp> list, bool isFirstAttacker)
     {
         if (m_GameManager.isFirstAttacker != isFirstAttacker)

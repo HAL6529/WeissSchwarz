@@ -1126,6 +1126,25 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールドからストックに置かれる時に呼ばれる
+    /// </summary>
+    public void PutStockFromField()
+    {
+        m_GameManager.myStockList.Add(m_GameManager.myFieldList[PlaceNum]);
+        m_GameManager.myFieldList[PlaceNum] = null;
+        m_GameManager.Syncronize();
+
+        m_PowerUpUntilTurnEnd = new PowerInstance.PowerUpUntilTurnEnd(0);
+        m_SoulUpUntilTurnEnd = new SoulInstance.SoulUpUntilTurnEnd(0);
+        m_LevelUpUntilTurnEnd = new LevelInstance.LevelUpUntilTurnEnd(0);
+        setBattleModeCard(null, EnumController.State.STAND);
+
+        // パワー、レベル、特徴、ソウルの計算
+        m_MyMainCardsManager.FieldPowerAndLevelAndAttributeAndSoulReset();
+        m_GameManager.Syncronize();
+    }
+
+    /// <summary>
     /// 特定の文字列を含むか調べる
     /// </summary>
     /// <param name="t"></param>

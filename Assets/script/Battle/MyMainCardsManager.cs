@@ -98,6 +98,15 @@ public class MyMainCardsManager : MonoBehaviour
         CardList[place].PutMemoryFromField();
     }
 
+    /// <summary>
+    /// フィールドからストックに置かれる時に呼ばれる
+    /// </summary>
+    /// <param name="place"></param>
+    public void CallPutStockFromField(int place)
+    {
+        CardList[place].PutStockFromField();
+    }
+
     public void CallNotShowDirectAttackButton()
     {
         for (int i = 0; i < CardList.Count; i++)
