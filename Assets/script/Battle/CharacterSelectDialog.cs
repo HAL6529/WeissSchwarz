@@ -188,6 +188,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_007:
             case EnumController.CardNo.LB_W02_018:
+            case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_033:
             case EnumController.CardNo.LB_W02_042:
                 minNum = 1;
@@ -273,6 +274,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.P3_S01_060:
                     case EnumController.CardNo.P3_S01_072:
+                    case EnumController.CardNo.LB_W02_019:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
                         {
                             buttons[i].interactable = false;
@@ -362,6 +364,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
+            case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
                 if (cnt >= 5)
@@ -607,6 +610,13 @@ public class CharacterSelectDialog : MonoBehaviour
                         m_BattleStrix.RpcToAll("CallMyRest", i, m_GameManager.isTurnPlayer);
                     }
                     break;
+                case EnumController.CardNo.LB_W02_019:
+                    //あなたはレベル1以下の相手のキャラを1枚選び、ストック置場に置く。
+                    if (ButtonSelectedNumList[i])
+                    {
+                        m_BattleStrix.RpcToAll("ToStockFromField", i, m_GameManager.isTurnPlayer);
+                    }
+                    break;
                 default:
                     break;
             }
@@ -626,6 +636,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.P3_S01_069:
             case EnumController.CardNo.P3_S01_072:
             case EnumController.CardNo.P3_S01_094:
+            case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
