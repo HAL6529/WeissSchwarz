@@ -509,6 +509,7 @@ namespace EnumController
         P3_S01_077,
         P3_S01_081,
         LB_W02_001,
+        LB_W02_093,
     }
 
     public enum Shot
