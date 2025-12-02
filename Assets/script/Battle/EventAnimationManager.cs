@@ -895,6 +895,14 @@ public class EventAnimationManager : MonoBehaviour
                         return;
                     }
                     return;
+                case EnumController.CardNo.LB_W02_054:
+                    //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
+                    EffectWhenAct(m_BattleModeCard);
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+                    m_BattleStrix.RpcToAll("CallDamage", 1, handNum, m_GameManager.isFirstAttacker);
+                    return;
                 case EnumController.CardNo.LB_W02_062:
                     //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。
                     CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(place) + 1;

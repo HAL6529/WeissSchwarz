@@ -759,6 +759,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_054:
+                //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054, card, num);
+                }
+                return;
             default:
                 return;
         }
