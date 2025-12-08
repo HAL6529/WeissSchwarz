@@ -895,6 +895,13 @@ public class EventAnimationManager : MonoBehaviour
                         return;
                     }
                     return;
+                case EnumController.CardNo.LB_W02_038:
+                    //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く
+                    EffectWhenAct(m_BattleModeCard);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_054:
                     //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
                     EffectWhenAct(m_BattleModeCard);

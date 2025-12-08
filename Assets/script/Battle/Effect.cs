@@ -759,6 +759,10 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_038:
+                //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く。
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038, card, num);
+                return;
             case EnumController.CardNo.LB_W02_054:
                 //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
                 if (ConfirmStockForCost(2))
@@ -841,6 +845,9 @@ public class Effect : MonoBehaviour
         {
             case EnumController.CardNo.P3_S01_084:
                 AttributeList.Add(EnumController.Attribute.StudentCouncil);
+                return new PowerInstance.AllAssist(500, AttributeList);
+            case EnumController.CardNo.LB_W02_038:
+                AttributeList.Add(EnumController.Attribute.Animal);
                 return new PowerInstance.AllAssist(500, AttributeList);
             default:
                 return new PowerInstance.AllAssist(0, AttributeList);

@@ -190,6 +190,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_018:
             case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_033:
+            case EnumController.CardNo.LB_W02_038:
             case EnumController.CardNo.LB_W02_042:
                 minNum = 1;
                 maxNum = 1;
@@ -346,6 +347,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_007:
             case EnumController.CardNo.LB_W02_042:
             case EnumController.CardNo.LB_W02_033:
+            case EnumController.CardNo.LB_W02_038:
                 if (cnt >= 5)
                 {
                     m_GameManager.Syncronize();
@@ -616,6 +618,10 @@ public class CharacterSelectDialog : MonoBehaviour
                     {
                         m_BattleStrix.RpcToAll("ToStockFromField", i, m_GameManager.isTurnPlayer);
                     }
+                    break;
+                case EnumController.CardNo.LB_W02_038:
+                    //自分のカードをストックに置く
+                    m_MyMainCardsManager.CallPutStockFromField(i);
                     break;
                 default:
                     break;
