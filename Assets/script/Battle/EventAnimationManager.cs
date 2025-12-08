@@ -910,6 +910,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_BattleStrix.RpcToAll("CallDamage", 1, handNum, m_GameManager.isFirstAttacker);
                     return;
+                case EnumController.CardNo.LB_W02_055:
+                    //【自】［(1)］ このカードがアタックした時、クライマックス置場に「リトルバスターズ！」があるなら、あなたはコストを払ってよい。そうしたら、自分の控え室のキャラを1枚選び、手札に戻す。
+                    PayCost(1);
+                    m_DialogManager.SulvageDialog(m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 0, 1);
+                    return;
                 case EnumController.CardNo.LB_W02_062:
                     //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。
                     CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(place) + 1;

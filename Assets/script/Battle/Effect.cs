@@ -1127,7 +1127,7 @@ public class Effect : MonoBehaviour
                 }
                 return false;
             case EnumController.CardNo.LB_W02_031:
-                //
+                //【自】 このカードがアタックした時、クライマックス置場に「たった一つの取り柄」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。
                 if (m_GameManager.MyClimaxCard == null)
                 {
                     return false;
@@ -1136,6 +1136,19 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "たった一つの取り柄" )
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_055:
+                //【自】［(1)］ このカードがアタックした時、クライマックス置場に「リトルバスターズ！」があるなら、あなたはコストを払ってよい。そうしたら、自分の控え室のキャラを1枚選び、手札に戻す。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "リトルバスターズ！")
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055, card, place, status);
                     return true;
                 }
                 return false;

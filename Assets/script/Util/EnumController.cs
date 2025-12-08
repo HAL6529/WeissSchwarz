@@ -626,6 +626,7 @@ namespace EnumController
         COST_CONFIRM_LB_W02_031,
         COST_CONFIRM_LB_W02_038,
         COST_CONFIRM_LB_W02_054,
+        COST_CONFIRM_LB_W02_055,
     }
 
 

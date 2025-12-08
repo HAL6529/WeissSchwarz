@@ -63,6 +63,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_031;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_038;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_054;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_055;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
@@ -685,6 +686,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_LB_W02_031 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_031;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_038 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_038;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_054 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_054;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_055 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_055;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
@@ -1011,6 +1013,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_031 = "次の能力を使用しますか。:" + "【自】 このカードがアタックした時、クライマックス置場に「たった一つの取り柄」があるなら、あなたは自分の山札の上から1枚を、ストック置場に置き、そのターン中、このカードのパワーを＋3000。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_038 = "次の能力を使用しますか。:" + "【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_054 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_055 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「リトルバスターズ！」があるなら、あなたはコストを払ってよい。そうしたら、自分の控え室のキャラを1枚選び、手札に戻す。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER = "ドローアイコンがトリガーしました。ドローしますか。";
         public string YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER = "バウンスアイコンがトリガーされました。相手のカードをバウンスしますか";
