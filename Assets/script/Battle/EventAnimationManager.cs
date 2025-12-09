@@ -924,6 +924,12 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.LB_W02_069:
+                    //※イベント
+                    //あなたは相手の前列のキャラを1枚選び、控え室に置く。
+                    PayCost(2);
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_12T:
                 case EnumController.CardNo.LB_W02_093:
                     //※イベント
