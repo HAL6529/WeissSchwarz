@@ -192,6 +192,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_033:
             case EnumController.CardNo.LB_W02_038:
             case EnumController.CardNo.LB_W02_042:
+            case EnumController.CardNo.LB_W02_069:
                 minNum = 1;
                 maxNum = 1;
                 break;
@@ -241,6 +242,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     // 前列のカードだけ対象
                     case EnumController.CardNo.DC_W01_05T:
                     case EnumController.CardNo.P3_S01_045:
+                    case EnumController.CardNo.LB_W02_069:
                         if (i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -369,6 +371,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
+            case EnumController.CardNo.LB_W02_069:
                 if (cnt >= 5)
                 {
                     // イベントカードの場合は処理後に控室にカードを追加
@@ -570,6 +573,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 case EnumController.CardNo.P3_S01_052:
                 case EnumController.CardNo.P3_S01_060:
                 case EnumController.CardNo.P3_S01_069:
+                case EnumController.CardNo.LB_W02_069:
                     // 相手のカードを控室に送る
                     if (ButtonSelectedNumList[i])
                     {
@@ -645,6 +649,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_022:
             case EnumController.CardNo.LB_W02_044:
+            case EnumController.CardNo.LB_W02_069:
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 break;
