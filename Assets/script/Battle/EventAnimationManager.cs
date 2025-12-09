@@ -505,6 +505,8 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     return;
                 case EnumController.CardNo.LB_W02_16T:
+                case EnumController.CardNo.LB_W02_094:
+                    //※イベント
                     // あなたは自分のクロックを1枚選び、手札に戻す。このカードを思い出にする。
                     PayCost(3);
                     if (m_GameManager.myClockList.Count == 0)
