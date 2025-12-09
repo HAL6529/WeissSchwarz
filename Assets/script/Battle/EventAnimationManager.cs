@@ -902,6 +902,24 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     return;
+                case EnumController.CardNo.LB_W02_043:
+                    //※イベント
+                    //あなたは自分のキャラすべてに、そのターン中、パワーを＋1500。
+                    int count = 0;
+                    int power = 1500;
+
+                    for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
+                    {
+                        if (m_GameManager.myFieldList[i] != null)
+                        {
+                            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+                        }
+                    }
+                    m_GameManager.GraveYardList.Add(m_GameManager.myHandList[handNum]);
+                    m_GameManager.myHandList.RemoveAt(handNum);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_054:
                     //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
                     EffectWhenAct(m_BattleModeCard);
