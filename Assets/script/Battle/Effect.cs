@@ -437,6 +437,30 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action);
                 }
                 return;
+            //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
+            case EnumController.CardNo.LB_W02_057:
+                switch (m_BattleMyMainCardAvility.PlaceNum)
+                {
+                    case 0:
+                        enemyPlace = 2;
+                        break;
+                    case 1:
+                        enemyPlace = 1;
+                        break;
+                    case 2:
+                        enemyPlace = 0;
+                        break;
+                    default:
+                        break;
+                }
+                if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 0 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
+                {
+                    Action action = new Action(m_GameManager, EnumController.Action.LB_W02_057);
+                    action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                    action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+                    m_GameManager.ActionList.Add(action);
+                }
+                return;
             default:
                 return;
         }

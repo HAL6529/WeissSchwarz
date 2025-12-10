@@ -50,6 +50,7 @@ namespace EnumController
         P3_S01_088,
         LB_W02_003,
         LB_W02_031,
+        LB_W02_057,
         LB_W02_062,
     }
 

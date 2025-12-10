@@ -791,6 +791,16 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
         }
 
+        //“赤ずきん”美魚の効果
+        //【永】 あなたのストックが7枚以上なら、このカードのパワーを＋2500。
+        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_057)
+        {
+            if (m_GameManager.myStockList.Count >= 7)
+            {
+                FieldPower += 2500;
+            }
+        }
+
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック

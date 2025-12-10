@@ -504,6 +504,13 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myClockList.RemoveAt(m_GameManager.myClockList.Count - 1);
                     m_GameManager.Syncronize();
                     return;
+                case EnumController.CardNo.LB_W02_057:
+                    //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
+                    m_EnemyMainCardsManager.CallReverse(enemyPlace);
+                    m_BattleStrix.RpcToAll("CallMyReverse", enemyPlace, m_GameManager.isTurnPlayer);
+                    m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_16T:
                 case EnumController.CardNo.LB_W02_094:
                     //※イベント
