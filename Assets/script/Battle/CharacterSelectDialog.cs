@@ -187,6 +187,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_007:
+            case EnumController.CardNo.LB_W02_013:
             case EnumController.CardNo.LB_W02_018:
             case EnumController.CardNo.LB_W02_019:
             case EnumController.CardNo.LB_W02_033:
@@ -308,6 +309,14 @@ public class CharacterSelectDialog : MonoBehaviour
                             cnt++;
                         }
                         break;
+                    // スタンドしているキャラのみ対象
+                    case EnumController.CardNo.LB_W02_013:
+                        if (m_MyMainCardsManager.GetState(i) != EnumController.State.STAND)
+                        {
+                            buttons[i].interactable = false;
+                            cnt++;
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -347,6 +356,7 @@ public class CharacterSelectDialog : MonoBehaviour
             case EnumController.CardNo.LB_W02_003:
             case EnumController.CardNo.LB_W02_004:
             case EnumController.CardNo.LB_W02_007:
+            case EnumController.CardNo.LB_W02_013:
             case EnumController.CardNo.LB_W02_042:
             case EnumController.CardNo.LB_W02_033:
             case EnumController.CardNo.LB_W02_038:
@@ -615,6 +625,10 @@ public class CharacterSelectDialog : MonoBehaviour
                     {
                         m_BattleStrix.RpcToAll("CallMyRest", i, m_GameManager.isTurnPlayer);
                     }
+                    break;
+                case EnumController.CardNo.LB_W02_013:
+                    //自分のカードをレストする
+                    m_MyMainCardsManager.CallOnRest(i);
                     break;
                 case EnumController.CardNo.LB_W02_019:
                     //あなたはレベル1以下の相手のキャラを1枚選び、ストック置場に置く。

@@ -873,6 +873,10 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.LB_W02_013:
+                    //【自】 このカードがプレイされて舞台に置かれた時、あなたは【スタンド】している自分のキャラを1枚選び、【レスト】する。
+                    m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+                    return;
                 case EnumController.CardNo.LB_W02_018:
                     //※イベント
                     //あなたはレベル0以下の相手の前列のキャラを1枚選び、手札に戻す。このカードをストック置場に置く。
