@@ -307,6 +307,16 @@ public class Effect : MonoBehaviour
                     m_GameManager.ActionList.Add(action_P3_S01_088);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_013:
+                //【自】 このカードがプレイされて舞台に置かれた時、あなたは【スタンド】している自分のキャラを1枚選び、【レスト】する。
+                Action action_LB_W02_013 = new Action(m_GameManager, EnumController.Action.LB_W02_013);
+                action_LB_W02_013.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_LB_W02_013.SetParamaterBattleStrix(m_BattleStrix);
+                action_LB_W02_013.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_LB_W02_013.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                action_LB_W02_013.SetParamaterNum(place);
+                m_GameManager.ActionList.Add(action_LB_W02_013);
+                return;
             default:
                 break;
         }

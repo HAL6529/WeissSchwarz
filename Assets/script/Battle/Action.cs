@@ -178,6 +178,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_026:
             case EnumController.Action.P3_S01_065_1:
             case EnumController.Action.LB_W02_003:
+            case EnumController.Action.LB_W02_013:
             case EnumController.Action.LB_W02_062:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
