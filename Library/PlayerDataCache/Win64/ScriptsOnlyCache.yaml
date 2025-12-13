@@ -95,12 +95,14 @@ ScriptsOnlyBuild:
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
     Unity.2D.Tilemap.Editor.dll:
+    - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
+    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -416,6 +418,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onSearchCardListImageButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onSearchCardListImageButton
@@ -1115,6 +1120,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: DeckListPanelUtil
     methodName: onButton
+  - assembly: Assembly-CSharp
+    fullTypeName: CardInfoUtil
+    methodName: onAddListButton
   - assembly: Assembly-CSharp
     fullTypeName: CardInfoUtil
     methodName: onAddListButton
@@ -3158,7 +3166,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7892}
     - Class: 114
-      Script: {instanceID: 262072}
+      Script: {instanceID: 262608}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

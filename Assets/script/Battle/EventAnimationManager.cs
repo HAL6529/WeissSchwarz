@@ -981,6 +981,15 @@ public class EventAnimationManager : MonoBehaviour
             // Counter—p
             switch (m_BattleModeCard.cardNo)
             {
+                case EnumController.CardNo.LB_W02_076:
+                    EffectWhenAct(m_BattleModeCard);
+                    pumpPoint = 1000;
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
+                    m_GameManager.myHandList.RemoveAt(handNum);
+                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_07T:
                 case EnumController.CardNo.P3_S01_03T:
                 case EnumController.CardNo.P3_S01_009:
