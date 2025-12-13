@@ -961,6 +961,12 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
+                case EnumController.CardNo.LB_W02_080:
+                    //【自】［(1)］ このカードがアタックした時、クライマックス置場に「危機一髪！」があるなら、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                    PayCost(1);
+                    m_GameManager.Draw();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_12T:
                 case EnumController.CardNo.LB_W02_093:
                     //※イベント
