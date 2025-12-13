@@ -528,8 +528,10 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.LB_W02_17T:
                     //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                    EffectWhenAct(m_BattleModeCard);
                     PayCost(1);
                     m_MainPowerUpDialog.SetBattleMordCard(m_BattleModeCard);
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.LB_W02_19T:
                     // 【自】［(1)］ このカードとバトルしているレベル2以上のキャラが【リバース】した時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
@@ -628,6 +630,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_12T:
                 case EnumController.CardNo.P3_S01_022:
@@ -643,6 +646,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.Syncronize();
                     m_GameManager.Draw();
+                    m_GameManager.ExecuteActionList();
                     break;
                 case EnumController.CardNo.P3_S01_018:
                     // あなたは相手のキャラを1枚選び、そのターン中、レベルを－1。
@@ -654,6 +658,7 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 2000);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_040:
                     //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
@@ -787,8 +792,8 @@ public class EventAnimationManager : MonoBehaviour
                     //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
                     PayCost(1);
                     m_MyMainCardsManager.CallOnRest(place);
-                    m_GameManager.Syncronize();
                     m_GameManager.Draw();
+                    m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
@@ -816,6 +821,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.GraveYardList.Add(m_GameManager.myClockList[cnt - 1]);
                     m_GameManager.myClockList.RemoveAt(cnt - 1);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                     return;
                 case EnumController.CardNo.P3_S01_093:
@@ -824,6 +830,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.P3_S01_094:
                     //【カウンター】 あなたは相手のキャラを1枚選び、【レスト】する。
@@ -841,6 +848,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.myMemoryList.Add(m_BattleModeCard);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 default:
                     break;
@@ -967,6 +975,11 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Draw();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.LB_W02_077:
+                    //【自】 このカードがアタックした時、クライマックス置場に「２つの長い影」があるなら、あなたは1枚引く。
+                    m_GameManager.Draw();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_12T:
                 case EnumController.CardNo.LB_W02_093:
                     //※イベント
@@ -1078,6 +1091,7 @@ public class EventAnimationManager : MonoBehaviour
                     PayCost(2);
                     m_MyMainCardsManager.CallOnRest(place);
                     m_GameManager.ToHandFromField(place);
+                    m_GameManager.ExecuteActionList();
                     break;
                 case EnumController.CardNo.P3_S01_11T:
                 case EnumController.CardNo.P3_S01_017:
@@ -1173,6 +1187,25 @@ public class EventAnimationManager : MonoBehaviour
                     m_MyMainCardsManager.CallOnRest(place);
                     m_MyMainCardsManager.CallPutHandFromField(place);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
+                default:
+                    break;
+            }
+            switch (m_BattleModeCard.cardNo)
+            {
+                case EnumController.CardNo.LB_W02_077:
+                    //【起】［(3)］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                    EffectWhenAct(m_BattleModeCard);
+                    PayCost(3);
+                    if (m_GameManager.myClockList.Count == 0)
+                    {
+                        return;
+                    }
+                    m_GameManager.GraveYardList.Add(m_GameManager.myClockList[m_GameManager.myClockList.Count - 1]);
+                    m_GameManager.myClockList.RemoveAt(m_GameManager.myClockList.Count - 1);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 default:
                     break;
