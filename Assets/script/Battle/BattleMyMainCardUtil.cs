@@ -671,6 +671,15 @@ public class BattleMyMainCardUtil : MonoBehaviour
             FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
         }
 
+        //“メルヘン少女”小毬
+        //【永】 他のあなたの「“着ぐるみ”クド」すべてに、パワーを＋1000。
+        if (m_BattleModeCard.name == "“着ぐるみ”クド")
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.LB_W02_076);
+            FieldPower += 1000 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+        }
+
         // HM - A06型 ミナツの効果
         // 他の《バナナ》のあなたのキャラがいるなら、このカードのパワーを＋1500。
         if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_13T)
