@@ -804,6 +804,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_077:
+                //【起】［(3)］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                if (ConfirmStockForCost(3))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_077_2, card, num);
+                }
+                return;
             default:
                 return;
         }
@@ -1183,6 +1190,26 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "リトルバスターズ！")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_077:
+                //【自】 このカードがアタックした時、クライマックス置場に「２つの長い影」があるなら、あなたは1枚引く。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "２つの長い影")
+                {
+                    Action action_LB_W02_077 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                    action_LB_W02_077.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_LB_W02_077.SetParamaterAttackStatus(status);
+                    action_LB_W02_077.SetParamaterNum(place);
+
+                    m_GameManager.ActionList.Add(action_LB_W02_077);
+                    m_EventAnimationManager.AnimationStart(card, place);
+                    m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                     return true;
                 }
                 return false;
