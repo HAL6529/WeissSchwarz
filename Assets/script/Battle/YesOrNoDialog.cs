@@ -303,6 +303,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_055;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_080;
+                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
@@ -467,6 +470,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(attackStatus);
@@ -592,6 +596,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(attackStatus);

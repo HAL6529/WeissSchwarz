@@ -1186,6 +1186,19 @@ public class Effect : MonoBehaviour
                     return true;
                 }
                 return false;
+            case EnumController.CardNo.LB_W02_080:
+                //【自】［(1)］ このカードがアタックした時、クライマックス置場に「危機一髪！」があるなら、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "危機一髪！" && ConfirmStockForCost(1))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080, card, place, status);
+                    return true;
+                }
+                return false;
             default:
                 return false;
         }
