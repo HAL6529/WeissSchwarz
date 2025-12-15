@@ -629,6 +629,7 @@ public class StringValues
     public string P3_S01_055_NAME = "順平＆トリスメギストス";
     public string P3_S01_081_NAME = "ゆかり＆イシス";
     public string LB_W02_004_NAME = "“リーダー”恭介";
+    public string LB_W02_080_NAME = "宮沢 謙吾";
 
     public StringValues() 
     {

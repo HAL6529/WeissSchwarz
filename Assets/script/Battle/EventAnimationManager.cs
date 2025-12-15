@@ -310,6 +310,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_051:
                 case EnumController.CardNo.P3_S01_082:
                 case EnumController.CardNo.LB_W02_002:
+                case EnumController.CardNo.LB_W02_078:
                     m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
                     return;
                 default:
@@ -980,6 +981,12 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Draw();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.LB_W02_078:
+                    //【自】 あなたが『助太刀』を使った時、あなたはバトルしている自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 500);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_12T:
                 case EnumController.CardNo.LB_W02_093:
                     //※イベント
@@ -996,6 +1003,7 @@ public class EventAnimationManager : MonoBehaviour
             {
                 case EnumController.CardNo.LB_W02_076:
                     EffectWhenAct(m_BattleModeCard);
+                    EffectWhenCounter(m_BattleModeCard, place);
                     pumpPoint = 1000;
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.RemoveAt(handNum);
@@ -1010,6 +1018,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.P3_S01_091:
                 case EnumController.CardNo.LB_W02_040:
                     EffectWhenAct(m_BattleModeCard);
+                    EffectWhenCounter(m_BattleModeCard, place);
                     pumpPoint = 2000;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -1020,6 +1029,7 @@ public class EventAnimationManager : MonoBehaviour
                     return;
                 case EnumController.CardNo.AT_WX02_A05:
                     EffectWhenAct(m_BattleModeCard);
+                    EffectWhenCounter(m_BattleModeCard, place);
                     pumpPoint = 2500;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -1031,6 +1041,7 @@ public class EventAnimationManager : MonoBehaviour
                 case EnumController.CardNo.DC_W01_17T:
                 case EnumController.CardNo.P3_S01_067:
                     EffectWhenAct(m_BattleModeCard);
+                    EffectWhenCounter(m_BattleModeCard, place);
                     pumpPoint = 3000;
                     PayCost(1);
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
@@ -1278,6 +1289,21 @@ public class EventAnimationManager : MonoBehaviour
         action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
         action.SetParamaterBattleStrix(m_BattleStrix);
         action.SetParamaterBattleModeCard(card);
+        m_GameManager.ActionList.Add(action);
+    }
+
+    /// <summary>
+    /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
+    /// </summary>
+    /// <param name="card"></param>
+    private void EffectWhenCounter(BattleModeCard card, int BattlePlace)
+    {
+        Action action = new Action(m_GameManager, EnumController.Action.EffectWhenCounter);
+        action.SetParamaterEventAnimationManager(this);
+        action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+        action.SetParamaterBattleStrix(m_BattleStrix);
+        action.SetParamaterBattleModeCard(card);
+        action.SetParamaterNum(BattlePlace);
         m_GameManager.ActionList.Add(action);
     }
 }

@@ -456,6 +456,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
+    /// </summary>
+    public void WhenCounter(int BattlePlace)
+    {
+        m_Effect.WhenCounter(m_BattleModeCard, PlaceNum, BattlePlace);
+    }
+
+    /// <summary>
     /// 「【自】 あなたがレベルアップした時」の効果
     /// </summary>
     public void WhenLevelUp()

@@ -173,6 +173,10 @@ public class YesOrNoDialog : MonoBehaviour
                         sulvageCardName = stringValues.LB_W02_004_NAME;
                         cost = 1;
                         break;
+                    case EnumController.CardNo.LB_W02_078:
+                        sulvageCardName = stringValues.LB_W02_080_NAME;
+                        cost = 1;
+                        break;
                     default:
                         sulvageCardName = "";
                         cost = 0;

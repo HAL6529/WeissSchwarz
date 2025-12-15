@@ -196,6 +196,18 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
+    /// </summary>
+    public void ConfirmEffectWhenCounter(int BattlePlace)
+    {
+        Debug.Log("ConfirmEffectWhenCounter");
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].WhenCounter(BattlePlace);
+        }
+    }
+
+    /// <summary>
     /// 「【自】 他のあなたのキャラがプレイされて舞台に置かれた時」に発動する効果を持っているカードが場にないか確認する
     /// </summary>
     public void ConfirmEffectWhenMyCardPut(int PlaceNum)

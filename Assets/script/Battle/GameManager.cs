@@ -304,6 +304,7 @@ public class GameManager : MonoBehaviour
 
     public void ExecuteActionList()
     {
+        Debug.Log("ExecuteActionList");
         //パワー0のキャラが存在する場合はアンコールダイアログを呼び出す
         for (int i = 0; i < myFieldList.Count; i++)
         {
@@ -330,6 +331,7 @@ public class GameManager : MonoBehaviour
 
         if (ActionList.Count > 0)
         {
+            Debug.Log("ExecuteActionList_SelectActionDialog");
             m_DialogManager.SelectActionDialog(ActionList);
             return;
         }
