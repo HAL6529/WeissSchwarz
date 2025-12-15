@@ -62,7 +62,6 @@ public class SelectActionDialog : MonoBehaviour
         }else if(ActionList.Count == 1)
         {
             ActionList[0].Execute(0);
-            // OffDialog();
             return;
         }
 
@@ -71,7 +70,6 @@ public class SelectActionDialog : MonoBehaviour
         if (haveDamageForFrontAttack2ForDamagedAction != -1)
         {
             ActionList[haveDamageForFrontAttack2ForDamagedAction].Execute(haveDamageForFrontAttack2ForDamagedAction);
-            OffDialog();
             return;
         }
 
@@ -81,7 +79,6 @@ public class SelectActionDialog : MonoBehaviour
         if(haveRefreshAction != -1)
         {
             ActionList[haveRefreshAction].Execute(haveRefreshAction);
-            OffDialog();
             return;
         }
 
@@ -90,7 +87,6 @@ public class SelectActionDialog : MonoBehaviour
         if (havePowerCheckForLevelUpDialog != -1)
         {
             ActionList[havePowerCheckForLevelUpDialog].Execute(havePowerCheckForLevelUpDialog);
-            // OffDialog();
             return;
         }
 
@@ -99,7 +95,14 @@ public class SelectActionDialog : MonoBehaviour
         if (EffectWhenAct != -1)
         {
             ActionList[EffectWhenAct].Execute(EffectWhenAct);
-            OffDialog();
+            return;
+        }
+
+        // 【自】 あなたが『助太刀』を使った時があれば優先的に処理する
+        int EffectWhenCounter = HaveParamater(EnumController.Action.EffectWhenCounter);
+        if (EffectWhenCounter != -1)
+        {
+            ActionList[EffectWhenCounter].Execute(EffectWhenCounter);
             return;
         }
 
@@ -108,7 +111,6 @@ public class SelectActionDialog : MonoBehaviour
         if (haveClockAndTwoDraw2 != -1)
         {
             ActionList[haveClockAndTwoDraw2].Execute(haveClockAndTwoDraw2);
-            // OffDialog();
             return;
         }
 
@@ -117,7 +119,6 @@ public class SelectActionDialog : MonoBehaviour
         if (haveClockAndTwoDraw != -1)
         {
             ActionList[haveClockAndTwoDraw].Execute(haveClockAndTwoDraw);
-            // OffDialog();
             return;
         }
 
@@ -146,6 +147,9 @@ public class SelectActionDialog : MonoBehaviour
             case EnumController.Action.ClockAndTwoDraw:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "ClockAndTwoDraw";
+                break;
+            case EnumController.Action.DamageForFrontAttack:
+                RightBtn();
                 break;
             case EnumController.Action.EffectWhenAct:
                 text1.text = "このメッセージが表示されるのはおかしい";
@@ -268,6 +272,11 @@ public class SelectActionDialog : MonoBehaviour
             case EnumController.Action.LB_W02_062:
                 text1.text = "【自】 この能力は、1ターンにつき2回しか使えない。";
                 text2.text = "あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。";
+                text3.text = "";
+                break;
+            case EnumController.Action.LB_W02_078:
+                text1.text = "【自】 あなたが『助太刀』を使った時、";
+                text2.text = "あなたはバトルしている自分のキャラを1枚選び、そのターン中、パワーを＋500。";
                 text3.text = "";
                 break;
             case EnumController.Action.TurnChange:

@@ -27,6 +27,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_051:
             case EnumController.CardNo.P3_S01_082:
             case EnumController.CardNo.LB_W02_002:
+            case EnumController.CardNo.LB_W02_078:
                 if (ConfirmStockForCost(1))
                 {
                     Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);
@@ -75,6 +76,32 @@ public class Effect : MonoBehaviour
                     action_LB_W02_062.SetParamaterNum(placeNum);
                     m_GameManager.ActionList.Add(action_LB_W02_062);
                 }
+                return;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
+    /// </summary>
+    public void WhenCounter(BattleModeCard m_BattleModeCard, int placeNum, int BattlePlace)
+    {
+        if (m_BattleModeCard == null)
+        {
+            return;
+        }
+
+        switch (m_BattleModeCard.cardNo)
+        {
+            case EnumController.CardNo.LB_W02_078:
+                //【自】 あなたが『助太刀』を使った時、あなたはバトルしている自分のキャラを1枚選び、そのターン中、パワーを＋500。
+                Action action_LB_W02_078 = new Action(m_GameManager, EnumController.Action.LB_W02_078);
+                action_LB_W02_078.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_LB_W02_078.SetParamaterBattleStrix(m_BattleStrix);
+                action_LB_W02_078.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_LB_W02_078.SetParamaterNum(BattlePlace);
+                m_GameManager.ActionList.Add(action_LB_W02_078);
                 return;
             default:
                 break;

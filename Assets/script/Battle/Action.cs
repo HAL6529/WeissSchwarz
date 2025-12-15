@@ -96,6 +96,10 @@ public class Action : MonoBehaviour
             case EnumController.Action.EffectWhenAct:
                 m_MyMainCardsManager.ConfirmEffectWhenAct();
                 break;
+            // 「あなたが『助太刀』を使った時、」の効果のチェック
+            case EnumController.Action.EffectWhenCounter:
+                m_MyMainCardsManager.ConfirmEffectWhenCounter(paramaterNum);
+                break;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
@@ -180,6 +184,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.LB_W02_003:
             case EnumController.Action.LB_W02_013:
             case EnumController.Action.LB_W02_062:
+            case EnumController.Action.LB_W02_078:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
@@ -192,7 +197,7 @@ public class Action : MonoBehaviour
             default:
                 break;
         }
-        m_GameManager.ExecuteActionList();
+       m_GameManager.ExecuteActionList();
     }
 
     public EnumController.Action GetParamater()

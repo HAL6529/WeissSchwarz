@@ -15,6 +15,7 @@ namespace EnumController
         DamageForFrontAttack2ForCancel,
         DamageForFrontAttack2ForDamaged,
         EffectWhenAct,
+        EffectWhenCounter,
         EventAnimationManager,
         ExecuteAttack2,
         PowerCheckForLevelUpDialog,
@@ -53,6 +54,7 @@ namespace EnumController
         LB_W02_031,
         LB_W02_057,
         LB_W02_062,
+        LB_W02_078,
     }
 
     public enum Attack
