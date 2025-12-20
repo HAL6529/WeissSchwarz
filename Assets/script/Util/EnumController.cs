@@ -55,6 +55,7 @@ namespace EnumController
         LB_W02_057,
         LB_W02_062,
         LB_W02_078,
+        LB_W02_083,
     }
 
     public enum Attack
@@ -634,6 +635,7 @@ namespace EnumController
         COST_CONFIRM_LB_W02_077_1,
         COST_CONFIRM_LB_W02_077_2,
         COST_CONFIRM_LB_W02_080,
+        COST_CONFIRM_LB_W02_083,
     }
 
 

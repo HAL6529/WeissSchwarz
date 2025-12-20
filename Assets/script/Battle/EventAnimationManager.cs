@@ -491,6 +491,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
                     return;
                 case EnumController.CardNo.LB_W02_14T:
+                case EnumController.CardNo.LB_W02_083:
                     // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(2);
@@ -499,11 +500,13 @@ public class EventAnimationManager : MonoBehaviour
 
                     if (m_GameManager.myClockList.Count == 0)
                     {
+                        m_GameManager.ExecuteActionList();
                         return;
                     }
                     m_GameManager.GraveYardList.Add(m_GameManager.myClockList[m_GameManager.myClockList.Count - 1]);
                     m_GameManager.myClockList.RemoveAt(m_GameManager.myClockList.Count - 1);
                     m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
                     return;
                 case EnumController.CardNo.LB_W02_057:
                     //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
@@ -1075,6 +1078,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
                     break;
                 case EnumController.CardNo.LB_W02_14T:
+                case EnumController.CardNo.LB_W02_083:
                     // 【自】 あなたがレベルアップした時、あなたは自分の山札を上から1枚選び、ストック置場に置く。
                     m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
                     m_GameManager.myDeckList.RemoveAt(0);
