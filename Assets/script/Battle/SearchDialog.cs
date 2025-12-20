@@ -82,6 +82,7 @@ public class SearchDialog : MonoBehaviour
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.LB_W02_001:
+            case EnumController.SearchDialogParamater.LB_W02_088:
             case EnumController.SearchDialogParamater.LB_W02_093:
                 m_Mode = Mode.My_Deck_Search;
                 break;
@@ -104,6 +105,7 @@ public class SearchDialog : MonoBehaviour
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.LB_W02_001:
+            case EnumController.SearchDialogParamater.LB_W02_088:
             case EnumController.SearchDialogParamater.LB_W02_093:
                 SulvageMaxNum = 1;
                 SulvageMinNum = 0;
@@ -174,6 +176,18 @@ public class SearchDialog : MonoBehaviour
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
                     if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    {
+                        SearchButtonUtilParamaterList[i].isEnable = false;
+                        cnt--;
+                    }
+                }
+                break;
+            case EnumController.SearchDialogParamater.LB_W02_088:
+                //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
+                {
+                    BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
+                    if (!temp.name.Contains("小毬") )
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;

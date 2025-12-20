@@ -991,6 +991,13 @@ public class EventAnimationManager : MonoBehaviour
                     m_GameManager.Syncronize();
                     m_GameManager.ExecuteActionList();
                     return;
+                case EnumController.CardNo.LB_W02_088:
+                    //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    EffectWhenAct(m_BattleModeCard);
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_088);
+                    return;
                 case EnumController.CardNo.LB_W02_12T:
                 case EnumController.CardNo.LB_W02_093:
                     //※イベント
