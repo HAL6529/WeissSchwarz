@@ -86,6 +86,7 @@ public class MainPowerUpDialog : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.LB_W02_17T:
+            case EnumController.CardNo.LB_W02_087:
                 for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
                 {
                     // “®•¨‚Ì“Á’¥‚ðŽ‚Á‚Ä‚¢‚È‚¢ƒLƒƒƒ‰‚ð”ñŠˆ«‚É
@@ -140,6 +141,7 @@ public class MainPowerUpDialog : MonoBehaviour
                 m_GameManager.ExecuteActionList();
                 break;
             case EnumController.CardNo.LB_W02_17T:
+            case EnumController.CardNo.LB_W02_087:
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 500);
                 m_GameManager.Syncronize();
                 break;

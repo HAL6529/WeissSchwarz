@@ -531,6 +531,7 @@ public class EventAnimationManager : MonoBehaviour
                     m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_16T, handNum);
                     return;
                 case EnumController.CardNo.LB_W02_17T:
+                case EnumController.CardNo.LB_W02_087:
                     //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
                     EffectWhenAct(m_BattleModeCard);
                     PayCost(1);

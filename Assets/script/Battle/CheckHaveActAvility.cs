@@ -36,6 +36,7 @@ public class CheckHaveActAvility
             case EnumController.CardNo.LB_W02_033:
             case EnumController.CardNo.LB_W02_037:
             case EnumController.CardNo.LB_W02_042:
+            case EnumController.CardNo.LB_W02_087:
                 return 1;
             case EnumController.CardNo.P3_S01_028:
                 return 2;
