@@ -316,6 +316,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_080;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_083;
+                break;
             case EnumController.YesOrNoDialogParamater.VOID:
             default:
                 str = "無効メッセージ";
@@ -535,6 +538,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;

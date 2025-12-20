@@ -122,6 +122,8 @@ public class Effect : MonoBehaviour
         switch (m_BattleModeCard.cardNo)
         {
             case EnumController.CardNo.LB_W02_14T:
+            case EnumController.CardNo.LB_W02_083:
+                //【自】 あなたがレベルアップした時、あなたは自分の山札を上から1枚選び、ストック置場に置く。
                 Action action_LB_W02_14T = new Action(m_GameManager, EnumController.Action.LB_W02_14T);
                 action_LB_W02_14T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_LB_W02_14T.SetParamaterBattleStrix(m_BattleStrix);
@@ -836,6 +838,13 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(3))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_077_2, card, num);
+                }
+                return;
+            case EnumController.CardNo.LB_W02_083:
+                //【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083, card, num);
                 }
                 return;
             default:
