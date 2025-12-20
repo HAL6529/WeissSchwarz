@@ -716,6 +716,7 @@ public class Effect : MonoBehaviour
                 return;
             //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
             case EnumController.CardNo.LB_W02_17T:
+            case EnumController.CardNo.LB_W02_087:
                 if (ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T, card, num);
@@ -877,6 +878,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_083:
             case EnumController.CardNo.LB_W02_001:
             case EnumController.CardNo.LB_W02_037:
+            case EnumController.CardNo.LB_W02_087:
                 return new PowerInstance.Assist(500);
             default:
                 return new PowerInstance.Assist(0);
