@@ -68,6 +68,7 @@ public class StringValues
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_077_2;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_080;
     public string YesOrNoDialog_COST_CONFIRM_LB_W02_083;
+    public string YesOrNoDialog_COST_CONFIRM_LB_W02_088;
     public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
     public string SearchDialog_SearchMessage;
     public string ConfirmSearchOrSulvageCardDialog_Search;
@@ -696,6 +697,7 @@ public class StringValues
                 YesOrNoDialog_COST_CONFIRM_LB_W02_077_2 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_077_2;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_080 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_080;
                 YesOrNoDialog_COST_CONFIRM_LB_W02_083 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_083;
+                YesOrNoDialog_COST_CONFIRM_LB_W02_088 = japanese.YesOrNoDialog_COST_CONFIRM_LB_W02_088;
                 YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = japanese.YesOrNoDialog_COST_CONFIRM_SEND_MEMORY;
                 SearchDialog_SearchMessage = japanese.SearchDialog_SearchMessage;
                 ConfirmSearchOrSulvageCardDialog_Search = japanese.ConfirmSearchOrSulvageCardDialog_Search;
@@ -1027,6 +1029,7 @@ public class StringValues
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_077_2 = "次の能力を使用しますか。:" + "【起】［(3)］ あなたは自分のクロックを上から1枚選び、控え室に置く。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_080 = "次の能力を使用しますか。:" + "【自】［(1)］ このカードがアタックした時、クライマックス置場に「危機一髪！」があるなら、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。";
         public string YesOrNoDialog_COST_CONFIRM_LB_W02_083 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。";
+        public string YesOrNoDialog_COST_CONFIRM_LB_W02_088 = "次の能力を使用しますか。:" + "【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。";
         public string YesOrNoDialog_COST_CONFIRM_SEND_MEMORY = "次の能力を使用しますか。:" + "【起】［(1)］ このカードを思い出にする。";
         public string YesOrNoDialog_CONFIRM_BOOK_TRIGGER = "ドローアイコンがトリガーしました。ドローしますか。";
         public string YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER = "バウンスアイコンがトリガーされました。相手のカードをバウンスしますか";

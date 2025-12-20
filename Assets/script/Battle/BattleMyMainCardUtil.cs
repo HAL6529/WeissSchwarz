@@ -762,6 +762,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
             }
         }
 
+        // 	不思議の国のクドの効果
+        //【永】 相手のターン中、他のあなたのキャラすべてに、パワーを＋500。
+        if (!m_GameManager.isTurnPlayer)
+        {
+            List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
+            cardNoList.Add(EnumController.CardNo.LB_W02_088);
+            FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
+            if (cardNoList.Contains(m_BattleModeCard.cardNo))
+            {
+                // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
+                FieldPower = FieldPower - 500;
+            }
+        }
+
         //“ナース服”小毬の効果
         //【永】 あなたのターン中、他のあなたのキャラすべてに、パワーを＋X。Xはそのキャラのレベル＊500に等しい。
         if (m_GameManager.isTurnPlayer)
