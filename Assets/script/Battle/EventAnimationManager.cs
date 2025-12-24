@@ -921,6 +921,12 @@ public class EventAnimationManager : MonoBehaviour
                         return;
                     }
                     return;
+                case EnumController.CardNo.LB_W02_034:
+                    //【自】 このカードがアタックした時、クライマックス置場に「優等生のフリをした偽善者」があるなら、そのターン中、このカードのパワーを＋3000。
+                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 3000);
+                    m_GameManager.Syncronize();
+                    m_GameManager.ExecuteActionList();
+                    return;
                 case EnumController.CardNo.LB_W02_038:
                     //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く
                     EffectWhenAct(m_BattleModeCard);
@@ -1217,6 +1223,14 @@ public class EventAnimationManager : MonoBehaviour
             }
             switch (m_BattleModeCard.cardNo)
             {
+                case EnumController.CardNo.LB_W02_034:
+                    //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「葉留佳」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                    EffectWhenAct(m_BattleModeCard);
+                    PayCost(2);
+                    m_MyMainCardsManager.CallOnRest(place);
+                    m_GameManager.Syncronize();
+                    m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_034, handNum);
+                    return;
                 case EnumController.CardNo.LB_W02_077:
                     //【起】［(3)］ あなたは自分のクロックを上から1枚選び、控え室に置く。
                     EffectWhenAct(m_BattleModeCard);

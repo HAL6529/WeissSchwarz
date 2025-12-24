@@ -82,6 +82,7 @@ public class SearchDialog : MonoBehaviour
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.LB_W02_001:
+            case EnumController.SearchDialogParamater.LB_W02_034:
             case EnumController.SearchDialogParamater.LB_W02_088:
             case EnumController.SearchDialogParamater.LB_W02_093:
                 m_Mode = Mode.My_Deck_Search;
@@ -105,6 +106,7 @@ public class SearchDialog : MonoBehaviour
             case EnumController.SearchDialogParamater.AT_WX02_A07:
             case EnumController.SearchDialogParamater.P3_S01_077:
             case EnumController.SearchDialogParamater.LB_W02_001:
+            case EnumController.SearchDialogParamater.LB_W02_034:
             case EnumController.SearchDialogParamater.LB_W02_088:
             case EnumController.SearchDialogParamater.LB_W02_093:
                 SulvageMaxNum = 1;
@@ -182,6 +184,18 @@ public class SearchDialog : MonoBehaviour
                     }
                 }
                 break;
+            case EnumController.SearchDialogParamater.LB_W02_034:
+                //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「葉留佳」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
+                {
+                    BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
+                    if (!temp.name.Contains("葉留佳"))
+                    {
+                        SearchButtonUtilParamaterList[i].isEnable = false;
+                        cnt--;
+                    }
+                }
+                break;
             case EnumController.SearchDialogParamater.LB_W02_088:
                 //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
@@ -215,6 +229,7 @@ public class SearchDialog : MonoBehaviour
         {
             m_GameManager.isSearchDialogProcess = false;
             this.gameObject.SetActive(false);
+            m_GameManager.ExecuteActionList();
             return;
         }
 
