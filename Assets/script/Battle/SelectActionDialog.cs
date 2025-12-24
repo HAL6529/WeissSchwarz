@@ -179,52 +179,52 @@ public class SelectActionDialog : MonoBehaviour
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "SulvageDialog";
                 break;
-            case EnumController.Action.DC_W01_07T:
+            case EnumController.Action.DC_W01_07T_1:
                 text1.text = "【自】 他のバトルしているあなたのキャラが【リバース】した時、";
                 text2.text = "あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。";
                 break;
-            case EnumController.Action.DC_W01_10T:
+            case EnumController.Action.DC_W01_10T_1:
                 text1.text = "【【自】 このカードとバトルしているキャラが【リバース】した時、";
                 text2.text = "あなたはそのキャラを山札の上に置いてよい。";
                 break;
-            case EnumController.Action.DC_W01_16T:
+            case EnumController.Action.DC_W01_16T_1:
                 text1.text = "【自】 このカードが【リバース】した時、";
                 text2.text = "このカードとバトルしているキャラのレベルが1以下なら、";
                 text3.text = "あなたはそのキャラを【リバース】してよい。";
                 break;
-            case EnumController.Action.LB_W02_14T:
+            case EnumController.Action.LB_W02_14T_1:
                 text1.text = "【【自】 あなたがレベルアップした時、";
                 text2.text = "あなたは自分の山札を上から1枚選び、ストック置場に置く。";
                 break;
-            case EnumController.Action.P3_S01_01T:
+            case EnumController.Action.P3_S01_01T_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時、";
                 text2.text = "そのターン中、このカードのソウルを＋1。";
                 break;
-            case EnumController.Action.P3_S01_04T:
+            case EnumController.Action.P3_S01_04T_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時、";
                 text2.text = "あなたは自分のキャラを1枚選び、そのターン中、";
                 text3.text = "パワーを＋2000し、ソウルを＋1。";
                 break;
-            case EnumController.Action.P3_S01_07T:
+            case EnumController.Action.P3_S01_07T_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時、";
                 text2.text = "そのターン中、このカードのパワーを＋1500。";
                 break;
-            case EnumController.Action.P3_S01_16T:
+            case EnumController.Action.P3_S01_16T_1:
                 text1.text = "【自】他の《生徒会》のあなたのキャラが";
                 text2.text = "プレイされて舞台に置かれた時、あなたは";
                 text3.text = "自分の山札を上から1枚見て、山札の上か下に置く。";
                 break;
-            case EnumController.Action.P3_S01_001:
+            case EnumController.Action.P3_S01_001_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時";
                 text2.text = "あなたはレベル1以上の自分のキャラを1枚選び";
                 text3.text = "そのターン中、ソウルを＋1。";
                 break;
-            case EnumController.Action.P3_S01_026:
+            case EnumController.Action.P3_S01_026_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時";
                 text2.text = "あなたは自分のキャラを1枚選び";
                 text3.text = "そのターン中、パワーを＋1000。";
                 break;
-            case EnumController.Action.P3_S01_040:
+            case EnumController.Action.P3_S01_040_1:
                 text1.text = "【自】［このカードを【レスト】する］他の《スポーツ》のあなたのキャラが ";
                 text2.text = "プレイされて舞台に置かれた時あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分の山札の上から1枚を、ストック置場に置く。";
@@ -239,7 +239,7 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたはコストを払ってよい。そうしたら、 ";
                 text3.text = "あなたは自分の控え室の「順平＆トリスメギストス」を1枚選び、手札に戻す。";
                 break;
-            case EnumController.Action.P3_S01_076:
+            case EnumController.Action.P3_S01_076_1:
                 text1.text = "【自】［(1) このカードを【レスト】する］ ";
                 text2.text = "他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時";
                 text3.text = "あなたはコストを払ってよい。そうしたら、あなたは1枚引く。";
@@ -254,27 +254,27 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "、あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分の控え室の「ベルベットルーム」を1枚選び、手札に戻す。";
                 break;
-            case EnumController.Action.P3_S01_088:
+            case EnumController.Action.P3_S01_088_1:
                 text1.text = "【自】［(2)］ このカードがプレイされて舞台に置かれた時";
                 text2.text = "あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分のクロックを上から1枚選び、控え室に置く。";
                 break;
-            case EnumController.Action.LB_W02_003:
+            case EnumController.Action.LB_W02_003_1:
                 text1.text = "【自】 この能力は、1ターンにつき2回しか使えない。";
                 text2.text = "あなたが【起】を使った時、あなたは自分のキャラを1枚選び";
                 text3.text = "そのターン中、パワーを＋500。";
                 break;
-            case EnumController.Action.LB_W02_031:
+            case EnumController.Action.LB_W02_031_1:
                 text1.text = "【自】 このカードとバトルしているレベル2以上のキャラが";
                 text2.text = "【リバース】した時、あなたは自分の山札の上から1枚を、";
                 text3.text = "ストック置場に置いてよい。";
                 break;
-            case EnumController.Action.LB_W02_062:
+            case EnumController.Action.LB_W02_062_1:
                 text1.text = "【自】 この能力は、1ターンにつき2回しか使えない。";
                 text2.text = "あなたが【起】を使った時、そのターン中、このカードのパワーを＋1500。";
                 text3.text = "";
                 break;
-            case EnumController.Action.LB_W02_078:
+            case EnumController.Action.LB_W02_078_1:
                 text1.text = "【自】 あなたが『助太刀』を使った時、";
                 text2.text = "あなたはバトルしている自分のキャラを1枚選び、そのターン中、パワーを＋500。";
                 text3.text = "";
