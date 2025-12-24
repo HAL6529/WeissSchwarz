@@ -823,6 +823,13 @@ public class Effect : MonoBehaviour
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num);
                 }
                 return;
+            case EnumController.CardNo.LB_W02_034:
+                //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「葉留佳」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
+                if (ConfirmStockForCost(2))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_034, card, num);
+                }
+                return;
             case EnumController.CardNo.LB_W02_038:
                 //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く。
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038, card, num);
@@ -1222,6 +1229,26 @@ public class Effect : MonoBehaviour
                 if (m_GameManager.MyClimaxCard.name == "たった一つの取り柄" )
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031, card, place, status);
+                    return true;
+                }
+                return false;
+            case EnumController.CardNo.LB_W02_034:
+                //【自】 このカードがアタックした時、クライマックス置場に「優等生のフリをした偽善者」があるなら、そのターン中、このカードのパワーを＋3000。
+                if (m_GameManager.MyClimaxCard == null)
+                {
+                    return false;
+                }
+
+                if (m_GameManager.MyClimaxCard.name == "優等生のフリをした偽善者")
+                {
+                    Action action_LB_W02_034 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
+                    action_LB_W02_034.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
+                    action_LB_W02_034.SetParamaterAttackStatus(status);
+                    action_LB_W02_034.SetParamaterNum(place);
+
+                    m_GameManager.ActionList.Add(action_LB_W02_034);
+                    m_EventAnimationManager.AnimationStart(card, place);
+                    m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                     return true;
                 }
                 return false;
