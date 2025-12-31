@@ -334,7 +334,7 @@ public class EventAnimationManager : MonoBehaviour
             default:
                 break;
         }
-        if(effectNum == 0)
+        /*if(effectNum == 0)
         {
             switch (m_BattleModeCard.cardNo)
             {
@@ -885,7 +885,7 @@ public class EventAnimationManager : MonoBehaviour
                     //【起】［(2)］ あなたはレベル0以下の相手のキャラを1枚選び、手札に戻す。
                     PayCost(2);
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
-                    return;
+                    return; 
                 case EnumController.CardNo.LB_W02_013:
                     //【自】 このカードがプレイされて舞台に置かれた時、あなたは【スタンド】している自分のキャラを1枚選び、【レスト】する。
                     m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
@@ -1048,7 +1048,7 @@ public class EventAnimationManager : MonoBehaviour
                     EffectWhenAct(m_BattleModeCard);
                     EffectWhenCounter(m_BattleModeCard, place);
                     pumpPoint = 2500;
-                    PayCost(1);
+                    PayCost(1); 
                     m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, pumpPoint);
                     m_GameManager.myHandList.RemoveAt(handNum);
                     m_GameManager.GraveYardList.Add(m_BattleModeCard);
@@ -1269,7 +1269,7 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
-        }
+        }*/
     }
 
     /// <summary>
