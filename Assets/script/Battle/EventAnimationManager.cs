@@ -318,7 +318,7 @@ public class EventAnimationManager : MonoBehaviour
             }
         }
 
-        int CheckActEffectCount = 0;
+        /*int CheckActEffectCount = 0;
         int enemyPlace = -1;
         switch (place)
         {
@@ -334,7 +334,7 @@ public class EventAnimationManager : MonoBehaviour
             default:
                 break;
         }
-        /*if(effectNum == 0)
+        if(effectNum == 0)
         {
             switch (m_BattleModeCard.cardNo)
             {
