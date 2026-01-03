@@ -1161,8 +1161,8 @@ namespace ExtendUtil
                     return "Ooo";
                 case EnumController.Attribute.Hero:
                     return "Hero";
-                case EnumController.Attribute.Royality:
-                    return "Royality";
+                case EnumController.Attribute.Royalty:
+                    return "Royalty";
                 case EnumController.Attribute.Vampire:
                     return "Vampire";
                 case EnumController.Attribute.Animal:

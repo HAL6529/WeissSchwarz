@@ -72,7 +72,7 @@ namespace EnumController
         NONE, // “Á’¥‚È‚µ
         Ooo,
         Hero,
-        Royality,
+        Royalty,
         Vampire,
         Animal, // “®•¨
         Book, // –{
