@@ -18,7 +18,7 @@ public class Effect : MonoBehaviour
 
     public void BondForHandToFild(BattleModeCard card)
     {
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A10:
             case EnumController.CardNo.DC_W01_09T:
@@ -51,7 +51,7 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.LB_W02_003:
                 //【自】 この能力は、1ターンにつき2回しか使えない。あなたが【起】を使った時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋500。
@@ -92,7 +92,7 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.LB_W02_078:
                 //【自】 あなたが『助太刀』を使った時、あなたはバトルしている自分のキャラを1枚選び、そのターン中、パワーを＋500。
@@ -119,7 +119,7 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.LB_W02_14T:
             case EnumController.CardNo.LB_W02_083:
@@ -142,7 +142,7 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
         {
             //【自】［(1)］ このカードが舞台から控え室に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の控え室の「順平＆トリスメギストス」を1枚選び、手札に戻す。
             case EnumController.CardNo.P3_S01_065:
@@ -174,7 +174,7 @@ public class Effect : MonoBehaviour
         }
 
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_02T:
                 Action action_DC_W01_02T = new Action(m_GameManager, EnumController.Action.DC_W01_02T_1);
@@ -253,7 +253,7 @@ public class Effect : MonoBehaviour
                 //【自】 このカードがプレイされて舞台に置かれた時、あなたは相手の控え室のイベントを1枚選び、思い出にしてよい。
                 for(int i = 0; i < m_GameManager.enemyGraveYardList.Count; i++)
                 {
-                    if (m_GameManager.enemyGraveYardList[i].type == EnumController.Type.EVENT)
+                    if (m_GameManager.enemyGraveYardList[i].GetType() == EnumController.Type.EVENT)
                     {
                         Action action_P3_S01_057_1 = new Action(m_GameManager, EnumController.Action.P3_S01_057_1);
                         action_P3_S01_057_1.SetParamaterEventAnimationManager(m_EventAnimationManager);
@@ -358,7 +358,7 @@ public class Effect : MonoBehaviour
     /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>
     public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace, int reversedCardLevel)
     {
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A03:
                 if (ConfirmClimaxCombo(EnumController.CardNo.AT_WX02_A08))
@@ -425,7 +425,7 @@ public class Effect : MonoBehaviour
             m_GameManager.ActionList.Add(action_P3_S01_062);
         }
         int enemyPlace = -1;
-        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
         {
             // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.CardNo.DC_W01_16T:
@@ -515,7 +515,7 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        switch (m_BattleMyMainCardAvility.m_BattleModeCard.cardNo)
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
         {
             //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
             case EnumController.CardNo.P3_S01_055:
@@ -550,7 +550,7 @@ public class Effect : MonoBehaviour
             return;
         }
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
-        switch (effectCard.cardNo)
+        switch (effectCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_040:
                 //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
@@ -616,7 +616,7 @@ public class Effect : MonoBehaviour
         {
             return false;
         }
-        if (m_GameManager.MyClimaxCard.cardNo == card)
+        if (m_GameManager.MyClimaxCard.GetCardNo() == card)
         {
             return true;
         }
@@ -630,7 +630,7 @@ public class Effect : MonoBehaviour
     /// <param name="num">メインのどの場所にいてるか</param>
     public void CheckEffectForAct(BattleModeCard card, int num)
     {
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             //ドロー集中
             case EnumController.CardNo.AT_WX02_A09:
@@ -878,7 +878,7 @@ public class Effect : MonoBehaviour
         {
             return new PowerInstance.Assist(0);
         }
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             // 500応援
             case EnumController.CardNo.AT_WX02_A11:
@@ -910,7 +910,7 @@ public class Effect : MonoBehaviour
         {
             return new PowerInstance.AssistForHaveEncore(0);
         }
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             // 1000応援
             case EnumController.CardNo.P3_S01_041:
@@ -934,7 +934,7 @@ public class Effect : MonoBehaviour
             return new PowerInstance.AllAssist(0, AttributeList);
         }
 
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_084:
                 AttributeList.Add(EnumController.Attribute.StudentCouncil);
@@ -960,7 +960,7 @@ public class Effect : MonoBehaviour
         }
         List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
 
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             // ガウル効果を持っている
             case EnumController.CardNo.AT_WX02_A12:
@@ -985,7 +985,7 @@ public class Effect : MonoBehaviour
         {
             return new PowerInstance.LevelAssist(0);
         }
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             // レベル*500応援
             case EnumController.CardNo.AT_WX02_A06:
@@ -1002,7 +1002,7 @@ public class Effect : MonoBehaviour
     public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.Attack status)
     {
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
-        switch (card.cardNo)
+        switch (card.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A02:
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);

@@ -33,7 +33,7 @@ public class EncoreDialog : MonoBehaviour
                 continue;
             }
 
-            images[i].sprite = list[i].sprite;
+            images[i].sprite = list[i].GetSprite();
 
             if (m_MyMainCardsManager.GetFieldPower(i) <= 0)
             {
@@ -65,7 +65,7 @@ public class EncoreDialog : MonoBehaviour
                     continue;
                 }
 
-                images[i].sprite = list[i].sprite;
+                images[i].sprite = list[i].GetSprite();
 
                 if (m_MyMainCardsManager.GetState(i) == EnumController.State.REVERSE)
                 {

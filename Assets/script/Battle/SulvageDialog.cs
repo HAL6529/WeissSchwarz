@@ -44,7 +44,7 @@ public class SulvageDialog : MonoBehaviour
         this.maxSulvageCard = maxSulvageCard;
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i].type == type)
+            if (list[i].GetType() == type)
             {
                 tempList.Add(list[i]);
             }
@@ -95,7 +95,7 @@ public class SulvageDialog : MonoBehaviour
 
     private void ChangeText()
     {
-        switch (m_BattleModeCardForEvent.cardNo)
+        switch (m_BattleModeCardForEvent.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_12T:
                 m_Text.text = "手札に加えるカードを2枚まで選択してください";

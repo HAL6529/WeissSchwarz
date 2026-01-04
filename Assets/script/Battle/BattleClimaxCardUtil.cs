@@ -22,7 +22,7 @@ public class BattleClimaxCardUtil : MonoBehaviour
         }
 
         image.color = new Color(1, 1, 1, 255 / 255);
-        image.sprite = climax.sprite;
+        image.sprite = climax.GetSprite();
     }
 
     public void onClick()

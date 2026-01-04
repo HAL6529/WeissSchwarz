@@ -21,7 +21,7 @@ public class EffectBrainStormForDraw : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if (m_GameManager.myDeckList[0].type == EnumController.Type.CLIMAX)
+            if (m_GameManager.myDeckList[0].GetType() == EnumController.Type.CLIMAX)
             {
                 count++;
             }

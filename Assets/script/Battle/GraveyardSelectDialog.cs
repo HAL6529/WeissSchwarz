@@ -41,7 +41,7 @@ public class GraveyardSelectDialog : MonoBehaviour
     {
         this.m_BattleModeCard = m_BattleModeCard;
         this.place = place;
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_057:
             case EnumController.CardNo.P3_S01_061:
@@ -99,7 +99,7 @@ public class GraveyardSelectDialog : MonoBehaviour
                 break;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_057:
                 for (int i = 0; i < m_GraveyardSelectDialogBtnUtilList.Count; i++)
@@ -109,7 +109,7 @@ public class GraveyardSelectDialog : MonoBehaviour
                         continue;
                     }
 
-                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard.type == EnumController.Type.EVENT)
+                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard.GetType() == EnumController.Type.EVENT)
                     {
                         m_GraveyardSelectDialogBtnUtilList[i].button.interactable = true;
                     }
@@ -127,7 +127,7 @@ public class GraveyardSelectDialog : MonoBehaviour
                         continue;
                     }
 
-                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard.type != EnumController.Type.CLIMAX)
+                    if (m_GraveyardSelectDialogBtnUtilList[i].m_BattleModeCard.GetType() != EnumController.Type.CLIMAX)
                     {
                         m_GraveyardSelectDialogBtnUtilList[i].button.interactable = true;
                     }
@@ -198,7 +198,7 @@ public class GraveyardSelectDialog : MonoBehaviour
 
         EnumController.ConfirmSearchOrSulvageCardDialog ConfirmSearchOrSulvageCardDialogParamater = EnumController.ConfirmSearchOrSulvageCardDialog.VOID;
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_057:
                 e_memoryListTemp = m_GameManager.enemyMemoryList;

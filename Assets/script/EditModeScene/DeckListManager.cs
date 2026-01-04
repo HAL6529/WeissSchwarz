@@ -55,7 +55,7 @@ public class DeckListManager : MonoBehaviour
         }
 
         // 同名カードが4枚以上の場合処理は行わない。
-        int index = cardInfoList.Count(obj => obj.cardNo == info.cardNo);
+        int index = cardInfoList.Count(obj => obj.GetCardNo() == info.GetCardNo());
         if (index > 3)
         {
             return;
@@ -80,7 +80,7 @@ public class DeckListManager : MonoBehaviour
         {
             if(i < cardInfoList.Count)
             {
-                panels[i].setInfo(cardInfoList[i].sprite);             
+                panels[i].setInfo(cardInfoList[i].GetSprite());             
             }
             else
             {
@@ -95,7 +95,7 @@ public class DeckListManager : MonoBehaviour
         {
            for(int k = i + 1; k < cardInfoList.Count; k++)
             {
-                if ((int)cardInfoList[i].cardNo > (int)cardInfoList[k].cardNo)
+                if ((int)cardInfoList[i].GetCardNo() > (int)cardInfoList[k].GetCardNo())
                 {
                     BattleModeCard temp = cardInfoList[i];
                     cardInfoList[i] = cardInfoList[k];
@@ -114,7 +114,7 @@ public class DeckListManager : MonoBehaviour
         List<BattleModeCard> PurpleList = new List<BattleModeCard>();
         for (int i = 0; i < cardInfoList.Count; i++)
         {
-            switch (cardInfoList[i].color)
+            switch (cardInfoList[i].GetCardColor())
             {
                 case EnumController.CardColor.BLUE:
                     BlueList.Add(cardInfoList[i]);
@@ -193,12 +193,12 @@ public class DeckListManager : MonoBehaviour
         List<BattleModeCard> EventList = new List<BattleModeCard>();
         for (int i = 0; i < cardInfoList.Count; i++)
         {
-            if(cardInfoList[i].type == EnumController.Type.CLIMAX)
+            if(cardInfoList[i].GetType() == EnumController.Type.CLIMAX)
             {
                 ClimaxList.Add(cardInfoList[i]);
                 continue;
             }
-            switch (cardInfoList[i].level)
+            switch (cardInfoList[i].GetLevel())
             {
                 case 0:
                     Level0List.Add(cardInfoList[i]);
@@ -294,7 +294,7 @@ public class DeckListManager : MonoBehaviour
         
         for (int i = 0; i < cardInfoList.Count; i++)
         {
-            list.Add(cardInfoList[i].cardNo);
+            list.Add(cardInfoList[i].GetCardNo());
         }
 
         return list;

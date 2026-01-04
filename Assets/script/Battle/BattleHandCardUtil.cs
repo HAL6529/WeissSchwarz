@@ -37,7 +37,7 @@ public class BattleHandCardUtil : MonoBehaviour
             image.color = new Color(1, 1, 1, 0 / 255);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
     }
 
@@ -230,23 +230,23 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
-        if(m_GameManager.myLevelList.Count < m_BattleModeCard.level)
+        if(m_GameManager.myLevelList.Count < m_BattleModeCard.GetLevel())
         {
             return;
         }
 
         //色条件がクリアできているかチェック
-        if(m_BattleModeCard.level > 0 && !m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type == EnumController.Type.CHARACTER)
+        if(m_BattleModeCard.GetLevel() > 0 && !m_GameManager.ColorCheck(m_BattleModeCard.GetCardColor()) && m_BattleModeCard.GetType() == EnumController.Type.CHARACTER)
         {
             return;
         }
-        if(!m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type != EnumController.Type.CHARACTER)
+        if(!m_GameManager.ColorCheck(m_BattleModeCard.GetCardColor()) && m_BattleModeCard.GetType() != EnumController.Type.CHARACTER)
         {
             return;
         }
 
         // コストが支払えるかチェック
-        if(m_BattleModeCard.cost > m_GameManager.myStockList.Count && m_BattleModeCard.type != EnumController.Type.CLIMAX)
+        if(m_BattleModeCard.GetCost() > m_GameManager.myStockList.Count && m_BattleModeCard.GetType() != EnumController.Type.CLIMAX)
         {
             return;
         }
@@ -265,13 +265,13 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onPlayButton()
     {
-        switch (m_BattleModeCard.type)
+        switch (m_BattleModeCard.GetType())
         {
             case EnumController.Type.CHARACTER:
                 m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard, num);
                 return;
             case EnumController.Type.EVENT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.DC_W01_03T:
                     case EnumController.CardNo.P3_S01_045:

@@ -25,7 +25,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
 
         if(effectNum == 0)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
@@ -37,7 +37,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
             }
         }else if(effectNum == 1)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:
@@ -65,7 +65,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
 
         if (effectNum == 0)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
@@ -79,7 +79,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
         }
         else if (effectNum == 1)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:

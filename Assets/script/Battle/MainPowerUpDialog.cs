@@ -63,7 +63,7 @@ public class MainPowerUpDialog : MonoBehaviour
             }
             else
             {
-                images[i].sprite = m_GameManager.myFieldList[i].sprite;
+                images[i].sprite = m_GameManager.myFieldList[i].GetSprite();
                 buttons[i].interactable = true;
             }
         }
@@ -71,7 +71,7 @@ public class MainPowerUpDialog : MonoBehaviour
         // フィールドにキャラがいない場合
         if(isFieldNull == 5)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 case EnumController.CardNo.DC_W01_03T:
                     m_GameManager.ExecuteActionList();
@@ -83,7 +83,7 @@ public class MainPowerUpDialog : MonoBehaviour
             return;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.LB_W02_17T:
             case EnumController.CardNo.LB_W02_087:
@@ -129,7 +129,7 @@ public class MainPowerUpDialog : MonoBehaviour
             return;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_01T:
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(place, 1000);

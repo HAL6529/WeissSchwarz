@@ -27,7 +27,7 @@ public class LevelUpButtonUtil : MonoBehaviour
             return;
         }
         this.gameObject.SetActive(true);
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
         button.interactable = IsInteractable;
     }
@@ -39,7 +39,7 @@ public class LevelUpButtonUtil : MonoBehaviour
             this.gameObject.SetActive(false);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
     }
 

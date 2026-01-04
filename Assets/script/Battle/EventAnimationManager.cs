@@ -61,8 +61,8 @@ public class EventAnimationManager : MonoBehaviour
         effectNum = 0;
 
         m_BattleModeCard = card;
-        m_image.sprite = card.sprite;
-        m_image2.sprite = card.sprite;
+        m_image.sprite = card.GetSprite();
+        m_image2.sprite = card.GetSprite();
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
@@ -84,8 +84,8 @@ public class EventAnimationManager : MonoBehaviour
         effectNum = 1;
 
         m_BattleModeCard = card;
-        m_image.sprite = card.sprite;
-        m_image2.sprite = card.sprite;
+        m_image.sprite = card.GetSprite();
+        m_image2.sprite = card.GetSprite();
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
@@ -180,8 +180,8 @@ public class EventAnimationManager : MonoBehaviour
         m_gameObject.SetActive(true);
 
         m_BattleModeCard = card;
-        m_image.sprite = card.sprite;
-        m_image2.sprite = card.sprite;
+        m_image.sprite = card.GetSprite();
+        m_image2.sprite = card.GetSprite();
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);
@@ -301,7 +301,7 @@ public class EventAnimationManager : MonoBehaviour
         // 絆
         if(paramater == EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD)
         {
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 case EnumController.CardNo.AT_WX02_A10:
                 case EnumController.CardNo.DC_W01_09T:
@@ -1283,8 +1283,8 @@ public class EventAnimationManager : MonoBehaviour
         m_gameObject.SetActive(true);
 
         m_BattleModeCard = b;
-        m_image.sprite = b.sprite;
-        m_image2.sprite = b.sprite;
+        m_image.sprite = b.GetSprite();
+        m_image2.sprite = b.GetSprite();
         // アニメーション再生を再生するためにspeedを1にする
         animator.speed = 1;
         animator.Play(AnimationName, 0, 0);

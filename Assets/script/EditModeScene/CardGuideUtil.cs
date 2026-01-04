@@ -63,9 +63,9 @@ public class CardGuideUtil : MonoBehaviour
     public void onShowInfo(BattleModeCard info)
     {
         cardName.text = info.name;
-        explanation.text = extendUtil.Explanation(info.cardNo);
-        cardInfoImage.sprite = info.sprite;
-        if (info.isCounter)
+        explanation.text = extendUtil.Explanation(info.GetCardNo());
+        cardInfoImage.sprite = info.GetSprite();
+        if (info.GetIsCounter())
         {
             CounterImage.color = new Color(1, 1, 1, 1);
         }
@@ -74,7 +74,7 @@ public class CardGuideUtil : MonoBehaviour
             CounterImage.color = new Color(1, 1, 1, 0);
         }
 
-        if (info.type == EnumController.Type.CLIMAX)
+        if (info.GetType() == EnumController.Type.CLIMAX)
         {
             m_RectTransform.sizeDelta = new Vector2(201.09f, 143f);
             TriggerObj.SetActive(false);
@@ -85,13 +85,13 @@ public class CardGuideUtil : MonoBehaviour
             powerIndex.text = "";
             PowerObj.SetActive(false);
         }
-        else if(info.type == EnumController.Type.EVENT)
+        else if(info.GetType() == EnumController.Type.EVENT)
         {
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
             TriggerObj.SetActive(true);
             TriggerObj2.SetActive(false);
-            levelIndex.text = info.level.ToString();
-            costIndex.text = info.cost.ToString();
+            levelIndex.text = info.GetLevel().ToString();
+            costIndex.text = info.GetCost().ToString();
             CostObj.SetActive(true);
             powerIndex.text = "";
             PowerObj.SetActive(false);
@@ -101,58 +101,58 @@ public class CardGuideUtil : MonoBehaviour
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
             TriggerObj.SetActive(true);
             TriggerObj2.SetActive(false);
-            levelIndex.text = info.level.ToString();
-            costIndex.text = info.cost.ToString();
+            levelIndex.text = info.GetLevel().ToString();
+            costIndex.text = info.GetCost().ToString();
             CostObj.SetActive(true);
-            powerIndex.text = info.power.ToString();
+            powerIndex.text = info.GetPower().ToString();
             PowerObj.SetActive(true);
         }
 
-        if (info.attribute.Count == 0 || info.attribute[0] == EnumController.Attribute.VOID)
+        if (info.GetAttribute().Count == 0 || info.GetAttribute(0) == EnumController.Attribute.VOID)
         {
             Attribute1.text = "";
             Attribute1Obj.SetActive(false);
         }
         else
         {
-            Attribute1.text = extendUtil.AttributeConvertToString(info.attribute[0]);
+            Attribute1.text = extendUtil.AttributeConvertToString(info.GetAttribute(0));
             Attribute1Obj.SetActive(true);
         }
 
-        if (info.attribute.Count <= 1 || info.attribute[1] == EnumController.Attribute.VOID)
+        if (info.GetAttribute().Count <= 1 || info.GetAttribute(1) == EnumController.Attribute.VOID)
         {
             Attribute2.text = "";
             Attribute2Obj.SetActive(false);
         }
         else
         {
-            Attribute2.text = extendUtil.AttributeConvertToString(info.attribute[1]);
+            Attribute2.text = extendUtil.AttributeConvertToString(info.GetAttribute(1));
             Attribute2Obj.SetActive(true);
         }
 
-        if (info.attribute.Count <= 2 || info.attribute[2] == EnumController.Attribute.VOID)
+        if (info.GetAttribute().Count <= 2 || info.GetAttribute(2) == EnumController.Attribute.VOID)
         {
             Attribute3.text = "";
             Attribute3Obj.SetActive(false);
         }
         else
         {
-            Attribute3.text = extendUtil.AttributeConvertToString(info.attribute[2]);
+            Attribute3.text = extendUtil.AttributeConvertToString(info.GetAttribute(2));
             Attribute3Obj.SetActive(true);
         }
 
-        if (info.level == 0 && info.type != EnumController.Type.CLIMAX)
+        if (info.GetLevel() == 0 && info.GetType() != EnumController.Type.CLIMAX)
         {
             LevelImage.sprite = lv_gray;
             LevelObj.SetActive(true);
         }
-        else if(info.type == EnumController.Type.CLIMAX)
+        else if(info.GetType() == EnumController.Type.CLIMAX)
         {
             LevelObj.SetActive(false);
         }
         else
         {
-            switch (info.color)
+            switch (info.GetCardColor())
             {
                 case EnumController.CardColor.BLUE:
                     LevelImage.sprite = lv_b;
@@ -173,7 +173,7 @@ public class CardGuideUtil : MonoBehaviour
             LevelObj.SetActive(true);
         }
 
-        switch (info.color)
+        switch (info.GetCardColor())
         {
             case EnumController.CardColor.BLUE:
                 NameImage.sprite = name_b;
@@ -196,7 +196,7 @@ public class CardGuideUtil : MonoBehaviour
                 break;
         }
 
-        switch (info.trigger)
+        switch (info.GetTrigger())
         {
             case EnumController.Trigger.NONE:
                 TriggerImageObj.SetActive(false);

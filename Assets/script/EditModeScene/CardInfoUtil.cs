@@ -34,7 +34,7 @@ public class CardInfoUtil : MonoBehaviour
 
     void ChangeLayoutColor()
     {
-        switch (m_BattleModeCard.color)
+        switch (m_BattleModeCard.GetCardColor())
         {
             case EnumController.CardColor.RED:
                 image.color = new Color(255f / 255f, 105f / 255f, 105f / 255f, 255f / 255f);
@@ -59,7 +59,7 @@ public class CardInfoUtil : MonoBehaviour
 
     void ChangeText()
     {
-        cardNoText.text = extendUtil.CardNoConvertToString(m_BattleModeCard.cardNo);
+        cardNoText.text = extendUtil.CardNoConvertToString(m_BattleModeCard.GetCardNo());
 
         if (cardName != null)
         {
@@ -70,35 +70,35 @@ public class CardInfoUtil : MonoBehaviour
             cardNameText.text = "";
         }
 
-        if(m_BattleModeCard.attribute.Count > 0)
+        if(m_BattleModeCard.GetAttribute().Count > 0)
         {
-            attributeOneText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[0]);
+            attributeOneText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.GetAttribute(0));
         }
         else
         {
             attributeOneText.text = "";
         }
 
-        if (m_BattleModeCard.attribute.Count > 1)
+        if (m_BattleModeCard.GetAttribute().Count > 1)
         {
-            attributeTwoText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[1]);
+            attributeTwoText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.GetAttribute(1));
         }
         else
         {
             attributeTwoText.text = "";
         }
 
-        if (m_BattleModeCard.attribute.Count > 2)
+        if (m_BattleModeCard.GetAttribute().Count > 2)
         {
-            attributeThreeText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.attribute[2]);
+            attributeThreeText.text = extendUtil.AttributeConvertToString(m_BattleModeCard.GetAttribute(2));
         }
         else
         {
             attributeThreeText.text = "";
         }
         
-        levelText.text = m_BattleModeCard.level.ToString();
-        costText.text = m_BattleModeCard.cost.ToString();
+        levelText.text = m_BattleModeCard.GetLevel().ToString();
+        costText.text = m_BattleModeCard.GetCost().ToString();
     }
 
     public void onAddListButton()
@@ -142,7 +142,7 @@ public class CardInfoUtil : MonoBehaviour
 
     private bool isSearchLevel(SearchFilter filter)
     {
-        switch (m_BattleModeCard.level)
+        switch (m_BattleModeCard.GetLevel())
         {
             case 0:
                 if (!filter.isLevelZero)
@@ -180,7 +180,7 @@ public class CardInfoUtil : MonoBehaviour
 
     private bool isSearchColor(SearchFilter filter)
     {
-        switch (m_BattleModeCard.color)
+        switch (m_BattleModeCard.GetCardColor())
         {
             case EnumController.CardColor.RED:
                 if (!filter.isColorRed)
@@ -225,7 +225,7 @@ public class CardInfoUtil : MonoBehaviour
 
     private bool isSearchType(SearchFilter filter)
     {
-        switch (m_BattleModeCard.type)
+        switch (m_BattleModeCard.GetType())
         {
             case EnumController.Type.CHARACTER:
                 if (!filter.isTypeCharacter)

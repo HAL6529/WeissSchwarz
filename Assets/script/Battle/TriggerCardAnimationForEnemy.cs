@@ -31,7 +31,7 @@ public class TriggerCardAnimationForEnemy : MonoBehaviour
 
     private void GetDeckTopSprite()
     {
-        m_Image.sprite = temp.sprite;
+        m_Image.sprite = temp.GetSprite();
     }
 
     private void AnimationEnd()

@@ -33,7 +33,7 @@ public class TriggerCardAnimation : MonoBehaviour
 
     private void GetDeckTopSprite()
     {
-        m_Image.sprite = m_GameManager.myDeckList[0].sprite;
+        m_Image.sprite = m_GameManager.myDeckList[0].GetSprite();
     }
 
     private void AnimationEnd()

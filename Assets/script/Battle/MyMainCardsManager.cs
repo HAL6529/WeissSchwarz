@@ -486,7 +486,7 @@ public class MyMainCardsManager : MonoBehaviour
                 {
                     continue;
                 }
-                if (temp.cardNo == list[n])
+                if (temp.GetCardNo() == list[n])
                 {
                     num++;
                 }

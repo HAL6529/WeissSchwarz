@@ -24,7 +24,7 @@ public class DamageCardAnimation : MonoBehaviour
         gameObject.SetActive(true);
         m_image.sprite = backImage;
         this.isEnd = isEnd;
-        animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.sprite; });
+        animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.GetSprite(); });
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
         Invoke("Animation", delay * num);
     }

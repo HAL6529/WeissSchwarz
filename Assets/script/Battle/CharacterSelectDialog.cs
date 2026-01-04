@@ -81,7 +81,7 @@ public class CharacterSelectDialog : MonoBehaviour
             }
             else
             {
-                images[i].sprite = list[i].sprite;
+                images[i].sprite = list[i].GetSprite();
                 buttons[i].interactable = true;
             }
         }
@@ -162,7 +162,7 @@ public class CharacterSelectDialog : MonoBehaviour
         int cnt = 0;
 
         // 最低選ばないといけないカードの枚数と最大選べるカードの枚数の定義設定
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A02:
             case EnumController.CardNo.DC_W01_05T:
@@ -228,7 +228,7 @@ public class CharacterSelectDialog : MonoBehaviour
             }
             else
             {
-                images[i].sprite = list[i].sprite;
+                images[i].sprite = list[i].GetSprite();
                 if (i == place)
                 {
                     buttons[i].interactable = false;
@@ -238,7 +238,7 @@ public class CharacterSelectDialog : MonoBehaviour
                     buttons[i].interactable = true;
                 }
 
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     // 前列のカードだけ対象
                     case EnumController.CardNo.DC_W01_05T:
@@ -324,7 +324,7 @@ public class CharacterSelectDialog : MonoBehaviour
         }
 
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             // ほかにキャラクターがいなければreturnする
             case EnumController.CardNo.AT_WX02_A02:
@@ -491,7 +491,7 @@ public class CharacterSelectDialog : MonoBehaviour
             return;
         }
         int power = 0;
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_12T:
             case EnumController.CardNo.P3_S01_022:
@@ -536,7 +536,7 @@ public class CharacterSelectDialog : MonoBehaviour
             {
                 continue;
             }
-            switch (m_BattleModeCard.cardNo)
+            switch (m_BattleModeCard.GetCardNo())
             {
                 case EnumController.CardNo.AT_WX02_A02:
                 case EnumController.CardNo.DC_W01_07T:
@@ -648,7 +648,7 @@ public class CharacterSelectDialog : MonoBehaviour
         }
 
         // イベントカードの場合は処理後に控室にカードを追加
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_18T:
             case EnumController.CardNo.LB_W02_04T:
@@ -676,7 +676,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
         }
 
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_07T:
                 m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);

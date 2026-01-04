@@ -134,16 +134,16 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
                 str = stringValues.YesOrNoDialog_CONFIRM_CONTROL_DECKTOP;
                 cardObject.SetActive(true);
-                cardObjectImage.sprite = m_GameManager.myDeckList[0].sprite;
+                cardObjectImage.sprite = m_GameManager.myDeckList[0].GetSprite();
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
-                str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.cost);
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.GetCost());
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.AT_WX02_A10:
                         sulvageCardName = stringValues.AT_WX02_A12_NAME;
@@ -342,7 +342,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.DC_W01_07T:
                     case EnumController.CardNo.DC_W01_10T:
@@ -374,7 +374,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.AT_WX02_A03:
                         m_GameManager.Draw();

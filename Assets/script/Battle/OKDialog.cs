@@ -161,7 +161,7 @@ public class OKDialog : MonoBehaviour
                     }
                     // --‚±‚±‚Ü‚Å‘åŠˆ–ô—p--
 
-                    switch (m_BattleModeCard.cardNo)
+                    switch (m_BattleModeCard.GetCardNo())
                     {
                         case EnumController.CardNo.AT_WX02_A05:
                         case EnumController.CardNo.DC_W01_17T:
