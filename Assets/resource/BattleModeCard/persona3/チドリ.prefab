@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6135632081562507197}
-  - component: {fileID: 6205011845059343639}
+  - component: {fileID: 3773565225725660425}
+  - component: {fileID: 8515953018820796103}
   m_Layer: 0
   m_Name: "\u30C1\u30C9\u30EA"
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6205011845059343639
+--- !u!114 &3773565225725660425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,20 +47,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8304616429449749273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7d780ef869a3b4e97f60694a61355c, type: 3}
+  m_Script: {fileID: 11500000, guid: b4b85fea90c520846b9d29d26efaceef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5389558e4ca7f5c4ea97660496946645, type: 3}
-  level: 0
-  cost: 0
-  soul: 1
-  color: 1
-  trigger: 12
-  type: 1
-  attribute: 0c0000001e000000
-  cardNo: 124
-  name: "\u30C1\u30C9\u30EA"
-  power: 500
-  isCounter: 0
-  isGreatPerformance: 0
-  explanation: 
+  m_EffectAbstract: {fileID: 8515953018820796103}
+--- !u!114 &8515953018820796103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304616429449749273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642ae959646e1384cb5eafa073ff76c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModeCard_AT_WX02_A07 : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 1;
-    public int cost = 1;
-    public int soul = -1;
-    public EnumController.CardColor color = EnumController.CardColor.YELLOW;
-    public EnumController.Trigger trigger = EnumController.Trigger.NONE;
-    public EnumController.Type type = EnumController.Type.EVENT;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>();
-    public EnumController.CardNo cardNo = EnumController.CardNo.AT_WX02_A07;
-    public string name = "Quest Received!";
-    public int power = -1;
-    public bool isCounter = false;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = new Effect_AT_WX02_A07();
+    public BattleModeCard_AT_WX02_A07()
+    {
+        this.level = 1;
+        this.cost = 1;
+        this.soul = -1;
+        this.color = EnumController.CardColor.YELLOW;
+        this.trigger = EnumController.Trigger.NONE;
+        this.type = EnumController.Type.EVENT;
+        this.attribute = new List<EnumController.Attribute>();
+        this.cardNo = EnumController.CardNo.AT_WX02_A07;
+        this.name = "Quest Received!";
+        this.power = -1;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+    }
 }

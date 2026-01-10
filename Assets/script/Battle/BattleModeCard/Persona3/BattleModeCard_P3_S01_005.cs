@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModeCard_P3_S01_005 : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 2;
-    public int cost = 1;
-    public int soul = 1;
-    public EnumController.CardColor color = EnumController.CardColor.YELLOW;
-    public EnumController.Trigger trigger = EnumController.Trigger.SOUL;
-    public EnumController.Type type = EnumController.Type.CHARACTER;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic, EnumController.Attribute.God };
-    public EnumController.CardNo cardNo = EnumController.CardNo.P3_S01_005;
-    public string name = "天田＆カーラ・ネミ";
-    public int power = 7000;
-    public bool isCounter = false;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = new Effect_P3_S01_005();
+    public BattleModeCard_P3_S01_005()
+    {
+        this.level = 2;
+        this.cost = 1;
+        this.soul = 1;
+        this.color = EnumController.CardColor.YELLOW;
+        this.trigger = EnumController.Trigger.SOUL;
+        this.type = EnumController.Type.CHARACTER;
+        this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic, EnumController.Attribute.God };
+        this.cardNo = EnumController.CardNo.P3_S01_005;
+        this.name = "天田＆カーラ・ネミ";
+        this.power = 7000;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+    }
 }

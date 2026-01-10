@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModeCard_LB_W02_09T : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 2;
-    public int cost = 2;
-    public int soul = 2;
-    public EnumController.CardColor color = EnumController.CardColor.GREEN;
-    public EnumController.Trigger trigger = EnumController.Trigger.SOUL;
-    public EnumController.Type type = EnumController.Type.CHARACTER;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Sports };
-    public EnumController.CardNo cardNo = EnumController.CardNo.LB_W02_09T;
-    public string name = "Ågç≈ã≠ÇÃíjéôÅhå™å·";
-    public int power = 8500;
-    public bool isCounter = false;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = new Effect_LB_W02_09T();
+    public BattleModeCard_LB_W02_09T()
+    {
+        this.level = 2;
+        this.cost = 2;
+        this.soul = 2;
+        this.color = EnumController.CardColor.GREEN;
+        this.trigger = EnumController.Trigger.SOUL;
+        this.type = EnumController.Type.CHARACTER;
+        this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Sports };
+        this.cardNo = EnumController.CardNo.LB_W02_09T;
+        this.name = "Ågç≈ã≠ÇÃíjéôÅhå™å·";
+        this.power = 8500;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+    }
 }

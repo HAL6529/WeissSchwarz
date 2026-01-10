@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModeCard_P3_S01_003 : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 0;
-    public int cost = 0;
-    public int soul = 1;
-    public EnumController.CardColor color = EnumController.CardColor.YELLOW;
-    public EnumController.Trigger trigger = EnumController.Trigger.NONE;
-    public EnumController.Type type = EnumController.Type.CHARACTER;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Death };
-    public EnumController.CardNo cardNo = EnumController.CardNo.P3_S01_003;
-    public string name = "ファルロス";
-    public int power = 1000;
-    public bool isCounter = false;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = null;
+    public BattleModeCard_P3_S01_003()
+    {
+        this.level = 0;
+        this.cost = 0;
+        this.soul = 1;
+        this.color = EnumController.CardColor.YELLOW;
+        this.trigger = EnumController.Trigger.NONE;
+        this.type = EnumController.Type.CHARACTER;
+        this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Death };
+        this.cardNo = EnumController.CardNo.P3_S01_003;
+        this.name = "ファルロス";
+        this.power = 1000;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+    }
 }

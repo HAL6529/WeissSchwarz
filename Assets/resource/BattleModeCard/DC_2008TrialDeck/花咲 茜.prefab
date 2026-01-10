@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620771949223414905}
-  - component: {fileID: 6883504444380200256}
+  - component: {fileID: 4001472320715965279}
+  - component: {fileID: 7462311155756959052}
   m_Layer: 0
   m_Name: "\u82B1\u54B2 \u831C"
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6883504444380200256
+--- !u!114 &4001472320715965279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,20 +47,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2805722266165003211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7d780ef869a3b4e97f60694a61355c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a86bb0252a959b418d92b81ac50c90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 2d8b3a3332986424485f366ce3c333b7, type: 3}
-  level: 0
-  cost: 0
-  soul: 1
-  color: 4
-  trigger: 12
-  type: 1
-  attribute: 
-  cardNo: 17
-  name: "\u82B1\u54B2 \u831C"
-  power: 2500
-  isCounter: 0
-  isGreatPerformance: 0
-  explanation: 
+  m_EffectAbstract: {fileID: 7462311155756959052}
+--- !u!114 &7462311155756959052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805722266165003211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46aa366c93bbd5f4cabfb937ac14d6f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

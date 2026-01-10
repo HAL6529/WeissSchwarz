@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1007510438957821956}
-  - component: {fileID: 1366526385195971081}
+  - component: {fileID: 5842416650169721500}
+  - component: {fileID: -7976354039160684425}
   m_Layer: 0
   m_Name: "\u30B3\u30ED\u30DE\u30EB\uFF06\u30B1\u30EB\u30D9\u30ED\u30B9"
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1366526385195971081
+--- !u!114 &5842416650169721500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,20 +47,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297890347668535915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae7d780ef869a3b4e97f60694a61355c, type: 3}
+  m_Script: {fileID: 11500000, guid: 00ca409d86c5ddf4781540987541c6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e0c969d63a0bfd64e9956935c98d35e0, type: 3}
-  level: 1
-  cost: 1
-  soul: 1
-  color: 3
-  trigger: 10
-  type: 1
-  attribute: 060000001e000000
-  cardNo: 56
-  name: "\u30B3\u30ED\u30DE\u30EB\uFF06\u30B1\u30EB\u30D9\u30ED\u30B9"
-  power: 2000
-  isCounter: 1
-  isGreatPerformance: 0
-  explanation: 
+  m_EffectAbstract: {fileID: -7976354039160684425}
+--- !u!114 &-7976354039160684425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297890347668535915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3bf0cc9a0e8fb4ab9aa6e6f40eee2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

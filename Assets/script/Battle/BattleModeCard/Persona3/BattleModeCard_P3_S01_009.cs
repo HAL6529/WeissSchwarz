@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class BattleModeCard_P3_S01_009 : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 1;
-    public int cost = 1;
-    public int soul = 1;
-    public EnumController.CardColor color = EnumController.CardColor.YELLOW;
-    public EnumController.Trigger trigger = EnumController.Trigger.SOUL;
-    public EnumController.Type type = EnumController.Type.CHARACTER;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Animal, EnumController.Attribute.Weapon };
-    public EnumController.CardNo cardNo = EnumController.CardNo.P3_S01_009;
-    public string name = "主人公";
-    public int power = 2000;
-    public bool isCounter = true;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = null;
+    public BattleModeCard_P3_S01_009()
+    {
+        this.level = 1;
+        this.cost = 1;
+        this.soul = 1;
+        this.color = EnumController.CardColor.YELLOW;
+        this.trigger = EnumController.Trigger.SOUL;
+        this.type = EnumController.Type.CHARACTER;
+        this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Animal, EnumController.Attribute.Weapon };
+        this.cardNo = EnumController.CardNo.P3_S01_009;
+        this.name = "コロマル＆ケルベロス";
+        this.power = 2000;
+        this.isCounter = true;
+        this.isGreatPerformance = false;
+    }
 }

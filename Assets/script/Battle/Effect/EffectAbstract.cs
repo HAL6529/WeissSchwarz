@@ -2,35 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectAbstract : MonoBehaviour
+public abstract class EffectAbstract : MonoBehaviour
 {
-    public GameManager m_GameManager { get; set; }
+    protected GameManager m_GameManager { get; set; }
 
-    public BattleStrix m_BattleStrix { get; set; }
+    protected BattleStrix m_BattleStrix { get; set; }
 
-    public BattleModeCard m_BattleModeCard { get; set; }
+    protected BattleModeCard m_BattleModeCard { get; set; }
 
-    public DialogManager m_DialogManager { get; set; }
+    protected DialogManager m_DialogManager { get; set; }
 
-    public EnemyMainCardsManager m_EnemyMainCardsManager { get; set; }
+    protected EnemyMainCardsManager m_EnemyMainCardsManager { get; set; }
 
-    public EventAnimationManager m_EventAnimationManager { get; set; }
+    protected EventAnimationManager m_EventAnimationManager { get; set; }
 
-    public MainPowerUpDialog m_MainPowerUpDialog { get; set; }
+    protected MainPowerUpDialog m_MainPowerUpDialog { get; set; }
 
-    public MyMainCardsManager m_MyMainCardsManager { get; set; }
+    protected MyMainCardsManager m_MyMainCardsManager { get; set; }
 
-    public WinAndLose m_WinAndLose { get; set; }
+    protected WinAndLose m_WinAndLose { get; set; }
 
-    public int ExecuteParamater { get; set; }
+    protected int ExecuteParamater { get; set; }
 
-    public int IntParamater1 { get; set; }
+    protected int IntParamater1 { get; set; }
 
-    public int IntParamater2 { get; set; }
+    protected int IntParamater2 { get; set; }
 
-    public int pumpPoint { get; set; }
+    protected int pumpPoint { get; set; }
 
-    public void ActExecute()
+    protected void ActExecute()
     {
         switch (ExecuteParamater)
         {
@@ -51,7 +51,7 @@ public class EffectAbstract : MonoBehaviour
         }
     }
 
-    public void AutoExecute()
+    protected void AutoExecute()
     {
         switch (ExecuteParamater)
         {
@@ -69,14 +69,14 @@ public class EffectAbstract : MonoBehaviour
         }
     }
 
-    public void CounterExecute()
+    protected void CounterExecute()
     {
         EffectWhenAct(m_BattleModeCard);
         EffectWhenCounter(m_BattleModeCard, IntParamater1);
         CounterExecute1();
     }
 
-    public void EventExecute()
+    protected void EventExecute()
     {
         EventExecute1();
     }
@@ -121,7 +121,7 @@ public class EffectAbstract : MonoBehaviour
 
     }
 
-    public void PayCost(int num)
+    protected void PayCost(int num)
     {
         for (int i = 0; i < num; i++)
         {
@@ -134,7 +134,7 @@ public class EffectAbstract : MonoBehaviour
     /// <summary>
     /// あなたが【起】を使った時の効果のためのメソッド
     /// </summary>
-    public void EffectWhenAct(BattleModeCard card)
+    protected void EffectWhenAct(BattleModeCard card)
     {
         Action action = new Action(m_GameManager, EnumController.Action.EffectWhenAct);
         action.SetParamaterEventAnimationManager(m_EventAnimationManager);
@@ -148,7 +148,7 @@ public class EffectAbstract : MonoBehaviour
     /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
     /// </summary>
     /// <param name="card"></param>
-    public void EffectWhenCounter(BattleModeCard card, int IntParamater1)
+    protected void EffectWhenCounter(BattleModeCard card, int IntParamater1)
     {
         Action action = new Action(m_GameManager, EnumController.Action.EffectWhenCounter);
         action.SetParamaterEventAnimationManager(m_EventAnimationManager);

@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class BattleModeCard_DC_W01_15T : BattleModeCard
 {
-    public Sprite sprite;
-    public int level = 1;
-    public int cost = 1;
-    public int soul = 1;
-    public EnumController.CardColor color = EnumController.CardColor.RED;
-    public EnumController.Trigger trigger = EnumController.Trigger.SOUL;
-    public EnumController.Type type = EnumController.Type.CHARACTER;
-    public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic};
-    public EnumController.CardNo cardNo = EnumController.CardNo.DC_W01_15T;
-    public string name = "‘Ì‘€’…‚Ì—R–²";
-    public int power = 6000;
-    public bool isCounter = false;
-    public bool isGreatPerformance = false;
-    public EffectAbstract m_EffectAbstract = null;
+    public BattleModeCard_DC_W01_15T()
+    {
+        this.level = 1;
+        this.cost = 1;
+        this.soul = 1;
+        this.color = EnumController.CardColor.RED;
+        this.trigger = EnumController.Trigger.SOUL;
+        this.type = EnumController.Type.CHARACTER;
+        this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic };
+        this.cardNo = EnumController.CardNo.DC_W01_15T;
+        this.name = "‘Ì‘€’…‚Ì—R–²";
+        this.power = 6000;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+    }
+
 }
