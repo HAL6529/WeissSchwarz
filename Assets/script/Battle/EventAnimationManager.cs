@@ -95,20 +95,11 @@ public class EventAnimationManager : MonoBehaviour
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card)
-    {
-        AnimationStart(card, -1);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
     public void ActAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
     {
         EventAnimationParamater = EnumController.EventAnimation.Act;
         this.m_EffectAbstract = m_EffectAbstract;
-        AnimationStart(card, -1);
+        AnimationStart(card);
     }
 
     /// <summary>
@@ -118,14 +109,28 @@ public class EventAnimationManager : MonoBehaviour
     {
         EventAnimationParamater = EnumController.EventAnimation.Auto;
         this.m_EffectAbstract = m_EffectAbstract;
-        AnimationStart(card, -1);
+        AnimationStart(card);
+    }
+
+    public void CounterAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        EventAnimationParamater = EnumController.EventAnimation.Counter;
+        this.m_EffectAbstract = m_EffectAbstract;
+        AnimationStart(card);
+    }
+
+    public void EventAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        EventAnimationParamater = EnumController.EventAnimation.Event;
+        this.m_EffectAbstract = m_EffectAbstract;
+        AnimationStart(card);
     }
 
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card, int place)
+    private void AnimationStart(BattleModeCard card)
     {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
         this.place = place;
@@ -280,6 +285,9 @@ public class EventAnimationManager : MonoBehaviour
                 break;
             case EnumController.EventAnimation.Counter:
                 m_EffectAbstract.CounterExecute();
+                break;
+            case EnumController.EventAnimation.Event:
+                m_EffectAbstract.EventExecute();
                 break;
             default:
                 break;

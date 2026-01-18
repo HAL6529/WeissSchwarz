@@ -141,26 +141,33 @@ public class Action : MonoBehaviour
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
                 return;
             case EnumController.Action.DC_W01_02T_1:
-            case EnumController.Action.LB_W02_14T_1:
-            case EnumController.Action.P3_S01_16T_1:
-            case EnumController.Action.P3_S01_055_1:
-            case EnumController.Action.P3_S01_065_1:
-                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                return;
             case EnumController.Action.DC_W01_07T_1:
             case EnumController.Action.DC_W01_10T_1:
             case EnumController.Action.DC_W01_16T_1:
+            case EnumController.Action.LB_W02_14T_1:
             case EnumController.Action.LB_W02_19T_1:
+            case EnumController.Action.P3_S01_16T_1:
+            case EnumController.Action.P3_S01_055_1:
+            case EnumController.Action.P3_S01_065_1:
+            case EnumController.Action.P3_S01_01T_1:
+            case EnumController.Action.P3_S01_04T_1:
+            case EnumController.Action.P3_S01_07T_1:
+            case EnumController.Action.P3_S01_001_1:
+            case EnumController.Action.P3_S01_026_1:
             case EnumController.Action.P3_S01_040_1:
             case EnumController.Action.P3_S01_052_1:
             case EnumController.Action.P3_S01_060_1:
             case EnumController.Action.P3_S01_061_1:
             case EnumController.Action.P3_S01_076_1:
             case EnumController.Action.P3_S01_088_1:
+            case EnumController.Action.LB_W02_003_1:
+            case EnumController.Action.LB_W02_013_1:
             case EnumController.Action.LB_W02_031_1:
             case EnumController.Action.LB_W02_057_1:
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
+            case EnumController.Action.LB_W02_062_1:
+            case EnumController.Action.LB_W02_078_1:
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.P3_S01_057_1:
             case EnumController.Action.P3_S01_057_2:
@@ -168,18 +175,6 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_080_1:
             case EnumController.Action.P3_S01_080_2:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, m_EffectAbstract);
-                return;
-            case EnumController.Action.P3_S01_01T_1:
-            case EnumController.Action.P3_S01_04T_1:
-            case EnumController.Action.P3_S01_07T_1:
-            case EnumController.Action.P3_S01_001_1:
-            case EnumController.Action.P3_S01_026_1:
-            case EnumController.Action.LB_W02_003_1:
-            case EnumController.Action.LB_W02_013_1:
-            case EnumController.Action.LB_W02_062_1:
-            case EnumController.Action.LB_W02_078_1:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, paramaterNum);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.P3_S01_062_1:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062, m_BattleModeCard, paramaterNum);

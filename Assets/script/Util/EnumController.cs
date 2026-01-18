@@ -456,6 +456,7 @@ namespace EnumController
         Act,
         Auto,
         Counter,
+        Event,
     }
 
     public enum HandCardUtilStatus

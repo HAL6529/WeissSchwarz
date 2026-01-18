@@ -76,7 +76,7 @@ public class EffectAbstract : MonoBehaviour
         CounterExecute1();
     }
 
-    protected void EventExecute()
+    public void EventExecute()
     {
         EventExecute1();
     }
