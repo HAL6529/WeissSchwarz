@@ -23,14 +23,26 @@ public class SelectActEffectDialogContent : MonoBehaviour
             return;
         }
 
-        if(effectNum == 0)
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_GameManager.m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_GameManager.m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+
+        if (effectNum == 0)
         {
             switch (m_BattleModeCard.GetCardNo())
             {
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
                 case EnumController.CardNo.LB_W02_033:
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1, m_BattleModeCard);
+                    m_EffectAbstract.ExecuteParamater = 2;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1, m_BattleModeCard, m_EffectAbstract);
                     break;
                 default:
                     break;
@@ -42,7 +54,9 @@ public class SelectActEffectDialogContent : MonoBehaviour
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:
                 case EnumController.CardNo.LB_W02_033:
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2, m_BattleModeCard, paramaterNum1);
+                    m_EffectAbstract.ExecuteParamater = 1;
+                    m_EffectAbstract.IntParamater1 = paramaterNum1;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2, m_BattleModeCard, m_EffectAbstract);
                     break;
                 default:
                     break;

@@ -119,15 +119,29 @@ public class Effect : MonoBehaviour
             return;
         }
 
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        //m_EffectAbstract.ExecuteParamater = 1;
+
         switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.LB_W02_14T:
             case EnumController.CardNo.LB_W02_083:
+                m_EffectAbstract.ExecuteParamater = 1;
                 //【自】 あなたがレベルアップした時、あなたは自分の山札を上から1枚選び、ストック置場に置く。
                 Action action_LB_W02_14T = new Action(m_GameManager, EnumController.Action.LB_W02_14T_1);
                 action_LB_W02_14T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_LB_W02_14T.SetParamaterBattleStrix(m_BattleStrix);
                 action_LB_W02_14T.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_LB_W02_14T.SetParamaterEffectAbstract(m_EffectAbstract);
                 m_GameManager.ActionList.Add(action_LB_W02_14T);
                 break;
             default:
@@ -173,14 +187,27 @@ public class Effect : MonoBehaviour
             return;
         }
 
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.DC_W01_02T:
+                m_EffectAbstract.ExecuteParamater = 1;
                 Action action_DC_W01_02T = new Action(m_GameManager, EnumController.Action.DC_W01_02T_1);
                 action_DC_W01_02T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_DC_W01_02T.SetParamaterBattleStrix(m_BattleStrix);
                 action_DC_W01_02T.SetParamaterBattleModeCard(m_BattleModeCard);
+                action_DC_W01_02T.SetParamaterEffectAbstract(m_EffectAbstract);
                 m_GameManager.ActionList.Add(action_DC_W01_02T);
                 break;
             case EnumController.CardNo.P3_S01_01T:
@@ -550,6 +577,19 @@ public class Effect : MonoBehaviour
             return;
         }
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
+
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = effectCard.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = effectCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        //m_EffectAbstract.ExecuteParamater = 1;
+
         switch (effectCard.GetCardNo())
         {
             case EnumController.CardNo.P3_S01_040:
@@ -583,10 +623,12 @@ public class Effect : MonoBehaviour
                 //【自】 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたは自分の山札を上から1枚見て、山札の上か下に置く。
                 if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil))
                 {
+                    m_EffectAbstract.ExecuteParamater = 1;
                     Action action = new Action(m_GameManager, EnumController.Action.P3_S01_16T_1);
                     action.SetParamaterEventAnimationManager(m_EventAnimationManager);
                     action.SetParamaterBattleStrix(m_BattleStrix);
                     action.SetParamaterBattleModeCard(effectCard);
+                    action.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action);
                     return;
                 }
@@ -640,8 +682,6 @@ public class Effect : MonoBehaviour
         m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
         m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
         m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
-        m_EffectAbstract.ExecuteParamater = 1;
-        m_EffectAbstract.IntParamater1 = num;
         switch (card.GetCardNo())
         {
             //ドロー集中
@@ -790,7 +830,8 @@ public class Effect : MonoBehaviour
                 // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
                 if (ConfirmStockForCost(3))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num);
+                    m_EffectAbstract.ExecuteParamater = 1;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_077:
@@ -804,6 +845,8 @@ public class Effect : MonoBehaviour
                 //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.ExecuteParamater = 1;
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1014,6 +1057,19 @@ public class Effect : MonoBehaviour
     public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.Attack status)
     {
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
+
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = card.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = card;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        //m_EffectAbstract.ExecuteParamater = 1;
+
         switch (card.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A02:
@@ -1048,7 +1104,8 @@ public class Effect : MonoBehaviour
 
                 if (m_GameManager.MyClimaxCard.name == "美春のオルゴール" && ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, place, status);
+                    m_EffectAbstract.ExecuteParamater = 2;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, place, status, m_EffectAbstract);
                     return true;
                 }
                 return false;
@@ -1089,7 +1146,8 @@ public class Effect : MonoBehaviour
 
                 if (m_GameManager.MyClimaxCard.name == "復讐の終わり")
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T, card, place, status);
+                    m_EffectAbstract.ExecuteParamater = 2;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T, card, place, status, m_EffectAbstract);
                     return true;
                 }
                 return false;

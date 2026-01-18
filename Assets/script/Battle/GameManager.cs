@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ShuffleDeckAnimationController m_ShuffleDeckAnimationController;
     public WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
-    private MyMainCardsManager m_MyMainCardsManager;
+    public MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
     private MyStockCardsManager m_MyStockCardsManager;
     private MyClockCardsManager m_MyClockCardsManager;

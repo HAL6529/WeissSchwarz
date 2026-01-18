@@ -519,10 +519,12 @@ public class YesOrNoDialog : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action2);
 
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 起動効果を持つキャラクター
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
                 m_EventAnimationManager.ActAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
@@ -564,11 +566,6 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
                 m_EventAnimationManager.AnimationStart(m_BattleModeCard);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:

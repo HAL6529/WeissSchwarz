@@ -12,6 +12,7 @@ public class Action : MonoBehaviour
     private DialogManager m_DialogManager;
     private GameManager m_GameManager;
     private MyMainCardsManager m_MyMainCardsManager;
+    private EffectAbstract m_EffectAbstract;
     private EnumController.Attack m_AttackStatus = EnumController.Attack.VOID;
     private EventAnimationManager m_EventAnimationManager;
     private WinAndLose m_WinAndLose;
@@ -140,12 +141,9 @@ public class Action : MonoBehaviour
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard);
                 return;
             case EnumController.Action.DC_W01_02T_1:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                return;
             case EnumController.Action.LB_W02_14T_1:
             case EnumController.Action.P3_S01_16T_1:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.P3_S01_055_1:
@@ -223,6 +221,11 @@ public class Action : MonoBehaviour
     public void SetParamaterDialogManager(DialogManager paramater)
     {
         m_DialogManager = paramater;
+    }
+
+    public void SetParamaterEffectAbstract(EffectAbstract paramater)
+    {
+        m_EffectAbstract = paramater;
     }
 
     public void SetParamaterNum(int num) 
