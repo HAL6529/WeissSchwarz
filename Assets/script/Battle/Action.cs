@@ -143,11 +143,9 @@ public class Action : MonoBehaviour
             case EnumController.Action.DC_W01_02T_1:
             case EnumController.Action.LB_W02_14T_1:
             case EnumController.Action.P3_S01_16T_1:
-                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                return;
             case EnumController.Action.P3_S01_055_1:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard, paramaterNum);
+            case EnumController.Action.P3_S01_065_1:
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 return;
             case EnumController.Action.DC_W01_07T_1:
@@ -165,20 +163,17 @@ public class Action : MonoBehaviour
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum);
                 return;
             case EnumController.Action.P3_S01_057_1:
-            case EnumController.Action.P3_S01_080_1:
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum, 1);
-                return;
             case EnumController.Action.P3_S01_057_2:
-            case EnumController.Action.P3_S01_080_2:
             case EnumController.Action.P3_S01_065_2:
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, paramaterNum, 2);
+            case EnumController.Action.P3_S01_080_1:
+            case EnumController.Action.P3_S01_080_2:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, m_EffectAbstract);
                 return;
             case EnumController.Action.P3_S01_01T_1:
             case EnumController.Action.P3_S01_04T_1:
             case EnumController.Action.P3_S01_07T_1:
             case EnumController.Action.P3_S01_001_1:
             case EnumController.Action.P3_S01_026_1:
-            case EnumController.Action.P3_S01_065_1:
             case EnumController.Action.LB_W02_003_1:
             case EnumController.Action.LB_W02_013_1:
             case EnumController.Action.LB_W02_062_1:

@@ -104,15 +104,6 @@ public class EventAnimationManager : MonoBehaviour
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart_2(BattleModeCard card, int place)
-    {
-        AnimationStart(card, place);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
     public void ActAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
     {
         EventAnimationParamater = EnumController.EventAnimation.Act;
