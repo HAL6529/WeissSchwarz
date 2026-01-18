@@ -28,19 +28,21 @@ public class EventAnimationManager : MonoBehaviour
 
     private int place = -1;
 
-    private int handNum = -1;
-
-    private int effectNum = 0;
-
     private bool isFromRPC = false;
 
+    private EffectAbstract m_EffectAbstract;
+
     private EnumController.YesOrNoDialogParamater paramater;
+
+    private EnumController.EventAnimation EventAnimationParamater;
 
     private int damage = -1;
 
     private string sulvageCardName = "";
 
     private int cost = -1;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +60,6 @@ public class EventAnimationManager : MonoBehaviour
         this.cost = cost;
         isFromRPC = false;
         m_gameObject.SetActive(true);
-        effectNum = 0;
 
         m_BattleModeCard = card;
         m_image.sprite = card.GetSprite();
@@ -81,7 +82,6 @@ public class EventAnimationManager : MonoBehaviour
         this.damage = damage;
         isFromRPC = false;
         m_gameObject.SetActive(true);
-        effectNum = 1;
 
         m_BattleModeCard = card;
         m_image.sprite = card.GetSprite();
@@ -98,27 +98,7 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart(BattleModeCard card)
     {
-        AnimationStart(card, -1, -1, 0);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card, int place)
-    {
-
-        AnimationStart(card, place, -1, 0);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card, int place, int handNum)
-    {
-
-        AnimationStart(card, place, handNum, 0);
+        AnimationStart(card, -1);
     }
 
     /// <summary>
@@ -127,7 +107,7 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card)
     {
-        AnimationStart(card, -1, -1, 1);
+        AnimationStart(card, -1);
     }
 
     /// <summary>
@@ -136,46 +116,27 @@ public class EventAnimationManager : MonoBehaviour
     /// <param name="card"></param>
     public void AnimationStart_2(BattleModeCard card, int place)
     {
-        AnimationStart(card, place, -1, 1);
+        AnimationStart(card, place);
     }
 
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart_2(BattleModeCard card, int place, int handNum)
+    public void ActAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
     {
-        AnimationStart(card, place, handNum, 1);
-    }
+        EventAnimationParamater = EnumController.EventAnimation.Act;
+        this.m_EffectAbstract = m_EffectAbstract;
+        AnimationStart(card, -1);
+    } 
 
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
     /// <param name="card"></param>
-    public void AnimationStart_3(BattleModeCard card)
-    {
-        AnimationStart(card, -1, -1, 2);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart_3(BattleModeCard card, int place)
-    {
-        AnimationStart(card, place, -1, 2);
-    }
-
-    /// <summary>
-    /// イベントを再生したプレイヤー用
-    /// </summary>
-    /// <param name="card"></param>
-    public void AnimationStart(BattleModeCard card, int place, int handNum, int effectNum)
+    public void AnimationStart(BattleModeCard card, int place)
     {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
         this.place = place;
-        this.handNum = handNum;
-        this.effectNum = effectNum;
         isFromRPC = false;
         m_gameObject.SetActive(true);
 
@@ -196,7 +157,6 @@ public class EventAnimationManager : MonoBehaviour
         {
             place = -1;
             damage = -1;
-            effectNum = 0;
             return;
         }
         Execute();
@@ -316,6 +276,21 @@ public class EventAnimationManager : MonoBehaviour
                 default:
                     break;
             }
+        }
+
+        switch (EventAnimationParamater)
+        {
+            case EnumController.EventAnimation.Act:
+                m_EffectAbstract.ActExecute();
+                break;
+            case EnumController.EventAnimation.Auto:
+                m_EffectAbstract.AutoExecute();
+                break;
+            case EnumController.EventAnimation.Counter:
+                m_EffectAbstract.CounterExecute();
+                break;
+            default:
+                break;
         }
 
         /*int CheckActEffectCount = 0;

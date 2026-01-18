@@ -43,6 +43,8 @@ public class YesOrNoDialog : MonoBehaviour
     /// </summary>
     private string sulvageCardName = "";
 
+    public EffectAbstract m_EffectAbstract;
+
     public YesOrNoDialog()
     {
         m_YesOrNoDialogParamater = EnumController.YesOrNoDialogParamater.VOID;
@@ -50,36 +52,42 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater)
     {
-        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card)
     {
-        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
-        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, null);
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EffectAbstract m_EffectAbstract)
+    {
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, m_EffectAbstract);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
     {
-        SetParamater(paramater, card, num, -1, -1, status);
+        SetParamater(paramater, card, num, -1, -1, status, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
     {
-        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
     {
-        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID, null);
     }
 
-    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status)
+    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status, EffectAbstract m_EffectAbstract)
     {
+        this.m_EffectAbstract = m_EffectAbstract;
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
         ParamaterNum3 = num3;
@@ -464,7 +472,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, -1, ParamaterNum1);
+                m_EventAnimationManager.AnimationStart(m_BattleModeCard, -1);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
@@ -516,7 +524,7 @@ public class YesOrNoDialog : MonoBehaviour
                 break;
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
-                m_EventAnimationManager.AnimationStart_3(m_BattleModeCard, ParamaterNum1);
+                m_EventAnimationManager.ActAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 起動効果を持つキャラクター

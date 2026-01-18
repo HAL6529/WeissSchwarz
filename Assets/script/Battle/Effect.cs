@@ -630,6 +630,18 @@ public class Effect : MonoBehaviour
     /// <param name="num">メインのどの場所にいてるか</param>
     public void CheckEffectForAct(BattleModeCard card, int num)
     {
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = card.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = card;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        m_EffectAbstract.ExecuteParamater = 1;
+        m_EffectAbstract.IntParamater1 = num;
         switch (card.GetCardNo())
         {
             //ドロー集中
@@ -792,7 +804,7 @@ public class Effect : MonoBehaviour
                 //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_081:

@@ -451,6 +451,13 @@ namespace EnumController
         EncoreCheck,
     }
 
+    public enum EventAnimation
+    {
+        Act,
+        Auto,
+        Counter,
+    }
+
     public enum HandCardUtilStatus
     {
         VOID,

@@ -74,18 +74,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] ShuffleDeckAnimationController m_ShuffleDeckAnimationController;
-    [SerializeField] WinAndLose m_WinAndLose;
+    public WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
     private MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
     private MyStockCardsManager m_MyStockCardsManager;
     private MyClockCardsManager m_MyClockCardsManager;
     private MyLevelCardsManager m_MyLevelCardsManager;
-    private EnemyMainCardsManager m_EnemyMainCardsManager;
+    public EnemyMainCardsManager m_EnemyMainCardsManager;
     private EnemyHandsCardManager m_EnemyHandsCardManager;
     private EnemyClockCardsManager m_EnemyClockCardsManager;
     private EnemyStockCardsManager m_EnemyStockCardsManager;
     private EnemyLevelCardsManager m_EnemyLevelCardsManager;
+    public EventAnimationManager m_EventAnimationManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 

@@ -2,35 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EffectAbstract : MonoBehaviour
+public class EffectAbstract : MonoBehaviour
 {
-    protected GameManager m_GameManager { get; set; }
+    public GameManager m_GameManager { get; set; }
 
-    protected BattleStrix m_BattleStrix { get; set; }
+    public BattleStrix m_BattleStrix { get; set; }
 
-    protected BattleModeCard m_BattleModeCard { get; set; }
+    public BattleModeCard m_BattleModeCard { get; set; }
 
-    protected DialogManager m_DialogManager { get; set; }
+    public DialogManager m_DialogManager { get; set; }
 
-    protected EnemyMainCardsManager m_EnemyMainCardsManager { get; set; }
+    public EnemyMainCardsManager m_EnemyMainCardsManager { get; set; }
 
-    protected EventAnimationManager m_EventAnimationManager { get; set; }
+    public EventAnimationManager m_EventAnimationManager { get; set; }
 
-    protected MainPowerUpDialog m_MainPowerUpDialog { get; set; }
+    public MainPowerUpDialog m_MainPowerUpDialog { get; set; }
 
-    protected MyMainCardsManager m_MyMainCardsManager { get; set; }
+    public MyMainCardsManager m_MyMainCardsManager { get; set; }
 
-    protected WinAndLose m_WinAndLose { get; set; }
+    public WinAndLose m_WinAndLose { get; set; }
 
-    protected int ExecuteParamater { get; set; }
+    public int ExecuteParamater { get; set; }
 
-    protected int IntParamater1 { get; set; }
+    public int IntParamater1 { get; set; }
 
-    protected int IntParamater2 { get; set; }
+    public int IntParamater2 { get; set; }
 
-    protected int pumpPoint { get; set; }
+    public int pumpPoint { get; set; }
 
-    protected void ActExecute()
+    public void ActExecute()
     {
         switch (ExecuteParamater)
         {
@@ -51,7 +51,7 @@ public abstract class EffectAbstract : MonoBehaviour
         }
     }
 
-    protected void AutoExecute()
+    public void AutoExecute()
     {
         switch (ExecuteParamater)
         {
@@ -69,7 +69,7 @@ public abstract class EffectAbstract : MonoBehaviour
         }
     }
 
-    protected void CounterExecute()
+    public void CounterExecute()
     {
         EffectWhenAct(m_BattleModeCard);
         EffectWhenCounter(m_BattleModeCard, IntParamater1);
