@@ -18,5 +18,6 @@ public class BattleModeCard_DC_W01_09T : BattleModeCard
         this.power = 500;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = null;
     }
 }

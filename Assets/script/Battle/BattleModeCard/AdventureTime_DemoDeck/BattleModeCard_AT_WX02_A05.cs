@@ -18,5 +18,6 @@ public class BattleModeCard_AT_WX02_A05 : BattleModeCard
         this.power = 1000;
         this.isCounter = true;
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = new Effect_AT_WX02_A05();
     }
 }

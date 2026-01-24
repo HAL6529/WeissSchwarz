@@ -48,6 +48,7 @@ public class CardGuideUtil : MonoBehaviour
     [SerializeField] Sprite bounce;
     [SerializeField] Sprite comeback;
     [SerializeField] Sprite soul;
+    [SerializeField] Sprite shot;
     [SerializeField] Sprite pool;
     [SerializeField] Image PanelImage;
 
@@ -245,6 +246,14 @@ public class CardGuideUtil : MonoBehaviour
                 TriggerImageObj4.SetActive(false);
                 trigger_image3.sprite = pool;
                 trigger_image4.sprite = null;
+                break;
+            case EnumController.Trigger.SHOT:
+                TriggerImageObj.SetActive(false);
+                TriggerImageObj2.SetActive(false);
+                TriggerImageObj3.SetActive(true);
+                TriggerImageObj4.SetActive(true);
+                trigger_image3.sprite = soul;
+                trigger_image4.sprite = shot;
                 break;
             case EnumController.Trigger.DOUBLE_SOUL:
                 TriggerImageObj.SetActive(false);

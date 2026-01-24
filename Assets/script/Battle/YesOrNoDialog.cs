@@ -60,6 +60,11 @@ public class YesOrNoDialog : MonoBehaviour
         SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, null);
     }
 
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, m_EffectAbstract);
+    }
+
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
         SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, null);

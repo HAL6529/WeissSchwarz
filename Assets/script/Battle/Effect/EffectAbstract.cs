@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectAbstract : MonoBehaviour
+public class EffectAbstract
 {
     public GameManager m_GameManager { get; set; }
 

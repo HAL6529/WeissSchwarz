@@ -128,16 +128,6 @@ public class OKDialog : MonoBehaviour
         {
             // ParamaterNum1: damage, ParamaterNum2: Place, ParamaterNum3: handNum
             case EnumController.OKDialogParamater.Counter_Confirm_Use_Card:
-                EffectAbstract m_EffectAbstract;
-                m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
-                m_EffectAbstract.m_GameManager = m_GameManager;
-                m_EffectAbstract.m_BattleStrix = m_BattleStrix;
-                m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
-                m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
-                m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
-                m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
-                m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
-                m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
                 int place = 0;
                 m_GameManager.m_HandCardUtilStatus = EnumController.HandCardUtilStatus.VOID;
 
@@ -146,8 +136,19 @@ public class OKDialog : MonoBehaviour
                 action.SetParamaterNum(ParamaterNum1);
                 action.SetParamaterNum2(ParamaterNum2);
                 m_GameManager.ActionList.Add(action);
-                if (m_BattleModeCard != null)
+                if (m_BattleModeCard != null && m_BattleModeCard.m_EffectAbstract != null)
                 {
+                    EffectAbstract m_EffectAbstract;
+                    m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+                    m_EffectAbstract.m_GameManager = m_GameManager;
+                    m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+                    m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+                    m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+                    m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
+                    m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+                    m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+                    m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+
                     switch (ParamaterNum2)
                     {
                         case 0:

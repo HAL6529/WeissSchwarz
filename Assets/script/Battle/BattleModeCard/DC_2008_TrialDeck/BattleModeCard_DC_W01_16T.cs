@@ -18,5 +18,6 @@ public class BattleModeCard_DC_W01_16T : BattleModeCard
         this.power = 3000;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = new Effect_DC_W01_16T();
     }
 }

@@ -18,5 +18,6 @@ public class BattleModeCard_P3_S01_078 : BattleModeCard
         this.power = 5000;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = null;
     }
 }

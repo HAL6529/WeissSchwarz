@@ -18,5 +18,6 @@ public class BattleModeCard_LB_W02_10T : BattleModeCard
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = null;
     }
 }

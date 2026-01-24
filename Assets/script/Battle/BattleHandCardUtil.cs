@@ -265,18 +265,22 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onPlayButton()
     {
-        EffectAbstract m_EffectAbstract;
-        m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
-        m_EffectAbstract.m_GameManager = m_GameManager;
-        m_EffectAbstract.m_BattleStrix = m_GameManager.m_BattleStrix;
-        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
-        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
-        m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
-        m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
-        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
-        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
-        m_EffectAbstract.ExecuteParamater = 1;
-        m_EffectAbstract.IntParamater1 = num;
+        EffectAbstract m_EffectAbstract = new EffectAbstract();
+        if (m_BattleModeCard.m_EffectAbstract != null)
+        {
+            m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+            m_EffectAbstract.m_GameManager = m_GameManager;
+            m_EffectAbstract.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+            m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+            m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
+            m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
+            m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+            m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+            m_EffectAbstract.ExecuteParamater = 1;
+            m_EffectAbstract.IntParamater1 = num;
+        }
+
         switch (m_BattleModeCard.GetType())
         {
             case EnumController.Type.CHARACTER:

@@ -46,7 +46,7 @@ public class Effect : MonoBehaviour
     /// </summary>
     public void WhenAct(BattleModeCard m_BattleModeCard, int placeNum)
     {
-        if (m_BattleModeCard == null)
+        if (m_BattleModeCard == null || m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -103,7 +103,7 @@ public class Effect : MonoBehaviour
     /// </summary>
     public void WhenCounter(BattleModeCard m_BattleModeCard, int placeNum, int BattlePlace)
     {
-        if (m_BattleModeCard == null)
+        if (m_BattleModeCard == null || m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -144,7 +144,7 @@ public class Effect : MonoBehaviour
     /// <param name="m_BattleModeCard"></param>
     public void WhenLevelUp(BattleModeCard m_BattleModeCard)
     {
-        if (m_BattleModeCard == null)
+        if (m_BattleModeCard == null || m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -181,7 +181,7 @@ public class Effect : MonoBehaviour
 
     public void PutGraveYardFromField(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -231,16 +231,19 @@ public class Effect : MonoBehaviour
             return;
         }
 
-        EffectAbstract m_EffectAbstract;
-        m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
-        m_EffectAbstract.m_GameManager = m_GameManager;
-        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
-        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
-        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
-        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
-        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
-        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
-        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        EffectAbstract m_EffectAbstract = new EffectAbstract();
+        if (m_BattleModeCard.m_EffectAbstract != null)
+        {
+            m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+            m_EffectAbstract.m_GameManager = m_GameManager;
+            m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+            m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+            m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+            m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+            m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+            m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+            m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        }
 
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (m_BattleModeCard.GetCardNo())
@@ -498,7 +501,7 @@ public class Effect : MonoBehaviour
     /// </summary>
     public void WhenReverseMyCardEffect(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -616,7 +619,7 @@ public class Effect : MonoBehaviour
     /// <summary>
     public void EffectWhenMyOtherCardReversed(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if(m_BattleMyMainCardAvility.m_BattleModeCard == null)
+        if(m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -667,7 +670,7 @@ public class Effect : MonoBehaviour
     /// <param name="effectCardPlaceNum">効果を発動するカードの位置</param>
     public void EffectWhenMyOtherCardPut(BattleModeCard effectCard, int placeNum, int effectCardPlaceNum)
     {
-        if (effectCard == null)
+        if (effectCard == null || effectCard.m_EffectAbstract == null)
         {
             return;
         }
@@ -767,8 +770,12 @@ public class Effect : MonoBehaviour
     /// <param name="num">メインのどの場所にいてるか</param>
     public void CheckEffectForAct(BattleModeCard card, int num)
     {
-        EffectAbstract m_EffectAbstract;
-        m_EffectAbstract = card.m_EffectAbstract;
+        if(card.m_EffectAbstract == null)
+        {
+            return;
+        }
+
+        EffectAbstract m_EffectAbstract = card.m_EffectAbstract;
         m_EffectAbstract.m_GameManager = m_GameManager;
         m_EffectAbstract.m_BattleStrix = m_BattleStrix;
         m_EffectAbstract.m_BattleModeCard = card;
@@ -1166,6 +1173,10 @@ public class Effect : MonoBehaviour
     /// <param name="card"></param>
     public bool CheckWhenAttack(BattleModeCard card, int place, EnumController.Attack status)
     {
+        if(card.m_EffectAbstract == null)
+        {
+            return false;
+        }
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
 
         EffectAbstract m_EffectAbstract;
