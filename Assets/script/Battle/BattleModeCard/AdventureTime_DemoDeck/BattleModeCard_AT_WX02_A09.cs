@@ -8,7 +8,7 @@ public class BattleModeCard_AT_WX02_A09 : BattleModeCard
     {
         this.level = 0;
         this.cost = 0;
-        this.soul = 0;
+        this.soul = 1;
         this.color = EnumController.CardColor.RED;
         this.trigger = EnumController.Trigger.NONE;
         this.type = EnumController.Type.CHARACTER;

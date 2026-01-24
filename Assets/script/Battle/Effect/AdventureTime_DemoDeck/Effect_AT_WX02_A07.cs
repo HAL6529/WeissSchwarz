@@ -8,6 +8,7 @@ public class Effect_AT_WX02_A07 : EffectAbstract
     {
         //※イベント
         // Search your deck for up to 1 《Ooo》 character, reveal it to your opponent, put it into your hand, and shuffle your deck.
+        PayCost(1);
         m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.AT_WX02_A07, IntParamater1);
         return;
     }

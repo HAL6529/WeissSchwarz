@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Effect_P3_S01_009 : EffectAbstract
 {
-    int pumpPoint = 2000;
+    public Effect_P3_S01_009()
+    {
+        pumpPoint = 2000;
+    }
 
     public override void CounterExecute1()
     {

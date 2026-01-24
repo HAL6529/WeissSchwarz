@@ -296,9 +296,9 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_018:
                     case EnumController.CardNo.LB_W02_022:
                     case EnumController.CardNo.LB_W02_043:
-                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         break;
-                    case EnumController.CardNo.AT_WX02_A05:
+                    case EnumController.CardNo.AT_WX02_A07:
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.LB_W02_04T:
                     case EnumController.CardNo.LB_W02_12T:
@@ -311,7 +311,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_093:
                         if (ConfirmStockForCost(1))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.DC_W01_12T:
@@ -321,7 +321,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_069:
                         if (ConfirmStockForCost(2))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.LB_W02_16T:
@@ -329,25 +329,25 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_094:
                         if (ConfirmStockForCost(3))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_094:
                         if (ConfirmStockForCost(4))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_020:
                         if (ConfirmStockForCost(6))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_095:
                         if (ConfirmStockForCost(8))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_BattleModeCard.m_EffectAbstract);
                         }
                         return;
                     default:

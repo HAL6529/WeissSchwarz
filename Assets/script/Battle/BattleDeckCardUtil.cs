@@ -16,7 +16,6 @@ public class BattleDeckCardUtil : MonoBehaviour
     [SerializeField] Text DeckCount;
 
     private static string AnimationName = "ShuffleAnimation";
-    private static int NormalAnimationLayerIndex = 0;
 
     bool firstFlg = false;
 

@@ -8,7 +8,6 @@ public class Effect_LB_W02_043 : EffectAbstract
     {
         //※イベント
         //あなたは自分のキャラすべてに、そのターン中、パワーを＋1500。
-        int count = 0;
         int power = 1500;
 
         for (int i = 0; i < m_GameManager.myFieldList.Count; i++)
