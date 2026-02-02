@@ -16,7 +16,7 @@ public class BattleModeCard_DC_W01_17T : BattleModeCard
         this.cardNo = EnumController.CardNo.DC_W01_17T;
         this.name = "パジャマの由夢";
         this.power = 2500;
-        this.isCounter = false;
+        this.isCounter = true;
         this.isGreatPerformance = false;
         this.m_EffectAbstract = new Effect_DC_W01_17T();
     }

@@ -75,9 +75,9 @@ public class YesOrNoDialog : MonoBehaviour
         SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, m_EffectAbstract);
     }
 
-    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status, EffectAbstract m_EffectAbstract)
     {
-        SetParamater(paramater, card, num, -1, -1, status, null);
+        SetParamater(paramater, card, num, -1, -1, status, m_EffectAbstract);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
@@ -392,6 +392,7 @@ public class YesOrNoDialog : MonoBehaviour
                     case EnumController.CardNo.AT_WX02_A03:
                         m_GameManager.Draw();
                         break;
+                    case EnumController.CardNo.DC_W01_03T:
                     case EnumController.CardNo.P3_S01_020:
                     case EnumController.CardNo.P3_S01_095:
                         m_EventAnimationManager.EventAnimationStart(m_BattleModeCard, m_EffectAbstract);

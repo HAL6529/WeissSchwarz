@@ -146,6 +146,7 @@ public class OKDialog : MonoBehaviour
                     m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
                     m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
                     m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+                    m_EffectAbstract.m_MainPowerUpDialog = m_DialogManager.m_MainPowerUpDialog;
                     m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
                     m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
 
