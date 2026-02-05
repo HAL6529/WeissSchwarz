@@ -143,7 +143,6 @@ public class Action : MonoBehaviour
             case EnumController.Action.DC_W01_02T_1:
             case EnumController.Action.DC_W01_07T_1:
             case EnumController.Action.LB_W02_14T_1:
-            case EnumController.Action.LB_W02_19T_1:
             case EnumController.Action.P3_S01_16T_1:
             case EnumController.Action.P3_S01_055_1:
             case EnumController.Action.P3_S01_065_1:
@@ -160,7 +159,6 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_088_1:
             case EnumController.Action.LB_W02_003_1:
             case EnumController.Action.LB_W02_013_1:
-            case EnumController.Action.LB_W02_031_1:
             case EnumController.Action.LB_W02_062_1:
             case EnumController.Action.LB_W02_078_1:
                 m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
@@ -173,6 +171,8 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_065_2:
             case EnumController.Action.P3_S01_080_1:
             case EnumController.Action.P3_S01_080_2:
+            case EnumController.Action.LB_W02_19T_1:
+            case EnumController.Action.LB_W02_031_1:
             case EnumController.Action.LB_W02_057_1:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT, m_BattleModeCard, m_EffectAbstract);
                 return;

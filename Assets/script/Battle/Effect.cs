@@ -507,6 +507,9 @@ public class Effect : MonoBehaviour
                 {
                     Action action_LB_W02_19T = new Action(m_GameManager, EnumController.Action.LB_W02_19T_1);
                     action_LB_W02_19T.SetParamaterBattleModeCard(card);
+                    action_LB_W02_19T.SetParamaterBattleStrix(m_BattleStrix);
+                    action_LB_W02_19T.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_LB_W02_19T.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_LB_W02_19T);
                 }
                 return;
@@ -516,6 +519,9 @@ public class Effect : MonoBehaviour
                 {
                     Action action_LB_W02_031 = new Action(m_GameManager, EnumController.Action.LB_W02_031_1);
                     action_LB_W02_031.SetParamaterBattleModeCard(card);
+                    action_LB_W02_031.SetParamaterBattleStrix(m_BattleStrix);
+                    action_LB_W02_031.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_LB_W02_031.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_LB_W02_031);
                 }
                 return;
@@ -924,7 +930,8 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T, card, num);
+                    m_EffectAbstract.IntParamater1 = num;
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T, card, num, m_EffectAbstract);
                 }
                 return;
             //【起】［(1)］ あなたは《動物》の自分のキャラを1枚選び、そのターン中、パワーを＋500。
@@ -940,7 +947,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_04T:
@@ -968,28 +975,28 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_028:
                 // 【起】［(2)］ そのターン中、このカードのパワーを＋5000。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_034:
                 // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
                 if (ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_034, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_034, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_051:
                 //【起】［(1)］ あなたは自分のカード名に「順平」を含むキャラを１枚選び、そのターン中、パワーを＋1000。
                 if (ConfirmStockForCost(1))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_051, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_051, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.P3_S01_052:
@@ -1038,14 +1045,14 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.LB_W02_007:
                 //【起】［(2)］ あなたはレベル0以下の相手のキャラを1枚選び、手札に戻す。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.LB_W02_034:
@@ -1058,13 +1065,13 @@ public class Effect : MonoBehaviour
                 return;
             case EnumController.CardNo.LB_W02_038:
                 //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く。
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038, card, num);
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038, card, num, m_EffectAbstract);
                 return;
             case EnumController.CardNo.LB_W02_054:
                 //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.LB_W02_077:
@@ -1079,14 +1086,14 @@ public class Effect : MonoBehaviour
                 //【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083, card, num, m_EffectAbstract);
                 }
                 return;
             case EnumController.CardNo.LB_W02_088:
                 //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
                 if (ConfirmStockForCost(2))
                 {
-                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_088, card, num);
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_088, card, num, m_EffectAbstract);
                 }
                 return;
             default:
