@@ -115,6 +115,7 @@ namespace EnumController
         Muscle, //‹Ø“÷
         Chairperson, //ˆÏˆõ’·
         Police, //Œx@
+        Maid, //ƒƒCƒh
     }
 
     public enum CardColor

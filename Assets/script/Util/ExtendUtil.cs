@@ -1247,6 +1247,8 @@ namespace ExtendUtil
                     return "ˆÏˆõ’·";
                 case EnumController.Attribute.Police:
                     return "Œx@";
+                case EnumController.Attribute.Maid:
+                    return "ƒƒCƒh";
                 default:
                     break;
             }
