@@ -246,7 +246,7 @@ public class Effect : MonoBehaviour
             m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
             m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
             m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
-            m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+            m_EffectAbstract.m_MyMainCardsManager = m_GameManager.m_MyMainCardsManager;
             m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
         }
 
@@ -266,6 +266,7 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_005:
                 // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
                 m_EffectAbstract.ExecuteParamater = 1;
+                m_EffectAbstract.IntParamater1 = place;
                 Action action_P3_S01_01T = new Action(m_GameManager, EnumController.Action.P3_S01_01T_1);
                 action_P3_S01_01T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_01T.SetParamaterBattleStrix(m_BattleStrix);
@@ -335,6 +336,7 @@ public class Effect : MonoBehaviour
                     action_P3_S01_052.SetParamaterBattleModeCard(m_BattleModeCard);
                     action_P3_S01_052.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                     action_P3_S01_052.SetParamaterNum(place);
+                    action_P3_S01_052.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_P3_S01_052);
                 }
                 return;
@@ -367,6 +369,7 @@ public class Effect : MonoBehaviour
                     action_P3_S01_060.SetParamaterBattleModeCard(m_BattleModeCard);
                     action_P3_S01_060.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                     action_P3_S01_060.SetParamaterNum(place);
+                    action_P3_S01_060.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_P3_S01_060);
                 }
                 return;
@@ -380,6 +383,7 @@ public class Effect : MonoBehaviour
                     action_P3_S01_061.SetParamaterBattleModeCard(m_BattleModeCard);
                     action_P3_S01_061.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                     action_P3_S01_061.SetParamaterNum(place);
+                    action_P3_S01_061.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_P3_S01_061);
                 }
                 return;
@@ -430,6 +434,7 @@ public class Effect : MonoBehaviour
                     action_P3_S01_088.SetParamaterBattleModeCard(m_BattleModeCard);
                     action_P3_S01_088.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                     action_P3_S01_088.SetParamaterNum(place);
+                    action_P3_S01_088.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action_P3_S01_088);
                 }
                 return;
@@ -586,6 +591,7 @@ public class Effect : MonoBehaviour
                 if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= 1 && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
                 {
                     m_EffectAbstract.ExecuteParamater = 1;
+                    m_EffectAbstract.IntParamater1 = enemyPlace;
                     Action action = new Action(m_GameManager, EnumController.Action.DC_W01_16T_1);
                     action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                     action.SetParamaterBattleStrix(m_BattleStrix);
@@ -683,7 +689,8 @@ public class Effect : MonoBehaviour
         {
             //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
             case EnumController.CardNo.P3_S01_055:
-                m_EffectAbstract.ExecuteParamater = 1;
+                m_EffectAbstract.ExecuteParamater = 2;
+                m_EffectAbstract.IntParamater1 = m_BattleMyMainCardAvility.PlaceNum;
                 Action action_P3_S01_055 = new Action(m_GameManager, EnumController.Action.P3_S01_055_1);
                 action_P3_S01_055.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_P3_S01_055.SetParamaterBattleStrix(m_BattleStrix);
@@ -695,6 +702,7 @@ public class Effect : MonoBehaviour
             // 【自】 他のバトルしているあなたのキャラが【リバース】した時、あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1000。
             case EnumController.CardNo.DC_W01_07T:
                 m_EffectAbstract.ExecuteParamater = 1;
+                m_EffectAbstract.IntParamater1 = m_BattleMyMainCardAvility.PlaceNum;
                 Action action_DC_W01_07T = new Action(m_GameManager, EnumController.Action.DC_W01_07T_1);
                 action_DC_W01_07T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_DC_W01_07T.SetParamaterBattleStrix(m_BattleStrix);
@@ -741,11 +749,13 @@ public class Effect : MonoBehaviour
                 //【自】［このカードを【レスト】する］ 他の《スポーツ》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは自分の山札の上から1枚を、ストック置場に置く。
                 if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.Sports) && m_MyMainCardsManager.GetState(effectCardPlaceNum) == EnumController.State.STAND)
                 {
+                    m_EffectAbstract.IntParamater1 = effectCardPlaceNum;
                     Action action = new Action(m_GameManager, EnumController.Action.P3_S01_040_1);
                     action.SetParamaterEventAnimationManager(m_EventAnimationManager);
                     action.SetParamaterBattleStrix(m_BattleStrix);
                     action.SetParamaterBattleModeCard(effectCard);
                     action.SetParamaterNum(effectCardPlaceNum);
+                    action.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action);
                     return;
                 }
@@ -754,11 +764,13 @@ public class Effect : MonoBehaviour
                 //【自】［(1) このカードを【レスト】する］ 他の《生徒会》のあなたのキャラがプレイされて舞台に置かれた時、あなたはコストを払ってよい。そうしたら、あなたは1枚引く。
                 if (m_MyMainCardsManager.HaveAttribute(placeNum, EnumController.Attribute.StudentCouncil) && ConfirmStockForCost(1))
                 {
+                    m_EffectAbstract.IntParamater1 = effectCardPlaceNum;
                     Action action = new Action(m_GameManager, EnumController.Action.P3_S01_076_1);
                     action.SetParamaterEventAnimationManager(m_EventAnimationManager);
                     action.SetParamaterBattleStrix(m_BattleStrix);
                     action.SetParamaterBattleModeCard(effectCard);
                     action.SetParamaterNum(effectCardPlaceNum);
+                    action.SetParamaterEffectAbstract(m_EffectAbstract);
                     m_GameManager.ActionList.Add(action);
                     return;
                 }
@@ -947,6 +959,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ このカードを思い出にする。あなたは自分の手札の「主人公＆タナトス」を１枚選び、このカードがいた枠に置く。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002, card, num, m_EffectAbstract);
                 }
                 return;
@@ -975,6 +988,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T, card, num, m_EffectAbstract);
                 }
                 return;
@@ -982,6 +996,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(2)］ そのターン中、このカードのパワーを＋5000。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028, card, num, m_EffectAbstract);
                 }
                 return;
@@ -989,6 +1004,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(1)］ そのターン中、このカードのパワーを＋2000。
                 if (ConfirmStockForCost(1))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_034, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1038,6 +1054,7 @@ public class Effect : MonoBehaviour
                 if (ConfirmStockForCost(2))
                 {
                     m_EffectAbstract.ExecuteParamater = 1;
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091, card, m_EffectAbstract);
                 }
                 return;
@@ -1045,6 +1062,7 @@ public class Effect : MonoBehaviour
                 // 【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見て《スポーツ》のキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1065,12 +1083,14 @@ public class Effect : MonoBehaviour
                 return;
             case EnumController.CardNo.LB_W02_038:
                 //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く。
+                m_EffectAbstract.IntParamater1 = num;
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038, card, num, m_EffectAbstract);
                 return;
             case EnumController.CardNo.LB_W02_054:
                 //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1086,6 +1106,7 @@ public class Effect : MonoBehaviour
                 //【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1093,6 +1114,7 @@ public class Effect : MonoBehaviour
                 //【起】［(2) このカードを【レスト】する］ あなたは自分の山札を見てカード名に「小毬」を含むキャラを1枚まで選んで相手に見せ、手札に加える。その山札をシャッフルする。
                 if (ConfirmStockForCost(2))
                 {
+                    m_EffectAbstract.IntParamater1 = num;
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_088, card, num, m_EffectAbstract);
                 }
                 return;
@@ -1122,7 +1144,6 @@ public class Effect : MonoBehaviour
             case EnumController.CardNo.P3_S01_007:
             case EnumController.CardNo.P3_S01_053:
             case EnumController.CardNo.P3_S01_063:
-            case EnumController.CardNo.P3_S01_076:
             case EnumController.CardNo.P3_S01_083:
             case EnumController.CardNo.LB_W02_001:
             case EnumController.CardNo.LB_W02_037:

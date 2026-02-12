@@ -181,7 +181,6 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_03T:
                         case EnumController.CardNo.P3_S01_009:
                         case EnumController.CardNo.P3_S01_033:
-                        case EnumController.CardNo.P3_S01_043:
                         case EnumController.CardNo.P3_S01_067:
                         case EnumController.CardNo.P3_S01_091:
                         case EnumController.CardNo.LB_W02_040:
@@ -199,6 +198,7 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.LB_W02_04T:
                         case EnumController.CardNo.P3_S01_12T:
                         case EnumController.CardNo.P3_S01_022:
+                        case EnumController.CardNo.P3_S01_043:
                         case EnumController.CardNo.P3_S01_094:
                         case EnumController.CardNo.LB_W02_044:
                             m_EffectAbstract.ExecuteParamater = 1;

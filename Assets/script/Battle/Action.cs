@@ -151,12 +151,7 @@ public class Action : MonoBehaviour
             case EnumController.Action.P3_S01_07T_1:
             case EnumController.Action.P3_S01_001_1:
             case EnumController.Action.P3_S01_026_1:
-            case EnumController.Action.P3_S01_040_1:
-            case EnumController.Action.P3_S01_052_1:
-            case EnumController.Action.P3_S01_060_1:
             case EnumController.Action.P3_S01_061_1:
-            case EnumController.Action.P3_S01_076_1:
-            case EnumController.Action.P3_S01_088_1:
             case EnumController.Action.LB_W02_003_1:
             case EnumController.Action.LB_W02_013_1:
             case EnumController.Action.LB_W02_062_1:
@@ -166,11 +161,16 @@ public class Action : MonoBehaviour
                 return;
             case EnumController.Action.DC_W01_10T_1:
             case EnumController.Action.DC_W01_16T_1:
+            case EnumController.Action.P3_S01_040_1:
+            case EnumController.Action.P3_S01_052_1:
             case EnumController.Action.P3_S01_057_1:
             case EnumController.Action.P3_S01_057_2:
+            case EnumController.Action.P3_S01_060_1:
             case EnumController.Action.P3_S01_065_2:
+            case EnumController.Action.P3_S01_076_1:
             case EnumController.Action.P3_S01_080_1:
             case EnumController.Action.P3_S01_080_2:
+            case EnumController.Action.P3_S01_088_1:
             case EnumController.Action.LB_W02_19T_1:
             case EnumController.Action.LB_W02_031_1:
             case EnumController.Action.LB_W02_057_1:

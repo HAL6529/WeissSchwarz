@@ -17,7 +17,7 @@ public class BattleModeCard_P3_S01_061 : BattleModeCard
         this.name = "タカヤ＆ヒュプノス";
         this.power = 8000;
         this.isCounter = false;
-        this.isGreatPerformance = false;
+        this.isGreatPerformance = true;
         this.m_EffectAbstract = new Effect_P3_S01_061();
     }
 }

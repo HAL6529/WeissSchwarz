@@ -290,23 +290,23 @@ public class GraveyardSelectDialog : MonoBehaviour
         }
         for (int i = 0; i < e_memoryListTemp.Count; i++)
         {
-            mt_memoryListTemp.Add(new BattleModeCardTemp(e_memoryListTemp[i]));
+            et_memoryListTemp.Add(new BattleModeCardTemp(e_memoryListTemp[i]));
         }
         for (int i = 0; i < e_stockListTemp.Count; i++)
         {
-            mt_stockListTemp.Add(new BattleModeCardTemp(e_stockListTemp[i]));
+            et_stockListTemp.Add(new BattleModeCardTemp(e_stockListTemp[i]));
         }
         for (int i = 0; i < e_graveyardTemp.Count; i++)
         {
-            mt_graveyardTemp.Add(new BattleModeCardTemp(e_graveyardTemp[i]));
+            et_graveyardTemp.Add(new BattleModeCardTemp(e_graveyardTemp[i]));
         }
         for (int i = 0; i < e_clockListTemp.Count; i++)
         {
-            mt_clockListTemp.Add(new BattleModeCardTemp(e_clockListTemp[i]));
+            et_clockListTemp.Add(new BattleModeCardTemp(e_clockListTemp[i]));
         }
         for (int i = 0; i < e_handListTemp.Count; i++)
         {
-            mt_handListTemp.Add(new BattleModeCardTemp(e_handListTemp[i]));
+            et_handListTemp.Add(new BattleModeCardTemp(e_handListTemp[i]));
         }
 
         m_ExecuteActionTemp.deckList = mt_deckListTemp;

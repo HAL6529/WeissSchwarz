@@ -676,14 +676,7 @@ public class CharacterSelectDialog : MonoBehaviour
                 break;
         }
 
-        switch (m_BattleModeCard.GetCardNo())
-        {
-            case EnumController.CardNo.DC_W01_07T:
-                m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
-                break;
-            default:
-                break;
-        }
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.Syncronize();
 
         m_GameManager.ExecuteActionList();

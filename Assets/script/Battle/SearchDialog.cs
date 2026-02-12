@@ -225,7 +225,7 @@ public class SearchDialog : MonoBehaviour
                 break;
         }
 
-        if(cnt <= SulvageMinNum)
+        if(cnt < SulvageMinNum)
         {
             m_GameManager.isSearchDialogProcess = false;
             this.gameObject.SetActive(false);
