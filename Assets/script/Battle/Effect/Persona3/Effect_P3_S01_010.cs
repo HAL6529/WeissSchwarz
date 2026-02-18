@@ -16,8 +16,8 @@ public class Effect_P3_S01_010 : EffectAbstract
     {
         // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
-        m_GameManager.ToHandFromField(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
+        m_GameManager.ToHandFromField(GetIntParamater1());
         m_GameManager.ExecuteActionList();
     }
 }

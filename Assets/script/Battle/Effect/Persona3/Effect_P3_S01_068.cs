@@ -9,7 +9,7 @@ public class Effect_P3_S01_068 : EffectAbstract
         // ※イベント
         // あなたは自分の控え室のキャラを1枚選び、手札に戻す。
         PayCost(1);
-        m_DialogManager.SulvageDialog(IntParamater1, m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
+        m_DialogManager.SulvageDialog(GetIntParamater1(), m_BattleModeCard, m_GameManager.GraveYardList, EnumController.Type.CHARACTER, 1, 1);
         return;
     }
 }

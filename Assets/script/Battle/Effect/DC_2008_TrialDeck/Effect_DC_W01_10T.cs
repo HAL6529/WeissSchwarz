@@ -7,7 +7,7 @@ public class Effect_DC_W01_10T : EffectAbstract
     public override void AutoExecute1()
     {
         // 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
-        m_BattleStrix.RpcToAll("ToDeckTopFromField", IntParamater1, m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("ToDeckTopFromField", GetIntParamater1(), m_GameManager.isTurnPlayer);
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.ExecuteActionList();
         return;

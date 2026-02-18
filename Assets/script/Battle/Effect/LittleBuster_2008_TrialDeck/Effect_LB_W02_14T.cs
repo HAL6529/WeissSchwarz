@@ -8,7 +8,7 @@ public class Effect_LB_W02_14T : EffectAbstract
     {
         // 【起】［(2) このカードを【レスト】する］ あなたは自分のクロックを上から1枚選び、控え室に置く。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         m_GameManager.Syncronize();
 
         if (m_GameManager.myClockList.Count == 0)

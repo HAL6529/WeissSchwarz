@@ -12,8 +12,8 @@ public class Effect_P3_S01_091 : EffectAbstract
     public override void CounterExecute1()
     {
         PayCost(1);
-        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(IntParamater1, pumpPoint);
-        m_GameManager.myHandList.RemoveAt(IntParamater2);
+        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(GetIntParamater1(), pumpPoint);
+        m_GameManager.myHandList.RemoveAt(GetIntParamater2());
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
@@ -23,8 +23,8 @@ public class Effect_P3_S01_091 : EffectAbstract
     {
         // 【起】［(2) このカードを【レスト】する］ あなたはこのカードを手札に戻す。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
-        m_MyMainCardsManager.CallPutHandFromField(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
+        m_MyMainCardsManager.CallPutHandFromField(GetIntParamater1());
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;

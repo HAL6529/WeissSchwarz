@@ -22,13 +22,23 @@ public class EffectAbstract
 
     public WinAndLose m_WinAndLose { get; set; }
 
-    public int ExecuteParamater { get; set; }
+    private int ExecuteParamater = -1;
 
-    public int IntParamater1 { get; set; }
+    private int IntParamater1 = -1;
 
-    public int IntParamater2 { get; set; }
+    private int IntParamater2 = -1;
 
-    public int pumpPoint { get; set; }
+    public int pumpPoint;
+
+    public EffectAbstract()
+    {
+
+    }
+
+    public EffectAbstract Clone()
+    {
+        return (EffectAbstract)this.MemberwiseClone();
+    }
 
     public void ActExecute()
     {
@@ -159,4 +169,28 @@ public class EffectAbstract
         m_GameManager.ActionList.Add(action);
     }
 
+    public int GetIntParamater1()
+    {
+        return IntParamater1;
+    }
+
+    public int GetIntParamater2()
+    {
+        return IntParamater2;
+    }
+
+    public void SetExecuteParamater(int paramater)
+    {
+        ExecuteParamater = paramater;
+    }
+
+    public void SetIntParamater1(int paramater)
+    {
+        IntParamater1 = paramater;
+    }
+
+    public void SetIntParamater2(int paramater)
+    {
+        IntParamater2 = paramater;
+    }
 }

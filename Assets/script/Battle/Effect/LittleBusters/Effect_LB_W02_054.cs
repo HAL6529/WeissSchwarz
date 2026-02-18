@@ -8,9 +8,9 @@ public class Effect_LB_W02_054 : EffectAbstract
     {
         //【起】［(2) このカードを【レスト】する］ あなたは相手に1ダメージを与える。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         m_GameManager.Syncronize();
-        m_BattleStrix.RpcToAll("CallDamage", 1, IntParamater2, m_GameManager.isFirstAttacker);
+        m_BattleStrix.RpcToAll("CallDamage", 1, GetIntParamater2(), m_GameManager.isFirstAttacker);
         return;
     }
 }

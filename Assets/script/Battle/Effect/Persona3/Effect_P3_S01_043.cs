@@ -31,8 +31,8 @@ public class Effect_P3_S01_043 : EffectAbstract
                 m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
             }
         }
-        m_GameManager.GraveYardList.Add(m_GameManager.myHandList[IntParamater1]);
-        m_GameManager.myHandList.RemoveAt(IntParamater1);
+        m_GameManager.GraveYardList.Add(m_GameManager.myHandList[GetIntParamater1()]);
+        m_GameManager.myHandList.RemoveAt(GetIntParamater1());
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;

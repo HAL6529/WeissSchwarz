@@ -7,7 +7,7 @@ public class Effect_P3_S01_01T : EffectAbstract
     public override void AutoExecute1()
     {
         // 【自】 このカードがプレイされて舞台に置かれた時、そのターン中、このカードのソウルを＋1。
-        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(IntParamater1, 1);
+        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(GetIntParamater1(), 1);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;

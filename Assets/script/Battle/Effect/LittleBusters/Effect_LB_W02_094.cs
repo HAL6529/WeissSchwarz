@@ -17,7 +17,7 @@ public class Effect_LB_W02_094 : EffectAbstract
             m_GameManager.ExecuteActionList();
             return;
         }
-        m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_16T, IntParamater1);
+        m_DialogManager.SearchDialog(EnumController.SearchDialogParamater.LB_W02_16T, GetIntParamater1());
         return;
     }
 }

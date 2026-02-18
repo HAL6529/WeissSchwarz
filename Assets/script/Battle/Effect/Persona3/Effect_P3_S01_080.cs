@@ -36,12 +36,12 @@ public class Effect_P3_S01_080 : EffectAbstract
     {
         //【起】［(2) このカードを【レスト】する］ あなたはクライマックス以外の自分の控え室のカードを1枚選び、そのカードとこのカードを山札に戻す。その山札をシャッフルする。あなたは1枚引く。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         for (int i = 0; i < m_GameManager.myDeckList.Count; i++)
         {
             if (m_GameManager.myDeckList[i].GetType() != EnumController.Type.CLIMAX)
             {
-                m_DialogManager.GraveyardSelectDialog(m_BattleModeCard, IntParamater1);
+                m_DialogManager.GraveyardSelectDialog(m_BattleModeCard, GetIntParamater1());
                 return;
             }
         }

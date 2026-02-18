@@ -8,7 +8,7 @@ public class Effect_P3_S01_16T : EffectAbstract
     {
         // 【起】［(2) このカードを【レスト】する］ あなたは1枚引く。
         PayCost(2);
-        m_MyMainCardsManager.CallOnRest(IntParamater1);
+        m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         m_GameManager.Syncronize();
         m_GameManager.Draw();
         m_GameManager.ExecuteActionList();

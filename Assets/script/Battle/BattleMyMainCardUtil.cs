@@ -454,7 +454,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void WhenAct()
     {
-        m_Effect.WhenAct(m_BattleModeCard, PlaceNum);
+        EnumController.State m_state = state;
+        BattleMyMainCardAvility m_BattleMyMainCardAvility = new BattleMyMainCardAvility(
+            m_BattleModeCard, PlaceNum, FieldPower, FieldSoul,
+            FieldLevel, HandEncore, TwoStockEncore, ClockEncore, m_AttributeUpUntilTurnEnd,
+            AttributeList, m_state, isGreatPerformance, Takaya, m_Assist, m_AssistForHaveEncore,
+            m_AllAssist, m_Gaul, m_LevelAssist, m_LevelUpUntilTurnEnd, m_PowerUpUntilTurnEnd, m_SoulUpUntilTurnEnd);
+        m_Effect.WhenAct(m_BattleMyMainCardAvility);
     }
 
     /// <summary>

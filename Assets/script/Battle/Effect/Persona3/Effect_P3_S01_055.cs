@@ -14,7 +14,7 @@ public class Effect_P3_S01_055 : EffectAbstract
     public override void AutoExecute2()
     {
         //【自】 他のバトルしているあなたのキャラが【リバース】した時、そのターン中、このカードのパワーを＋2000。
-        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(IntParamater1, 2000);
+        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(GetIntParamater1(), 2000);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;

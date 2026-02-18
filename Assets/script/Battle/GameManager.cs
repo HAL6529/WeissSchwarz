@@ -96,11 +96,6 @@ public class GameManager : MonoBehaviour
     private EnumController.Trigger trigger = EnumController.Trigger.VOID;
 
     /// <summary>
-    /// テストの際に使うトリガー用 BattleModeDeckで書き換える
-    /// </summary>
-    public BattleModeCard testTrigger = null;
-
-    /// <summary>
     /// ダメージを受けた時どれだけショット効果が蓄積されているか
     /// </summary>
     public List<EnumController.Shot> ReceiveShotList = new List<EnumController.Shot>();
@@ -332,7 +327,6 @@ public class GameManager : MonoBehaviour
 
         if (ActionList.Count > 0)
         {
-            Debug.Log("ExecuteActionList_SelectActionDialog");
             m_DialogManager.SelectActionDialog(ActionList);
             return;
         }

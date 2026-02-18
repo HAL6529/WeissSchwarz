@@ -14,8 +14,8 @@ public class Effect_P3_S01_057 : EffectAbstract
     public override void AutoExecute2()
     {
         //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが0以下なら、あなたはそのキャラを【リバース】してよい。
-        m_EnemyMainCardsManager.CallReverse(IntParamater1);
-        m_BattleStrix.RpcToAll("CallMyReverse", IntParamater1, m_GameManager.isTurnPlayer);
+        m_EnemyMainCardsManager.CallReverse(GetIntParamater1());
+        m_BattleStrix.RpcToAll("CallMyReverse", GetIntParamater1(), m_GameManager.isTurnPlayer);
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.ExecuteActionList();
         return;

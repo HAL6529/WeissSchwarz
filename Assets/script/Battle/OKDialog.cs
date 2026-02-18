@@ -185,9 +185,9 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_091:
                         case EnumController.CardNo.LB_W02_040:
                         case EnumController.CardNo.LB_W02_076:
-                            m_EffectAbstract.ExecuteParamater = 1;
-                            m_EffectAbstract.IntParamater1 = place;
-                            m_EffectAbstract.IntParamater2 = ParamaterNum3;
+                            m_EffectAbstract.SetExecuteParamater(1);
+                            m_EffectAbstract.SetIntParamater1(place);
+                            m_EffectAbstract.SetIntParamater2(ParamaterNum3);
                             m_EventAnimationManager.CounterAnimationStart(m_BattleModeCard, m_EffectAbstract);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
@@ -201,7 +201,7 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_043:
                         case EnumController.CardNo.P3_S01_094:
                         case EnumController.CardNo.LB_W02_044:
-                            m_EffectAbstract.ExecuteParamater = 1;
+                            m_EffectAbstract.SetExecuteParamater(1);
                             m_EventAnimationManager.EventAnimationStart(m_BattleModeCard, m_EffectAbstract);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 

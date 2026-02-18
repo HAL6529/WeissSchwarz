@@ -11,7 +11,7 @@ public class Effect_LB_W02_03T : EffectAbstract
         m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
         m_GameManager.myDeckList.RemoveAt(0);
         m_GameManager.Syncronize();
-        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(IntParamater1, 3000);
+        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(GetIntParamater1(), 3000);
         if (m_GameManager.myDeckList.Count == 0)
         {
             m_GameManager.Refresh();

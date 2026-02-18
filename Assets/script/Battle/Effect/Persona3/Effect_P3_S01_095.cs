@@ -14,7 +14,7 @@ public class Effect_P3_S01_095 : EffectAbstract
             m_GameManager.myHandList.Add(m_GameManager.myClockList[i]);
         }
         m_GameManager.myClockList = new List<BattleModeCard>();
-        m_GameManager.myHandList.RemoveAt(IntParamater1);
+        m_GameManager.myHandList.RemoveAt(GetIntParamater1());
         m_GameManager.myMemoryList.Add(m_BattleModeCard);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();

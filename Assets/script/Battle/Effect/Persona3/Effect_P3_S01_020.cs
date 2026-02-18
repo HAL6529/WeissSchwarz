@@ -27,7 +27,7 @@ public class Effect_P3_S01_020 : EffectAbstract
 
         }
 
-        m_GameManager.myHandList.RemoveAt(IntParamater1);
+        m_GameManager.myHandList.RemoveAt(GetIntParamater1());
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();

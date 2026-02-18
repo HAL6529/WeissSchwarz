@@ -412,6 +412,11 @@ public class MyMainCardsManager : MonoBehaviour
         int count = 0;
         for (int i = 0; i < CardList.Count; i++)
         {
+            if(i == num)
+            {
+                continue;
+            }
+
             if (CardList[i].HaveAttribute(attributeList))
             {
                 count++;

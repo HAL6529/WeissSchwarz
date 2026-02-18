@@ -8,7 +8,7 @@ public class Effect_LB_W02_033 : EffectAbstract
     {
         // 【起】［(1)］ このカードを思い出にする。
         PayCost(1);
-        m_MyMainCardsManager.CallPutMemoryFromField(IntParamater1);
+        m_MyMainCardsManager.CallPutMemoryFromField(GetIntParamater1());
         m_GameManager.ExecuteActionList();
         return;
     }

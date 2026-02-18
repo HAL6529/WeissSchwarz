@@ -18,6 +18,6 @@ public class BattleModeCard_LB_W02_069 : BattleModeCard
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;
-        this.m_EffectAbstract = null;
+        this.m_EffectAbstract = new Effect_LB_W02_069();
     }
 }

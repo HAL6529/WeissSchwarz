@@ -15,7 +15,7 @@ public class Effect_P3_S01_11T : EffectAbstract
     {
         // 【起】［(1)］ そのターン中、このカードのソウルを＋1。
         PayCost(1);
-        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(IntParamater1, 1);
+        m_MyMainCardsManager.AddSoulUpUntilTurnEnd(GetIntParamater1(), 1);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;

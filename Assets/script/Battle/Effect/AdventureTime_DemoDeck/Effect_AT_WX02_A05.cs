@@ -12,8 +12,8 @@ public class Effect_AT_WX02_A05 : EffectAbstract
     public override void CounterExecute1()
     {
         PayCost(1);
-        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(IntParamater1, pumpPoint);
-        m_GameManager.myHandList.RemoveAt(IntParamater2);
+        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(GetIntParamater1(), pumpPoint);
+        m_GameManager.myHandList.RemoveAt(GetIntParamater2());
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();

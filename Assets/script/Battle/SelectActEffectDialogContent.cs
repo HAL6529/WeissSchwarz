@@ -41,7 +41,7 @@ public class SelectActEffectDialogContent : MonoBehaviour
                 // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
                 case EnumController.CardNo.LB_W02_02T:
                 case EnumController.CardNo.LB_W02_033:
-                    m_EffectAbstract.ExecuteParamater = 2;
+                    m_EffectAbstract.SetExecuteParamater(2);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1, m_BattleModeCard, m_EffectAbstract);
                     break;
                 default:
@@ -54,8 +54,8 @@ public class SelectActEffectDialogContent : MonoBehaviour
                 // 【起】［(1)］ このカードを思い出にする。
                 case EnumController.CardNo.LB_W02_02T:
                 case EnumController.CardNo.LB_W02_033:
-                    m_EffectAbstract.ExecuteParamater = 1;
-                    m_EffectAbstract.IntParamater1 = paramaterNum1;
+                    m_EffectAbstract.SetExecuteParamater(1);
+                    m_EffectAbstract.SetIntParamater1(paramaterNum1);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2, m_BattleModeCard, m_EffectAbstract);
                     break;
                 default:
