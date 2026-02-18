@@ -26,7 +26,7 @@ public class GraveyardSelectDialogBtnUtil : MonoBehaviour
             this.gameObject.SetActive(false);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         this.gameObject.SetActive(true);
     }
 

@@ -58,7 +58,7 @@ public class MainDialog : MonoBehaviour
         if (m_BattleModeCard != null)
         {
             m_BattleStrix.RpcToAll("SEManager_PlaySE_Play");
-            for (int i = 0; i < m_BattleModeCard.cost; i++)
+            for (int i = 0; i < m_BattleModeCard.GetCost(); i++)
             {
                 BattleModeCard temp = m_GameManager.myStockList[m_GameManager.myStockList.Count - 1];
                 m_GameManager.GraveYardList.Add(temp);
@@ -94,7 +94,7 @@ public class MainDialog : MonoBehaviour
             }
             else
             {
-                images[i].sprite = m_GameManager.myFieldList[i].sprite;
+                images[i].sprite = m_GameManager.myFieldList[i].GetSprite();
             }
             
         }

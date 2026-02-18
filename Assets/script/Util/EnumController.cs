@@ -72,7 +72,7 @@ namespace EnumController
         NONE, // “Á’¥‚È‚µ
         Ooo,
         Hero,
-        Royality,
+        Royalty,
         Vampire,
         Animal, // “®•¨
         Book, // –{
@@ -115,6 +115,7 @@ namespace EnumController
         Muscle, //‹Ø“÷
         Chairperson, //ˆÏˆõ’·
         Police, //Œx@
+        Maid, //ƒƒCƒh
     }
 
     public enum CardColor
@@ -449,6 +450,14 @@ namespace EnumController
         VOID,
         EncorePhase,
         EncoreCheck,
+    }
+
+    public enum EventAnimation
+    {
+        Act,
+        Auto,
+        Counter,
+        Event,
     }
 
     public enum HandCardUtilStatus

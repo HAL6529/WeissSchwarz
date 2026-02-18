@@ -229,6 +229,26 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "プレイされて舞台に置かれた時あなたはコストを払ってよい。そうしたら、";
                 text3.text = "あなたは自分の山札の上から1枚を、ストック置場に置く。";
                 break;
+            case EnumController.Action.P3_S01_052_1:
+                text1.text = "【自】［(1)］ このカードがプレイされて舞台に置かれた時、";
+                text2.text = "あなたはコストを払ってよい。そうしたら、";
+                text3.text = "あなたは自分の控え室の「辰巳東交番」を1枚選び、手札に戻す。";
+                break;
+            case EnumController.Action.P3_S01_055_1:
+                text1.text = "【自】 他のバトルしているあなたのキャラが【リバース】した時、";
+                text2.text = "そのターン中、このカードのパワーを＋2000。";
+                text3.text = "";
+                break;
+            case EnumController.Action.P3_S01_057_2:
+                text1.text = "【自】 このカードが【リバース】した時、";
+                text2.text = "このカードとバトルしているキャラのレベルが0以下なら、";
+                text3.text = "あなたはそのキャラを【リバース】してよい。";
+                break;
+            case EnumController.Action.P3_S01_060_1:
+                text1.text = "【自】［(1)］ このカードがプレイされて舞台に置かれた時、";
+                text2.text = "あなたはコストを払ってよい。そうしたら、";
+                text3.text = "あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。";
+                break;
             case EnumController.Action.P3_S01_065_1:
                 text1.text = "【自】 このカードがプレイされて舞台に置かれた時、 ";
                 text2.text = "あなたはすべてのプレイヤーに、1ダメージを与える。";

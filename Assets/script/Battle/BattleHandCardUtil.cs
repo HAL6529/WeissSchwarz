@@ -37,7 +37,7 @@ public class BattleHandCardUtil : MonoBehaviour
             image.color = new Color(1, 1, 1, 0 / 255);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
     }
 
@@ -230,23 +230,23 @@ public class BattleHandCardUtil : MonoBehaviour
             return;
         }
 
-        if(m_GameManager.myLevelList.Count < m_BattleModeCard.level)
+        if(m_GameManager.myLevelList.Count < m_BattleModeCard.GetLevel())
         {
             return;
         }
 
         //色条件がクリアできているかチェック
-        if(m_BattleModeCard.level > 0 && !m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type == EnumController.Type.CHARACTER)
+        if(m_BattleModeCard.GetLevel() > 0 && !m_GameManager.ColorCheck(m_BattleModeCard.GetCardColor()) && m_BattleModeCard.GetType() == EnumController.Type.CHARACTER)
         {
             return;
         }
-        if(!m_GameManager.ColorCheck(m_BattleModeCard.color) && m_BattleModeCard.type != EnumController.Type.CHARACTER)
+        if(!m_GameManager.ColorCheck(m_BattleModeCard.GetCardColor()) && m_BattleModeCard.GetType() != EnumController.Type.CHARACTER)
         {
             return;
         }
 
         // コストが支払えるかチェック
-        if(m_BattleModeCard.cost > m_GameManager.myStockList.Count && m_BattleModeCard.type != EnumController.Type.CLIMAX)
+        if(m_BattleModeCard.GetCost() > m_GameManager.myStockList.Count && m_BattleModeCard.GetType() != EnumController.Type.CLIMAX)
         {
             return;
         }
@@ -265,13 +265,30 @@ public class BattleHandCardUtil : MonoBehaviour
 
     public void onPlayButton()
     {
-        switch (m_BattleModeCard.type)
+        EffectAbstract m_EffectAbstract = new EffectAbstract();
+        if (m_BattleModeCard.m_EffectAbstract != null)
+        {
+            m_EffectAbstract = m_BattleModeCard.m_EffectAbstract.Clone();
+            m_EffectAbstract.m_GameManager = m_GameManager;
+            m_EffectAbstract.m_BattleStrix = m_GameManager.m_BattleStrix;
+            m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+            m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+            m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
+            m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
+            m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
+            m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+            m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+            m_EffectAbstract.SetExecuteParamater(1);
+            m_EffectAbstract.SetIntParamater1(num);
+        }
+
+        switch (m_BattleModeCard.GetType())
         {
             case EnumController.Type.CHARACTER:
                 m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD, m_BattleModeCard, num);
                 return;
             case EnumController.Type.EVENT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.DC_W01_03T:
                     case EnumController.CardNo.P3_S01_045:
@@ -280,9 +297,9 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_018:
                     case EnumController.CardNo.LB_W02_022:
                     case EnumController.CardNo.LB_W02_043:
-                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                        m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         break;
-                    case EnumController.CardNo.AT_WX02_A05:
+                    case EnumController.CardNo.AT_WX02_A07:
                     case EnumController.CardNo.DC_W01_18T:
                     case EnumController.CardNo.LB_W02_04T:
                     case EnumController.CardNo.LB_W02_12T:
@@ -295,7 +312,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_093:
                         if (ConfirmStockForCost(1))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.DC_W01_12T:
@@ -305,7 +322,7 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_069:
                         if (ConfirmStockForCost(2))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.LB_W02_16T:
@@ -313,25 +330,25 @@ public class BattleHandCardUtil : MonoBehaviour
                     case EnumController.CardNo.LB_W02_094:
                         if (ConfirmStockForCost(3))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_094:
                         if (ConfirmStockForCost(4))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_020:
                         if (ConfirmStockForCost(6))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     case EnumController.CardNo.P3_S01_095:
                         if (ConfirmStockForCost(8))
                         {
-                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num);
+                            m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.EVENT_CONFIRM, m_BattleModeCard, num, m_EffectAbstract);
                         }
                         return;
                     default:

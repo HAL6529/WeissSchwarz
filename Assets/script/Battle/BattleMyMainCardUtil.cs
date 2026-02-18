@@ -142,6 +142,8 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     private ClimaxUtil m_ClimaxUtil = new ClimaxUtil();
 
+    private class BattleModeCardForGuide : BattleModeCard { }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -177,7 +179,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         if(card != null)
         {
             AttributeListReset();
-            isGreatPerformance = card.isGreatPerformance;
+            isGreatPerformance = card.GetIsGreatPerformance();
         }
 
         //1ターンにつきX回しか使えない。効果のリセット
@@ -204,7 +206,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             Power.SetActive(false);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
 
         Power.SetActive(true);
@@ -227,11 +229,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_MyMainCardsManager.CallOffShowGraveYardButton();
 
         // ---ここからカードのガイド用---
-        BattleModeCard t_BattleModeCard = new BattleModeCard();
-        t_BattleModeCard.power = FieldPower;
-        t_BattleModeCard.soul = FieldSoul;
-        t_BattleModeCard.level = FieldLevel;
-        t_BattleModeCard.attribute = AttributeList;
+        BattleModeCard t_BattleModeCard = new BattleModeCardForGuide();
+        t_BattleModeCard.SetPower(FieldPower);
+        t_BattleModeCard.SetSoul(FieldSoul);
+        t_BattleModeCard.SetLevel(FieldLevel);
+        t_BattleModeCard.SetAttribute(AttributeList);
 
         m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
         // ---ここまでカードのガイド用---
@@ -260,7 +262,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
                     MoveButton.SetActive(true);
                 }
 
-                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.cardNo, state);
+                int minCost = m_CheckHaveActAvility.Check(m_BattleModeCard.GetCardNo(), state);
                 if (minCost > -1 && m_GameManager.myStockList.Count >= minCost)
                 {
                     if (state == EnumController.State.REST)
@@ -452,7 +454,13 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// </summary>
     public void WhenAct()
     {
-        m_Effect.WhenAct(m_BattleModeCard, PlaceNum);
+        EnumController.State m_state = state;
+        BattleMyMainCardAvility m_BattleMyMainCardAvility = new BattleMyMainCardAvility(
+            m_BattleModeCard, PlaceNum, FieldPower, FieldSoul,
+            FieldLevel, HandEncore, TwoStockEncore, ClockEncore, m_AttributeUpUntilTurnEnd,
+            AttributeList, m_state, isGreatPerformance, Takaya, m_Assist, m_AssistForHaveEncore,
+            m_AllAssist, m_Gaul, m_LevelAssist, m_LevelUpUntilTurnEnd, m_PowerUpUntilTurnEnd, m_SoulUpUntilTurnEnd);
+        m_Effect.WhenAct(m_BattleMyMainCardAvility);
     }
 
     /// <summary>
@@ -587,7 +595,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        FieldLevel = m_BattleModeCard.level;
+        FieldLevel = m_BattleModeCard.GetLevel();
         FieldLevel += m_LevelUpUntilTurnEnd.GetUpLevel();
     }
 
@@ -603,7 +611,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        FieldPower = m_BattleModeCard.power;
+        FieldPower = m_BattleModeCard.GetPower();
         FieldPower += m_PowerUpUntilTurnEnd.GetUpPower();
 
         // ガウルの効果を持っているかチェック
@@ -690,7 +698,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // HM - A06型 ミナツの効果
         // 他の《バナナ》のあなたのキャラがいるなら、このカードのパワーを＋1500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_13T)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.DC_W01_13T)
         {
             List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
             attributeList.Add(EnumController.Attribute.Banana);
@@ -702,7 +710,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // ゆず＆慎の効果
         // 他の《音楽》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_16T)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.DC_W01_16T)
         {
             List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
             attributeList.Add(EnumController.Attribute.Music);
@@ -714,7 +722,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // “ナース服”小毬の効果
         //【永】 他の《お菓子》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_005)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.LB_W02_005)
         {
             List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
             attributeList.Add(EnumController.Attribute.Sweets);
@@ -726,7 +734,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // アイギス＆パラディオンの効果
         //【永】 他の《メカ》のあなたのキャラが2枚以上いるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_027)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_027)
         {
             List<EnumController.Attribute> attributeList = new List<EnumController.Attribute>();
             attributeList.Add(EnumController.Attribute.Mecha);
@@ -738,7 +746,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 白河 暦の効果
         // 【永】 他のあなたのカード名に「美春」を含むキャラすべてに、パワーを＋500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.DC_W01_10T)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.DC_W01_10T)
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.DC_W01_09T);
@@ -755,7 +763,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             cardNoList.Add(EnumController.CardNo.P3_S01_015);
             cardNoList.Add(EnumController.CardNo.LB_W02_003);
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-            if (cardNoList.Contains(m_BattleModeCard.cardNo))
+            if (cardNoList.Contains(m_BattleModeCard.GetCardNo()))
             {
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - 500;
@@ -769,7 +777,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_088);
             FieldPower += 500 * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-            if (cardNoList.Contains(m_BattleModeCard.cardNo))
+            if (cardNoList.Contains(m_BattleModeCard.GetCardNo()))
             {
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - 500;
@@ -784,7 +792,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             cardNoList.Add(EnumController.CardNo.LB_W02_005);
             int power = FieldLevel * 500;
             FieldPower += power * m_MyMainCardsManager.GetNumFieldCardNo(cardNoList);
-            if (cardNoList.Contains(m_BattleModeCard.cardNo))
+            if (cardNoList.Contains(m_BattleModeCard.GetCardNo()))
             {
                 // 他のキャラクターにパワーを＋するため。GetNumFieldCardNoはすべてのキャラクターを参照してしまう
                 FieldPower = FieldPower - power;
@@ -793,28 +801,28 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 美鶴＆ペンテシレアの効果
         // 【永】 相手のターン中、このカードのパワーを＋1000。
-        if (!m_GameManager.isTurnPlayer && (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_15T || m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_078))
+        if (!m_GameManager.isTurnPlayer && (m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_15T || m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_078))
         {
             FieldPower += 1000;
         }
 
         // アイギスの効果
         // 【永】 あなたのレベル置場のカード1枚につき、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_029)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_029)
         {
             FieldPower += m_GameManager.myLevelList.Count * 1000;
         }
 
         // 風花＆ユノの効果
         // 【永】 アラーム このカードがクロックの１番上にあるなら、緑のあなたのキャラすべてに、パワーを＋1000。
-        if(m_GameManager.myClockList.Count > 0 && m_BattleModeCard.color == EnumController.CardColor.GREEN && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_030)
+        if(m_GameManager.myClockList.Count > 0 && m_BattleModeCard.GetCardColor() == EnumController.CardColor.GREEN && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].GetCardNo() == EnumController.CardNo.P3_S01_030)
         {
             FieldPower += 1000;
         }
 
         //“着ぐるみ”クドの効果
         //【永】 あなたのストックが5枚以上なら、このカードのパワーを＋1500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_027)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.LB_W02_027)
         {
             if(m_GameManager.myStockList.Count >= 5)
             {
@@ -824,7 +832,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         //“赤ずきん”美魚の効果
         //【永】 あなたのストックが7枚以上なら、このカードのパワーを＋2500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.LB_W02_057)
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.LB_W02_057)
         {
             if (m_GameManager.myStockList.Count >= 7)
             {
@@ -835,7 +843,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
-            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
+            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.GetCardNo()) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
             {
                 FieldPower += 1000;
             }
@@ -843,14 +851,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // 順平&ヘルメスの効果
         // 【永】 他のあなたの「チドリ」がいるなら、このカードのパワーを＋1000。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_059 && m_MyMainCardsManager.isFieldName("チドリ"))
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_059 && m_MyMainCardsManager.isFieldName("チドリ"))
         {
             FieldPower += 1000;
         }
 
         // メティスの効果
         //【永】 他のあなたのカード名に「アイギス」を含むキャラがいるなら、このカードのパワーを＋1500。
-        if (m_BattleModeCard.cardNo == EnumController.CardNo.P3_S01_034 && m_MyMainCardsManager.isContainFieldName("アイギス"))
+        if (m_BattleModeCard.GetCardNo() == EnumController.CardNo.P3_S01_034 && m_MyMainCardsManager.isContainFieldName("アイギス"))
         {
             FieldPower += 1500;
         }
@@ -870,14 +878,14 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        FieldSoul = m_BattleModeCard.soul;
+        FieldSoul = m_BattleModeCard.GetSoul();
         FieldSoul += m_SoulUpUntilTurnEnd.GetUpSoul();
 
         // 望月 綾時の効果
         //【永】 アラーム このカードがクロックの１番上にあり、あなたのレベルが1以下なら、黄のあなたのキャラすべてに、ソウルを＋1。
         if (m_GameManager.myClockList.Count > 0 
-            && m_BattleModeCard.color == EnumController.CardColor.YELLOW 
-            && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_004
+            && m_BattleModeCard.GetCardColor() == EnumController.CardColor.YELLOW 
+            && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].GetCardNo() == EnumController.CardNo.P3_S01_004
             && m_GameManager.myLevelList.Count < 2)
         {
             FieldSoul += 1;
@@ -886,12 +894,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
         if (m_GameManager.MyClimaxCard != null)
         {
             // 1000/1のクライマックスが使用されているかチェック
-            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
+            if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.GetCardNo()) == EnumController.ClimaxType.POWER_THOUSAND_AND_SOUL_ONE)
             {
                 FieldSoul += 1;
             }
             // ソウル＋2が使用されているかチェック
-            else if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.cardNo) == EnumController.ClimaxType.SOUL_PLUS_TWO)
+            else if (m_ClimaxUtil.GetClimaxType(m_GameManager.MyClimaxCard.GetCardNo()) == EnumController.ClimaxType.SOUL_PLUS_TWO)
             {
                 FieldSoul += 2;
             }
@@ -910,7 +918,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return;
         }
 
-        if (m_BattleModeCard.color == EnumController.CardColor.RED && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].cardNo == EnumController.CardNo.P3_S01_062)
+        if (m_BattleModeCard.GetCardColor() == EnumController.CardColor.RED && m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].GetCardNo() == EnumController.CardNo.P3_S01_062)
         {
             Takaya = true;
         }
@@ -977,11 +985,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     private void AttributeListReset()
     {
         AttributeList = new List<EnumController.Attribute>();
-        for (int i = 0; i < m_BattleModeCard.attribute.Count; i++)
+        for (int i = 0; i < m_BattleModeCard.GetAttribute().Count; i++)
         {
-            if (!HaveAttribute(m_BattleModeCard.attribute[i]))
+            if (!HaveAttribute(m_BattleModeCard.GetAttribute(i)))
             {
-                AttributeList.Add(m_BattleModeCard.attribute[i]);
+                AttributeList.Add(m_BattleModeCard.GetAttribute(i));
             }
         }
     }
@@ -1223,7 +1231,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <returns></returns>
     private bool isHandEncore()
     {
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A04:
             case EnumController.CardNo.LB_W02_03T:
@@ -1254,7 +1262,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <returns></returns>
     private bool isClockEncore()
     {
-        switch (m_BattleModeCard.cardNo)
+        switch (m_BattleModeCard.GetCardNo())
         {
             default:
                 return false;

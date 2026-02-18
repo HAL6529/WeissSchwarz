@@ -148,7 +148,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    if (!HaveAttribute(temp, list) || temp.GetType() != EnumController.Type.CHARACTER)
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -160,7 +160,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (temp.type != EnumController.Type.EVENT)
+                    if (temp.GetType() != EnumController.Type.EVENT)
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -177,7 +177,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    if (!HaveAttribute(temp, list) || temp.GetType() != EnumController.Type.CHARACTER)
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -214,7 +214,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (!HaveAttribute(temp, list) || temp.type != EnumController.Type.CHARACTER)
+                    if (!HaveAttribute(temp, list) || temp.GetType() != EnumController.Type.CHARACTER)
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -225,7 +225,7 @@ public class SearchDialog : MonoBehaviour
                 break;
         }
 
-        if(cnt <= SulvageMinNum)
+        if(cnt < SulvageMinNum)
         {
             m_GameManager.isSearchDialogProcess = false;
             this.gameObject.SetActive(false);
@@ -255,11 +255,11 @@ public class SearchDialog : MonoBehaviour
     /// <returns></returns>
     private bool HaveAttribute(BattleModeCard card, List<EnumController.Attribute> attribute)
     {
-        for(int i = 0; i < card.attribute.Count; i++)
+        for(int i = 0; i < card.GetAttribute().Count; i++)
         {
             for(int n = 0; n < attribute.Count; n++)
             {
-                if (card.attribute[i] == attribute[n])
+                if (card.GetAttribute(i) == attribute[n])
                 {
                     return true;
                 }

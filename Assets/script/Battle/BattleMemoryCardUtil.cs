@@ -33,7 +33,7 @@ public class BattleMemoryCardUtil : MonoBehaviour
             image.color = new Color(1, 1, 1, 0 / 255);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
     }
 

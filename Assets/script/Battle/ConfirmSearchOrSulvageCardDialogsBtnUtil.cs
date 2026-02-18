@@ -20,7 +20,7 @@ public class ConfirmSearchOrSulvageCardDialogsBtnUtil : MonoBehaviour
         {
             return;
         }
-        image.sprite = card.sprite;
+        image.sprite = card.GetSprite();
         m_BattleModeCard = card;
         this.gameObject.SetActive(true);
     }

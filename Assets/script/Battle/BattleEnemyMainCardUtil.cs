@@ -42,6 +42,8 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     /// </summary>
     public bool isGreatPerformance = false;
 
+    private class BattleModeCardForGuide : BattleModeCard { }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +65,7 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
             Power.SetActive(false);
             return;
         }
-        image.sprite = m_BattleModeCard.sprite;
+        image.sprite = m_BattleModeCard.GetSprite();
         image.color = new Color(1, 1, 1, 255 / 255);
 
         Power.SetActive(true);
@@ -73,11 +75,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public void onClick()
     {
         // ---ここからカードのガイド用---
-        BattleModeCard t_BattleModeCard = new BattleModeCard();
-        t_BattleModeCard.power = FieldPower;
-        t_BattleModeCard.soul = FieldSoul;
-        t_BattleModeCard.level = FieldLevel;
-        t_BattleModeCard.attribute = AttributeList;
+        BattleModeCard t_BattleModeCard = new BattleModeCardForGuide();
+        t_BattleModeCard.SetPower(FieldPower);
+        t_BattleModeCard.SetSoul(FieldSoul);
+        t_BattleModeCard.SetLevel(FieldLevel);
+        t_BattleModeCard.SetAttribute(AttributeList);
 
         m_BattleModeGuide.showImage(m_BattleModeCard, t_BattleModeCard);
         // ---ここまでカードのガイド用---

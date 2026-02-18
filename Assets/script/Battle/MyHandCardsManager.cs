@@ -164,7 +164,7 @@ public class MyHandCardsManager : MonoBehaviour
                 break;
             }
 
-            if (m_GameManager.myHandList[i].isCounter && m_GameManager.myStockList.Count >= m_GameManager.myHandList[i].cost && m_GameManager.myLevelList.Count >= m_GameManager.myHandList[i].level)
+            if (m_GameManager.myHandList[i].GetIsCounter() && m_GameManager.myStockList.Count >= m_GameManager.myHandList[i].GetCost() && m_GameManager.myLevelList.Count >= m_GameManager.myHandList[i].GetLevel())
             {
                 buttons[i].interactable = true;
             }
@@ -187,7 +187,7 @@ public class MyHandCardsManager : MonoBehaviour
                 break;
             }
 
-            if (m_GameManager.myHandList[i].type == EnumController.Type.CHARACTER)
+            if (m_GameManager.myHandList[i].GetType() == EnumController.Type.CHARACTER)
             {
                 buttons[i].interactable = true;
             }

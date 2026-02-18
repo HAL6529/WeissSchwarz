@@ -136,8 +136,20 @@ public class OKDialog : MonoBehaviour
                 action.SetParamaterNum(ParamaterNum1);
                 action.SetParamaterNum2(ParamaterNum2);
                 m_GameManager.ActionList.Add(action);
-                if (m_BattleModeCard != null)
+                if (m_BattleModeCard != null && m_BattleModeCard.m_EffectAbstract != null)
                 {
+                    EffectAbstract m_EffectAbstract;
+                    m_EffectAbstract = m_BattleModeCard.m_EffectAbstract;
+                    m_EffectAbstract.m_GameManager = m_GameManager;
+                    m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+                    m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+                    m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+                    m_EffectAbstract.m_EnemyMainCardsManager = m_GameManager.m_EnemyMainCardsManager;
+                    m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+                    m_EffectAbstract.m_MainPowerUpDialog = m_DialogManager.m_MainPowerUpDialog;
+                    m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+                    m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+
                     switch (ParamaterNum2)
                     {
                         case 0:
@@ -161,7 +173,7 @@ public class OKDialog : MonoBehaviour
                     }
                     // --‚±‚±‚Ü‚Å‘åŠˆ–ô—p--
 
-                    switch (m_BattleModeCard.cardNo)
+                    switch (m_BattleModeCard.GetCardNo())
                     {
                         case EnumController.CardNo.AT_WX02_A05:
                         case EnumController.CardNo.DC_W01_17T:
@@ -169,12 +181,14 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.P3_S01_03T:
                         case EnumController.CardNo.P3_S01_009:
                         case EnumController.CardNo.P3_S01_033:
-                        case EnumController.CardNo.P3_S01_043:
                         case EnumController.CardNo.P3_S01_067:
                         case EnumController.CardNo.P3_S01_091:
                         case EnumController.CardNo.LB_W02_040:
                         case EnumController.CardNo.LB_W02_076:
-                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place, ParamaterNum3);
+                            m_EffectAbstract.SetExecuteParamater(1);
+                            m_EffectAbstract.SetIntParamater1(place);
+                            m_EffectAbstract.SetIntParamater2(ParamaterNum3);
+                            m_EventAnimationManager.CounterAnimationStart(m_BattleModeCard, m_EffectAbstract);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
 
                             m_MyHandCardsManager.ActiveAllMyHand();
@@ -184,12 +198,12 @@ public class OKDialog : MonoBehaviour
                         case EnumController.CardNo.LB_W02_04T:
                         case EnumController.CardNo.P3_S01_12T:
                         case EnumController.CardNo.P3_S01_022:
+                        case EnumController.CardNo.P3_S01_043:
                         case EnumController.CardNo.P3_S01_094:
                         case EnumController.CardNo.LB_W02_044:
-                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, place);
+                            m_EffectAbstract.SetExecuteParamater(1);
+                            m_EventAnimationManager.EventAnimationStart(m_BattleModeCard, m_EffectAbstract);
                             m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-
-                            m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
 
                             m_MyHandCardsManager.ActiveAllMyHand();
                             m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);

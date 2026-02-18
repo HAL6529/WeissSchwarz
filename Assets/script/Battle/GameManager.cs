@@ -74,18 +74,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] BattleClimaxCardUtil myBattleClimaxCardUtil;
     [SerializeField] BattleClimaxCardUtil enemyBattleClimaxCardUtil;
     [SerializeField] ShuffleDeckAnimationController m_ShuffleDeckAnimationController;
-    [SerializeField] WinAndLose m_WinAndLose;
+    public WinAndLose m_WinAndLose;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
-    private MyMainCardsManager m_MyMainCardsManager;
+    public MyMainCardsManager m_MyMainCardsManager;
     private MyHandCardsManager m_MyHandCardsManager;
     private MyStockCardsManager m_MyStockCardsManager;
     private MyClockCardsManager m_MyClockCardsManager;
     private MyLevelCardsManager m_MyLevelCardsManager;
-    private EnemyMainCardsManager m_EnemyMainCardsManager;
+    public EnemyMainCardsManager m_EnemyMainCardsManager;
     private EnemyHandsCardManager m_EnemyHandsCardManager;
     private EnemyClockCardsManager m_EnemyClockCardsManager;
     private EnemyStockCardsManager m_EnemyStockCardsManager;
     private EnemyLevelCardsManager m_EnemyLevelCardsManager;
+    public EventAnimationManager m_EventAnimationManager;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 
@@ -93,11 +94,6 @@ public class GameManager : MonoBehaviour
     /// トリガーチェック時に次に行う処理の判別のために使用
     /// </summary>
     private EnumController.Trigger trigger = EnumController.Trigger.VOID;
-
-    /// <summary>
-    /// テストの際に使うトリガー用 BattleModeDeckで書き換える
-    /// </summary>
-    public BattleModeCard testTrigger = null;
 
     /// <summary>
     /// ダメージを受けた時どれだけショット効果が蓄積されているか
@@ -225,17 +221,17 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < myHandList.Count; i++)
         {
             temp = myHandList[i];
-            if(temp.type == EnumController.Type.CHARACTER)
+            if(temp.GetType() == EnumController.Type.CHARACTER)
             {
-                if (temp.isCounter && myStockList.Count >= temp.cost && myLevelList.Count >= temp.level)
+                if (temp.GetIsCounter() && myStockList.Count >= temp.GetCost() && myLevelList.Count >= temp.GetLevel())
                 {
                     m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
                     return;
                 }
             }
-            else if(temp.type == EnumController.Type.EVENT)
+            else if(temp.GetType() == EnumController.Type.EVENT)
             {
-                if (temp.isCounter && myStockList.Count >= temp.cost && myLevelList.Count >= temp.level && ColorCheck(temp.color))
+                if (temp.GetIsCounter() && myStockList.Count >= temp.GetCost() && myLevelList.Count >= temp.GetLevel() && ColorCheck(temp.GetCardColor()))
                 {
                     m_DialogManager.YesOrNoDialog(YesOrNoDialogParamater.CONFIRM_USE_COUNTER, null, damage, place);
                     return;
@@ -331,7 +327,6 @@ public class GameManager : MonoBehaviour
 
         if (ActionList.Count > 0)
         {
-            Debug.Log("ExecuteActionList_SelectActionDialog");
             m_DialogManager.SelectActionDialog(ActionList);
             return;
         }
@@ -915,8 +910,8 @@ public class GameManager : MonoBehaviour
     {
         isLastTrigger = false;
         int num = 0;
-        this.trigger = myDeckList[0].trigger;
-        switch (myDeckList[0].trigger)
+        this.trigger = myDeckList[0].GetTrigger();
+        switch (myDeckList[0].GetTrigger())
         {
             case EnumController.Trigger.DOUBLE_SOUL:
                 num = 2;
@@ -973,7 +968,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < damage; i++)
         {
             temp.Add(myDeckList[0]);
-            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            if (myDeckList[0].GetType() == EnumController.Type.CLIMAX)
             {
                 // ダメージアニメーションの再生
                 m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
@@ -1026,7 +1021,7 @@ public class GameManager : MonoBehaviour
         {
             temp.Add(myDeckList[0]);
             myDeckList.RemoveAt(0);
-            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            if (myDeckList[0].GetType() == EnumController.Type.CLIMAX)
             {
                 for(int n = 0; n < temp.Count; n++)
                 {
@@ -1117,7 +1112,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < damage; i++)
         {
             temp.Add(myDeckList[0]);
-            if (myDeckList[0].type == EnumController.Type.CLIMAX)
+            if (myDeckList[0].GetType() == EnumController.Type.CLIMAX)
             {
                 // ダメージアニメーションの再生
                 m_BattleStrix.SendDamageAnimationDialog_SetBattleModeCardForTurnPlayer(temp, isFirstAttacker);
@@ -1279,7 +1274,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < myLevelList.Count; i++)
         {
-            if (myLevelList[i].color == color)
+            if (myLevelList[i].GetCardColor() == color)
             {
                 return true;
             }
@@ -1287,7 +1282,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < myClockList.Count; i++)
         {
-            if (myClockList[i].color == color)
+            if (myClockList[i].GetCardColor() == color)
             {
                 return true;
             }

@@ -34,7 +34,7 @@ public class ComeBackDetail : MonoBehaviour
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for(int i = 0; i < list.Count; i++)
         {
-            if (list[i].type == EnumController.Type.CHARACTER)
+            if (list[i].GetType() == EnumController.Type.CHARACTER)
             {
                 tempList.Add(list[i]);
             }
@@ -82,7 +82,7 @@ public class ComeBackDetail : MonoBehaviour
         List<BattleModeCard> tempList = new List<BattleModeCard>();
         for (int i = 0; i < list.Count; i++)
         {
-            if (list[i].type == EnumController.Type.CHARACTER)
+            if (list[i].GetType() == EnumController.Type.CHARACTER)
             {
                 tempList.Add(list[i]);
             }

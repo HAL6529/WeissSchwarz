@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BattleModeCard_DC_W01_18T : BattleModeCard
+{
+    public BattleModeCard_DC_W01_18T()
+    {
+        this.level = 2;
+        this.cost = 1;
+        this.soul = -1;
+        this.color = EnumController.CardColor.RED;
+        this.trigger = EnumController.Trigger.NONE;
+        this.type = EnumController.Type.EVENT;
+        this.attribute = new List<EnumController.Attribute>();
+        this.cardNo = EnumController.CardNo.DC_W01_18T;
+        this.name = "Ç»Ç»Ç±Ç∆ÉÑÉM";
+        this.power = -1;
+        this.isCounter = false;
+        this.isGreatPerformance = false;
+        this.m_EffectAbstract = new Effect_DC_W01_18T();
+    }
+}

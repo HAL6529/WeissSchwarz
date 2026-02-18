@@ -41,7 +41,7 @@ public class DamageAnimationDialog : MonoBehaviour
 
         this.gameObject.SetActive(true);
 
-        if (list[list.Count - 1].type == EnumController.Type.CLIMAX)
+        if (list[list.Count - 1].GetType() == EnumController.Type.CLIMAX)
         {
             m_DamageAnimation = EnumController.DamageAnimation.EFFECT_CANCEL;
         }
@@ -78,7 +78,7 @@ public class DamageAnimationDialog : MonoBehaviour
         }
 
         /// キャンセルの場合、ステータスをキャンセルに変更
-        if (list[list.Count - 1].type == EnumController.Type.CLIMAX)
+        if (list[list.Count - 1].GetType() == EnumController.Type.CLIMAX)
         {
             m_DamageAnimation = EnumController.DamageAnimation.CANCEL;
         }

@@ -43,6 +43,8 @@ public class YesOrNoDialog : MonoBehaviour
     /// </summary>
     private string sulvageCardName = "";
 
+    public EffectAbstract m_EffectAbstract;
+
     public YesOrNoDialog()
     {
         m_YesOrNoDialogParamater = EnumController.YesOrNoDialogParamater.VOID;
@@ -50,36 +52,47 @@ public class YesOrNoDialog : MonoBehaviour
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater)
     {
-        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, null, -1, -1, -1, EnumController.Attack.VOID, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card)
     {
-        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, null);
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        SetParamater(paramater, card, -1, -1, -1, EnumController.Attack.VOID, m_EffectAbstract);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num)
     {
-        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, null);
     }
 
-    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status)
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EffectAbstract m_EffectAbstract)
     {
-        SetParamater(paramater, card, num, -1, -1, status);
+        SetParamater(paramater, card, num, -1, -1, EnumController.Attack.VOID, m_EffectAbstract);
+    }
+
+    public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num, EnumController.Attack status, EffectAbstract m_EffectAbstract)
+    {
+        SetParamater(paramater, card, num, -1, -1, status, m_EffectAbstract);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2)
     {
-        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num1, num2, -1, EnumController.Attack.VOID, null);
     }
 
     public void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3)
     {
-        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID);
+        SetParamater(paramater, card, num1, num2, num3, EnumController.Attack.VOID, null);
     }
 
-    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status)
+    private void SetParamater(EnumController.YesOrNoDialogParamater paramater, BattleModeCard card, int num1, int num2, int num3, EnumController.Attack status, EffectAbstract m_EffectAbstract)
     {
+        this.m_EffectAbstract = m_EffectAbstract;
         ParamaterNum1 = num1;
         ParamaterNum2 = num2;
         ParamaterNum3 = num3;
@@ -134,16 +147,16 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:
                 str = stringValues.YesOrNoDialog_CONFIRM_CONTROL_DECKTOP;
                 cardObject.SetActive(true);
-                cardObjectImage.sprite = m_GameManager.myDeckList[0].sprite;
+                cardObjectImage.sprite = m_GameManager.myDeckList[0].GetSprite();
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
-                str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.cost);
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.GetCost());
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.AT_WX02_A10:
                         sulvageCardName = stringValues.AT_WX02_A12_NAME;
@@ -342,7 +355,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.DC_W01_07T:
                     case EnumController.CardNo.DC_W01_10T:
@@ -374,45 +387,36 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                switch (m_BattleModeCard.cardNo)
+                switch (m_BattleModeCard.GetCardNo())
                 {
                     case EnumController.CardNo.AT_WX02_A03:
                         m_GameManager.Draw();
                         break;
+                    case EnumController.CardNo.DC_W01_03T:
+                    case EnumController.CardNo.P3_S01_020:
+                    case EnumController.CardNo.P3_S01_095:
+                        m_EventAnimationManager.EventAnimationStart(m_BattleModeCard, m_EffectAbstract);
+                        m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                        break;
                     case EnumController.CardNo.DC_W01_07T:
                     case EnumController.CardNo.DC_W01_10T:
                     case EnumController.CardNo.DC_W01_16T:
-                    case EnumController.CardNo.LB_W02_19T:
                     case EnumController.CardNo.P3_S01_07T:
-                    case EnumController.CardNo.P3_S01_020:
                     case EnumController.CardNo.P3_S01_040:
                     case EnumController.CardNo.P3_S01_052:
+                    case EnumController.CardNo.P3_S01_057:
                     case EnumController.CardNo.P3_S01_058:
                     case EnumController.CardNo.P3_S01_060:
                     case EnumController.CardNo.P3_S01_061:
+                    case EnumController.CardNo.P3_S01_065:
                     case EnumController.CardNo.P3_S01_076:
+                    case EnumController.CardNo.P3_S01_080:
                     case EnumController.CardNo.P3_S01_088:
-                    case EnumController.CardNo.P3_S01_095:
+                    case EnumController.CardNo.LB_W02_19T:
                     case EnumController.CardNo.LB_W02_031:
                     case EnumController.CardNo.LB_W02_057:
-                        m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
+                        m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                         m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                        break;
-                    case EnumController.CardNo.P3_S01_057:
-                    case EnumController.CardNo.P3_S01_065:
-                    case EnumController.CardNo.P3_S01_080:
-                        if (ParamaterNum2 == 1)
-                        {
-                            m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
-                            m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                            break;
-                        }
-                        else
-                        {
-                            m_EventAnimationManager.AnimationStart_2(m_BattleModeCard, ParamaterNum1);
-                            m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                            break;
-                        }
                         break;
                     default:
                         break;
@@ -464,7 +468,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_GameManager.SendClimaxPhase(m_BattleModeCard);
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, -1, ParamaterNum1);
+                m_EventAnimationManager.EventAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
@@ -498,7 +502,7 @@ public class YesOrNoDialog : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action);
 
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
@@ -511,60 +515,45 @@ public class YesOrNoDialog : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action2);
 
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            // 起動効果を持つキャラクター
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
-                m_EventAnimationManager.AnimationStart_3(m_BattleModeCard, ParamaterNum1);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            // 起動効果を持つキャラクター
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_04T:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_077:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_077_2:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_034:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard, ParamaterNum1);
+                m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             // 起動効果を持つキャラクター
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_01T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_04T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_2:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_14T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_04T:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_2:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_16T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_002:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_028:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_034:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_051:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_077:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_080:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_081:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_034:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_077_2:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_083:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_088:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard, ParamaterNum1);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            // 起動効果を持つキャラクター
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_05T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_09T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_17T:
-                m_EventAnimationManager.AnimationStart(m_BattleModeCard);
-                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
-                break;
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_02T_1:
-            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_052:
-                m_EventAnimationManager.AnimationStart_2(m_BattleModeCard);
+                m_EventAnimationManager.ActAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
-                m_EventAnimationManager.AnimationStart(P3_S01_062, ParamaterNum1);
+                m_EventAnimationManager.AutoAnimationStart(P3_S01_062, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(P3_S01_062, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CONTROL_DECKTOP:

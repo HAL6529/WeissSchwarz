@@ -22,7 +22,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameManager m_GameManager;
     [SerializeField] GraveYardDetail m_GraveYardDetail;
     [SerializeField] GraveyardSelectDialog m_GraveyardSelectDialog;
-    [SerializeField] MainPowerUpDialog m_MainPowerUpDialog;
+    public MainPowerUpDialog m_MainPowerUpDialog;
     [SerializeField] SelectActionDialog m_SelectActionDialog;
     [SerializeField] SelectActEffectDialog m_SelectActEffectDialog;
     [SerializeField] SulvageDialog m_SulvageDialog;
@@ -73,14 +73,24 @@ public class DialogManager : MonoBehaviour
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard);
     }
 
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, EffectAbstract m_EffectAbstract)
+    {
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, m_EffectAbstract);
+    }
+
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num)
     {
         m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num);
     }
 
-    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, EnumController.Attack status)
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, EffectAbstract m_EffectAbstract)
     {
-        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, status);
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, m_EffectAbstract);
+    }
+
+    public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int num, EnumController.Attack status, EffectAbstract m_EffectAbstract)
+    {
+        m_YesOrNoDialog.SetParamater(paramater, m_BattleModeCard, num, status, m_EffectAbstract);
     }
 
     public void YesOrNoDialog(EnumController.YesOrNoDialogParamater paramater, BattleModeCard m_BattleModeCard, int ParamaterNum1, int ParamaterNum2)

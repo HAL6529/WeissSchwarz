@@ -66,7 +66,7 @@ public class BattleModeGuide : MonoBehaviour
         {
             return;
         }
-        image.sprite = card.sprite;
+        image.sprite = card.GetSprite();
         name.text = card.name;
 
         for(int i = 0; i < attributeList.Count; i++)
@@ -79,23 +79,23 @@ public class BattleModeGuide : MonoBehaviour
             AttributeObj[i].SetActive(false);
         }
 
-        if (card.type == EnumController.Type.CHARACTER)
+        if (card.GetType() == EnumController.Type.CHARACTER)
         {
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
-            cost.text = card.cost.ToString();
-            level.text = card.level.ToString();
-            power.text = card.power.ToString();
-            soulIndex.text = card.soul.ToString();
+            cost.text = card.GetCost().ToString();
+            level.text = card.GetLevel().ToString();
+            power.text = card.GetPower().ToString();
+            soulIndex.text = card.GetSoul().ToString();
             LevelObj.SetActive(true);
             CostObj.SetActive(true);
             PowerObj.SetActive(true);
             SoulObj.SetActive(true);
         }
-        else if(card.type == EnumController.Type.EVENT)
+        else if(card.GetType() == EnumController.Type.EVENT)
         {
             m_RectTransform.sizeDelta = new Vector2(143f, 201.09f);
-            cost.text = card.cost.ToString();
-            level.text = card.level.ToString();
+            cost.text = card.GetCost().ToString();
+            level.text = card.GetLevel().ToString();
             power.text = null;
             soulIndex.text = null;
             LevelObj.SetActive(true);
@@ -116,7 +116,7 @@ public class BattleModeGuide : MonoBehaviour
             SoulObj.SetActive(false);
         }
 
-        if (card.isCounter)
+        if (card.GetIsCounter())
         {
             CounterObj.SetActive(true);
         }
@@ -125,13 +125,13 @@ public class BattleModeGuide : MonoBehaviour
             CounterObj.SetActive(false);
         }
 
-        if (card.type == EnumController.Type.CHARACTER)
+        if (card.GetType() == EnumController.Type.CHARACTER)
         {
-            if (card.attribute.Count > 0)
+            if (card.GetAttribute().Count > 0)
             {
-                for (int i = 0; i < card.attribute.Count; i++)
+                for (int i = 0; i < card.GetAttribute().Count; i++)
                 {
-                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(card.attribute[i]);
+                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(card.GetAttribute(i));
                     AttributeObj[i].SetActive(true);
                 }
             }
@@ -144,9 +144,9 @@ public class BattleModeGuide : MonoBehaviour
 
  
 
-        explanation.text = m_ExtendUtil.Explanation(card.cardNo);
+        explanation.text = m_ExtendUtil.Explanation(card.GetCardNo());
 
-        switch (card.trigger)
+        switch (card.GetTrigger())
         {
             case EnumController.Trigger.COMEBACK:
                 Trigger1.sprite = comeback;
@@ -203,7 +203,7 @@ public class BattleModeGuide : MonoBehaviour
                 break;
         }
 
-        switch (card.color)
+        switch (card.GetCardColor())
         {
             case EnumController.CardColor.BLUE:
                 Name.sprite = name_b;
@@ -265,11 +265,11 @@ public class BattleModeGuide : MonoBehaviour
         showImage(card);
 
         // level‚ªŒ³X‚ÆˆÙ‚È‚Á‚Ä‚¢‚½ê‡
-        if(card.level > NowCard.level)
+        if(card.GetLevel() > NowCard.GetLevel())
         {
             level.color = new Color(1, 70f / 255f, 70f / 255f, 1);
         }
-        else if(card.level == NowCard.level)
+        else if(card.GetLevel() == NowCard.GetLevel())
         {
             level.color = new Color(1, 1, 1, 1);
         }
@@ -279,11 +279,11 @@ public class BattleModeGuide : MonoBehaviour
         }
 
         // power‚ªŒ³X‚ÆˆÙ‚È‚Á‚Ä‚¢‚½ê‡
-        if (card.power > NowCard.power)
+        if (card.GetPower() > NowCard.GetPower())
         {
             power.color = new Color(1, 70f / 255f, 70f / 255f, 1);
         }
-        else if (card.power == NowCard.power)
+        else if (card.GetPower() == NowCard.GetPower())
         {
             power.color = new Color(1, 1, 1, 1);
         }
@@ -293,11 +293,11 @@ public class BattleModeGuide : MonoBehaviour
         }
 
         // soul‚ªŒ³X‚ÆˆÙ‚È‚Á‚Ä‚¢‚½ê‡
-        if (card.soul > NowCard.soul)
+        if (card.GetSoul() > NowCard.GetSoul())
         {
             soulIndex.color = new Color(1, 0, 0, 1);
         }
-        else if (card.soul == NowCard.soul)
+        else if (card.GetSoul() == NowCard.GetSoul())
         {
             soulIndex.color = new Color(0, 0, 0, 1);
         }
@@ -306,17 +306,17 @@ public class BattleModeGuide : MonoBehaviour
             soulIndex.color = new Color(0, 140f / 255f, 0, 1);
         }
 
-        level.text = NowCard.level.ToString();
-        power.text = NowCard.power.ToString();
-        soulIndex.text = NowCard.soul.ToString();
+        level.text = NowCard.GetLevel().ToString();
+        power.text = NowCard.GetPower().ToString();
+        soulIndex.text = NowCard.GetSoul().ToString();
 
-        if (card.type == EnumController.Type.CHARACTER)
+        if (card.GetType() == EnumController.Type.CHARACTER)
         {
-            if (NowCard.attribute.Count > 0)
+            if (NowCard.GetAttribute().Count > 0)
             {
-                for (int i = 0; i < NowCard.attribute.Count; i++)
+                for (int i = 0; i < NowCard.GetAttribute().Count; i++)
                 {
-                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(NowCard.attribute[i]);
+                    attributeList[i].text = m_ExtendUtil.AttributeConvertToString(NowCard.GetAttribute(i));
                     AttributeObj[i].SetActive(true);
                 }
             }

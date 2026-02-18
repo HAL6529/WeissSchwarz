@@ -26,7 +26,7 @@ public class ConfirmEnemyHandDialog : MonoBehaviour
             else
             {
                 buttonList[i].SetActive(true);
-                imageList[i].sprite = BattleModeCardList[i].sprite;
+                imageList[i].sprite = BattleModeCardList[i].GetSprite();
             }
         }
 
