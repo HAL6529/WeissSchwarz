@@ -458,6 +458,7 @@ namespace EnumController
         Auto,
         Counter,
         Event,
+        Kizuna,
     }
 
     public enum HandCardUtilStatus

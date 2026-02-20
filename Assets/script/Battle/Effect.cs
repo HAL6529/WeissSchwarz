@@ -16,31 +16,6 @@ public class Effect : MonoBehaviour
         this.m_BattleStrix = m_BattleStrix;
     }
 
-    public void BondForHandToFild(BattleModeCard card)
-    {
-        switch (card.GetCardNo())
-        {
-            case EnumController.CardNo.AT_WX02_A10:
-            case EnumController.CardNo.DC_W01_09T:
-            case EnumController.CardNo.P3_S01_003:
-            case EnumController.CardNo.P3_S01_032:
-            case EnumController.CardNo.P3_S01_051:
-            case EnumController.CardNo.P3_S01_082:
-            case EnumController.CardNo.LB_W02_002:
-            case EnumController.CardNo.LB_W02_078:
-                if (ConfirmStockForCost(1))
-                {
-                    Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);
-                    action_Bond.SetParamaterBattleModeCard(card);
-                    m_GameManager.ActionList.Add(action_Bond);
-                    break;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
     /// <summary>
     /// ÅuÇ†Ç»ÇΩÇ™ÅyãNÅzÇégÇ¡ÇΩéûÅAÅvÇÃå¯â 
     /// </summary>
@@ -245,6 +220,7 @@ public class Effect : MonoBehaviour
             m_EffectAbstract.m_BattleStrix = m_BattleStrix;
             m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
             m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+            m_EffectAbstract.m_EffectBondForHandToField = m_GameManager.m_EffectBondForHandToField;
             m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
             m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
             m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
@@ -256,6 +232,26 @@ public class Effect : MonoBehaviour
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         switch (m_BattleModeCard.GetCardNo())
         {
+            case EnumController.CardNo.AT_WX02_A10:
+            case EnumController.CardNo.DC_W01_09T:
+            case EnumController.CardNo.P3_S01_003:
+            case EnumController.CardNo.P3_S01_032:
+            case EnumController.CardNo.P3_S01_051:
+            case EnumController.CardNo.P3_S01_082:
+            case EnumController.CardNo.LB_W02_002:
+            case EnumController.CardNo.LB_W02_078:
+                //Å¶„J
+                if (ConfirmStockForCost(1))
+                {
+                    Action action_Bond = new Action(m_GameManager, EnumController.Action.Bond);
+                    action_Bond.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                    action_Bond.SetParamaterBattleStrix(m_BattleStrix);
+                    action_Bond.SetParamaterBattleModeCard(m_BattleModeCard);
+                    action_Bond.SetParamaterEffectAbstract(m_EffectAbstract);
+                    m_GameManager.ActionList.Add(action_Bond);
+                    break;
+                }
+                break;
             case EnumController.CardNo.DC_W01_02T:
                 m_EffectAbstract.SetExecuteParamater(2);
                 Action action_DC_W01_02T = new Action(m_GameManager, EnumController.Action.DC_W01_02T_1);

@@ -1064,7 +1064,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_GameManager.Syncronize();
 
         // カードの登場時の効果起動
-        m_Effect.BondForHandToFild(m_BattleModeCard);
         m_Effect.WhenPlaceCardEffect(m_BattleModeCard, PlaceNum);
 
         // パワー、レベル、特徴、ソウルの計算

@@ -12,6 +12,8 @@ public class EffectAbstract
 
     public DialogManager m_DialogManager { get; set; }
 
+    public EffectBondForHandToField m_EffectBondForHandToField { get; set; }
+
     public EnemyMainCardsManager m_EnemyMainCardsManager { get; set; }
 
     public EventAnimationManager m_EventAnimationManager { get; set; }
@@ -91,6 +93,11 @@ public class EffectAbstract
         EventExecute1();
     }
 
+    public void KizunaExecute()
+    {
+        KizunaExecute1();
+    }
+
     public virtual void ActExecute1()
     {
 
@@ -127,6 +134,11 @@ public class EffectAbstract
     }
 
     public virtual void EventExecute1()
+    {
+
+    }
+
+    public virtual void KizunaExecute1()
     {
 
     }

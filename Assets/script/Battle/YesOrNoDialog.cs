@@ -475,7 +475,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_DialogManager.MainDialog(m_BattleModeCard, ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                m_EventAnimationManager.AnimationStartForBond(m_BattleModeCard, sulvageCardName, cost);
+                m_EventAnimationManager.KizunaAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
