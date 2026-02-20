@@ -113,7 +113,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                str = stringValues.YesOrNoDialog_CONFIRM_CARD_EFFECT(m_BattleModeCard.name);
+                str = stringValues.YesOrNoDialog_CONFIRM_CARD_EFFECT(m_BattleModeCard.GetName());
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 str = stringValues.YesOrNoDialog_CONFIRM_USE_COUNTER;
@@ -150,7 +150,7 @@ public class YesOrNoDialog : MonoBehaviour
                 cardObjectImage.sprite = m_GameManager.myDeckList[0].GetSprite();
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
+                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.GetName());
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.GetCost());

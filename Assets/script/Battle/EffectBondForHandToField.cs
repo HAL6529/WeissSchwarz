@@ -23,10 +23,8 @@ public class EffectBondForHandToField : MonoBehaviour
     {
         for (int i = 0; i < m_GameManager.GraveYardList.Count; i++)
         {
-            BattleModeCard temp = m_GameManager.GraveYardList[i];
-            if (temp.name.Equals(sulvageCardName))
+            if (m_GameManager.GraveYardList[i].GetName().Equals(sulvageCardName))
             {
-                Debug.Log(i + ":" + sulvageCardName);
                 BattleModeCard card = m_GameManager.GraveYardList[i];
                 m_GameManager.GraveYardList.RemoveAt(i);
                 m_GameManager.myHandList.Add(card);
@@ -35,7 +33,6 @@ public class EffectBondForHandToField : MonoBehaviour
                 return;
             }
         }
-        Debug.Log(sulvageCardName);
         return;
     }
 }

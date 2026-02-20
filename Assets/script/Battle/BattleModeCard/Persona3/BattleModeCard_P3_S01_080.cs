@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_080 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.God, EnumController.Attribute.Devil };
         this.cardNo = EnumController.CardNo.P3_S01_080;
-        this.name = "イゴール";
+        this.cardName = "イゴール";
         this.power = 1500;
         this.isCounter = false;
         this.isGreatPerformance = false;

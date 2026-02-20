@@ -14,7 +14,7 @@ public class BattleModeCard_LB_W02_094 : BattleModeCard
         this.type = EnumController.Type.EVENT;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.LB_W02_094;
-        this.name = "ロイヤルプリンセスパフェ";
+        this.cardName = "ロイヤルプリンセスパフェ";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

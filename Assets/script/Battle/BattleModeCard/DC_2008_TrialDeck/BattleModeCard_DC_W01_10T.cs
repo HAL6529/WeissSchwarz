@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_10T : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Mecha, EnumController.Attribute.Banana };
         this.cardNo = EnumController.CardNo.DC_W01_10T;
-        this.name = "ƒƒ{”üt";
+        this.cardName = "ƒƒ{”üt";
         this.power = 4500;
         this.isCounter = false;
         this.isGreatPerformance = false;

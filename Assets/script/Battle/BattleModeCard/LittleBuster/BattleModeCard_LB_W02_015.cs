@@ -14,7 +14,7 @@ public class BattleModeCard_LB_W02_015 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Music, EnumController.Attribute.Animal };
         this.cardNo = EnumController.CardNo.LB_W02_015;
-        this.name = "“深窓のクイーンオブハート”唯湖";
+        this.cardName = "“深窓のクイーンオブハート”唯湖";
         this.power = 6000;
         this.isCounter = false;
         this.isGreatPerformance = false;

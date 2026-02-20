@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_056 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic, EnumController.Attribute.Sports };
         this.cardNo = EnumController.CardNo.P3_S01_056;
-        this.name = "明彦＆カエサル";
+        this.cardName = "明彦＆カエサル";
         this.power = 7500;
         this.isCounter = false;
         this.isGreatPerformance = false;

@@ -38,12 +38,6 @@ public class EventAnimationManager : MonoBehaviour
 
     private int damage = -1;
 
-    private string sulvageCardName = "";
-
-    private int cost = -1;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -120,7 +114,6 @@ public class EventAnimationManager : MonoBehaviour
     private void AnimationStart(BattleModeCard card)
     {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
-        this.place = place;
         isFromRPC = false;
         m_gameObject.SetActive(true);
 

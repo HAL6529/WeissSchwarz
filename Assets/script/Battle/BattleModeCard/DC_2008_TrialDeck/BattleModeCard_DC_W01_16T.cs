@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_16T : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.DC_W01_16T;
-        this.name = "‚ä‚¸•T";
+        this.cardName = "‚ä‚¸•T";
         this.power = 3000;
         this.isCounter = false;
         this.isGreatPerformance = false;

@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_055 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Weapon, EnumController.Attribute.God };
         this.cardNo = EnumController.CardNo.P3_S01_055;
-        this.name = "順平＆トリスメギストス";
+        this.cardName = "順平＆トリスメギストス";
         this.power = 7500;
         this.isCounter = false;
         this.isGreatPerformance = false;

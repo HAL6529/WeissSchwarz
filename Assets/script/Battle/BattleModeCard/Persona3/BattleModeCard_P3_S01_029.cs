@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_029 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Mecha, EnumController.Attribute.Weapon };
         this.cardNo = EnumController.CardNo.P3_S01_029;
-        this.name = "アイギス";
+        this.cardName = "アイギス";
         this.power = 3500;
         this.isCounter = false;
         this.isGreatPerformance = false;

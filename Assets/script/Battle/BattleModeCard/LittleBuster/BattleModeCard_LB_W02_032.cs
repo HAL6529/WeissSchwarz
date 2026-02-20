@@ -14,7 +14,7 @@ public class BattleModeCard_LB_W02_032 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Marble };
         this.cardNo = EnumController.CardNo.LB_W02_032;
-        this.name = "“トラブルメーカー”葉留佳";
+        this.cardName = "“トラブルメーカー”葉留佳";
         this.power = 500;
         this.isCounter = false;
         this.isGreatPerformance = false;

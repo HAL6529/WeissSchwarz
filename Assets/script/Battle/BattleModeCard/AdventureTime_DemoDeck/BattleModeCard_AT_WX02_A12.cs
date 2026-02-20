@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A12 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Ooo, EnumController.Attribute.Vampire };
         this.cardNo = EnumController.CardNo.AT_WX02_A12;
-        this.name = "Marceline Party Crasher";
+        this.cardName = "Marceline: Party Crasher";
         this.power = 8000;
         this.isCounter = false;
         this.isGreatPerformance = false;

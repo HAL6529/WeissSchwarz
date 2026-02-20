@@ -16,7 +16,7 @@ public abstract class BattleModeCard : MonoBehaviour
     protected EnumController.Type type;
     protected List<EnumController.Attribute> attribute = new List<EnumController.Attribute>();
     protected EnumController.CardNo cardNo;
-    protected string name;
+    protected string cardName;
     protected int power;
     protected bool isCounter;
     protected bool isGreatPerformance;
@@ -50,7 +50,7 @@ public abstract class BattleModeCard : MonoBehaviour
 
     public EnumController.CardNo GetCardNo() { return cardNo; }
 
-    public string GetName() { return name; }
+    public string GetName() { return cardName; }
 
     public int GetPower() { return power; }
 

@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_14T : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic, EnumController.Attribute.JapaneseClothes };
         this.cardNo = EnumController.CardNo.DC_W01_14T;
-        this.name = "—ˆß‚Ì‰¹–²";
+        this.cardName = "—ˆß‚Ì‰¹–²";
         this.power = 3000;
         this.isCounter = false;
         this.isGreatPerformance = false;

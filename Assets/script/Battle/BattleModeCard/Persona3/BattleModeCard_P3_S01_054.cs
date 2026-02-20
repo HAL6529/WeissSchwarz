@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_054 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() {  EnumController.Attribute.Sports };
         this.cardNo = EnumController.CardNo.P3_S01_054;
-        this.name = "äùñÏ ÇﬂÇÆÇ›";
+        this.cardName = "äùñÏ ÇﬂÇÆÇ›";
         this.power = 5500;
         this.isCounter = false;
         this.isGreatPerformance = false;

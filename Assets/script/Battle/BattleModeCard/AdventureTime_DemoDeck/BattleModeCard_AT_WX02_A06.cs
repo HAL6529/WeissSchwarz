@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A06 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Ooo, EnumController.Attribute.Hero };
         this.cardNo = EnumController.CardNo.AT_WX02_A06;
-        this.name = "Finn & Jake: Rainy Day Daydream";
+        this.cardName = "Finn & Jake: Rainy Day Daydream";
         this.power = 5500;
         this.isCounter = false;
         this.isGreatPerformance = false;

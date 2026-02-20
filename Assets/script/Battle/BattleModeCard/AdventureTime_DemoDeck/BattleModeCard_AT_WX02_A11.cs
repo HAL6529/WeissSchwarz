@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A11 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Ooo, EnumController.Attribute.Magic };
         this.cardNo = EnumController.CardNo.AT_WX02_A11;
-        this.name = "Lady Rainicorn: Date at Sunset";
+        this.cardName = "Lady Rainicorn: Date at Sunset";
         this.power = 1500;
         this.isCounter = false;
         this.isGreatPerformance = false;

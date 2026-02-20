@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_03T : BattleModeCard
         this.type = EnumController.Type.EVENT;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.DC_W01_03T;
-        this.name = "ミス風見学園コンテスト";
+        this.cardName = "ミス風見学園コンテスト";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effect_AT_WX02_A10 : EffectAbstract
 {
-    private string sulvageCardName = "Marceline Party Crasher";
+    private string sulvageCardName = "Marceline: Party Crasher";
 
     public override void KizunaExecute1()
     {

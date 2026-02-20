@@ -1293,7 +1293,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "結婚式の歌姫")
+                if (m_GameManager.MyClimaxCard.GetName() == "結婚式の歌姫")
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     m_EffectAbstract.SetIntParamater1(place);
@@ -1308,7 +1308,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "美春のオルゴール" && ConfirmStockForCost(1))
+                if (m_GameManager.MyClimaxCard.GetName() == "美春のオルゴール" && ConfirmStockForCost(1))
                 {
                     m_EffectAbstract.SetExecuteParamater(2);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_10T, card, place, status, m_EffectAbstract);
@@ -1323,7 +1323,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "そよ風のハミング")
+                if (m_GameManager.MyClimaxCard.GetName() == "そよ風のハミング")
                 {
                     m_EffectAbstract.SetIntParamater1(place);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T, card, place, status, m_EffectAbstract);
@@ -1337,7 +1337,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "露天風呂")
+                if (m_GameManager.MyClimaxCard.GetName() == "露天風呂")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_004, card, place, status, m_EffectAbstract);
                     return true;
@@ -1351,7 +1351,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "復讐の終わり")
+                if (m_GameManager.MyClimaxCard.GetName() == "復讐の終わり")
                 {
                     m_EffectAbstract.SetExecuteParamater(2);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_01T, card, place, status, m_EffectAbstract);
@@ -1365,7 +1365,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "最後の選択")
+                if (m_GameManager.MyClimaxCard.GetName() == "最後の選択")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_11T_1, card, place, status, m_EffectAbstract);
                     return true;
@@ -1378,7 +1378,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "切れない絆")
+                if (m_GameManager.MyClimaxCard.GetName() == "切れない絆")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_030, card, place, status, m_EffectAbstract);
                     return true;
@@ -1391,7 +1391,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "ありがとう")
+                if (m_GameManager.MyClimaxCard.GetName() == "ありがとう")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_055, card, place, status, m_EffectAbstract);
                     return true;
@@ -1404,7 +1404,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "友への誓い")
+                if (m_GameManager.MyClimaxCard.GetName() == "友への誓い")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_056, card, place, status, m_EffectAbstract);
                     return true;
@@ -1417,7 +1417,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.GraveYardList.Count > 0 && m_GameManager.MyClimaxCard.name == "ニュクス・アバター")
+                if (m_GameManager.GraveYardList.Count > 0 && m_GameManager.MyClimaxCard.GetName() == "ニュクス・アバター")
                 {
                     m_EffectAbstract.SetExecuteParamater(2);
                     Action action_P3_S01_061 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
@@ -1438,7 +1438,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "最強なる者")
+                if (m_GameManager.MyClimaxCard.GetName() == "最強なる者")
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     Action action_P3_S01_077 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
@@ -1459,7 +1459,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "父の遺志")
+                if (m_GameManager.MyClimaxCard.GetName() == "父の遺志")
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     Action action_P3_S01_081 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
@@ -1480,7 +1480,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "鈴と共にある日々" && ConfirmStockForCost(1))
+                if (m_GameManager.MyClimaxCard.GetName() == "鈴と共にある日々" && ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_002, card, place, status, m_EffectAbstract);
                     return true;
@@ -1493,7 +1493,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "リーダーの帰還" && ConfirmStockForCost(1))
+                if (m_GameManager.MyClimaxCard.GetName() == "リーダーの帰還" && ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_004, card, place, status, m_EffectAbstract);
                     return true;
@@ -1506,7 +1506,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "たった一つの取り柄" )
+                if (m_GameManager.MyClimaxCard.GetName() == "たった一つの取り柄" )
                 {
                     m_EffectAbstract.SetIntParamater1(place);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031, card, place, status, m_EffectAbstract);
@@ -1520,7 +1520,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "優等生のフリをした偽善者")
+                if (m_GameManager.MyClimaxCard.GetName() == "優等生のフリをした偽善者")
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     m_EffectAbstract.SetIntParamater1(place);
@@ -1542,7 +1542,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "リトルバスターズ！")
+                if (m_GameManager.MyClimaxCard.GetName() == "リトルバスターズ！")
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_055, card, place, status, m_EffectAbstract);
                     return true;
@@ -1555,7 +1555,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "２つの長い影")
+                if (m_GameManager.MyClimaxCard.GetName() == "２つの長い影")
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     Action action_LB_W02_077 = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
@@ -1576,7 +1576,7 @@ public class Effect : MonoBehaviour
                     return false;
                 }
 
-                if (m_GameManager.MyClimaxCard.name == "危機一髪！" && ConfirmStockForCost(1))
+                if (m_GameManager.MyClimaxCard.GetName() == "危機一髪！" && ConfirmStockForCost(1))
                 {
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_080, card, place, status, m_EffectAbstract);
                     return true;
