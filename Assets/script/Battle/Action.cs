@@ -31,9 +31,6 @@ public class Action
         m_GameManager.ActionList.RemoveAt(num);
         switch (paramater)
         {
-            case EnumController.Action.Bond:
-                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, m_BattleModeCard);
-                break;
             case EnumController.Action.ClockAndTwoDraw:
                 m_GameManager.ClockAndTwoDraw2();
                 break;
@@ -158,6 +155,9 @@ public class Action
             case EnumController.Action.LB_W02_078_1:
                 m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                return;
+            case EnumController.Action.Bond:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD, m_BattleModeCard, m_EffectAbstract);
                 return;
             case EnumController.Action.DC_W01_10T_1:
             case EnumController.Action.DC_W01_16T_1:

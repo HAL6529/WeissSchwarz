@@ -38,36 +38,10 @@ public class EventAnimationManager : MonoBehaviour
 
     private int damage = -1;
 
-    private string sulvageCardName = "";
-
-    private int cost = -1;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
         animator.AddClipEndCallback(NormalAnimationLayerIndex, AnimationName, () => AnimationEnd());
-    }
-
-    /// <summary>
-    /// 絆用
-    /// </summary>
-    public void AnimationStartForBond(BattleModeCard card, string sulvageCardName, int cost)
-    {
-        this.paramater = EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD;
-        this.sulvageCardName = sulvageCardName;
-        this.cost = cost;
-        isFromRPC = false;
-        m_gameObject.SetActive(true);
-
-        m_BattleModeCard = card;
-        m_image.sprite = card.GetSprite();
-        m_image2.sprite = card.GetSprite();
-        // アニメーション再生を再生するためにspeedを1にする
-        animator.speed = 1;
-        animator.Play(AnimationName, 0, 0);
-        m_BattleStrix.RpcToAll("SEManager_EffectSE_Play");
     }
 
     /// <summary>
@@ -126,6 +100,13 @@ public class EventAnimationManager : MonoBehaviour
         AnimationStart(card);
     }
 
+    public void KizunaAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        EventAnimationParamater = EnumController.EventAnimation.Kizuna;
+        this.m_EffectAbstract = m_EffectAbstract;
+        AnimationStart(card);
+    }
+
     /// <summary>
     /// イベントを再生したプレイヤー用
     /// </summary>
@@ -133,7 +114,6 @@ public class EventAnimationManager : MonoBehaviour
     private void AnimationStart(BattleModeCard card)
     {
         this.paramater = EnumController.YesOrNoDialogParamater.VOID;
-        this.place = place;
         isFromRPC = false;
         m_gameObject.SetActive(true);
 
@@ -255,26 +235,6 @@ public class EventAnimationManager : MonoBehaviour
             return;
         }
 
-        // 絆
-        if(paramater == EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD)
-        {
-            switch (m_BattleModeCard.GetCardNo())
-            {
-                case EnumController.CardNo.AT_WX02_A10:
-                case EnumController.CardNo.DC_W01_09T:
-                case EnumController.CardNo.P3_S01_003:
-                case EnumController.CardNo.P3_S01_032:
-                case EnumController.CardNo.P3_S01_051:
-                case EnumController.CardNo.P3_S01_082:
-                case EnumController.CardNo.LB_W02_002:
-                case EnumController.CardNo.LB_W02_078:
-                    m_EffectBondForHandToField.BondForCost(sulvageCardName, cost);
-                    return;
-                default:
-                    break;
-            }
-        }
-
         switch (EventAnimationParamater)
         {
             case EnumController.EventAnimation.Act:
@@ -288,6 +248,9 @@ public class EventAnimationManager : MonoBehaviour
                 break;
             case EnumController.EventAnimation.Event:
                 m_EffectAbstract.EventExecute();
+                break;
+            case EnumController.EventAnimation.Kizuna:
+                m_EffectAbstract.KizunaExecute();
                 break;
             default:
                 break;

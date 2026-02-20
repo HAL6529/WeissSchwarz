@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A08 : BattleModeCard
         this.type = EnumController.Type.CLIMAX;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.AT_WX02_A08;
-        this.name = "Memory of a Memory";
+        this.cardName = "Memory of a Memory";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

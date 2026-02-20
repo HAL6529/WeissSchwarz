@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A07 : BattleModeCard
         this.type = EnumController.Type.EVENT;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.AT_WX02_A07;
-        this.name = "Quest Received!";
+        this.cardName = "Quest Received!";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

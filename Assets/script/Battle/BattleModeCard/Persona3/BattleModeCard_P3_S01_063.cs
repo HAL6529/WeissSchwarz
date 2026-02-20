@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_063 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Gourmet };
         this.cardNo = EnumController.CardNo.P3_S01_063;
-        this.name = "––Œõ –]”ü";
+        this.cardName = "––Œõ –]”ü";
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;

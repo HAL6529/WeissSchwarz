@@ -63,7 +63,7 @@ public class CardGuideUtil : MonoBehaviour
 
     public void onShowInfo(BattleModeCard info)
     {
-        cardName.text = info.name;
+        cardName.text = info.GetName();
         explanation.text = extendUtil.Explanation(info.GetCardNo());
         cardInfoImage.sprite = info.GetSprite();
         if (info.GetIsCounter())

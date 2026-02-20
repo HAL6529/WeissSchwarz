@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     private EnemyStockCardsManager m_EnemyStockCardsManager;
     private EnemyLevelCardsManager m_EnemyLevelCardsManager;
     public EventAnimationManager m_EventAnimationManager;
+    public EffectBondForHandToField m_EffectBondForHandToField;
 
     public EnumController.Turn phase = EnumController.Turn.VOID;
 

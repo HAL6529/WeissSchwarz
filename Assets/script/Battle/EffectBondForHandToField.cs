@@ -23,7 +23,7 @@ public class EffectBondForHandToField : MonoBehaviour
     {
         for (int i = 0; i < m_GameManager.GraveYardList.Count; i++)
         {
-            if (m_GameManager.GraveYardList[i].name == sulvageCardName)
+            if (m_GameManager.GraveYardList[i].GetName().Equals(sulvageCardName))
             {
                 BattleModeCard card = m_GameManager.GraveYardList[i];
                 m_GameManager.GraveYardList.RemoveAt(i);

@@ -14,10 +14,10 @@ public class BattleModeCard_P3_S01_003 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Death };
         this.cardNo = EnumController.CardNo.P3_S01_003;
-        this.name = "ファルロス";
+        this.cardName = "ファルロス";
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;
-        this.m_EffectAbstract = null;
+        this.m_EffectAbstract = new Effect_P3_S01_003();
     }
 }

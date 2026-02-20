@@ -670,7 +670,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         // "—‰¤”Lh²X”ü‚ÌŒø‰Ê
         //y‰iz ‘¼‚Ì‚ ‚È‚½‚ÌugÅ‹­‚Ì’j™hŒªŒáv‚·‚×‚Ä‚ÉAƒpƒ[‚ğ{1000B
-        if (m_BattleModeCard.name == "gÅ‹­‚Ì’j™hŒªŒá")
+        if (m_BattleModeCard.GetName() == "gÅ‹­‚Ì’j™hŒªŒá")
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_07T);
@@ -680,7 +680,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         //	—ˆƒ–’J —BŒÎ‚ÌŒø‰Ê
         //y‰iz ‘¼‚Ì‚ ‚È‚½‚ÌuO} —t—¯‰Àv‚·‚×‚Ä‚ÉAƒpƒ[‚ğ{1000B
-        if (m_BattleModeCard.name == "O} —t—¯‰À")
+        if (m_BattleModeCard.GetName() == "O} —t—¯‰À")
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_007);
@@ -689,7 +689,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
 
         //gƒƒ‹ƒwƒ“­—h¬Ÿ{
         //y‰iz ‘¼‚Ì‚ ‚È‚½‚Ìug’…‚®‚é‚İhƒNƒhv‚·‚×‚Ä‚ÉAƒpƒ[‚ğ{1000B
-        if (m_BattleModeCard.name == "g’…‚®‚é‚İhƒNƒh")
+        if (m_BattleModeCard.GetName() == "g’…‚®‚é‚İhƒNƒh")
         {
             List<EnumController.CardNo> cardNoList = new List<EnumController.CardNo>();
             cardNoList.Add(EnumController.CardNo.LB_W02_076);
@@ -1064,7 +1064,6 @@ public class BattleMyMainCardUtil : MonoBehaviour
         m_GameManager.Syncronize();
 
         // ƒJ[ƒh‚Ì“oê‚ÌŒø‰Ê‹N“®
-        m_Effect.BondForHandToFild(m_BattleModeCard);
         m_Effect.WhenPlaceCardEffect(m_BattleModeCard, PlaceNum);
 
         // ƒpƒ[AƒŒƒxƒ‹A“Á’¥Aƒ\ƒEƒ‹‚ÌŒvZ
@@ -1204,7 +1203,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
         {
             return false;
         }
-        return m_BattleModeCard.name.Contains(t);
+        return m_BattleModeCard.GetName().Contains(t);
     }
 
     /// <summary>
@@ -1218,7 +1217,7 @@ public class BattleMyMainCardUtil : MonoBehaviour
             return false;
         }
 
-        if (m_BattleModeCard.name == t)
+        if (m_BattleModeCard.GetName() == t)
         {
             return true;
         }

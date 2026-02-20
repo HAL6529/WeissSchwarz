@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_01T : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Magic, EnumController.Attribute.ShrineMaiden};
         this.cardNo = EnumController.CardNo.DC_W01_01T;
-        this.name = "ŒÓƒm‹{ ŠÂ";
+        this.cardName = "ŒÓƒm‹{ ŠÂ";
         this.power = 2000;
         this.isCounter = false;
         this.isGreatPerformance = false;

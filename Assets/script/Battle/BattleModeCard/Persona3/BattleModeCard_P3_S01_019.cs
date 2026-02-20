@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_019 : BattleModeCard
         this.type = EnumController.Type.EVENT;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.P3_S01_019;
-        this.name = "‰eŽžŠÔ";
+        this.cardName = "‰eŽžŠÔ";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_13T : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Mecha, EnumController.Attribute.Banana };
         this.cardNo = EnumController.CardNo.DC_W01_13T;
-        this.name = "HM-A06型 ミナツ";
+        this.cardName = "HM-A06型 ミナツ";
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;

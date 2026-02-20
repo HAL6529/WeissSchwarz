@@ -27,7 +27,7 @@ public class CardInfoUtil : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cardName = m_BattleModeCard.name;
+        cardName = m_BattleModeCard.GetName();
         ChangeLayoutColor();
         ChangeText();
     }

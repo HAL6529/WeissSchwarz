@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A05 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Ooo };
         this.cardNo = EnumController.CardNo.AT_WX02_A05;
-        this.name = "BMO: Conversation Parade";
+        this.cardName = "BMO: Conversation Parade";
         this.power = 1000;
         this.isCounter = true;
         this.isGreatPerformance = false;

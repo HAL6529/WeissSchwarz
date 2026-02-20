@@ -67,7 +67,7 @@ public class BattleModeGuide : MonoBehaviour
             return;
         }
         image.sprite = card.GetSprite();
-        name.text = card.name;
+        name.text = card.GetName();
 
         for(int i = 0; i < attributeList.Count; i++)
         {

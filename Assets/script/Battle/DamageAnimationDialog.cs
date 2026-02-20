@@ -30,7 +30,6 @@ public class DamageAnimationDialog : MonoBehaviour
         m_GameManager.isDamageAnimation = true;
         m_DamageAnimation = EnumController.DamageAnimation.EFFECT;
         this.handNum = handNum;
-        this.place = place;
         tempList = list;
 
         if (list.Count == 0)

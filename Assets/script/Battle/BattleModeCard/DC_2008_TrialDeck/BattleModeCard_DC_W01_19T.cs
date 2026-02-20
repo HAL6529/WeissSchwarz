@@ -14,7 +14,7 @@ public class BattleModeCard_DC_W01_19T : BattleModeCard
         this.type = EnumController.Type.CLIMAX;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.DC_W01_19T;
-        this.name = "Ç»Ç»Ç±Ç∆ÉÑÉM";
+        this.cardName = "Ç»Ç»Ç±Ç∆ÉÑÉM";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

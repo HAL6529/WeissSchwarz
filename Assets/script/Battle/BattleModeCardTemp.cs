@@ -13,7 +13,7 @@ public class BattleModeCardTemp
     public EnumController.Type type;
     public List<EnumController.Attribute> attribute = new List<EnumController.Attribute>();
     public EnumController.CardNo cardNo;
-    public string name;
+    public string cardName;
     public int power;
     public bool isCounter;
     public string explanation;
@@ -34,7 +34,7 @@ public class BattleModeCardTemp
             this.type = m_BattleModeCard.GetType();
             this.attribute = m_BattleModeCard.GetAttribute();
             this.cardNo = m_BattleModeCard.GetCardNo();
-            this.name = m_BattleModeCard.GetName();
+            this.cardName = m_BattleModeCard.GetName();
             this.soul = m_BattleModeCard.GetSoul();
             this.power = m_BattleModeCard.GetPower();
             this.isCounter = m_BattleModeCard.GetIsCounter();

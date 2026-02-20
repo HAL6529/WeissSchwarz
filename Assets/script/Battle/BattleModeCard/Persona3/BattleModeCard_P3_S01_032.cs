@@ -14,10 +14,10 @@ public class BattleModeCard_P3_S01_032 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Bullying };
         this.cardNo = EnumController.CardNo.P3_S01_032;
-        this.name = "XR ‰Ä‹I";
+        this.cardName = "XR ‰Ä‹I";
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;
-        this.m_EffectAbstract = null;
+        this.m_EffectAbstract = new Effect_P3_S01_032();
     }
 }

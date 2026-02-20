@@ -113,7 +113,7 @@ public class YesOrNoDialog : MonoBehaviour
         switch (m_YesOrNoDialogParamater)
         {
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
-                str = stringValues.YesOrNoDialog_CONFIRM_CARD_EFFECT(m_BattleModeCard.name);
+                str = stringValues.YesOrNoDialog_CONFIRM_CARD_EFFECT(m_BattleModeCard.GetName());
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
                 str = stringValues.YesOrNoDialog_CONFIRM_USE_COUNTER;
@@ -150,7 +150,7 @@ public class YesOrNoDialog : MonoBehaviour
                 cardObjectImage.sprite = m_GameManager.myDeckList[0].GetSprite();
                 break;
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
-                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.name);
+                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.GetName());
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.GetCost());
@@ -475,7 +475,7 @@ public class YesOrNoDialog : MonoBehaviour
                 m_DialogManager.MainDialog(m_BattleModeCard, ParamaterNum1);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BOND_FOR_HAND_TO_FIELD:
-                m_EventAnimationManager.AnimationStartForBond(m_BattleModeCard, sulvageCardName, cost);
+                m_EventAnimationManager.KizunaAnimationStart(m_BattleModeCard, m_EffectAbstract);
                 m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:

@@ -189,7 +189,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (!temp.name.Contains("—t—¯‰À"))
+                    if (!temp.GetName().Contains("—t—¯‰À"))
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;
@@ -201,7 +201,7 @@ public class SearchDialog : MonoBehaviour
                 for (int i = 0; i < SearchButtonUtilParamaterList.Count; i++)
                 {
                     BattleModeCard temp = SearchButtonUtilParamaterList[i].m_BattleModeCard;
-                    if (!temp.name.Contains("¬Ÿ{") )
+                    if (!temp.GetName().Contains("¬Ÿ{") )
                     {
                         SearchButtonUtilParamaterList[i].isEnable = false;
                         cnt--;

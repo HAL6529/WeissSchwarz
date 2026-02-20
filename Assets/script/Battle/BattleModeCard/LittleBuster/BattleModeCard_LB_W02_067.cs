@@ -14,7 +14,7 @@ public class BattleModeCard_LB_W02_067 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Book, EnumController.Attribute.Parasol};
         this.cardNo = EnumController.CardNo.LB_W02_067;
-        this.name = "g•¶Šw­—h”ü‹›";
+        this.cardName = "g•¶Šw­—h”ü‹›";
         this.power = 8500;
         this.isCounter = false;
         this.isGreatPerformance = false;

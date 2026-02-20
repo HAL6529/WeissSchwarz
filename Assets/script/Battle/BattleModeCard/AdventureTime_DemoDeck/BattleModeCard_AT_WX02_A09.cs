@@ -14,7 +14,7 @@ public class BattleModeCard_AT_WX02_A09 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Ooo, EnumController.Attribute.Royalty };
         this.cardNo = EnumController.CardNo.AT_WX02_A09;
-        this.name = "Lumpy Space Princess: Unimpressed";
+        this.cardName = "Lumpy Space Princess: Unimpressed";
         this.power = 2000;
         this.isCounter = false;
         this.isGreatPerformance = false;

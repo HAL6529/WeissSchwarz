@@ -14,7 +14,7 @@ public class BattleModeCard_P3_S01_073 : BattleModeCard
         this.type = EnumController.Type.CLIMAX;
         this.attribute = new List<EnumController.Attribute>();
         this.cardNo = EnumController.CardNo.P3_S01_073;
-        this.name = "‚ ‚è‚ª‚Æ‚¤";
+        this.cardName = "‚ ‚è‚ª‚Æ‚¤";
         this.power = -1;
         this.isCounter = false;
         this.isGreatPerformance = false;

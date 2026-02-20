@@ -14,7 +14,7 @@ public class BattleModeCard_LB_W02_007 : BattleModeCard
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Music };
         this.cardNo = EnumController.CardNo.LB_W02_007;
-        this.name = "g—ˆƒ–’J —BŒÎ";
+        this.cardName = "g—ˆƒ–’J —BŒÎ";
         this.power = 2000;
         this.isCounter = false;
         this.isGreatPerformance = false;
