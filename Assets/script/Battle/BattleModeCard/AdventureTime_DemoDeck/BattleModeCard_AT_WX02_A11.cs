@@ -17,6 +17,11 @@ public class BattleModeCard_AT_WX02_A11 : BattleModeCard
         this.cardName = "Lady Rainicorn: Date at Sunset";
         this.power = 1500;
         this.isCounter = false;
+        this.Explanation1 = stringValues.AT_WX02_A11_Explanation1;
+        this.Explanation2 = "";
+        this.Explanation3 = "";
+        this.Explanation4 = "";
+        this.Explanation5 = "";
         this.isGreatPerformance = false;
     }
 }

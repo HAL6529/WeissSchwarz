@@ -8,7 +8,11 @@ public class CardGuideUtil : MonoBehaviour
     ExtendUtil.ExtendUtil extendUtil = new ExtendUtil.ExtendUtil();
     [SerializeField] Text cardName;
     [SerializeField] Image cardInfoImage;
-    [SerializeField] Text explanation;
+    [SerializeField] Text explanation1;
+    [SerializeField] Text explanation2;
+    [SerializeField] Text explanation3;
+    [SerializeField] Text explanation4;
+    [SerializeField] Text explanation5;
     [SerializeField] Text levelIndex;
     [SerializeField] Text costIndex;
     [SerializeField] Text powerIndex;
@@ -64,7 +68,11 @@ public class CardGuideUtil : MonoBehaviour
     public void onShowInfo(BattleModeCard info)
     {
         cardName.text = info.GetName();
-        explanation.text = extendUtil.Explanation(info.GetCardNo());
+        explanation1.text = info.GetExplanation1();
+        explanation2.text = info.GetExplanation2();
+        explanation3.text = info.GetExplanation3();
+        explanation4.text = info.GetExplanation4();
+        explanation5.text = info.GetExplanation5();
         cardInfoImage.sprite = info.GetSprite();
         if (info.GetIsCounter())
         {

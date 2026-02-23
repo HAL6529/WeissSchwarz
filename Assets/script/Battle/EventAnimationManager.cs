@@ -279,42 +279,4 @@ public class EventAnimationManager : MonoBehaviour
     {
         m_gameObject.SetActive(false);
     }
-
-    private void PayCost(int num)
-    {
-        for (int i = 0; i < num; i++)
-        {
-            m_GameManager.GraveYardList.Add(m_GameManager.myStockList[m_GameManager.myStockList.Count - 1]);
-            m_GameManager.myStockList.RemoveAt(m_GameManager.myStockList.Count - 1);
-        }
-        m_GameManager.Syncronize();
-    }
-
-    /// <summary>
-    /// あなたが【起】を使った時の効果のためのメソッド
-    /// </summary>
-    private void EffectWhenAct(BattleModeCard card)
-    {
-        Action action = new Action(m_GameManager, EnumController.Action.EffectWhenAct);
-        action.SetParamaterEventAnimationManager(this);
-        action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
-        action.SetParamaterBattleStrix(m_BattleStrix);
-        action.SetParamaterBattleModeCard(card);
-        m_GameManager.ActionList.Add(action);
-    }
-
-    /// <summary>
-    /// 【自】 あなたが『助太刀』を使った時の効果のためのメソッド
-    /// </summary>
-    /// <param name="card"></param>
-    private void EffectWhenCounter(BattleModeCard card, int BattlePlace)
-    {
-        Action action = new Action(m_GameManager, EnumController.Action.EffectWhenCounter);
-        action.SetParamaterEventAnimationManager(this);
-        action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
-        action.SetParamaterBattleStrix(m_BattleStrix);
-        action.SetParamaterBattleModeCard(card);
-        action.SetParamaterNum(BattlePlace);
-        m_GameManager.ActionList.Add(action);
-    }
 }

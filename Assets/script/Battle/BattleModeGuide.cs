@@ -8,8 +8,12 @@ using ExtendUtil;
 public class BattleModeGuide : MonoBehaviour
 {
     [SerializeField] Image image;
-    [SerializeField] Text explanation;
-    [SerializeField] Text name;
+    [SerializeField] Text explanation1;
+    [SerializeField] Text explanation2;
+    [SerializeField] Text explanation3;
+    [SerializeField] Text explanation4;
+    [SerializeField] Text explanation5;
+    [SerializeField] Text m_name;
     [SerializeField] Text level;
     [SerializeField] Text cost;
     [SerializeField] Text power;
@@ -50,12 +54,16 @@ public class BattleModeGuide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        name.text = null;
+        m_name.text = null;
         cost.text = null;
         level.text = null;
         power.text = null;
         soulIndex.text = null;
-        explanation.text = null;
+        explanation1.text = null;
+        explanation2.text = null;
+        explanation3.text = null;
+        explanation4.text = null;
+        explanation5.text = null;
         Trigger1.color = new Color(1, 1, 1, 0);
         Trigger2.color = new Color(1, 1, 1, 0);
     }
@@ -67,7 +75,7 @@ public class BattleModeGuide : MonoBehaviour
             return;
         }
         image.sprite = card.GetSprite();
-        name.text = card.GetName();
+        m_name.text = card.GetName();
 
         for(int i = 0; i < attributeList.Count; i++)
         {
@@ -142,9 +150,11 @@ public class BattleModeGuide : MonoBehaviour
             AttributeObj[0].SetActive(false);
         }
 
- 
-
-        explanation.text = m_ExtendUtil.Explanation(card.GetCardNo());
+        explanation1.text = card.GetExplanation1();
+        explanation2.text = card.GetExplanation2();
+        explanation3.text = card.GetExplanation3();
+        explanation4.text = card.GetExplanation4();
+        explanation5.text = card.GetExplanation5();
 
         switch (card.GetTrigger())
         {
