@@ -18,6 +18,11 @@ public class BattleModeCard_AT_WX02_A10 : BattleModeCard
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.Explanation1 = stringValues.AT_WX02_A10_Explanation1;
+        this.Explanation2 = "";
+        this.Explanation3 = "";
+        this.Explanation4 = "";
+        this.Explanation5 = "";
         this.m_EffectAbstract = new Effect_AT_WX02_A10();
     }
 }

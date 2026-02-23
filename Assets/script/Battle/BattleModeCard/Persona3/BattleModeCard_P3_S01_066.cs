@@ -18,6 +18,11 @@ public class BattleModeCard_P3_S01_066 : BattleModeCard
         this.power = 2500;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.Explanation1 = stringValues.P3_S01_066_Explanation1;
+        this.Explanation2 = stringValues.P3_S01_066_Explanation2;
+        this.Explanation3 = "";
+        this.Explanation4 = "";
+        this.Explanation5 = "";
         this.m_EffectAbstract = null;
     }
 }

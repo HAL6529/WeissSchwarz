@@ -17,6 +17,11 @@ public class BattleModeCard_AT_WX02_A06 : BattleModeCard
         this.cardName = "Finn & Jake: Rainy Day Daydream";
         this.power = 5500;
         this.isCounter = false;
+        this.Explanation1 = stringValues.AT_WX02_A06_Explanation1;
+        this.Explanation2 = "";
+        this.Explanation3 = "";
+        this.Explanation4 = "";
+        this.Explanation5 = "";
         this.isGreatPerformance = false;
     }
 }

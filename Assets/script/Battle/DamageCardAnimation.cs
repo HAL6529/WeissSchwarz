@@ -9,7 +9,7 @@ public class DamageCardAnimation : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Image m_image;
     [SerializeField] Sprite backImage;
-    [SerializeField] GameObject gameObject;
+    [SerializeField] GameObject m_gameObject;
     [SerializeField] DamageAnimationDialog m_DamageAnimationDialog;
 
     private static float delay = 0.5f;
@@ -21,7 +21,7 @@ public class DamageCardAnimation : MonoBehaviour
     {
         // アニメーション再生を停止するためにspeedを0にする
         animator.speed = 0;
-        gameObject.SetActive(true);
+        m_gameObject.SetActive(true);
         m_image.sprite = backImage;
         this.isEnd = isEnd;
         animator.AddClipCallback(NormalAnimationLayerIndex, AnimationName, 0.25f, () => { m_image.sprite = card.GetSprite(); });
@@ -49,6 +49,6 @@ public class DamageCardAnimation : MonoBehaviour
     public void NotAnimation()
     {
         this.isEnd = false;
-        gameObject.SetActive(false);
+        m_gameObject.SetActive(false);
     }
 }

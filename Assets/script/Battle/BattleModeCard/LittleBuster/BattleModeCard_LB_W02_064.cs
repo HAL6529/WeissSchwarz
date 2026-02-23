@@ -18,6 +18,11 @@ public class BattleModeCard_LB_W02_064 : BattleModeCard
         this.power = 3500;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.Explanation1 = stringValues.LB_W02_064_Explanation1;
+        this.Explanation2 = stringValues.LB_W02_064_Explanation2;
+        this.Explanation3 = stringValues.LB_W02_064_Explanation3;
+        this.Explanation4 = "";
+        this.Explanation5 = "";
         this.m_EffectAbstract = null;
     }
 }

@@ -20,6 +20,13 @@ public abstract class BattleModeCard : MonoBehaviour
     protected int power;
     protected bool isCounter;
     protected bool isGreatPerformance;
+
+    protected string Explanation1;
+    protected string Explanation2;
+    protected string Explanation3;
+    protected string Explanation4;
+    protected string Explanation5;
+
     public EffectAbstract m_EffectAbstract;
 
     public Sprite GetSprite() { return sprite; }
@@ -37,6 +44,8 @@ public abstract class BattleModeCard : MonoBehaviour
     public EnumController.Type GetType() { return type; }
 
     public List<EnumController.Attribute> GetAttribute() { return attribute; }
+
+    protected StringValues stringValues = new StringValues();
 
     public EnumController.Attribute GetAttribute(int num) 
     { 
@@ -57,6 +66,31 @@ public abstract class BattleModeCard : MonoBehaviour
     public bool GetIsCounter() {  return isCounter; }
 
     public bool GetIsGreatPerformance() { return isGreatPerformance; }
+
+    public string GetExplanation1()
+    {
+        return Explanation1;
+    }
+
+    public string GetExplanation2()
+    {
+        return Explanation2;
+    }
+
+    public string GetExplanation3()
+    {
+        return Explanation3;
+    }
+
+    public string GetExplanation4()
+    {
+        return Explanation4;
+    }
+
+    public string GetExplanation5()
+    {
+        return Explanation5;
+    }
 
     public EffectAbstract GetEffectAbstract() { return m_EffectAbstract; }
 
