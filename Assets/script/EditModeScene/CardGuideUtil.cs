@@ -119,8 +119,8 @@ public class CardGuideUtil : MonoBehaviour
 
         if (info.GetAttribute().Count == 0 || info.GetAttribute(0) == EnumController.Attribute.VOID)
         {
-            Attribute1.text = "";
-            Attribute1Obj.SetActive(false);
+            Attribute1.text = extendUtil.AttributeConvertToString(EnumController.Attribute.NONE);
+            Attribute1Obj.SetActive(true);
         }
         else
         {
@@ -148,6 +148,12 @@ public class CardGuideUtil : MonoBehaviour
         {
             Attribute3.text = extendUtil.AttributeConvertToString(info.GetAttribute(2));
             Attribute3Obj.SetActive(true);
+        }
+
+        if(info.GetType() == EnumController.Type.CLIMAX || info.GetType() == EnumController.Type.EVENT)
+        {
+            Attribute1.text = "";
+            Attribute1Obj.SetActive(false);
         }
 
         if (info.GetLevel() == 0 && info.GetType() != EnumController.Type.CLIMAX)

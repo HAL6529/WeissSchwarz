@@ -143,6 +143,11 @@ public class BattleModeGuide : MonoBehaviour
                     AttributeObj[i].SetActive(true);
                 }
             }
+            else
+            {
+                attributeList[0].text = "“Á’¥‚È‚µ";
+                AttributeObj[0].SetActive(true);
+            }
         }
         else
         {
