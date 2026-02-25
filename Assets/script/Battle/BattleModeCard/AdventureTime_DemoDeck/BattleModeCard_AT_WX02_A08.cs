@@ -17,6 +17,8 @@ public class BattleModeCard_AT_WX02_A08 : BattleModeCard
         this.cardName = "Memory of a Memory";
         this.power = -1;
         this.isCounter = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A08_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

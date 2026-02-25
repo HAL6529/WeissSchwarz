@@ -17,6 +17,8 @@ public class BattleModeCard_AT_WX02_A02 : BattleModeCard
         this.cardName = "Jake: Bacon Pancakes";
         this.power = 2000;
         this.isCounter = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A02_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

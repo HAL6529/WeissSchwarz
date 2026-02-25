@@ -18,6 +18,8 @@ public class BattleModeCard_P3_S01_096 : BattleModeCard
         this.power = -1;
         this.isCounter = true;
         this.isGreatPerformance = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.P3_S01_096_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

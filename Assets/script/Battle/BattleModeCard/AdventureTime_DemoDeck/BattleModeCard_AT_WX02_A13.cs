@@ -17,6 +17,8 @@ public class BattleModeCard_AT_WX02_A13 : BattleModeCard
         this.cardName = "Adventure Time!";
         this.power = -1;
         this.isCounter = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A13_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

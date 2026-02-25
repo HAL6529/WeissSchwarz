@@ -17,6 +17,8 @@ public class BattleModeCard_AT_WX02_A01 : BattleModeCard
         this.cardName = "Finn: Everything In!";
         this.power = 3000;
         this.isCounter = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A01_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";
