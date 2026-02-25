@@ -1230,29 +1230,12 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <returns></returns>
     private bool isHandEncore()
     {
-        switch (m_BattleModeCard.GetCardNo())
+        if(m_BattleModeCard == null)
         {
-            case EnumController.CardNo.AT_WX02_A04:
-            case EnumController.CardNo.LB_W02_03T:
-            case EnumController.CardNo.P3_S01_07T:
-            case EnumController.CardNo.P3_S01_15T:
-            case EnumController.CardNo.P3_S01_002:
-            case EnumController.CardNo.P3_S01_012:
-            case EnumController.CardNo.P3_S01_027:
-            case EnumController.CardNo.P3_S01_029:
-            case EnumController.CardNo.P3_S01_056:
-            case EnumController.CardNo.P3_S01_059:
-            case EnumController.CardNo.P3_S01_078:
-            case EnumController.CardNo.P3_S01_084:
-            case EnumController.CardNo.LB_W02_004:
-            case EnumController.CardNo.LB_W02_027:
-            case EnumController.CardNo.LB_W02_036:
-            case EnumController.CardNo.LB_W02_055:
-            case EnumController.CardNo.LB_W02_080:
-                return true;
-            default:
-                return false;
+            return false;
         }
+
+        return m_BattleModeCard.GetIsHandEncore();
     }
 
     /// <summary>
@@ -1261,10 +1244,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     /// <returns></returns>
     private bool isClockEncore()
     {
-        switch (m_BattleModeCard.GetCardNo())
+        if (m_BattleModeCard == null)
         {
-            default:
-                return false;
+            return false;
         }
+
+        return m_BattleModeCard.GetIsClockEncore();
     }
 }

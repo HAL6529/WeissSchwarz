@@ -18,6 +18,8 @@ public class BattleModeCard_DC_W01_11T : BattleModeCard
         this.power = 9000;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.DC_W01_11T_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

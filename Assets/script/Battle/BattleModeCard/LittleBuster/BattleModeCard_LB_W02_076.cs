@@ -18,6 +18,8 @@ public class BattleModeCard_LB_W02_076 : BattleModeCard
         this.power = 500;
         this.isCounter = true;
         this.isGreatPerformance = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.LB_W02_076_Explanation1;
         this.Explanation2 = stringValues.LB_W02_076_Explanation2;
         this.Explanation3 = "";

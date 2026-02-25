@@ -17,6 +17,8 @@ public class BattleModeCard_AT_WX02_A03 : BattleModeCard
         this.cardName = "Finn: Puncha Yo Buns!";
         this.power = 5000;
         this.isCounter = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A03_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";

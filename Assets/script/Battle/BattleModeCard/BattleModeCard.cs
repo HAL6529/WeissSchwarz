@@ -20,6 +20,8 @@ public abstract class BattleModeCard : MonoBehaviour
     protected int power;
     protected bool isCounter;
     protected bool isGreatPerformance;
+    protected bool isHandEncore;
+    protected bool isClockEncore;
 
     protected string Explanation1;
     protected string Explanation2;
@@ -66,6 +68,10 @@ public abstract class BattleModeCard : MonoBehaviour
     public bool GetIsCounter() {  return isCounter; }
 
     public bool GetIsGreatPerformance() { return isGreatPerformance; }
+
+    public bool GetIsHandEncore() { return isHandEncore; }
+
+    public bool GetIsClockEncore() { return isClockEncore; }
 
     public string GetExplanation1()
     {

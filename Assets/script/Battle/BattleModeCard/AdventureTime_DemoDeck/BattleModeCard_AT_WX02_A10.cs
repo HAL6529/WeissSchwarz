@@ -18,6 +18,8 @@ public class BattleModeCard_AT_WX02_A10 : BattleModeCard
         this.power = 1000;
         this.isCounter = false;
         this.isGreatPerformance = false;
+        this.isHandEncore = false;
+        this.isClockEncore = false;
         this.Explanation1 = stringValues.AT_WX02_A10_Explanation1;
         this.Explanation2 = "";
         this.Explanation3 = "";
