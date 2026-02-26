@@ -133,6 +133,11 @@ public class EffectAbstract
 
     }
 
+    public virtual void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+
+    }
+
     public virtual void EventExecute1()
     {
 

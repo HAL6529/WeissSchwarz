@@ -7,7 +7,7 @@ public class Effect_P3_S01_11T : EffectAbstract
     public override void AutoExecute1()
     {
         //【自】 このカードがアタックした時、クライマックス置場に「最後の選択」があるなら、あなたは相手のキャラを1枚選び、手札に戻してよい。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 0, 1);
         return;
     }
 
@@ -19,5 +19,25 @@ public class Effect_P3_S01_11T : EffectAbstract
         m_GameManager.Syncronize();
         m_GameManager.ExecuteActionList();
         return;
+    }
+
+    public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
+
+            // 相手のカードをバウンスする
+            m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
+        }
+
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
+        m_DialogManager.CharacterSelectDialogClose();
     }
 }

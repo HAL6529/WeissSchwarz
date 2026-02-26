@@ -9,6 +9,29 @@ public class Effect_DC_W01_18T : EffectAbstract
         //※イベント
         // あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+    }
+
+    public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
+
+            // 相手のカードを控室に送る
+            m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
+        }
+
+        m_GameManager.myHandList.Remove(m_BattleModeCard);
+        m_GameManager.GraveYardList.Add(m_BattleModeCard);
+
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
+        m_DialogManager.CharacterSelectDialogClose();
     }
 }

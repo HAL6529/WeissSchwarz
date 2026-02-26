@@ -110,7 +110,7 @@ public class CharacterSelectDialog : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void Open(BattleModeCard card, bool isMine, int place)
+    public void Open(BattleModeCard card, bool isMine, int place, int minNum, int maxNum)
     {
         m_YesOrNoDialogParamater = EnumController.YesOrNoDialogParamater.VOID;
         m_GameManager.isCharacterSelectDialogProcess = true;
@@ -162,61 +162,8 @@ public class CharacterSelectDialog : MonoBehaviour
         int cnt = 0;
 
         // 最低選ばないといけないカードの枚数と最大選べるカードの枚数の定義設定
-        switch (m_BattleModeCard.GetCardNo())
-        {
-            case EnumController.CardNo.AT_WX02_A02:
-            case EnumController.CardNo.DC_W01_05T:
-            case EnumController.CardNo.DC_W01_18T:
-            case EnumController.CardNo.LB_W02_02T:
-            case EnumController.CardNo.LB_W02_09T:
-            case EnumController.CardNo.P3_S01_04T:
-            case EnumController.CardNo.P3_S01_12T:
-            case EnumController.CardNo.P3_S01_001:
-            case EnumController.CardNo.P3_S01_010:
-            case EnumController.CardNo.P3_S01_018:
-            case EnumController.CardNo.P3_S01_022:
-            case EnumController.CardNo.P3_S01_026:
-            case EnumController.CardNo.P3_S01_047:
-            case EnumController.CardNo.P3_S01_051:
-            case EnumController.CardNo.P3_S01_052:
-            case EnumController.CardNo.P3_S01_060:
-            case EnumController.CardNo.P3_S01_069:
-            case EnumController.CardNo.P3_S01_072:
-            case EnumController.CardNo.P3_S01_094:
-            case EnumController.CardNo.LB_W02_002:
-            case EnumController.CardNo.LB_W02_003:
-            case EnumController.CardNo.LB_W02_004:
-            case EnumController.CardNo.LB_W02_007:
-            case EnumController.CardNo.LB_W02_013:
-            case EnumController.CardNo.LB_W02_018:
-            case EnumController.CardNo.LB_W02_019:
-            case EnumController.CardNo.LB_W02_033:
-            case EnumController.CardNo.LB_W02_038:
-            case EnumController.CardNo.LB_W02_042:
-            case EnumController.CardNo.LB_W02_069:
-                minNum = 1;
-                maxNum = 1;
-                break;
-            case EnumController.CardNo.DC_W01_07T:
-            case EnumController.CardNo.P3_S01_01T:
-            case EnumController.CardNo.P3_S01_11T:
-            case EnumController.CardNo.P3_S01_004:
-            case EnumController.CardNo.P3_S01_005:
-            case EnumController.CardNo.P3_S01_017:
-                minNum = 0;
-                maxNum = 1;
-                break;
-            case EnumController.CardNo.LB_W02_04T:
-            case EnumController.CardNo.P3_S01_045:
-            case EnumController.CardNo.LB_W02_022:
-            case EnumController.CardNo.LB_W02_044:
-                minNum = -1;
-                maxNum = 2;
-                break;
-            default:
-                break;
-        }
-
+        this.minNum = minNum;
+        this.maxNum = maxNum;
 
         for (int i = 0; i < images.Count; i++)
         {
@@ -490,197 +437,26 @@ public class CharacterSelectDialog : MonoBehaviour
             OffDialog();
             return;
         }
-        int power = 0;
-        switch (m_BattleModeCard.GetCardNo())
+
+        EffectAbstract m_EffectAbstract = m_BattleModeCard.m_EffectAbstract.Clone();
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
+        m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        m_EffectAbstract.SetExecuteParamater(1);
+
+        if(m_EffectAbstract != null)
         {
-            case EnumController.CardNo.P3_S01_12T:
-            case EnumController.CardNo.P3_S01_022:
-                power = 3000;
-                break;
-            case EnumController.CardNo.P3_S01_04T:
-            case EnumController.CardNo.P3_S01_010:
-            case EnumController.CardNo.LB_W02_022:
-                power = 2000;
-                break;
-            case EnumController.CardNo.AT_WX02_A02:
-            case EnumController.CardNo.LB_W02_02T:
-            case EnumController.CardNo.P3_S01_047:
-            case EnumController.CardNo.LB_W02_033:
-                power = 1500;
-                break;
-            case EnumController.CardNo.DC_W01_07T:
-            case EnumController.CardNo.LB_W02_04T:
-            case EnumController.CardNo.P3_S01_026:
-            case EnumController.CardNo.P3_S01_051:
-            case EnumController.CardNo.LB_W02_044:
-                power = 1000;
-                break;
-            case EnumController.CardNo.LB_W02_003:
-                power = 500;
-                break;
-            case EnumController.CardNo.LB_W02_09T:
-            case EnumController.CardNo.LB_W02_042:
-                power = -500;
-                break;
-            case EnumController.CardNo.DC_W01_05T:
-            case EnumController.CardNo.P3_S01_045:
-                power = -1000;
-                break;
-            default:
-                break;
+            m_EffectAbstract.CharacterSelectDialogExecute(ButtonSelectedNumList);
+            return;
         }
-
-        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
-        {
-            if (!ButtonSelectedNumList[i])
-            {
-                continue;
-            }
-            switch (m_BattleModeCard.GetCardNo())
-            {
-                case EnumController.CardNo.AT_WX02_A02:
-                case EnumController.CardNo.DC_W01_07T:
-                case EnumController.CardNo.LB_W02_02T:
-                case EnumController.CardNo.LB_W02_04T:
-                case EnumController.CardNo.P3_S01_026:
-                case EnumController.CardNo.P3_S01_047:
-                case EnumController.CardNo.P3_S01_051:
-                case EnumController.CardNo.LB_W02_003:
-                case EnumController.CardNo.LB_W02_022:
-                case EnumController.CardNo.LB_W02_033:
-                case EnumController.CardNo.LB_W02_044:
-                    // 自分のカードのパワーを操作する
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
-                    }
-                    break;
-                case EnumController.CardNo.DC_W01_05T:
-                case EnumController.CardNo.LB_W02_09T:
-                case EnumController.CardNo.P3_S01_045:
-                case EnumController.CardNo.LB_W02_042:
-                    // 相手のカードのパワーを操作する
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("CallAddPowerUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, power);
-                    }
-                    break;
-                case EnumController.CardNo.P3_S01_018:
-                    // 相手のカードのレベルを操作する
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("CallAddLevelUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, -1);
-                    }
-                    break;
-                case EnumController.CardNo.P3_S01_072:
-                    // 相手のカードを山札の上に置く
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("ToDeckTopFromField", i, m_GameManager.isTurnPlayer);
-                    }
-                    break;
-                case EnumController.CardNo.DC_W01_18T:
-                case EnumController.CardNo.P3_S01_052:
-                case EnumController.CardNo.P3_S01_060:
-                case EnumController.CardNo.P3_S01_069:
-                case EnumController.CardNo.LB_W02_069:
-                    // 相手のカードを控室に送る
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
-                    }
-                    break;
-                case EnumController.CardNo.P3_S01_01T:
-                case EnumController.CardNo.P3_S01_11T:
-                case EnumController.CardNo.P3_S01_004:
-                case EnumController.CardNo.P3_S01_005:
-                case EnumController.CardNo.P3_S01_017:
-                case EnumController.CardNo.LB_W02_002:
-                case EnumController.CardNo.LB_W02_004:
-                case EnumController.CardNo.LB_W02_007:
-                case EnumController.CardNo.LB_W02_018:
-                    // 相手のカードをバウンスする
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
-                    }
-                    break;
-                case EnumController.CardNo.P3_S01_04T:
-                case EnumController.CardNo.P3_S01_12T:
-                case EnumController.CardNo.P3_S01_010:
-                case EnumController.CardNo.P3_S01_022:
-                    // 自分のカードのパワーとソウルを操作する
-                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
-                    m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
-                    m_GameManager.Syncronize();
-                    break;
-                case EnumController.CardNo.P3_S01_001:
-                    // 自分のカードのソウルを操作する
-                    m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
-                    m_GameManager.Syncronize();
-                    break;
-                case EnumController.CardNo.P3_S01_094:
-                    //相手のカードをレストする
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("CallMyRest", i, m_GameManager.isTurnPlayer);
-                    }
-                    break;
-                case EnumController.CardNo.LB_W02_013:
-                    //自分のカードをレストする
-                    m_MyMainCardsManager.CallOnRest(i);
-                    break;
-                case EnumController.CardNo.LB_W02_019:
-                    //あなたはレベル1以下の相手のキャラを1枚選び、ストック置場に置く。
-                    if (ButtonSelectedNumList[i])
-                    {
-                        m_BattleStrix.RpcToAll("ToStockFromField", i, m_GameManager.isTurnPlayer);
-                    }
-                    break;
-                case EnumController.CardNo.LB_W02_038:
-                    //自分のカードをストックに置く
-                    m_MyMainCardsManager.CallPutStockFromField(i);
-                    break;
-                default:
-                    break;
-            }
-
-        }
-
-        // イベントカードの場合は処理後に控室にカードを追加
-        switch (m_BattleModeCard.GetCardNo())
-        {
-            case EnumController.CardNo.DC_W01_18T:
-            case EnumController.CardNo.LB_W02_04T:
-            case EnumController.CardNo.P3_S01_12T:
-            case EnumController.CardNo.P3_S01_018:
-            case EnumController.CardNo.P3_S01_022:
-            case EnumController.CardNo.P3_S01_045:
-            case EnumController.CardNo.P3_S01_047:
-            case EnumController.CardNo.P3_S01_069:
-            case EnumController.CardNo.P3_S01_072:
-            case EnumController.CardNo.P3_S01_094:
-            case EnumController.CardNo.LB_W02_019:
-            case EnumController.CardNo.LB_W02_022:
-            case EnumController.CardNo.LB_W02_044:
-            case EnumController.CardNo.LB_W02_069:
-                m_GameManager.myHandList.Remove(m_BattleModeCard);
-                m_GameManager.GraveYardList.Add(m_BattleModeCard);
-                break;
-            //このカードをストック置場に置く。
-            case EnumController.CardNo.LB_W02_018:
-                m_GameManager.myHandList.Remove(m_BattleModeCard);
-                m_GameManager.myStockList.Add(m_BattleModeCard);
-                break;
-            default:
-                break;
-        }
-
-        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
-        m_GameManager.Syncronize();
-
-        m_GameManager.ExecuteActionList();
         OffDialog();
+        return;
     }
 
     public void onMinimumBtn()

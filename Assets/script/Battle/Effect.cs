@@ -1277,6 +1277,8 @@ public class Effect : MonoBehaviour
         switch (card.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A02:
+                //【AUTO】 When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.
+                m_EffectAbstract.SetIntParamater1(place);
                 Action action = new Action(m_GameManager, EnumController.Action.ExecuteAttack2);
                 action.SetParamaterMyMainCardsManager(m_MyMainCardsManager);
                 action.SetParamaterAttackStatus(status);
@@ -1284,7 +1286,8 @@ public class Effect : MonoBehaviour
 
                 m_GameManager.ActionList.Add(action);
 
-                m_GameManager.m_DialogManager.CharacterSelectDialog(card, true, place);
+                m_EventAnimationManager.AutoAnimationStart(card, m_EffectAbstract);
+                m_BattleStrix.EventAnimation(card, m_GameManager.isFirstAttacker);
                 return true;
             case EnumController.CardNo.DC_W01_02T:
                 // 【自】 このカードがアタックした時、クライマックス置場に「結婚式の歌姫」があるなら、あなたは自分の山札を上から1枚選び、ストック置場に置き、そのターン中、このカードのパワーを＋3000。

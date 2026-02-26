@@ -25,5 +25,6 @@ public class BattleModeCard_AT_WX02_A02 : BattleModeCard
         this.Explanation4 = "";
         this.Explanation5 = "";
         this.isGreatPerformance = false;
+        this.m_EffectAbstract = new Effect_AT_WX02_A02();
     }
 }

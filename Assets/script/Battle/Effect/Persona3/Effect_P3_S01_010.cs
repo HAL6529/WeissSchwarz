@@ -8,7 +8,7 @@ public class Effect_P3_S01_010 : EffectAbstract
     {
         // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、
         // そのターン中、パワーを＋2000し、ソウルを＋1。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
         return;
     }
 
@@ -19,5 +19,29 @@ public class Effect_P3_S01_010 : EffectAbstract
         m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         m_GameManager.ToHandFromField(GetIntParamater1());
         m_GameManager.ExecuteActionList();
+    }
+
+    public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+        int power = 2000;
+
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
+
+            // 自分のカードのパワーとソウルを操作する
+            m_MyMainCardsManager.AddSoulUpUntilTurnEnd(i, 1);
+            m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+            m_GameManager.Syncronize();
+        }
+
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
+        m_DialogManager.CharacterSelectDialogClose();
     }
 }
