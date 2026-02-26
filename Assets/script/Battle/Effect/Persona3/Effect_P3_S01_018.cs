@@ -25,6 +25,11 @@ public class Effect_P3_S01_018 : EffectAbstract
             m_BattleStrix.RpcToAll("CallAddLevelUpUntilTurnEnd", m_GameManager.isTurnPlayer, i, -1);
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_GameManager.myHandList.Remove(m_BattleModeCard);
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
 

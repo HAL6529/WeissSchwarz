@@ -30,6 +30,11 @@ public class Effect_LB_W02_04T : EffectAbstract
             }
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_GameManager.myHandList.Remove(m_BattleModeCard);
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
 

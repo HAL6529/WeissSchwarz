@@ -135,7 +135,15 @@ public class EffectAbstract
 
     public virtual void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
     {
+        CharacterSelectDialogExecuteAfter();
+    }
 
+    /// <summary>
+    /// CharacterSelectDialogを使った後のメソッド
+    /// </summary>
+    public virtual void CharacterSelectDialogExecuteAfter()
+    {
+        m_DialogManager.CharacterSelectDialogClose();
     }
 
     public virtual void EventExecute1()

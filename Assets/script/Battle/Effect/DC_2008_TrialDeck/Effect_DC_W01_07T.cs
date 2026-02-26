@@ -37,6 +37,11 @@ public class Effect_DC_W01_07T : EffectAbstract
             }
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.Syncronize();
 

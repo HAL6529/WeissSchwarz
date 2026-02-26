@@ -25,6 +25,11 @@ public class Effect_LB_W02_018 : EffectAbstract
             m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         //このカードをストック置場に置く。
         m_GameManager.myHandList.Remove(m_BattleModeCard);
         m_GameManager.myStockList.Add(m_BattleModeCard);

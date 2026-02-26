@@ -170,8 +170,8 @@ public class CharacterSelectDialog : MonoBehaviour
             if (list[i] == null)
             {
                 images[i].sprite = BackImage;
-                cnt++;
                 buttons[i].interactable = false;
+                cnt++;
             }
             else
             {
@@ -179,6 +179,8 @@ public class CharacterSelectDialog : MonoBehaviour
                 if (i == place)
                 {
                     buttons[i].interactable = false;
+                    cnt++;
+                    continue;
                 }
                 else
                 {
@@ -270,93 +272,22 @@ public class CharacterSelectDialog : MonoBehaviour
             }
         }
 
+        EffectAbstract m_EffectAbstract = m_BattleModeCard.m_EffectAbstract.Clone();
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_GameManager.m_EventAnimationManager;
+        m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        m_EffectAbstract.SetExecuteParamater(1);
 
-        switch (m_BattleModeCard.GetCardNo())
+        if (cnt >= 5)
         {
-            // ほかにキャラクターがいなければreturnする
-            case EnumController.CardNo.AT_WX02_A02:
-                if (cnt >= 4)
-                {
-                    m_GameManager.Syncronize();
-                    m_GameManager.ExecuteActionList();
-                    OffDialog();
-                    return;
-                }
-                break;
-            // キャラクターがいなければreturnする
-            case EnumController.CardNo.DC_W01_05T:
-            case EnumController.CardNo.DC_W01_07T:
-            case EnumController.CardNo.LB_W02_02T:
-            case EnumController.CardNo.LB_W02_09T:
-            case EnumController.CardNo.P3_S01_01T:
-            case EnumController.CardNo.P3_S01_04T:
-            case EnumController.CardNo.P3_S01_11T:
-            case EnumController.CardNo.P3_S01_001:
-            case EnumController.CardNo.P3_S01_004:
-            case EnumController.CardNo.P3_S01_005:
-            case EnumController.CardNo.P3_S01_010:
-            case EnumController.CardNo.P3_S01_017:
-            case EnumController.CardNo.P3_S01_026:
-            case EnumController.CardNo.P3_S01_051:
-            case EnumController.CardNo.P3_S01_052:
-            case EnumController.CardNo.P3_S01_060:
-            case EnumController.CardNo.LB_W02_003:
-            case EnumController.CardNo.LB_W02_004:
-            case EnumController.CardNo.LB_W02_007:
-            case EnumController.CardNo.LB_W02_013:
-            case EnumController.CardNo.LB_W02_042:
-            case EnumController.CardNo.LB_W02_033:
-            case EnumController.CardNo.LB_W02_038:
-                if (cnt >= 5)
-                {
-                    m_GameManager.Syncronize();
-                    m_GameManager.ExecuteActionList();
-                    OffDialog();
-                    return;
-                }
-                break;
-            case EnumController.CardNo.DC_W01_18T:
-            case EnumController.CardNo.LB_W02_04T:
-            case EnumController.CardNo.P3_S01_12T:
-            case EnumController.CardNo.P3_S01_018:
-            case EnumController.CardNo.P3_S01_022:
-            case EnumController.CardNo.P3_S01_045:
-            case EnumController.CardNo.P3_S01_047:
-            case EnumController.CardNo.P3_S01_069:
-            case EnumController.CardNo.P3_S01_072:
-            case EnumController.CardNo.P3_S01_094:
-            case EnumController.CardNo.LB_W02_019:
-            case EnumController.CardNo.LB_W02_022:
-            case EnumController.CardNo.LB_W02_044:
-            case EnumController.CardNo.LB_W02_069:
-                if (cnt >= 5)
-                {
-                    // イベントカードの場合は処理後に控室にカードを追加
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
-                    m_GameManager.GraveYardList.Add(m_BattleModeCard);
-
-                    m_GameManager.Syncronize();
-                    m_GameManager.ExecuteActionList();
-                    OffDialog();
-                    return;
-                }
-                break;
-            //このカードをストック置場に置く。
-            case EnumController.CardNo.LB_W02_018:
-                if (cnt >= 5)
-                {
-                    // イベントカードの場合は処理後に控室にカードを追加
-                    m_GameManager.myHandList.Remove(m_BattleModeCard);
-                    m_GameManager.myStockList.Add(m_BattleModeCard);
-
-                    m_GameManager.Syncronize();
-                    m_GameManager.ExecuteActionList();
-                    OffDialog();
-                    return;
-                }
-                break;
-            default:
-                break;
+            m_EffectAbstract.CharacterSelectDialogExecuteAfter();
+            return;
         }
         this.gameObject.SetActive(true);
     }

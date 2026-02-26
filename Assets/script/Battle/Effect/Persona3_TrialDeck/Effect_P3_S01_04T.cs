@@ -38,6 +38,11 @@ public class Effect_P3_S01_04T : EffectAbstract
             m_GameManager.Syncronize();
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.Syncronize();
 

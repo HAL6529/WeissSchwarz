@@ -25,6 +25,11 @@ public class Effect_LB_W02_004 : EffectAbstract
             m_BattleStrix.RpcToAll("ToHandFromField", i, m_GameManager.isTurnPlayer);
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.Syncronize();
 

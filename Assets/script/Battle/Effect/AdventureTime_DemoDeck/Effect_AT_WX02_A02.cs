@@ -26,6 +26,11 @@ public class Effect_AT_WX02_A02 : EffectAbstract
             m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
         m_GameManager.Syncronize();
 

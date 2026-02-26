@@ -25,6 +25,11 @@ public class Effect_DC_W01_18T : EffectAbstract
             m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
         }
 
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
         m_GameManager.myHandList.Remove(m_BattleModeCard);
         m_GameManager.GraveYardList.Add(m_BattleModeCard);
 
