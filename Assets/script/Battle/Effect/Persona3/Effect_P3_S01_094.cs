@@ -9,7 +9,7 @@ public class Effect_P3_S01_094 : EffectAbstract
         // ※イベント
         //【カウンター】 あなたは相手のキャラを1枚選び、【レスト】する。
         PayCost(4);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

@@ -9,7 +9,7 @@ public class Effect_LB_W02_069 : EffectAbstract
         //※イベント
         //あなたは相手の前列のキャラを1枚選び、控え室に置く。
         PayCost(2);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLine, - 1, 1, 1);
         return;
     }
 

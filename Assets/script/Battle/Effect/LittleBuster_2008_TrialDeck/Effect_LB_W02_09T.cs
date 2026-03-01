@@ -8,7 +8,7 @@ public class Effect_LB_W02_09T : EffectAbstract
     {
         //【起】［(1)］ あなたは相手のキャラを1枚選び、そのターン中、パワーを－500。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

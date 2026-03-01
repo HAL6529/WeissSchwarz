@@ -7,7 +7,7 @@ public class Effect_LB_W02_013 : EffectAbstract
     public override void AutoExecute1()
     {
         //【自】 このカードがプレイされて舞台に置かれた時、あなたは【スタンド】している自分のキャラを1枚選び、【レスト】する。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.OnlyStand, - 1, 1, 1);
         return;
     }
 

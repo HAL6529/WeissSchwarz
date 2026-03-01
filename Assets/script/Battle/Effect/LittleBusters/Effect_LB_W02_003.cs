@@ -10,7 +10,7 @@ public class Effect_LB_W02_003 : EffectAbstract
         int CheckActEffectCount = m_MyMainCardsManager.CheckActEffectCount(GetIntParamater1()) + 1;
         m_MyMainCardsManager.SetActEffectCount(GetIntParamater1(), CheckActEffectCount);
 
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

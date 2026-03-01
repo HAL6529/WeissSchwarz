@@ -9,7 +9,7 @@ public class Effect_P3_S01_072 : EffectAbstract
         // ※イベント
         //あなたはレベル1以下の相手のキャラを1枚選び、山札の上に置く。
         PayCost(2);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.UnderLv1, -1, 1, 1);
         return;
     }
 

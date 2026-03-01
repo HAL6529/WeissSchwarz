@@ -406,6 +406,20 @@ namespace EnumController
         LB_W02_100,
     }
 
+    public enum CharacterSelectDialog
+    {
+        None,
+        ContainJunpei, // 順平を含むキャラのみ対象
+        Lv1orMore, // レベル1以上のキャラのみ対象
+        OnlyFrontLine, // 前列のカードだけ対象
+        OnlyFrontLineAndUnderLv0, // レベル0以下のキャラかつ前列のカードのみ対象
+        OnlyFrontLineAndUnderLv1, // レベル1以下のキャラかつ前列のカードのみ対象
+        OnlyFrontLineAndUnderLv2, // レベル2以下のキャラかつ前列のカードのみ対象
+        OnlyStand, // スタンドしているキャラのみ対象
+        UnderLv0, // レベル0以下のキャラのみ対象
+        UnderLv1, // レベル1以下のキャラのみ対象
+    }
+
     public enum ConfirmSearchOrSulvageCardDialog
     {
         VOID,

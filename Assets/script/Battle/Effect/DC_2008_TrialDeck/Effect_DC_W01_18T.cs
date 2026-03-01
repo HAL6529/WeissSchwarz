@@ -9,7 +9,7 @@ public class Effect_DC_W01_18T : EffectAbstract
         //※イベント
         // あなたはレベル1以下の相手のキャラを1枚選び、控え室に置く。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.UnderLv1, - 1, 1, 1);
     }
 
     public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)

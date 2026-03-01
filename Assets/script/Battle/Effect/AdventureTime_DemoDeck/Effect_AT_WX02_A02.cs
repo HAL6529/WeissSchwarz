@@ -7,7 +7,7 @@ public class Effect_AT_WX02_A02 : EffectAbstract
     public override void AutoExecute1()
     {
         //ÅyAUTOÅz When this card attacks, choose 1 of your other characters, and that character gets +1500 power until end of turn.
-        m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, GetIntParamater1(), 1, 1);
+        m_GameManager.m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, GetIntParamater1(), 1, 1);
         return;
     }
 

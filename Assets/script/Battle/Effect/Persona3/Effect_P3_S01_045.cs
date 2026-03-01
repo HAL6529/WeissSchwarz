@@ -8,7 +8,7 @@ public class Effect_P3_S01_045 : EffectAbstract
     {
         // ※イベント
         // あなたは相手の前列のキャラを2枚まで選び、そのターン中、パワーを－1000。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, -1, 2);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLine, - 1, -1, 2);
         return;
     }
 

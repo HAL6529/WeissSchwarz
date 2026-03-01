@@ -8,7 +8,7 @@ public class Effect_LB_W02_04T : EffectAbstract
     {
         //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, -1, 2);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, -1, 2);
         return;
     }
 

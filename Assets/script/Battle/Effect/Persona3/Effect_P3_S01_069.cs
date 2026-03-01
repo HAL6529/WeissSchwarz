@@ -9,7 +9,7 @@ public class Effect_P3_S01_069 : EffectAbstract
         // ※イベント
         // あなたはレベル2以下の相手の前列のキャラを1枚選び、控え室に置く。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv2, - 1, 1, 1);
         return;
     }
 

@@ -110,7 +110,7 @@ public class CharacterSelectDialog : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    public void Open(BattleModeCard card, bool isMine, int place, int minNum, int maxNum)
+    public void Open(BattleModeCard card, bool isMine, EnumController.CharacterSelectDialog paramater, int place, int minNum, int maxNum)
     {
         m_YesOrNoDialogParamater = EnumController.YesOrNoDialogParamater.VOID;
         m_GameManager.isCharacterSelectDialogProcess = true;
@@ -187,12 +187,10 @@ public class CharacterSelectDialog : MonoBehaviour
                     buttons[i].interactable = true;
                 }
 
-                switch (m_BattleModeCard.GetCardNo())
+                switch (paramater)
                 {
                     // 前列のカードだけ対象
-                    case EnumController.CardNo.DC_W01_05T:
-                    case EnumController.CardNo.P3_S01_045:
-                    case EnumController.CardNo.LB_W02_069:
+                    case EnumController.CharacterSelectDialog.OnlyFrontLine:
                         if (i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -200,7 +198,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル2以下のキャラかつ前列のカードのみ対象
-                    case EnumController.CardNo.P3_S01_069:
+                    case EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv2:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 2 || i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -208,7 +206,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル1以下のキャラかつ前列のカードのみ対象
-                    case EnumController.CardNo.P3_S01_052:
+                    case EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv1:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1 || i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -216,7 +214,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル0以下のキャラかつ前列のカードのみ対象
-                    case EnumController.CardNo.LB_W02_018:
+                    case EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv0:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 0 || i >= 3)
                         {
                             buttons[i].interactable = false;
@@ -224,10 +222,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル1以下のキャラのみ対象
-                    case EnumController.CardNo.DC_W01_18T:
-                    case EnumController.CardNo.P3_S01_060:
-                    case EnumController.CardNo.P3_S01_072:
-                    case EnumController.CardNo.LB_W02_019:
+                    case EnumController.CharacterSelectDialog.UnderLv1:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 1)
                         {
                             buttons[i].interactable = false;
@@ -235,7 +230,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル0以下のキャラのみ対象
-                    case EnumController.CardNo.LB_W02_007:
+                    case EnumController.CharacterSelectDialog.UnderLv0:
                         if (m_EnemyMainCardsManager.GetFieldLevel(i) > 0)
                         {
                             buttons[i].interactable = false;
@@ -243,7 +238,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // レベル1以上のキャラのみ対象
-                    case EnumController.CardNo.P3_S01_001:
+                    case EnumController.CharacterSelectDialog.Lv1orMore:
                         if (m_MyMainCardsManager.GetFieldLevel(i) < 1)
                         {
                             buttons[i].interactable = false;
@@ -251,7 +246,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // 順平を含むキャラのみ対象
-                    case EnumController.CardNo.P3_S01_051:
+                    case EnumController.CharacterSelectDialog.ContainJunpei:
                         if (!m_MyMainCardsManager.isContainFieldName(i, "順平"))
                         {
                             buttons[i].interactable = false;
@@ -259,7 +254,7 @@ public class CharacterSelectDialog : MonoBehaviour
                         }
                         break;
                     // スタンドしているキャラのみ対象
-                    case EnumController.CardNo.LB_W02_013:
+                    case EnumController.CharacterSelectDialog.OnlyStand:
                         if (m_MyMainCardsManager.GetState(i) != EnumController.State.STAND)
                         {
                             buttons[i].interactable = false;

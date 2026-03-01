@@ -189,9 +189,9 @@ public class DialogManager : MonoBehaviour
         m_SearchDialog.SetBattleModeCard(paramater);
     }
 
-    public void CharacterSelectDialog(BattleModeCard card, bool isMine, int place, int minNum, int maxNum)
+    public void CharacterSelectDialog(BattleModeCard card, bool isMine, EnumController.CharacterSelectDialog paramater, int place, int minNum, int maxNum)
     {
-        m_CharacterSelectDialog.Open(card, isMine, place, minNum, maxNum);
+        m_CharacterSelectDialog.Open(card, isMine, paramater, place, minNum, maxNum);
     }
 
     public void CharacterSelectDialogClose()

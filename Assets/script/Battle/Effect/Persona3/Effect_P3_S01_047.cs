@@ -11,7 +11,7 @@ public class Effect_P3_S01_047 : EffectAbstract
         m_GameManager.myStockList.Add(m_GameManager.myDeckList[0]);
         m_GameManager.myDeckList.RemoveAt(0);
         m_GameManager.Syncronize();
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

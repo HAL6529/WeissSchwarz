@@ -17,7 +17,7 @@ public class Effect_LB_W02_02T : EffectAbstract
     {
         // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, 1, 1);
     }
 
     public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)

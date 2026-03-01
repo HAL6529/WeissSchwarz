@@ -8,7 +8,7 @@ public class Effect_P3_S01_04T : EffectAbstract
     {
         // 【自】 このカードがプレイされて舞台に置かれた時、あなたは自分のキャラを1枚選び、
         // そのターン中、パワーを＋2000し、ソウルを＋1。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

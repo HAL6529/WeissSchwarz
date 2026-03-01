@@ -17,7 +17,7 @@ public class Effect_P3_S01_005 : EffectAbstract
     {
         // 【自】 このカードがアタックした時、クライマックス置場に「復讐の終わり」があるなら、
         // あなたは相手のキャラを1枚選び、手札に戻してよい。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 0, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.None, -1, 0, 1);
         return;
     }
 

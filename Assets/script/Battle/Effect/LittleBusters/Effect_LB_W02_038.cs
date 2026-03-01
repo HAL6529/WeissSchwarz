@@ -9,7 +9,7 @@ public class Effect_LB_W02_038 : EffectAbstract
         //【起】［このカードを【レスト】する］ あなたは自分のキャラを1枚選び、ストック置場に置く
         m_MyMainCardsManager.CallOnRest(GetIntParamater1());
         m_GameManager.Syncronize();
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 

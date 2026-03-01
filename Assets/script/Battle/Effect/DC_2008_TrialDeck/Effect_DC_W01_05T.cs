@@ -8,7 +8,7 @@ public class Effect_DC_W01_05T : EffectAbstract
     {
         //【起】［(1)］ あなたは相手の前列のキャラを1枚選び、そのターン中、パワーを－1000。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLine, - 1, 1, 1);
         return;
     }
 

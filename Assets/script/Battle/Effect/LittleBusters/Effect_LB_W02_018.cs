@@ -8,7 +8,7 @@ public class Effect_LB_W02_018 : EffectAbstract
     {
         //※イベント
         //あなたはレベル0以下の相手の前列のキャラを1枚選び、手札に戻す。このカードをストック置場に置く。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv0, - 1, 1, 1);
         return;
     }
 

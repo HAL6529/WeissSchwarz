@@ -8,7 +8,7 @@ public class Effect_P3_S01_018 : EffectAbstract
     {
         //※イベント
         // あなたは相手のキャラを1枚選び、そのターン中、レベルを－1。
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1, 1, 1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.None, -1, 1, 1);
         return;
     }
 
