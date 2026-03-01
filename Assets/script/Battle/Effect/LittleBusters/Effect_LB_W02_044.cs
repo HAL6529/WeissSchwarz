@@ -8,7 +8,40 @@ public class Effect_LB_W02_044 : EffectAbstract
     {
         //【カウンター】 あなたは自分のキャラを2枚まで選び、そのターン中、パワーを＋1000。
         PayCost(1);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, -1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, true, EnumController.CharacterSelectDialog.None, -1, -1, 2);
         return;
+    }
+
+    public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+        int power = 1000;
+
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
+
+            // 自分のカードのパワーを操作する
+            if (ButtonSelectedNumList[i])
+            {
+                m_MyMainCardsManager.AddPowerUpUntilTurnEnd(i, power);
+            }
+        }
+
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
+        m_GameManager.myHandList.Remove(m_BattleModeCard);
+        m_GameManager.GraveYardList.Add(m_BattleModeCard);
+
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
+        m_DialogManager.CharacterSelectDialogClose();
     }
 }

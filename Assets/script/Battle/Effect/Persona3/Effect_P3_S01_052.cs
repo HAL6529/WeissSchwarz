@@ -26,7 +26,32 @@ public class Effect_P3_S01_052 : EffectAbstract
     {
         // 【起】［(3)］ あなたはレベル1以下の相手の前列のキャラを1枚選び、控え室に置く。
         PayCost(3);
-        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, -1);
+        m_DialogManager.CharacterSelectDialog(m_BattleModeCard, false, EnumController.CharacterSelectDialog.OnlyFrontLineAndUnderLv1, - 1, 1, 1);
         return;
+    }
+
+    public override void CharacterSelectDialogExecute(List<bool> ButtonSelectedNumList)
+    {
+        for (int i = 0; i < ButtonSelectedNumList.Count; i++)
+        {
+            if (!ButtonSelectedNumList[i])
+            {
+                continue;
+            }
+
+            // 相手のカードを控室に送る
+            m_BattleStrix.RpcToAll("ToGraveYardFromField", i, m_GameManager.isTurnPlayer);
+        }
+
+        CharacterSelectDialogExecuteAfter();
+    }
+
+    public override void CharacterSelectDialogExecuteAfter()
+    {
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.Syncronize();
+
+        m_GameManager.ExecuteActionList();
+        m_DialogManager.CharacterSelectDialogClose();
     }
 }
