@@ -17,6 +17,8 @@ public class CharacterSelectDialog : MonoBehaviour
     [SerializeField] RectTransform m_RectTransform;
     [SerializeField] List<RectTransform> RectTransformList = new List<RectTransform>();
     [SerializeField] GameObject Dialog_Hide;
+    [SerializeField] BattleModeGuide m_BattleModeGuide;
+
     private int place = -1;
 
     /// <summary>
@@ -34,6 +36,10 @@ public class CharacterSelectDialog : MonoBehaviour
     
     private EnumController.YesOrNoDialogParamater m_YesOrNoDialogParamater;
     private int damage;
+
+    private bool isMine;
+
+    private class BattleModeCardForGuide : BattleModeCard { }
 
     /// <summary>
     /// バウンストリガー用
@@ -159,6 +165,7 @@ public class CharacterSelectDialog : MonoBehaviour
         ButtonSelectedNumList = new List<bool> { false, false, false, false, false, };
         this.place = place;
         m_BattleModeCard = card;
+        this.isMine = isMine;
         int cnt = 0;
 
         // 最低選ばないといけないカードの枚数と最大選べるカードの枚数の定義設定
@@ -289,6 +296,28 @@ public class CharacterSelectDialog : MonoBehaviour
 
     public void ButtonClick(int num)
     {
+        if (isMine)
+        {
+            BattleModeCard t_BattleModeCard = new BattleModeCardForGuide();
+            t_BattleModeCard.SetPower(m_MyMainCardsManager.GetFieldPower(num));
+            t_BattleModeCard.SetSoul(m_MyMainCardsManager.GetFieldSoul(num));
+            t_BattleModeCard.SetLevel(m_MyMainCardsManager.GetFieldLevel(num));
+            t_BattleModeCard.SetAttribute(m_MyMainCardsManager.GetFieldAttributeList(num));
+
+            m_BattleModeGuide.showImage(m_MyMainCardsManager.GetBattleModeCard(num), t_BattleModeCard);
+        }
+        else
+        {
+            BattleModeCard t_BattleModeCard = new BattleModeCardForGuide();
+            t_BattleModeCard.SetPower(m_EnemyMainCardsManager.GetFieldPower(num));
+            t_BattleModeCard.SetSoul(m_EnemyMainCardsManager.GetFieldSoul(num));
+            t_BattleModeCard.SetLevel(m_EnemyMainCardsManager.GetFieldLevel(num));
+            t_BattleModeCard.SetAttribute(m_EnemyMainCardsManager.GetFieldAttributeList(num));
+
+            m_BattleModeGuide.showImage(m_EnemyMainCardsManager.GetBattleModeCard(num), t_BattleModeCard);
+        }
+
+
         if (ButtonSelectedNumList[num])
         {
             images[num].color = new Color(1, 255 / 255, 255 / 255, 255 / 255);

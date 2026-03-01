@@ -924,6 +924,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
     }
 
+    public List<EnumController.Attribute> GetAttributeList()
+    {
+        return AttributeList;
+    }
+
     public int GetFieldLevel()
     {
         return FieldLevel;

@@ -343,6 +343,11 @@ public class MyMainCardsManager : MonoBehaviour
         return CardList[place].getBattleModeCard();
     }
 
+    public List<EnumController.Attribute> GetFieldAttributeList(int place)
+    {
+        return CardList[place].GetAttributeList();
+    }
+
     public List<List<EnumController.Attribute>> GetFieldAttributeList()
     {
         List<List<EnumController.Attribute>> list = new List<List<EnumController.Attribute>>();
