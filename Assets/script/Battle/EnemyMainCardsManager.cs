@@ -69,6 +69,16 @@ public class EnemyMainCardsManager : MonoBehaviour
         }
     }
 
+    public BattleModeCard GetBattleModeCard(int place)
+    {
+        return CardList[place].getBattleModeCard();
+    }
+
+    public List<EnumController.Attribute> GetFieldAttributeList(int place)
+    {
+        return CardList[place].GetAttributeList();
+    } 
+
     public int GetFieldLevel(int place)
     {
         return CardList[place].GetFieldLevel();
@@ -77,6 +87,11 @@ public class EnemyMainCardsManager : MonoBehaviour
     public int GetFieldPower(int place)
     {
         return CardList[place].GetFieldPower();
+    }
+
+    public int GetFieldSoul(int place)
+    {
+        return CardList[place].GetFieldSoul();
     }
 
     public bool GetIsGreatProcessList(int place)

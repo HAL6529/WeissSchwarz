@@ -103,6 +103,16 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         this.gameObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     }
 
+    public BattleModeCard getBattleModeCard()
+    {
+        return m_BattleModeCard;
+    }
+
+    public List<EnumController.Attribute> GetAttributeList()
+    {
+        return AttributeList;
+    }
+
     public int GetFieldLevel()
     {
         return FieldLevel;
@@ -111,6 +121,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public int GetFieldPower()
     {
         return FieldPower;
+    }
+
+    public int GetFieldSoul()
+    {
+        return FieldSoul;
     }
 
     public bool GetIsGreatPerformance()
