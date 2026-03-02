@@ -194,6 +194,13 @@ public class CharacterSelectDialog : MonoBehaviour
                     buttons[i].interactable = true;
                 }
 
+                if (!isMine && m_EnemyMainCardsManager.GetUntouchable(i))
+                {
+                    buttons[i].interactable = false;
+                    cnt++;
+                    continue;
+                }
+
                 switch (paramater)
                 {
                     // 前列のカードだけ対象

@@ -58,6 +58,11 @@ public class BattleMyMainCardUtil : MonoBehaviour
     public bool ClockEncore = false;
 
     /// <summary>
+    /// 「このカードは相手の効果に選ばれない。」を持っているか
+    /// </summary>
+    public bool Untouchable = false;
+
+    /// <summary>
     /// ターン終了時まで追加される特徴クラス
     /// </summary>
     public AttributeInstance.AttributeUpUntilTurnEnd m_AttributeUpUntilTurnEnd = new AttributeInstance.AttributeUpUntilTurnEnd();
@@ -907,6 +912,20 @@ public class BattleMyMainCardUtil : MonoBehaviour
     }
 
     /// <summary>
+    /// フィールド上での「このカードは相手の効果に選ばれない。」を持っているか
+    /// </summary>
+    public void UntouchableUpdate()
+    {
+        if (m_BattleModeCard == null)
+        {
+            Untouchable = false;
+            return;
+        }
+
+        Untouchable = m_BattleModeCard.GetIsUntouchable();
+    }
+
+    /// <summary>
     /// タカヤの効果を反映
     /// 【自】［(1)］ バトルしているこのカードが【リバース】した時、あなたはコストを払ってよい。そうしたら、このカードを手札に戻す。
     /// </summary>
@@ -1255,5 +1274,19 @@ public class BattleMyMainCardUtil : MonoBehaviour
         }
 
         return m_BattleModeCard.GetIsClockEncore();
+    }
+
+    /// <summary>
+    ///  「このカードは相手の効果に選ばれない。」を持っているか調べる
+    /// </summary>
+    /// <returns></returns>
+    private bool isUntouchable()
+    {
+        if (m_BattleModeCard == null)
+        {
+            return false;
+        }
+
+        return m_BattleModeCard.GetIsUntouchable();
     }
 }

@@ -18,10 +18,11 @@ public abstract class BattleModeCard : MonoBehaviour
     protected EnumController.CardNo cardNo;
     protected string cardName;
     protected int power;
-    protected bool isCounter;
-    protected bool isGreatPerformance;
-    protected bool isHandEncore;
-    protected bool isClockEncore;
+    protected bool isCounter = false;
+    protected bool isGreatPerformance = false;
+    protected bool isHandEncore = false;
+    protected bool isClockEncore = false;
+    protected bool isUntouchable = false;
 
     protected string Explanation1;
     protected string Explanation2;
@@ -72,6 +73,8 @@ public abstract class BattleModeCard : MonoBehaviour
     public bool GetIsHandEncore() { return isHandEncore; }
 
     public bool GetIsClockEncore() { return isClockEncore; }
+
+    public bool GetIsUntouchable() { return isUntouchable; }
 
     public string GetExplanation1()
     {
