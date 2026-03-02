@@ -84,13 +84,22 @@ public class CharacterSelectDialog : MonoBehaviour
                 images[i].sprite = BackImage;
                 cnt++;
                 buttons[i].interactable = false;
+                continue;
             }
             else
             {
                 images[i].sprite = list[i].GetSprite();
                 buttons[i].interactable = true;
             }
+
+            if (m_EnemyMainCardsManager.GetUntouchable(i))
+            {
+                buttons[i].interactable = false;
+                cnt++;
+                continue;
+            }
         }
+
         if (cnt >= 5)
         {
             m_GameManager.Syncronize();
