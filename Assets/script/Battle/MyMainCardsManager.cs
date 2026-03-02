@@ -281,6 +281,7 @@ public class MyMainCardsManager : MonoBehaviour
             CardList[i].LevelUpdate();
             CardList[i].PowerUpdate();
             CardList[i].SoulUpdate();
+            CardList[i].UntouchableUpdate();
             CardList[i].AttributeUpdate();
             CardList[i].TakayaEffectUpdate();
         }
@@ -448,6 +449,16 @@ public class MyMainCardsManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public List<bool> GetUntochable()
+    {
+        List<bool> list = new List<bool>();
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            list.Add(CardList[i].Untouchable);
+        }
+        return list;
     }
 
     public int GetLevelAssistPower(int num, int FieldLevel)

@@ -69,6 +69,14 @@ public class EnemyMainCardsManager : MonoBehaviour
         }
     }
 
+    public void SetUntouchable(List<bool> UntouchableList)
+    {
+        for (int i = 0; i < UntouchableList.Count; i++)
+        {
+            CardList[i].SetUntouchable(UntouchableList[i]);
+        }
+    }
+
     public BattleModeCard GetBattleModeCard(int place)
     {
         return CardList[place].getBattleModeCard();
@@ -102,5 +110,10 @@ public class EnemyMainCardsManager : MonoBehaviour
     public EnumController.State GetState(int place)
     {
         return CardList[place].GetState();
+    }
+
+    public bool GetUntouchable(int place)
+    {
+        return CardList[place].GetUntouchable();
     }
 }

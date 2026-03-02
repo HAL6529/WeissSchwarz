@@ -33,6 +33,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public int FieldLevel = 0;
 
     /// <summary>
+    /// 「このカードは相手の効果に選ばれない。」を持っているか
+    /// </summary>
+    public bool Untouchable = false;
+
+    /// <summary>
     /// フィールド上での特徴
     /// </summary>
     public List<EnumController.Attribute> AttributeList = new List<EnumController.Attribute>();
@@ -138,6 +143,11 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
         return state;
     }
 
+    public bool GetUntouchable()
+    {
+        return Untouchable;
+    }
+
     public void SetFieldLevel(int level)
     {
         FieldLevel = level;
@@ -162,5 +172,10 @@ public class BattleEnemyMainCardUtil : MonoBehaviour
     public void SetIsGreatPerformance(bool b)
     {
         isGreatPerformance = b;
+    }
+
+    public void SetUntouchable(bool b)
+    {
+        Untouchable = b;
     }
 }
