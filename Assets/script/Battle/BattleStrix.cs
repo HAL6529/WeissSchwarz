@@ -44,6 +44,10 @@ public class BattleStrix : StrixBehaviour
         RpcToAll(nameof(PlayEnemyTriggerAnimation), temp, isTurnPlayer);
     }
 
+    public void CallWhenEnemyLevelUp(bool isFirstAttacker)
+    {
+        RpcToAll(nameof(WhenEnemyLevelUp), isFirstAttacker);
+    }
 
     public void EventAnimation(BattleModeCard card, bool isFirstAttacker)
     {
@@ -401,6 +405,15 @@ public class BattleStrix : StrixBehaviour
         if (m_GameManager.isFirstAttacker != isFirstAttacker)
         {
             m_GameManager.Damage(damage, handNum);
+        }
+    }
+
+    [StrixRpc]
+    public void WhenEnemyLevelUp(bool isFirstAttacker)
+    {
+        if (m_GameManager.isFirstAttacker != isFirstAttacker)
+        {
+            m_MyMainCardsManager.CallWehenEnemyLevelUp();
         }
     }
 
@@ -874,6 +887,12 @@ public class BattleStrix : StrixBehaviour
     public void UpdateIsLevelUpProcess(bool b)
     {
         m_GameManager.isLevelUpProcess = b;
+    }
+
+    [StrixRpc]
+    public void UpdateisLevelUpProcessAfter(bool b)
+    {
+        m_GameManager.isLevelUpProcessAfter = b;
     }
 
     [StrixRpc]

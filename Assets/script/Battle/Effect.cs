@@ -159,6 +159,47 @@ public class Effect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 「【自】 相手がレベルアップした時」の効果
+    /// </summary>
+    /// <param name="m_BattleMyMainCardAvility"></param>
+    public void WhenEnemyLevelUp(BattleMyMainCardAvility m_BattleMyMainCardAvility)
+    {
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
+        {
+            return;
+        }
+
+        EffectAbstract m_EffectAbstract;
+        m_EffectAbstract = m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract;
+        m_EffectAbstract.m_GameManager = m_GameManager;
+        m_EffectAbstract.m_BattleStrix = m_BattleStrix;
+        m_EffectAbstract.m_BattleModeCard = m_BattleMyMainCardAvility.m_BattleModeCard;
+        m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
+        m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
+        m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
+        m_EffectAbstract.m_MainPowerUpDialog = m_GameManager.m_DialogManager.m_MainPowerUpDialog;
+        m_EffectAbstract.m_MyMainCardsManager = m_MyMainCardsManager;
+        m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
+        m_EffectAbstract.SetExecuteParamater(1);
+
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
+        {
+            //【自】 相手がレベルアップした時、あなたは自分の山札の上から1枚を、ストック置場に置く。
+            case EnumController.CardNo.LB_W02_014:
+                Debug.Log("WhenEnemyLevelUp");
+                Action action_LB_W02_014 = new Action(m_GameManager, EnumController.Action.LB_W02_014_1);
+                action_LB_W02_014.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                action_LB_W02_014.SetParamaterBattleStrix(m_BattleStrix);
+                action_LB_W02_014.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                action_LB_W02_014.SetParamaterEffectAbstract(m_EffectAbstract);
+                m_GameManager.ActionList.Add(action_LB_W02_014);
+                break;
+            default:
+                return;
+        }
+    }
+
     public void PutGraveYardFromField(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
         if (m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
@@ -893,6 +934,13 @@ public class Effect : MonoBehaviour
                 {
                     m_EffectAbstract.SetExecuteParamater(1);
                     m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_13T, card, num, m_EffectAbstract);
+                }
+                return;
+            // 【起】［(3)］ あなたは自分のキャラすべてに、そのターン中、ソウルを＋1。
+            case EnumController.CardNo.LB_W02_014:
+                if (ConfirmStockForCost(3))
+                {
+                    m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_014, card, num, m_EffectAbstract);
                 }
                 return;
             // 【起】［(1)］ あなたは自分のキャラを1枚選び、そのターン中、パワーを＋1500。

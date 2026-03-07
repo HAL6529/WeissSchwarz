@@ -284,6 +284,11 @@ public class SelectActionDialog : MonoBehaviour
                 text2.text = "あなたが【起】を使った時、あなたは自分のキャラを1枚選び";
                 text3.text = "そのターン中、パワーを＋500。";
                 break;
+            case EnumController.Action.LB_W02_014_1:
+                text1.text = "【自】 相手がレベルアップした時、";
+                text2.text = "あなたは自分の山札の上から1枚を、ストック置場に置く。";
+                text3.text = "";
+                break;
             case EnumController.Action.LB_W02_031_1:
                 text1.text = "【自】 このカードとバトルしているレベル2以上のキャラが";
                 text2.text = "【リバース】した時、あなたは自分の山札の上から1枚を、";

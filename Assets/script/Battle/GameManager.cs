@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public bool isTurnPlayer = false;
     public bool isLevelUpProcess = false;
     public bool isAttackProcess = false;
+    public bool isLevelUpProcessAfter = false;
     public bool isFirstAttacked = false;
     public bool isEncoreDialogProcess = false;
     public bool isEndPhase = false;
@@ -301,7 +302,7 @@ public class GameManager : MonoBehaviour
 
     public void ExecuteActionList()
     {
-        Debug.Log("ExecuteActionList");
+
         //パワー0のキャラが存在する場合はアンコールダイアログを呼び出す
         for (int i = 0; i < myFieldList.Count; i++)
         {
@@ -393,6 +394,7 @@ public class GameManager : MonoBehaviour
 
     public void LevelUp(int num)
     {
+        m_BattleStrix.RpcToAll("UpdateisLevelUpProcessAfter", true);
         myLevelList.Add(myClockList[num]);
         myClockList.RemoveAt(num);
         for (int i = 0; i < 6; i++)
@@ -402,9 +404,11 @@ public class GameManager : MonoBehaviour
         }
         Syncronize();
 
-        Debug.Log("LevelUp");
         m_MyMainCardsManager.CallLevelUp();
-        // ExecuteActionListはLevelUpDialogクラスで実行されるため不要
+        m_BattleStrix.CallWhenEnemyLevelUp(isFirstAttacker);
+        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, isFirstAttacker);
+        m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
     }
 
     public void PowerCheck(int num, EnumController.PowerCheck paramater)

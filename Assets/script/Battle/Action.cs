@@ -151,6 +151,7 @@ public class Action
             case EnumController.Action.P3_S01_061_1:
             case EnumController.Action.LB_W02_003_1:
             case EnumController.Action.LB_W02_013_1:
+            case EnumController.Action.LB_W02_014_1:
             case EnumController.Action.LB_W02_062_1:
             case EnumController.Action.LB_W02_078_1:
                 m_EventAnimationManager.AutoAnimationStart(m_BattleModeCard, m_EffectAbstract);

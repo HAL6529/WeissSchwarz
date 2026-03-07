@@ -43,6 +43,19 @@ public class MyMainCardsManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 相手がレベルアップしたときに発動する効果
+    /// </summary>
+    public void CallWehenEnemyLevelUp()
+    {
+        for (int i = 0; i < CardList.Count; i++)
+        {
+            CardList[i].WhenEnemyLevelUp();
+        }
+        m_BattleStrix.RpcToAll("ChanggeExecuteActionList", false);
+        m_BattleStrix.RpcToAll("ExecuteActionList", m_GameManager.isTurnPlayer);
+    }
+
+    /// <summary>
     /// フィールドからデッキトップに置かれるときに呼ばれる
     /// </summary>
     public void CallPutDeckTopFromField(int num)

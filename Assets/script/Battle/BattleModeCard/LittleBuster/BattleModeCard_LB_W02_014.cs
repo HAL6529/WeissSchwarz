@@ -25,6 +25,6 @@ public class BattleModeCard_LB_W02_014 : BattleModeCard
         this.Explanation3 = "";
         this.Explanation4 = "";
         this.Explanation5 = "";
-        this.m_EffectAbstract = null; 
+        this.m_EffectAbstract = new Effect_LB_W02_014();
     }
 }

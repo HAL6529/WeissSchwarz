@@ -311,6 +311,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_007;
                 break;
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_014:
+                str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_014;
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_031:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_LB_W02_031;
                 break;
@@ -544,6 +547,7 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_091:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_001:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_007:
+            case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_014:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_034:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_038:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_054:

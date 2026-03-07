@@ -21,12 +21,11 @@ public class LevelUpDialog : MonoBehaviour
             return;
         }
         m_GameManager.LevelUp(num);
-        m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
+        /*m_BattleStrix.RpcToAll("SEManager_DrawSE_Play");
         m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
-        m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);
+        m_BattleStrix.RpcToAll("UpdateIsLevelUpProcess", false);*/
         OffDialog();
-        Debug.Log("onOKButton:ExecuteActionList");
-        m_GameManager.ExecuteActionList();
+        //m_GameManager.ExecuteActionList();
     }
 
     public void SetBattleModeCard(List<BattleModeCard> myLevelList)
