@@ -194,6 +194,17 @@ public class EffectAbstract
         m_GameManager.ActionList.Add(action);
     }
 
+    /// <summary>
+    /// 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。
+    /// </summary>
+    public void Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse()
+    {
+        m_EnemyMainCardsManager.CallReverse(GetIntParamater1());
+        m_BattleStrix.RpcToAll("CallMyReverse", GetIntParamater1(), m_GameManager.isTurnPlayer);
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.ExecuteActionList();
+    }
+
     public int GetIntParamater1()
     {
         return IntParamater1;

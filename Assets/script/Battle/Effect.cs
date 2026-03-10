@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
+    private class TempClass : EffectAbstract
+    {
+
+    }
+
     private GameManager m_GameManager = null;
     private BattleStrix m_BattleStrix = null;
     private MyMainCardsManager m_MyMainCardsManager;
@@ -539,14 +544,25 @@ public class Effect : MonoBehaviour
     /// </summary>
     public void WhenReverseMyCardEffect(BattleMyMainCardAvility m_BattleMyMainCardAvility)
     {
-        if (m_BattleMyMainCardAvility.m_BattleModeCard == null || m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
         {
             return;
         }
+
         this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
         this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
 
-        EffectAbstract m_EffectAbstract = m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract.Clone();
+        EffectAbstract m_EffectAbstract;
+
+        if (m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
+        {
+            m_EffectAbstract = new TempClass().Clone();
+        }
+        else
+        {
+            m_EffectAbstract = m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract.Clone();
+        }
+
         m_EffectAbstract.m_GameManager = m_GameManager;
         m_EffectAbstract.m_BattleStrix = m_BattleStrix;
         m_EffectAbstract.m_BattleModeCard = m_BattleMyMainCardAvility.m_BattleModeCard;
@@ -558,6 +574,42 @@ public class Effect : MonoBehaviour
         m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
         m_EffectAbstract.SetExecuteParamater(1);
 
+        int enemyPlace = -1;
+        //【永】 アラーム このカードがクロックの1番上にあり、あなたのレベルが2以上なら、赤のあなたのキャラすべてに、次の能力を与える。
+        //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。
+        if (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardColor() == EnumController.CardColor.RED &&
+            m_GameManager.myLevelList.Count >= 2 &&
+            m_GameManager.myClockList.Count > 0 &&
+            m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].GetCardNo() == EnumController.CardNo.LB_W02_058)
+        {
+            switch (m_BattleMyMainCardAvility.PlaceNum)
+            {
+                case 0:
+                    enemyPlace = 2;
+                    break;
+                case 1:
+                    enemyPlace = 1;
+                    break;
+                case 2:
+                    enemyPlace = 0;
+                    break;
+                default:
+                    break;
+            }
+
+            if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= m_BattleMyMainCardAvility.FieldLevel && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)
+            {
+                m_EffectAbstract.SetIntParamater1(enemyPlace);
+                Action action = new Action(m_GameManager, EnumController.Action.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse);
+                action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+                action.SetParamaterBattleStrix(m_BattleStrix);
+                action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+                action.SetParamaterEffectAbstract(m_EffectAbstract);
+                action.SetParamaterEventAnimationManager(m_EventAnimationManager);
+                m_GameManager.ActionList.Add(action);
+            }
+        }
+
         if (m_BattleMyMainCardAvility.Takaya)
         {
             Action action_P3_S01_062 = new Action(m_GameManager, EnumController.Action.P3_S01_062_1);
@@ -567,7 +619,7 @@ public class Effect : MonoBehaviour
             action_P3_S01_062.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
             m_GameManager.ActionList.Add(action_P3_S01_062);
         }
-        int enemyPlace = -1;
+
         switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
         {
             // 【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが1以下なら、あなたはそのキャラを【リバース】してよい。

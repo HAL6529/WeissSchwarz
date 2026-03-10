@@ -86,6 +86,13 @@ public class EventAnimationManager : MonoBehaviour
         AnimationStart(card);
     }
 
+    public void Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverseAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
+    {
+        EventAnimationParamater = EnumController.EventAnimation.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverseAnimationStart;
+        this.m_EffectAbstract = m_EffectAbstract;
+        AnimationStart(card);
+    }
+
     public void CounterAnimationStart(BattleModeCard card, EffectAbstract m_EffectAbstract)
     {
         EventAnimationParamater = EnumController.EventAnimation.Counter;
@@ -245,6 +252,9 @@ public class EventAnimationManager : MonoBehaviour
                 break;
             case EnumController.EventAnimation.Counter:
                 m_EffectAbstract.CounterExecute();
+                break;
+            case EnumController.EventAnimation.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverseAnimationStart:
+                m_EffectAbstract.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse();
                 break;
             case EnumController.EventAnimation.Event:
                 m_EffectAbstract.EventExecute();
