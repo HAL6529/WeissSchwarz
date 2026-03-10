@@ -152,6 +152,9 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.EVENT_CONFIRM:
                 str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.GetName());
                 break;
+            case EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
+                str = stringValues.YesOrNoDialog_EVENT_CONFIRM(m_BattleModeCard.GetName());
+                break;
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_HAND_TO_FIELD:
                 str = stringValues.YesOrNoDialog_COST_CONFIRM_HAND_TO_FIELD(m_BattleModeCard.GetCost());
                 break;
@@ -355,6 +358,7 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
             case EnumController.YesOrNoDialogParamater.CONFIRM_USE_COUNTER:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
                 m_BattleStrix.RpcToAll("NotEraseDialog", true, m_GameManager.isFirstAttacker);
                 break;
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
@@ -484,6 +488,11 @@ public class YesOrNoDialog : MonoBehaviour
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_BRAIN_STORM_FOR_DRAW:
                 m_EffectBrainStormForDraw.BrainStormForDraw(ParamaterNum1);
                 break;
+            //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。
+            case EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
+                m_EventAnimationManager.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverseAnimationStart(m_BattleModeCard, m_EffectAbstract);
+                m_BattleStrix.EventAnimation(m_BattleModeCard, m_GameManager.isFirstAttacker);
+                break;
             // 誘発効果を持つキャラクター(効果の解決後にアタック処理する)
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_DC_W01_02T:
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_LB_W02_03T:
@@ -593,6 +602,7 @@ public class YesOrNoDialog : MonoBehaviour
         {
             case EnumController.YesOrNoDialogParamater.COST_CONFIRM_P3_S01_062:
             case EnumController.YesOrNoDialogParamater.CONFIRM_CARD_EFFECT:
+            case EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
                 m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
                 m_GameManager.ExecuteActionList();
                 break;

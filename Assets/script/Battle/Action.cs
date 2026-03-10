@@ -98,6 +98,10 @@ public class Action
             case EnumController.Action.EffectWhenCounter:
                 m_MyMainCardsManager.ConfirmEffectWhenCounter(paramaterNum);
                 break;
+            //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。
+            case EnumController.Action.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse, m_BattleModeCard, m_EffectAbstract);
+                break;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);
