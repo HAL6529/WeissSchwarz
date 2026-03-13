@@ -205,6 +205,16 @@ public class EffectAbstract
         m_GameManager.ExecuteActionList();
     }
 
+    /// <summary>
+    /// 【自】 このカードとバトルしているキャラが【リバース】した時、あなたはこのカードをストック置場に置いてよい。
+    /// </summary>
+    public void Effect_ThisPutStockWhenEnemyReverse()
+    {
+        m_MyMainCardsManager.CallPutStockFromField(GetIntParamater1());
+        m_BattleStrix.RpcToAll("NotEraseDialog", false, m_GameManager.isFirstAttacker);
+        m_GameManager.ExecuteActionList();
+    }
+
     public int GetIntParamater1()
     {
         return IntParamater1;
