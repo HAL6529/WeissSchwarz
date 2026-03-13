@@ -101,7 +101,11 @@ public class Action
             //【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。
             case EnumController.Action.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
                 m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse, m_BattleModeCard, m_EffectAbstract);
-                break;
+                return;
+            //【自】 このカードとバトルしているキャラが【リバース】した時、あなたはこのカードをストック置場に置いてよい。
+            case EnumController.Action.Effect_ThisPutStockWhenEnemyReverse:
+                m_GameManager.m_DialogManager.YesOrNoDialog(EnumController.YesOrNoDialogParamater.CONFIRM_Effect_ThisPutStockWhenEnemyReverse, m_BattleModeCard, m_EffectAbstract);
+                return;
             case EnumController.Action.EventAnimationManager:
                 m_GameManager.GraveYardList.Add(m_BattleModeCard);
                 m_GameManager.myHandList.Remove(m_BattleModeCard);

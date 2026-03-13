@@ -21,6 +21,7 @@ public class StringValues
     public string YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER;
     public string YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER;
     public string YesOrNoDialog_CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse;
+    public string YesOrNoDialog_CONFIRM_Effect_ThisPutStockWhenEnemyReverse;
     public string YesOrNoDialog_CONFIRM_POOL_TRIGGER;
     public string YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
     public string YesOrNoDialog_CLIMAX_PHASE;
@@ -767,6 +768,7 @@ public class StringValues
                 YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER = japanese.YesOrNoDialog_CONFIRM_BOUNCE_TRIGGER;
                 YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER = japanese.YesOrNoDialog_CONFIRM_COMEBACK_TRIGGER;
                 YesOrNoDialog_CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse = japanese.YesOrNoDialog_CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse;
+                YesOrNoDialog_CONFIRM_Effect_ThisPutStockWhenEnemyReverse = japanese.YesOrNoDialog_CONFIRM_Effect_ThisPutStockWhenEnemyReverse;
                 YesOrNoDialog_CONFIRM_POOL_TRIGGER = japanese.YesOrNoDialog_CONFIRM_POOL_TRIGGER;
                 YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE = japanese.YesOrNoDialog_CONFIRM_SEND_ENCORE_PHASE;
                 YesOrNoDialog_CLIMAX_PHASE = japanese.YesOrNoDialog_CLIMAX_PHASE;
@@ -1217,6 +1219,7 @@ public class StringValues
         public string HandOverDialog = "手札が7枚になるように捨ててください";
         public string YesOrNoDialog_CONFIRM_CONTROL_DECKTOP = "山札の上のカードを山札の下に置きますか。";
         public string YesOrNoDialog_CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse = "次の能力を使用しますか。:" + "【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルがこのカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。";
+        public string YesOrNoDialog_CONFIRM_Effect_ThisPutStockWhenEnemyReverse = "次の能力を使用しますか。:" + "【自】 このカードとバトルしているキャラが【リバース】した時、あなたはこのカードをストック置場に置いてよい。";
         public string YesOrNoDialog_CONFIRM_USE_COUNTER = "手札の助太刀カードを使用しますか";
         public string YesOrNoDialog_CLIMAX_PHASE = "クライマックスフェイズに移動しますか";
         public string YesOrNoDialog_COST_CONFIRM_BRAIN_STORM_FOR_DRAW = "次の能力を使用しますか。:" + "【起】 集中 ［(1) このカードを【レスト】する］ あなたは自分の山札の上から4枚をめくり、控え室に置く。それらのカードのクライマックス1枚につき、あなたは1枚まで引く。";

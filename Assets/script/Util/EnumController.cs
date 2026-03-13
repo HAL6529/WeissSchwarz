@@ -15,6 +15,7 @@ namespace EnumController
         DamageForFrontAttack2ForCancel,
         DamageForFrontAttack2ForDamaged,
         Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse,
+        Effect_ThisPutStockWhenEnemyReverse,
         EffectWhenAct,
         EffectWhenCounter,
         EventAnimationManager,
@@ -473,6 +474,7 @@ namespace EnumController
         Auto,
         Counter,
         Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverseAnimationStart,
+        Effect_ThisPutStockWhenEnemyReverseAnimationStart,
         Event,
         Kizuna,
     }
@@ -617,6 +619,7 @@ namespace EnumController
         CLIMAX_PHASE,
         CLIMAX_PHASE_CONFIRM,
         CONFIRM_Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse,
+        CONFIRM_Effect_ThisPutStockWhenEnemyReverse,
         EVENT_CONFIRM,
         COST_CONFIRM_HAND_TO_FIELD,
         COST_CONFIRM_BOND_FOR_HAND_TO_FIELD,

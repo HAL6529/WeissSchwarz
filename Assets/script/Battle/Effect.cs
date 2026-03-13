@@ -464,18 +464,31 @@ public class Effect : MonoBehaviour
     /// </summary>
     /// <param name="reversedCardPlace">リバースしたキャラの場所(リバースしたキャラのコントローラー視点)</param>
     /// <param name="reversedCardLevel">リバースしたキャラのレベル</param>
-    public void WhenReverseEnemyCardEffect(BattleModeCard card, int reversedCardPlace, int reversedCardLevel)
+    public void WhenReverseEnemyCardEffect(BattleMyMainCardAvility m_BattleMyMainCardAvility, int reversedCardPlace, int reversedCardLevel)
     {
 
-        if (card.m_EffectAbstract == null)
+        if (m_BattleMyMainCardAvility.m_BattleModeCard == null)
         {
             return;
         }
 
-        EffectAbstract m_EffectAbstract = card.m_EffectAbstract.Clone();
+        this.m_MyMainCardsManager = m_GameManager.GetMyMainCardsManager();
+        this.m_EnemyMainCardsManager = m_GameManager.GetEnemyMainCardsManager();
+
+        EffectAbstract m_EffectAbstract;
+
+        if (m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract == null)
+        {
+            m_EffectAbstract = new TempClass().Clone();
+        }
+        else
+        {
+            m_EffectAbstract = m_BattleMyMainCardAvility.m_BattleModeCard.m_EffectAbstract.Clone();
+        }
+
         m_EffectAbstract.m_GameManager = m_GameManager;
         m_EffectAbstract.m_BattleStrix = m_BattleStrix;
-        m_EffectAbstract.m_BattleModeCard = card;
+        m_EffectAbstract.m_BattleModeCard = m_BattleMyMainCardAvility.m_BattleModeCard;
         m_EffectAbstract.m_DialogManager = m_GameManager.m_DialogManager;
         m_EffectAbstract.m_EnemyMainCardsManager = m_EnemyMainCardsManager;
         m_EffectAbstract.m_EventAnimationManager = m_EventAnimationManager;
@@ -484,13 +497,28 @@ public class Effect : MonoBehaviour
         m_EffectAbstract.m_WinAndLose = m_GameManager.m_WinAndLose;
         m_EffectAbstract.SetExecuteParamater(1);
 
-        switch (card.GetCardNo())
+        //【永】 アラーム このカードがクロックの１番上にあるなら、緑のあなたのキャラすべてに、次の能力を与える。
+        //『【自】 このカードとバトルしているキャラが【リバース】した時、あなたはこのカードをストック置場に置いてよい。』
+        if (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardColor() == EnumController.CardColor.GREEN &&
+            m_GameManager.myClockList[m_GameManager.myClockList.Count - 1].GetCardNo() == EnumController.CardNo.LB_W02_030)
+        {
+            m_EffectAbstract.SetIntParamater1(m_BattleMyMainCardAvility.PlaceNum);
+            Action action = new Action(m_GameManager, EnumController.Action.Effect_ThisPutStockWhenEnemyReverse);
+            action.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
+            action.SetParamaterBattleStrix(m_BattleStrix);
+            action.SetParamaterNum(m_BattleMyMainCardAvility.PlaceNum);
+            action.SetParamaterEffectAbstract(m_EffectAbstract);
+            action.SetParamaterEventAnimationManager(m_EventAnimationManager);
+            m_GameManager.ActionList.Add(action);
+        }
+
+        switch (m_BattleMyMainCardAvility.m_BattleModeCard.GetCardNo())
         {
             case EnumController.CardNo.AT_WX02_A03:
                 if (ConfirmClimaxCombo(EnumController.CardNo.AT_WX02_A08))
                 {
                     Action action_AT_WX02_A08 = new Action(m_GameManager, EnumController.Action.AT_WX02_A08_1);
-                    action_AT_WX02_A08.SetParamaterBattleModeCard(card);
+                    action_AT_WX02_A08.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
 
                     m_GameManager.ActionList.Add(action_AT_WX02_A08);
 
@@ -502,7 +530,7 @@ public class Effect : MonoBehaviour
                 m_EffectAbstract.SetIntParamater1(reversedCardPlace);
                 //【自】 このカードとバトルしているキャラが【リバース】した時、あなたはそのキャラを山札の上に置いてよい。
                 Action action_DC_W01_10T = new Action(m_GameManager, EnumController.Action.DC_W01_10T_1);
-                action_DC_W01_10T.SetParamaterBattleModeCard(card);
+                action_DC_W01_10T.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                 action_DC_W01_10T.SetParamaterNum(reversedCardPlace);
                 action_DC_W01_10T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                 action_DC_W01_10T.SetParamaterEffectAbstract(m_EffectAbstract);
@@ -515,7 +543,7 @@ public class Effect : MonoBehaviour
                 if (reversedCardLevel > 1)
                 {
                     Action action_LB_W02_19T = new Action(m_GameManager, EnumController.Action.LB_W02_19T_1);
-                    action_LB_W02_19T.SetParamaterBattleModeCard(card);
+                    action_LB_W02_19T.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                     action_LB_W02_19T.SetParamaterBattleStrix(m_BattleStrix);
                     action_LB_W02_19T.SetParamaterEventAnimationManager(m_EventAnimationManager);
                     action_LB_W02_19T.SetParamaterEffectAbstract(m_EffectAbstract);
@@ -527,7 +555,7 @@ public class Effect : MonoBehaviour
                 if (reversedCardLevel > 1)
                 {
                     Action action_LB_W02_031 = new Action(m_GameManager, EnumController.Action.LB_W02_031_1);
-                    action_LB_W02_031.SetParamaterBattleModeCard(card);
+                    action_LB_W02_031.SetParamaterBattleModeCard(m_BattleMyMainCardAvility.m_BattleModeCard);
                     action_LB_W02_031.SetParamaterBattleStrix(m_BattleStrix);
                     action_LB_W02_031.SetParamaterEventAnimationManager(m_EventAnimationManager);
                     action_LB_W02_031.SetParamaterEffectAbstract(m_EffectAbstract);
@@ -595,6 +623,11 @@ public class Effect : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+
+            if (m_EnemyMainCardsManager.GetIsGreatProcessList(1))
+            {
+                enemyPlace = 1;
             }
 
             if (m_EnemyMainCardsManager.GetFieldLevel(enemyPlace) <= m_BattleMyMainCardAvility.FieldLevel && m_EnemyMainCardsManager.GetState(enemyPlace) != EnumController.State.REVERSE)

@@ -155,6 +155,16 @@ public class SelectActionDialog : MonoBehaviour
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "EffectWhenAct";
                 break;
+            case EnumController.Action.Effect_EnemyReverseIfEnemyLowerLevelWhenThisReverse:
+                text1.text = "【自】 このカードが【リバース】した時、このカードとバトルしているキャラのレベルが";
+                text2.text = "このカードのレベル以下なら、あなたはそのキャラを【リバース】してよい。";
+                text3.text = "";
+                break;
+            case EnumController.Action.Effect_ThisPutStockWhenEnemyReverse:
+                text1.text = "【自】 このカードとバトルしているキャラが【リバース】した時、";
+                text2.text = "あなたはこのカードをストック置場に置いてよい。";
+                text3.text = "";
+                break;
             case EnumController.Action.EventAnimationManager:
                 text1.text = "このメッセージが表示されるのはおかしい";
                 text2.text = "EventAnimationManager";
