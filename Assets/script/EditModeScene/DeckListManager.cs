@@ -55,7 +55,7 @@ public class DeckListManager : MonoBehaviour
         }
 
         // 同名カードが4枚以上の場合処理は行わない。
-        int index = cardInfoList.Count(obj => obj.GetCardNo() == info.GetCardNo());
+        int index = cardInfoList.Count(obj => obj.GetName() == info.GetName());
         if (index > 3)
         {
             return;
