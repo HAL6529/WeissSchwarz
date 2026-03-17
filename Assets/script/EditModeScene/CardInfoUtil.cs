@@ -22,7 +22,7 @@ public class CardInfoUtil : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Text costText;
 
-    string cardName;
+    public string cardName;
 
     // Start is called before the first frame update
     void Start()
