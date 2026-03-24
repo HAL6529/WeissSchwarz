@@ -55,11 +55,19 @@ public class DeckListManager : MonoBehaviour
         }
 
         // 同名カードが4枚以上の場合処理は行わない。
-        int index = cardInfoList.Count(obj => obj.GetCardNo() == info.GetCardNo());
+        int index = cardInfoList.Count(obj => obj.GetName() == info.GetName());
         if (index > 3)
         {
             return;
         }
+
+        // クライマックスは8枚以上入れられない
+        int index2 = cardInfoList.Count(obj => obj.GetType() == EnumController.Type.CLIMAX);
+        if(info.GetType() == EnumController.Type.CLIMAX && index2 > 7)
+        {
+            return;
+        }
+
         cardInfoList.Add(info);
         sortDeckList();
         if (isColorSort)
@@ -219,7 +227,11 @@ public class DeckListManager : MonoBehaviour
         }
         cardInfoList = new List<BattleModeCard>();
 
-        for(int i = 0; i < Level0List.Count; i++)
+        for (int i = 0; i < ClimaxList.Count; i++)
+        {
+            cardInfoList.Add(ClimaxList[i]);
+        }
+        for (int i = 0; i < Level0List.Count; i++)
         {
             cardInfoList.Add(Level0List[i]);
         }
@@ -234,10 +246,6 @@ public class DeckListManager : MonoBehaviour
         for (int i = 0; i < Level3List.Count; i++)
         {
             cardInfoList.Add(Level3List[i]);
-        }
-        for (int i = 0; i < ClimaxList.Count; i++)
-        {
-            cardInfoList.Add(ClimaxList[i]);
         }
     }
 
