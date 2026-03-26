@@ -66,6 +66,11 @@ public class StrixManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        onEnter();
+    }
+
+    private void onEnter()
+    {
         strixNetwork = StrixNetwork.instance;
         strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
         roomName = RoomSelectClass.getRoomName();
@@ -92,7 +97,7 @@ public class StrixManager : MonoBehaviour
                                handler: searchResults =>
                                {
                                    var foundRooms = searchResults.roomInfoCollection;
-                                   if(foundRooms.Count == 0)
+                                   if (foundRooms.Count == 0)
                                    {
                                        isOwner = true;
                                        strixNetwork.CreateRoom(
@@ -103,7 +108,7 @@ public class StrixManager : MonoBehaviour
                                                capacity = 2,
                                                key1 = Version,
                                            }, m_RoomMemberProperties,
-                                           handler: __ => {},
+                                           handler: __ => { },
                                            failureHandler: createRoomError => { });
                                        return;
                                    }
@@ -119,7 +124,7 @@ public class StrixManager : MonoBehaviour
                                    };
                                    strixNetwork.JoinRoom(
                                         m_RoomJoinArgs,
-                                        OnRoomJoin, 
+                                        OnRoomJoin,
                                         OnRoomJoinFailed
                                    );
                                }, failureHandler: searchError => { });

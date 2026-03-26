@@ -10,6 +10,8 @@ public class RoomSelectClass : MonoBehaviour
 {
     [SerializeField] GameObject CreateRoomMenu;
 
+    [SerializeField] GameObject Menu;
+
     [SerializeField] Text t_RoomName;
 
     [SerializeField] Text t_PassPhrase;
@@ -63,12 +65,25 @@ public class RoomSelectClass : MonoBehaviour
     {
         GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(true);
+        Menu.SetActive(false);
+    }
+
+    public void onVSButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        Menu.SetActive(true);
     }
 
     public void onCloseCreateRoomButton()
     {
         GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(false);
+    }
+
+    public void onCloseMenuButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        Menu.SetActive(false);
     }
 
     public void onCreateRoomButton()
