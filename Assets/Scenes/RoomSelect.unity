@@ -506,14 +506,14 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60670640}
   m_TextComponent: {fileID: 1622047388}
   m_Placeholder: {fileID: 1361207884}
-  m_ContentType: 0
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
-  m_CharacterLimit: 30
+  m_CharacterValidation: 3
+  m_CharacterLimit: 12
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -994,7 +994,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 156994793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 868986309}
+        m_TargetAssemblyTypeName: RoomSelectClass, Assembly-CSharp
+        m_MethodName: onRandomRoomButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &156994796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3787,7 +3799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 171.85, y: -25.58}
+  m_AnchoredPosition: {x: 171.85, y: -25.580002}
   m_SizeDelta: {x: 343.7, y: 31.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1113549558
@@ -4892,13 +4904,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1377903711}
   m_TextComponent: {fileID: 1749400534}
   m_Placeholder: {fileID: 1148547302}
-  m_ContentType: 0
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 3
   m_CharacterLimit: 6
   m_OnSubmit:
     m_PersistentCalls:

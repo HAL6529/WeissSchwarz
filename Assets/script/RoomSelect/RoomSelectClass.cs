@@ -32,6 +32,8 @@ public class RoomSelectClass : MonoBehaviour
 
     public static string Name;
 
+    public static EnumController.RoomSelect RoomType;
+
     SaveUtil m_SaveUtil = new SaveUtil();
 
     RoomSelectClass()
@@ -39,6 +41,7 @@ public class RoomSelectClass : MonoBehaviour
         RoomName = "";
         PassPhrase = "";
         Name = "";
+        RoomType = EnumController.RoomSelect.VOID;
     }
 
     // Start is called before the first frame update
@@ -129,6 +132,7 @@ public class RoomSelectClass : MonoBehaviour
 
         RoomName = roomName;
         PassPhrase = passPhrase;
+        RoomType = EnumController.RoomSelect.Private;
 
         SceneManager.LoadScene("Battle");
     }
@@ -152,6 +156,36 @@ public class RoomSelectClass : MonoBehaviour
         SaveData.PlayerName = Name;
     }
 
+    public void onRandomRoomButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+
+        bool result = false;
+        bool nameResult = false;
+        bool deckCountResult = false;
+
+        if (Name == string.Empty)
+        {
+            result = true;
+            nameResult = true;
+        }
+
+        if (SaveData.cardInfoList.Count != 50)
+        {
+            result = true;
+            deckCountResult = true;
+        }
+
+        if (result)
+        {
+            m_RoomSelectAlertAnimation.AnimationStart(deckCountResult, false, false, nameResult);
+            return;
+        }
+
+        RoomType = EnumController.RoomSelect.Random;
+
+        SceneManager.LoadScene("Battle");
+    }
 
     public static string getRoomName()
     {

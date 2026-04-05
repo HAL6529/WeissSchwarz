@@ -26,6 +26,7 @@ public class StrixManager : MonoBehaviour
     public string host = "ec593633b2ecaca37e597b51.game.strixcloud.net";
     public int port = 9122;
     public string applicationId = "de65fc24-a8f1-49e8-becf-732e0420ac94";
+    private string PasswordCharacter = "0123456789abcdefghijklmnopqrstuvwxyz";
     private string pass;
     StrixNetwork strixNetwork;
 
@@ -55,6 +56,14 @@ public class StrixManager : MonoBehaviour
     /// </summary>
     public double Version = 0.0001;
 
+    private double PrivateKey = 2;
+
+    private double RandomKey = 1;
+
+    public double Key = 0;
+
+    private System.Random r = new System.Random();
+
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -66,17 +75,51 @@ public class StrixManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        onEnter();
-    }
-
-    private void onEnter()
-    {
         strixNetwork = StrixNetwork.instance;
         strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
+
+        if (RoomSelectClass.RoomType == EnumController.RoomSelect.Random)
+        {
+            onRandomEnter();
+        }
+        else
+        {
+            onPrivateEnter();
+        }
+    }
+
+    private void onRandomEnter()
+    {
+        roomName = "";
+        passPhrase = "RandomMatch";
+
+        for (int i = 0; i < 13; i++)
+        {
+            int pos = r.Next(PasswordCharacter.Length);
+            char c = PasswordCharacter[pos];
+            roomName += c;
+        }
+        Debug.Log(roomName);
+        Name = RoomSelectClass.getName();
+        Key = RandomKey;
+        if (roomName == string.Empty || SaveData.cardInfoList.Count != 50)
+        {
+            SceneManager.LoadScene("RoomSelect");
+            return;
+        }
+        IConditionBuilder builder;
+        builder = ConditionBuilder.Builder().Field("key1").EqualTo(Version);
+        builder.And().Field("key2").EqualTo(RandomKey);
+        builder.And().Field("isJoinable").EqualTo(true);
+        onConnect(builder);
+    }
+
+    private void onPrivateEnter()
+    {
         roomName = RoomSelectClass.getRoomName();
         passPhrase = RoomSelectClass.getPassPhrase();
         Name = RoomSelectClass.getName();
-        RoomMemberProperties m_RoomMemberProperties = new RoomMemberProperties { name = Name };
+        Key = PrivateKey;
         if (roomName == string.Empty || SaveData.cardInfoList.Count != 50)
         {
             SceneManager.LoadScene("RoomSelect");
@@ -86,6 +129,12 @@ public class StrixManager : MonoBehaviour
         builder = ConditionBuilder.Builder().Field("name").EqualTo(roomName);
         builder.And().Field("password").EqualTo(passPhrase);
         builder.And().Field("key1").EqualTo(Version);
+        builder.And().Field("key2").EqualTo(PrivateKey);
+        onConnect(builder);
+    }
+
+    private void onConnect(IConditionBuilder builder)
+    {
         strixNetwork.applicationId = applicationId;
         strixNetwork.ConnectMasterServer(host, port,
             connectEventHandler: _ => {
@@ -99,37 +148,47 @@ public class StrixManager : MonoBehaviour
                                    var foundRooms = searchResults.roomInfoCollection;
                                    if (foundRooms.Count == 0)
                                    {
-                                       isOwner = true;
-                                       strixNetwork.CreateRoom(
-                                           new RoomProperties
-                                           {
-                                               name = roomName,
-                                               password = passPhrase,
-                                               capacity = 2,
-                                               key1 = Version,
-                                           }, m_RoomMemberProperties,
-                                           handler: __ => { },
-                                           failureHandler: createRoomError => { });
+                                       onCreateRoom(Key);
                                        return;
                                    }
                                    RoomInfo roomInfo = foundRooms.First();
-                                   RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs()
-                                   {
-                                       host = roomInfo.host,
-                                       port = roomInfo.port,
-                                       protocol = roomInfo.protocol,
-                                       roomId = roomInfo.roomId,
-                                       password = passPhrase,
-                                       memberProperties = m_RoomMemberProperties,
-                                   };
-                                   strixNetwork.JoinRoom(
-                                        m_RoomJoinArgs,
-                                        OnRoomJoin,
-                                        OnRoomJoinFailed
-                                   );
+                                   onJoinRoom(roomInfo);
                                }, failureHandler: searchError => { });
             }, OnConnectFailedCallback);
     }
+
+    private void onCreateRoom(double d)
+    {
+        RoomMemberProperties m_RoomMemberProperties = new RoomMemberProperties { name = Name };
+        isOwner = true;
+        strixNetwork.CreateRoom(
+            new RoomProperties
+            {
+                name = roomName,
+                password = passPhrase,
+                capacity = 2,
+                key1 = Version,
+                key2 = d,
+            }, m_RoomMemberProperties,
+            handler: __ => { },
+            failureHandler: createRoomError => { });
+        return;
+    }
+
+    private void onJoinRoom(RoomInfo roomInfo)
+    {
+        RoomMemberProperties m_RoomMemberProperties = new RoomMemberProperties { name = Name };
+        RoomJoinArgs m_RoomJoinArgs = new RoomJoinArgs()
+        {
+            host = roomInfo.host,
+            port = roomInfo.port,
+            protocol = roomInfo.protocol,
+            roomId = roomInfo.roomId,
+            password = passPhrase,
+            memberProperties = m_RoomMemberProperties,
+        };
+        strixNetwork.JoinRoom(m_RoomJoinArgs, OnRoomJoin, OnRoomJoinFailed);
+    } 
 
     // Update is called once per frame
     void Update()
@@ -163,8 +222,18 @@ public class StrixManager : MonoBehaviour
         switch (errorCodeException.errorCode)
         {
             case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomNotJoinable:
-            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers:
+            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.AlreadyInRoom:
                 SceneManager.LoadScene("RoomSelect");
+                break;
+            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers:
+                if(Key == RandomKey)
+                {
+                    onCreateRoom(Key);
+                }
+                else
+                {
+                    SceneManager.LoadScene("RoomSelect");
+                }
                 break;
             default:
                 Debug.Log(args);
@@ -191,17 +260,21 @@ public class StrixManager : MonoBehaviour
     private void RoomJoinNotified(NotificationEventArgs<RoomJoinNotification<CustomizableMatchRoom>> notification)
     {
         m_GameManager.GameStart();
+
+        Debug.Log(strixNetwork.room.GetName());
+        Debug.Log(strixNetwork.room.GetKey2());
         strixNetwork.SetRoom(strixNetwork.selfRoomMember.GetRoomId(),
             new RoomProperties
             {
-                name = roomName,
-                password = passPhrase,
-                capacity = 2,
-                key1 = Version,
+                name = strixNetwork.room.GetName(),
+                password = strixNetwork.room.GetPassword(),
+                capacity = strixNetwork.room.GetCapacity(),
+                key1 = strixNetwork.room.GetKey1(),
+                key2 = strixNetwork.room.GetKey2(),
                 isJoinable = false,
             }
-            , handler: __ =>{}
-            , failureHandler: __ => {});
+            , handler: __ => { }
+            , failureHandler: __ => { });
     }
 
     // オブジェクトが破棄された場合に呼び出される
