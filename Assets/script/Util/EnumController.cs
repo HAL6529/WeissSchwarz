@@ -536,6 +536,7 @@ namespace EnumController
 
     public enum RoomSelect
     {
+        Enter,
         Private,
         Random,
         VOID,

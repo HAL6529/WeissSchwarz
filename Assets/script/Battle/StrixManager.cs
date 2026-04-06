@@ -54,7 +54,7 @@ public class StrixManager : MonoBehaviour
     /// <summary>
     /// Version
     /// </summary>
-    public double Version = 0.0001;
+    public double Version = RoomSelectClass.getVersion();
 
     private double PrivateKey = 2;
 
@@ -78,14 +78,62 @@ public class StrixManager : MonoBehaviour
         strixNetwork = StrixNetwork.instance;
         strixNetwork.roomSession.roomClient.RoomJoinNotified += RoomJoinNotified;
 
+        if (strixNetwork.roomSession.IsConnected)
+        {
+            return;
+        }
+
         if (RoomSelectClass.RoomType == EnumController.RoomSelect.Random)
         {
             onRandomEnter();
         }
-        else
+        else if (RoomSelectClass.RoomType == EnumController.RoomSelect.Private)
         {
             onPrivateEnter();
         }
+        else
+        {
+            onJoinEnter();
+        }
+    }
+
+    private void onJoinEnter()
+    {
+        roomName = RoomSelectClass.getRoomName();
+        passPhrase = RoomSelectClass.getPassPhrase();
+        Name = RoomSelectClass.getName();
+        Key = PrivateKey;
+        if (roomName == string.Empty || SaveData.cardInfoList.Count != 50)
+        {
+            SceneManager.LoadScene("RoomSelect");
+            return;
+        }
+        IConditionBuilder builder;
+        builder = ConditionBuilder.Builder().Field("name").EqualTo(roomName);
+        builder.And().Field("password").EqualTo(passPhrase);
+        builder.And().Field("key1").EqualTo(Version);
+        builder.And().Field("key2").EqualTo(PrivateKey);
+        strixNetwork.applicationId = applicationId;
+        strixNetwork.ConnectMasterServer(host, port,
+            connectEventHandler: _ => {
+                strixNetwork.SearchRoom(
+                               condition: builder.Build(),
+                               order: new Order("memberCount", OrderType.Ascending),
+                               limit: 2,
+                               offset: 0,
+                               handler: searchResults =>
+                               {
+                                   var foundRooms = searchResults.roomInfoCollection;
+                                   if (foundRooms.Count == 0)
+                                   {
+                                       StrixNetwork.instance.roomSession.Disconnect();
+                                       SceneManager.LoadScene("RoomSelect");
+                                       return;
+                                   }
+                                   RoomInfo roomInfo = foundRooms.First();
+                                   onJoinRoom(roomInfo);
+                               }, failureHandler: searchError => { });
+            }, OnConnectFailedCallback);
     }
 
     private void onRandomEnter()
@@ -151,8 +199,10 @@ public class StrixManager : MonoBehaviour
                                        onCreateRoom(Key);
                                        return;
                                    }
-                                   RoomInfo roomInfo = foundRooms.First();
-                                   onJoinRoom(roomInfo);
+                                   /*RoomInfo roomInfo = foundRooms.First();
+                                   onJoinRoom(roomInfo);*/
+                                   StrixNetwork.instance.roomSession.Disconnect();
+                                   SceneManager.LoadScene("RoomSelect");
                                }, failureHandler: searchError => { });
             }, OnConnectFailedCallback);
     }
@@ -222,7 +272,7 @@ public class StrixManager : MonoBehaviour
         switch (errorCodeException.errorCode)
         {
             case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomNotJoinable:
-            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.AlreadyInRoom:
+                StrixNetwork.instance.roomSession.Disconnect();
                 SceneManager.LoadScene("RoomSelect");
                 break;
             case SoftGear.Strix.Client.Room.Error.RoomErrorCode.RoomFullOfMembers:
@@ -232,8 +282,11 @@ public class StrixManager : MonoBehaviour
                 }
                 else
                 {
+                    StrixNetwork.instance.roomSession.Disconnect();
                     SceneManager.LoadScene("RoomSelect");
                 }
+                break;
+            case SoftGear.Strix.Client.Room.Error.RoomErrorCode.AlreadyInRoom:
                 break;
             default:
                 Debug.Log(args);
@@ -280,6 +333,7 @@ public class StrixManager : MonoBehaviour
     // オブジェクトが破棄された場合に呼び出される
     private void OnDestroy()
     {
+        Debug.Log("OnDestroy");
         m_WinAndLose.Win();
     }
 

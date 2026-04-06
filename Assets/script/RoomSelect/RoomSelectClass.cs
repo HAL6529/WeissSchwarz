@@ -34,6 +34,8 @@ public class RoomSelectClass : MonoBehaviour
 
     public static EnumController.RoomSelect RoomType;
 
+    public static double Version;
+
     SaveUtil m_SaveUtil = new SaveUtil();
 
     RoomSelectClass()
@@ -42,6 +44,7 @@ public class RoomSelectClass : MonoBehaviour
         PassPhrase = "";
         Name = "";
         RoomType = EnumController.RoomSelect.VOID;
+        Version = 0.0001;
     }
 
     // Start is called before the first frame update
@@ -50,12 +53,6 @@ public class RoomSelectClass : MonoBehaviour
         t_PlayerName.text = SaveData.PlayerName;
         Name = SaveData.PlayerName;
         Load();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     
     public void onCreateDeckButton()
@@ -202,6 +199,11 @@ public class RoomSelectClass : MonoBehaviour
         return Name;
     }
 
+    public static double getVersion()
+    {
+        return Version;
+    }
+
     public void Load()
     {
         string DeckName = "default";
@@ -232,5 +234,53 @@ public class RoomSelectClass : MonoBehaviour
         }
 
         SaveData.cardInfoList = list;
+    }
+
+    public void onInputPasswordDialogEnter(string roomNametxt, string passwordtxt)
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        string roomName = roomNametxt;
+        string passPhrase = passwordtxt;
+        bool result = false;
+        bool roomNameResult = false;
+        bool passPhraseResult = false;
+        bool nameResult = false;
+        bool deckCountResult = false;
+
+        if (roomName == string.Empty)
+        {
+            result = true;
+            roomNameResult = true;
+        }
+
+        if (passPhrase == string.Empty)
+        {
+            result = true;
+            passPhraseResult = true;
+        }
+
+        if (Name == string.Empty)
+        {
+            result = true;
+            nameResult = true;
+        }
+
+        if (SaveData.cardInfoList.Count != 50)
+        {
+            result = true;
+            deckCountResult = true;
+        }
+
+        if (result)
+        {
+            m_RoomSelectAlertAnimation.AnimationStart(deckCountResult, roomNameResult, passPhraseResult, nameResult);
+            return;
+        }
+
+        RoomName = roomName;
+        PassPhrase = passPhrase;
+        RoomType = EnumController.RoomSelect.Enter;
+
+        SceneManager.LoadScene("Battle");
     }
 }
