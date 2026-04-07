@@ -10,6 +10,8 @@ public class RoomSelectClass : MonoBehaviour
 {
     [SerializeField] GameObject CreateRoomMenu;
 
+    [SerializeField] GameObject Menu;
+
     [SerializeField] Text t_RoomName;
 
     [SerializeField] Text t_PassPhrase;
@@ -30,6 +32,12 @@ public class RoomSelectClass : MonoBehaviour
 
     public static string Name;
 
+    public static EnumController.RoomSelect RoomType;
+
+    public static double Version;
+
+    public static bool AlreadyRoomCreated;
+
     SaveUtil m_SaveUtil = new SaveUtil();
 
     RoomSelectClass()
@@ -37,6 +45,9 @@ public class RoomSelectClass : MonoBehaviour
         RoomName = "";
         PassPhrase = "";
         Name = "";
+        RoomType = EnumController.RoomSelect.VOID;
+        Version = 0.0001;
+        setAlreadyRoomCreated(false);
     }
 
     // Start is called before the first frame update
@@ -45,12 +56,11 @@ public class RoomSelectClass : MonoBehaviour
         t_PlayerName.text = SaveData.PlayerName;
         Name = SaveData.PlayerName;
         Load();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (AlreadyRoomCreated)
+        {
+            setAlreadyRoomCreated(false);
+            m_RoomSelectAlertAnimation.AnimationStart();
+        }
     }
     
     public void onCreateDeckButton()
@@ -63,12 +73,25 @@ public class RoomSelectClass : MonoBehaviour
     {
         GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(true);
+        Menu.SetActive(false);
+    }
+
+    public void onVSButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        Menu.SetActive(true);
     }
 
     public void onCloseCreateRoomButton()
     {
         GetComponent<AudioSource>().PlayOneShot(BtnSE);
         CreateRoomMenu.SetActive(false);
+    }
+
+    public void onCloseMenuButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        Menu.SetActive(false);
     }
 
     public void onCreateRoomButton()
@@ -114,6 +137,7 @@ public class RoomSelectClass : MonoBehaviour
 
         RoomName = roomName;
         PassPhrase = passPhrase;
+        RoomType = EnumController.RoomSelect.Private;
 
         SceneManager.LoadScene("Battle");
     }
@@ -137,6 +161,36 @@ public class RoomSelectClass : MonoBehaviour
         SaveData.PlayerName = Name;
     }
 
+    public void onRandomRoomButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+
+        bool result = false;
+        bool nameResult = false;
+        bool deckCountResult = false;
+
+        if (Name == string.Empty)
+        {
+            result = true;
+            nameResult = true;
+        }
+
+        if (SaveData.cardInfoList.Count != 50)
+        {
+            result = true;
+            deckCountResult = true;
+        }
+
+        if (result)
+        {
+            m_RoomSelectAlertAnimation.AnimationStart(deckCountResult, false, false, nameResult);
+            return;
+        }
+
+        RoomType = EnumController.RoomSelect.Random;
+
+        SceneManager.LoadScene("Battle");
+    }
 
     public static string getRoomName()
     {
@@ -151,6 +205,16 @@ public class RoomSelectClass : MonoBehaviour
     public static string getName()
     {
         return Name;
+    }
+
+    public static double getVersion()
+    {
+        return Version;
+    }
+
+    public static void setAlreadyRoomCreated(bool t)
+    {
+        AlreadyRoomCreated = t;
     }
 
     public void Load()
@@ -183,5 +247,53 @@ public class RoomSelectClass : MonoBehaviour
         }
 
         SaveData.cardInfoList = list;
+    }
+
+    public void onInputPasswordDialogEnter(string roomNametxt, string passwordtxt)
+    {
+        GetComponent<AudioSource>().PlayOneShot(BtnSE);
+        string roomName = roomNametxt;
+        string passPhrase = passwordtxt;
+        bool result = false;
+        bool roomNameResult = false;
+        bool passPhraseResult = false;
+        bool nameResult = false;
+        bool deckCountResult = false;
+
+        if (roomName == string.Empty)
+        {
+            result = true;
+            roomNameResult = true;
+        }
+
+        if (passPhrase == string.Empty)
+        {
+            result = true;
+            passPhraseResult = true;
+        }
+
+        if (Name == string.Empty)
+        {
+            result = true;
+            nameResult = true;
+        }
+
+        if (SaveData.cardInfoList.Count != 50)
+        {
+            result = true;
+            deckCountResult = true;
+        }
+
+        if (result)
+        {
+            m_RoomSelectAlertAnimation.AnimationStart(deckCountResult, roomNameResult, passPhraseResult, nameResult);
+            return;
+        }
+
+        RoomName = roomName;
+        PassPhrase = passPhrase;
+        RoomType = EnumController.RoomSelect.Enter;
+
+        SceneManager.LoadScene("Battle");
     }
 }

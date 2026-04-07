@@ -534,6 +534,14 @@ namespace EnumController
         PowerCheckForLevelUpDialog,
     }
 
+    public enum RoomSelect
+    {
+        Enter,
+        Private,
+        Random,
+        VOID,
+    }
+
     public enum SearchDialogParamater
     {
         VOID,
