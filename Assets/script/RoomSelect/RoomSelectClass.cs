@@ -36,6 +36,8 @@ public class RoomSelectClass : MonoBehaviour
 
     public static double Version;
 
+    public static bool AlreadyRoomCreated;
+
     SaveUtil m_SaveUtil = new SaveUtil();
 
     RoomSelectClass()
@@ -45,6 +47,7 @@ public class RoomSelectClass : MonoBehaviour
         Name = "";
         RoomType = EnumController.RoomSelect.VOID;
         Version = 0.0001;
+        setAlreadyRoomCreated(false);
     }
 
     // Start is called before the first frame update
@@ -53,6 +56,11 @@ public class RoomSelectClass : MonoBehaviour
         t_PlayerName.text = SaveData.PlayerName;
         Name = SaveData.PlayerName;
         Load();
+        if (AlreadyRoomCreated)
+        {
+            setAlreadyRoomCreated(false);
+            m_RoomSelectAlertAnimation.AnimationStart();
+        }
     }
     
     public void onCreateDeckButton()
@@ -202,6 +210,11 @@ public class RoomSelectClass : MonoBehaviour
     public static double getVersion()
     {
         return Version;
+    }
+
+    public static void setAlreadyRoomCreated(bool t)
+    {
+        AlreadyRoomCreated = t;
     }
 
     public void Load()

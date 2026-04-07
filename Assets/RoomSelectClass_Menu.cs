@@ -25,10 +25,15 @@ public class RoomSelectClass_Menu : MonoBehaviour
     private string pass;
     StrixNetwork strixNetwork;
 
+    [SerializeField] RoomSelectAlertAnimation m_RoomSelectAlertAnimation;
+    [SerializeField] AudioSource m_AudioSource;
+    [SerializeField] AudioClip BtnSE;
+
     public List<RoomSelectObj> RoomSelectObjList = new List<RoomSelectObj>();
 
     public void onSearch()
     {
+        m_AudioSource.PlayOneShot(BtnSE);
         IConditionBuilder builder = ConditionBuilder.Builder().Field("key1").EqualTo(RoomSelectClass.Version); 
         strixNetwork = StrixNetwork.instance;
         strixNetwork.applicationId = applicationId;
@@ -59,7 +64,10 @@ public class RoomSelectClass_Menu : MonoBehaviour
                                        {
                                            RoomSelectObjList[i].Set("", "");
                                        }
-
+                                   }
+                                   if (RoomInfoList.Count == 0)
+                                   {
+                                       m_RoomSelectAlertAnimation.AnimationStart(true);
                                    }
                                }, failureHandler: searchError => { });
             }, OnConnectFailedCallback);

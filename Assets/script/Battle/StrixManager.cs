@@ -199,8 +199,7 @@ public class StrixManager : MonoBehaviour
                                        onCreateRoom(Key);
                                        return;
                                    }
-                                   /*RoomInfo roomInfo = foundRooms.First();
-                                   onJoinRoom(roomInfo);*/
+                                   RoomSelectClass.setAlreadyRoomCreated(true);
                                    StrixNetwork.instance.roomSession.Disconnect();
                                    SceneManager.LoadScene("RoomSelect");
                                }, failureHandler: searchError => { });
