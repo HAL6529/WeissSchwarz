@@ -10,7 +10,7 @@ public class BattleModeCard_LB_W02_07T : BattleModeCard
         this.cost = 1;
         this.soul = 1;
         this.color = EnumController.CardColor.GREEN;
-        this.trigger = EnumController.Trigger.NONE;
+        this.trigger = EnumController.Trigger.SOUL;
         this.type = EnumController.Type.CHARACTER;
         this.attribute = new List<EnumController.Attribute>() { EnumController.Attribute.Sports };
         this.cardNo = EnumController.CardNo.LB_W02_07T;
